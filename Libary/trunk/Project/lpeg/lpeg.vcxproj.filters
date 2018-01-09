@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{b16aa851-dfaf-44fa-8421-5ed4d2c146f2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Deps\lpeg-1.0.0\lpcap.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\lpeg-1.0.0\lpcode.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\lpeg-1.0.0\lptree.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\lpeg-1.0.0\lpvm.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\lpeg-1.0.0\lpprint.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Deps\lpeg-1.0.0\lpcap.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\lpeg-1.0.0\lpcode.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\lpeg-1.0.0\lpprint.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\lpeg-1.0.0\lptree.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\lpeg-1.0.0\lptypes.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\lpeg-1.0.0\lpvm.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{6c9a3efb-1946-4296-8ac5-b6635470669b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Mysql">
+      <UniqueIdentifier>{dc5a8e82-2ef8-4a2f-921d-6c3190432844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Redis">
+      <UniqueIdentifier>{054c37ff-bd2a-47f9-9b12-49c412c7bf5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SSDB">
+      <UniqueIdentifier>{85242d5f-3bfb-47dd-bda9-45f957aacded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SSDB\SSDBWin">
+      <UniqueIdentifier>{315d1516-03e2-4bb7-ad40-f57e86d3583a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\LibDBDriver\Mysql\LMysqlDriver.cpp">
+      <Filter>Src\Mysql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibDBDriver\Mysql\MysqlDriver.cpp">
+      <Filter>Src\Mysql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibDBDriver\SSDB\SSDBDriver.cpp">
+      <Filter>Src\SSDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibDBDriver\Redis\RedisDriver.cpp">
+      <Filter>Src\Redis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibDBDriver\SSDB\SSDBWin\buffer.c">
+      <Filter>Src\SSDB\SSDBWin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibDBDriver\SSDB\SSDBWin\main.cpp">
+      <Filter>Src\SSDB\SSDBWin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibDBDriver\SSDB\SSDBWin\ssdb_async_client.cpp">
+      <Filter>Src\SSDB\SSDBWin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibDBDriver\SSDB\SSDBWin\ssdb_client.cpp">
+      <Filter>Src\SSDB\SSDBWin</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\LibDBDriver\Redis\hiredis.h">
+      <Filter>Src\Redis</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

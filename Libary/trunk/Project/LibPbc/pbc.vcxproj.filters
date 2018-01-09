@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{aa230bd6-7da2-4cfb-af39-52310e429716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\binding">
+      <UniqueIdentifier>{acbf771a-7e3e-46d4-899e-605f5d9818d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\binding\lua53">
+      <UniqueIdentifier>{df45a5ed-2ece-460b-8734-c8d8e2a8620b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\alloc.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\array.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\bootstrap.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\context.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\descriptor.pbc.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\map.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\pattern.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\proto.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\stringpool.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\src\varint.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Deps\pbc\pbc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\alloc.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\array.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\bootstrap.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\context.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\decode.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\map.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\pattern.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\proto.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\register.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\rmessage.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\stringpool.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\varint.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\src\wmessage.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Deps\pbc\binding\lua53\pbc-lua53.c">
+      <Filter>Src\binding\lua53</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

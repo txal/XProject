@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 2.6)
+
+add_subdirectory(Deps/lua-5.3.0)
+add_subdirectory(Deps/lpeg-1.0.0)
+add_subdirectory(Deps/pbc)
+add_subdirectory(Deps/lua-cjson)
+add_subdirectory(LibDBDriver)
+add_subdirectory(LibLogger)
+add_subdirectory(LibNetwork)
+add_subdirectory(LuaWrapper)

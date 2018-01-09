@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{e1c7d28c-dcac-4333-8b2b-1b35c6a54c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Ae">
+      <UniqueIdentifier>{1c0701cf-1ad9-42e9-b1d8-3f827ed549f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\MailBox">
+      <UniqueIdentifier>{e36cf40a-55db-483a-b533-e8639a172f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\NetUtil">
+      <UniqueIdentifier>{be83ae6f-9b6c-4c1f-8a01-f9f3dac9cfd8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\LibNetwork\Ae\Epoll.cpp">
+      <Filter>Src\Ae</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\Ae\Iocp.cpp">
+      <Filter>Src\Ae</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\Ae\Select.cpp">
+      <Filter>Src\Ae</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\ExterNet.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\InnerNet.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\IO.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\Net.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\NetUtil\NetAPI.cpp">
+      <Filter>Src\NetUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\NetUtil\Packet.cpp">
+      <Filter>Src\NetUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\MailBox\XSignal.cpp">
+      <Filter>Src\MailBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\INet.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\WebSocket.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\Sha1.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\LibNetwork\Base64.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\LibNetwork\Ae\Ae.h">
+      <Filter>Src\Ae</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\Ae\Epoll.h">
+      <Filter>Src\Ae</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\Ae\Iocp.h">
+      <Filter>Src\Ae</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\Ae\Select.h">
+      <Filter>Src\Ae</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\Ctrl.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\ExterNet.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\InnerNet.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\IO.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\MsgList.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\Net.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\NetDef.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\Session.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\WebSocket.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\Sha1.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\LibNetwork\Base64.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

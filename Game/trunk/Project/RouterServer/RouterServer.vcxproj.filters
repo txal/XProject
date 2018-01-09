@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{ecd99e8d-88d4-414c-b8d2-5cc8119fe87c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common">
+      <UniqueIdentifier>{bdac1a2f-8220-4cf6-95c0-8e4150fd4c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Base">
+      <UniqueIdentifier>{5d1a34ef-0114-41d7-8483-bf97c76f2fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\PacketProc">
+      <UniqueIdentifier>{fed4c3d2-a121-44a5-9f98-047ccc6d1591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\LuaSupport">
+      <UniqueIdentifier>{3546ff78-1cab-4b45-9fc0-994ae4e1430e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\PacketParser">
+      <UniqueIdentifier>{89fdcbfa-dba9-4345-a402-8a918e48a797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\TimerMgr">
+      <UniqueIdentifier>{48185ccd-d93a-4b21-95a1-ff5b9b386a53}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\Service.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\RouterServer\Main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\RouterServer\Router.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\RouterServer\PacketProc\RouterPacketHandler.cpp">
+      <Filter>Src\PacketProc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\RouterServer\PacketProc\RouterPacketProc.cpp">
+      <Filter>Src\PacketProc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\RouterServer\LuaSupport\LuaExport.cpp">
+      <Filter>Src\LuaSupport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\RouterServer\ServiceNode.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\ServerContext.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\Service.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\CmdDef.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\RouterServer\Router.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\RouterServer\PacketProc\RouterPacketHanderl.h">
+      <Filter>Src\PacketProc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\RouterServer\PacketProc\RouterPacketProc.h">
+      <Filter>Src\PacketProc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\RouterServer\LuaSupport\LuaExport.h">
+      <Filter>Src\LuaSupport</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\RouterServer\ServiceNode.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

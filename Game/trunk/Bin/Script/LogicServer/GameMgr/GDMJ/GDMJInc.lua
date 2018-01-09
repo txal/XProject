@@ -1,0 +1,11 @@
+CGDMJRoomMgr = CGDMJRoomMgr or class()
+CGDMJRoomBase = CGDMJRoomBase or class()
+CGDMJRoom1 = CGDMJRoom1 or class(CGDMJRoomBase)
+CGDMJRoom2 = CGDMJRoom2 or class(CGDMJRoomBase)
+
+require("GameMgr/GDMJ/GDMJConf")
+require("GameMgr/GDMJ/GDMJRoomMgr")
+require("GameMgr/GDMJ/GDMJRoomBase")
+require("GameMgr/GDMJ/GDMJRoom1")
+require("GameMgr/GDMJ/GDMJRoom2")
+require("GameMgr/GDMJ/GDMJRpc")

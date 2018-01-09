@@ -1,0 +1,2 @@
+function CBrowser:Ctor()
+end

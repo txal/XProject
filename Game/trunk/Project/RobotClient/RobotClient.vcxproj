@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F39C47D7-4522-4007-A629-9577E24E51C4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Robot</RootNamespace>
+    <ProjectName>RobotClient</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Bin\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>LibLogger.lib;LibNetwork.lib;Lua530.lib;LuaWrapper.lib;pbc.lib;LibDBDriver.lib;lpeg.lib;lua_cjson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>LibLogger.lib;LibNetwork.lib;Lua530.lib;LuaWrapper.lib;pbc.lib;LibDBDriver.lib;lpeg.lib;lua_cjson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Libs\Win64\Release;..\..\Libs\Win64\Release\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Src\Common\CSVDocument\CSVDocument.cpp" />
+    <ClCompile Include="..\..\Src\Common\Filter\Filter.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
+    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
+    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
+    <ClCompile Include="..\..\Src\RobotClient\ConfMgr\ConfMgr.cpp" />
+    <ClCompile Include="..\..\Src\RobotClient\ConfMgr\MapConf.cpp" />
+    <ClCompile Include="..\..\Src\RobotClient\LuaSupport\LuaExport.cpp" />
+    <ClCompile Include="..\..\Src\RobotClient\Main.cpp" />
+    <ClCompile Include="..\..\Src\RobotClient\PacketProc\RobotPacketProc.cpp" />
+    <ClCompile Include="..\..\Src\RobotClient\Robot.cpp" />
+    <ClCompile Include="..\..\Src\RobotClient\RobotMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\Service.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\Common\CSVDocument\CSVDocument.h" />
+    <ClInclude Include="..\..\Src\Common\CSVDocument\CSVSerializer.hpp" />
+    <ClInclude Include="..\..\Src\Common\CSVDocument\Variant.hpp" />
+    <ClInclude Include="..\..\Src\Common\Filter\Filter.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
+    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
+    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
+    <ClInclude Include="..\..\Src\RobotClient\ConfMgr\ConfMgr.h" />
+    <ClInclude Include="..\..\Src\RobotClient\ConfMgr\MapConf.h" />
+    <ClInclude Include="..\..\Src\RobotClient\LuaSupport\LuaExport.h" />
+    <ClInclude Include="..\..\Src\RobotClient\PacketProc\RobotPacketProc.h" />
+    <ClInclude Include="..\..\Src\RobotClient\Robot.h" />
+    <ClInclude Include="..\..\Src\RobotClient\RobotMgr.h" />
+    <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
+    <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />
+    <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h" />
+    <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h" />
+    <ClInclude Include="..\..\Src\Server\Base\ServerContext.h" />
+    <ClInclude Include="..\..\Src\Server\Base\Service.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

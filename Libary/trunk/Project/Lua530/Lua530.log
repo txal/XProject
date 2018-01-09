@@ -1,0 +1,8 @@
+﻿生成启动时间为 2016/2/24 15:52:39。
+     1>项目“E:\XProject\程序\Libary\trunk\Project\Lua530\Lua530.vcxproj”在节点 2 上(Build 个目标)。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Cpp.InvalidPlatform.Targets(21,7): error MSB8006: The Platform for project 'Lua530.vcxproj' is invalid.  Platform='x64'. This error may also appear if some other project is trying to follow a project-to-project reference to this project, this project has been unloaded or is not included in the solution, and the referencing project does not build using the same or an equivalent Platform.
+     1>已完成生成项目“E:\XProject\程序\Libary\trunk\Project\Lua530\Lua530.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.00

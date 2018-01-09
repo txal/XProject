@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lapi.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lauxlib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lbaselib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lbitlib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lcode.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lcorolib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lctype.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ldblib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ldebug.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ldo.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ldump.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lfunc.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lgc.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\linit.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\liolib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\llex.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lmathlib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lmem.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\loadlib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lobject.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lopcodes.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\loslib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lparser.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lstate.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lstring.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lstrlib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ltable.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ltablib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ltm.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lua.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\luac.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lundump.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lutf8lib.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lvm.c" />
+    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lzio.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lapi.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lauxlib.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lcode.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lctype.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\ldebug.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\ldo.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lfunc.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lgc.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\llex.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\llimits.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lmem.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lobject.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lopcodes.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lparser.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lprefix.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lstate.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lstring.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\ltable.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\ltm.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lua.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lua.hpp" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\luaconf.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lualib.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lundump.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lvm.h" />
+    <ClInclude Include="..\..\Source\Deps\lua-5.3.0\src\lzio.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Source\Deps\lua-5.3.0\src\Makefile" />
+  </ItemGroup>
+</Project>
