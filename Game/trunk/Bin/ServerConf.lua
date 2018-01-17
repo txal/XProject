@@ -1,41 +1,44 @@
-gnServerID = 1 --[1-100]:测试服; [10001-65535]:正式服
+gnServerID = 2 --[1-100]:测试服; [1001-32767]:正式服
+gsServerName = "panda"
+gbInnerServer = false
 
 gtNetConf = 
 {
     tRouterService  = {[11] = { sIP = "127.0.0.1", nPort = 8100 } },
-    tGateService    = {[21] = { nPort = 8200, nMaxConn = 10000} },  --需要开放端口
-    tGlobalService  = {[31] = { nPort = 8300} },                    --需要开放端口
-    tLogService     = {[41] = {} },
+    tGateService    = {[21] = {nPort=8101, nMaxConns=20000, nSecureCPM=120, nSecureQPM=180, nSecureBlock=60, nDeadLinkTime=120} },
+    tGlobalService  = {[31] = { sIP = "192.168.3.182", nPort = 8102} },
+    tLogService     = {[41] = { nWorkers=1, nMysqlConns=1 } },
     tLogicService   = {[51] = {} },
 
-    GetGlobalService = function(self) return next(self.tGlobalService) end,
+    LogService = function(self) return next(self.tLogService) end,
+    GlobalService = function(self) return next(self.tGlobalService) end,
+    LogicService = function(self) return next(self.tLogicService) end,
 }
 
---游戏ssdb
+
+--SSDB
 gtSSDBConf = 
 {
-    sIP = "127.0.0.1",
-    nPort = 8500,
+    {sName = "Player", sIP = "127.0.0.1", nPort = 8103}, --PLAYER
+    {sName = "Center", sIP = "192.168.0.9", nPort = 7500}, --CENTER
 }
 
---游戏mysql(需要开放端口)
+--游戏MYSQL
 gtGameMysqlConf = 
 {
-    sIP = "192.168.1.11",
-    nPort = 3306,
-    sDBName = "marine_s"..gnServerID,
+    sIP = "192.168.0.9",
+    nPort = 3308,
+    sDBName = "taizifei_s"..gnServerID,
     sUserName = "root",
     sPassword = "123456",
 }
 
---充值mysql(需要开放端口)
-gtRechargeMysqlConf = 
+--GM后台MYSQL
+gtMgrMysqlConf = 
 {
-    sIP = "192.168.1.11",
-    nPort = 3306,
-    sDBName = "marine_gm",
+    sIP = "192.168.0.9",
+    nPort = 3308,
+    sDBName = "taizifei_mgr",
     sUserName = "root",
     sPassword = "123456",
 }
-
---Http:8800
