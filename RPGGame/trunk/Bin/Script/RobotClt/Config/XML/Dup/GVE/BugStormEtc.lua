@@ -1,0 +1,16 @@
+ctBugStormEtc[1]={}
+ctBugStormEtc[1].nIndex=1
+ctBugStormEtc[1].nReliveTime=30
+ctBugStormEtc[1].nReliveProp=2002
+ctBugStormEtc[1].nEnergyStoneID=2001
+ctBugStormEtc[1].tEnergyStonePos={}
+ctBugStormEtc[1].tEnergyStonePos[1]={}
+ctBugStormEtc[1].tEnergyStonePos[1][1]=960
+ctBugStormEtc[1].tEnergyStonePos[1][2]=540
+ctBugStormEtc[1].nDupID=1
+ctBugStormEtc[1].nRoomPlayer=5
+ctBugStormEtc[1].nExitTime=10
+ctBugStormEtc[1].nTimesPerRound=5
+ctBugStormEtc[1].nBuyBulletCost=500
+ctBugStormEtc[1].nExpProp=1002
+ctBugStormEtc[1].nFameProp=1003

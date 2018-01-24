@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{fbd45bd4-a32c-437b-a147-f3d727560380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\LuaSupport">
+      <UniqueIdentifier>{a86e323f-eedf-404b-913d-3383eecf53d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Base">
+      <UniqueIdentifier>{48f67c97-74ba-45d3-abf6-2af04c4786f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common">
+      <UniqueIdentifier>{bd29cc20-7fa7-4c8e-9f4a-19dbaea78a99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\LuaCommon">
+      <UniqueIdentifier>{5997ba6a-a190-4386-8c69-f83168312cd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\PacketProc">
+      <UniqueIdentifier>{11f64c13-5e04-427a-899e-440245223f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\TimerMgr">
+      <UniqueIdentifier>{43592a54-1317-48b9-bce5-0b21eaaf1ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\DataStruct">
+      <UniqueIdentifier>{9a4c509c-5573-4a12-8926-c45a33535688}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\Service.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogServer\LuaSupport\LuaExport.cpp">
+      <Filter>Src\LuaSupport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogServer\LogServer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogServer\Main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogServer\PacketProc\PacketProc.cpp">
+      <Filter>Src\PacketProc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogServer\WorkerMgr.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\Server\Base\CmdDef.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\ServerContext.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\Service.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogServer\LuaSupport\LuaExport.h">
+      <Filter>Src\LuaSupport</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogServer\LogServer.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogServer\PacketProc\PacketProc.h">
+      <Filter>Src\PacketProc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogServer\WorkerMgr.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\HashFunc.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

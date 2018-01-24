@@ -1,0 +1,12 @@
+ctLangConf={}
+ctLangConf[1]={nID=1,sCont="不存在该房间号",}
+ctLangConf[2]={nID=2,sCont="该房间已满人",}
+ctLangConf[3]={nID=3,sCont="中途不能离开",}
+ctLangConf[4]={nID=4,sCont="有玩家不同意解散房间，解散失败",}
+ctLangConf[5]={nID=5,sCont="金币不足",}
+ctLangConf[6]={nID=6,sCont="您的金币可以进入更高级的房间啦",}
+ctLangConf[7]={nID=7,sCont="你已有房间，请先退出当前房间",}
+ctLangConf[8]={nID=8,sCont="已有房间,创建房间失败",}
+ctLangConf[9]={nID=9,sCont="房卡不足",}
+ctLangConf[10]={nID=10,sCont="自由房不支持该操作",}
+ctLangConf[11]={nID=11,sCont="游戏研发中，敬请期待。",}
