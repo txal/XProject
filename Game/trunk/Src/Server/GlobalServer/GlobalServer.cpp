@@ -59,12 +59,7 @@ bool GlobalServer::RegToRouter(int nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
-	INNER_HEADER oHeader;
-	oHeader.uCmd = NSSysCmd::ssRegServiceReq;
-	oHeader.nSrc = GetServiceID();
-	oHeader.nTar = nRouterServiceID;
-	oHeader.uServer = g_poContext->GetServerID();
-	oHeader.uSessions = 0;
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, GetServiceID(), nRouterServiceID, 0, g_poContext->GetServerID());
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
