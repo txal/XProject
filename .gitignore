@@ -1,6 +1,7 @@
 x64
 *.sdf
 *.opendb
-.svn
-.db
-.suo
+*.svn
+*.db
+*.suo
+*.zip
