@@ -4,16 +4,16 @@
 #include "Server/Base/Service.h"
 #include "Server/Base/ServerContext.h"
 
-#define MAX_GATEWAY_NUM 8
+#define MAX_GATEWAY_NUM 8		//单服最大网关数
+#define MAX_GROUPSERVER_NUM 128 //每组服务器上限
 
+//按服务器和网关分组
 struct BROADCAST_HEADER
 {
-	INNER_HEADER oHeader;
+	INNER_HEADER oInerHeader;
 	Array<int> oSessionList;
 };
-
-static int8_t tServiceMap[MAX_SERVICE_NUM+1];
-static BROADCAST_HEADER tBroadcastHeaderList[MAX_GATEWAY_NUM];
+std::unordered_map<int, BROADCAST_HEADER> oBCHeaderMap;
 
 bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, int8_t nToService, int nToSession, uint32_t uPacketIdx /*=0*/, int nToServer /*=0*/)
 {
@@ -60,9 +60,9 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, int8_t nToService, i
 	return true;
 }
 
-bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, int tSessionList[], int nSessionNum)
+bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<INNER_NAVI>& oNaviList)
 {
-    assert(poPacket != NULL && nSessionNum > 0);
+    assert(poPacket != NULL && oNaviList.Size() > 0);
 	Service* poService = g_poContext->GetService();
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poService == NULL || poRouter == NULL)
@@ -70,16 +70,11 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, int tSessionLis
 		poPacket->Release();
 		return false;
 	}
-	int nFreeHeaderIndex = 0;
-	memset(tServiceMap, -1, sizeof(tServiceMap));
-	for (int i = nSessionNum - 1; i >= 0; --i)
+	for (int i = oNaviList.Size() - 1; i >= 0; --i)
 	{
-		int nSession = tSessionList[i];
-		int8_t nService = nSession >> SERVICE_SHIFT;
-		if (tServiceMap[nService] == -1)
-		{
-			tServiceMap[nService] = nFreeHeaderIndex++;
-		}
+		const INNER_NAVI& oNavi = oNaviList[i];
+		int8_t nService = oNavi.u.nSession >> SERVICE_SHIFT;
+
 		BROADCAST_HEADER& oBCHeader = tBroadcastHeaderList[tServiceMap[nService]];
 		if (oBCHeader.oSessionList.Size() == 0)
 		{
