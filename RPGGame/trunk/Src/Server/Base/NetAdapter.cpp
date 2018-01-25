@@ -15,7 +15,7 @@ struct BROADCAST_HEADER
 static int8_t tServiceMap[MAX_SERVICE_NUM+1];
 static BROADCAST_HEADER tBroadcastHeaderList[MAX_GATEWAY_NUM];
 
-bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, int8_t nToService, int nToSession, uint32_t uPacketIdx /*=0*/)
+bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, int8_t nToService, int nToSession, uint32_t uPacketIdx /*=0*/, int nToServer /*=0*/)
 {
     assert(poPacket != NULL);
 	Service* poService = g_poContext->GetService();
@@ -31,7 +31,7 @@ bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, int8_t nToService, i
 	}
 	else
 	{
-		return SendInner(uCmd, poPacket, nToService, nToSession);
+		return SendInner(uCmd, poPacket, nToService, nToSession, nToServer);
 	}
 	return true;
 }

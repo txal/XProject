@@ -19,6 +19,7 @@ Gateway::Gateway()
 
 	m_uInPackets = 0;
 	m_uOutPackets = 0;
+	m_bDebugNetwork = false;
 }
 
 Gateway::~Gateway()
@@ -46,6 +47,10 @@ bool Gateway::Init(ServerNode* poConf)
 	if (m_poInnerNet == NULL)
 	{
 		return false;
+	}
+	if (Platform::FileExist("network.txt"))
+	{
+		m_bDebugNetwork = true;
 	}
 	return true;
 }
@@ -218,7 +223,6 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	}
 	//Websocket masking decode
 	DecodeMask(poPacket);
-	int nDataSize = poPacket->GetDataSize();
 	EXTER_HEADER oExterHeader;
 	if (!poPacket->GetExterHeader(oExterHeader, true))
 	{
@@ -227,7 +231,10 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet get exter header fail\n", GetServiceName());
 		return;
 	}
-	//XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oExterHeader.uCmd, nDataSize, oExterHeader.nTar);
+	if (m_bDebugNetwork) {
+		int nDataSize = poPacket->GetDataSize();
+		XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oExterHeader.uCmd, nDataSize, oExterHeader.nTar);
+	}
 
 	//重放攻击检测
 	if (oExterHeader.uIdx <= poClient->uCmdIndex)
@@ -282,6 +289,10 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		XLog(LEVEL_INFO, "%s: Tar service error\n", GetServiceName());
 		poPacket->Release();
 		return;
+	}
+	if (m_bDebugNetwork) {
+		int nDataSize = poPacket->GetDataSize();
+		XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oHeader.uCmd, nDataSize, oHeader.nTar);
 	}
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }

@@ -146,7 +146,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Common\CSVDocument\CSVDocument.cpp" />
-    <ClCompile Include="..\..\Src\Common\Filter\Filter.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
@@ -154,6 +153,7 @@
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
+    <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
@@ -191,12 +191,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\CSVDocument\CSVDocument.h" />
+    <ClInclude Include="..\..\Src\Common\DataStruct\Array.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\HexStr.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Md5.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Memory.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\ObjID.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Ranking.h" />
-    <ClInclude Include="..\..\Src\Common\Filter\Filter.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
@@ -205,6 +205,7 @@
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
+    <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />

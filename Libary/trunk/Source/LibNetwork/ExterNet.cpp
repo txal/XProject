@@ -209,13 +209,6 @@ void ExterNet::OnRecvPacket(void* pUD, Packet* poPacket)
 		return;
 	}
 
-	if (m_bDebugNet)
-	{
-		EXTER_HEADER oHeader;
-		poPacket->GetExterHeader(oHeader, false);
-		XLog(LEVEL_INFO, "Exter recv session:%d cmd:%d src:%d tar:%d size:%d\n", pSession->nSessionID, oHeader.uCmd, oHeader.nSrc, oHeader.nTar, poPacket->GetDataSize());
-	}
-
 	Net::OnRecvPacket(pUD, poPacket);
 }
 
@@ -235,13 +228,6 @@ bool ExterNet::SendPacket(int nSessionID, Packet* poPacket)
 	oRequest.uCtrlType = eCTRL_SEND;
 	oRequest.U.oSend.nSessionID = nSessionID;
 	oRequest.U.oSend.pData = (void*)poPacket;
-
-	if (m_bDebugNet)
-	{
-		EXTER_HEADER oHeader;
-		poPacket->GetExterHeader(oHeader, false);
-		XLog(LEVEL_INFO, "Exter send session:%d cmd:%d src:%d tar:%d size:%d\n", nSessionID, oHeader.uCmd, oHeader.nSrc, oHeader.nTar, poPacket->GetDataSize());
-	}
 
 	return GetMailBox()->Send(oRequest);
 }

@@ -73,7 +73,7 @@
     <Filter Include="Src\Common\TimerMgr">
       <UniqueIdentifier>{de412e46-0ebf-4446-a3c7-4dbdffef7315}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Common\Filter">
+    <Filter Include="Src\Common\WordFilter">
       <UniqueIdentifier>{1b883284-1410-4914-aa8a-a45a5c8a6671}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -201,11 +201,11 @@
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp">
       <Filter>Src\Common\TimerMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\Filter\Filter.cpp">
-      <Filter>Src\Common\Filter</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp">
       <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp">
+      <Filter>Src\Common\WordFilter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -365,11 +365,14 @@
     <ClInclude Include="..\..\Src\Common\DataStruct\Md5.h">
       <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\Filter\Filter.h">
-      <Filter>Src\Common\Filter</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h">
       <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h">
+      <Filter>Src\Common\WordFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Array.h">
+      <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

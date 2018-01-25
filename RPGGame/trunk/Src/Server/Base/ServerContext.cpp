@@ -3,7 +3,6 @@
 
 ServerContext::ServerContext()
 {
-    m_uServerID = 0;
 	m_poService = NULL;
 	m_poRouterMgr = NULL;
 	m_poPacketHandler = NULL;

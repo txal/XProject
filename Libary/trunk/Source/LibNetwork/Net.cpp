@@ -22,7 +22,6 @@ Net::Net()
 
 	m_uInPackets = 0;
 	m_uOutPackets = 0;
-	m_bDebugNet = false;
 }
 
 
@@ -52,7 +51,6 @@ bool Net::Init(const char* psNetName, int nServiceID, int nMaxConns, int nRecvBu
 	assert(psNetName != NULL);
 	assert(nRecvBufSize > 0);
 	assert(nServiceID >= 0 && nServiceID <= MAX_SERVICE_NUM);
-	m_bDebugNet = Platform::FileExist("network.txt");
 
 	strcpy(m_sNetName, psNetName);
 	m_oMailBox.SetName(psNetName);

@@ -90,13 +90,6 @@ void InnerNet::OnRecvPacket(void* pUD, Packet* poPacket)
 	pSession->uInPacketCount++;
 	pSession->nLastInPacketTime	= (int)time(0);
 
-	if (m_bDebugNet)
-	{
-		INNER_HEADER oHeader;
-		poPacket->GetInnerHeader(oHeader, NULL, false);
-		XLog(LEVEL_INFO, "Inner recv session:%d cmd:%d src:%d tar:%d size:%d\n", pSession->nSessionID, oHeader.uCmd, oHeader.nSrc, oHeader.nTar, poPacket->GetDataSize());
-	}
-
 	Net::OnRecvPacket(pUD, poPacket);
 }
 
@@ -112,13 +105,6 @@ bool InnerNet::SendPacket(int nSessionID, Packet* poPacket)
 	oRequest.uCtrlType = eCTRL_SEND;
 	oRequest.U.oSend.nSessionID = nSessionID;
 	oRequest.U.oSend.pData = (void*)poPacket;
-
-	if (m_bDebugNet)
-	{
-		INNER_HEADER oHeader;
-		poPacket->GetInnerHeader(oHeader, NULL, false);
-		XLog(LEVEL_INFO, "Inner send session:%d cmd:%d src:%d tar:%d size:%d\n", nSessionID, oHeader.uCmd, oHeader.nSrc, oHeader.nTar, poPacket->GetDataSize());
-	}
 
 	bool bRet = GetMailBox()->Send(oRequest);
     return bRet;

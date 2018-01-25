@@ -33,7 +33,6 @@ public:
 	ServerConfig& GetServerConfig() { return m_oSrvConf; }
 
 private:
-    uint16_t m_uServerID;
 	Service* m_poService;
 	RouterMgr* m_poRouterMgr;
 	PacketHandler* m_poPacketHandler;

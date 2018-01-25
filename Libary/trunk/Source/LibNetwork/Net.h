@@ -114,7 +114,6 @@ private:
 
 protected:
 	int m_nNetType;
-	bool m_bDebugNet;
 
 	virtual ~Net();
     DISALLOW_COPY_AND_ASSIGN(Net);

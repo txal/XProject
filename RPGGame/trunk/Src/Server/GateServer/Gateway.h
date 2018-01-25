@@ -40,6 +40,7 @@ private:
 	void ProcessTimer(int64_t nNowMSTime);
 
 private:
+	bool m_bDebugNetwork;
 	uint16_t m_uListenPort;
 
 	INet* m_poExterNet;
