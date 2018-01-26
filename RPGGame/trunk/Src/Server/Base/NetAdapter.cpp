@@ -4,26 +4,26 @@
 #include "Server/Base/Service.h"
 #include "Server/Base/ServerContext.h"
 
-#define MAX_GATEWAY_NUM 8		//单服最大网关数
-#define MAX_GROUPSERVER_NUM 128 //每组服务器上限
-
 //按服务器和网关分组
 struct BROADCAST_HEADER
 {
-	INNER_HEADER oInerHeader;
+	INNER_HEADER oInnerHeader;
 	Array<int> oSessionList;
 };
-std::unordered_map<int, BROADCAST_HEADER> oBCHeaderMap;
 
-bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, int8_t nToService, int nToSession, uint32_t uPacketIdx /*=0*/, int nToServer /*=0*/)
+typedef std::unordered_map<int, BROADCAST_HEADER> BCHeaderMap;
+typedef BCHeaderMap::iterator BCHeaderIter;
+BCHeaderMap oBCHeaderMap;
+
+bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi, uint32_t uPacketIdx /*= 0*/)
 {
     assert(poPacket != NULL);
 	Service* poService = g_poContext->GetService();
-	int8_t nSessionService = nToSession >> SERVICE_SHIFT;
-	if (nSessionService == poService->GetServiceID())
+	oNavi.nServiceID = oNavi.nSessionID >> SERVICE_SHIFT;
+	if (oNavi.nServiceID == poService->GetServiceID() && oNavi.nServerID == g_poContext->GetServerID())
 	{
-		poPacket->AppendExterHeader(EXTER_HEADER(uCmd, poService->GetServiceID(), nToService, uPacketIdx));
-		if (!poService->GetExterNet()->SendPacket(nToSession, poPacket))
+		poPacket->AppendExterHeader(EXTER_HEADER(uCmd, poService->GetServiceID(), oNavi.nServiceID, uPacketIdx));
+		if (!poService->GetExterNet()->SendPacket(oNavi.nSessionID, poPacket))
 		{
 			poPacket->Release();
 			return false;
@@ -31,15 +31,15 @@ bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, int8_t nToService, i
 	}
 	else
 	{
-		return SendInner(uCmd, poPacket, nToService, nToSession, nToServer);
+		return SendInner(uCmd, poPacket, oNavi);
 	}
 	return true;
 }
 
-bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, int8_t nToService, int nToSession, int nToServer)
+bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi)
 {
     assert(poPacket != NULL);
-    if (nToService <= 0 || nToService > MAX_SERVICE_NUM)
+    if (oNavi.nServiceID <= 0 || oNavi.nServiceID > MAX_SERVICE_NUM)
     {
     	poPacket->Release();
     	return false;
@@ -51,7 +51,7 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, int8_t nToService, i
 		poPacket->Release();
 		return false;
 	}
-    poPacket->AppendInnerHeader(INNER_HEADER(uCmd, poService->GetServiceID(), nToService, 1, nToServer), &nToSession, 1);
+    poPacket->AppendInnerHeader(INNER_HEADER(uCmd, poService->GetServiceID(), oNavi.nService, 1, oNavi.nServer), &oNavi.nSession, 1);
     if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poPacket))
     {
 		poPacket->Release();
@@ -60,7 +60,7 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, int8_t nToService, i
 	return true;
 }
 
-bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<INNER_NAVI>& oNaviList)
+bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList)
 {
     assert(poPacket != NULL && oNaviList.Size() > 0);
 	Service* poService = g_poContext->GetService();
@@ -70,34 +70,47 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<INNER_NAV
 		poPacket->Release();
 		return false;
 	}
+
 	for (int i = oNaviList.Size() - 1; i >= 0; --i)
 	{
-		const INNER_NAVI& oNavi = oNaviList[i];
-		int8_t nService = oNavi.u.nSession >> SERVICE_SHIFT;
+		SERVICE_NAVI& oNavi = oNaviList[i];
+		int nServer = oNavi.nServerID;
+		int nService = oNavi.nSessionID >> SERVICE_SHIFT;
+		oNavi.nServiceID = nService;
 
-		BROADCAST_HEADER& oBCHeader = tBroadcastHeaderList[tServiceMap[nService]];
+		int nKey = nServer << 16 | nService;
+
+		BROADCAST_HEADER& oBCHeader = oBCHeaderMap[nKey]; //没有会自动生成一个
 		if (oBCHeader.oSessionList.Size() == 0)
 		{
-			oBCHeader.oHeader.uCmd = uCmd;
-			oBCHeader.oHeader.nSrc = poService->GetServiceID();
-			oBCHeader.oHeader.nTar = nService;
+			oBCHeader.oInnerHeader.uCmd = uCmd;
+			oBCHeader.oInnerHeader.nSrc = poService->GetServiceID();
+			oBCHeader.oInnerHeader.nTar = nService;
+			oBCHeader.oInnerHeader.uSessions = 0;
+			oBCHeader.oInnerHeader.uServer = nServer;
 		}
-		oBCHeader.oSessionList.PushBack(nSession);
+		oBCHeader.oSessionList.PushBack(oNavi.u.nSession);
 	}
-	for (int i = nFreeHeaderIndex - 1; i >= 0; --i)
+
+	BCHeaderIter iter = oBCHeaderMap.begin();
+	BCHeaderIter iterend = oBCHeaderMap.end();
+	BCHeaderIter itertmp = iter;
+	BCHeaderIter iternext = ++itertmp;
+	for (; iter != iterend; iter++, iternext++)
 	{
-		BROADCAST_HEADER& oBCHeader = tBroadcastHeaderList[i];
-		oBCHeader.oHeader.uSessions = oBCHeader.oSessionList.Size();
+		BROADCAST_HEADER& oBCHeader = iter->second;
+		if (oBCHeader.oSessionList.Size() == 0)
+			continue;
+
+		oBCHeader.oInnerHeader.uSessions = oBCHeader.oSessionList.Size();
+
 		Packet* poNewPacket = NULL;
-		if (i == 0)
-		{
+		if (iternext == iterend)
 			poNewPacket = poPacket;
-		}
 		else
-		{
 			poNewPacket = poPacket->DeepCopy();
-		}
-		poNewPacket->AppendInnerHeader(oBCHeader.oHeader, oBCHeader.oSessionList.Ptr(), oBCHeader.oSessionList.Size());
+		poNewPacket->AppendInnerHeader(oBCHeader.oInnerHeader, oBCHeader.oSessionList.Ptr(), oBCHeader.oSessionList.Size());
+
 		if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poNewPacket))
 		{
 			poNewPacket->Release();
@@ -107,7 +120,7 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<INNER_NAV
 	return true;
 }
 
-bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, int tServiceList[], int nServiceNum, int tServerList[])
+bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList)
 {
 	assert(poPacket != NULL);
 	Service* poService = g_poContext->GetService();
@@ -117,7 +130,7 @@ bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, int tServiceLis
 		poPacket->Release();
 		return false;
 	}
-	for (int i = nServiceNum - 1; i >= 0; --i)
+	for (int i = oNaviList.Size() - 1; i >= 0; --i)
 	{
 		Packet* poNewPacket = NULL;
 		if (i == 0)
@@ -128,8 +141,15 @@ bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, int tServiceLis
 		{
 			poNewPacket = poPacket->DeepCopy();
 		}
-		int nToServer = tServerList == NULL ? 0 : tServerList[i];
-		poNewPacket->AppendInnerHeader(INNER_HEADER(uCmd, poService->GetServiceID(), tServiceList[i], 0, nToServer), NULL, 0);
+		int nSessionNum = 0;
+		int* pSessionList = NULL;
+		if (oNaviList[i].nSessionID > 0)
+		{
+			nSessionNum = 1;
+			pSessionList = &oNaviList[i].nSessionID;
+		}
+
+		poNewPacket->AppendInnerHeader(INNER_HEADER(uCmd, poService->GetServiceID(), oNaviList[i].nServiceID, nSessionNum, oNaviList[i].nServerID), pSessionList, nSessionNum);
 		if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poNewPacket))
 		{
 			poNewPacket->Release();

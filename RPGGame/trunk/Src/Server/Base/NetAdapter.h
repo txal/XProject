@@ -10,19 +10,25 @@
 
 namespace NetAdapter
 {
-	//内部服务路由节点
-	struct INNER_NAVI
+	//服务导航
+	struct SERVICE_NAVI
 	{
-		int nServer;
-		union {
-			int nSession;
-			int nService;
-		} u;
+		SERVICE_NAVI(int _nServerID, int _nServiceID, int _nSessionID)
+		{
+			nServerID = _nServerID;
+			nServiceID = _nServiceID; 
+			nSessionID = _nSessionID;
+		}
+		int nServerID;
+		int nServiceID; //Exter可不填
+		int nSessionID; //Inner可不填
 	};
-	bool SendExter(uint16_t uCmd, Packet* poPacket, int8_t nToService, int nToSession, uint32_t uPacketIdx = 0, int nToServer = 0);
-	bool SendInner(uint16_t uCmd, Packet* poPacket, int8_t nToService, int nToSession = 0, int nToServer = 0);
-	bool BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<INNER_NAVI>& oNaviList);
-	bool BroadcastInner(uint16_t uCmd, Packet* poPacket, int tServiceList[], int nServiceNum, int tServerList[] = NULL);
+
+	bool SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi, uint32_t uPacketIdx = 0);
+	bool SendInner(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi);
+
+	bool BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList);
+	bool BroadcastInner(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList);
 };
 
 #endif 
