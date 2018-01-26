@@ -3,24 +3,24 @@
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/Service.h"
 
-static Array<int> oSessionCache;
-static Array<int> oServiceCache;
-static Array<int> oServerCache;
+static Array<NetAdapter::SERVICE_NAVI> oNaviCache;
 
 static int SendExter(lua_State* pState)
 {
 	uint16_t uCmd = (uint16_t)luaL_checkinteger(pState, 1);
 	luaL_checktype(pState, 2, LUA_TLIGHTUSERDATA);
 	Packet* poPacket = (Packet*)lua_touserdata(pState, 2);
-	int8_t nToService = (int8_t)luaL_checkinteger(pState, 3);
-	int nToSession = (int)luaL_checkinteger(pState, 4);
-	uint32_t uCmdIdx = (uint32_t)lua_tointeger(pState, 5);
-	if (nToSession <= 0 || nToService < 0 || nToService > MAX_SERVICE_NUM)
+	NetAdapter::SERVICE_NAVI oNavi(0,0,0);
+	oNavi.nServerID = (int)luaL_checkinteger(pState, 3);
+	oNavi.nServiceID = (int)luaL_checkinteger(pState, 4);
+	oNavi.nSessionID = (int)luaL_checkinteger(pState, 5);
+	uint32_t uCmdIdx = (uint32_t)luaL_checkinteger(pState, 6);
+	if (oNavi.nSessionID <= 0 || oNavi.nServiceID < 0 || oNavi.nServiceID > MAX_SERVICE_NUM)
 	{
 		poPacket->Release();
 		return LuaWrapper::luaM_error(pState, "Send exter param error!");
 	}
-	if (!NetAdapter::SendExter(uCmd, poPacket, nToService, nToSession, uCmdIdx))
+	if (!NetAdapter::SendExter(uCmd, poPacket, oNavi, uCmdIdx))
 	{
 		return LuaWrapper::luaM_error(pState, "Send exter packet fail!");
 	}
@@ -32,22 +32,24 @@ static int BroadcastExter(lua_State* pState)
 	uint16_t uCmd = (uint16_t)luaL_checkinteger(pState, 1);
 	luaL_checktype(pState, 2, LUA_TLIGHTUSERDATA);
 	Packet* poPacket = (Packet*)lua_touserdata(pState, 2);
-	if (!lua_istable(pState, 3) || lua_rawlen(pState, 3) <= 0)
+	int nTableLen = (int)lua_rawlen(pState, 3);
+	if (!lua_istable(pState, 3) || nTableLen <= 0 || nTableLen % 2 != 0)
 	{
 		poPacket->Release();
-		LuaWrapper::luaM_error(pState, "Param index 3 must be a not empty table!");
+		LuaWrapper::luaM_error(pState, "Session table format error!");
 	}
 
-	oSessionCache.Clear();
-	int nLen = (int)lua_rawlen(pState, 3);
-	luaL_checkstack(pState, nLen, NULL);
-	for (int i = 1; i <= nLen; i++)
+	oNaviCache.Clear();
+	luaL_checkstack(pState, nTableLen, NULL);
+	for (int i = 1; i <= nTableLen; i = i+2)
 	{
 		lua_rawgeti(pState, 3, i);
+		lua_rawgeti(pState, 3, i+1);
+		int nServer = (int)lua_tointeger(pState, -2);
 		int nSession = (int)lua_tointeger(pState, -1);
-		oSessionCache.PushBack(nSession);
+		oNaviCache.PushBack(NetAdapter::SERVICE_NAVI(nServer, 0, nSession));
 	}
-	if (!NetAdapter::BroadcastExter(uCmd, poPacket, oSessionCache.Ptr(), oSessionCache.Size()))
+	if (!NetAdapter::BroadcastExter(uCmd, poPacket, oNaviCache))
 	{
 		return LuaWrapper::luaM_error(pState, "Broadcast exter packet fail!");
 	}
@@ -59,15 +61,16 @@ static int SendInner(lua_State* pState)
 	uint16_t uCmd = (uint16_t)luaL_checkinteger(pState, 1);
 	luaL_checktype(pState, 2, LUA_TLIGHTUSERDATA);
 	Packet* poPacket = (Packet*)lua_touserdata(pState, 2);
-	int8_t nToService = (int8_t)luaL_checkinteger(pState, 3);
-	if (nToService <= 0 || nToService > MAX_SERVICE_NUM)
+	NetAdapter::SERVICE_NAVI oNavi(0, 0, 0);
+	oNavi.nServerID = (int)luaL_checkinteger(pState, 3);
+	oNavi.nServiceID = (int)luaL_checkinteger(pState, 4);
+	oNavi.nSessionID = (int)luaL_checkinteger(pState, 5);
+	if (oNavi.nServerID <= 0 || oNavi.nServiceID <= 0 || oNavi.nServiceID > MAX_SERVICE_NUM)
 	{
 		poPacket->Release();
-		return LuaWrapper::luaM_error(pState, "Packet or target service error!");
+		return LuaWrapper::luaM_error(pState, "Target server or service error!");
 	}
-	int nToSession = (int)luaL_checkinteger(pState, 4);
-	int16_t nToServer = (int16_t)lua_tointeger(pState, 5);
-	if (!NetAdapter::SendInner(uCmd, poPacket, nToService, nToSession, nToServer))
+	if (!NetAdapter::SendInner(uCmd, poPacket, oNavi))
 	{
 		return LuaWrapper::luaM_error(pState, "Send inner packet fail!");
 	}
@@ -80,41 +83,28 @@ static int BroadcastInner(lua_State* pState)
 	uint16_t uRawCmd = (uint16_t)luaL_checkinteger(pState, 2);
 	luaL_checktype(pState, 3, LUA_TLIGHTUSERDATA);
 	Packet* poPacket = (Packet*)lua_touserdata(pState, 3);
-	if (!lua_istable(pState, 4) || lua_rawlen(pState, 4) <= 0)
+	int nTableLen = (int)lua_rawlen(pState, 4);
+	if (!lua_istable(pState, 4) || nTableLen <= 0 || nTableLen % 3 != 0)
 	{
 		poPacket->Release();
-		LuaWrapper::luaM_error(pState, "Param index 3 must be a not empty table!");
+		LuaWrapper::luaM_error(pState, "Service table format error!");
 	}
 
-	oServiceCache.Clear();
-	int nLen = (int)lua_rawlen(pState, 4);
-	luaL_checkstack(pState, nLen, NULL);
-	for (int i = 1; i <= nLen; i++)
+	oNaviCache.Clear();
+	luaL_checkstack(pState, nTableLen, NULL);
+	for (int i = 1; i <= nTableLen; i=i+3)
 	{
 		lua_rawgeti(pState, 4, i);
-		int nService = (int)lua_tointeger(pState, -1);
-		oServiceCache.PushBack(nService);
-	}
-
-	oServerCache.Clear();
-	if (lua_istable(pState, 5) && lua_rawlen(pState, 5) > 0)
-	{
-		int nLen = (int)lua_rawlen(pState, 5);
-		luaL_checkstack(pState, nLen, NULL);
-		for (int i = 1; i <= nLen; i++)
-		{
-			lua_rawgeti(pState, 5, i);
-			int16_t nServer = (int16_t)lua_tointeger(pState, -1);
-			oServerCache.PushBack(nServer);
-		}
-	}
-	if (oServerCache.Size() > 0 && oServiceCache.Size() != oServerCache.Size())
-	{
-		return LuaWrapper::luaM_error(pState, "Broadcast inner service list not match serverlist!");
+		lua_rawgeti(pState, 4, i+1);
+		lua_rawgeti(pState, 4, i+2);
+		int nServer = (int)lua_tointeger(pState, -3);
+		int nService = (int)lua_tointeger(pState, -2);
+		int nSession = (int)lua_tointeger(pState, -1);
+		oNaviCache.PushBack(NetAdapter::SERVICE_NAVI(nServer, nService, nSession));
 	}
 
 	poPacket->WriteBuf(&uRawCmd, sizeof(uRawCmd));
-	if (!NetAdapter::BroadcastInner(uBroadcastCmd, poPacket, oServiceCache.Ptr(), oServiceCache.Size(), oServerCache.Size()>0 ? oServerCache.Ptr():NULL))
+	if (!NetAdapter::BroadcastInner(uBroadcastCmd, poPacket, oNaviCache))
 	{
 		return LuaWrapper::luaM_error(pState, "Broadcast inner packet fail!");
 	}

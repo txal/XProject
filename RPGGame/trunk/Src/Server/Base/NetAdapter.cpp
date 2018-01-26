@@ -13,7 +13,7 @@ struct BROADCAST_HEADER
 
 typedef std::unordered_map<int, BROADCAST_HEADER> BCHeaderMap;
 typedef BCHeaderMap::iterator BCHeaderIter;
-BCHeaderMap oBCHeaderMap;
+static BCHeaderMap oBCHeaderMap;
 
 bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi, uint32_t uPacketIdx /*= 0*/)
 {
@@ -51,7 +51,7 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi)
 		poPacket->Release();
 		return false;
 	}
-    poPacket->AppendInnerHeader(INNER_HEADER(uCmd, poService->GetServiceID(), oNavi.nService, 1, oNavi.nServer), &oNavi.nSession, 1);
+    poPacket->AppendInnerHeader(INNER_HEADER(uCmd, poService->GetServiceID(), oNavi.nServiceID, 1, oNavi.nServerID), &oNavi.nSessionID, 1);
     if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poPacket))
     {
 		poPacket->Release();
@@ -89,7 +89,7 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 			oBCHeader.oInnerHeader.uSessions = 0;
 			oBCHeader.oInnerHeader.uServer = nServer;
 		}
-		oBCHeader.oSessionList.PushBack(oNavi.u.nSession);
+		oBCHeader.oSessionList.PushBack(oNavi.nSessionID);
 	}
 
 	BCHeaderIter iter = oBCHeaderMap.begin();
