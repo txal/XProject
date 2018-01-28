@@ -15,6 +15,7 @@ public:
 	virtual ~ServerContext() {}
 
     uint16_t GetServerID() { return m_oSrvConf.uServerID; }
+    uint16_t GetWorldServerID() { return m_oWorldConf.uServerID; }
 
 	Service* GetService() { return m_poService; }
 	void SetService(Service* poService) { m_poService = poService; }
@@ -28,9 +29,11 @@ public:
 	int GetRandomLogic();
 	ServerVector& GetGateList() { return m_oSrvConf.oGateList; }
 	ServerVector& GetLogicList() { return m_oSrvConf.oLogicList; }
+	ServerVector& GetWorldLogicList() { return m_oWorldConf.oLogicList; }
 
 	bool LoadServerConfig();
 	ServerConfig& GetServerConfig() { return m_oSrvConf; }
+	ServerConfig& GetWorldConfig() { return m_oWorldConf; }
 
 private:
 	Service* m_poService;
@@ -38,6 +41,7 @@ private:
 	PacketHandler* m_poPacketHandler;
 	
 	ServerConfig m_oSrvConf;
+	ServerConfig m_oWorldConf;
 	DISALLOW_COPY_AND_ASSIGN(ServerContext);
 };
 

@@ -43,11 +43,11 @@ struct LogicNode
 
 union ServerNode
 {
-	LogNode oLog;
-	GlobalNode oGlobal;
-	RouterNode oRouter;
 	GateNode oGate;
 	LogicNode oLogic;
+	RouterNode oRouter;
+	GlobalNode oGlobal;
+	LogNode oLog;
 };
 
 typedef std::vector<ServerNode> ServerVector;
@@ -58,9 +58,8 @@ struct ServerConfig
 	ServerVector oGateList;
 	ServerVector oLogicList;
 	ServerVector oRouterList;
-
-	ServerVector oLogList;
 	ServerVector oGlobalList;
+	ServerVector oLogList;
 };
 
 

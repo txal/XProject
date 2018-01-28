@@ -60,10 +60,11 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
-	if (poPacket == NULL) {
+	if (poPacket == NULL) 
+	{
 		return false;
 	}
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, GetServiceID(), nRouterServiceID, 0, g_poContext->GetServerID());
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -177,18 +178,39 @@ void Gateway::OnExterNetClose(int nSessionID)
 		return;
 	}
 	ServerVector& oLogicList = g_poContext->GetLogicList();
+
+	NetAdapter::SERVICE_NAVI oNavi;
+	oNavi.uSrcServer = g_poContext->GetServerID();
+	oNavi.uSrcServer = g_poContext->GetService()->GetServiceID();
+	oNavi.uTarServer = g_poContext->GetServerID();
+	oNavi.nTarSession = nSessionID;
 	for (int i = 0; i < oLogicList.size(); i++)
 	{
-		int nTarServiceID = oLogicList[i].oLogic.uService;
-		if (nTarServiceID <= 0)
-		{
+		int8_t nTarService = (int8_t)oLogicList[i].oLogic.uService;
+		if (nTarService <= 0)
 			break;
-		}
 		Packet* poPacket = Packet::Create();
-		if (poPacket == NULL) {
+		if (poPacket == NULL)
 			return;
+		oNavi.nTarService = nTarService;
+		if (!NetAdapter::SendInner(NSSysCmd::ssClientClose, poPacket, oNavi))
+		{
+			XLog(LEVEL_ERROR, "%s: Send packet back fail\n", GetServiceName());
 		}
-		if (!NetAdapter::SendInner(NSSysCmd::ssClientClose, poPacket, nTarServiceID, nSessionID))
+	}
+
+	oNavi.uTarServer = g_poContext->GetWorldServerID();
+	ServerVector& oWorldLogicList = g_poContext->GetWorldLogicList();
+	for (int i = 0; i < oWorldLogicList.size(); i++)
+	{
+		int8_t nTarService = (int8_t)oWorldLogicList[i].oLogic.uService;
+		if (nTarService <= 0)
+			break;
+		Packet* poPacket = Packet::Create();
+		if (poPacket == NULL)
+			return;
+		oNavi.nTarService = nTarService;
+		if (!NetAdapter::SendInner(NSSysCmd::ssClientClose, poPacket, oNavi))
 		{
 			XLog(LEVEL_ERROR, "%s: Send packet back fail\n", GetServiceName());
 		}
@@ -233,21 +255,21 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	}
 	if (m_bDebugNetwork) {
 		int nDataSize = poPacket->GetDataSize();
-		XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oExterHeader.uCmd, nDataSize, oExterHeader.nTar);
+		XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oExterHeader.uCmd, nDataSize, oExterHeader.nTarService);
 	}
 
 	//重放攻击检测
-	if (oExterHeader.uIdx <= poClient->uCmdIndex)
+	if (oExterHeader.uPacketIdx <= poClient->uCmdIndex)
 	{
 		poPacket->Release();
 		GetExterNet()->Close(nSessionID);
-		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet cmd index error(%d,%d)\n", GetServiceName(), oExterHeader.uIdx, poClient->uCmdIndex);
+		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet cmd index error(%d,%d)\n", GetServiceName(), oExterHeader.uPacketIdx, poClient->uCmdIndex);
 		return;
 	}
-	poClient->uCmdIndex = oExterHeader.uIdx;
+	poClient->uCmdIndex = oExterHeader.uPacketIdx;
 
 	// Short connection
-	if (oExterHeader.nSrc == -1)
+	if (oExterHeader.nSrcService == -1)
 	{
 		m_poExterNet->SetSentClose(nSessionID);
 	}
@@ -284,7 +306,7 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	if (oHeader.nTar != GetServiceID())
+	if (oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar service error\n", GetServiceName());
 		poPacket->Release();
@@ -292,7 +314,7 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 	}
 	if (m_bDebugNetwork) {
 		int nDataSize = poPacket->GetDataSize();
-		XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oHeader.uCmd, nDataSize, oHeader.nTar);
+		XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oHeader.uCmd, nDataSize, oHeader.nTarService);
 	}
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }

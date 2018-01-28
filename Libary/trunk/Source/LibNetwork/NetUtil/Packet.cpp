@@ -4,7 +4,7 @@
 
 Packet* Packet::Create(int nSize/*=nPACKET_DEFAULT_SIZE*/, int nOffset/*=nPACKET_OFFSET_SIZE*/)
 {
-	if (nSize < nOffset || nSize >= nPACKET_MAX_SIZE) {
+	if (nSize < nOffset || nSize > nPACKET_MAX_SIZE) {
 		XLog(LEVEL_ERROR, "Packet size out of range:%d [%d,%d]\n", nSize, nOffset, nPACKET_MAX_SIZE);
 		return NULL;
 	}
@@ -194,13 +194,13 @@ bool Packet::GetInnerHeader(INNER_HEADER& oInnerHeader, int** ppnSessionOffset, 
 	}
 	uint8_t* pHeaderPos = m_pData + m_nDataSize - nHeaderSize;
 	oInnerHeader = *(INNER_HEADER*)pHeaderPos;
-	if (ppnSessionOffset != NULL && oInnerHeader.uSessions > 0)
+	if (ppnSessionOffset != NULL && oInnerHeader.uSessionNum > 0)
     {
-		*ppnSessionOffset = (int*)(pHeaderPos - oInnerHeader.uSessions * sizeof(int));
+		*ppnSessionOffset = (int*)(pHeaderPos - oInnerHeader.uSessionNum * sizeof(int));
 	}
 	if (bRemove) 
     {
-		int nTotalHeaderSize = nHeaderSize + oInnerHeader.uSessions * sizeof(int);
+		int nTotalHeaderSize = nHeaderSize + oInnerHeader.uSessionNum * sizeof(int);
 		m_nDataSize -= nTotalHeaderSize;
 		*(int*)m_pData -= nTotalHeaderSize;
 	}
@@ -239,7 +239,7 @@ void Packet::RemoveInnerHeader()
 	}
 	uint8_t* pHeaderPos = m_pData + m_nDataSize - nHeaderSize;
 	INNER_HEADER oInnerHeader = *(INNER_HEADER*)pHeaderPos;
-	int nTotalHeaderSize = nHeaderSize + oInnerHeader.uSessions * sizeof(int);
+	int nTotalHeaderSize = nHeaderSize + oInnerHeader.uSessionNum * sizeof(int);
 	m_nDataSize -= nTotalHeaderSize;
 	*(int*)m_pData -= nTotalHeaderSize;
 }

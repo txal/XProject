@@ -4,14 +4,16 @@
 struct CLIENT
 {
 	uint32_t uRemoteIP;
-	int nLogicService;
 	uint32_t uCmdIndex;
+	uint16_t uServerID;
+	int8_t nLogicService;
 
 	CLIENT()
 	{
-		nLogicService = 0;
-		uCmdIndex = 0;
 		uRemoteIP = 0;
+		uCmdIndex = 0;
+		uServerID = 0;
+		nLogicService = 0;
 	}
 };
 

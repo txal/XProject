@@ -15,15 +15,14 @@ void NSPacketProc::RegisterPacketProc()
 
 void NSPacketProc::OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSesseionArray)
 {
-	Service* poService = g_poContext->GetService();
-	if (oHeader.nTar != poService->GetServiceID())
+	Router* poRouter = (Router*)(g_poContext->GetService());
+	if (oHeader.nTarService != poRouter->GetServiceID())
 	{
 		return;
 	}
-	Router* poRouter = (Router*)poService;
-	if (poRouter->RegService(oHeader.uServer, oHeader.nSrc, nSrcSessionID))
+	if (poRouter->RegService(oHeader.uSrcServer, oHeader.nSrcService, nSrcSessionID))
 	{
-		ServiceNode* poTarService = poRouter->GetService(oHeader.uServer, oHeader.nSrc);
+		ServiceNode* poTarService = poRouter->GetService(oHeader.uSrcServer, oHeader.nSrcService);
 		if (poTarService == NULL)
 		{
 			return;
@@ -33,7 +32,7 @@ void NSPacketProc::OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_
 			return;
 		}
 
-		INNER_HEADER oHeaderRet(NSSysCmd::ssRegServiceRet, poService->GetServiceID(), oHeader.nSrc, 0, oHeader.uServer);
+		INNER_HEADER oHeaderRet(NSSysCmd::ssRegServiceRet, g_poContext->GetServerID(), poRouter->GetServiceID(), oHeader.uSrcServer, oHeader.nSrcService, 0);
 		poPacketRet->AppendInnerHeader(oHeaderRet, NULL, 0);
 		if (!poTarService->GetInnerNet()->SendPacket(poTarService->GetSessionID(), poPacketRet))
 		{

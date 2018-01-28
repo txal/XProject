@@ -6,8 +6,6 @@
 #include "Server/GateServer/Gateway.h"
 #include "Server/GateServer/PacketProc/GatewayPacketHandler.h"
 
-extern ServerContext* g_poContext;
-
 GatewayPacketHandler::GatewayPacketHandler()
 {
 	
@@ -16,7 +14,7 @@ GatewayPacketHandler::GatewayPacketHandler()
 void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket, EXTER_HEADER& oHeader)
 {
 	Gateway* poGateway = (Gateway*)g_poContext->GetService();
-	if (oHeader.nTar == poGateway->GetServiceID() || oHeader.uCmd == NSCltSrvCmd::ppKeepAlive)
+	if (oHeader.nTarService == poGateway->GetServiceID() || oHeader.uCmd == NSCltSrvCmd::ppKeepAlive)
 	{
 		PacketProcIter iter = m_poExterPacketProcMap->find(oHeader.uCmd);
 		if (iter != m_poExterPacketProcMap->end())
@@ -31,22 +29,34 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 	} 
 	else
 	{
-		//Send to logic server
-		if (oHeader.nTar == 0)
+		NetAdapter::SERVICE_NAVI oNavi;
+		oNavi.uSrcServer = g_poContext->GetServerID();
+		oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+		oNavi.nTarSession = nSrcSessionID;
+
+		//确定目标服务
+		if (oHeader.nTarService == 0)
 		{
-			oHeader.nTar = poGateway->GetClientMgr()->GetClientLogicService(nSrcSessionID);
-			if (oHeader.nTar <= 0)
+			oNavi.nTarService = poGateway->GetClientMgr()->GetClientLogicService(nSrcSessionID);
+			if (oNavi.nTarService <= 0) //没有目标服务，随机1个本服的LogicServer
 			{
-				oHeader.nTar = g_poContext->GetRandomLogic();
+				oNavi.nTarService = g_poContext->GetRandomLogic();
 			}
-			if (oHeader.nTar <= 0)
+			if (oNavi.nTarService <= 0)
 			{
-				XLog(LEVEL_ERROR, "%s: Player logic server error\n", poGateway->GetServiceName());
 				poPacket->Release();
+				XLog(LEVEL_ERROR, "%s: Player logic server error\n", poGateway->GetServiceName());
 				return;
 			}
 		}
-		if (!NetAdapter::SendInner(oHeader.uCmd, poPacket, oHeader.nTar, nSrcSessionID))
+
+		//确定目标服务器(1-100:本服; 101-127:世界)
+		if (oNavi.nTarService <= 100)
+			oNavi.uTarServer = g_poContext->GetServerID();
+		else
+			oNavi.uTarServer = g_poContext->GetWorldServerID();
+
+		if (!NetAdapter::SendInner(oHeader.uCmd, poPacket, oNavi))
 		{
 			XLog(LEVEL_ERROR, "%s: Send packet to router fail\n", poGateway->GetServiceName());
 		}
@@ -77,16 +87,16 @@ void GatewayPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket
 
 void GatewayPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	super::CacheSessionArray(pSessionArray, oHeader.uSessions);
+	super::CacheSessionArray(pSessionArray, oHeader.uSessionNum);
 	Service* poService = g_poContext->GetService();
 	INet* pExterNet = poService->GetExterNet();
 
 	EXTER_HEADER oExterHeader;
 	oExterHeader.uCmd = oHeader.uCmd;
-	oExterHeader.nSrc = poService->GetServiceID();
-	oExterHeader.nTar = 0;
+	oExterHeader.nSrcService = poService->GetServiceID();
+	oExterHeader.nTarService = 0;
 	poPacket->AppendExterHeader(oExterHeader);
-	for (int i = oHeader.uSessions - 1; i >= 0; --i)
+	for (int i = oHeader.uSessionNum - 1; i >= 0; --i)
 	{
 		if (i == 0)
 		{

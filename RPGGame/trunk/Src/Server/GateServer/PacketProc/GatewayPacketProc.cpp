@@ -1,4 +1,5 @@
 ﻿#include "Server/GateServer/PacketProc/GatewayPacketProc.h"
+
 #include "Include/Network/Network.hpp"
 #include "Include/Logger/Logger.hpp"
 
@@ -6,12 +7,11 @@
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
+#include "Server/GateServer/ClientMgr/ClientMgr.h"
 #include "Server/GateServer/Gateway.h"
 #include "Server/GateServer/PacketProc/GatewayPacketHandler.h"
-#include "Server/GateServer/ClientMgr/ClientMgr.h"
 
 extern ServerContext* g_poContext;
-
 void NSPacketProc::RegisterPacketProc()
 {
 	GatewayPacketHandler* poPacketHandler = (GatewayPacketHandler*)g_poContext->GetPacketHandler();
@@ -20,9 +20,9 @@ void NSPacketProc::RegisterPacketProc()
 	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::ppKeepAlive, (void*)OnKeepAlive);
 
 	// 内部消息
+	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssKickClient, (void*)OnKickClient);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceRet, (void*)OnRegisterRouterCallback);
 	poPacketHandler->RegsterInnerPacketProc(NSSrvSrvCmd::ssSyncLogicService, (void*)OnSyncLogicService);
-	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssKickClient, (void*)OnKickClient);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssBroadcastGate, (void*)OnBroadcastGate);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssClientIPReq, (void*)OnClientIPReq);
 }
@@ -32,13 +32,12 @@ void NSPacketProc::OnPing(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHe
 {
 	assert(poPacket != NULL);
 	Packet* poPacketRet = Packet::Create();
-	if (poPacketRet == NULL) {
+	if (poPacketRet == NULL) 
+	{
 		return;
 	}
-	EXTER_HEADER oExtHeader;
-	oExtHeader.uCmd = NSCltSrvCmd::ppPing;
-	poPacketRet->AppendExterHeader(oExtHeader);
-	//poPacketRet->FillData((uint8_t*)"+PONG\r\n", 7); 
+	
+	poPacketRet->AppendExterHeader(EXTER_HEADER(NSCltSrvCmd::ppPing, g_poContext->GetService()->GetServiceID()));
 	if (!g_poContext->GetService()->GetExterNet()->SendPacket(nSrcSessionID, poPacketRet))
 	{
 		poPacketRet->Release();
@@ -48,13 +47,15 @@ void NSPacketProc::OnPing(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHe
 void NSPacketProc::OnKeepAlive(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
 {
 	assert(poPacket != NULL);
-	Packet* poPacketRet = Packet::Create();
-	if (poPacketRet == NULL) {
+	Packet* poPacketRet = Packet::Create(32);
+	if (poPacketRet == NULL)
+	{
 		return;
 	}
+
 	int nTimeNow = (int)time(0);
 	poPacketRet->WriteBuf(&nTimeNow, sizeof(nTimeNow));
-	poPacketRet->AppendExterHeader(EXTER_HEADER(NSCltSrvCmd::ppKeepAlive, g_poContext->GetService()->GetServiceID(), 0));
+	poPacketRet->AppendExterHeader(EXTER_HEADER(NSCltSrvCmd::ppKeepAlive, g_poContext->GetService()->GetServiceID()));
 	if (!g_poContext->GetService()->GetExterNet()->SendPacket(nSrcSessionID, poPacketRet))
 	{
 		poPacketRet->Release();
@@ -64,54 +65,56 @@ void NSPacketProc::OnKeepAlive(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 /////////////////////////内部处理函数/////////////////////////////////////
 void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrc);
+	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
 
 }
 
 void NSPacketProc::OnSyncLogicService(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	int nSession = oHeader.uSessions > 0 ? pSessionArray[0] : 0;
 	Gateway* poGateway = (Gateway*)g_poContext->GetService();
+	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
 	CLIENT* poClient = poGateway->GetClientMgr()->GetClient(nSession);	
 	if (poClient == NULL)
 	{
 		XLog(LEVEL_INFO, "OnSyncLogicService: client already offline\n");
 		return;
 	}
-	PacketReader oReader(poPacket);
-	int nLogicService = 0;
-	oReader >> nLogicService;
-	poClient->nLogicService = nLogicService;
+	poClient->uServerID = oHeader.uSrcServer;
+	poClient->nLogicService = oHeader.nSrcService;
 }
 
 void NSPacketProc::OnKickClient(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	int nSession = oHeader.uSessions > 0 ? pSessionArray[0] : 0;
-	if (nSession > 0)
+	int nSessionID = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
+	if (nSessionID > 0)
 	{
 		Gateway* poGateway = (Gateway*)g_poContext->GetService();
-		poGateway->GetExterNet()->Close(nSession);
+		poGateway->GetExterNet()->Close(nSessionID);
 	}
 }
 
 void NSPacketProc::OnClientIPReq(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	int nSession = oHeader.uSessions > 0 ? pSessionArray[0] : 0;
-	if (nSession > 0)
+	int nSessionID = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
+	if (nSessionID > 0)
 	{
 		Gateway* poGateway = (Gateway*)g_poContext->GetService();
-		CLIENT* poClient = poGateway->GetClientMgr()->GetClient(nSession);	
+		CLIENT* poClient = poGateway->GetClientMgr()->GetClient(nSessionID);	
 		if (poClient == NULL)
 		{
-			XLog(LEVEL_INFO, "OnClientIPReq: client:%d not found!\n", nSession);
+			XLog(LEVEL_INFO, "OnClientIPReq: client:%d not found!\n", nSessionID);
 			return;
 		}
 		Packet* poPacket = Packet::Create(32);
-		if (poPacket == NULL) {
+		if (poPacket == NULL)
+		{
 			return;
 		}
 		poPacket->WriteBuf(&(poClient->uRemoteIP), sizeof(poClient->uRemoteIP));
-		NetAdapter::SendInner(NSSysCmd::ssClientIPRet, poPacket, oHeader.nSrc, nSession);
+		uint16_t uSrcServer = g_poContext->GetServerID();
+		int8_t nSrcService = g_poContext->GetService()->GetServiceID();
+		NetAdapter::SERVICE_NAVI oNavi(uSrcServer, nSrcService, oHeader.uSrcServer, oHeader.nSrcService, nSessionID);
+		NetAdapter::SendInner(NSSysCmd::ssClientIPRet, poPacket, oNavi);
 	}
 }
 

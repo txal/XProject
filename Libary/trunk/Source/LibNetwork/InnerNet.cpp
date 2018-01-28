@@ -48,19 +48,16 @@ bool InnerNet::CheckBlockDataSize(SESSION* pSession)
 		if (m_nLastPrintTime != nNowSec)
 		{
 			m_nLastPrintTime = nNowSec;
+
 			INNER_HEADER oHeader;
 			Packet* poPacket = pSession->oPacketList.Back();
-			int nCmd = 0, nSrc = 0, nTar = 0;
 			if (poPacket != NULL)
 			{
 				poPacket->GetInnerHeader(oHeader, NULL, false);
-				nCmd = oHeader.uCmd;
-				nSrc = oHeader.nSrc;
-				nTar = oHeader.nTar;
 			}
-			XLog(LEVEL_ERROR, "%s: Session:%d write block data out of size:%dK/%dK packets:%d cmd:%d src:%d tar:%d\n"
-					, GetName(), pSession->nSessionID, pSession->uBlockDataSize / 1024, INNERNET_MAX_RW_PEREVENT / 1024
-					, pSession->oPacketList.Size(), nCmd, nSrc, nTar);
+			XLog(LEVEL_ERROR, "%s: Session:%d write block data out of size:%dK/%dK packets:%d cmd:%d srcserver:%d srcservice:%d tarserver:%d tarservice:%d\n"
+					, GetName(), pSession->nSessionID, pSession->uBlockDataSize / 1024, INNERNET_MAX_RW_PEREVENT / 1024 , pSession->oPacketList.Size()
+					, oHeader.uCmd, oHeader.uSrcServer, oHeader.nSrcService, oHeader.uTarServer, oHeader.nTarService);
 		}
 	}
 	return true;

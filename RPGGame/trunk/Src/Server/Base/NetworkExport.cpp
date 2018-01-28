@@ -1,21 +1,25 @@
 ﻿#include "Server/Base/NetworkExport.h"
+
 #include "Common/DataStruct/Array.h"
 #include "Server/Base/NetAdapter.h"
+#include "Server/Base/ServerContext.h"
 #include "Server/Base/Service.h"
 
 static Array<NetAdapter::SERVICE_NAVI> oNaviCache;
-
 static int SendExter(lua_State* pState)
 {
 	uint16_t uCmd = (uint16_t)luaL_checkinteger(pState, 1);
 	luaL_checktype(pState, 2, LUA_TLIGHTUSERDATA);
 	Packet* poPacket = (Packet*)lua_touserdata(pState, 2);
-	NetAdapter::SERVICE_NAVI oNavi(0,0,0);
-	oNavi.nServerID = (int)luaL_checkinteger(pState, 3);
-	oNavi.nServiceID = (int)luaL_checkinteger(pState, 4);
-	oNavi.nSessionID = (int)luaL_checkinteger(pState, 5);
+
+	NetAdapter::SERVICE_NAVI oNavi;
+	oNavi.uSrcServer = g_poContext->GetServerID();
+	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uTarServer = (uint16_t)luaL_checkinteger(pState, 3);
+	oNavi.nTarService = (int8_t)luaL_checkinteger(pState, 4);
+	oNavi.nTarSession = (int)luaL_checkinteger(pState, 5);
 	uint32_t uCmdIdx = (uint32_t)luaL_checkinteger(pState, 6);
-	if (oNavi.nSessionID <= 0 || oNavi.nServiceID < 0 || oNavi.nServiceID > MAX_SERVICE_NUM)
+	if (oNavi.nTarSession <= 0 || oNavi.nTarService < 0 || oNavi.nTarService > MAX_SERVICE_NUM)
 	{
 		poPacket->Release();
 		return LuaWrapper::luaM_error(pState, "Send exter param error!");
@@ -41,13 +45,16 @@ static int BroadcastExter(lua_State* pState)
 
 	oNaviCache.Clear();
 	luaL_checkstack(pState, nTableLen, NULL);
+
+	uint16_t uSrcServer = g_poContext->GetServerID();
+	int8_t nSrcService = g_poContext->GetService()->GetServiceID();
 	for (int i = 1; i <= nTableLen; i = i+2)
 	{
 		lua_rawgeti(pState, 3, i);
 		lua_rawgeti(pState, 3, i+1);
-		int nServer = (int)lua_tointeger(pState, -2);
-		int nSession = (int)lua_tointeger(pState, -1);
-		oNaviCache.PushBack(NetAdapter::SERVICE_NAVI(nServer, 0, nSession));
+		uint16_t uTarServer = (uint16_t)lua_tointeger(pState, -2);
+		int nTarSession = (int)lua_tointeger(pState, -1);
+		oNaviCache.PushBack(NetAdapter::SERVICE_NAVI(uSrcServer, nSrcService, uTarServer, 0, nTarSession));
 	}
 	if (!NetAdapter::BroadcastExter(uCmd, poPacket, oNaviCache))
 	{
@@ -61,11 +68,13 @@ static int SendInner(lua_State* pState)
 	uint16_t uCmd = (uint16_t)luaL_checkinteger(pState, 1);
 	luaL_checktype(pState, 2, LUA_TLIGHTUSERDATA);
 	Packet* poPacket = (Packet*)lua_touserdata(pState, 2);
-	NetAdapter::SERVICE_NAVI oNavi(0, 0, 0);
-	oNavi.nServerID = (int)luaL_checkinteger(pState, 3);
-	oNavi.nServiceID = (int)luaL_checkinteger(pState, 4);
-	oNavi.nSessionID = (int)luaL_checkinteger(pState, 5);
-	if (oNavi.nServerID <= 0 || oNavi.nServiceID <= 0 || oNavi.nServiceID > MAX_SERVICE_NUM)
+	NetAdapter::SERVICE_NAVI oNavi;
+	oNavi.uSrcServer = g_poContext->GetServerID();
+	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uTarServer = (uint16_t)luaL_checkinteger(pState, 3);
+	oNavi.nTarService = (int8_t)luaL_checkinteger(pState, 4);
+	oNavi.nTarSession = (int)luaL_checkinteger(pState, 5);
+	if (oNavi.uTarServer <= 0 || oNavi.nTarService <= 0 || oNavi.nTarService > MAX_SERVICE_NUM)
 	{
 		poPacket->Release();
 		return LuaWrapper::luaM_error(pState, "Target server or service error!");
@@ -92,15 +101,18 @@ static int BroadcastInner(lua_State* pState)
 
 	oNaviCache.Clear();
 	luaL_checkstack(pState, nTableLen, NULL);
+
+	uint16_t uSrcServer = g_poContext->GetServerID();
+	int8_t nSrcService = g_poContext->GetService()->GetServiceID();
 	for (int i = 1; i <= nTableLen; i=i+3)
 	{
 		lua_rawgeti(pState, 4, i);
 		lua_rawgeti(pState, 4, i+1);
 		lua_rawgeti(pState, 4, i+2);
-		int nServer = (int)lua_tointeger(pState, -3);
-		int nService = (int)lua_tointeger(pState, -2);
-		int nSession = (int)lua_tointeger(pState, -1);
-		oNaviCache.PushBack(NetAdapter::SERVICE_NAVI(nServer, nService, nSession));
+		uint16_t uTarServer = (uint16_t)lua_tointeger(pState, -3);
+		int8_t nTarService = (int8_t)lua_tointeger(pState, -2);
+		int nTarSession = (int)lua_tointeger(pState, -1);
+		oNaviCache.PushBack(NetAdapter::SERVICE_NAVI(uSrcServer, nSrcService, uTarServer, nTarService, nTarSession));
 	}
 
 	poPacket->WriteBuf(&uRawCmd, sizeof(uRawCmd));
