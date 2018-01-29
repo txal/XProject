@@ -1,0 +1,43 @@
+package guoshiguan;
+
+//国使馆界面请求
+message GSGInfoReq
+{
+}
+
+//国使馆界面返回
+message GSGInfoRet
+{
+	message _List
+	{
+		required int32 nCharID = 1; 		//玩家ID
+		required int32 nFirstLevel = 2;  	//第一称号的玩家等级
+		required string sFirstName = 3; 	//第一玩家名字
+		required int32 nFirstVIP = 4; 		//第一玩家VIP
+		required int32 nType = 5; 			//1.国力称号, 2.亲密度称号, 3.威望称号, 5.联盟经验称号
+		required int32 nLevel = 6; 			//玩家等阶
+		required int32 nState = 7; 	 		//讨教状态(0.可讨教, 1.已讨教, 2.自身屏蔽讨教)
+	}
+	repeated _List tList = 1; 				//讨教信息
+	required int32 nNewTitle = 2; 			//当前最新称号
+}
+
+//讨教请求
+message GSGTaoJiaoReq
+{
+	required int32 nType = 1; 			//1.国力称号, 2.亲密度称号, 3.威望称号, 4.宫斗称号, 5.联盟经验称号
+}
+
+//讨教返回
+message GSGTaoJiaoRet
+{
+	required int32 nYuanBao = 1; 		//讨教获得元宝数
+	required int32 nLevel = 2; 			//称号玩家等阶
+	required string sName = 3; 			//称号玩家名字
+}
+
+//小红点返回
+message GSGRedPointRet
+{
+	repeated bool tRedPoint = 1; 	   //小红点数组
+}

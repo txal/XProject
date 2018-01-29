@@ -1,0 +1,237 @@
+package mingchen;
+
+//知己信息结构
+message _MingChen
+{
+	message _Treasure
+	{
+		required int32 nID = 1;	 		//珍宝ID
+		required int32 nNum = 2; 		//珍宝数量
+	}
+	required bool bGot = 1; 			//是否已经入宫
+	required int32 nID = 2; 			//ID
+	required string sName = 3; 			//名称
+	required int32 nQinMi = 4; 			//亲密
+	optional int32 nHaoGan = 5; 		//好感
+	optional int32 nPinJi = 6;			//品级
+	optional int32 nLv = 7; 			//等级
+	optional int32 nTec = 8;			//特长: 1智; 2才; 3魅; 4武
+	repeated int32 tQua = 9; 			//资质列表: 1智; 2才; 3魅; 4武
+	optional double nWH = 10; 			//已投入文化
+	optional double nNeedWH = 11; 		//升级需要文化
+	repeated int32 tSkLv = 12; 			//技能等级: 1智; 2才; 3魅; 4武
+	repeated int32 tSkQua = 13; 		//技能阶级: 1智; 2才; 3魅; 4武
+	repeated int32 tQuaGrow = 14; 		//资质成长点: 1智; 2才; 3魅; 4武
+	repeated int32 tBreach = 15; 		//资质突破次数: 1智; 2才; 3魅; 4武
+	repeated int32 tBreachRate = 16;	//突破成功率: 1智; 2才; 3魅; 4武
+	repeated int32 tAttr = 17;			//属性: 1智; 2才; 3魅; 4武
+	optional int32 nZhanJi = 18; 		//战绩
+	repeated _Treasure tTreasure = 19;	//珍宝列表
+	optional int32 nMaxTreasure = 20;	//赏赐上限
+	optional int32 nPingJi = 21; 		//评级
+	optional int32 nJWLv = 22; 			//爵位等级
+	optional int32 nTalentLv = 23; 		//天赋等级
+	optional int32 nSKPoint = 24; 		//技能点
+}	
+
+//知己列表返回
+message MCListRet
+{
+	repeated _MingChen tList = 1; 		//列表
+}
+
+//知己升级请求
+message MCUpgradeReq
+{
+	required int32 nID = 1; 			//知己ID
+}
+
+//知己1键升级请求
+message MCOneKeyUpgradeReq
+{
+	required int32 nID = 1; 			//知己ID
+}
+
+//技能升级请求
+message SKUpgradeReq 
+{
+	required int32 nMCID = 1; 			//知己ID(配置ID)	
+	required int32 nSKID = 2; 			//技能ID(1商,2农,3政,4军)
+}
+
+//技能1键升级请求
+message SKOneKeyUpgradeReq 
+{
+	required int32 nMCID = 1; 			//知己ID	
+	required int32 nSKID = 2; 			//技能ID	
+}
+
+//技能升阶请求
+message SKAdvanceReq 
+{
+	required int32 nMCID = 1; 			//知己ID	
+	required int32 nSKID = 2; 			//技能ID	
+}
+
+//赏赐珍宝
+message GiveTreasureReq
+{
+	required int32 nID = 1; 			//知己ID
+	required int32 nPropID = 2; 		//珍宝ID
+	required int32 nPropNum = 3; 		//珍宝数量
+}
+
+//一键赏赐珍宝
+message OneKeyGiveTreasureReq
+{
+	required int32 nMCID = 1; 		//知己ID
+}
+
+//知己培养
+message MCTrainReq
+{
+	required int32 nID = 1; 		//知己ID
+}
+
+//资质突破
+message QuaBreachReq
+{
+	required int32 nMCID = 1; 			//知己ID
+	required int32 nQuaID = 2; 			//资质ID: 1智; 2才; 3魅; 4武
+}
+
+//国力排行榜请求
+message GLRankingReq
+{
+	required int32 nRankNum = 1; 	//取前X名		
+}
+
+//国力排行榜返回
+message GLRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	
+	repeated _Rank tRanking = 1; 		//排行列表
+	required int32 nMyRank = 2; 		//我的排名
+	required string sMyName = 3; 		//我的名字
+	required int32 nMyValue = 4; 		//我的数值	
+	required bool bMoBai = 5;			//是否已经膜拜过
+}
+
+//知己总属性排行榜请求
+message MCRankingReq
+{
+	required int32 nRankNum = 1; 	//取前X名		
+}
+
+//知己总排行榜返回
+message MCRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	
+	repeated _Rank tRanking = 1; 		//排行列表
+	required int32 nMyRank = 2; 		//我的排名
+	required string sMyName = 3; 		//我的名字
+	required int32 nMyValue = 4; 		//我的数值	
+}
+
+//知己改名请求
+message MCModNameReq
+{
+	required int32 nMCID = 1; 		//知己ID
+	required string sName = 2; 		//知己名
+	required int32 nType = 3;		//1.封号 2.恢复
+}
+
+//知己封官品请求
+message MCFengGuanReq
+{
+	required int32 nMCID = 1; 			//知己ID
+}
+
+
+//知己封官品返回
+message MCFengGuanRet
+{
+	required int32 nMCID = 1; 			//知己ID
+	required int32 nPinJi= 2; 			//品级
+}
+
+//属性详情请求
+message MCAttrDetailReq
+{
+	required int32 nMCID = 1; 			//知己ID
+}
+
+//属性详情返回
+message MCAttrDetailRet
+{
+	repeated int32 tAttr = 1; 			//总属性
+	repeated int32 tBaseAttr = 2; 		//资质加成
+	repeated int32 tPinJiAttr = 3;		//官品加成
+	repeated int32 tUnionAttr = 4; 		//联盟加成
+	repeated int32 tZouZheAttr = 5; 	//私信加成
+	repeated int32 tTreasureAttr = 6; 	//上次加成
+	repeated int32 tTalentAttr = 7; 	//天赋加成
+}
+
+//封爵请求
+message MCFengJueReq
+{
+	required int32 nMCID = 1; 			//知己ID
+}
+
+//晋升请求
+message MCUpgradeTalentReq
+{
+	required int32 nMCID = 1; 			//知己ID
+}
+
+//送礼请求
+message MCSendGiftReq
+{
+	required int32 nMCID = 1; 			//知己ID
+	required int32 nPropID = 2; 		//道具ID
+	required int32 nPropNum = 3; 		//道具数量
+}
+
+
+//一键送礼请求
+message MCOneKeySendGiftReq
+{
+	required int32 nMCID = 1; 			//知己ID
+}
+
+//知己邀约请求
+message MCYaoYueReq
+{
+	required int32 nMCID = 1; 			//知己ID
+	required int32 nTimes = 2;  		//邀约次数
+	required bool bUseProp = 3;  		//使用道具
+}
+
+//知己邀约获得萌宠
+message MCBornChildRet
+{
+	required int32 nChildNum = 1;	//萌宠数量
+	required int32 nGender1 = 2; 	//萌宠1性别(1男; 2女)
+	required int32 nTalentLv1 = 3; 	//萌宠1天赋等级 
+	optional int32 nGender2 = 4; 	//萌宠2性别
+	optional int32 nTalentLv2 = 5; 	//萌宠2天赋等级
+	optional string sIcon1 = 6; 	//宠物头像1
+	optional string sIcon2 = 7; 	//宠物头像2
+}
+
+//知己入宫请求
+message MCRecruitReq
+{
+	required int32 nID = 1; 		//知己ID	
+}

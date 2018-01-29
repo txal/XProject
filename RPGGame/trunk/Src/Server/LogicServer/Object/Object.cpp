@@ -1,6 +1,8 @@
 ﻿#include "Server/LogicServer/Object/Object.h"
+
 #include "Include/Network/Packet.h"
 #include "Common/DataStruct/XTime.h"
+#include "Server/Base/NetAdapter.h"
 #include "Server/LogicServer/LogicServer.h"
 #include "Server/LogicServer/SceneMgr/Scene.h"
 
@@ -92,26 +94,34 @@ bool Object::CheckCamp(Object* poTar)
 	return (m_nCamp != nTarCamp);
 }
 
-void Object::CachePlayerSessionList(int nSelfSession)
+void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 {
-	g_oSessionCache.Clear();
+	goNaviCache.Clear();
 	if (m_poScene == NULL || m_nAOIID <= 0)
 	{
 		return;
 	}
-	if (nSelfSession > 0)
+	if (uTarServer> 0 && nTarSession > 0)
 	{
-		g_oSessionCache.PushBack(nSelfSession);
+		NetAdapter::SERVICE_NAVI oNavi;
+		oNavi.uSrcServer = g_poContext->GetServerID();
+		oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+		oNavi.uTarServer = uTarServer;
+		oNavi.nTarSession = nTarSession;
+		goNaviCache.PushBack(oNavi);
 	}
+
+	NetAdapter::SERVICE_NAVI oNavi;
+	oNavi.uSrcServer = g_poContext->GetServerID();
+	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+
 	Array<AOI_OBJ*>& oAOIObjList = m_poScene->GetAreaObservers(m_nAOIID, GAME_OBJ_TYPE::eOT_Player);
-	if (oAOIObjList.Size() <= 0)
-	{
-		return;
-	}
 	for (int i = oAOIObjList.Size() - 1; i >= 0; --i)
 	{
-		int nSession = ((Actor*)oAOIObjList[i]->poGameObj)->GetSession();
-		g_oSessionCache.PushBack(nSession);
+		Actor* poActor = (Actor*)(oAOIObjList[i]->poGameObj);
+		oNavi.uTarServer = poActor->GetServer();
+		oNavi.nTarSession = poActor->GetSession();
+		goNaviCache.PushBack(oNavi);
 	}
 }
 

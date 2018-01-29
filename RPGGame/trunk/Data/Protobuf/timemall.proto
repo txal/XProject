@@ -1,0 +1,29 @@
+package timemall;
+
+//信息请求
+message TimeMallInfoReq
+{
+	
+}
+
+//信息返回
+message TimeMallInfoRet
+{
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nTimes = 2; 		//已购买次数
+	}	
+	repeated _Item tList = 3;  			//奖励表
+}
+
+//购买请求
+message TimeMallBuyReq
+{
+	required int32 nID = 1; 	//物品标识
+}
+
+//购买成功返回
+message TimeMallBuyRet
+{
+	required int32 nID = 1; 	//物品标识
+}

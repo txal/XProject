@@ -1,0 +1,192 @@
+package diandeng;
+
+//活动状态信息请求
+message DianDengStateReq
+{
+	
+}
+
+//活动状态信息返回
+message DianDengStateRet
+{
+	required int32 nID = 1; 		//活动ID
+	required int32 nState = 2; 		//活动状态:0初始; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+	required int32 nAwardTime = 6; 	//活动领奖结束时间
+	required int32 nSubState = 7; 		//子状态:0准备开始; 1进行中; 2已结束
+	required int32 nSubStateTime = 8; 	//子状态剩余时间
+	required int32 nServerScore = 9; 	//全服日积分
+	required bool bPlayerAward = 10; 	//是否可领个人奖励
+	required bool bUnionAward = 11; 	//是否可领公会奖励
+	required bool bActAward = 12; 		//是否可领活动奖励
+	required int32 nOpenTimes = 13; 	//活动开启次数
+	repeated string tRecord = 14; 		//奖励记录
+}
+
+//道具列表请求
+message DianDengPropListReq
+{
+}
+
+//道具列表返回
+message DianDengPropListRet
+{
+	message _Item
+	{
+		required int32 nPropID = 1;	 	//道具ID
+		required int32 nBuyTimes = 2; 	//已购买次数
+	}
+	repeated _Item tList = 1;
+}
+
+//购买道具请求
+message DianDengBuyPropReq
+{
+	required int32 nPropID = 1; 		//道具ID	
+}
+
+//购买道具成功返回
+message DianDengBuyPropRet
+{
+	required int32 nPropID = 1; 		//道具ID	
+}
+
+//使用道具请求
+message DianDengUsePropReq
+{
+	required int32 nPropID = 1; 		//道具ID
+}
+
+
+//使用道具成功返回
+message DianDengUsePropRet
+{
+	message _Item
+	{
+		required int32 nType = 1; 		//类型
+		required int32 nID = 2; 		//ID
+		required int32 nNum = 3; 		//数量
+	}
+	required int32 nScore = 1;	 		//获得的积分
+	required int32 nServerScore = 2; 	//全服积分
+	repeated _Item tList = 3; 
+}
+
+//活动奖励信息请求
+message DianDengAwardInfoReq
+{
+	
+}
+
+//活动奖励信息返回
+message DianDengAwardInfoRet
+{
+	required int32 nScore = 1;	 		//全服积分
+	required int32 nState = 2; 			//奖励状态:0未达成; 1可领取; 2已领取
+}
+
+//活动奖励领取请求
+message DianDengAwardReq
+{
+	
+}
+
+//活动奖励领取返回
+message DianDengAwardRet
+{
+	required int32 nID = 1; 		//道具ID
+	required int32 nNum = 2; 		//道具数量
+}
+
+//活动兑换列表请求
+message DianDengExchangeListReq
+{
+	
+}
+
+//活动兑换列表返回
+message DianDengExchangeListRet
+{
+	message _Item
+	{
+		required int32 nPropID = 1; 	//道具ID
+		required int32 nExcNum = 2; 	//已兑换数量
+	}
+	required int32 nScore = 1; 		//我的积分
+	repeated _Item tList = 2; 		//列表
+}
+
+//兑换物品请求
+message DianDengExchangeReq
+{
+	required int32 nPropID = 1; 	//道具ID
+}
+
+//兑换成功返回
+message DianDengExchangeRet
+{
+	required int32 nID = 1; 	//道具ID
+	required int32 nNum = 2; 	//道具数量
+}
+
+//排行榜请求
+message DianDengRankingReq
+{
+	required int32 nType = 1; 		//类型:1个人; 2联盟
+	required int32 nRankNum = 2; 	//数量
+}
+
+//排行榜返回
+message DianDengRankingRet
+{
+	message _Item 
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}
+	required int32 nType = 1; 		//类型
+	required int32 nMyRank = 2; 	//我的排名
+	required string sMyName = 3; 	//我的名字
+	required int32 nMyValue = 4; 	//我的值
+	repeated _Item tList = 5; 		//列表
+}
+
+//排行奖励信息请求
+message DianDengRankAwardInfoReq
+{
+	required int32 nType = 1;	 	//类型
+}
+
+//排行奖励信息返回
+message DianDengRankAwardInfoRet
+{
+	required int32 nType = 1;	 	//类型
+	required int32 nState = 2; 		//活动状态
+	required int32 nStateTime = 3;	//状态剩余时间
+	required int32 nMyRank = 4;		//我的排名
+	required string sMyName = 5; 	//我的名字
+	required int32 nMyValue = 6; 	//我的值
+	required int32 nAwardState = 7;	//奖励状态:0未达成; 1可领取; 2已领取
+}
+
+//领取排行奖励请求
+message DianDengRankAwardReq
+{
+	required int32 nType = 1;	 	//类型
+}
+
+//领取排行奖励成功返回
+message DianDengRankAwardRet
+{
+	message _Item
+	{
+		required int32 nType = 1; 		//类型
+		required int32 nID = 2; 		//ID
+		required int32 nNum = 3; 		//数量
+	}
+	required int32 nType = 1;	 	//类型
+	repeated _Item tList = 2; 		//列表
+}

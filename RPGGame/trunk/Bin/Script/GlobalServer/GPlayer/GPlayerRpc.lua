@@ -1,8 +1,7 @@
-function Srv2Srv.OnPlayerOnline(nSrc, nSession, nCharID, sCharName, nLogicService, sPlatform, sChannel)
-	print("OnPlayerOnline***", nSrc, nSession, nCharID, sCharName, nLogicService, sPlatform, sChannel)
-	goGPlayerMgr:CreatePlayer(nSession, nCharID, sCharName, nLogicService, sPlatform, sChannel)
+function Srv2Srv.OnPlayerOnline(nSrc, nSession, tPlayer)
+	goGPlayerMgr:PlayerOnline(tPlayer)
 end
 
 function Srv2Srv.OnPlayerOffline(nSrc, nSession)
-	goGPlayerMgr:RemovePlayer(nSession)
+	goGPlayerMgr:PlayerOffline(nSession)
 end

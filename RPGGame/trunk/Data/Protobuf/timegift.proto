@@ -1,0 +1,52 @@
+package timegift;
+
+//活动状态信息请求
+message TimeGiftStateReq
+{
+	
+}
+
+//活动状态信息返回
+message TimeGiftStateRet
+{
+	required int32 nID = 1; 		//活动ID
+	required int32 nState = 2; 		//活动状态:0初始; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+	required int32 nRounds = 6;  	//轮次
+	required int32 nItemID = 7;  	//替换物品
+}
+
+//购买礼包请求
+message TimeGiftBuyReq
+{
+	required int32 nID = 1; 	//礼包ID	
+}
+
+//购买礼包成功返回
+message TimeGiftBuyRet
+{
+	required int32 nID = 1; 		//礼包ID	
+	required int32 nItemID = 2; 	//替换-1的物品ID
+}
+
+//礼包奖励表返回
+message TimeGiftGetActItemRet
+{	
+	message _List
+	{
+		message _Award
+		{
+			required int32 nType = 1;  		//物品类型
+			required int32 nID = 2; 		//物品ID
+			required int32 nNum = 3; 		//物品数量
+		} 	 	 				
+		required int32 nID = 1;   			//物品表ID
+		required string sName = 2;	 		//礼包名称
+		required int32 nYuanBao = 3; 		//消耗的元宝
+		repeated _Award tAward = 4; 		//物品数组
+		required int32 nRounds = 5; 		//轮次
+	}
+	repeated _List tList = 1; 				//奖励表
+}

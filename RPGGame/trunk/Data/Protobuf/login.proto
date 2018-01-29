@@ -1,0 +1,163 @@
+package login;
+
+//登陆
+message LoginReq
+{
+	required string sAccount = 1;	//帐号
+	required string sPassword = 2; 	//密码
+    optional int32 nSource = 3;     //渠道号
+}
+
+//登陆返回
+message LoginRet
+{
+	required int32 nCode = 1;		    //0成功;-1需要创建角色
+    optional bool bFirstOnline = 2;     //是否每天首次登陆
+    optional bool bNewAccount = 3;      //是否新号
+}
+
+//创建角色
+message CreateRoleReq
+{
+	required string sAccount = 1;	//帐号
+	required string sPassword = 2;	//密码
+	required string sCharName = 3;	//角色名
+	optional int32 nSource = 4;		//渠道号
+}
+
+//创建角色返回
+message CreateRoleRet
+{
+	required int32 nCode = 1;		//0成功;-1角色名重复;-2重复创建
+}
+
+//角色数据同步
+message PlayerInitDataSync
+{
+	required int32 nCharID = 1;  		//角色ID
+	required int32 nSource = 2; 		//渠道号
+	required string sName = 3;  		//角色名
+    required int32 nVIP = 4;         	//VIP
+    required int32 nYuanBao = 5;     	//元宝
+    required double nYinLiang = 6;      //银两
+    optional int32 nLiangCao = 7;    	//粮草(屏蔽)
+    optional double nBingLi = 8;      	//兵力
+    required int32 nTiLi = 9;       	//体力
+    required int32 nJingLi = 10;      	//精力
+    required double nGuoLi = 11;       	//国力
+    required int32 nWaiJiao = 12;       //外交
+    optional int32 nShiLi = 13;       	//势力(屏蔽)
+    repeated int32 tAttr = 14; 			//国家属性(商,农,政,军)
+    required int32 nServerID = 15;      //服务器编号(充值用的)
+    required string sServerName = 16;   //区名
+    required int32 nCreateTime = 17;    //创建时间
+    required int32 nZoneID = 18;        //区号(显示给玩家看的)
+    optional int32 nLevel = 19;         //国家等等级
+    optional int32 nMaxLevel = 20;      //最大国家等级
+    optional double nExp = 21;          //当前国家经验
+    optional double nNextExp = 22;      //下一级需要经验
+    optional int32 nHeadID = 23;        //头像ID
+    optional int32 nGongDou = 24;       //宫斗分
+    optional double nWenHua = 25;       //文化
+}
+
+//角色货币同步
+message PlayerCurrSync
+{
+	required int32 nCurrType = 1; 	//货币类型
+	//1:VIP等级 2:元宝 3:银两 4:粮草 5:兵力 7:文化 8:体力 9:体力上限 10:精力 12:国力 13:势力 14:役事点 15:大臣成长点 26:商业属性 27:农业属性 28:政治属性 29:军事属性
+	required double nCurrValue = 2;	//货币值
+	optional bool bFlyWord = 3; 	//是否飘字
+}
+
+//账号异地登录
+message OtherPlaceLoginRet
+{
+	
+}
+
+//注销(登出)请求
+message LogoutReq 
+{
+}
+
+//注销成功返回(此时客户端应该关闭连接退回到登录界面)
+message LogoutRet
+{
+	
+}
+
+//玩家信息
+message PlayerInfo
+{
+    required int32 nCharID = 1;     //编号
+    required string sCharName = 2;  //昵称
+    required int32 nVIP = 3;        //VIP
+    required int32 nGuoLi = 4;      //国力
+    repeated int32 tAttr = 5;       //属性(商,农,政,军)
+
+    required int32 nQinMi = 6;      //亲密度
+    required int32 nFeiZiNum = 7;   //妃子数量
+    required int32 nNengLi = 8;     //能力
+    required int32 nChildNum = 9;   //孩子数量
+    required int32 nCaiDe = 10;     //才德
+
+    required int32 nYL = 11;   //银两
+    required int32 nLC = 12;   //粮草
+    required int32 nBL = 13;   //兵力
+
+    required int32 nWeiWang = 14;   //威望
+    required int32 nChapter = 15;   //章节
+
+    optional int32 nLevel = 16;     //当前国家等阶
+    optional int32 nExp = 17;       //当前国家经验
+}
+
+//请求玩家信息
+message PlayerInfoReq
+{
+    required int32 nCharID = 1;     //目标玩家ID	
+}
+
+//玩家信息返回
+message PlayerInfoRet
+{
+    required PlayerInfo tInfo = 1;  //玩家信息
+}
+
+//排行榜玩家信息请求
+message RankingPlayerInfoReq
+{
+}
+
+//排行榜玩家信息返回
+message RankingPlayerInfoRet
+{
+    required PlayerInfo tInfo = 1;  //玩家信息 
+}
+
+//玩家改名请求
+message PlayerModNameReq
+{
+    required string sCharName = 1;  //名字
+}
+
+//改名成功返回
+message PlayerModNameRet
+{
+   required string sCharName = 1;   //名字 
+}
+
+//国家等级/经验同步
+message PlayerLevelRet
+{
+    required int32 nLevel = 1;      //等级
+    required int32 nMaxLevel = 2;   //最大等级
+    required double nExp = 3;        //当前经验
+    required double nNextExp = 4;    //下一级经验
+}
+
+//进阶请求
+message UpgradeReq
+{
+}

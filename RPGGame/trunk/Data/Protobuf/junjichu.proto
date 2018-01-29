@@ -1,0 +1,358 @@
+package junjichu;
+
+//军机处信息请求
+message JJCInfoReq
+{
+	
+}
+
+//军机处信息返回
+message JJCInfoRet
+{
+	message _MC
+	{
+		required int32 nGroup = 1;	//使节团(1商 2农 3政 4军)
+		required int32 nMCID = 2; 	//名臣ID
+		required int32 nGrid = 3;	//所在格子ID
+	}
+	optional int32 nSendTimes = 1; 		//已出使次数
+	optional int32 nCurrTimes = 2; 		//当前拥有次数
+	optional int32 nRecoverTime = 3; 	//恢复次数时间
+	repeated _MC tMCList = 4; 			//名臣列表 
+	required bool bOpen = 5; 			//军机处是否已开放
+	optional bool bOpenZhaoJian = 6; 	//是否打开召见
+}
+
+//任命大臣
+message JJCAddMCReq
+{
+	required int32 nGroup = 1;	 	//使节团
+	required int32 nGrid = 2; 		//格子ID
+	required int32 nMCID = 3; 		//名臣ID
+}
+
+//罢免大臣
+message JJCRemoveMCReq
+{
+	required int32 nGroup = 1; 		//使节团
+	required int32 nGrid = 2; 		//格子ID
+}
+
+//出使请求
+message JJCSendReq
+{
+	required bool bUseProp = 1; 	//是否使用道具	
+}
+
+//对战信息
+message JJCPrepareRet
+{
+	message _Grid	
+	{
+		required int32 nGrid = 1; 			//格子ID
+		optional int32 nSrcID = 2; 			//攻方名臣ID
+		optional string sSrcName = 3; 		//攻方名臣名字
+		optional int32 nSrcBlood = 4; 		//攻方开始血量
+		optional int32 nSrcMCLv = 5; 		//攻方名臣等级
+		optional int32 nSrcAttr = 6; 		//攻方名臣属性
+		optional int32 nTarID = 7; 			//守方名臣ID
+		optional string sTarName = 8; 		//守方名臣名字
+		optional int32 nTarBlood = 9; 		//守方开始血量
+		optional int32 nTarMCLv = 10; 		//守方名臣等级
+		optional int32 nTarAttr = 11; 		//守方名臣属性
+		required bool bCT = 12; 			//是否已经刺探
+	}
+	repeated _Grid tList = 1; 		//大臣列表
+	required string sSrcName = 2; 	//攻方玩家名
+	required int32 nSrcWW= 3; 		//攻方玩家威望
+	required string sTarName = 4; 	//守方玩家名
+	required int32 nTarWW= 5; 		//守方玩家威望
+	required int32 nBattleType = 6;	//战斗类型: 0出使; 1复仇; 2挑战; 3抓捕
+	required int32 nGroup = 7; 		//使节团: 商农政军
+	required int32 nGuWu = 8; 		//鼓舞标识: 0未鼓舞; 1积分鼓舞; 2元宝鼓舞; 3元宝和积分鼓舞
+	required int32 nCSScore = 9; 	//当前出使积分
+}
+
+//战斗过程返回
+message JJCBattleProcedureRet
+{
+	//格子战斗
+	message _Battle
+	{
+		required int32 nGrid = 1; 			//格子ID
+		required int32 nSrcID = 2; 			//攻方名臣ID
+		required string sSrcName = 3; 		//攻方名臣名字
+		required int32 nTarID = 4; 			//守方名臣ID
+		required string sTarName = 5; 		//守方名臣名字
+		required int32 nSrcBlood = 6; 		//攻方开始血量
+		required int32 nTarBlood = 7; 		//守方开始血量
+		required int32 nSrcBloodRemain = 8; //攻方剩余血量
+		required int32 nTarBloodRemain = 9; //守方剩余血量
+		required bool bSrcSkill = 10; 		//攻方是否使用了技能
+		required bool bTarSkill = 11; 		//守方是否使用了技能
+		required int32 nWin = 12; 			//0未分出胜负;1攻方胜;2守方胜
+		optional int32 nSrcSkLv = 13; 		//攻方技能等级
+		optional int32 nTarSkLv = 14; 		//守方技能等级
+		optional int32 nSrcMCLv = 15; 		//攻方名臣等级
+		optional int32 nTarMCLv = 16; 		//守方名臣等级
+		optional int32 nSrcAttr = 17; 		//攻方名臣属性
+		optional int32 nTarAttr = 18; 		//守方名臣属性
+	}
+	//回合数据
+	message _Round
+	{
+		required int32 nRounds = 1; 		//回合
+		repeated _Battle tBattle = 2; 		//格子战斗
+	}
+
+	required int32 nGroup = 1;	 			//使节团
+	required string sSrcCharName = 2; 		//攻方名字
+	required int32 nSrcWeiWang = 3; 		//攻方威望
+	required string sTarCharName = 4; 		//守方名字
+	required int32 nTarWeiWang = 5; 		//守方威望
+	repeated _Round tRounds = 6; 			//回合数据
+	required int32 nSrcWins = 7; 			//攻方胜利数(如果==5,则需要弹出是否乘胜追击)
+	required int32 nTarWins = 8; 			//守方胜利数
+}
+
+//是否乘胜追击请求
+message JJCExtraRobReq
+{
+	required bool bExtraRob = 1; 			//是否乘胜追击	
+}
+
+//军机处战斗结束返回
+message JJCBattleResultRet
+{
+	message _MC
+	{
+		required int32 nGrid = 1;			//名臣位置
+		required int32 nMCID = 2;			//名臣ID
+		required int32 nScore = 3; 			//名臣战绩
+		required int32 nGrow = 4; 			//名臣成长点
+		required int32 nWin = 5; 			//0轮空; 1胜利; 2失败
+	}
+	message _Item
+	{
+		required int32 nType = 1; 			//类型
+		required int32 nID = 2; 			//ID
+		required int32 nNum = 3; 			//数量
+	}
+	required int32 nGroup = 1; 				//使节团
+	required int32 nSrcTotalWW = 2; 		//获得/损失威望
+	required int32 nSrcTotalWJ = 3; 		//获得/损失外交百分比
+	repeated _MC tMCList = 4; 				//名臣列表
+	required int32 nSrcWJValue = 5; 		//获得/损失外交数值
+	repeated _Item tList = 6;				//获得的道具奖励
+	optional int32 nSrcCSScore = 7; 		//出使积分 
+}
+
+//召见列表请求
+message JJCZhaoJianListReq
+{
+}
+
+//召见列表返回
+message JJCZhaoJianListRet
+{
+	message _Title
+	{
+		message _MC
+		{
+			required int32 nGrid = 1; 		//名臣位置
+			required int32 nMCID = 2; 		//名臣ID
+			required int32 nScore = 3; 		//名臣战绩
+			required int32 nGrow = 4; 		//名臣成长点
+			required bool bWin = 5; 		//是否胜利
+		}
+		required int32 nGroup = 1;	 		//使节团
+		required string sCharName = 2;	 	//玩家名
+		required int32 nTime = 3;	 		//时间
+		required int32 nWaiJiao = 4;	 	//获得/损失外交点
+		required int32 nWeiWang = 5;	 	//获得/损失威望
+		repeated _MC tMCList = 6;
+	}
+	repeated _Title tList = 1;				//列表
+}
+
+//仇恨列表请求
+message JJCChouHenListReq
+{
+	optional int32 nWinType = 1; 			//界面类型(1仇恨列表; 2仇恨排行榜)
+}
+
+//仇恨列表返回
+message JJCChouHenListRet
+{
+	message _Title
+	{
+		required int32 nGroup = 1;	 		//使节团
+		required int32 nCharID = 2;	 		//玩家ID
+		required string sCharName = 3;	 	//玩家名
+		required int32 nTime = 4;	 		//时间
+		required int32 nTotalWJ = 5;	 	//被夺取外交值
+		required int32 nWeiWang = 6;	 	//威望
+		required int32 nGuoLi = 7; 			//国力
+		required int32 nExtraRob = 8; 		//0没有; 1乘胜追击; 2手下留情;
+		optional int32 nSrcWins = 9; 		//歼灭大臣数
+	}
+	repeated _Title tList = 1;				//列表
+	optional int32 nWinType = 2; 			//界面类型
+}
+
+//公告列表
+message JJCNoticeListReq
+{
+	
+}
+
+//公告列表返回(只记录攻方的)
+message JJCNoticeListRet
+{
+	message _Title
+	{
+		required int32 nID = 1; 			//公告ID
+		required int32 nGroup = 2;	 		//使节团
+		required int32 nCharID = 3;	 		//玩家ID(攻方)
+		required string sCharName = 4;	 	//玩家名(攻方)
+		required string sTarCharName = 5; 	//目标名字(守方)
+		required int32 nTotalWJ = 6;	 	//外交百分比
+		required bool bSrcWin = 7;			//攻方是否胜利
+		required int32 nExtraRob = 8;	 	//乘胜追击: 0没有; 1乘胜追击; 2手下留情;
+		required int32 nSrcMCs = 9; 		//(胜)攻方歼灭了/(输)被歼灭了多少大臣
+		required bool bChallenge = 10; 		//是否可以挑战
+		required int32 nTime = 11;	 		//时间
+	}
+	repeated _Title tList = 1;				//列表
+}
+
+//攻击请求
+message JJCAttackReq
+{
+	required int32 nTarCharID = 1; 			//目标玩家
+	required int32 nTarGroup = 2; 			//目标组
+	required int32 nBattleType = 3;			//战斗类型: 1复仇; 2挑战; 3抓捕
+	optional int32 nNoticeID = 4; 			//如果是挑战,则需要填公告ID
+}
+
+//通缉列表请求
+message JJCTongJiListReq
+{
+	
+}
+
+//通缉列表返回
+message JJCTongJiListRet
+{
+	message _Title
+	{
+		required int32 nCharID = 1; 	//玩家ID
+		required string sCharName = 2;	//玩家名字
+		required int32 nTJTimes = 3;	//通缉次数
+		required int32 nWWRank = 4; 	//威望排行
+		required int32 nGuoLi = 5;		//国力
+		required int32 nTime = 6; 		//被通缉时间
+		required int32 nLostWW = 7; 	//被通缉后被掠夺威望数
+	}
+	repeated _Title tList = 1;			//列表
+}
+
+//军机处排名通缉榜请求
+message JJCRankTongJiListReq
+{
+}
+
+//军机处排名通缉榜返回
+message JJCRankTongJiListRet
+{
+	message _Title
+	{
+		required int32 nCharID = 1; 	//玩家ID
+		required int32 nRank = 2; 		//威望排行
+		required string sCharName = 3;	//玩家名
+		required int32 nGuoLi = 4; 		//国力
+		required int32 nWeiWang = 5; 	//威望
+	}	
+	repeated _Title tList = 1;
+}
+
+//发布通缉令请求
+message JJCPlayerTongJiReq
+{
+	required int32 nTarCharID = 1; 		//目标玩家	
+}
+
+
+//威望排行榜请求
+message WWRankingReq
+{
+	required int32 nRankNum = 1;		//取前X名
+	required int32 nType = 2; 			//类型:0总排行; 1本周排行; 2上周排行
+}
+
+//威望排行榜返回
+message WWRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	
+	repeated _Rank tRanking = 1; 		//排行列表
+	optional int32 nMyRank = 2; 		//我的排名
+	optional string sMyName = 3; 		//我的名字
+	optional int32 nMyValue = 4; 		//我的数值	
+	required int32 nType = 5; 			//类型
+	optional int32 nAwardTime = 6; 		//结算倒计时
+}
+
+//战绩排行榜请求
+message ZJRankingReq
+{
+	required int32 nRankNum = 1;		//取前X名
+}
+
+//战绩排行榜返回
+message ZJRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	
+	repeated _Rank tRanking = 1; 		//排行列表
+	optional int32 nMyRank = 2; 		//我的排名
+	optional string sMyName = 3; 		//我的名字
+	optional int32 nMyValue = 4; 		//我的数值	
+}
+
+//一键任免请求
+message JJCOneKeyAddMCReq
+{
+}
+
+//积分刺探请求
+message JJCJFCTReq
+{
+}
+
+//鼓舞请求
+message JJCGuWuReq
+{
+	required int32 nGWType = 1;		//类型:1积分鼓舞; 2元宝鼓舞;
+}
+
+//交换大臣位置
+message JJCExchangePosReq
+{
+	required int32 nGrid1 = 1; 		//位置1
+	required int32 nGrid2 = 2;		//位置2
+}
+
+//开始战斗请求
+message JJCStartBattleReq
+{
+	required int32 nBattleType = 1; //战斗类型:0出使; 1复仇; 2挑战; 3抓捕
+}

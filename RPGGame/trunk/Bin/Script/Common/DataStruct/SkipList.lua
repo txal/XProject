@@ -82,7 +82,7 @@ function CSkipList:Insert(key, data)
     for i = 1, level do
         node.level[i] = {}
         node.level[i].forward = update[i].level[i].forward
-        update[i].level[i].forward = node;
+        update[i].level[i].forward = node
 
         --update span covered by update[i] as x is inserted here
         node.level[i].span = update[i].level[i].span - (rank[1] - rank[i])

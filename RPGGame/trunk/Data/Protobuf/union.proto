@@ -1,0 +1,485 @@
+package union;
+
+//联盟基本信息返回(根据nID判断自己有没有公会)
+message UnionInfoRet
+{
+    required int32 nID = 1;                 //联盟ID
+    required string sName = 2;              //联盟名称
+    required int32 nPos = 3;                //职位
+}
+
+//请求联盟信息
+message UnionDetailReq
+{
+}
+
+//联盟信息返回
+message UnionDetailRet
+{
+    required int32 nID = 1;                 //联盟ID
+    required string sName = 2;              //联盟名称
+    required int32 nLevel = 3;              //联盟等级
+    required int32 nExp = 4;                //联盟经验
+    required int32 nNextExp = 5;            //下级经验
+    required int32 nActivity = 6;           //联盟活跃度
+    required int32 nMembers = 7;            //成员
+    required int32 nMaxMembers = 8;         //成员上限
+    required int32 nPos = 9;                //职位
+    required string sDeclaration = 10;      //宣言
+    required int32 nUnionContri = 11;       //贡献
+    required int32 nAutoJoin = 12;          //随机加入(1是;0否)
+    required string sMengZhu = 13;          //盟主名称
+}
+
+//联盟列表请求
+message UnionListReq
+{
+    required string sUnionKey = 1;      //搜索关键字(非搜索发空字符串)
+    required bool bNotFull = 2;          //是否只选择未满的
+}
+
+//联盟列表返回
+message UnionListRet
+{
+    message _Item
+    {
+        required int32 nID = 1;             //联盟ID
+        required string sName = 2;          //名称
+        required int32 nLevel = 3;          //联盟等级
+        required int32 nGuoLi = 4;          //国力
+        required string sMengZhu = 5;       //盟主
+        required int32 nMembers = 6;        //成员
+        required int32 nMaxMembers = 7;     //成员上限
+        required bool bApplied = 8;         //是否已申请
+    }
+    repeated _Item tUnionList = 1;          //列表
+}
+
+//申请加入联盟请求
+message ApplyUnionReq
+{
+    required int32 nID = 1;                 //联盟ID
+}
+
+//申请加入联盟成功返回
+message ApplyUnionRet
+{
+    required int32 nUnionID = 1;            //申请成功的联盟
+}
+
+//创建联盟请求
+message CreateUnionReq
+{
+    required string sName = 1;              //联盟名称(最大6个汉字)
+    required string sNotice = 2;            //联盟公告(最大60个汉字)
+}
+
+//退出联盟请求
+message ExitUnionReq
+{
+}
+
+//退出联盟通知(提示用)
+message ExitUnionRet
+{
+    required int32 nExitType = 1;               //退出类型(1主动退出;2被踢出;3联盟解散)    
+}
+
+//设置联盟宣言请求
+message SetUnionDeclReq
+{
+    required string sDeclaration = 1;
+}
+
+//审批设置
+message SetAutoJoinReq
+{
+    required int32 nAutoJoin = 1;           //1自动; 0审批
+}
+
+//申请列表请求
+message ApplyListReq
+{
+    
+}
+
+//申请列表返回
+message ApplyListRet
+{
+    message _Item
+    {
+        required int32 nID = 1;         //玩家ID
+        required string sName = 2;      //玩家名字
+        required int32 nGuoLi = 3;      //玩家国力
+        required int32 nTime = 4;       //申请时间
+    }
+    repeated _Item tApplyList = 1;
+    required int32 nMembers = 2;        //联盟人数
+    required int32 nMaxMembers = 3;     //联盟人数上限
+}
+
+//接受申请
+message AcceptApplyReq
+{
+    required int32 nCharID = 1;        //全部接受为0,否则为玩家ID
+}
+
+//拒绝申请
+message RefuseApplyReq
+{
+    required int32 nCharID = 1;        //全部拒绝为0,否则为玩家ID
+}
+
+//队员列表请求
+message MemberListReq
+{
+}
+
+//队员列表返回
+message MemberListRet
+{
+    message _Item
+    {
+        required int32 nID = 1;         //ID
+        required string sName = 2;      //名字
+        required int32 nPos = 3;        //职位(1盟主;2副盟主;3精英; 4成员)
+        required int32 nGuoLi = 4;      //国力
+        required int32 nContri = 5;     //贡献度
+        required bool bOnline = 6;      //是否在线
+        required int32 nOnlineTime = 7; //上线时间
+    }   
+    repeated _Item tMemberList = 1;     //成员列表
+    required int32 nGuoLi = 2;          //总国力
+    required int32 nMembers = 3;        //成员数量
+    required int32 nMaxMembers = 4;     //成员上限
+}
+
+//移除队员
+message KickUnionMemberReq
+{
+    required int32 nCharID = 1;    
+}
+
+//任命职位请求
+message AppointReq
+{
+    required int32 nCharID = 1;     //目标成员ID
+    required int32 nPos = 2;        //职位(1盟主;2副盟主;3精英; 4成员)
+}
+
+//职位变更返回
+message PosChangeRet 
+{
+    required int32 nCharID = 1;     //目标队员ID
+    required int32 nPos = 2;        //职位(1盟主;2副盟主;3精英; 4成员)
+}
+
+//联盟升级请求
+message UnionUpgradeReq
+{
+}
+
+//成员详细信息请求
+message MemberDetailReq
+{
+    required int32 nCharID = 1;     //成员ID
+}
+
+//成员详细信息返回
+message MemberDetailRet
+{
+    required int32 nCharID = 1;     //玩家ID
+    required string sName = 2;      //玩家名
+    required int32 nVIP = 3;        //玩家VIP
+    required int32 nGuoLi = 4;      //玩家国力
+    repeated int32 tAttr = 5;       //玩家属性
+    required int32 nQinMi = 6;      //亲密度
+    required int32 nChildNum = 7;    //子嗣数量
+    required int32 nWeiWang = 8;    //威望
+    required int32 nChapter = 9;    //通关章节
+}
+
+//随机加入联盟
+message JoinRandUnionReq
+{
+    
+}
+
+
+////////////////////////////联盟建设///////////////////////////////
+//联盟建设情况请求
+message UnionBuildInfoReq
+{
+    
+}
+
+//联盟建设情况返回
+message UnionBuildInfoRet
+{
+   required int32 nBuildID = 1;     //已建设ID
+}
+
+//联盟建设请求
+message UnionBuildReq
+{
+    required int32 nBuildID = 1;   //建设ID
+}
+
+
+////////////////////////////联盟兑换///////////////////////////////
+//联盟兑换列表请求
+message UnionExchangeListReq
+{
+    
+}
+
+//联盟兑换列表返回
+message UnionExchangeListRet
+{
+    message _Item 
+    {
+        required int32 nID = 1;     //兑换ID
+        required int32 nRemain = 2; //剩余数量
+    }
+
+    required int32 nLv = 1;         //联盟等级
+    required int32 nContri = 2;     //联盟贡献
+    repeated _Item tList = 3;       //兑换列表(只发送兑换过的物品)
+}
+
+//联盟兑换请求
+message UnionExchangeReq
+{
+    required int32 nID = 1;         //兑换ID
+}
+
+//联盟兑换成功返回
+message UnionExchangeSuccRet
+{
+    required int32 nType = 1;       //类型
+    required int32 nID = 2;         //ID
+    required int32 nNum = 3;        //数量
+}
+
+//联盟国力排行榜请求
+message UGLRankingReq
+{
+    required int32 nRankNum = 1;    //取前X名
+    required int32 nType = 2;       //类型(前端定义，服务器原样返回)
+}
+
+//联盟国力排行榜返回
+message UGLRankingRet
+{
+    message _Rank
+    {
+        required int32 nRank = 1;       //排名
+        required string sName = 2;      //联盟名字
+        required int32 nValue = 3;      //值
+        required int32 nLevel = 4;      //等级
+        required string sMengZhu = 5;   //盟主
+        required int32 nMember = 6;     //当前成员
+        required int32 nMaxMember = 7;  //最大成员
+    }   
+    repeated _Rank tRanking = 1;        //排行列表
+    required int32 nMyRank = 2;         //我的联盟排名
+    required string sMyName = 3;        //我的联盟名字
+    required int32 nMyValue = 4;        //我的联盟数值  
+    required int32 nType = 5;           //类型(前端定义，服务器原样返回)
+}
+
+
+////////////////////////////联盟宴会///////////////////////////////
+//宴会列表请求
+message UnionPartyListReq
+{
+    
+}
+
+//宴会列表返回
+message UnionPartyListRet
+{
+    message _Item
+    {
+        required int32 nID = 1;     //宴会ID
+        required int32 nState = 2;  //宴会状态: 0可举办; 1举办中; 2已击杀; 3未达开放条件
+        required double nBlood = 3;  //BOSS剩余血量
+        required int32 nRemainTime = 4;  //宴会剩余时间:1状态有效
+    }    
+    repeated _Item tList = 1;
+}
+
+//宴会伤害排行榜请求
+message UnionPartyRankingReq
+{
+    required int32 nID = 1;         //宴会ID
+}
+
+//宴会伤害排行榜返回
+message UnionPartyRankingRet
+{
+    message _Item
+    {
+        required string sName = 1;      //玩家名字
+        required double nHurt = 2;       //伤害
+        required int32 nContri = 3;     //贡献
+    }
+    repeated _Item tList = 1;           //列表(未排序)
+    required string sKiller = 2;        //击杀BOSS的玩家名
+    required int32 nGotExp = 3;         //击杀BOSS获得经验
+    required int32 nBossLv = 4;         //BOSS等级
+}
+
+//举办宴会请求
+message UnionPartyOpenReq
+{
+    required int32 nID = 1;             //宴会ID
+    required int32 nType = 2;           //举办类型: 1元宝; 2活跃点
+}
+
+//BOSS界面信息请求
+message UnionPartyBossReq
+{
+    required int32 nPartyID = 1;        //宴会ID
+}
+
+//BOSS界面信息返回
+message UnionPartyBossRet
+{
+    message _Record
+    {
+        required string sName = 1;      //玩家名字
+        required string sMCName = 2;    //知己名字
+        required double nHurt = 3;      //造成伤害
+        required int32 nTime = 4;       //时间
+    }
+    required int32 nPartyID = 1;        //宴会ID
+    required int32 nState = 2;          //宴会状态: 0可举办; 1举办中; 2已击杀; 3未达开放条件
+    required double nBlood = 3;          //剩余血量
+    required int32 nMCID = 4;           //当前知己ID
+    required double nMCPower = 5;        //知己战斗力
+    required string sMCName = 6;        //知己名字
+    repeated _Record tRecord = 7;       //伤害记录
+}
+
+//出战知己列表请求
+message UnionPartyMCListReq
+{
+    optional int32 nID = 1;             //宴会ID
+}
+
+//出战知己列表返回
+message UnionPartyMCListRet
+{
+    message _Item
+    {
+        required int32 nID = 1;         //知己ID
+        required string sName = 2;      //知己名字
+        required int32 nLv = 3;         //知己等级 
+        required double nAttr = 4;      //知己武力
+        required double nPower = 5;     //知己战力
+        required int32 nState = 6;      //状态:0已出战; 1出战中; 2可恢复; 3已出战
+    } 
+    repeated _Item tList = 1;           //列表(出战状态和已战斗状态的妃子才发)
+}
+
+//出战知己请求
+message UnionPartyAddMCReq
+{
+    required int32 nMCID = 1;       //知己ID
+}
+
+//撤下知己请求
+message UnionPartyRemoveMCReq
+{
+    required int32 nMCID = 1;       //知己ID
+}
+
+//恢复知己请求
+message UnionPartyRecoverMCReq
+{
+    required int32 nMCID = 1;       //知己ID
+}
+
+//开始战斗请求
+message UnionPartyStartBattleReq
+{
+    required int32 nID = 1;         //宴会ID 
+    required bool bAuto = 2;        //自动战斗否
+}
+
+//战斗结果返回
+message UnionPartyBattleRet
+{
+    message _Award
+    {
+        required int32 nType = 1; 
+        required int32 nID = 2; 
+        required int32 nNum = 3; 
+    }
+    message _Round 
+    {
+        required int32 nMCID = 1;   //妃子ID
+        required double nHurt = 2;   //伤害
+    }
+    required double nBossHP = 1;     //战斗前BOSS血量
+    required double nTotalHurt = 2;  //妃子对BOSS总伤害
+    required int32 nContri = 3;     //贡献奖励
+    required int32 nExp = 4;        //经验奖励
+    repeated _Award tExtAward = 5;  //额外奖励
+    repeated _Round tRound = 6;     //回合伤害(如果单点战斗会有1个知己; 自动战斗可能会有多个知己)
+
+}
+
+
+////////////////////////////联盟奇迹///////////////////////////////
+//奇迹列表请求
+message UnionMiracleListReq
+{
+    
+}
+
+//奇迹列表返回
+message UnionMiracleListRet
+{
+    message _Item    
+    {
+        required int32 nID = 1;     //奇迹ID
+        required int32 nLv = 2;     //奇迹等级
+        required int32 nExp = 3;    //奇迹经验
+    }
+    repeated _Item tList = 1;           //奇迹列表
+    required int32 nRemainTimes = 2;    //剩余捐献次数 
+    repeated int32 tAttrAdd = 3;        //名臣总属性加成(商，农，政，军)
+}
+
+//奇迹捐献请求
+message UnionMiracleDonateReq
+{
+    required int32 nMID = 1;    //奇迹ID
+    required int32 nDID = 2;    //捐献ID
+}
+
+//奇迹升级返回
+message UnionMiracleUpgradeRet
+{
+    required int32 nMID = 1;    //奇迹ID
+    required int32 nLv = 2;     //奇迹等级
+}
+
+//奇迹捐献详细请求
+message UnionDonateDetailReq
+{
+}
+
+//奇迹捐献详细返回
+message UnionDonateDetailRet
+{
+    message _Item
+    {
+        required int32 nNum = 1;    //捐献数量
+        required string sName = 2;  //玩家名字
+        required int32 nPos = 3;    //职位
+    }
+    repeated _Item tList = 1; 
+}

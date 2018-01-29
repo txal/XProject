@@ -11,7 +11,25 @@ function GF.GenNameByPool()
 	return (sXing..sMing)
 end
 
---检测名字长度
+--检测长度
 function GF.CheckNameLen(sName, nMaxLen)
-	assert(string.len(sName) <= nMaxLen, "名字过长:"..sName)
+	assert(string.len(sName) <= nMaxLen, "长度超出范围:"..nMaxLen)
+end
+
+--检测非法字不区分大小写
+function GF.HasBadWord(sCont)
+	local sLowerCont = string.lower(sCont)
+    if GlobalExport.HasWord(sLowerCont) then
+    	return true
+    end
+end
+
+--过滤非法字不区分大小写
+function GF.FilterBadWord(sCont)
+	local sLowerCont = string.lower(sCont)
+    if GlobalExport.HasWord(sLowerCont) then
+    	return GlobalExport.ReplaceWord(sLowerCont, "*")
+    else
+    	return sCont
+    end
 end

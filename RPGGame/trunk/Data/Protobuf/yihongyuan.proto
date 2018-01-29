@@ -1,0 +1,48 @@
+package yihongyuan;  
+
+//怡红院请求
+message YHYInfoReq
+{
+}
+
+//怡红院返回  
+message YHYInfoRet  
+{
+	optional string sPersonality1 = 1;			//美女性格1
+	optional string sName1 = 2;					//美女名字1
+	optional string sPersonality2 = 3;			//美女性格2
+	optional string sName2 = 4;					//美女名字2
+	required int32 nCountTimes = 5;				//剩余抽奖次数
+	required int32 nRemainTime = 6;				//抽奖冷却时间
+}
+
+//抽奖请求
+message YHYChouJiangReq
+{
+	required int32 nSelect = 1;					//选项1和2
+}
+
+//抽奖返回
+message YHYChouJiangRet
+{
+	required int32 nType = 1;					//奖励物品类型
+	required int32 nID = 2;						//奖励物品ID
+	required int32 nNum = 3;					//奖励物品数量
+	required int32 nIndex = 4;					//配置ID
+}
+
+//赎身宫女请求
+message YHYBuyGongNvReq
+{
+}
+
+//赎身成功返回
+message YHYBuyGongNvRet
+{
+	required int32 nGNID = 1; 					//宫女ID
+}
+
+//加速请求
+message YHYAddSpeedReq
+{
+}

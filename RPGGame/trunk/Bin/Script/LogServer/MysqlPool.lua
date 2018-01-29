@@ -1,19 +1,20 @@
+local math, table = math, table
+local nLogService, tLogServer = gtNetConf:LogService()
+
 --Mysql连接池(只给写LOG用,不支持SELECT)
-local math = math
-CMysqlPool = class()
-local tLogServer = gtNetConf.tLogService[1]
+CMysqlPool = CMysqlPool or class()
 
 function CMysqlPool:Ctor()
 	self.m_tMysqlList = {}	
 end
 
 function CMysqlPool:Init()
-	local tMysqlConf = gtGameMysqlConf[1]
+	local tMysqlConf = gtGameMysqlConf
 	for i = 1, tLogServer.nMysqlConns do
 		local oMysql = MysqlDriver:new()
 		local bRes = oMysql:Connect(tMysqlConf.sIP, tMysqlConf.nPort, tMysqlConf.sDBName, tMysqlConf.sUserName, tMysqlConf.sPassword, "utf8")
-		assert(bRes, "连接Mysql:"..table.ToString(tMysqlConf, true).."失败")
-		LuaTrace("连接Mysql: "..table.ToString(tMysqlConf, true).."成功")
+		assert(bRes, "连接数据库失败:", tMysqlConf)
+		LuaTrace("连接数据库成功: ", tMysqlConf)
 		table.insert(self.m_tMysqlList, oMysql)
 	end
 end

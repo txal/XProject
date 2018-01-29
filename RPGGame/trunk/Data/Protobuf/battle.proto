@@ -1,0 +1,166 @@
+package battle;
+
+//请求章节信息
+message ChapterInfoReq
+{
+}
+
+//章节信息返回
+message ChapterInfoRet
+{
+	required int32 nDupID = 1; 		//下1关卡ID
+	required int32 nStrongHold = 2; //下1据点ID
+	required double nMyBingLi = 3; 	//自己兵力
+	required int32 nMaxChapter = 4; //最大已通关章节
+	required int32 nMaxDupID = 5; 	//最大已通关关卡
+}
+
+//请求关卡信息
+message DupInfoReq
+{
+}
+
+//关卡信息返回
+message DupInfoRet
+{
+	message _MC
+	{
+		required int32 nMCID = 1;	//大臣ID
+		required double nPower = 2; //大臣战力
+	}	
+	required int32 nDupID = 1; 			//下1关卡ID
+	required int32 nStrongHold = 2; 	//下1据点ID
+	required double nMyBingLi = 3; 		//自己兵力
+	required double nDupBingLi = 4; 	//据点兵力
+	required double nDupOrgBingLi = 5; 	//据点原始兵力
+	required int32 nMaxChapter = 6; 	//最大已通关章节
+	required int32 nMaxDupID = 7; 		//最大已通关关卡
+	required bool bHasCard = 8; 		//是否有月卡/季卡(自动战斗用)
+	required int32 nType = 9; 			//关卡类型(1:普通; 2:BOSS; 3:时装)
+	optional _MC tMC = 10; 				//第一个出战的名臣(BOSS有效)
+	optional bool bFreeFashion = 11;	//是否免费查看推荐时装(时装副本有效)
+}
+
+//战斗请求
+message BattleReq
+{
+}
+
+//战斗结果返回
+message BattleRet
+{
+	message _Item 
+	{
+		required int32 nType = 1;	//物品类型:1道具
+		required int32 nID = 2;	 	//物品ID
+		required int32 nNum = 3;	//物品数量
+	}
+	//普通据点
+	message _Nor
+	{
+		required double nBefore = 1; 	//战斗前兵力
+		required double nAfter = 2; 	//战斗后兵力
+	}
+	//BOSS战
+	message _Boss
+	{
+		required int32 nMCID = 1; 		//大臣ID	
+		required double nHurt = 2; 		//大臣输出 
+		required double nPower = 3; 	//大臣战力
+		required double nBossHP = 4; 	//BOSS血量
+		required double nOrgBossHP = 5; 	//BOSS原始血量
+	}
+	//时装副本
+	message _Fashion
+	{
+		message _Record
+		{
+			required string sName = 1; 	//场景,特性名字
+			required int32 nScore = 2; 	//获得评分
+		}
+		repeated _Record tScoreList = 1; 	//分数列表
+		required int32 nTotalScore = 2; 	//总分数
+		required string sPingJi = 3;		//评级(SABC)
+	}
+
+	required bool bWin = 1;	 			//是否胜利
+	required int32 nType = 2; 			//战斗类型(1:普通; 2:BOSS; 3时装)
+	required int32 nDupID = 3;  		//关卡ID
+	required int32 nStrongHold = 4; 	//据点ID
+	required int32 nPassChapter = 5; 	//通关的章节,没有通关章节则为0
+	repeated _Item tAward = 6; 			//奖励
+	repeated _Nor tBL = 7; 				//普通战据点兵力
+	repeated _Boss tRound = 8; 			//BOSS战战斗过程
+	optional _Fashion tFashion = 9; 	//时装副本结果
+	optional int32 tNPC = 10; 			//NPCID
+
+}
+
+//副本排行榜请求
+message DupRankingReq
+{
+	required int32 nRankNum = 1; 	//取前X名	
+}
+
+//副本排行榜返回
+message DupRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+		required int32 nDupID = 4; 	//关卡ID
+	}	
+	repeated _Rank tRanking = 1; 	//排行列表
+	required int32 nMyRank = 2; 	//我的排名
+	required string sMyName = 3; 	//我的名字
+	required int32 nMyValue = 4; 	//我的数值
+	required int32 nMyDupID = 5; 	//我的关卡
+	optional bool bMoBai = 6; 		//是否已经膜拜过
+}
+
+//名臣列表请求
+message DupMCListReq
+{
+	
+}
+
+//名臣列表返回
+message DupMCListRet
+{
+	message _MC
+	{
+		required int32 nID = 1;	 	//名臣ID
+		required string sName = 2; 	//名臣名字
+		required int32 nLv = 3; 	//等级
+		required int32 nAttr = 4; 	//综合属性
+		required int32 nPower = 5; 	//战力
+		required int32 nState = 6; 	//状态:0可出战;1出战中;2可恢复;3已出战
+	}	
+	repeated _MC tList = 1;
+}
+
+//名臣出战请求
+message DupMCCZReq
+{
+	required int32 nMCID = 1;	
+}
+
+//名臣恢复出战请求
+message DupMCRecReq
+{
+	required int32 nMCID = 1;	
+}
+
+//查看时装推荐请求
+message RecFashionReq
+{
+	
+}
+
+//查看时装推荐请求
+message RecFashionRet
+{
+	required bool bSuccess = 1;	//是否成功
+}

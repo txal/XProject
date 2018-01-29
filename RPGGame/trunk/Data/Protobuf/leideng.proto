@@ -1,0 +1,50 @@
+package leideng;
+
+
+//活动状态请求
+message LeiDengStateReq
+{
+	
+}
+
+//活动状态返回
+message LeiDengStateRet
+{
+	required int32 nID = 1; 		//活动ID
+	required int32 nState = 2; 		//活动状态:0初始; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+}
+
+//活动信息请求
+message LeiDengInfoReq  
+{
+	
+}
+
+//活动信息返回
+message LeiDengInfoRet
+{
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nState = 2; 		//状态:0未达成; 1可领取; 2已领取
+	}	
+	required int32 nLoginCount = 1; 	//累登次数
+	required int32 nRemainDays = 2;  	//剩余天数
+	repeated _Item tList = 3;  			//奖励表
+}
+
+//领取奖励请求
+message LeiDengAwardReq   
+{
+	required int32 nID = 1; 	//奖励ID	
+}
+
+
+//领取奖励成功返回
+message LeiDengAwardRet
+{
+	required int32 nID = 1; 	//奖励ID	
+}
+

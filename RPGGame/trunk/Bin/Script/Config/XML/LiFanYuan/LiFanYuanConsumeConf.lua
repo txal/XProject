@@ -1,0 +1,11 @@
+ctLiFanYuanConsumeConf={}
+ctLiFanYuanConsumeConf[1]={nRare=1,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[2]={nRare=2,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[3]={nRare=3,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[4]={nRare=4,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[5]={nRare=5,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[6]={nRare=6,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[7]={nRare=7,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[8]={nRare=8,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[9]={nRare=9,tCost={{1,10012,48,},},}
+ctLiFanYuanConsumeConf[10]={nRare=10,tCost={{1,10012,480,},},}

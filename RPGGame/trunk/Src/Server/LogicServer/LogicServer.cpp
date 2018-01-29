@@ -1,30 +1,32 @@
 ﻿#include "Server/LogicServer/LogicServer.h"
+
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/CmdDef.h"
+#include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
 
-PacketReader g_oPKReader;
-PacketWriter g_oPKWriter;
-Packet* g_poPacketCache;
-Array<int> g_oSessionCache;
-bool g_bPrintBattle = false;
+PacketReader goPKReader;
+PacketWriter goPKWriter;
+Packet* gpoPacketCache;
+Array<NetAdapter::SERVICE_NAVI> goNaviCache;
 
+bool gbPrintBattle = false;
 LogicServer::LogicServer()
 {
 	m_uInPackets = 0;
 	m_uOutPackets = 0;
 	m_oMsgBalancer.SetEventHandler(&m_oNetEventHandler);
-	g_poPacketCache = Packet::Create();
-	g_oPKWriter.SetPacket(g_poPacketCache);
+	gpoPacketCache = Packet::Create();
+	goPKWriter.SetPacket(gpoPacketCache);
 }
 
 LogicServer::~LogicServer()
 {
-	if (g_poPacketCache != NULL)
+	if (gpoPacketCache != NULL)
 	{
-		g_poPacketCache->Release();
+		gpoPacketCache->Release();
 	}
 }
 
@@ -157,9 +159,9 @@ void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	if (oHeader.nTar != GetServiceID())
+	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
-		XLog(LEVEL_ERROR, "%s: Packet target error\n", GetServiceName());
+		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
 		poPacket->Release();
 		return;
 	}

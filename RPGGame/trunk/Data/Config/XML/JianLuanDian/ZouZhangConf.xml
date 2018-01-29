@@ -1,0 +1,636 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Administrator</LastAuthor>
+  <Created>1996-12-17T01:32:42Z</Created>
+  <LastSaved>2017-12-19T13:17:27Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6929</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12165</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s94" ss:Name="常规 2">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="等线" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s88">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s90">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+  </Style>
+  <Style ss:ID="s91">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s92">
+   <Font ss:FontName="Helvetica" x:Family="Swiss" ss:Size="10.5" ss:Color="#000000"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s93">
+   <Alignment ss:Horizontal="Justify" ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="10.5"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s96" ss:Parent="s94">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctZouZhangConf">
+  <Table ss:ExpandedColumnCount="7" ss:ExpandedRowCount="66" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="44.25"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="62.25"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="460.5"/>
+   <Column ss:StyleID="s88" ss:Width="100.5" ss:Span="1"/>
+   <Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="74.25"/>
+   <Column ss:Width="53.25"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nID</Data></Cell>
+    <Cell><Data ss:Type="String">nType</Data><Comment ss:Author="Windows 用户"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9"
+         html:Color="#000000">Windows 用户:</Font></B><Font html:Size="9"
+        html:Color="#000000">&#10;1.地区事件&#10;2.大臣事件</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">sEvent</Data></Cell>
+    <Cell><Data ss:Type="String">sSelect1</Data></Cell>
+    <Cell><Data ss:Type="String">sSelect2</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">nAward1</Data><Comment
+      ss:Author="Windows 用户"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9" html:Color="#000000">Windows 用户:</Font></B><Font html:Size="9"
+        html:Color="#000000">&#10;1.银两&#10;2.粮草&#10;3.兵力&#10;4.上奏大臣属性&#10;5.被举报大臣属性</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s88"><Data ss:Type="String">nAward2</Data><Comment
+      ss:Author="Windows 用户"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9" html:Color="#000000">Windows 用户:</Font></B><Font html:Size="9"
+        html:Color="#000000">&#10;1.银两&#10;2.粮草&#10;3.兵力&#10;4.上奏大臣属性&#10;5.被举报大臣属性</Font></ss:Data></Comment></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s88"><Data ss:Type="String">i</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">事件ID</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">事件类型</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">事件文本</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">选项1文本</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">选项2文本</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">选项1奖励</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">选项2奖励</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，太子诚邀娘娘一同前往春风楼把酒助兴、吟诗作对，岂不快哉？</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">赴约前行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">政事为重</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，近日在民间发现大量走私货物，其主已逃之夭夭……还望娘娘定夺！</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">收获物资</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">赈发于民</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，兴圣宫数名宫女扭打在一起……身为皇室婢女，所做之事败坏皇家形象，成何体统！</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">以和为贵</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，有地痞冒充官员欺压百姓，败坏我朝形象，还望娘娘明察！</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">宽以待人</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，有刺客混入宫中，疑似对娘娘图谋不轨，现已被众人擒拿，还望娘娘定夺</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">惩前毖后</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">究其幕主</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，太监总管行官员之便，大肆收取贿赂，请娘娘明察！</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">绳之以法</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">查抄家产</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，后宫有奸人向太子状告诬陷娘娘，罪大恶极！</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">以儆效尤</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，御花园发现毒蛇追咬众人，众人惶恐，四处逃散 </Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">擒拿毒蛇</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">击杀毒蛇</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，有官员送来万两白银，想请娘娘日后多多关照</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">来者不拒</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，宫女举报有太监行宫廷之便，勾结外党大肆走私宫廷字画，牟取暴利！还望娘娘定夺</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">查抄家产</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，太子诚邀娘娘一同踏青游行，观花赏景</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">赴约前行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">政事为重</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，御花园后井突然水红如血，恐有异变，宫内婢女无不惶恐</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">深入彻查</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">安抚宫女</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，今日秋收盛果，皇上龙颜大悦，派人送来了大批钱粮</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">收下钱粮</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">赈发灾区</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，从西域运来大批丝缎，还请娘娘从中挑选几件上好的丝缎进献给皇上</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">任意挑选</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">精心挑选</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">启禀娘娘，太子管辖的安宁爆发罕见旱灾，可太子近日政务繁忙，劳累不堪，已力不从心</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">为君解忧，安抚百姓</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">为君解忧，协同处政</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，宫中有宫女造谣滋事，诽谤她人，还望娘娘是定夺！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">究其缘由</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">17</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有士族子弟酒楼伤人，被捕后，抗不认错，气焰嚣张！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">以和为贵</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，宫女们感恩娘娘恩德，自发送来一些金银首饰，娘娘如何处理？</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">一一笑纳</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">有心便好</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">19</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有人冒充阉人，混入宫中混吃混喝，现已捉拿！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有宫女做假账，屡次找借口报销公款，现已被擒拿！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">21</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，选秀将近，有不少秀女暗中送来大批白银，还望娘娘笑纳</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">来者不拒</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有宫女半夜出宫私会情郎，其行径已严重违反宫中铁律！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">23</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有可疑人误闯娘娘寝宫，现已查明身份是其民间侠盗！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有太监私下偷食娘娘膳食，其行径恶劣，现已被擒拿！ </Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">25</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有宫女私下偷食娘娘膳食，其行径恶劣，现已被擒拿！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">26</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有大逆不道之人竟在皇宫内墙写下煽动造反的言论！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严查不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">27</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有大批流民行径京城，娘娘该如何是好？</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">赈发钱粮</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">充耳不闻</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">28</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有太监胆大包天！竟对偷窃宫女滥用私刑，现已被擒拿！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">29</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有宫女胆大包天！竟对偷窃太监滥用私刑，现已被擒拿！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">宽容以待</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，京城有豪绅欺压百姓，官府却无人作为…… </Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">禀告皇上</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">视而不见</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">31</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，太子近日送来一副上好的字画……</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">裱在厅里</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">研究字画</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，太子邀请娘娘前往尚书房练习书法</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">爽快答应</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">推三阻四</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">33</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，太子邀请娘娘前往鹿园骑射打猎</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">爽快答应</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">推三阻四</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">34</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，时临盛夏，太子邀请娘娘前往避暑山庄</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">爽快答应</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">推三阻四</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">35</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">启禀娘娘，有宫女胆大包天，居然对娘娘指桑骂魁，现已捉拿！</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">严惩不贷</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="String">究其缘由</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s96"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">36</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">期望能与娘娘一同前行，参加春风楼一年一度的”以文会友”盛况</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">37</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">已在庭院摆好玉盘珍馐，期望与娘娘庭院小聚，静候娘娘佳音</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">38</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">希望能与娘娘同往江楼吹风，共赏夜景</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">39</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">希望能与娘娘共赴花林，赏花吟诗</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">40</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">希望能与娘娘在春风楼顶一聚，切磋棋艺</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">41</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">希望能在花开的季节里，，陪同娘娘一起看那山花烂漫，不知娘娘可否赏脸？</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">42</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">希望能与娘娘在春风和煦的山间共饮美酒，不知娘娘可否赏脸？</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">43</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">偶得奇宝一件，欲做雅会，望娘娘赏脸一叙，共同观赏</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">44</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">园中的荷花已经盛开，臣等已备好美酒佳肴，不知娘娘可否赏光，来园中一醉方休？</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">45</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">现诚邀娘娘酒楼展歌喉，唱遍古今</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">46</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">希望娘娘能前来府厅一叙，把酒言欢</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">47</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">已在春风楼略备薄酒，庆乔迁之喜。</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">48</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">听闻娘娘舞姿卓越，无人可比，不知娘娘可否赏光，前来敝府一叙，来一场以舞会友？</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">49</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">听闻娘娘酷爱听戏，今春风楼迎来一班戏子，不知可有幸与娘娘一同赏戏、评戏？</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">府上得佳画一幅，为庆心中欢喜，已在府厅摆宴，不知娘娘可否赏光？</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">接受，赴约而行</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">拒绝，已与{0}有约</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row ss:Index="60" ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s92"/>
+   </Row>
+   <Row ss:Index="64" ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s93"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s93"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s93"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <TopRowVisible>15</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>57</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

@@ -1,0 +1,67 @@
+package achievements;
+
+//成就界面请求
+message AchievementsInfoReq
+{
+}
+
+//成就界面返回
+message AchievementsInfoRet
+{
+	message _List
+	{
+		required int32 nType = 1;  		//成就类型
+		required int32 nCurrent  = 2; 	//当前成就数值
+		required int32 nTarget = 3; 	//当前目标数值
+		required int32 nAward = 4; 		//可领奖成就数量(小红点判定)
+		required int32 nGot = 5; 		//已领取成就数量
+		required int32 nTotal = 6; 		//总成就数量
+	}
+	repeated _List tList = 1; 		//成就表数组(变更的或所有)
+}
+
+//成就状态请求
+message AchievementsStateReq
+{
+	required int32 nType = 1; 		//成就类型
+}
+
+//成就奖励返回
+message AchievementsStateRet
+{
+	message _List 
+	{
+		message _Item
+		{
+			required int32 nType = 1; 	//类型
+			required int32 nID = 2; 	//ID
+			required int32 nNum = 3; 	//数量
+		}
+		required int32 nID = 1; 	//成就ID(成就表ID)
+		required int32 nState = 2; 	//状态(0.未达成; 1.进行中; 2.可领取; 3.已领取)
+		required int32 nCount = 3; 	//当前成就数值
+		required int32 nTarget = 4; //目标数值	
+		repeated _Item tAward = 5; 	//奖励物品数组
+	}
+	repeated _List tList = 1; 		//成就数值
+	required int32 nType = 2; 		//成就类型
+}
+
+//成就奖励请求
+message tAchievementsAwardReq
+{
+	required int32 nType = 1; 		//成就类型
+	required int32 nID = 2;  		//成就ID(成就表ID)
+}
+
+//成就奖励返回
+message AchievementsAwardRet
+{
+	message _Item
+	{
+		required int32 nType = 1; 	//类型
+		required int32 nID = 2; 	//ID
+		required int32 nNum = 3; 	//数量
+	}
+	repeated _Item tList = 1; 		//奖励列表
+}

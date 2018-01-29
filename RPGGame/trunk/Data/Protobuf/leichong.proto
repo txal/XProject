@@ -1,0 +1,104 @@
+package leichong;
+
+
+//活动状态请求
+message LeiChongStateReq
+{
+	
+}
+
+//活动状态返回
+message LeiChongStateRet
+{
+	required int32 nID = 1; 		//活动ID
+	required int32 nState = 2; 		//活动状态:0初始; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+	required int32 nAwardTime = 6; 	//领奖结束时间
+	required bool bCanGetAward = 7; //是否可以领奖
+}
+
+//活动信息请求
+message LeiChongInfoReq  
+{
+	
+}
+
+//活动信息返回
+message LeiChongInfoRet
+{
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nState = 2; 		//状态:0未达成; 1可领取; 2已领取
+	}	
+	required int32 nRemainTime = 1; 	//剩余时间
+	required int32 nTimeRecharge = 2;  	//累计充值
+	repeated _Item tList = 3;  			//奖励表
+	required int32 nBeginTime = 4; 		//开始时间
+	required int32 nEndTime = 5; 		//结束时间
+}
+
+//领取奖励请求
+message LeiChongAwardReq   
+{
+	required int32 nID = 1; 	//奖励ID	
+}
+
+
+//领取奖励成功返回
+message LeiChongAwardRet
+{
+	required int32 nID = 1; 	//奖励ID	
+}
+
+
+/////////////////////////////累充小游戏/////////////////////////////////////
+//累充小游戏信息请求
+message LCGameInfoReq
+{
+	
+}
+
+//累充小游戏信息返回
+message LCGameInfoRet
+{
+	required int32 nFZID = 1; 			//妃子ID
+	required int32 nPropID = 2; 		//按摩棒ID
+	required int32 nPropNum = 3; 		//当前按摩棒数量(其实可以通过国库取)
+	required int32 nBuyPropTimes = 5; 	//今天已购买按摩棒次数
+	required int32 nRefreshTimes = 6; 	//今天手上刷新妃子次数
+	required int32 nUsePropTimes = 7; 	//使用按摩棒次数(点击妃子次数)	
+}
+
+//刷新妃子请求
+message LCGameRefreshReq
+{
+	
+}
+
+//购买按摩棒请求
+message LCGameBuyPropReq
+{
+
+}
+
+//使用按摩棒
+message LCGameUsePropReq
+{
+	
+}
+
+//使用按摩棒成功返回
+message LCGameUsePropRet
+{
+	message _Item
+	{
+		required int32 nType = 1;
+		required int32 nID = 2;
+		required int32 nNum = 3;
+	}	
+	repeated _Item tList = 1; 	//奖励列表
+}
+
+

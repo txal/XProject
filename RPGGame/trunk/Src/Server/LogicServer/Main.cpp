@@ -55,7 +55,7 @@ void StartScriptEngine()
 		sprintf(sLogName, "logicserver%d", g_poContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogName(sLogName);
 	}
-	g_bPrintBattle = Platform::FileExist("./battle.txt");
+	gbPrintBattle = Platform::FileExist("./battle.txt");
 
 	bool bDebug = false;
 #ifdef _DEBUG

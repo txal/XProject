@@ -5,7 +5,7 @@ end
 function CCmdMonitor:AddCmd(nCmd, nCostMSTime)
     assert(nCmd and nCostMSTime)
     if nCostMSTime * 1000 >= 5 then
-        LuaTrace("slow cmd:", nCmd, "time:", nCostMSTime)
+        LuaTrace("------slow cmd------:", nCmd, "time:", nCostMSTime)
     end
     local tCmdRecord = self.m_tCmdMap[nCmd]
     if not tCmdRecord then

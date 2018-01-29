@@ -54,13 +54,12 @@ function table.ToString(root, bNotExpend)
 end
 
 --Deep copy
-function table.DeepCopy(tTable, bIpairs)
-	local iter = bIpairs and ipairs or pairs
+function table.DeepCopy(tTable)
 	local tCopy = {}
-	for k, v in iter(tTable) do
+	for k, v in pairs(tTable) do
 		assert(type(k) ~= "table")
 		if type(v) == "table" then
-			tCopy[k] = table.DeepCopy(v, bIpairs)
+			tCopy[k] = table.DeepCopy(v)
 		else
 			tCopy[k] = v
 		end

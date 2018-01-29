@@ -1,0 +1,11 @@
+ctMingChenQinMiConf={}
+ctMingChenQinMiConf[0]={nQinMi=0,nHaoGan=100,}
+ctMingChenQinMiConf[1]={nQinMi=1,nHaoGan=100,}
+ctMingChenQinMiConf[2]={nQinMi=2,nHaoGan=100,}
+ctMingChenQinMiConf[3]={nQinMi=3,nHaoGan=100,}
+ctMingChenQinMiConf[4]={nQinMi=4,nHaoGan=100,}
+ctMingChenQinMiConf[5]={nQinMi=5,nHaoGan=100,}
+ctMingChenQinMiConf[6]={nQinMi=6,nHaoGan=100,}
+ctMingChenQinMiConf[7]={nQinMi=7,nHaoGan=100,}
+ctMingChenQinMiConf[8]={nQinMi=8,nHaoGan=100,}
+ctMingChenQinMiConf[9]={nQinMi=9,nHaoGan=100,}

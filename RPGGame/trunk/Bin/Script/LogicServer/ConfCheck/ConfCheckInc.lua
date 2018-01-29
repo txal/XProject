@@ -1,2 +1,8 @@
 require("ConfCheck/LangConfCheck")
-
+require("ConfCheck/PlayerInitConfCheck")
+require("ConfCheck/FeiZiConfCheck")
+require("ConfCheck/HZConfCheck")
+require("ConfCheck/RechargeConfCheck")
+require("ConfCheck/PropConfCheck")
+require("ConfCheck/TaskConfCheck")
+require("ConfCheck/BoxConfCheck")

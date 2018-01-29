@@ -33,6 +33,9 @@ public:
 	int GetSession() { return m_nSession; }
 	void SetSession(int nSession) { m_nSession = nSession; }
 
+	uint16_t GetServer() { return m_uServer; }
+	void SetServer(uint16_t uServer) { m_uServer = uServer; }
+
 	int GetSpeedX() { return m_nRunSpeedX; }
 	int GetSpeedY() { return m_nRunSpeedY; }
 
@@ -79,6 +82,7 @@ public:
 	void BroadcastSyncHP();				//场景同步血量
 
 protected:
+	uint16_t m_uServer;					//所在服务器
 	int m_nSession;						//网络句柄
 
 	//跑动

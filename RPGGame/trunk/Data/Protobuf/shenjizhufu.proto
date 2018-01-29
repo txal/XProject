@@ -1,0 +1,62 @@
+package shenjizhufu;
+
+//神迹祝福返回
+message	ShenJiZhuFuRet
+{
+	required int32 nType = 1;		//祝福类型或ID(1.好学不倦 2.起死回生 3.聪颖达练 4.礼仪周到 5.财源亨通 6.天赐元宝)
+	required int32 nTimes = 2; 		//次数
+}
+
+//神迹祝福月卡/季卡请求
+message ShenJiCardInfoReq
+{
+	
+}
+
+//神迹祝福月卡/季卡返回
+message ShenJiCardInfoRet
+{
+	message _Card
+	{
+		required int32 nID = 1; 				//卡ID
+		required bool bCanGetAward = 2;			//是否可以领取奖励
+		required int32 nCardRemainTime = 3; 	//卡剩余时间
+		required int32 nMoney = 4; 				//人民币
+		required bool bTrial = 5; 				//是否试用(月卡试用)
+	}	
+	repeated _Card tList = 1;
+	required bool bTrialExpire = 2; 			//月卡试用结束(true:弹框)
+}
+
+//神迹祝福月卡/季卡奖励请求
+message ShenJiCardAwardReq
+{
+	required int32 nID = 1;	
+}
+
+//神迹祝福月卡/季卡奖励成功返回
+message ShenJiCardAwardRet
+{
+	required int32 nYuanBao = 1; 	//元宝数量
+}
+
+//试用月卡请求
+message TrialMonthCardReq
+{
+}
+
+//神迹祝福次数信息请求
+message ShenJiZhuFuInfoReq
+{
+}
+
+//神迹祝福次数信息返回
+message ShenJiZhuFuInfoRet
+{
+	message _List
+	{
+		required int32 nType = 1; 	//祝福类型
+		required int32 nCount = 2; 	//已祝福次数
+	}
+	repeated _List tZhuFu = 1; 		//祝福数组
+}

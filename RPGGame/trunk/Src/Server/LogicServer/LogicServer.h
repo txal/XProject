@@ -2,8 +2,10 @@
 #define __LOGICSERVER_H__
 
 #include "Include/Network/Network.hpp"
-#include "MsgBalancer.h"
+
+#include "Server/Base/NetAdapter.h"
 #include "Server/Base/Service.h"
+#include "Server/LogicServer/MsgBalancer.h"
 #include "Server/LogicServer/Object/DropItem/DropItemMgr.h"
 #include "Server/LogicServer/Object/Monster/MonsterMgr.h"
 #include "Server/LogicServer/Object/Player/PlayerMgr.h"
@@ -61,10 +63,10 @@ private:
 	DISALLOW_COPY_AND_ASSIGN(LogicServer);
 };
 
-extern PacketReader g_oPKReader;
-extern PacketWriter g_oPKWriter;
-extern Packet* g_poPacketCache;
-extern Array<int> g_oSessionCache;
-extern bool g_bPrintBattle;
+extern PacketReader goPKReader;
+extern PacketWriter goPKWriter;
+extern Packet* gpoPacketCache;
+extern Array<NetAdapter::SERVICE_NAVI> goNaviCache;
+extern bool gbPrintBattle;
 
 #endif

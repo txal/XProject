@@ -1,0 +1,64 @@
+package mail;
+
+//取邮件列表
+message MailListReq 
+{
+}
+
+//邮件列表返回
+message MailListRet
+{
+	message _Mail	
+	{
+		message _Item
+		{
+			required int32 nType = 1;//物品类型
+			required int32 nID = 2;//物品id
+			required int32 nNum = 3;//物品数量
+		}
+		required int32 nMailID = 1;//邮件id
+		required string sSenderName = 2;//发送人
+		required string sTitle = 3;
+		repeated _Item tItems = 4;
+		required int32 nTime = 5;//发送时间
+		required int32 nReaded = 6;	//0没读,1读了
+	}
+	repeated _Mail tMailList = 1;
+}
+
+//邮件体请求
+message MailBodyReq
+{
+	required int32 nMailID = 1;		//邮件ID
+}
+
+//邮件体返回
+message MailBodyRet
+{
+	required int32 nMailID = 1;		//邮件ID
+	required string sMailBody = 2;	//邮件体
+}
+
+//删除邮件(删除前如果有物品需要确认提示)
+message DelMailReq
+{
+	required int32 nMailID = 1; 	//邮件ID: 0删除所有已读且无物品邮件; >0删除指定邮件(有物品会删除失败)
+}
+
+//提取物品
+message MailItemsReq
+{
+	required int32 nMailID = 1; 	//邮件ID: 0提取所有邮件物品; >0提取指定邮件物品
+}
+
+//提取物品成功返回
+message MailItemsRet
+{
+	message _Item
+	{
+		required int32 nType = 1;//物品类型
+		required int32 nID = 2;//物品id
+		required int32 nNum = 3;//物品数量
+	}
+	repeated _Item tItemList = 1;	 //物品列表
+}

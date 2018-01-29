@@ -1,0 +1,13 @@
+ctUnionLevelConf={}
+ctUnionLevelConf[1]={nLv=1,nExp=4500,nMaxMembers=10,nFMZNum=1,nJYNum=2,bOpenZB=false,sFuncDesc="无",}
+ctUnionLevelConf[2]={nLv=2,nExp=15000,nMaxMembers=13,nFMZNum=1,nJYNum=2,bOpenZB=true,sFuncDesc="联盟副本3级BOSS开启\n联盟成员上限提升至10人",}
+ctUnionLevelConf[3]={nLv=3,nExp=40000,nMaxMembers=16,nFMZNum=1,nJYNum=3,bOpenZB=true,sFuncDesc="联盟副本4级BOSS开启\n联盟成员上限提升至13人",}
+ctUnionLevelConf[4]={nLv=4,nExp=100000,nMaxMembers=19,nFMZNum=2,nJYNum=3,bOpenZB=true,sFuncDesc="联盟副本5级BOSS开启\n联盟成员上限提升至16人",}
+ctUnionLevelConf[5]={nLv=5,nExp=180000,nMaxMembers=22,nFMZNum=2,nJYNum=4,bOpenZB=true,sFuncDesc="联盟副本6级BOSS开启\n联盟成员上限提升至19人",}
+ctUnionLevelConf[6]={nLv=6,nExp=280000,nMaxMembers=25,nFMZNum=2,nJYNum=4,bOpenZB=true,sFuncDesc="联盟副本7级BOSS开启\n联盟成员上限提升至22人",}
+ctUnionLevelConf[7]={nLv=7,nExp=400000,nMaxMembers=28,nFMZNum=3,nJYNum=5,bOpenZB=true,sFuncDesc="联盟副本8级BOSS开启\n联盟成员上限提升至25人",}
+ctUnionLevelConf[8]={nLv=8,nExp=540000,nMaxMembers=31,nFMZNum=3,nJYNum=5,bOpenZB=true,sFuncDesc="联盟副本9级BOSS开启\n联盟成员上限提升至28人",}
+ctUnionLevelConf[9]={nLv=9,nExp=700000,nMaxMembers=34,nFMZNum=3,nJYNum=6,bOpenZB=true,sFuncDesc="联盟副本10级BOSS开启\n联盟成员上限提升至31人",}
+ctUnionLevelConf[10]={nLv=10,nExp=900000,nMaxMembers=37,nFMZNum=4,nJYNum=6,bOpenZB=true,sFuncDesc="联盟副本11级BOSS开启\n联盟成员上限提升至34人",}
+ctUnionLevelConf[11]={nLv=11,nExp=1150000,nMaxMembers=40,nFMZNum=4,nJYNum=7,bOpenZB=true,sFuncDesc="联盟副本12级BOSS开启\n联盟成员上限提升至37人",}
+ctUnionLevelConf[12]={nLv=12,nExp=1500000,nMaxMembers=43,nFMZNum=4,nJYNum=7,bOpenZB=true,sFuncDesc="联盟副本13级BOSS开启\n联盟成员上限提升至40人",}

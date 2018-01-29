@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>Administrator</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2017-09-21T07:47:54Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6748</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11550</WindowHeight>
+  <WindowWidth>22815</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <NumberFormat/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctSLUNRankingConf">
+  <Table ss:ExpandedColumnCount="11" ss:ExpandedRowCount="9" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:Index="2" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="67.5"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="294"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="294" ss:Span="1"/>
+   <Column ss:Index="6" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="328.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="201.75"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="294"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="294" ss:Span="2"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nID</Data></Cell>
+    <Cell><Data ss:Type="String">tRank</Data></Cell>
+    <Cell><Data ss:Type="String">tAward1</Data><Comment ss:Author="Administrator"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9">Administrator:</Font></B><Font
+        html:Size="9">&#13;首次开启的奖励 &#13;&#13;1.类型 &#13;2.ID &#13;3.数量</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">tAward2</Data><Comment
+      ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9">Administrator:</Font></B><Font html:Size="9">&#13;首次开启的奖励&#13;&#13;1.类型 &#13;2.ID &#13;3.数量&#13;</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">tAward3</Data><Comment
+      ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9">Administrator:</Font></B><Font html:Size="9">&#13;首次开启的奖励&#13;&#13;1.类型 &#13;2.ID &#13;3.数量&#13;</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">tAward4</Data><Comment
+      ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9">Administrator:</Font></B><Font html:Size="9">&#13;首次开启的奖励&#13;&#13;1.类型 &#13;2.ID &#13;3.数量&#13;</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">sIcon</Data><Comment ss:Author="Administrator"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9">Administrator:</Font></B><Font
+        html:Size="9">&#13;排名颜色&#13;1.金色&#13;2.紫色&#13;3.蓝色&#13;4.绿色&#13;</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">tAward11</Data><Comment ss:Author="Administrator"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9">Administrator:</Font></B><Font
+        html:Size="9">&#13;普通开启的奖励&#13;&#13;1.类型 &#13;2.ID &#13;3.数量</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">tAward12</Data><Comment
+      ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9">Administrator:</Font></B><Font html:Size="9">&#13;普通开启的奖励&#13;&#13;1.类型 &#13;2.ID &#13;3.数量&#13;</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">tAward13</Data><Comment
+      ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9">Administrator:</Font></B><Font html:Size="9">&#13;普通开启的奖励&#13;&#13;1.类型 &#13;2.ID &#13;3.数量&#13;</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">tAward14</Data><Comment
+      ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9">Administrator:</Font></B><Font html:Size="9">&#13;普通开启的奖励&#13;&#13;1.类型 &#13;2.ID &#13;3.数量&#13;</Font></ss:Data></Comment></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">t{iii}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">标识</Data></Cell>
+    <Cell><Data ss:Type="String">联盟积分排名</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">会长奖励</Data></Cell>
+    <Cell><Data ss:Type="String">副会长奖励</Data></Cell>
+    <Cell><Data ss:Type="String">精英奖励</Data></Cell>
+    <Cell><Data ss:Type="String">成员奖励</Data></Cell>
+    <Cell><Data ss:Type="String">排名底层颜色</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">会长奖励</Data></Cell>
+    <Cell><Data ss:Type="String">副会长奖励</Data></Cell>
+    <Cell><Data ss:Type="String">精英奖励</Data></Cell>
+    <Cell><Data ss:Type="String">成员奖励</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,10;1,30516,3;1,30502,8;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,9;1,30516,3;1,30502,7;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,9;1,30516,2;1,30502,6;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,8;1,30516,2;1,30502,6;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">bg_paiming1</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,10;1,30516,3;1,30502,8;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,9;1,30516,3;1,30502,7;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,9;1,30516,2;1,30502,6;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,8;1,30516,2;1,30502,6;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">2,2;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,8;1,30516,2;1,30502,6;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,7;1,30516,2;1,30502,5;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,7;1,30516,1;1,30502,5;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,6;1,30516,1;1,30502,5;</Data></Cell>
+    <Cell><Data ss:Type="String">bg_paiming2</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,8;1,30516,2;1,30502,6;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,7;1,30516,2;1,30502,5;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,7;1,30516,1;1,30502,5;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,6;1,30516,1;1,30502,5;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">3,3;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,6;1,30516,1;1,30502,5;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,5;1,30516,1;1,30502,5;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,5;1,30502,4;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,4;1,30502,4;</Data></Cell>
+    <Cell><Data ss:Type="String">bg_paiming3</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,6;1,30516,1;1,30502,5;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,5;1,30516,1;1,30502,5;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,5;1,30502,4;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,4;1,30502,4;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">4,5;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,4;1,30502,4;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,3;1,30502,4;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,3;1,30502,3;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,3;1,30502,3;</Data></Cell>
+    <Cell><Data ss:Type="String">bg_paiming4</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,4;1,30502,4;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,3;1,30502,4;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,3;1,30502,3;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,3;1,30502,3;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">6,10;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,3;1,30502,3;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,2;1,30502,3;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,2;1,30502,2;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,2;1,30502,2;</Data></Cell>
+    <Cell><Data ss:Type="String">bg_paiming4</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,3;1,30502,3;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,2;1,30502,3;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,2;1,30502,2;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,2;1,30502,2;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">11,20;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,1;1,30502,1;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,1;1,30502,2;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,1;1,30502,1;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,1;1,30502,1;</Data></Cell>
+    <Cell><Data ss:Type="String">bg_paiming4</Data></Cell>
+    <Cell><Data ss:Type="String">1,10504,1;1,30502,1;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,1;1,30502,2;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,1;1,30502,1;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10504,1;1,30502,1;</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>15</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

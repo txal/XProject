@@ -1,7 +1,7 @@
 gfRawToString = gfRawToString or tostring
 function tostring(Val)
 	if type(Val) == "table" then
-		return gfRawToString(Val)..": "..table.ToString(Val, true)
+		return table.ToString(Val, true)
 	end
 	return gfRawToString(Val)
 end
@@ -28,7 +28,9 @@ function gfReloadAll()
             package.loaded[sModule] = nil
         end
     end
-    return ReloadScript("Main")
+    local bRes = ReloadScript("Main")
+    collectgarbage()
+    return bRes
 end
 
 ----------cpp调用------------

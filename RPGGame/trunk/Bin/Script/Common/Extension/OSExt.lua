@@ -100,7 +100,7 @@ function os.SplitTime(nSecond)
 end
 
 --取到从nTimeStamp开始到下个nWeekDay[1,7]的时间戳, nSecond为下个nWeekDay的时间点(秒数)
-function os.WeedDayTime(nTimeStamp, nWeekDay, nSecond)
+function os.WeekDayTime(nTimeStamp, nWeekDay, nSecond)
     assert(nTimeStamp > 0 and nSecond >= 0)
     local tDate = os.date("*t", nTimestamp) 
     local nHourSecond = tDate.hour * 3600 + tDate.min * 60 + tDate.sec
@@ -122,13 +122,87 @@ end
 --nTimeStamp距离下1天某时刻的时间(秒)
 function os.NextDayTime(nTimeStamp, nHour, nMin, nSec)
     assert(nTimeStamp, "时间戳为空")
-    nHour = nHour or 0
-    nMin =  nMin or 0
-    nSec = nSec or 0
+    nHour, nMin, nSec = nHour or 0,  nMin or 0, nSec or 0
     local nNewTime = nTimeStamp + 24*3600
     local tDate = os.date("*t", nNewTime)
-    tDate.hour = nHour
-    tDate.min = nMin
-    tDate.sec = nSec
+    tDate.hour, tDate.min, tDate.sec = nHour, nMin, nSec
     return os.time(tDate) - nTimeStamp
+end
+
+--nTimeStamp距离下1整小时时间(秒)
+function os.NextHourTime(nTimeStamp)
+    assert(nTimeStamp, "时间戳为空")
+    local tDate = os.date("*t", nTimeStamp)
+    tDate.hour, tDate.min, tDate.sec = tDate.hour+1, 0, 0
+    return os.time(tDate) - nTimeStamp
+end
+
+--nTimeStamp距离下1整分钟时间(秒)
+function os.NextMinTime(nTimeStamp)
+    assert(nTimeStamp, "时间戳为空")
+    local tDate = os.date("*t", nTimeStamp)
+    tDate.min, tDate.sec = tDate.min+1, 0
+    local nNextTime = os.time(tDate)
+    print("os.NextMinTime***", nTimeStamp, nNextTime, tDate)
+    return nNextTime - nTimeStamp
+end
+
+--是否同一月，分界线为每月1号的nSecond秒, 如4点刷新(则传入4*60*60)
+function os.IsSameMonth(nTime1, nTime2, nSecond)
+    assert(nSecond >= 0 and nSecond <= 86400)
+    nTime1 = nTime1 - nSecond
+    nTime2 = nTime2 - nSecond
+    local tDate1 = os.date("*t", nTime1) 
+    local tDate2 = os.date("*t", nTime2)
+    if tDate1.year == tDate2.year and tDate1.month == tDate2.month then
+        return true
+    end
+    return false
+end
+
+--某一月有多少天，nTime为那一个月的任意一个时间戳
+function os.MonthDays(nTime)
+    local tDate = os.date("*t", nTime)
+    tDate.month = tDate.month + 1
+    tDate.day = 1
+    local nTmpTime = os.time(tDate)
+    nTmpTime = nTmpTime - 24*3600
+    tDate = os.date("*t", nTmpTime)
+    return tDate.day
+end
+
+--字符串日期转时间戳，例: 2017-6-8 16:00:00
+function os.Str2Time(sDate)
+    local tSplit = string.Split(sDate, " ")
+    local nYear, nMonth, nDay, nHour, nMin, nSec = 0, 0, 0, 0, 0, 0
+    if tSplit[1] then
+        local tSplitDate = string.Split(tSplit[1], "-")
+        assert(#tSplitDate == 3, "日期格式错误:"..sDate)
+        nYear, nMonth, nDay = tonumber(tSplitDate[1]), tonumber(tSplitDate[2]), tonumber(tSplitDate[3])
+    end
+    if tSplit[2] then
+        local tSplitTime = string.Split(tSplit[2], ":")
+        assert(#tSplitTime == 3, "时间格式错误:"..sDate)
+        nHour, nMin, nSec = tonumber(tSplitTime[1]), tonumber(tSplitTime[2]), tonumber(tSplitTime[3])
+    end
+    assert(nYear > 0 and nMonth > 0 and nDay > 0, "日期格式错误:"..sDate)
+    return os.MakeTime(nYear, nMonth, nDay, nHour, nMin, nSec)
+end
+
+--距离下一nHour整点时间
+function os.NextHourTime1(nHour)
+    local nNowSec = os.time()
+    local tDate = os.date("*t", nNowSec)  
+    if tDate.hour < nHour then
+        tDate.hour = nHour
+        tDate.min = 0
+        tDate.sec = 0
+        return (os.time(tDate) - nNowSec)
+    end
+    local nNextDayTime = nNowSec + 24*3600
+    local tDate = os.date("*t", nNextDayTime)
+    tDate.hour = nHour
+    tDate.min = 0
+    tDate.sec = 0
+    return (os.time(tDate) - nNowSec)
 end

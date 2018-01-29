@@ -1,0 +1,53 @@
+package dayrecharge;
+
+//活动状态请求
+message DayRechargeStateReq
+{
+	
+}
+
+//活动状态返回
+message DayRechargeStateRet
+{
+	required int32 nID = 1; 			//活动ID
+	required int32 nState = 2; 			//活动状态:0初始; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 		//状态剩余时间
+	required int32 nBeginTime = 4; 		//活动开始时间
+	required int32 nEndTime = 5; 		//活动结束时间
+	required bool bCanGetAward = 6; 	//是否可以领取奖励
+	required int32 nItemID = 7; 		//替换-1的物品ID
+}
+
+//活动信息请求
+message DayRechargeInfoReq
+{
+	
+}
+
+//活动信息返回
+message DayRechargeInfoRet
+{
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nState = 2; 		//状态:0未达成; 1可领取; 2已领取
+	}	
+	required int32 nDayRecharge= 1; 	//日充值
+	required int32 nRemainTime = 2;  	//活动剩余时间
+	repeated _Item tList = 3;  			//奖励表
+}
+
+
+//领取奖励请求
+message DayRechargeAwardReq
+{
+	required int32 nID = 1; 	//奖励ID	
+}
+
+
+//领取奖励成功返回
+message DayRechargeAwardRet
+{
+	required int32 nID = 1; 		//奖励ID	
+	required int32 nItemID = 2; 	//替换-1的ID
+}
+

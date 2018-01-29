@@ -1,0 +1,10 @@
+ctMingChenPinJiConf={}
+ctMingChenPinJiConf[1]={nID=1,sName="无",nZhanJi=0,nAttr=0,}
+ctMingChenPinJiConf[2]={nID=2,sName="七品",nZhanJi=450,nAttr=200,}
+ctMingChenPinJiConf[3]={nID=3,sName="六品",nZhanJi=900,nAttr=400,}
+ctMingChenPinJiConf[4]={nID=4,sName="五品",nZhanJi=1800,nAttr=800,}
+ctMingChenPinJiConf[5]={nID=5,sName="四品",nZhanJi=3600,nAttr=1200,}
+ctMingChenPinJiConf[6]={nID=6,sName="三品",nZhanJi=7200,nAttr=1800,}
+ctMingChenPinJiConf[7]={nID=7,sName="二品",nZhanJi=14400,nAttr=2400,}
+ctMingChenPinJiConf[8]={nID=8,sName="一品",nZhanJi=28800,nAttr=3200,}
+ctMingChenPinJiConf[9]={nID=9,sName="特品",nZhanJi=72000,nAttr=6400,}

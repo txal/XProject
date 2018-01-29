@@ -1,0 +1,1298 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>Administrator</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2017-10-30T02:45:42Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6875</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11310</WindowHeight>
+  <WindowWidth>20430</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctJunJiChuRobotConf">
+  <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="106" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="48"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="57" ss:Span="1"/>
+   <Column ss:Index="6" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="369.75"
+    ss:Span="3"/>
+   <Row ss:AutoFitHeight="0" ss:Height="14.0625">
+    <Cell><Data ss:Type="String">nID</Data><Comment ss:Author="Administrator"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9">Administrator:</Font></B><Font
+        html:Size="9">&#13;机器人ID不能大于:&#13;100000&#13;首次匹配机器人ID:&#13;0</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">sName</Data></Cell>
+    <Cell><Data ss:Type="String">nLv</Data></Cell>
+    <Cell><Data ss:Type="String">nWW</Data></Cell>
+    <Cell><Data ss:Type="String">nWJ</Data></Cell>
+    <Cell><Data ss:Type="String">tMC1</Data></Cell>
+    <Cell><Data ss:Type="String">tMC2</Data></Cell>
+    <Cell><Data ss:Type="String">tMC3</Data></Cell>
+    <Cell><Data ss:Type="String">tMC4</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.0625">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiiii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiiii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiiii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiiii}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.0625">
+    <Cell><Data ss:Type="String">机器人ID</Data></Cell>
+    <Cell><Data ss:Type="String">机器人名字</Data></Cell>
+    <Cell><Data ss:Type="String">等级</Data></Cell>
+    <Cell><Data ss:Type="String">威望</Data></Cell>
+    <Cell><Data ss:Type="String">外交</Data></Cell>
+    <Cell><Data ss:Type="String">(商)大臣列表(大臣ID,血量,类型属性,技能阶,技能级)</Data></Cell>
+    <Cell><Data ss:Type="String">(农)大臣列表(大臣ID,血量,类型属性,技能阶,技能级)</Data></Cell>
+    <Cell><Data ss:Type="String">(政)大臣列表(大臣ID,血量,类型属性,技能阶,技能级)</Data></Cell>
+    <Cell><Data ss:Type="String">(军)大臣列表(大臣ID,血量,类型属性,技能阶,技能级)</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.0625">
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">江映月</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50001,973,361,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50002,1034,336,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50003,1034,354,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50004,973,346,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.0625">
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">蓝色气泡</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">35</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">1050</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50001,1356,510,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50002,1328,471,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50003,1411,471,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50004,1342,495,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">幻想月光</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">40</Data></Cell>
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">1100</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50001,1841,649,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50002,1841,688,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50003,1860,623,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50004,1915,642,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">黑狗队长</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">45</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="Number">1150</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50001,2426,825,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50002,2377,833,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50003,2474,876,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50004,2474,842,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">雾夜飞虫</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">50</Data></Cell>
+    <Cell><Data ss:Type="Number">40</Data></Cell>
+    <Cell><Data ss:Type="Number">1200</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50001,3060,1067,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50002,2939,1078,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50003,3151,1131,0,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">50004,2999,1121,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">情堔堔</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">55</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">1250</Data></Cell>
+    <Cell><Data ss:Type="String">50001,3900,1326,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,3637,1407,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,3637,1273,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,3787,1340,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">无极剑士</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">1300</Data></Cell>
+    <Cell><Data ss:Type="String">50001,4518,1654,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,4564,1556,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,4518,1638,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,4335,1719,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="String">无为大哥</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">65</Data></Cell>
+    <Cell><Data ss:Type="Number">100</Data></Cell>
+    <Cell><Data ss:Type="Number">1350</Data></Cell>
+    <Cell><Data ss:Type="String">50001,5643,2014,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,5533,2034,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,5259,1955,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,5424,2034,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="String">梦之花蕾</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="Number">1400</Data></Cell>
+    <Cell><Data ss:Type="String">50001,6628,2422,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,6693,2281,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,6239,2257,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,6174,2422,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="String">一剑追星</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">140</Data></Cell>
+    <Cell><Data ss:Type="Number">1450</Data></Cell>
+    <Cell><Data ss:Type="String">50001,7857,2828,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,7705,2745,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,7476,2717,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,7476,2689,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="String">快乐飙风</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">160</Data></Cell>
+    <Cell><Data ss:Type="Number">1500</Data></Cell>
+    <Cell><Data ss:Type="String">50001,8607,3400,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,8785,3303,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,8785,3336,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,9228,3368,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">11</Data></Cell>
+    <Cell><Data ss:Type="String">逍遥浪疯</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">85</Data></Cell>
+    <Cell><Data ss:Type="Number">180</Data></Cell>
+    <Cell><Data ss:Type="Number">1550</Data></Cell>
+    <Cell><Data ss:Type="String">50001,9828,3827,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,10442,3601,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,9828,3752,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,10238,3714,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="String">封号还来</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">90</Data></Cell>
+    <Cell><Data ss:Type="Number">200</Data></Cell>
+    <Cell><Data ss:Type="Number">1600</Data></Cell>
+    <Cell><Data ss:Type="String">50001,12195,4401,0,1;50005,11960,4401,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,12195,4315,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,11374,4530,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,12077,4315,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">13</Data></Cell>
+    <Cell><Data ss:Type="String">随风舞柳</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">95</Data></Cell>
+    <Cell><Data ss:Type="Number">220</Data></Cell>
+    <Cell><Data ss:Type="Number">1650</Data></Cell>
+    <Cell><Data ss:Type="String">50001,12810,4683,0,1;50005,13210,4732,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,14011,4782,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,13077,4880,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,13077,4732,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">14</Data></Cell>
+    <Cell><Data ss:Type="String">小臭蛋</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell><Data ss:Type="Number">240</Data></Cell>
+    <Cell><Data ss:Type="Number">1700</Data></Cell>
+    <Cell><Data ss:Type="String">50001,14944,5600,0,1;50005,14642,5600,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,15396,5880,0,1;50006,15547,5880,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,14642,5432,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,14340,5320,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+    <Cell><Data ss:Type="String">留驻天之角</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">104</Data></Cell>
+    <Cell><Data ss:Type="Number">260</Data></Cell>
+    <Cell><Data ss:Type="Number">1750</Data></Cell>
+    <Cell><Data ss:Type="String">50001,16999,5959,0,1;50005,16999,6518,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,16332,6021,0,1;50006,16999,6021,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,16666,6145,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,15999,5897,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">16</Data></Cell>
+    <Cell><Data ss:Type="String">嗜血猎手</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">108</Data></Cell>
+    <Cell><Data ss:Type="Number">280</Data></Cell>
+    <Cell><Data ss:Type="Number">1800</Data></Cell>
+    <Cell><Data ss:Type="String">50001,17419,7199,0,1;50005,17419,6514,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,18886,6857,0,1;50006,17602,6788,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,18336,6514,0,1;50007,17602,6719,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,18336,7062,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">17</Data></Cell>
+    <Cell><Data ss:Type="String">孤独浪仔</Data></Cell>
+    <Cell><Data ss:Type="Number">112</Data></Cell>
+    <Cell><Data ss:Type="Number">300</Data></Cell>
+    <Cell><Data ss:Type="Number">1850</Data></Cell>
+    <Cell><Data ss:Type="String">50001,20518,7930,0,1;50005,19311,7855,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,20116,7855,0,1;50006,20518,7401,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,20317,7553,0,1;50007,20518,7930,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,20920,7779,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">可爱小鹰</Data></Cell>
+    <Cell><Data ss:Type="Number">116</Data></Cell>
+    <Cell><Data ss:Type="Number">320</Data></Cell>
+    <Cell><Data ss:Type="Number">1900</Data></Cell>
+    <Cell><Data ss:Type="String">50001,22441,8128,0,1;50005,23101,8542,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,22001,8625,0,1;50006,21340,7962,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,22001,8459,0,1;50007,21560,8294,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,23101,8211,0,1;50008,22221,8376,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">19</Data></Cell>
+    <Cell><Data ss:Type="String">花卷MM</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="Number">340</Data></Cell>
+    <Cell><Data ss:Type="Number">1950</Data></Cell>
+    <Cell><Data ss:Type="String">50001,24723,8903,0,1;50005,23282,8812,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,24003,8630,0,1;50006,22802,9266,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,24243,9539,0,1;50007,24483,8903,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,22802,8903,0,1;50008,24243,8630,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="String">战神锋锋</Data></Cell>
+    <Cell><Data ss:Type="Number">124</Data></Cell>
+    <Cell><Data ss:Type="Number">360</Data></Cell>
+    <Cell><Data ss:Type="Number">2000</Data></Cell>
+    <Cell><Data ss:Type="String">50001,27420,9923,0,1;50005,25070,9426,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,27420,10220,0,1;50006,26898,9923,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,26637,10319,0,1;50007,26898,9526,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,25070,10319,0,1;50008,24809,10220,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21</Data></Cell>
+    <Cell><Data ss:Type="String">酷酷小飞贼</Data></Cell>
+    <Cell><Data ss:Type="Number">128</Data></Cell>
+    <Cell><Data ss:Type="Number">380</Data></Cell>
+    <Cell><Data ss:Type="Number">2050</Data></Cell>
+    <Cell><Data ss:Type="String">50001,28908,10920,0,1;50005,29192,10703,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,28342,10379,0,1;50006,29475,11244,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,27775,11352,0,1;50007,28625,10920,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,27491,10379,0,1;50008,27491,11136,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">22</Data></Cell>
+    <Cell><Data ss:Type="String">爱在阳光</Data></Cell>
+    <Cell><Data ss:Type="Number">132</Data></Cell>
+    <Cell><Data ss:Type="Number">400</Data></Cell>
+    <Cell><Data ss:Type="Number">2100</Data></Cell>
+    <Cell><Data ss:Type="String">50001,30080,11872,0,1;50005,30080,11872,0,1;50009,31000,11284,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,29466,11519,0,1;50006,30080,11990,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,30694,11519,0,1;50007,32228,11167,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,29773,12342,0,1;50008,29159,11167,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">23</Data></Cell>
+    <Cell><Data ss:Type="String">也许我错了</Data></Cell>
+    <Cell><Data ss:Type="Number">136</Data></Cell>
+    <Cell><Data ss:Type="Number">420</Data></Cell>
+    <Cell><Data ss:Type="Number">2150</Data></Cell>
+    <Cell><Data ss:Type="String">50001,33166,12752,0,1;50005,34492,12879,0,1;50009,33829,13007,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,31507,12879,0,1;50006,32834,13389,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,34824,12369,0,1;50007,34492,12114,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,32171,13389,0,1;50008,32502,12369,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">24</Data></Cell>
+    <Cell><Data ss:Type="String">幻影德仔</Data></Cell>
+    <Cell><Data ss:Type="Number">140</Data></Cell>
+    <Cell><Data ss:Type="Number">440</Data></Cell>
+    <Cell><Data ss:Type="Number">2200</Data></Cell>
+    <Cell><Data ss:Type="String">50001,35413,13530,0,1;50005,36844,13945,0,1;50009,33982,14497,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,35771,13530,0,1;50006,34340,13807,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,35055,14497,0,1;50007,37201,14359,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,37201,14083,0,1;50008,36486,13116,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="String">狂拽秒杀</Data></Cell>
+    <Cell><Data ss:Type="Number">143</Data></Cell>
+    <Cell><Data ss:Type="Number">460</Data></Cell>
+    <Cell><Data ss:Type="Number">2250</Data></Cell>
+    <Cell><Data ss:Type="String">50001,39107,15300,0,1;50005,37208,15447,0,1;50009,37968,14564,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,37588,14123,0,1;50006,38347,15300,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,36828,15300,0,1;50007,36449,14712,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,39866,14417,0,1;50008,39866,15006,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">26</Data></Cell>
+    <Cell><Data ss:Type="String">暗黑情人</Data></Cell>
+    <Cell><Data ss:Type="Number">146</Data></Cell>
+    <Cell><Data ss:Type="Number">480</Data></Cell>
+    <Cell><Data ss:Type="Number">2300</Data></Cell>
+    <Cell><Data ss:Type="String">50001,38646,15345,0,1;50005,41867,16128,0,1;50009,40257,15659,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,40659,14876,0,1;50006,40257,15502,0,1;50010,39049,15345,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,38646,16285,0,1;50007,38646,15502,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,38244,15815,0,1;50008,41062,16441,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">27</Data></Cell>
+    <Cell><Data ss:Type="String">弹指红颜老</Data></Cell>
+    <Cell><Data ss:Type="Number">149</Data></Cell>
+    <Cell><Data ss:Type="Number">500</Data></Cell>
+    <Cell><Data ss:Type="Number">2350</Data></Cell>
+    <Cell><Data ss:Type="String">50001,44772,17316,0,1;50005,41787,16150,0,1;50009,44345,16816,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,41360,17316,0,1;50006,42213,16150,0,1;50010,43066,16150,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,44772,16483,0,1;50007,40508,15984,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,40934,16816,0,1;50008,43919,17482,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">28</Data></Cell>
+    <Cell><Data ss:Type="String">风中亭</Data></Cell>
+    <Cell><Data ss:Type="Number">152</Data></Cell>
+    <Cell><Data ss:Type="Number">520</Data></Cell>
+    <Cell><Data ss:Type="Number">2400</Data></Cell>
+    <Cell><Data ss:Type="String">50001,45559,18389,0,1;50005,42852,17682,0,1;50009,43303,18389,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,44656,16797,0,1;50006,43303,17858,0,1;50010,46461,18566,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,44656,18212,0,1;50007,42852,17505,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,43754,17328,0,1;50008,42852,17151,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">29</Data></Cell>
+    <Cell><Data ss:Type="String">口香糖</Data></Cell>
+    <Cell><Data ss:Type="Number">155</Data></Cell>
+    <Cell><Data ss:Type="Number">540</Data></Cell>
+    <Cell><Data ss:Type="Number">2450</Data></Cell>
+    <Cell><Data ss:Type="String">50001,49104,18571,0,1;50005,48150,19321,0,1;50009,48150,19134,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,49580,19134,0,1;50006,48627,19696,0,1;50010,47197,18008,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,45290,18759,0,1;50007,45290,18196,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,50057,19696,0,1;50008,48627,19134,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="String">太伤自尊了</Data></Cell>
+    <Cell><Data ss:Type="Number">158</Data></Cell>
+    <Cell><Data ss:Type="Number">560</Data></Cell>
+    <Cell><Data ss:Type="Number">2500</Data></Cell>
+    <Cell><Data ss:Type="String">50001,51336,20078,0,1;50005,49826,20874,0,1;50009,49826,19482,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,48820,18886,0,1;50006,52846,19283,0,1;50010,50833,19283,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,49323,20476,0,1;50007,50833,19283,0,1;50011,50330,19681,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,51336,20476,0,1;50008,52846,20874,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">31</Data></Cell>
+    <Cell><Data ss:Type="String">逐风剑客</Data></Cell>
+    <Cell><Data ss:Type="Number">161</Data></Cell>
+    <Cell><Data ss:Type="Number">580</Data></Cell>
+    <Cell><Data ss:Type="Number">2550</Data></Cell>
+    <Cell><Data ss:Type="String">50001,53086,21048,0,1;50005,54678,21679,0,1;50009,55740,21258,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,52555,19995,0,1;50006,54147,20627,0,1;50010,55740,20206,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,53616,21679,0,1;50007,54678,20206,0,1;50011,52024,20837,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,52555,21679,0,1;50008,52024,22100,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">32</Data></Cell>
+    <Cell><Data ss:Type="String">大大流氓猪</Data></Cell>
+    <Cell><Data ss:Type="Number">164</Data></Cell>
+    <Cell><Data ss:Type="Number">600</Data></Cell>
+    <Cell><Data ss:Type="Number">2600</Data></Cell>
+    <Cell><Data ss:Type="String">50001,54265,22487,0,1;50005,53706,21597,0,1;50009,55384,21597,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,57622,21151,0,1;50006,58181,21819,0,1;50010,54265,22487,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,54265,21151,0,1;50007,53706,23155,0,1;50011,57622,23155,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,57062,21374,0,1;50008,53706,22042,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">33</Data></Cell>
+    <Cell><Data ss:Type="String">天生长的酷</Data></Cell>
+    <Cell><Data ss:Type="Number">167</Data></Cell>
+    <Cell><Data ss:Type="Number">620</Data></Cell>
+    <Cell><Data ss:Type="Number">2650</Data></Cell>
+    <Cell><Data ss:Type="String">50001,55952,24470,0,1;50005,59485,23764,0,1;50009,56541,24470,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,56541,23058,0,1;50006,60074,23529,0,1;50010,58897,22823,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,58897,22823,0,1;50007,55952,22352,0,1;50011,60074,24470,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,59485,23764,0,1;50008,57719,24705,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">34</Data></Cell>
+    <Cell><Data ss:Type="String">北方的雪山</Data></Cell>
+    <Cell><Data ss:Type="Number">170</Data></Cell>
+    <Cell><Data ss:Type="Number">640</Data></Cell>
+    <Cell><Data ss:Type="Number">2700</Data></Cell>
+    <Cell><Data ss:Type="String">50001,64434,24098,0,1;50005,61956,26086,0,1;50009,61956,24595,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,65053,24098,0,1;50006,62575,25092,0,1;50010,64434,26086,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,60097,24347,0,1;50007,63195,23601,0,1;50011,63195,24595,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,58858,25340,0,1;50008,60716,23601,0,1;50012,58858,25092,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">35</Data></Cell>
+    <Cell><Data ss:Type="String">白沙再临</Data></Cell>
+    <Cell><Data ss:Type="Number">173</Data></Cell>
+    <Cell><Data ss:Type="Number">660</Data></Cell>
+    <Cell><Data ss:Type="Number">2750</Data></Cell>
+    <Cell><Data ss:Type="String">50001,67717,25944,0,1;50005,62508,26731,0,1;50009,63159,26469,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,67066,24896,0,1;50006,67717,26731,0,1;50010,65113,24896,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,63810,26993,0,1;50007,68368,26993,0,1;50011,61857,25944,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,65113,26469,0,1;50008,67717,26469,0,1;50012,66415,25420,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">36</Data></Cell>
+    <Cell><Data ss:Type="String">小天使馆</Data></Cell>
+    <Cell><Data ss:Type="Number">176</Data></Cell>
+    <Cell><Data ss:Type="Number">680</Data></Cell>
+    <Cell><Data ss:Type="Number">2800</Data></Cell>
+    <Cell><Data ss:Type="String">50001,65643,28177,0,1;50005,67695,27348,0,1;50009,71114,27072,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,66327,28730,0,1;50006,64960,26243,0,1;50010,66327,28177,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,65643,26520,0,1;50007,71797,29006,0,1;50011,64960,26243,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,69746,27625,0,1;50008,69746,26520,0,1;50012,66327,27348,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">37</Data></Cell>
+    <Cell><Data ss:Type="String">龙威不改</Data></Cell>
+    <Cell><Data ss:Type="Number">179</Data></Cell>
+    <Cell><Data ss:Type="Number">700</Data></Cell>
+    <Cell><Data ss:Type="Number">2850</Data></Cell>
+    <Cell><Data ss:Type="String">50001,71039,27933,0,1;50005,68169,29097,0,1;50009,73192,28515,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,73909,27933,0,1;50006,71039,28515,0,1;50010,73192,29969,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,73192,29097,0,1;50007,74627,28806,0,1;50011,74627,28515,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,68169,27642,0,1;50008,68169,27642,0,1;50012,72474,29387,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">38</Data></Cell>
+    <Cell><Data ss:Type="String">随风飞世</Data></Cell>
+    <Cell><Data ss:Type="Number">182</Data></Cell>
+    <Cell><Data ss:Type="Number">720</Data></Cell>
+    <Cell><Data ss:Type="Number">2900</Data></Cell>
+    <Cell><Data ss:Type="String">50001,72979,31233,0,1;50005,78998,32152,0,1;50009,71475,30314,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,76741,31233,0,1;50006,75237,30314,0,1;50010,78998,29396,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,78998,30314,0,1;50007,78246,30927,0,1;50011,75989,30621,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,71475,31845,0,1;50008,75237,29702,0,1;50012,71475,30008,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">39</Data></Cell>
+    <Cell><Data ss:Type="String">我是蚊蚊</Data></Cell>
+    <Cell><Data ss:Type="Number">184</Data></Cell>
+    <Cell><Data ss:Type="Number">740</Data></Cell>
+    <Cell><Data ss:Type="Number">2950</Data></Cell>
+    <Cell><Data ss:Type="String">50001,75646,30901,0,1;50005,77986,31857,0,1;50009,76426,31857,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,79545,30582,0,1;50006,78765,30264,0,1;50010,77986,30901,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,79545,30582,0,1;50007,81105,32175,0,1;50011,78765,30901,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,80325,32812,0,1;50008,80325,31538,0,1;50012,81105,31538,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">40</Data></Cell>
+    <Cell><Data ss:Type="String">帅的让人爱</Data></Cell>
+    <Cell><Data ss:Type="Number">186</Data></Cell>
+    <Cell><Data ss:Type="Number">760</Data></Cell>
+    <Cell><Data ss:Type="Number">3000</Data></Cell>
+    <Cell><Data ss:Type="String">50001,84025,31468,0,1;50005,84025,33125,0,1;50009,79178,31468,0,1;50013,82409,33456,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,78370,34781,0,1;50006,76754,32793,0,1;50010,84025,32793,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,79178,34781,0,1;50007,80794,34450,0,1;50011,82409,34781,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,76754,32131,0,1;50008,84833,33787,0,1;50012,83217,32462,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">41</Data></Cell>
+    <Cell><Data ss:Type="String">游小梦</Data></Cell>
+    <Cell><Data ss:Type="Number">188</Data></Cell>
+    <Cell><Data ss:Type="Number">780</Data></Cell>
+    <Cell><Data ss:Type="Number">3050</Data></Cell>
+    <Cell><Data ss:Type="String">50001,87018,34086,0,1;50005,87018,33398,0,1;50009,84508,36152,0,1;50013,81161,33398,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,87855,34086,0,1;50006,83672,35463,0,1;50010,85345,36152,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,86182,35808,0,1;50007,81998,34086,0,1;50011,81161,33398,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,82835,35119,0,1;50008,81161,35119,0,1;50012,85345,34775,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">42</Data></Cell>
+    <Cell><Data ss:Type="String">吓死人哒</Data></Cell>
+    <Cell><Data ss:Type="Number">190</Data></Cell>
+    <Cell><Data ss:Type="Number">800</Data></Cell>
+    <Cell><Data ss:Type="Number">3100</Data></Cell>
+    <Cell><Data ss:Type="String">50001,82290,36131,0,1;50005,84023,36847,0,1;50009,90086,37204,0,1;50013,84889,33985,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,90953,35774,0,1;50006,90086,33985,0,1;50010,84023,37562,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,89220,35058,0,1;50007,88354,33985,0,1;50011,82290,35058,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,86622,34700,0,1;50008,88354,37562,0,1;50012,84889,35416,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">43</Data></Cell>
+    <Cell><Data ss:Type="String">变化小子</Data></Cell>
+    <Cell><Data ss:Type="Number">192</Data></Cell>
+    <Cell><Data ss:Type="Number">820</Data></Cell>
+    <Cell><Data ss:Type="Number">3150</Data></Cell>
+    <Cell><Data ss:Type="String">50001,93218,38266,0,1;50005,85151,36408,0,1;50009,86944,35294,0,1;50013,85151,38266,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,92321,37152,0,1;50006,87840,38638,0,1;50010,92321,37523,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,86047,35294,0,1;50007,91425,37895,0,1;50011,87840,36408,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,94114,39009,0,1;50008,89633,37152,0,1;50012,87840,36408,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">44</Data></Cell>
+    <Cell><Data ss:Type="String">星空女孩</Data></Cell>
+    <Cell><Data ss:Type="Number">194</Data></Cell>
+    <Cell><Data ss:Type="Number">840</Data></Cell>
+    <Cell><Data ss:Type="Number">3200</Data></Cell>
+    <Cell><Data ss:Type="String">50001,97353,38184,0,1;50005,92718,37027,0,1;50009,93645,39727,0,1;50013,95499,38570,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,89936,39727,0,1;50006,94572,37798,0,1;50010,97353,36641,0,1;50014,95499,40112,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,95499,37027,0,1;50007,89936,38184,0,1;50011,97353,37027,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,89936,38955,0,1;50008,93645,39727,0,1;50012,89936,37412,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">45</Data></Cell>
+    <Cell><Data ss:Type="String">还有谁</Data></Cell>
+    <Cell><Data ss:Type="Number">196</Data></Cell>
+    <Cell><Data ss:Type="Number">860</Data></Cell>
+    <Cell><Data ss:Type="Number">3250</Data></Cell>
+    <Cell><Data ss:Type="String">50001,92029,38021,0,1;50005,98739,39222,0,1;50009,92029,41623,0,1;50013,99698,38822,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,100657,42024,0,1;50006,91070,40823,0,1;50010,94905,40023,0,1;50014,94905,41623,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,93946,38422,0,1;50007,93946,41223,0,1;50011,92988,38822,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,98739,41223,0,1;50008,100657,38422,0,1;50012,96822,39222,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">46</Data></Cell>
+    <Cell><Data ss:Type="String">诗菲</Data></Cell>
+    <Cell><Data ss:Type="Number">198</Data></Cell>
+    <Cell><Data ss:Type="Number">880</Data></Cell>
+    <Cell><Data ss:Type="Number">3300</Data></Cell>
+    <Cell><Data ss:Type="String">50001,103048,43591,0,1;50005,99085,39440,0,1;50009,104039,42346,0,1;50013,103048,39855,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,101066,43591,0,1;50006,99085,39855,0,1;50010,98094,41931,0,1;50014,104039,41931,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,104039,39440,0,1;50007,96112,41931,0,1;50011,98094,42761,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,95121,39855,0,1;50008,100075,40685,0,1;50012,99085,40270,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">47</Data></Cell>
+    <Cell><Data ss:Type="String">伤情风</Data></Cell>
+    <Cell><Data ss:Type="Number">200</Data></Cell>
+    <Cell><Data ss:Type="Number">900</Data></Cell>
+    <Cell><Data ss:Type="Number">3350</Data></Cell>
+    <Cell><Data ss:Type="String">50001,106478,43052,0,1;50005,99311,43482,0,1;50009,101359,41329,0,1;50013,107502,43482,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,102383,45204,0,1;50006,103406,42621,0,1;50010,100335,43913,0,1;50014,97263,43913,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,107502,42621,0,1;50007,105454,43482,0,1;50011,107502,40899,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,103406,40899,0,1;50008,99311,41329,0,1;50012,97263,43913,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">48</Data></Cell>
+    <Cell><Data ss:Type="String">新的一页</Data></Cell>
+    <Cell><Data ss:Type="Number">201</Data></Cell>
+    <Cell><Data ss:Type="Number">920</Data></Cell>
+    <Cell><Data ss:Type="Number">3400</Data></Cell>
+    <Cell><Data ss:Type="String">50001,99465,46392,0,1;50005,103653,44624,0,1;50009,105748,42857,0,1;50013,99465,45508,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,105748,43299,0,1;50006,106795,44183,0,1;50010,102606,44183,0,1;50014,103653,45066,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,105748,45950,0,1;50007,103653,44183,0,1;50011,99465,45950,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,106795,45950,0,1;50008,105748,46392,0,1;50012,100512,45066,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">49</Data></Cell>
+    <Cell><Data ss:Type="String">罐装可乐</Data></Cell>
+    <Cell><Data ss:Type="Number">202</Data></Cell>
+    <Cell><Data ss:Type="Number">940</Data></Cell>
+    <Cell><Data ss:Type="Number">3450</Data></Cell>
+    <Cell><Data ss:Type="String">50001,102775,43525,0,1;50005,105987,43525,0,1;50009,101705,43525,0,1;50013,105987,45339,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,102775,45339,0,1;50006,108128,44432,0,1;50010,101705,45792,0,1;50014,109199,45339,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,105987,45792,0,1;50007,107058,47605,0,1;50011,107058,46699,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,108128,44885,0,1;50008,102775,43072,0,1;50012,101705,46699,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell><Data ss:Type="String">冒险毁灭</Data></Cell>
+    <Cell><Data ss:Type="Number">203</Data></Cell>
+    <Cell><Data ss:Type="Number">960</Data></Cell>
+    <Cell><Data ss:Type="Number">3500</Data></Cell>
+    <Cell><Data ss:Type="String">50001,105063,45116,0,1;50005,105063,48372,0,1;50009,105063,45581,0,1;50013,111629,48372,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,107252,48837,0,1;50006,112724,48837,0,1;50010,108346,46977,0,1;50014,109441,45581,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,112724,44651,0,1;50007,112724,48372,0,1;50011,108346,46977,0,1;50015,103968,44186,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,114913,48372,0,1;50008,106157,47442,0,1;50012,113818,44651,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">51</Data></Cell>
+    <Cell><Data ss:Type="String">爱浪漫一点</Data></Cell>
+    <Cell><Data ss:Type="Number">204</Data></Cell>
+    <Cell><Data ss:Type="Number">980</Data></Cell>
+    <Cell><Data ss:Type="Number">3550</Data></Cell>
+    <Cell><Data ss:Type="String">50001,114100,46277,0,1;50005,106269,49140,0,1;50009,112981,48663,0,1;50013,106269,46277,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,109625,46277,0,1;50006,115218,49140,0,1;50010,115218,50094,0,1;50014,111863,49140,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,108507,48186,0,1;50007,115218,46277,0,1;50011,107388,45323,0,1;50015,107388,45323,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,108507,47709,0,1;50008,111863,49140,0,1;50012,107388,45323,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">52</Data></Cell>
+    <Cell><Data ss:Type="String">创世纪</Data></Cell>
+    <Cell><Data ss:Type="Number">205</Data></Cell>
+    <Cell><Data ss:Type="Number">1000</Data></Cell>
+    <Cell><Data ss:Type="Number">3600</Data></Cell>
+    <Cell><Data ss:Type="String">50001,113167,49903,0,1;50005,118883,51371,0,1;50009,108595,46968,0,1;50013,118883,51371,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,112024,51371,0,1;50006,113167,50392,0,1;50010,109738,48925,0,1;50014,120026,50882,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,113167,49414,0,1;50007,120026,46968,0,1;50011,109738,49903,0,1;50015,115454,48435,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,120026,50392,0,1;50008,112024,51371,0,1;50012,114311,48925,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">53</Data></Cell>
+    <Cell><Data ss:Type="String">极品七里香</Data></Cell>
+    <Cell><Data ss:Type="Number">206</Data></Cell>
+    <Cell><Data ss:Type="Number">1020</Data></Cell>
+    <Cell><Data ss:Type="Number">3650</Data></Cell>
+    <Cell><Data ss:Type="String">50001,120289,48152,0,1;50005,121457,51162,0,1;50009,120289,48152,0,1;50013,122625,49657,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,120289,52165,0,1;50006,115618,49155,0,1;50010,120289,52165,0,1;50014,112114,52666,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,122625,51663,0,1;50007,119121,49155,0,1;50011,110946,49657,0,1;50015,119121,48654,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,116786,51162,0,1;50008,121457,47651,0,1;50012,116786,49657,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">54</Data></Cell>
+    <Cell><Data ss:Type="String">江中鱼</Data></Cell>
+    <Cell><Data ss:Type="Number">207</Data></Cell>
+    <Cell><Data ss:Type="Number">1040</Data></Cell>
+    <Cell><Data ss:Type="Number">3700</Data></Cell>
+    <Cell><Data ss:Type="String">50001,124072,52960,0,1;50005,113335,51418,0,1;50009,118107,52446,0,1;50013,125265,52960,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,118107,49361,0,1;50006,114528,52446,0,1;50010,121686,50389,0,1;50014,124072,48847,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,119300,51932,0,1;50007,116914,49361,0,1;50011,120493,52446,0,1;50015,125265,49875,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,115721,53474,0,1;50008,116914,52960,0,1;50012,116914,52960,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">55</Data></Cell>
+    <Cell><Data ss:Type="String">焰哥</Data></Cell>
+    <Cell><Data ss:Type="Number">208</Data></Cell>
+    <Cell><Data ss:Type="Number">1060</Data></Cell>
+    <Cell><Data ss:Type="Number">3750</Data></Cell>
+    <Cell><Data ss:Type="String">50001,123060,54276,0,1;50005,115749,52169,0,1;50009,123060,53749,0,1;50013,125497,51642,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,121842,54803,0,1;50006,124278,55330,0,1;50010,115749,54276,0,1;50014,115749,54276,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,118186,51115,0,1;50007,118186,50588,0,1;50011,123060,55330,0,1;50015,123060,54276,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,125497,50588,0,1;50008,121842,54276,0,1;50012,115749,53222,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">56</Data></Cell>
+    <Cell><Data ss:Type="String">小丸子</Data></Cell>
+    <Cell><Data ss:Type="Number">209</Data></Cell>
+    <Cell><Data ss:Type="Number">1080</Data></Cell>
+    <Cell><Data ss:Type="Number">3800</Data></Cell>
+    <Cell><Data ss:Type="String">50001,128155,53459,0,1;50005,126911,52379,0,1;50009,125667,56698,0,1;50013,130644,55618,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,128155,55618,0,1;50006,121934,51299,0,1;50010,129399,53999,0,1;50014,130644,51839,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,130644,52379,0,1;50007,130644,56158,0,1;50011,124423,52379,0,1;50015,123178,55078,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,129399,51299,0,1;50008,124423,53459,0,1;50012,120690,55078,0,1;50024,120690,56158,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">57</Data></Cell>
+    <Cell><Data ss:Type="String">小型卡卡西</Data></Cell>
+    <Cell><Data ss:Type="Number">210</Data></Cell>
+    <Cell><Data ss:Type="Number">1100</Data></Cell>
+    <Cell><Data ss:Type="Number">3850</Data></Cell>
+    <Cell><Data ss:Type="String">50001,121950,55322,0,1;50005,123221,56981,0,1;50009,128302,54215,0,1;50013,124491,55322,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,132113,55322,0,1;50006,121950,54768,0,1;50010,132113,53662,0,1;50014,123221,56428,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,121950,57534,0,1;50007,127032,57534,0,1;50011,132113,55875,0,1;50015,121950,53109,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,121950,53109,0,1;50008,125761,53662,0,1;50012,123221,56981,0,1;50024,128302,53109,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">58</Data></Cell>
+    <Cell><Data ss:Type="String">梦醒的我</Data></Cell>
+    <Cell><Data ss:Type="Number">211</Data></Cell>
+    <Cell><Data ss:Type="Number">1120</Data></Cell>
+    <Cell><Data ss:Type="Number">3900</Data></Cell>
+    <Cell><Data ss:Type="String">50001,132261,56097,0,1;50005,129668,59497,0,1;50009,123184,54397,0,1;50013,130964,56664,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,133558,57797,0,1;50006,127074,54964,0,1;50010,133558,56664,0,1;50014,134854,58930,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,129668,58930,0,1;50007,125777,54397,0,1;50011,134854,59497,0,1;50015,124481,55530,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,127074,55530,0,1;50008,132261,54964,0,1;50012,124481,53830,0,1;50024,125777,59497,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">59</Data></Cell>
+    <Cell><Data ss:Type="String">原子笔</Data></Cell>
+    <Cell><Data ss:Type="Number">212</Data></Cell>
+    <Cell><Data ss:Type="Number">1140</Data></Cell>
+    <Cell><Data ss:Type="Number">3950</Data></Cell>
+    <Cell><Data ss:Type="String">50001,133668,56872,0,1;50005,134991,55131,0,1;50009,125727,56292,0,1;50013,127051,58613,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,137638,58613,0,1;50006,125727,59193,0,1;50010,132345,56872,0,1;50014,125727,60354,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,136315,59773,0,1;50007,133668,58033,0,1;50011,129698,55131,0,1;50015,128374,59193,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,134991,56292,0,1;50008,137638,57452,0,1;50012,138962,56872,0,1;50024,133668,59773,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="String">灭天地</Data></Cell>
+    <Cell><Data ss:Type="Number">213</Data></Cell>
+    <Cell><Data ss:Type="Number">1160</Data></Cell>
+    <Cell><Data ss:Type="Number">4000</Data></Cell>
+    <Cell><Data ss:Type="String">50001,129648,62393,0,1;50005,140452,57639,0,1;50009,133699,61204,0,1;50013,141802,57639,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,135050,60610,0,1;50006,136400,60016,0,1;50010,128297,57045,0,1;50014,141802,60016,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,130998,57045,0,1;50007,141802,61798,0,1;50011,141802,61798,0,1;50015,136400,58233,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,141802,60610,0,1;50008,139101,62393,0,1;50012,132349,61798,0,1;50024,133699,60016,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">61</Data></Cell>
+    <Cell><Data ss:Type="String">晨曦迷雾</Data></Cell>
+    <Cell><Data ss:Type="Number">214</Data></Cell>
+    <Cell><Data ss:Type="Number">1180</Data></Cell>
+    <Cell><Data ss:Type="Number">4050</Data></Cell>
+    <Cell><Data ss:Type="String">50001,143307,63269,0,1;50005,130906,63269,0,1;50009,137796,57794,0,1;50013,130906,62052,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,140551,58402,0,1;50006,139173,61444,0,1;50010,132284,61444,0,1;50014,135040,63877,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,143307,63877,0,1;50007,130906,59010,0,1;50011,139173,61444,0,1;50015,144685,63269,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,144685,59619,0,1;50008,144685,63877,0,1;50012,130906,62661,0,1;50024,136418,63877,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">62</Data></Cell>
+    <Cell><Data ss:Type="String">有点小雨</Data></Cell>
+    <Cell><Data ss:Type="Number">215</Data></Cell>
+    <Cell><Data ss:Type="Number">1200</Data></Cell>
+    <Cell><Data ss:Type="Number">4100</Data></Cell>
+    <Cell><Data ss:Type="String">50001,141975,63517,0,1;50005,147598,65385,0,1;50009,137758,62894,0,1;50013,134947,61026,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,147598,61649,0,1;50006,144787,62894,0,1;50010,144787,64140,0,1;50014,139164,64762,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,146192,62272,0,1;50007,137758,65385,0,1;50011,147598,64140,0,1;50015,139164,62272,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,141975,65385,0,1;50008,134947,60403,0,1;50012,136352,64140,0,1;50024,136352,63517,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">63</Data></Cell>
+    <Cell><Data ss:Type="String">朕11</Data></Cell>
+    <Cell><Data ss:Type="Number">216</Data></Cell>
+    <Cell><Data ss:Type="Number">1220</Data></Cell>
+    <Cell><Data ss:Type="Number">4150</Data></Cell>
+    <Cell><Data ss:Type="String">50001,141938,64365,0,1;50005,147673,60541,0,1;50009,147673,62453,0,1;50013,146239,66277,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,141938,66914,0,1;50006,146239,65002,0,1;50010,136203,62453,0,1;50014,146239,64365,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,147673,60541,0,1;50007,144805,65639,0,1;50011,140504,61816,0,1;50015,140504,66277,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,143372,62453,0,1;50008,146239,66914,0,1;50012,139070,66914,0,1;50024,146239,66277,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">64</Data></Cell>
+    <Cell><Data ss:Type="String">安锦成</Data></Cell>
+    <Cell><Data ss:Type="Number">217</Data></Cell>
+    <Cell><Data ss:Type="Number">1240</Data></Cell>
+    <Cell><Data ss:Type="Number">4200</Data></Cell>
+    <Cell><Data ss:Type="String">50001,152064,66516,0,1;50005,141829,65212,0,1;50009,141829,67820,0,1;50013,153526,65864,0,1;50017,143291,62603,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,141829,68472,0,1;50006,138905,67820,0,1;50010,140367,63255,0,1;50014,152064,65864,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,138905,65212,0,1;50007,150602,67168,0,1;50011,138905,63255,0,1;50015,143291,68472,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,143291,65864,0,1;50008,138905,63907,0,1;50012,141829,65212,0,1;50024,150602,63255,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">65</Data></Cell>
+    <Cell><Data ss:Type="String">西门墨尘</Data></Cell>
+    <Cell><Data ss:Type="Number">218</Data></Cell>
+    <Cell><Data ss:Type="Number">1260</Data></Cell>
+    <Cell><Data ss:Type="Number">4250</Data></Cell>
+    <Cell><Data ss:Type="String">50001,156543,69385,0,1;50005,146107,66049,0,1;50009,156543,68051,0,1;50013,152070,67384,0,1;50017,144616,70052,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,152070,66049,0,1;50006,144616,64715,0,1;50010,153561,64048,0,1;50014,146107,68718,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,144616,70052,0,1;50007,143125,63381,0,1;50011,153561,64048,0,1;50015,149089,68051,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,153561,68718,0,1;50008,152070,65382,0,1;50012,143125,68051,0,1;50024,155052,67384,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">66</Data></Cell>
+    <Cell><Data ss:Type="String">赵梦夕</Data></Cell>
+    <Cell><Data ss:Type="Number">219</Data></Cell>
+    <Cell><Data ss:Type="Number">1280</Data></Cell>
+    <Cell><Data ss:Type="Number">4300</Data></Cell>
+    <Cell><Data ss:Type="String">50001,159605,66202,0,1;50005,148964,66885,0,1;50009,144404,69615,0,1;50013,152005,70297,0,1;50017,153525,70980,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,159605,70297,0,1;50006,144404,64837,0,1;50010,153525,64837,0,1;50014,158085,69615,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,150484,68250,0,1;50007,152005,64837,0,1;50011,158085,68932,0,1;50015,147444,68250,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,155045,67567,0,1;50008,158085,68250,0,1;50012,158085,68932,0,1;50024,150484,64837,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">67</Data></Cell>
+    <Cell><Data ss:Type="String">一统天下</Data></Cell>
+    <Cell><Data ss:Type="Number">220</Data></Cell>
+    <Cell><Data ss:Type="Number">1300</Data></Cell>
+    <Cell><Data ss:Type="Number">4350</Data></Cell>
+    <Cell><Data ss:Type="String">50001,161146,66313,0,1;50005,161146,70502,0,1;50009,150300,68407,0,1;50013,161146,70502,0,1;50017,159597,67011,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,162696,73294,0,1;50006,159597,67011,0,1;50010,147201,70502,0,1;50014,150300,69804,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,156498,68407,0,1;50007,147201,72596,0,1;50011,151850,70502,0,1;50015,154949,73294,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,159597,67709,0,1;50008,153399,73294,0,1;50012,159597,66313,0,1;50024,158047,70502,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">68</Data></Cell>
+    <Cell><Data ss:Type="String">夏末初凉</Data></Cell>
+    <Cell><Data ss:Type="Number">221</Data></Cell>
+    <Cell><Data ss:Type="Number">1320</Data></Cell>
+    <Cell><Data ss:Type="Number">4400</Data></Cell>
+    <Cell><Data ss:Type="String">50001,150024,69238,0,1;50005,159500,72807,0,1;50009,151604,67811,0,1;50013,161079,73521,0,1;50017,161079,70666,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,153183,67811,0,1;50006,165817,69952,0,1;50010,156341,69238,0,1;50014,159500,72093,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,162658,73521,0,1;50007,164237,73521,0,1;50011,159500,72807,0,1;50015,156341,72807,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,161079,69952,0,1;50008,161079,71380,0,1;50012,165817,69952,0,1;50024,154762,74235,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">69</Data></Cell>
+    <Cell><Data ss:Type="String">平生欢</Data></Cell>
+    <Cell><Data ss:Type="Number">222</Data></Cell>
+    <Cell><Data ss:Type="Number">1340</Data></Cell>
+    <Cell><Data ss:Type="Number">4450</Data></Cell>
+    <Cell><Data ss:Type="String">50001,160938,72255,0,1;50005,157719,69335,0,1;50009,156109,69335,0,1;50013,157719,70065,0,1;50017,154500,72985,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,164156,76634,0,1;50006,160938,71525,0,1;50010,154500,74444,0,1;50014,164156,74444,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,157719,75904,0,1;50007,159328,69335,0,1;50011,164156,72985,0,1;50015,157719,70065,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,154500,71525,0,1;50008,156109,72255,0,1;50012,156109,76634,0,1;50024,159328,69335,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="String">司马小林</Data></Cell>
+    <Cell><Data ss:Type="Number">223</Data></Cell>
+    <Cell><Data ss:Type="Number">1360</Data></Cell>
+    <Cell><Data ss:Type="Number">4500</Data></Cell>
+    <Cell><Data ss:Type="String">50001,165622,77596,0,1;50005,160703,74612,0,1;50009,155783,78342,0,1;50013,159063,75358,0,1;50017,157423,78342,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,157423,74612,0,1;50006,172182,76104,0,1;50010,172182,76850,0,1;50014,163983,72373,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,165622,72373,0,1;50007,155783,71627,0,1;50011,162343,71627,0,1;50015,160703,70881,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,167262,70881,0,1;50008,159063,76850,0,1;50012,172182,78342,0,1;50024,168902,73119,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">71</Data></Cell>
+    <Cell><Data ss:Type="String">微风正好</Data></Cell>
+    <Cell><Data ss:Type="Number">224</Data></Cell>
+    <Cell><Data ss:Type="Number">1380</Data></Cell>
+    <Cell><Data ss:Type="Number">4550</Data></Cell>
+    <Cell><Data ss:Type="String">50001,160390,73217,0,1;50005,167073,80081,0,1;50009,168743,80081,0,1;50013,167073,76268,0,1;50017,163731,74742,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,163731,73217,0,1;50006,168743,77030,0,1;50010,160390,72454,0,1;50014,160390,77793,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,167073,77030,0,1;50007,167073,77793,0,1;50011,170414,74742,0,1;50015,170414,73217,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,165402,74742,0,1;50008,158719,77793,0,1;50012,172085,76268,0,1;50024,170414,80081,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">72</Data></Cell>
+    <Cell><Data ss:Type="String">糖芯°</Data></Cell>
+    <Cell><Data ss:Type="Number">225</Data></Cell>
+    <Cell><Data ss:Type="Number">1400</Data></Cell>
+    <Cell><Data ss:Type="Number">4600</Data></Cell>
+    <Cell><Data ss:Type="String">50001,176999,75608,0,1;50005,178701,77947,0,1;50009,171893,79505,0,1;50013,168490,79505,0,1;50017,165086,77947,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,168490,80285,0,1;50006,173595,79505,0,1;50010,176999,74049,0,1;50014,163384,77167,0,1;50018,165086,78726,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,176999,77167,0,1;50007,178701,81844,0,1;50011,163384,81844,0,1;50015,178701,76388,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,176999,79505,0,1;50008,165086,74049,0,1;50012,166788,75608,0,1;50024,176999,80285,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">兜兜里藏着糖</Data></Cell>
+    <Cell><Data ss:Type="Number">226</Data></Cell>
+    <Cell><Data ss:Type="Number">1420</Data></Cell>
+    <Cell><Data ss:Type="Number">4650</Data></Cell>
+    <Cell><Data ss:Type="String">50001,166406,82038,0,1;50005,178540,79649,0,1;50009,171606,79649,0,1;50013,169873,76463,0,1;50017,168139,76463,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,168139,78056,0,1;50006,164673,82038,0,1;50010,168139,77259,0,1;50014,178540,78852,0,1;50018,169873,76463,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,166406,83631,0,1;50007,169873,82038,0,1;50011,176806,83631,0,1;50015,169873,77259,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,166406,78852,0,1;50008,175073,79649,0,1;50012,180273,79649,0,1;50024,166406,81241,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">74</Data></Cell>
+    <Cell><Data ss:Type="String">戒不掉的思念</Data></Cell>
+    <Cell><Data ss:Type="Number">227</Data></Cell>
+    <Cell><Data ss:Type="Number">1440</Data></Cell>
+    <Cell><Data ss:Type="Number">4700</Data></Cell>
+    <Cell><Data ss:Type="String">50001,183595,83009,0,1;50005,171237,83009,0,1;50009,183595,82195,0,1;50013,169472,84637,0,1;50017,180064,80568,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,169472,78940,0,1;50006,174768,83009,0,1;50010,180064,81382,0,1;50014,174768,83009,0,1;50018,185360,83823,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,185360,85451,0,1;50007,181830,78126,0,1;50011,173003,83009,0,1;50015,185360,83009,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,167707,83823,0,1;50008,171237,85451,0,1;50012,167707,78940,0,1;50024,173003,84637,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="String">十里春风</Data></Cell>
+    <Cell><Data ss:Type="Number">228</Data></Cell>
+    <Cell><Data ss:Type="Number">1460</Data></Cell>
+    <Cell><Data ss:Type="Number">4750</Data></Cell>
+    <Cell><Data ss:Type="String">50001,170769,83137,0,1;50005,185149,84799,0,1;50009,183352,82305,0,1;50013,170769,83968,0,1;50017,181554,78980,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,179757,80642,0,1;50006,186947,80642,0,1;50010,174364,80642,0,1;50014,185149,83968,0,1;50018,172566,84799,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,176161,85631,0,1;50007,170769,81474,0,1;50011,172566,87293,0,1;50015,181554,81474,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,181554,87293,0,1;50008,172566,83137,0,1;50012,183352,83137,0,1;50024,186947,83137,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">76</Data></Cell>
+    <Cell><Data ss:Type="String">被丢弃的野猫</Data></Cell>
+    <Cell><Data ss:Type="Number">229</Data></Cell>
+    <Cell><Data ss:Type="Number">1480</Data></Cell>
+    <Cell><Data ss:Type="Number">4800</Data></Cell>
+    <Cell><Data ss:Type="String">50001,183026,84074,0,1;50005,177535,84074,0,1;50009,188516,88320,0,1;50013,183026,84074,0,1;50017,183026,84074,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,186686,89170,0,1;50006,186686,87471,0,1;50010,190347,86622,0,1;50014,192177,84074,0,1;50018,183026,81527,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,184856,88320,0,1;50007,173874,88320,0,1;50011,183026,82376,0,1;50015,177535,86622,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,186686,89170,0,1;50008,179365,87471,0,1;50012,190347,87471,0,1;50024,179365,82376,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">77</Data></Cell>
+    <Cell><Data ss:Type="String">提笔绘倾城</Data></Cell>
+    <Cell><Data ss:Type="Number">230</Data></Cell>
+    <Cell><Data ss:Type="Number">1500</Data></Cell>
+    <Cell><Data ss:Type="Number">4850</Data></Cell>
+    <Cell><Data ss:Type="String">50001,182598,82397,0,1;50005,186325,91070,0,1;50009,182598,82397,0,1;50013,193778,91070,0,1;50017,182598,86734,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,193778,89336,0,1;50006,195641,84999,0,1;50010,182598,84999,0,1;50014,180735,83264,0,1;50018,177008,86734,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,191914,82397,0,1;50007,193778,84131,0,1;50011,195641,83264,0,1;50015,180735,83264,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,195641,87601,0,1;50008,188188,88468,0,1;50012,193778,86734,0,1;50024,184461,86734,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">78</Data></Cell>
+    <Cell><Data ss:Type="String">来年秋风起</Data></Cell>
+    <Cell><Data ss:Type="Number">231</Data></Cell>
+    <Cell><Data ss:Type="Number">1520</Data></Cell>
+    <Cell><Data ss:Type="Number">4900</Data></Cell>
+    <Cell><Data ss:Type="String">50001,193446,89452,0,1;50005,183963,92109,0,1;50009,199135,92995,0,1;50013,180170,92995,0,1;50017,185859,92995,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,183963,90338,0,1;50006,191549,86795,0,1;50010,191549,92109,0,1;50014,189653,89452,0,1;50018,180170,86795,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,195342,86795,0,1;50007,185859,91224,0,1;50011,197239,87681,0,1;50015,185859,86795,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,189653,89452,0,1;50008,185859,86795,0,1;50012,189653,90338,0,1;50024,182066,89452,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">79</Data></Cell>
+    <Cell><Data ss:Type="String">顾言希</Data></Cell>
+    <Cell><Data ss:Type="Number">232</Data></Cell>
+    <Cell><Data ss:Type="Number">1540</Data></Cell>
+    <Cell><Data ss:Type="Number">4950</Data></Cell>
+    <Cell><Data ss:Type="String">50001,196888,92241,0,1;50005,193028,89528,0,1;50009,198818,91337,0,1;50013,191097,94954,0,1;50017,198818,94954,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,187237,88624,0,1;50006,193028,89528,0,1;50010,193028,87720,0,1;50014,194958,94954,0,1;50018,196888,92241,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,198818,93145,0,1;50007,194958,88624,0,1;50011,202679,94050,0,1;50015,183376,87720,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,189167,89528,0,1;50008,187237,93145,0,1;50012,187237,94050,0,1;50024,193028,87720,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="String">小傲娇</Data></Cell>
+    <Cell><Data ss:Type="Number">233</Data></Cell>
+    <Cell><Data ss:Type="Number">1560</Data></Cell>
+    <Cell><Data ss:Type="Number">5000</Data></Cell>
+    <Cell><Data ss:Type="String">50001,192505,96015,0,1;50005,206255,93246,0,1;50009,206255,88630,0,1;50013,206255,94169,0,1;50017,206255,96939,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,194469,87706,0,1;50006,196434,95092,0,1;50010,200362,95092,0,1;50014,192505,96015,0,1;50018,206255,96939,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,198398,94169,0,1;50007,202327,91399,0,1;50011,188576,91399,0,1;50015,204291,95092,0,1;50019,204291,96939,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,198398,93246,0,1;50008,204291,89553,0,1;50012,200362,93246,0,1;50024,202327,88630,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">81</Data></Cell>
+    <Cell><Data ss:Type="String">何以解千愁</Data></Cell>
+    <Cell><Data ss:Type="Number">234</Data></Cell>
+    <Cell><Data ss:Type="Number">1580</Data></Cell>
+    <Cell><Data ss:Type="Number">5050</Data></Cell>
+    <Cell><Data ss:Type="String">50001,191891,98015,0,1;50005,197888,93303,0,1;50009,189892,96130,0,1;50013,195889,89533,0,1;50017,201885,98015,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,191891,98015,0,1;50006,201885,93303,0,1;50010,199887,90476,0,1;50014,197888,98958,0,1;50018,205883,89533,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,209881,89533,0,1;50007,193890,98015,0,1;50011,209881,97073,0,1;50015,201885,95188,0,1;50019,203884,90476,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,203884,96130,0,1;50008,189892,93303,0,1;50012,209881,98958,0,1;50024,195889,96130,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">82</Data></Cell>
+    <Cell><Data ss:Type="String">感情他放过谁</Data></Cell>
+    <Cell><Data ss:Type="Number">235</Data></Cell>
+    <Cell><Data ss:Type="Number">1600</Data></Cell>
+    <Cell><Data ss:Type="Number">5100</Data></Cell>
+    <Cell><Data ss:Type="String">50001,209471,95232,0,1;50005,203370,99079,0,1;50009,207437,96194,0,1;50013,213538,96194,0,1;50017,193201,92346,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,193201,100041,0,1;50006,207437,94270,0,1;50010,207437,99079,0,1;50014,203370,99079,0,1;50018,207437,99079,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,193201,94270,0,1;50007,199302,97155,0,1;50011,203370,99079,0,1;50015,201336,99079,0,1;50019,213538,97155,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,197268,100041,0,1;50008,199302,95232,0,1;50012,201336,96194,0,1;50024,205403,95232,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">83</Data></Cell>
+    <Cell><Data ss:Type="String">往事不再提</Data></Cell>
+    <Cell><Data ss:Type="Number">236</Data></Cell>
+    <Cell><Data ss:Type="Number">1620</Data></Cell>
+    <Cell><Data ss:Type="Number">5150</Data></Cell>
+    <Cell><Data ss:Type="String">50001,206883,99146,0,1;50005,206883,99146,0,1;50009,198607,94238,0,1;50013,208951,94238,0,1;50017,198607,96201,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,202745,99146,0,1;50006,200676,102091,0,1;50010,206883,97183,0,1;50014,202745,100128,0,1;50018,215158,97183,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,217227,101109,0,1;50007,202745,94238,0,1;50011,202745,94238,0,1;50015,211020,95220,0,1;50019,211020,102091,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,204814,102091,0,1;50008,211020,94238,0,1;50012,196538,102091,0,1;50024,204814,102091,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">84</Data></Cell>
+    <Cell><Data ss:Type="String">悲喜是你</Data></Cell>
+    <Cell><Data ss:Type="Number">237</Data></Cell>
+    <Cell><Data ss:Type="Number">1640</Data></Cell>
+    <Cell><Data ss:Type="Number">5200</Data></Cell>
+    <Cell><Data ss:Type="String">50001,199922,95162,0,1;50005,206236,103176,0,1;50009,218862,103176,0,1;50013,199922,95162,0,1;50017,206236,104177,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,208340,100171,0,1;50006,216758,105179,0,1;50010,212549,97165,0,1;50014,206236,99169,0,1;50018,204131,102174,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,218862,100171,0,1;50007,202027,97165,0,1;50011,206236,104177,0,1;50015,204131,102174,0,1;50019,220967,96164,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,202027,95162,0,1;50008,212549,95162,0,1;50012,208340,97165,0,1;50024,216758,99169,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">85</Data></Cell>
+    <Cell><Data ss:Type="String">夏醉浅梦</Data></Cell>
+    <Cell><Data ss:Type="Number">238</Data></Cell>
+    <Cell><Data ss:Type="Number">1660</Data></Cell>
+    <Cell><Data ss:Type="Number">5250</Data></Cell>
+    <Cell><Data ss:Type="String">50001,222599,99136,0,1;50005,224739,102203,0,1;50009,218318,105269,0,1;50013,203336,97092,0,1;50017,220459,107313,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,205476,97092,0,1;50006,209757,105269,0,1;50010,220459,107313,0,1;50014,220459,101180,0,1;50018,205476,104247,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,216178,107313,0,1;50007,222599,101180,0,1;50011,218318,104247,0,1;50015,209757,100158,0,1;50019,216178,97092,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,216178,107313,0,1;50008,207616,97092,0,1;50012,207616,105269,0,1;50024,220459,105269,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell><Data ss:Type="String">鹿与森</Data></Cell>
+    <Cell><Data ss:Type="Number">239</Data></Cell>
+    <Cell><Data ss:Type="Number">1680</Data></Cell>
+    <Cell><Data ss:Type="Number">5300</Data></Cell>
+    <Cell><Data ss:Type="String">50001,222032,104268,0,1;50005,211148,109481,0,1;50009,224209,100097,0,1;50013,217679,105310,0,1;50017,213325,104268,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,224209,105310,0,1;50006,215502,106353,0,1;50010,222032,103225,0,1;50014,217679,100097,0,1;50018,217679,105310,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,211148,99054,0,1;50007,217679,107396,0,1;50011,228562,108438,0,1;50015,208971,105310,0,1;50019,217679,105310,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,213325,100097,0,1;50008,224209,106353,0,1;50012,217679,104268,0,1;50024,217679,100097,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">87</Data></Cell>
+    <Cell><Data ss:Type="String">迷人的混蛋</Data></Cell>
+    <Cell><Data ss:Type="Number">240</Data></Cell>
+    <Cell><Data ss:Type="Number">1700</Data></Cell>
+    <Cell><Data ss:Type="Number">5350</Data></Cell>
+    <Cell><Data ss:Type="String">50001,212497,101041,0,1;50005,223565,104231,0,1;50009,223565,106359,0,1;50013,210284,102104,0,1;50017,221352,105295,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,210284,101041,0,1;50006,223565,104231,0,1;50010,212497,102104,0,1;50014,230206,105295,0,1;50018,210284,103168,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,219138,111676,0,1;50007,214711,111676,0,1;50011,216924,108486,0,1;50015,210284,110613,0,1;50019,210284,107422,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,219138,108486,0,1;50008,212497,106359,0,1;50012,212497,101041,0,1;50024,223565,102104,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">88</Data></Cell>
+    <Cell><Data ss:Type="String">一身傲气王</Data></Cell>
+    <Cell><Data ss:Type="Number">241</Data></Cell>
+    <Cell><Data ss:Type="Number">1720</Data></Cell>
+    <Cell><Data ss:Type="Number">5400</Data></Cell>
+    <Cell><Data ss:Type="String">50001,227305,113899,0,1;50005,218303,113899,0,1;50009,222804,105221,0,1;50013,213802,105221,0,1;50017,216052,110645,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,231806,105221,0,1;50006,216052,111730,0,1;50010,225055,111730,0,1;50014,220553,108476,0,1;50018,220553,113899,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,222804,107391,0,1;50007,229556,107391,0,1;50011,225055,112815,0,1;50015,216052,103052,0,1;50019,229556,103052,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,227305,107391,0,1;50008,236307,104136,0,1;50012,220553,110645,0,1;50024,222804,109560,0,1;50020,234057,111730,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">89</Data></Cell>
+    <Cell><Data ss:Type="String">不谈感情</Data></Cell>
+    <Cell><Data ss:Type="Number">242</Data></Cell>
+    <Cell><Data ss:Type="Number">1740</Data></Cell>
+    <Cell><Data ss:Type="Number">5450</Data></Cell>
+    <Cell><Data ss:Type="String">50001,217367,105096,0,1;50005,235672,106202,0,1;50009,237960,106202,0,1;50013,219655,106202,0,1;50017,237960,115053,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,221943,111734,0,1;50006,219655,106202,0,1;50010,221943,107309,0,1;50014,217367,108415,0,1;50018,221943,108415,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,219655,107309,0,1;50007,228808,108415,0,1;50011,235672,107309,0,1;50015,226519,115053,0,1;50019,233384,113946,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,228808,105096,0,1;50008,217367,106202,0,1;50012,235672,109521,0,1;50024,240248,115053,0,1;50020,226519,115053,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">90</Data></Cell>
+    <Cell><Data ss:Type="String">归来</Data></Cell>
+    <Cell><Data ss:Type="Number">243</Data></Cell>
+    <Cell><Data ss:Type="Number">1760</Data></Cell>
+    <Cell><Data ss:Type="Number">5500</Data></Cell>
+    <Cell><Data ss:Type="String">50001,227941,107166,0,1;50005,232593,110550,0,1;50009,220963,115063,0,1;50013,220963,115063,0,1;50017,239570,112807,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,230267,109422,0,1;50006,225615,113935,0,1;50010,225615,108294,0,1;50014,227941,110550,0,1;50018,225615,110550,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,241896,118447,0,1;50007,227941,107166,0,1;50011,239570,111678,0,1;50015,239570,115063,0,1;50019,232593,112807,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,223289,107166,0,1;50008,241896,112807,0,1;50012,223289,111678,0,1;50024,234918,111678,0,1;50020,237244,116191,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">91</Data></Cell>
+    <Cell><Data ss:Type="String">无聊中死亡</Data></Cell>
+    <Cell><Data ss:Type="Number">244</Data></Cell>
+    <Cell><Data ss:Type="Number">1780</Data></Cell>
+    <Cell><Data ss:Type="Number">5550</Data></Cell>
+    <Cell><Data ss:Type="String">50001,236428,120773,0,1;50005,236428,118472,0,1;50009,236428,119622,0,1;50013,245885,113871,0,1;50017,236428,116172,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,224606,111571,0,1;50006,231699,113871,0,1;50010,234063,115022,0,1;50014,234063,110421,0,1;50018,231699,110421,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,236428,115022,0,1;50007,238792,113871,0,1;50011,248249,113871,0,1;50015,234063,110421,0,1;50019,241156,110421,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,243520,119622,0,1;50008,229335,113871,0,1;50012,226970,117322,0,1;50024,245885,116172,0,1;50020,224606,111571,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">92</Data></Cell>
+    <Cell><Data ss:Type="String">你迷人的爹</Data></Cell>
+    <Cell><Data ss:Type="Number">245</Data></Cell>
+    <Cell><Data ss:Type="Number">1800</Data></Cell>
+    <Cell><Data ss:Type="Number">5600</Data></Cell>
+    <Cell><Data ss:Type="String">50001,233085,112572,0,1;50005,237891,117263,0,1;50009,233085,112572,0,1;50013,230682,119608,0,1;50017,233085,121953,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,237891,113745,0,1;50006,245099,121953,0,1;50010,242696,113745,0,1;50014,247502,114917,0,1;50018,245099,116090,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,249905,112572,0,1;50007,235488,116090,0,1;50011,245099,116090,0,1;50015,228279,123126,0,1;50019,230682,116090,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,249905,120780,0,1;50008,240294,120780,0,1;50012,233085,118435,0,1;50024,233085,123126,0,1;50020,230682,116090,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">93</Data></Cell>
+    <Cell><Data ss:Type="String">各自散去</Data></Cell>
+    <Cell><Data ss:Type="Number">246</Data></Cell>
+    <Cell><Data ss:Type="Number">1820</Data></Cell>
+    <Cell><Data ss:Type="Number">5650</Data></Cell>
+    <Cell><Data ss:Type="String">50001,231982,115945,0,1;50005,249075,117140,0,1;50009,256401,115945,0,1;50013,239308,115945,0,1;50017,256401,118335,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,253959,123116,0,1;50006,244192,125507,0,1;50010,239308,125507,0,1;50014,251517,113554,0,1;50018,244192,113554,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,256401,125507,0,1;50007,236866,123116,0,1;50011,231982,119531,0,1;50015,244192,125507,0,1;50019,234424,115945,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,234424,119531,0,1;50008,246633,115945,0,1;50012,244192,120726,0,1;50024,236866,125507,0,1;50020,251517,119531,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">94</Data></Cell>
+    <Cell><Data ss:Type="String">无欲无求</Data></Cell>
+    <Cell><Data ss:Type="Number">247</Data></Cell>
+    <Cell><Data ss:Type="Number">1840</Data></Cell>
+    <Cell><Data ss:Type="Number">5700</Data></Cell>
+    <Cell><Data ss:Type="String">50001,235734,116963,0,1;50005,238216,125492,0,1;50009,248142,125492,0,1;50013,243179,126710,0,1;50017,260549,127928,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,248142,126710,0,1;50006,238216,121837,0,1;50010,250623,119400,0,1;50014,260549,127928,0,1;50018,245660,121837,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,250623,116963,0,1;50007,260549,126710,0,1;50011,258067,115745,0,1;50015,258067,121837,0,1;50019,255586,120618,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,258067,118181,0,1;50008,248142,116963,0,1;50012,235734,123055,0,1;50024,248142,124273,0,1;50020,248142,120618,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">95</Data></Cell>
+    <Cell><Data ss:Type="String">青衫客</Data></Cell>
+    <Cell><Data ss:Type="Number">248</Data></Cell>
+    <Cell><Data ss:Type="Number">1860</Data></Cell>
+    <Cell><Data ss:Type="Number">5750</Data></Cell>
+    <Cell><Data ss:Type="String">50001,244559,121686,0,1;50005,247080,130378,0,1;50009,239516,122928,0,1;50013,249601,121686,0,1;50017,244559,129136,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,247080,127895,0,1;50006,259686,125411,0,1;50010,254644,125411,0,1;50014,244559,125411,0,1;50018,242038,126653,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,254644,125411,0,1;50007,259686,130378,0,1;50011,257165,117961,0,1;50015,254644,119203,0,1;50019,247080,125411,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,239516,126653,0,1;50008,247080,121686,0,1;50012,239516,122928,0,1;50024,244559,126653,0,1;50020,242038,124170,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">96</Data></Cell>
+    <Cell><Data ss:Type="String">盗心病人</Data></Cell>
+    <Cell><Data ss:Type="Number">249</Data></Cell>
+    <Cell><Data ss:Type="Number">1880</Data></Cell>
+    <Cell><Data ss:Type="Number">5800</Data></Cell>
+    <Cell><Data ss:Type="String">50001,256157,124010,0,1;50005,251033,132868,0,1;50009,258718,122744,0,1;50013,268964,131602,0,1;50017,268964,130337,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,266403,125275,0,1;50006,256157,132868,0,1;50010,245910,122744,0,1;50014,256157,121479,0,1;50018,268964,120213,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,251033,129071,0,1;50007,253595,120213,0,1;50011,258718,131602,0,1;50015,263841,132868,0,1;50019,266403,124010,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,268964,120213,0,1;50008,263841,127806,0,1;50012,261280,125275,0,1;50024,245910,125275,0,1;50020,256157,126541,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">97</Data></Cell>
+    <Cell><Data ss:Type="String">第二人格i</Data></Cell>
+    <Cell><Data ss:Type="Number">250</Data></Cell>
+    <Cell><Data ss:Type="Number">1900</Data></Cell>
+    <Cell><Data ss:Type="Number">5850</Data></Cell>
+    <Cell><Data ss:Type="String">50001,260222,131518,0,1;50005,252415,122493,0,1;50009,249813,122493,0,1;50013,252415,135387,0,1;50017,265426,135387,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,252415,122493,0,1;50006,257619,123782,0,1;50010,270630,128940,0,1;50014,249813,127650,0,1;50018,252415,130229,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,273233,128940,0,1;50007,273233,126361,0,1;50011,257619,123782,0,1;50015,270630,123782,0,1;50019,265426,130229,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,260222,131518,0,1;50008,257619,126361,0,1;50012,268028,128940,0,1;50024,262824,126361,0,1;50020,270630,131518,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">98</Data></Cell>
+    <Cell><Data ss:Type="String">逆流的鱼</Data></Cell>
+    <Cell><Data ss:Type="Number">251</Data></Cell>
+    <Cell><Data ss:Type="Number">1920</Data></Cell>
+    <Cell><Data ss:Type="Number">5900</Data></Cell>
+    <Cell><Data ss:Type="String">50001,269605,127425,0,1;50005,251103,133993,0,1;50009,269605,132679,0,1;50013,251103,132679,0,1;50017,269605,137934,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,251103,130052,0,1;50006,272248,124797,0,1;50010,269605,131366,0,1;50014,277534,136620,0,1;50018,256389,127425,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,269605,135306,0,1;50007,256389,124797,0,1;50011,259032,131366,0,1;50015,251103,130052,0,1;50019,277534,133993,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,264319,132679,0,1;50008,251103,126111,0,1;50012,253746,136620,0,1;50024,274891,135306,0,1;50020,264319,133993,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">99</Data></Cell>
+    <Cell><Data ss:Type="String">此人须珍藏</Data></Cell>
+    <Cell><Data ss:Type="Number">252</Data></Cell>
+    <Cell><Data ss:Type="Number">1940</Data></Cell>
+    <Cell><Data ss:Type="Number">5950</Data></Cell>
+    <Cell><Data ss:Type="String">50001,265785,128478,0,1;50005,279208,140523,0,1;50009,281893,132493,0,1;50013,279208,137846,0,1;50017,257731,128478,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,273839,129817,0,1;50006,279208,135170,0,1;50010,260415,131155,0,1;50014,263100,129817,0,1;50018,279208,131155,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,263100,140523,0,1;50007,271154,140523,0,1;50011,265785,136508,0,1;50015,255046,127140,0,1;50019,257731,139185,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,260415,135170,0,1;50008,273839,140523,0,1;50012,268470,127140,0,1;50024,279208,132493,0,1;50020,268470,128478,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">100</Data></Cell>
+    <Cell><Data ss:Type="String">最帅路人奖</Data></Cell>
+    <Cell><Data ss:Type="Number">253</Data></Cell>
+    <Cell><Data ss:Type="Number">1960</Data></Cell>
+    <Cell><Data ss:Type="Number">6000</Data></Cell>
+    <Cell><Data ss:Type="String">50001,261746,139052,0,1;50005,286285,139052,0,1;50009,286285,132236,0,1;50013,264473,130872,0,1;50017,269926,137689,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,275379,141779,0,1;50006,269926,141779,0,1;50010,275379,133599,0,1;50014,283559,137689,0,1;50018,280832,132236,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,275379,136326,0,1;50007,272653,133599,0,1;50011,269926,139052,0,1;50015,280832,140415,0,1;50019,275379,141779,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,264473,141779,0,1;50008,259020,140415,0,1;50012,275379,130872,0,1;50024,280832,140415,0,1;50020,272653,136326,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">101</Data></Cell>
+    <Cell><Data ss:Type="String">心塞少女</Data></Cell>
+    <Cell><Data ss:Type="Number">254</Data></Cell>
+    <Cell><Data ss:Type="Number">1980</Data></Cell>
+    <Cell><Data ss:Type="Number">6050</Data></Cell>
+    <Cell><Data ss:Type="String">50001,282426,136081,0,1;50005,274120,136081,0,1;50009,285195,136081,0,1;50013,279657,131916,0,1;50017,268582,141636,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,268582,133304,0,1;50006,290733,137470,0,1;50010,265813,136081,0,1;50014,282426,136081,0,1;50018,287964,141636,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,282426,143024,0,1;50007,265813,134693,0,1;50011,276889,131916,0,1;50015,290733,133304,0,1;50019,285195,138859,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,285195,134693,0,1;50008,290733,143024,0,1;50012,285195,133304,0,1;50024,290733,145801,0,1;50020,276889,145801,0,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">102</Data></Cell>
+    <Cell><Data ss:Type="String">最瞎损友</Data></Cell>
+    <Cell><Data ss:Type="Number">255</Data></Cell>
+    <Cell><Data ss:Type="Number">2000</Data></Cell>
+    <Cell><Data ss:Type="Number">6100</Data></Cell>
+    <Cell><Data ss:Type="String">50001,281158,144250,0,1;50005,278346,135765,0,1;50009,275534,140007,0,1;50013,295215,144250,0,1;50017,292404,145664,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50002,286781,137179,0,1;50006,295215,142836,0,1;50010,283969,134350,0,1;50014,289592,148493,0,1;50018,269911,142836,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50003,275534,148493,0,1;50007,278346,144250,0,1;50011,278346,147078,0,1;50015,292404,138593,0,1;50019,267100,135765,0,1;</Data></Cell>
+    <Cell><Data ss:Type="String">50004,283969,142836,0,1;50008,269911,138593,0,1;50012,286781,135765,0,1;50024,289592,142836,0,1;50020,272723,145664,0,1;</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>9</ActiveRow>
+     <ActiveCol>6</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0" ss:Height="14.0625"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0" ss:Height="14.0625"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

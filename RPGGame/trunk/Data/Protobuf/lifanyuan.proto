@@ -1,0 +1,46 @@
+package lfy;
+
+//信息请求
+message LFYInfoReq
+{
+}
+
+message _Item 
+{
+	required int32 nType = 1;	
+	required int32 nID = 2;
+	required int32 nNum = 3;
+}
+
+//信息返回
+message LFYInfoRet
+{
+	required int32 nStar = 1; 			//星级
+	required int32 nProg = 2; 			//进度
+	repeated _Item tItemList = 3; 		//物品表
+	required int32 nTimeWaiJiao = 4; 	//定时获得(每小时)
+	required int32 nCurrWaiJiao = 5; 	//当前拥有
+	required int32 nMaxWaiJiao = 6; 	//上限
+	required int32 nCostWaiJiao = 7; 	//当次消耗
+	optional bool bDayFirstOpen = 8; 	//是否当天第一次打开
+}
+
+//纳贡
+message LFYUpgradeReq
+{
+	
+}
+
+//一键纳贡
+message LFYOneKeyUpgradeReq
+{
+}
+
+//纳贡返回
+message LFYUpgradeRet
+{
+	repeated _Item tItemList = 1; 	//物品列表
+	optional bool bOneKey = 2; 		//是否1键纳贡
+	optional int32 nOldStar = 3; 	//旧星级
+	optional int32 nNewStar = 4;  	//新星级
+}

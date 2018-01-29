@@ -1,0 +1,97 @@
+﻿1.添加物品:
+additem type id num
+type: 物品类型，一般都是道具: 1
+id: 道具ID
+num: 道具数量
+
+例子：
+增加银两:additem 1 10002 100000
+
+2.重新加载脚本:
+lgm reload
+
+3.增加奏章数量：
+addzz num
+
+4.增加请按折数量:
+addqaz num
+
+5.增加寻访次数:
+addxf num
+
+6.设置VIP等级:
+setvip num
+
+7.通关副本关卡
+duppass num
+
+8.创建皇子
+createhz 性别[1-2] 天赋[1-5]
+
+9.升级所有大臣
+mcupgrade num
+
+10.升级所有皇子
+hzupgrade num
+
+11.完成主线任务
+mtask id
+
+12.调出主线任务
+inittask id
+
+13.模拟充值
+gmrecharge id
+
+14.开启活动
+hdtime 活动ID 持续时间(分钟) 子活动ID(如果有)
+
+
+15.重置军机处次数
+resetjjc
+
+16.发送公告
+sendnotice id keep interval content
+id 		随意(>0)
+keep		持续时间(秒)
+interval	公告间隔(秒)
+content 	公告内容
+
+17.更新svn并热更
+svnupdate
+
+18.系统公告
+systalk 内容
+
+19.增加联盟经验
+addunionexp 数量
+
+20.增加联盟贡献
+addunioncontri 数量
+
+21.重置怡红院
+resetyhy
+
+22.重置联盟出战妃子
+resetunfz
+
+23.清空国库
+clrguoku
+
+24.结束宴会
+finishparty
+
+25.加满道具到国库
+itemall
+
+26. 重置三生殿次数
+resetxx
+
+27. 增加知己技能点
+addsp mcid num
+
+28. 重置天灯祈福
+resettd
+
+29. 重置游园
+resteyw

@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Administrator</LastAuthor>
+  <Created>1996-12-17T01:32:42Z</Created>
+  <LastSaved>2018-01-09T11:19:01Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6929</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11310</WindowHeight>
+  <WindowWidth>20430</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctJunJiChuEtcConf">
+  <Table ss:ExpandedColumnCount="14" ss:ExpandedRowCount="4" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Column ss:AutoFitWidth="0" ss:Width="56.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="82.5" ss:Span="1"/>
+   <Column ss:Index="4" ss:AutoFitWidth="0" ss:Width="109.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="69"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="96"/>
+   <Column ss:AutoFitWidth="0" ss:Width="69"/>
+   <Column ss:AutoFitWidth="0" ss:Width="82.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="309" ss:Span="1"/>
+   <Column ss:Index="11" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="82.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="122.25" ss:Span="1"/>
+   <Column ss:Index="14" ss:AutoFitWidth="0" ss:Width="483.75"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nIndex</Data></Cell>
+    <Cell><Data ss:Type="String">nStartTime</Data></Cell>
+    <Cell><Data ss:Type="String">nEndTime</Data></Cell>
+    <Cell><Data ss:Type="String">nMaxDaySend</Data></Cell>
+    <Cell><Data ss:Type="String">tSendProp</Data></Cell>
+    <Cell><Data ss:Type="String">tChallengeProp</Data></Cell>
+    <Cell><Data ss:Type="String">tTJProp</Data></Cell>
+    <Cell><Data ss:Type="String">nOpenChapter</Data></Cell>
+    <Cell><Data ss:Type="String">tWin</Data></Cell>
+    <Cell><Data ss:Type="String">tLost</Data></Cell>
+    <Cell><Data ss:Type="String">tCTProp</Data></Cell>
+    <Cell><Data ss:Type="String">tGWProp1</Data></Cell>
+    <Cell><Data ss:Type="String">tGWProp2</Data></Cell>
+    <Cell><Data ss:Type="String">sDesc</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiiii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiiii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiii}</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">标识而已</Data></Cell>
+    <Cell><Data ss:Type="String">开始时间(点)</Data></Cell>
+    <Cell><Data ss:Type="String">结束时间(点)</Data></Cell>
+    <Cell><Data ss:Type="String">每天最大出使次数</Data></Cell>
+    <Cell><Data ss:Type="String">宫斗令</Data></Cell>
+    <Cell><Data ss:Type="String">挑战书</Data></Cell>
+    <Cell><Data ss:Type="String">通缉令</Data></Cell>
+    <Cell><Data ss:Type="String">开放条件x章节</Data></Cell>
+    <Cell><Data ss:Type="String">胜利奖励(心机,外交,知己战绩,知己成长,宫斗积分)</Data></Cell>
+    <Cell><Data ss:Type="String">失败奖励(威望,外交,大臣战绩,大臣成长,出使积分)</Data></Cell>
+    <Cell><Data ss:Type="String">积分刺探消耗</Data></Cell>
+    <Cell><Data ss:Type="String">积分鼓舞消耗和加成</Data></Cell>
+    <Cell><Data ss:Type="String">元宝鼓舞消耗和加成</Data></Cell>
+    <Cell><Data ss:Type="String">军机处描述</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">24</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="String">1,31201,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,31200,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,31202,1;</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="String">2,0.03,50,30,1;</Data></Cell>
+    <Cell><Data ss:Type="String">-1,-0.03,5,3,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,30210,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,30210,3,0.05;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10001,50,0.15;</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">编辑队伍\n1. 玩家可编辑4个使节团：智力使节团、才力使节团、魅力使节团和武力使节团\n2. 每个使节团最多可选择5名知己，每个知己只能被任命到其中一个使节团中\n\n下令宫斗\n1. 至少任命一名知己，才能下令宫斗\n2. 每天5点到24点可以下令宫斗，与匹配到的玩家进行论战对决\n3. 每天可宫斗8次，每日5点刷新出使次数\n4. 免费宫斗次数使用完毕后，可以消耗宫斗令增加宫斗次数\n\n论战\n1. 每次论战从智力、才力、魅力、武力中随机一项，双方对应的使节团进行论战对抗\n2. 论战血量为知己总属性\n3. 论战伤害与该使节团对应的属性以及技能等级相关，例如智力使节团论战造成的伤害与知己智力属性和明智技能等级相关\n\n宫斗信息\n1. 记录其他玩家宫斗随机匹配到己方的对战信息\n2. 击败我方3名或以上知己的玩家成为仇人\n3. 每天5点到24点消耗挑战书可对仇人进行复仇\n\n公告栏\n1. 某次论战中获得5连胜且选择乘胜追击的玩家会出现在公告栏中\n2. 每天5点到24点消耗挑战书可挑战公告栏中出现的玩家\n\n通缉榜\n1. 被通缉的玩家会出现在通缉榜上\n2. 消耗通缉令可对宫斗排行榜前100名或仇人进行通缉\n3. 每天5点到24点消耗挑战书可抓捕通缉榜上的玩家\n4. 撤销通缉令条件：被抓捕使得威望分-30，可撤销1次通缉\n\n官品任命\n1. 符合战绩条件的知己可进行封品\n2. 封品获得属性加成直接计算入知己属性和势力中\n\n排行榜奖励\n1. 每周排名前300的玩家可获得奖励\n2. 每周周一5点对排名进行结算，奖励通过邮件发放</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>4</ActiveRow>
+     <ActiveCol>7</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

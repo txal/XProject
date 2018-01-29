@@ -4,6 +4,7 @@ function CNewbieGuide:Ctor(oPlayer)
 end
 
 function CNewbieGuide:LoadData(tData)
+	if not tData then return end
 	self.m_nStep = tData.nStep or 0
 end
 

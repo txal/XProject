@@ -1,0 +1,23 @@
+package mobai;
+
+//膜拜请求
+message MoBaiReq
+{
+    required int32 nRankID = 1;     	//排行榜:2国力; 12副本; 5亲密度;
+}
+
+//膜拜返回
+message MoBaiRet
+{
+    required int32 nRankID = 1;         //排行榜
+    required string sTarName = 2;       //被膜拜的玩家
+    required int32 nType = 3;           //奖励类型(2货币)
+    required int32 nID = 4;             //奖励ID(2元宝)
+    required int32 nNum = 5;            //奖励数量
+}
+
+//膜拜小红点返回
+message MoBaiRedPointRet
+{
+	repeated int32 tList = 1; 			//有小红点的排行榜
+}

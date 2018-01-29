@@ -1,0 +1,13 @@
+ctUnionPartyConf={}
+ctUnionPartyConf[1]={nID=1,nPartyLv=1,sBossName="1级",sBossImg="50205",nBossHP=200000000,nUnionLv=1,nExp=100,nContri=150,nYuanBao=100,nActivity=100,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[2]={nID=2,nPartyLv=2,sBossName="2级",sBossImg="50205",nBossHP=400000000,nUnionLv=1,nExp=200,nContri=310,nYuanBao=200,nActivity=200,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[3]={nID=3,nPartyLv=3,sBossName="3级",sBossImg="50205",nBossHP=1000000000,nUnionLv=2,nExp=300,nContri=700,nYuanBao=400,nActivity=400,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[4]={nID=4,nPartyLv=4,sBossName="4级",sBossImg="50206",nBossHP=2400000000,nUnionLv=3,nExp=400,nContri=1300,nYuanBao=600,nActivity=600,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[5]={nID=5,nPartyLv=5,sBossName="5级",sBossImg="50206",nBossHP=4200000000,nUnionLv=4,nExp=600,nContri=2000,nYuanBao=800,nActivity=800,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[6]={nID=6,nPartyLv=6,sBossName="6级",sBossImg="50206",nBossHP=6400000000,nUnionLv=5,nExp=800,nContri=3150,nYuanBao=1000,nActivity=1000,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[7]={nID=7,nPartyLv=7,sBossName="7级",sBossImg="50205",nBossHP=9000000000,nUnionLv=6,nExp=1000,nContri=4300,nYuanBao=1200,nActivity=1200,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[8]={nID=8,nPartyLv=8,sBossName="8级",sBossImg="50205",nBossHP=12000000000,nUnionLv=7,nExp=1200,nContri=5450,nYuanBao=1400,nActivity=1400,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[9]={nID=9,nPartyLv=9,sBossName="9级",sBossImg="50205",nBossHP=15400000000,nUnionLv=8,nExp=1400,nContri=6600,nYuanBao=1600,nActivity=1600,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[10]={nID=10,nPartyLv=10,sBossName="10级",sBossImg="50206",nBossHP=19200000000,nUnionLv=9,nExp=1600,nContri=7750,nYuanBao=1800,nActivity=1800,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[11]={nID=11,nPartyLv=11,sBossName="11级",sBossImg="50206",nBossHP=23400000000,nUnionLv=10,nExp=1800,nContri=8900,nYuanBao=2000,nActivity=2000,tExtAward={{1,30504,1,},},}
+ctUnionPartyConf[12]={nID=12,nPartyLv=12,sBossName="12级",sBossImg="50206",nBossHP=28000000000,nUnionLv=11,nExp=2000,nContri=10050,nYuanBao=2200,nActivity=2200,tExtAward={{1,30504,1,},},}

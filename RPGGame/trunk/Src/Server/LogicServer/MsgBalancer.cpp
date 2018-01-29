@@ -51,7 +51,7 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 		nSession = 0;
 		if (oEvent.uEventType == NSNetEvent::eEVT_ON_RECV)
 		{
-			if (oEvent.U.oRecv.poPacket->GetInnerHeader(oHeader, &pSessionArray, false) && oHeader.uSessions > 0)
+			if (oEvent.U.oRecv.poPacket->GetInnerHeader(oHeader, &pSessionArray, false) && oHeader.uSessionNum > 0)
 			{
 				nSession = pSessionArray[0];
 			}

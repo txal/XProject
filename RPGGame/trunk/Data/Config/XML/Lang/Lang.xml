@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Windows 用户</LastAuthor>
+  <Created>1996-12-17T01:32:42Z</Created>
+  <LastSaved>2017-10-18T10:05:38Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6748</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>4605</WindowHeight>
+  <WindowWidth>28770</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctLangConf">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="55" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Column ss:AutoFitWidth="0" ss:Width="44.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="876"/>
+   <Column ss:AutoFitWidth="0" ss:Width="163.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="161.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="156.75"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nID</Data></Cell>
+    <Cell><Data ss:Type="String">sCont</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">标识</Data></Cell>
+    <Cell><Data ss:Type="String">内容</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在福利挖宝的活动中获得%d星珍宝&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;不惜血本花销国库，在限时活动&lt;color=#40d9ff&gt;%s&lt;/color&gt;中赢得了很多珍贵宝物</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在储秀宫选秀获得%s美人&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;后宫和睦，在坤宁宫接受请安时一次获得了%d势力值！</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;的爱妃%s亲密爆棚，激活新天赋，国力大幅增长</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在寝宫中大兴土木扩建厢房，可以同时传唤更多妃子侍寝</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;的使节团所向披靡，击败&lt;color=#40d9ff&gt;%s&lt;/color&gt;三人以上，掠走大量资源！</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;攻击军机处通缉犯&lt;color=#40d9ff&gt;%s&lt;/color&gt;获胜！获得%d威望！</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在军机处出使时意外获得1个资质果</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;挥军远征，将&lt;color=#46ff4f&gt;%s&lt;/color&gt;收为藩属！理藩院又有奇珍可以纳贡了</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">11</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;的大臣&lt;color=#46ff4f&gt;%s&lt;/color&gt;功勋卓著，&lt;color=#40d9ff&gt;%s&lt;/color&gt;特赐花翎以示荣宠，大臣资质大幅提升。</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在微服私访中使用藏宝图寻宝意外获得&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">13</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在怡红院休息时意外获得&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">14</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;的皇子%s在宗人府受封&lt;color=#46ff4f&gt;%s&lt;/color&gt;，国力大幅增长</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;与&lt;color=#40d9ff&gt;%s&lt;/color&gt;的皇子在宗人府成功进行联姻，双方国力大幅增长</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">16</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在宗人府大兴土木扩建席位，为培养皇子不遗余力</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;寻宝获得了&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;在怡红院饮酒作乐，获得&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;在怡红院欣赏歌舞，获得&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">23</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;在怡红院春风一度，带&lt;color=#46ff4f&gt;%s&lt;/color&gt;回宫</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">24</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;参加&lt;color=#40d9ff&gt;%s&lt;/color&gt;举办的&lt;color=#46ff4f&gt;%s&lt;/color&gt;，获得&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;刚刚 通关了&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">26</Data></Cell>
+    <Cell><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;狩猎获得了&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">27</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;花魁获得了&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">28</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;点灯获得了&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">29</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在福利狩猎的活动中获得%d星珍宝&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在福利花魁的活动中获得%d星珍宝&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">31</Data></Cell>
+    <Cell><Data ss:Type="String">传闻&lt;color=#40d9ff&gt;%s&lt;/color&gt;在福利点灯的活动中获得%d星珍宝&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#40d9ff&gt;%s&lt;/color&gt;祈福获得了&lt;color=#46ff4f&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">33</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登国力排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">34</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登征战排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">35</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登妃子亲密度排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">36</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登名臣总属性排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">37</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登威望排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">38</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登妃子能力排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">39</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登后宫建设排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">40</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登惩治敌酋排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">41</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登造人强国排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">42</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登国力冲榜排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">43</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登亲密度冲榜排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">44</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登威望冲榜排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">45</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登宫斗积分冲榜排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">46</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登联盟冲榜排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">47</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登势力冲榜排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">48</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登皇子总属性排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">49</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登挖宝活动排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登祈福活动排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">51</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登狩猎活动排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">52</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登花魁活动排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">53</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登点灯活动排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">54</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登联盟排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">55</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">&lt;color=#ff8a00&gt;%s&lt;/color&gt;荣登宫斗积分排行榜&lt;color=#1eff00&gt;%s&lt;/color&gt;</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <TopRowVisible>36</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>41</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

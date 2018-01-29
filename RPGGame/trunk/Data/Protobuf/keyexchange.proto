@@ -1,0 +1,19 @@
+package keyexchange;
+
+//兑换请求
+message KeyExchangeReq
+{
+    required string sCDKey = 1;     //兑换码
+}
+
+//兑换返回
+message KeyExchangeRet
+{
+    message _Item 
+    {
+        required int32 nType = 1;   //物品类型
+        required int32 nID = 2;     //物品ID
+        required int32 nNum = 3;    //物品数量
+    }
+    repeated _Item tList = 1;       //物品列表
+}

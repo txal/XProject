@@ -41,7 +41,7 @@ public:
 	virtual void OnBattleResult() {}
 
 public:
-	void CachePlayerSessionList(int nSelfSession = 0);	//nSelfSession>0表示也发给自己
+	void CacheActorNavi(uint16_t nTarServer = 0, int nTarSession = 0);	//如果传参表示也发给自己
 
 protected:
 	int m_nConfID;

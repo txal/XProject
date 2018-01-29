@@ -3,44 +3,51 @@ function CGPlayerMgr:Ctor()
 	self.m_tSessionMap = {}
 end
 
-function CGPlayerMgr:CreatePlayer(nSession, nCharID, sCharName, nLogicService)
-	print("CGPlayerMgr:CreatePlayer***", sCharName, nLogicService)
-	if self.m_tSessionMap[nSession] or self.m_tCharIDMap[nCharID] then
-		return
+function CGPlayerMgr:PlayerOnline(tPlayer)
+	print("CGPlayerMgr:PlayerOnline***", tPlayer.sName)
+	assert(not self.m_tSessionMap[tPlayer.nSession])
+	local oOrgPlayer =  self.m_tCharIDMap[tPlayer.nCharID]
+	if oOrgPlayer then
+		local nOrgSession = oOrgPlayer:GetSession()
+		self.m_tSessionMap[nOrgSession] = nil
 	end
-	local oPlayer = CGPlayer:new(nSession, nCharID, sCharName, nLogicService)
-	self.m_tCharIDMap[nCharID] = oPlayer
-	self.m_tSessionMap[nSession] = oPlayer
+	local oPlayer = CGPlayer:new(tPlayer)
+	self.m_tCharIDMap[tPlayer.nCharID] = oPlayer
+	self.m_tSessionMap[tPlayer.nSession] = oPlayer
 end
 
 function CGPlayerMgr:GetPlayerBySession(nSession)
-	local oPlayer = self.m_tSessionMap[nSession]
-	if not oPlayer then
-		for nService, tConf in pairs(gtNetConf.tLogicService) do
-			Srv2Srv.GlobalPlayerStateReq(nService, nSession, "")
-		end
-	end
-	return oPlayer
+	return self.m_tSessionMap[nSession]
 end
 
 function CGPlayerMgr:GetPlayerByCharID(nCharID)
-	local oPlayer = self.m_tCharIDMap[nCharID]
-	if not oPlayer then
-		for nService, tConf in pairs(gtNetConf.tLogicService) do
-			Srv2Srv.GlobalPlayerStateReq(nService, 0, nCharID)
-		end
-	end
-	return oPlayer
+	return self.m_tCharIDMap[nCharID]
 end
 
-function CGPlayerMgr:RemovePlayer(nSession)
-	print("CGPlayerMgr:RemovePlayer***", nSession)
+function CGPlayerMgr:PlayerOffline(nSession)
+	print("CGPlayerMgr:PlayerOffline***", nSession)
 	local oPlayer = self.m_tSessionMap[nSession]
 	if oPlayer then
 		local nCharID = oPlayer:GetCharID()
-		self.m_tCharIDMap[nCharID] = nil
 		self.m_tSessionMap[nSession] = nil
+		self.m_tCharIDMap[nCharID] = nil
 	end
+end
+
+function CGPlayerMgr:SyncPlayerData(tData)
+end
+
+function CGPlayerMgr:GetOnlineCount()
+	local nCount = 0
+	for nCharID, v in pairs(self.m_tCharIDMap) do
+		nCount = nCount + 1
+	end
+	return nCount
+end
+
+function CGPlayerMgr:PrintOnline()
+	local nCount = self:GetOnlineCount()
+	LuaTrace("online***", nCount)
 end
 
 

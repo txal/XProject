@@ -1,9 +1,10 @@
 ﻿#include "Server/LogicServer/Object/Actor.h"
+
 #include "Common/DataStruct/XTime.h"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/TimeMonitor.h"
+
 #include "Server/Base/CmdDef.h"
-#include "Server/Base/NetAdapter.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Server/LogicServer/Component/Battle/BattleUtil.h"
 #include "Server/LogicServer/Component/Buff/Buff.h"
@@ -197,15 +198,17 @@ bool Actor::CalcNewPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
 void Actor::StartAttack(int nPosX, int nPosY, int nAtkID, int nAtkType, float fAngle, int nRemainBullet)
 {
 	m_bAttacking = true;
-	CachePlayerSessionList();
-	if (g_oSessionCache.Size() <= 0)
+
+	CacheActorNavi();
+	if (goNaviCache.Size() <= 0)
 	{
 		return;
 	}
-	g_poPacketCache->Reset();
-	g_oPKWriter << m_nAOIID << (uint16_t)nPosX << (uint16_t)nPosY << (uint16_t)nAtkID << (uint8_t)nAtkType << fAngle << (int16_t)nRemainBullet;
-	Packet* poPacket = g_poPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::ppActorStartAttack, poPacket, g_oSessionCache.Ptr(), g_oSessionCache.Size());
+
+	gpoPacketCache->Reset();
+	goPKWriter << m_nAOIID << (uint16_t)nPosX << (uint16_t)nPosY << (uint16_t)nAtkID << (uint8_t)nAtkType << fAngle << (int16_t)nRemainBullet;
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+	NetAdapter::BroadcastExter(NSCltSrvCmd::ppActorStartAttack, poPacket, goNaviCache);
 }
 
 void Actor::StopAttack()
@@ -215,15 +218,16 @@ void Actor::StopAttack()
 		return;
 	}
 	m_bAttacking = false;
-	CachePlayerSessionList();
-	if (g_oSessionCache.Size() <= 0)
+
+	CacheActorNavi();
+	if (goNaviCache.Size() <= 0)
 	{
 		return;
 	}
-	g_poPacketCache->Reset();
-	g_oPKWriter << m_nAOIID;
-	Packet* poPacket = g_poPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::ppActorStopAttack, poPacket, g_oSessionCache.Ptr(), g_oSessionCache.Size());
+	gpoPacketCache->Reset();
+	goPKWriter << m_nAOIID;
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+	NetAdapter::BroadcastExter(NSCltSrvCmd::ppActorStopAttack, poPacket, goNaviCache);
 }
 
 bool Actor::Relive(int nPosX, int nPosY)
@@ -247,62 +251,70 @@ bool Actor::Relive(int nPosX, int nPosY)
 
 void Actor::SendSyncPosition(const char* pWhere)
 {
-	g_poPacketCache->Reset();
-	g_oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y;
-	Packet* poPacket = g_poPacketCache->DeepCopy();
-	NetAdapter::SendExter(NSCltSrvCmd::sSyncActorPos, poPacket, m_nSession >> SERVICE_SHIFT, m_nSession);
+	gpoPacketCache->Reset();
+	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y;
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+
+	NetAdapter::SERVICE_NAVI oNavi;
+	oNavi.uSrcServer = g_poContext->GetServerID();
+	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uTarServer = GetServer();
+	oNavi.nTarSession = GetSession();
+	NetAdapter::SendExter(NSCltSrvCmd::sSyncActorPos, poPacket, oNavi);
 }
 
 void Actor::BroadcastStartRun()
 {
-	CachePlayerSessionList();
-	if (g_oSessionCache.Size() <= 0)
+	CacheActorNavi();
+	if (goNaviCache.Size() <= 0)
 	{
 		return;
 	}
-	g_poPacketCache->Reset();
-	g_oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY;
-	Packet* poPacket = g_poPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorRun, poPacket, g_oSessionCache.Ptr(), g_oSessionCache.Size());
+	gpoPacketCache->Reset();
+	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY;
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorRun, poPacket, goNaviCache);
 }
 
 void Actor::BroadcastStopRun()
 {
-	CachePlayerSessionList();
-	if (g_oSessionCache.Size() <= 0)
+	CacheActorNavi();
+	if (goNaviCache.Size() <= 0)
 	{
 		return;
 	}
-	g_poPacketCache->Reset();
-	g_oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y;
-	Packet* poPacket = g_poPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorStopRun, poPacket, g_oSessionCache.Ptr(), g_oSessionCache.Size());
+
+	gpoPacketCache->Reset();
+	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y;
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorStopRun, poPacket, goNaviCache);
 }
 
 void Actor::BroadcastActorHurt(int nSrcAOIID, int nSrcType, int nCurrHP, int nHurtHP)
 {
-	CachePlayerSessionList(GetSession());
-	if (g_oSessionCache.Size() <= 0)
+	CacheActorNavi(GetServer(), GetSession());
+	if (goNaviCache.Size() <= 0)
 	{
 		return;
 	}
-	g_poPacketCache->Reset();
-	g_oPKWriter << nSrcAOIID << (uint8_t)nSrcType << m_nAOIID << (uint8_t)m_nObjType << nCurrHP << nHurtHP;
-	Packet* poPacket = g_poPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorHurt, poPacket, g_oSessionCache.Ptr(), g_oSessionCache.Size());
+
+	gpoPacketCache->Reset();
+	goPKWriter << nSrcAOIID << (uint8_t)nSrcType << m_nAOIID << (uint8_t)m_nObjType << nCurrHP << nHurtHP;
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorHurt, poPacket, goNaviCache);
 }
 
 void Actor::BroadcastActorDead()
 {
-	CachePlayerSessionList(m_nSession);
-	if (g_oSessionCache.Size() <= 0)
+	CacheActorNavi(GetServer(), GetSession());
+	if (goNaviCache.Size() <= 0)
 	{
 		return;
 	}
-	g_poPacketCache->Reset();
-	g_oPKWriter << m_nAOIID << (uint8_t)m_nObjType;
-	Packet* poPacket = g_poPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorDead, poPacket, g_oSessionCache.Ptr(), g_oSessionCache.Size());
+	gpoPacketCache->Reset();
+	goPKWriter << m_nAOIID << (uint8_t)m_nObjType;
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorDead, poPacket, goNaviCache);
 }
 
 void Actor::BroadcastSyncHP()
@@ -318,15 +330,16 @@ void Actor::BroadcastSyncHP()
 	}
 	m_bBloodChange = false;
 
-	CachePlayerSessionList();
-	if (g_oSessionCache.Size() <= 0)
+	CacheActorNavi();
+	if (goNaviCache.Size() <= 0)
 	{
 		return;
 	}
-	g_poPacketCache->Reset();
-	g_oPKWriter << m_nAOIID << m_oFightParam[eFP_HP];
-	Packet* poPacket = g_poPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sSyncActorHP, poPacket, g_oSessionCache.Ptr(), g_oSessionCache.Size());
+
+	gpoPacketCache->Reset();
+	goPKWriter << m_nAOIID << m_oFightParam[eFP_HP];
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sSyncActorHP, poPacket, goNaviCache);
 }
 
 void Actor::UpdateBuff(int64_t nNowMS)

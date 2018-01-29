@@ -108,7 +108,9 @@ void Robot::StartRun(int nSpeedX, int nSpeedY)
 		uint32_t uClientTick = (uint32_t)(((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0);
 		oPKWriter << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nSpeedX << (int16_t)m_nSpeedY << uClientTick;
 		Packet* poPacket = m_poPacketCache->DeepCopy();
-		NetAdapter::SendExter(NSCltSrvCmd::cPlayerRun, poPacket, 0, m_nSessionID, ++m_uPacketIdx);
+		NetAdapter::SERVICE_NAVI oNavi;
+		oNavi.nTarSession = m_nSessionID;
+		NetAdapter::SendExter(NSCltSrvCmd::cPlayerRun, poPacket, oNavi, ++m_uPacketIdx);
 		//XLog(LEVEL_INFO, "%s start run pos:(%d,%d) speed:(%d,%d) tick:%u\n", m_sName, m_oPos.x, m_oPos.y, m_nSpeedX, m_nSpeedY, uClientTick);
 	}
 }
@@ -128,7 +130,9 @@ void Robot::StopRun()
 		uint32_t uClientTick = (uint32_t)(((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0);
 		oPKWriter << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << uClientTick;
 		Packet* poPacket = m_poPacketCache->DeepCopy();
-		NetAdapter::SendExter(NSCltSrvCmd::cPlayerStopRun, poPacket, 0, m_nSessionID, ++m_uPacketIdx);
+		NetAdapter::SERVICE_NAVI oNavi;
+		oNavi.nTarSession = m_nSessionID;
+		NetAdapter::SendExter(NSCltSrvCmd::cPlayerStopRun, poPacket, oNavi, ++m_uPacketIdx);
 		//XLog(LEVEL_INFO, "%s stop run pos:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y);
     }
 }

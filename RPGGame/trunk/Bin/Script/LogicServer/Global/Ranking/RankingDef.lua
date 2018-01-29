@@ -1,0 +1,19 @@
+gtRankingDef = {}
+
+gtRankingDef.eJZRanking = 1 	--建筑排行
+gtRankingDef.eGLRanking = 2 	--国力排行
+gtRankingDef.eHZRanking = 3 	--皇子排行
+gtRankingDef.eSLRanking = 4 	--势力排行
+gtRankingDef.eQMRanking = 5 	--亲密排行
+gtRankingDef.eNLRanking = 6 	--能力排行
+gtRankingDef.eCDRanking = 7 	--才德排行
+gtRankingDef.eWWRanking = 8 	--威望排行
+gtRankingDef.eZJRanking = 9 	--战绩排行
+gtRankingDef.eUGLRanking = 10 	--联盟国力排行
+gtRankingDef.eCZDQRanking = 11 	--惩治敌酋排行
+gtRankingDef.eDupRanking = 12 	--副本排行
+gtRankingDef.eZRQGRanking = 13 	--造人强国排行
+gtRankingDef.eUnExpRanking = 14 --联盟经验排行
+gtRankingDef.eMCRanking = 15	--名臣排行
+gtRankingDef.ePartyRanking = 16	--宴会排行
+gtRankingDef.eGDRanking = 17	--宫斗排行

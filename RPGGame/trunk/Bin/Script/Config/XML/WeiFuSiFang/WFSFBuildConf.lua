@@ -1,0 +1,13 @@
+ctWFSFBuildConf={}
+ctWFSFBuildConf[1]={nID=1,sName="猎场",sDesc="描述",}
+ctWFSFBuildConf[2]={nID=2,sName="山庄",sDesc="描述",}
+ctWFSFBuildConf[3]={nID=3,sName="花园",sDesc="描述",}
+ctWFSFBuildConf[4]={nID=4,sName="酒楼",sDesc="描述",}
+ctWFSFBuildConf[5]={nID=5,sName="书院",sDesc="描述",}
+ctWFSFBuildConf[6]={nID=6,sName="府邸",sDesc="描述",}
+ctWFSFBuildConf[7]={nID=7,sName="皇家行宫",sDesc="描述",}
+ctWFSFBuildConf[8]={nID=8,sName="寺庙",sDesc="描述",}
+ctWFSFBuildConf[9]={nID=9,sName="武器店",sDesc="描述",}
+ctWFSFBuildConf[10]={nID=10,sName="部落",sDesc="描述",}
+ctWFSFBuildConf[11]={nID=11,sName="市集",sDesc="描述",}
+ctWFSFBuildConf[12]={nID=12,sName="塔",sDesc="描述",}

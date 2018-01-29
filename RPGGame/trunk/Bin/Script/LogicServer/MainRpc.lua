@@ -1,5 +1,5 @@
 function CltPBProc.TestPack(nCmd, nSrc, nSession, tData)
-	local tSessionList = goPlayerMgr:GetSessionList(1)	
-	print("TestPack***",tData, tSessionList)
-	CmdNet.PBBroadcastExter(tSessionList, "TestPack", tData)
+	print("TestPack***",tData)
+	CmdNet.PBSrv2Clt(nSession, "TestPack", tData)
 end
+

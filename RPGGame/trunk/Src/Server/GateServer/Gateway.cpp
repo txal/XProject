@@ -306,9 +306,9 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	if (oHeader.nTarService != GetServiceID())
+	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
-		XLog(LEVEL_INFO, "%s: Tar service error\n", GetServiceName());
+		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
 		poPacket->Release();
 		return;
 	}

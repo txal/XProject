@@ -1,0 +1,36 @@
+package talk;
+
+//聊天请求
+message TalkReq 
+{
+	required int32 nChannel = 1; 	//频道: 1系统; 2世界; 3联盟
+	required string sCont = 2; 		//聊天内容
+}
+
+//聊天返回
+message TalkRet
+{
+	required int32 nCharID = 1; 	//发言者ID
+	required string sCharName = 2; 	//发言者名字
+	required int32 nVIP = 3; 		//VIP
+	required int32 nChannel = 4; 	//频道
+	required string sCont = 5; 		//内容
+	required int32 nTitle = 6; 		//称号
+}
+
+//聊天记录返回
+message TalkHistoryRet 
+{
+	message _List
+	{ 
+		optional int32 nCharID = 1; 	//发言者ID
+		optional string sCharName = 2; 	//发言者名字
+		optional int32 nVIP = 3; 		//VIP
+		optional int32 nChannel = 4; 	//频道
+		optional string sCont = 5; 		//内容
+		optional int32 nTime = 6; 		//聊天时间
+		optional int32 nTitle = 7; 		//称号
+	}
+	repeated _List tWorld = 1; 			//世界聊天记录
+	repeated _List tUnion = 2; 			//联盟聊天记录(没有加入联盟不显示联盟聊天)
+}

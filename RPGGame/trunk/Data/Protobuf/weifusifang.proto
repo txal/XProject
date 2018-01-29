@@ -1,0 +1,126 @@
+package weifusifang;
+
+
+//微服私访请求
+message WFSFInfoReq 
+{
+}
+
+//微服私访返回
+message WFSFInfoRet  
+{ 
+	required int32 nBTCount = 1;            //藏宝图数
+	required int32 nXFCount = 2;            //寻访次数
+	required int32 nXFMaxCount = 3;         //寻访上限
+	required bool bOpen = 4;                //是否符合条件进入副本
+	required int32 nRemainTimeSec = 5;		//寻访恢复时间
+	optional int32 nFlourish = 6; 			//繁荣等级
+	optional int32 nShiLi = 7; 				//当前势力
+	optional int32 nNextSL = 8; 			//下一级势力
+}
+
+//寻访请求
+message XXunFangReq
+{
+	required bool bUseProp = 1;       //使用体力丹
+	optional int32 nBuildID = 2; 	  //建筑物ID
+}
+
+//寻访返回
+message XXunFangRet
+{
+	required int32 nID = 1;     //事件ID
+	required int32 nType = 2;	//事件类型(1.知己事件, 2.名士事件, 3.拾到银两, 4.拾到文化, 5.拾到兵力, 6.拾到事件, 7.买卖事件)
+	//妃子事件有效	
+	optional int32 nZJID = 3; 		//知己ID
+	optional string sZJName = 4; 	//知己名字
+	optional bool bRuGong = 5; 		//是否已经入宫
+	optional int32 nQinMi = 6; 		//当前亲密度
+	optional int32 nCurrHaoGan = 7; //当前好感度
+	optional int32 nNeedHaoGan = 8;	//下一亲密需要好感度
+}
+
+//建筑物奖励请求
+message XFBuildEventAwardReq
+{
+	required int32 nSelect = 1;   //奖励选择(奖励1, 奖励2)
+}
+
+//建筑物奖励返回
+message XFBuildEventAwardRet  
+{	 
+	message _List
+	{
+		required int32 nType = 1; 	//物品类型
+		required int32 nID = 2; 	//物品ID
+		required int32 nNum = 3; 	//物品数量
+	}
+	required int32 nSelect = 1;     //奖励选择
+	required int32 nEventID = 2; 	//事件ID
+	required int32 nType = 3; //事件类型(1.知己事件, 2.名士事件, 3.拾到银两, 4.拾到文化, 5.拾到兵力, 6.拾到事件, 7.买卖事件)
+	//妃子事件奖励
+	optional int32 nHaoGan = 4;		//获得好感
+	optional int32 nCurrQinMi = 5;	//当前亲密度
+	optional int32 nCurrHaoGan = 6; //当前好感度
+	optional int32 nNeedHaoGan = 7; //下一亲密度需要好感
+	//名士事件奖励
+	repeated _List tList = 8; 	 	//名士奖励
+}
+
+//空格事件奖励请求
+message XFBlankEventAwardReq
+{
+	optional bool bBuy = 1; 		//是否购买(只有7.买卖事件有效)
+}
+
+//空格事件奖励返回
+message XFBlankEventAwardRet
+{
+	required int32 nType = 1; 	 	//类型
+	required int32 nID = 2; 	 	//ID
+	required int32 nNum = 3; 		//数量
+}
+
+//寻宝请求
+message XXunBaoReq
+{
+}
+
+//寻宝返回
+message XXunBaoRet
+{
+	message _Award
+	{
+		required int32 nType = 1; //物品类型
+		required int32 nID = 2;   //物品ID
+		required int32 nNum = 3;  //物品数量
+	}
+	repeated _Award tAwardList = 1;    //奖励数组
+}
+
+//指定寻访建筑信息请求
+message XFSpecifyBuildInfoReq
+{
+	required int32 nBuildID = 1; 	//建筑ID
+}
+
+//指定寻访建筑信息返回
+message XFSpecifyBuildInfoRet
+{
+	message _NPC
+	{
+		required int32 nEventType = 1; 	//事件类型(1知己; 2NPC)
+		required string sNPCID = 2;		//NPCID
+		required string sNPCName = 3;	//NPC名字
+		required string sNPCDesc = 4;	//NPC描述
+		optional int32 nQinMi = 5; 		//亲密度
+		optional string sZJName = 6; 	//知己名字
+	}
+	repeated _NPC tList = 1; //NPC列表
+}
+
+//指定寻访请求(扣钱后走普通寻访流程)
+message XFSpecifyXunFangReq
+{
+	required int32 nBuildID = 1; 	//建筑ID
+}

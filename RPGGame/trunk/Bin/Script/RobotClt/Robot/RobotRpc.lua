@@ -5,8 +5,8 @@ end
 
 function CltCmdProc.KeepAlive(nCmd, nSrc, nSession, nServerTime) 
     tPingMap[nSession] = os.clock()
-    local oRobot = goRobotMgr:GetRobot(nSession)
-    CmdNet.Clt2Srv(oRobot:GenPacketIdx(), nSession, "Ping")
+    -- local oRobot = goRobotMgr:GetRobot(nSession)
+    -- CmdNet.Clt2Srv(oRobot:GenPacketIdx(), nSession, "Ping")
 end
 
 
@@ -26,8 +26,8 @@ function CltPBProc.CreateRoleRet(nCmd, nSrc, nSession, tData)
     end
 end
 
-function CltPBProc.PlayerInitDataRet(nCmd, nSrc, nSession, tData)
-    --print("PlayerInitDataRet***", tData)
+function CltPBProc.PlayerInitDataSync(nCmd, nSrc, nSession, tData)
+    --print("PlayerInitDataSync***", tData)
 end
 
 function CltPBProc.PlayerEnterSceneRet(nCmd, nSrc, nSession, tData)
@@ -58,4 +58,8 @@ end
 
 function CltPBProc.PlayerSwitchWeaponSync(nCmd, nSrc, nSession, tData)
     --print("Leave:", tObjList)
+end
+
+function CltPBProc.TipsMsgRet(nCmd, nSrc, nSession, tData)
+    print(tData.sCont)
 end

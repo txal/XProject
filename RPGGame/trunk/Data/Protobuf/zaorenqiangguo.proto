@@ -1,0 +1,79 @@
+package zaorenqiangguo;
+
+//活动状态请求
+message ZRQGStateReq
+{
+	
+}
+
+//活动状态返回
+message ZRQGStateRet
+{
+	required int32 nID = 1; 		//活动ID
+	required int32 nState = 2; 		//活动状态:0初始; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+}
+
+//造人强国请求
+message ZRQGInfoReq
+{
+}
+
+//造人强国返回   
+message ZRQGInfoRet   
+{
+	required int32 nState = 1;        	  	  //活动状态(0.活动还没有开始， 1.活动开始，2.领奖开始，3.活动关闭，活动状态只有1)
+	required int32 nBeginTime = 2;            //活动开始时间
+	required int32 nEndTime = 3;              //活动结束时间
+	required int32 nStateTime = 4;            //活动剩余时间
+	optional int32 nMaxSoldiers = 5;          //活动最大造人数
+	optional int32 nSoldiers = 6;       	  //当前造人进度
+	optional int32 nZTCDTime = 7;             //坐胎药CD时间
+	optional int32 nZTEffTime = 8;            //坐胎药效果时间
+	optional int32 nDZCDTime = 9;             //多子丹CD时间
+	optional int32 nDZEffTime = 10;           //多子丹效果时间
+	optional int32 nGetSoldiers = 11;         //每次进入游戏提示获得的士兵数
+	optional int32 nLevelSoldiers = 12;		  //当前阶段最大造人数
+}
+
+//使用丹药请求
+message ZRQGUseDYReq
+{
+	required int32 nType = 1;               //使用丹药类型(1.坐胎药，2.多子丹)
+}
+
+//造人校验请求
+message ZRQGReportSoldierReq
+{
+	required int32 nSoldiers = 1;          //点击造人的数量
+	required int32 nType = 2;              //使用丹药类型(0.默认，1.坐胎药，2.多子丹)
+}
+
+//关闭界面请求
+message ZRQGOffInterfaceReq 
+{
+}
+
+///////////////造人强国排行榜///////////////
+//造人强国排行榜请求
+message ZRQGRankingReq
+{
+	required int32 nRankNum = 1; 	//取前X名
+}
+
+//造人强国排行榜返回
+message ZRQGRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	
+	repeated _Rank tRanking = 1; 		//排行列表
+	required int32 nMyRank = 2; 		//我的排名
+	required string sMyName = 3; 		//我的名字
+	required int32 nMyValue = 4; 		//我的数值		
+}

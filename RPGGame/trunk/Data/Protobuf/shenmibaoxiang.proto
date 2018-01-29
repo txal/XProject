@@ -1,0 +1,37 @@
+package shenmibaoxiang;
+
+//神秘宝箱状态同步
+message SMBXInfoRet
+{
+    required bool bOpen = 1;        //是否开放
+    required int32 nRemainTime = 2; //剩余时间
+}
+
+//神秘宝箱描述请求
+message SMBXDescReq
+{
+}
+
+//神秘宝箱描述返回
+message SMBXDescRet
+{
+    required string sDesc = 1;      //描述
+}
+
+//神秘宝箱兑换请求
+message SMBXExchangeReq
+{
+    required string sCDKey = 1;     //兑换码
+}
+
+//神秘宝箱兑换返回
+message SMBXExchangeRet
+{
+    message _Item 
+    {
+        required int32 nType = 1;   //物品类型
+        required int32 nID = 2;     //物品ID
+        required int32 nNum = 3;    //物品数量
+    }
+    repeated _Item tList = 1;       //物品列表
+}

@@ -1,33 +1,34 @@
 --Common script
 require = gfRawRequire or require  --恢复原生require
 require("Common/CommonInc")
+require("Common/InitMysql")
 
 --LogServer script
 gfRawRequire = require 	--hook require
 require = function(sScript)
 	gfRawRequire("LogServer/"..sScript)
 end
-require("InitMysql")
-require("MysqlPool")
 require("LogRpc")
+require("MysqlPool")
+require("GMMgr/GMMgrInc")
 
-local nGCTime = 1000*60
+local function _InitGlobal()
+	InitMysql()
+	goMysqlPool:Init()
+end
+
+local nGCTime = 60
 local function _LuaGC()
     collectgarbage()
 end	
-
-local function _InitGlobal()
-	goMysqlPool:Init()
-end
 
 function Main()
 	_InitGlobal()
     collectgarbage("setpause", 150)
     collectgarbage("setstepmul", 300)
     collectgarbage()
-	GlobalExport.RegisterTimer(nGCTime, function() _LuaGC() end)
+    goTimerMgr:Interval(nGCTime, function() _LuaGC() end)
 	LuaTrace("LogServer lua start successful")
-	Test()
 end
 
 function Test()

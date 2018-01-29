@@ -1,0 +1,9 @@
+ctRechargeConf={}
+ctRechargeConf[1]={nID=1,sName="充值648",nMoney=648,nBuyYuanBao=6480,nGiveYuanBao=780,bFirstDouble=true,sDesc="6480送780",sProduct="com.yinghun.jphd.pay648",sIcon="icon_chongzhi_8",bCard=false,}
+ctRechargeConf[2]={nID=2,sName="充值328",nMoney=328,nBuyYuanBao=3280,nGiveYuanBao=380,bFirstDouble=true,sDesc="3280送380",sProduct="com.yinghun.jphd.pay328",sIcon="icon_chongzhi_7",bCard=false,}
+ctRechargeConf[3]={nID=3,sName="充值198",nMoney=198,nBuyYuanBao=1980,nGiveYuanBao=220,bFirstDouble=true,sDesc="1980送220",sProduct="com.yinghun.jphd.pay198",sIcon="icon_chongzhi_6",bCard=false,}
+ctRechargeConf[4]={nID=4,sName="充值68",nMoney=68,nBuyYuanBao=680,nGiveYuanBao=70,bFirstDouble=true,sDesc="680送70",sProduct="com.yinghun.jphd.pay68",sIcon="icon_chongzhi_4",bCard=false,}
+ctRechargeConf[5]={nID=5,sName="充值30",nMoney=30,nBuyYuanBao=300,nGiveYuanBao=30,bFirstDouble=true,sDesc="300送30",sProduct="com.yinghun.jphd.pay30",sIcon="icon_chongzhi_3",bCard=false,}
+ctRechargeConf[6]={nID=6,sName="充值6",nMoney=6,nBuyYuanBao=60,nGiveYuanBao=0,bFirstDouble=true,sDesc="60",sProduct="com.yinghun.jphd.pay6",sIcon="icon_chongzhi_1",bCard=false,}
+ctRechargeConf[7]={nID=7,sName="月卡",nMoney=28,nBuyYuanBao=280,nGiveYuanBao=0,bFirstDouble=false,sDesc="280",sProduct="com.yinghun.jphd.pay28yk",sIcon="icon_chongzhi_2",bCard=true,}
+ctRechargeConf[8]={nID=8,sName="季卡",nMoney=88,nBuyYuanBao=880,nGiveYuanBao=0,bFirstDouble=false,sDesc="880",sProduct="com.yinghun.jphd.pay88",sIcon="icon_chongzhi_5",bCard=true,}

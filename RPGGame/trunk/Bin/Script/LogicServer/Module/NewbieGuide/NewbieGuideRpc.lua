@@ -1,5 +1,5 @@
 function CltPBProc.NewbieGuideStepReq(nCmd, nSrc, nSession, tData)
-	local oPlayer = goLuaPlayerMgr:GetPlayerBySession(nSession)
+	local oPlayer = goPlayerMgr:GetPlayerBySession(nSession)
 	if not oPlayer then
 		return
 	end
@@ -7,7 +7,7 @@ function CltPBProc.NewbieGuideStepReq(nCmd, nSrc, nSession, tData)
 end
 
 function CltPBProc.SetNewbieGuideStepReq(nCmd, nSrc, nSession, tData)
-	local oPlayer = goLuaPlayerMgr:GetPlayerBySession(nSession)
+	local oPlayer = goPlayerMgr:GetPlayerBySession(nSession)
 	if not oPlayer then
 		return
 	end

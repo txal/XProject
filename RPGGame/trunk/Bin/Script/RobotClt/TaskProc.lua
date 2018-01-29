@@ -11,38 +11,52 @@ end
 
 
 -----------------处理函数------------------
-_tTaskProc["auth"] = function(tParam, sTask)
+_tTaskProc["auth"] = function(tParam, sTask)	--授权
 	local oRobot = goRobotMgr:GetRndRobot()
 	if not oRobot then return end
 	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
 end
 
-_tTaskProc["login"] = function(tParam, sTask)
+_tTaskProc["login"] = function(tParam, sTask)	--登录游戏
 	local nMinRobotID = tonumber(tParam[1]) or 0
 	local nMaxRobotID = tonumber(tParam[2]) or 0
-	if nMinRobotID <= 0 or nMaxRobotID < nMinRobotID then
+	if nMinRobotID <= 0 or nMaxRobotID < nMaxRobotID then
 		return LuaTrace("like: login 1 100")
 	end
 	goRobotMgr:LoginRobot(nMinRobotID, nMaxRobotID)
 end
 
-_tTaskProc["logout"] = function(tParam, sTask)
+_tTaskProc["loginaccount"] = function(tParam, sTask)--登录账号
+	local sAccount = tostring(tParam[1]) or ""
+	if sAccount == "" then
+		return LuaTrace("like: loginaccount name")
+	end
+	goRobotMgr:LoginAccount(sAccount)
+end
+
+_tTaskProc["logout"] = function(tParam, sTask)	--退出游戏
 	goRobotMgr:LogoutRobot()
 end
 
-_tTaskProc["reload"] = function(tParam, sTask)
+_tTaskProc["reload"] = function(tParam, sTask)	--重载
 	local oRobot = goRobotMgr:GetRndConn()
 	if not oRobot then return end
 	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
 end
 
-_tTaskProc["test"] = function(tParam, sTask)
+_tTaskProc["lgm"] = function(tParam, sTask)		--重载
+	local oRobot = goRobotMgr:GetRndConn()
+	if not oRobot then return end
+	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
+end
+
+_tTaskProc["test"] = function(tParam, sTask)	--测试
 	local oRobot = goRobotMgr:GetRndRobot()
 	if not oRobot then return end
 	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
 end
 
-_tTaskProc["client"] = function(tParam, sTask)
+_tTaskProc["client"] = function(tParam, sTask)	
 	local oRobot = goRobotMgr:GetRndRobot()
 	if not oRobot then return end
 	local nPosX, nPosY = oRobot:GetPos()
@@ -61,7 +75,7 @@ _tTaskProc["addgold"] = function(tParam, sTask)
 	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
 end
 
-_tTaskProc["AddDiamond"] = function(tParam, sTask)
+_tTaskProc["addmoney"] = function(tParam, sTask)
 	local oRobot = goRobotMgr:GetRndRobot()
 	if not oRobot then return end
 	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
@@ -101,13 +115,7 @@ _tTaskProc["additem"] = function(tParam, sTask)
 	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
 end
 
-_tTaskProc["startgvg"] = function(tParam, sTask)
-	local oRobot = goRobotMgr:GetRndRobot()
-	if not oRobot then return end
-	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
-end
-
-_tTaskProc["printgvg"] = function(tParam, sTask)
+_tTaskProc["inittask"] = function(tParam, sTask)
 	local oRobot = goRobotMgr:GetRndRobot()
 	if not oRobot then return end
 	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})

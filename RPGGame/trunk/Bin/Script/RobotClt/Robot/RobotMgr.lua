@@ -32,10 +32,16 @@ function CRobotMgr:LoginRobot(nMinRobotID, nMaxRobotID)
 	goCppRobotMgr:CreateRobot(gsServerIP, gnServerPort, nRobotNum)
 end
 
+function CRobotMgr:LoginAccount(sAccount)
+	self.m_sAccount = sAccount
+	goCppRobotMgr:CreateRobot(gsServerIP, gnServerPort, 1)
+end
+
 function CRobotMgr:LogoutRobot()
 	goCppRobotMgr:LogoutRobot()
 	self.m_nMinRobotID = 0
 	self.m_nMaxRobotID = 0
+	self.m_sAccount = nil
 	self.m_nRobotID = self.m_nMinRobotID
 end
 
@@ -72,9 +78,14 @@ end
 function OnRobotConnected(nSessionID)
 	LuaTrace("CRobotMgr.OnRobotConnected***", nSessionID)
 	if goRobotMgr.m_nRobotID <= goRobotMgr.m_nMaxRobotID then
-		local sRobotName = "Robot"..goRobotMgr.m_nRobotID
+		local sRobotName 
+		if goRobotMgr.m_sAccount then
+			sRobotName = goRobotMgr.m_sAccount
+		else
+			sRobotName = "Robot"..goRobotMgr.m_nRobotID
+		end
 		local oRobot = CRobot:new(nSessionID, sRobotName) 
-		--oRobot:Login()
+		oRobot:Login()
 		goRobotMgr.m_tRobotSessionMap[nSessionID] = oRobot
 		goRobotMgr.m_nRobotID = goRobotMgr.m_nRobotID + 1
 	else

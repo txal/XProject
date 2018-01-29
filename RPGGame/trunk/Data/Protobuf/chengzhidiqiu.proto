@@ -1,0 +1,63 @@
+package chengzhidiqiu;
+
+//惩治请求
+message CZDQInfoReq
+{
+}
+
+//惩治返回   
+message CZDQInfoRet   
+{
+	required int32 nPlayTimeState = 1;        //活动状态(0.未开放，1.进行中，2.已结束)
+	required int32 nBeginTime = 2;            //活动开始时间
+	required int32 nEndTime = 3;              //活动结束时间
+	required int32 nRemainTime = 4;           //活动剩余时间
+	optional int32 nReparationsMax = 5;       //活动赔款上限
+	optional int32 nNextReparations = 6;      //下一级赔款银两
+	optional int32 nReparations = 7;          //玩家累计赔款银两
+	optional int32 nBXRemainCD = 8;           //鞭刑CD时间
+	optional int32 nZXRemainCD = 9;           //杖刑CD时间
+	optional int32 nBXEffTime = 10;           //鞭刑效果时间
+	optional int32 nZXEffTime = 11;           //杖刑效果时间
+	optional int32 nGetYinLiang = 12;         //每次进入游戏提示获得的银两数
+}
+
+//使用刑罚请求
+message CZDQUseXFReq
+{
+	required int32 nType = 1;               //使用刑罚类型(1.鞭刑，2.杖刑)
+}
+
+//赔款请求
+message CZDQReportYinLiangReq
+{
+	required int32 nYinLiang = 1;          //赔款银两数
+	required int32 nXFType = 2;            //使用刑罚类型(0.默认，1.鞭刑，2.杖刑)
+}
+
+//关闭界面请求
+message CZDQOffInterfaceReq
+{
+}
+
+///////////////追讨赔款排行榜///////////////
+//追讨赔款排行榜请求
+message CZDQRankingReq
+{
+	required int32 nRankNum = 1; 	//取前X名
+}
+
+//追讨赔款排行榜返回
+message CZDQRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	
+	repeated _Rank tRanking = 1; 		//排行列表
+	required int32 nMyRank = 2; 		//我的排名
+	required string sMyName = 3; 		//我的名字
+	required int32 nMyValue = 4; 		//我的数值		
+}

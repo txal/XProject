@@ -1,0 +1,77 @@
+//知己游玩
+package youwan;
+
+//游玩信息请求
+message JSFInfoReq
+{
+}
+
+//游玩信息返回
+message JSFInfoRet
+{
+	message _Card
+	{
+		required int32 nMCID = 1;			//知己ID
+		required int32 nRemainTime = 2;		//剩余时间
+		required int32 nRemainTimes = 3;  	//剩余次数
+	}
+	required int32 nOpenGrid = 1; 		//开放的格子数
+	repeated _Card tList = 2; 	 		//格子列表 
+	required int32 nZRFFreeGrids = 3; 	//宗人府剩余席位数
+}
+
+//游玩扩建请求
+message JSFOpenGridReq
+{
+	required int32 nGridID = 1; 	//要开放的格子(策划说要按顺序开启)	
+}
+
+//游玩翻牌请求
+message JSFOpenCardReq
+{
+	required int32 nGridID = 1; 	//格子ID	
+}
+
+//游玩完成请求
+message JSFFinishReq
+{
+	required int32 nGridID = 1; 	//格子ID
+}
+
+//游玩加速信息请求
+message JSFSpeedUpInfoReq
+{
+	required int32 nMCID = 1; 	//知己ID
+}
+//游玩加速信息返回
+message JSFSpeedUpInfoRet
+{
+	required int32 nPropID = 1;	 	//道具ID
+	required int32 nPropNum = 2;  	//道具数量
+	required int32 nCostYB = 3; 	//元宝数量
+}
+//游玩加速请求
+message JSFSpeedUpReq
+{
+	required int32 nMCID = 1; 	//知己ID
+	required int32 nType = 2; 	//加速类型(1:道具; 2元宝)
+}
+
+//游玩详情请求
+message JSFDetailReq
+{
+}
+
+//游玩详情返回
+message JSFDetailRet
+{
+	message _MC
+	{
+		required int32 nMCID = 1; 		//知己ID
+		required string sName = 2; 		//知己名字
+		required int32 nPingJi = 3; 	//知己评级
+		required int32 nState = 4; 		//状态(0空闲; 1游玩中; 2休息中)
+		required int32 nStateTime = 5; 	//状态时间
+	}
+	repeated _MC tList = 1;
+}

@@ -1,0 +1,77 @@
+package vip;
+
+//VIP 特权请求
+message VIPAwardListReq
+{
+	
+}
+
+//VIP 特权返回
+message VIPAwardListRet
+{
+	message _Item
+	{
+		required int32 nVIP = 1; 	//VIP等级
+		required int32 nState = 2; 	//0未达成; 1已达成未领取; 2已领取
+	}		
+	repeated _Item tList = 1; 		//列表
+}
+
+//VIP 领取特权奖励请求
+message VIPAwardReq
+{
+	required int32 nVIP = 1; 		//VIP等级	
+}
+
+//VIP 领取特权奖励成功返回
+message VIPAwardRet
+{
+	required int32 nVIP = 1; 		//领取成功的VIP等级
+}
+
+//充值列表请求
+message RechargeListReq
+{
+}
+
+//充值列表返回
+message RechargeListRet
+{
+	message _Item
+	{
+		required int32 nID = 1; 			//ID
+		required string sName = 2; 			//名字
+		required int32 nMoney = 3; 			//金额
+		required int32 nBuyYuanBao = 4; 	//购买元宝
+		required int32 nGiveYuanBao = 5;	//赠送元宝
+		required string sProduct = 6; 		//IOS商品标识
+		required string sDesc = 7; 			//描述
+		required bool bFirstDouble = 8; 	//是否显示首充翻牌
+		required string sIcon = 9; 			//图标
+		required bool bCard = 10; 			//是否卡券
+	}	
+	repeated _Item tList = 1; 				//列表
+	required int32 nRecharged = 2; 			//已充值数
+}
+
+//充值成功返回
+message RechargeSuccessRet
+{
+	required int32 nYuanBao = 1; 			//获得元宝数
+}
+
+//首充状态同步
+message FirstRechargeStateRet
+{
+	required int32 nState = 1; 				//0未满足; 1未领取; 2已领取
+}
+
+//领取首充奖励
+message FirstRechargeAwardReq
+{
+}
+
+//领取首充奖励成功返回
+message FirstRechargeAwardRet
+{
+}

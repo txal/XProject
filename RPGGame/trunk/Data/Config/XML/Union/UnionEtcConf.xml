@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>Windows 用户</LastAuthor>
+  <Created>2016-08-24T07:17:58Z</Created>
+  <LastSaved>2018-01-17T06:49:02Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6748</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11310</WindowHeight>
+  <WindowWidth>20430</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s63">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="10.5" ss:Color="#000000"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctUnionEtcConf">
+  <Table ss:ExpandedColumnCount="10" ss:ExpandedRowCount="4" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="69"/>
+   <Column ss:AutoFitWidth="0" ss:Width="96"/>
+   <Column ss:AutoFitWidth="0" ss:Width="75.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="116.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:AutoFitWidth="0" ss:Width="97.5" ss:Span="1"/>
+   <Column ss:Index="9" ss:AutoFitWidth="0" ss:Width="65.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="207"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nIndex</Data></Cell>
+    <Cell><Data ss:Type="String">nOpenChapter</Data></Cell>
+    <Cell><Data ss:Type="String">nCreateCost</Data></Cell>
+    <Cell><Data ss:Type="String">nInitPlayer</Data></Cell>
+    <Cell><Data ss:Type="String">nExitCD</Data></Cell>
+    <Cell><Data ss:Type="String">nAutoJoin</Data></Cell>
+    <Cell><Data ss:Type="String">nPartyVIP</Data></Cell>
+    <Cell><Data ss:Type="String">nDayMiracles</Data></Cell>
+    <Cell><Data ss:Type="String">nGDPower</Data></Cell>
+    <Cell><Data ss:Type="String">sUnionDesc</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">标识而已</Data></Cell>
+    <Cell><Data ss:Type="String">开放章节</Data></Cell>
+    <Cell><Data ss:Type="String">创建消耗元宝</Data></Cell>
+    <Cell><Data ss:Type="String">起始人数</Data></Cell>
+    <Cell><Data ss:Type="String">退出冷却时间(小时)</Data></Cell>
+    <Cell><Data ss:Type="String">初始开放审批否</Data></Cell>
+    <Cell><Data ss:Type="String">宴会自动战斗VIP</Data></Cell>
+    <Cell><Data ss:Type="String">每日奇迹捐献次数</Data></Cell>
+    <Cell><Data ss:Type="String">宫斗力除值</Data></Cell>
+    <Cell><Data ss:Type="String">联盟界面描述</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="Number">800</Data></Cell>
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">24</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">2.5</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">创建联盟：\n花费800元宝可创建联盟\n\n加入联盟：\n1. 可以通过随机加入和申请加入两种方式加入联盟\n2. 随机加入可随机加入一个已开启允许随机加入的联盟\n3. 申请加入需要盟主或副盟主同意申请方可加入联盟\n4. 每人只能加入一个联盟\n\n每日建设\n1. 每日建设可增加联盟经验、活跃点，获得个人贡献\n2. 每人每日只能选择其中一种建设方式进行一次建设，每天5点刷新次数\n\n成员信息\n1. 可查看联盟所有成员的详细信息\n2. 盟主可通过查看成员信息对成员进行升职、降职\n3. 盟主可通过对副盟主进行升职，让出盟主之位\n\n贡献兑换\n1. 个人贡献可以在联盟兑换中兑换道具\n2. 每个道具兑换有兑换次数上限，每天5点刷新兑换次数\n3. 联盟等级越高，可兑换的物品种类越多\n\n讨伐异邦\n1. 盟主、副盟主可消耗元宝或活跃点开启讨伐异邦\n2. 精英可消耗元宝开启讨伐异邦\n3. 讨伐异邦的贡献奖励根据玩家对BOSS造成的伤害进行分配\n4. 最后击败BOSS的玩家获得额外的奖励\n5. 讨伐异邦时间为24小时，只有在24小时内击败BOSS才能获得联盟经验\n\n联盟管理\n1. 盟主可通过联盟管理设置联盟公告，设置是否允许随机加入\n2. 盟主和副盟主可通过联盟管理处理申请加入联盟的申请信息\n\n退出联盟\n1. 盟主不可退出联盟\n2. 退出联盟后需要24小时后才能加入其它联盟\n3. 退出联盟扣除当前贡献50%</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>4</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

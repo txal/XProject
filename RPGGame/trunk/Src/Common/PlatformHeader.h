@@ -25,8 +25,8 @@
 //在 Win32 配置下，_WIN32 有定义，_WIN64 没有定义。在 x64 配置下，两者都有定义。即在 VC 下，_WIN32 一定有定义。
 #ifdef _WIN32
 
-#include <Ws2tcpip.h>
-#include <WinSock2.h>
+//#include <Ws2tcpip.h>
+//#include <WinSock2.h>
 #include <windows.h>
 #include <process.h>
 #include <dbghelp.h>

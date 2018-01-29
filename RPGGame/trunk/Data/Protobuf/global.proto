@@ -1,0 +1,40 @@
+package global;
+
+//测试包
+message TestPack
+{
+    required int32 i1 = 1;
+    required int64 i2 = 2;
+    required string s1 = 3;
+    required double d1 = 4;
+}
+
+//GM指令
+message GMCmdReq
+{
+	required string sCmd = 1;
+}
+
+//Tips
+message TipsMsgRet
+{
+	required string sCont = 1;	
+}
+
+//公告
+message NoticeRet
+{
+	required string sCont = 1;
+}
+
+//元宝不足弹框
+message YBDlgRet
+{
+}
+
+//图标Tips
+message IconTipsRet
+{
+	required int32 nID = 1;		//道具ID
+	required int32 nNum = 2; 	//道具数量
+}

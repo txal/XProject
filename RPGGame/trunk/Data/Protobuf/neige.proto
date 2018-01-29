@@ -1,0 +1,54 @@
+package neige;
+
+//界面信息请求
+message NeiGeInfoReq
+{
+}
+
+//界面信息返回
+message NeiGeInfoRet
+{
+	repeated double tCurr = 1; 			//当前数量
+	repeated int32 tRemTimes = 2; 		//剩余次数
+	repeated int32 tMaxTimes = 3; 		//最大次数
+	repeated int32 tCDTime = 4; 		//冷却时间
+	repeated int32 tCollectCount = 6;	//效果值
+}
+
+//扩建请求
+message NeiGeUpgradeReq
+{
+	required int32 nType = 1; 		//类型:1银两; 2文化; 3兵力;
+	required bool bProp = 2; 		//是否使用道具
+}
+
+//征收请求
+message NeiGeCollectReq
+{
+	required int32 nType = 1;		//类型:1银两; 2文化; 3兵力;
+}
+
+
+//1键征收请求
+message NeiGeOneKeyCollectReq
+{
+	required int32 nType = 1; 		//类型:0所有; 1银两; 2文化; 3兵力;
+}
+
+//加速请求
+message NeiGeCancelCDReq
+{
+	required int32 nType = 1; 		//类型:1银两; 2文化; 3兵力;
+}
+
+//恢复次数请求
+message NeiGeRecoverReq
+{
+	required int32 nType = 1; 		//类型:1银两; 2文化; 3兵力;
+	required int32 nNum = 2; 		//恢复次数 
+}
+
+//1键恢复次数请求
+message NeiGeOneKeyRecoverReq
+{
+}
