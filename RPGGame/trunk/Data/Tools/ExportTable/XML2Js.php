@@ -313,9 +313,22 @@ function XML2Js($sXMLFile, $sScriptDir)
 		$sScript .= "$sRowScript};\n";
 	}
 	$sScript = "var $sRootTable = {};\n$sScript\nmodule.exports = $sRootTable;";
-	file_put_contents($sJsFile, $sScript);
-	array_push($tJsFileList, array($sJsIncFile, $sJsFile, $sRootTable));
+	if (file_exists($sJsFile))
+	{
+		$sOldScript = file_get_contents($sJsFile);
+		if ($sOldScript != $sScript) 
+		{
+			file_put_contents($sJsFile, $sScript);
+			array_push($tJsFileList, array($sJsIncFile, $sJsFile, $sRootTable));
+		}
+	}
+	else
+	{
+		file_put_contents($sJsFile, $sScript);
+		array_push($tJsFileList, array($sJsIncFile, $sJsFile, $sRootTable));
+	}
 }
+
 foreach ($tJsFileList as $k => $v)
 {
 	if (file_exists($v[0]))

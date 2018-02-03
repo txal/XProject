@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>工具</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<style>
+body {
+	margin:0;
+	background:#EEEEEE;
+}
+</style>
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript">
+function push_gift(id, name) {
+	var amount = document.getElementById('num_'+id);
+	var parent = window.parent;
+	
+	if (!parseInt(amount.value)) {
+		alert('必须填写数量');
+		return;
+	}
+	
+	parent.giftinfo.push(id + ',' + amount.value);
+	parent.gifttext += '<font style="color:blue">' + name+'</font>' + ' x <font style="color:red">' + amount.value + '个</font> | ';
+	
+	parent.document.getElementById('giftinfo').innerHTML = parent.gifttext;
+	
+	sure();
+}
+
+function sure() {
+	var parent = window.parent;
+	var v = parent.giftinfo.join('|');
+	
+	parent.document.getElementById('giftids').value = v;
+}
+
+    function hidePropGroup(tid, sid, display)
+	{
+		var tabItem = document.getElementById("tab_"+ tid);
+		if(! tabItem) return ;
+
+		var liList = tabItem.getElementsByTagName("li");
+		for(var i = 0;i< liList.length;i++)
+		{
+			var lbtList = liList[i].getElementsByTagName("label");
+			var lid = "id_lbl_"+sid ;
+			if(lbtList[0].id != lid)
+				 liList[i].style.display = display;
+		}
+	}
+
+	var prevTab = 1;
+	function showtab(id) {
+		var tab = document.getElementById("tab_"+id);
+		if (prevTab)
+		{
+			document.getElementById("tab_" + prevTab).style.display = 'none';
+		}
+		
+		var hiddenTag = document.getElementById("id_hidden_tag").value;
+		if (parseInt(hiddenTag) >= 0)
+		{
+			var tid = parseInt(hiddenTag);
+			hidePropGroup(tid, -1, "block");
+			document.getElementById("id_hidden_tag").value = -1 ;
+		}	
+		
+		tab.style.display = 'block';
+		prevTab = id;
+	}
+
+	function showtab2(id) {
+		var tab = document.getElementById("tab_"+id);
+		if (prevTab)
+		{
+			document.getElementById("tab_" + prevTab).style.display = 'none';
+		}
+		
+		tab.style.display = 'block';
+		prevTab = id;
+	}
+
+
+	function searchProp()
+	{
+		var value = document.getElementById("id_search").value;
+		if(value.length < 1 )
+			return;
+
+		var url = "cardgift.php?searchAjax=" + value + "&toch=1";
+
+		ajax(url, 'get', 
+			function(data){
+				
+				var token = data.split(",");
+				var tid = token[0];
+				var sid = token[1];
+				if(tid < 1 || sid < 1 ) return ;
+
+				hidePropGroup(tid, sid, "none");
+				document.getElementById("id_hidden_tag").value = tid;				
+				showtab2(tid);
+			}
+		);
+	}
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<div style="text-align:center;">
+<div style="width:100%; margin:auto;">
+  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">道具列表&nbsp;&nbsp;&nbsp;&nbsp;
+	<input id="id_search" name="search" />
+	<input type="button" id="id_submit_button" onClick="searchProp(this);" value="查找"/>
+	<input type="hidden" id="id_hidden_tag" name="n_hidden_tag" />
+  </h3>
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+	<div style="margin-bottom:10px;color:#0000FF;text-align:left;" id="giftinfo">
+	<!--{loop $gift_sorts $k $v}-->
+	<h3 style="margin-top:20px;display:inline;margin-right:10px;"><a href="javascript:;" onClick="showtab($k);">$v</a></h3>
+	<!--{/loop}-->
+	<hr>
+	<!--{eval $index = 1;}-->
+	<!--{loop $gift_sorts $k $v}-->
+	<ul <!--{if $index == 1}-->style="display:block;"<!--{else}-->style="display:none;"<!--{/if}--> id="tab_$k">
+	<!--{loop $gifts[$k] $name $id}-->
+	<li style="display:block;margin:5px 10px;">
+		<label style="width=120px" id="id_lbl_$id"> $name</label>
+		<input type="text" id="num_$id" style="width:50px; font-size:12px; height:25px;" /> 个 <input type="button" value="添加" onClick="push_gift($id, '$name')" /></li>
+	<!--{/loop}-->
+	</ul>
+	<!--{eval $index++;}-->
+	<!--{/loop}-->
+	</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

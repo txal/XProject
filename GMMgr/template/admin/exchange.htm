@@ -1,0 +1,233 @@
+<html><!-- Zachary -->
+<head>
+	
+	<title>交易管理</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	.STYLEDATETIME {width: 150px;}
+	-->
+	</style>
+	<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+	<script type="text/javascript" src="/js/ajax.js"></script>
+	<script type="text/javascript">
+
+		function strtotime(str,now)
+		{
+			var i,match,s,strTmp='',parse='';
+
+			strTmp=str;
+			strTmp=strTmp.replace(/\s{2,}|^\s|\s$/g,' ');
+			strTmp=strTmp.replace(/[\t\r\n]/g,'');
+			if(strTmp=='now')
+			{
+				return(new Date()).getTime()/1000;
+			}else if(!isNaN(parse=Date.parse(strTmp))){
+				return(parse/1000);
+			}else if(now){
+				now=new Date(now*1000);
+			}else{
+				now=new Date();
+			}
+		strTmp=strTmp.toLowerCase();var __is={day:{'sun':0,'mon':1,'tue':2,'wed':3,'thu':4,'fri':5,'sat':6},mon:{'jan':0,'feb':1,'mar':2,'apr':3,'may':4,'jun':5,'jul':6,'aug':7,'sep':8,'oct':9,'nov':10,'dec':11}};var process=function(m){var ago=(m[2]&&m[2]=='ago');var num=(num=m[0]=='last'?-1:1)*(ago?-1:1);switch(m[0]){case'last':case'next':switch(m[1].substring(0,3)){case'yea':now.setFullYear(now.getFullYear()+num);break;case'mon':now.setMonth(now.getMonth()+num);break;case'wee':now.setDate(now.getDate()+(num*7));break;case'day':now.setDate(now.getDate()+num);break;case'hou':now.setHours(now.getHours()+num);break;case'min':now.setMinutes(now.getMinutes()+num);break;case'sec':now.setSeconds(now.getSeconds()+num);break;default:var day;if(typeof(day=__is.day[m[1].substring(0,3)])!='undefined'){var diff=day-now.getDay();if(diff==0){diff=7*num;}else if(diff>0){if(m[0]=='last'){diff-=7;}}else{if(m[0]=='next'){diff+=7;}}
+		now.setDate(now.getDate()+diff);}}
+		break;default:if(/\d+/.test(m[0])){num*=parseInt(m[0],10);switch(m[1].substring(0,3)){case'yea':now.setFullYear(now.getFullYear()+num);break;case'mon':now.setMonth(now.getMonth()+num);break;case'wee':now.setDate(now.getDate()+(num*7));break;case'day':now.setDate(now.getDate()+num);break;case'hou':now.setHours(now.getHours()+num);break;case'min':now.setMinutes(now.getMinutes()+num);break;case'sec':now.setSeconds(now.getSeconds()+num);break;}}else{return false;}
+		break;}
+		return true;};match=strTmp.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);if(match!=null){if(!match[2]){match[2]='00:00:00';}else if(!match[3]){match[2]+=':00';}
+		s=match[1].split(/-/g);for(i in __is.mon){if(__is.mon[i]==s[1]-1){s[1]=i;}}
+		s[0]=parseInt(s[0],10);s[0]=(s[0]>=0&&s[0]<=69)?'20'+(s[0]<10?'0'+s[0]:s[0]+''):(s[0]>=70&&s[0]<=99)?'19'+s[0]:s[0]+'';return parseInt(this.strtotime(s[2]+' '+s[1]+' '+s[0]+' '+match[2])+(match[4]?match[4]/1000:''),10);}
+		var regex='([+-]?\\d+\\s'+'(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'+'|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday'+'|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)'+'|(last|next)\\s'+'(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'+'|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday'+'|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))'+'(\\sago)?';match=strTmp.match(new RegExp(regex,'gi'));if(match==null){return false;}
+		for(i=0;i<match.length;i++){if(!process(match[i].split(' '))){return false;}}
+		return(now.getTime()/1000);}
+
+
+		function viewComsumeExchange(_null, page)
+		{		
+			var start = document.getElementById("id_startdatetime").value;
+			var end   = document.getElementById("id_enddatetime").value;
+
+			if( start.length > 0 && end.length < 1)
+			{
+				alert("结束时间不能为空");
+				return false;
+			}
+
+			var url = "?view=1&page="+ page;
+			var canfind = false;
+			if( start.length > 0 )
+			{
+				url = url + "&start=" + strtotime(start);
+				canfind = true;
+			}
+
+			if( end.length > 0 )
+			{
+				url = url + "&end=" + strtotime(end);
+				canfind = true;
+			}
+
+			var username = document.getElementById("id_username").value;
+			username = username.replace("+","%2B");
+			if( username.length > 0 )
+			{
+				url = url + "&username=" + username;
+				canfind = true;
+			}
+			
+			var objname = document.getElementById("id_objectname").value;
+			if( objname.length > 0)
+			{
+				url = url + "&objname=" + objname;
+				canfind = true;
+			}
+
+			if(!canfind)
+			{
+				alert("未设置查询条件, 查询失败!");
+				return false;
+			}
+
+			ajax(url, 'get', 
+				function(data){
+					var itemdiv = document.getElementById("id_div_view_1");
+					itemdiv.innerHTML = data;
+				}
+			);	
+		}
+
+		function viewRecharge(page)
+		{
+		
+			var url = "?view=2&page="+ page;
+			var canfind = false;
+
+			var username = document.getElementById("id_s_username").value;
+			username = username.replace("+","%2B");	
+			if(username.length > 0 )
+			{
+				url = url + "&username=" + username;
+				canfind = true;
+			}
+
+			var loginname = document.getElementById("id_loginname").value;
+			loginname = loginname.replace("+","%2B");	
+			if(loginname.length > 0 )
+			{
+				url = url + "&loginname=" + loginname;
+				canfind = true;
+			}
+
+			var obname = document.getElementById("id_s_objectname").value;
+			if(obname.length > 0 )
+			{
+				url = url + "&obname=" + obname;
+				canfind = true;
+			}
+
+			if(!canfind)
+			{
+				alert("未设置查询条件, 查询失败!");
+				return false;
+			}
+
+			ajax(url, 'get', 
+				function(data){
+					var itemdiv = document.getElementById("id_div_view_2");
+					itemdiv.innerHTML = data;
+				}
+			);	
+		}
+
+		function viewAuction(page)
+		{
+			var url = "?view=3&page=" + page;
+			ajax(url, 'get', 
+				function(data){
+					var itemdiv = document.getElementById("id_div_view_3");
+					itemdiv.innerHTML = data;
+				}
+			);				
+		}
+
+	</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+	<!--{eval if($admin) { }-->
+	<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+		<tr bgcolor="#E7E7E7"><td height="24" colspan="5" background="skin/images/tbg.gif">&nbsp;消费交易记录:&nbsp;</td></tr>
+		<tr align="left" bgcolor="#FAFAF1" height="22">
+			<td>用户名:</td>
+			<td><input type="text" name="username" id="id_username" style="width:150px" ></input></td>
+			<td>物品名称:</td>
+			<td colspan="2"><input type="text" name="objectname" id="id_objectname" style="width:150px" ></input>
+			</td>
+		</tr>
+		<tr align="left" bgcolor="#FAFAF1" height="22">
+			<td width="10%">开始 时间:</td>
+			<td width="10%"><input name="startdatetime" id="id_startdatetime" style="width:150px" onFocus="new Calendar().show(this);" onKeyDown="javascript: return false;" ></input>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td width="10%">结束时间:&nbsp;</td>
+			<td width="10%"><input name="enddatetime" id="id_enddatetime"  style="width:150px" onFocus="new Calendar().show(this);" onKeyDown="javascript: return false;" ></input>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td ><input type="button" value="查询" onclick="viewComsumeExchange(0, 1);"></input></td>
+		</tr>
+	</table>	
+
+	<div id="id_div_view_1"></div>
+	
+	<!--{eval } }-->
+
+	<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+		<tr bgcolor="#E7E7E7"><td height="24" colspan="7" background="skin/images/tbg.gif">&nbsp;充值赠送物品查询:&nbsp;</td></tr>
+		<tr align="left" bgcolor="#FAFAF1" height="22">
+			<td width="250px">玩家名:
+				<input type="text" name="s_username" id="id_s_username" ></input>
+			<td width="250px">登陆名:
+				<input type="text" name="loginname" id="id_loginname" ></input></td>
+			</td>
+			<td width="250px" >道具物品:
+				<input type="text" name="s_objectname" id="id_s_objectname" ></input>
+			</td>
+			<td ><input type="button" value="查询" onclick="viewRecharge(1);"/></td>
+		</tr>
+		
+	</table>
+	<div id="id_div_view_2"></div>
+
+
+	<br/>
+	<br/>
+	<!--{eval if($canViewAuction){ }-->
+		<div id="id_div_view_3">
+			<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+				<tr><td colspan="5">拍卖交易记录</td></tr>
+				<tr align="center" bgcolor="#FAFAF1" height="22">
+				  <td>拍卖类型</td>
+				  <td>物品</td>
+				  <td>价格</td>
+				  <td>卖家</td>
+				  <td>买家</td>
+				  <td>成交时间</td>
+				</tr>
+				
+				<!--{loop $auctionList $v}-->
+				<tr align='center' bgcolor="$v['color']" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='$v['color']';" height="22">
+					<td>$v[type]</td>
+					<td>$v[gname]</td>
+				  <td>$v[price]</td>
+				  <td>$v[seller]</td>
+				  <td>$v[buyer]</td>
+				  <td>$v[extime]</td>
+				</tr>
+				<!--{/loop}-->
+
+				<tr align="right" bgcolor="#EEF4EA">
+					<td height="36" colspan="6" align="left">$pageblock</td>
+				</tr> 
+
+			</table>
+		</div>
+	<!--{eval } }-->
+
+</body>
+</html>

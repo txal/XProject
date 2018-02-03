@@ -12,23 +12,23 @@ DetectorMgr::DetectorMgr()
 {
 }
 
-Detector* DetectorMgr::CreateDetector(const GAME_OBJID& oID, int nConfID, const char* psName)
+Detector* DetectorMgr::CreateDetector(int nID, int nConfID, const char* psName)
 {
-	Detector* poDetector = GetDetectorByID(oID);
+	Detector* poDetector = GetDetectorByID(nID);
 	if (poDetector != NULL)
 	{
-		XLog(LEVEL_ERROR, "CreateDetector: %lld exist\n", oID.llID);
+		XLog(LEVEL_ERROR, "CreateDetector: %lld exist\n", nID);
 		return NULL;
 	}
 	poDetector = XNEW(Detector);
-	poDetector->Init(oID, nConfID, psName);
-	m_oDetectorMap[oID.llID] = poDetector;
+	poDetector->Init(nID, nConfID, psName);
+	m_oDetectorMap[nID] = poDetector;
 	return poDetector;
 }
 
-Detector* DetectorMgr::GetDetectorByID(const GAME_OBJID& oID)
+Detector* DetectorMgr::GetDetectorByID(int nID)
 {
-	DetectorIter iter = m_oDetectorMap.find(oID.llID);
+	DetectorIter iter = m_oDetectorMap.find(nID);
 	if (iter != m_oDetectorMap.end())
 	{
 		return iter->second;
@@ -53,7 +53,7 @@ void DetectorMgr::UpdateDetectors(int64_t nNowMS)
 		if (poDetector->IsTimeToCollected(nNowMS))
 		{
 			iter = m_oDetectorMap.erase(iter);
-			 LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poDetector->GetID().llID, poDetector->GetType());
+			 LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poDetector->GetID(), poDetector->GetType());
 			SAFE_DELETE(poDetector);
 			continue;
 		}

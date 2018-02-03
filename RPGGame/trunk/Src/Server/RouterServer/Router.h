@@ -38,7 +38,7 @@ private:
     void OnAddDataSock(HSOCKET hSock, int nSessionID);
 	void OnRouterMsg(int nSessionID, Packet* poPacket);
 
-	void BroadcastService(Packet* poPacket);
+	void BroadcastService(int nServerID, Packet* poPacket);
 
 private:
 	// Server

@@ -1,0 +1,64 @@
+<html>
+        <head>
+                <title>任务停留统计</title>
+                <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+                <script type="text/javascript" src="js/ajax.js"></script>
+                <script language="javascript" type="text/javascript" src="js/calendar.js"></script>
+                <script type="text/javascript">
+
+                    function searchTask(){
+                        var stime = document.getElementById("stime");
+                        var etime = document.getElementById("etime");
+                        stime = stime.value.trim();
+                        etime = etime.value.trim();
+
+                        if (!stime.match(/^\d+-\d+-\d+$/g)) {
+                            alert('没有填写开始时间或格式错误');
+                            return false;
+                        }
+
+                        if (!etime.match(/^\d+-\d+-\d+$/g)) {
+                            alert('没有填写结束时间或格式错误');
+                            return false;
+                        }
+
+                        window.location.href = "taskstopquery.php?action=search&stime="+stime+"&etime="+etime;
+                    }
+                </script>
+        </head>
+
+        <body>
+                <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+                    <tr bgcolor="#E7E7E7">
+                        <div align="center", style="">
+		                <span style="margin-right:10px;">起始时间:
+			                <input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$stime" />
+		                </span>
+                            <span style="margin-right:10px;">结束时间:
+			                    <input name="etime" type="text" class="mytxt" id="etime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$etime" />
+		                </span>
+                            <input type="button" name="search" style="width:80px;" value="查  询" onClick="searchTask()"/>
+                        </div>
+                    </tr>
+                    <tr bgcolor="#E7E7E7">
+                        <td height="24" colspan="14">&nbsp;&nbsp;任务停留统计列表</td>
+                    </tr>
+                    <tr align="center" bgcolor="#FAFAF1" height="22">
+                        <td width="20%">主线任务ID</td>
+                        <td width="20%">停留数</td>
+                        <td width="20%">占比</td>
+                        <td width="20%">流失人数</td>
+                        <td width="20%">流失率</td>
+                    </tr>
+                    <!--{loop $resList $k $v}-->
+                    <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+                        <td>$v[-1]</td>
+                        <td>$v[0]</td>
+                        <td>$v[1]</td>
+                        <td>$v[2]</td>
+                        <td>$v[3]</td>
+                    </tr>
+                    <!--{/loop}-->
+                </table>
+        </body>
+</html>

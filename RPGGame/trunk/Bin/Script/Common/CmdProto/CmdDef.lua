@@ -8,13 +8,10 @@ gtMsgType =
 ---------注册服务器间系统指令(126-1024)--------------------------
 -- ssRegServiceReq = 126,			--注册服务到Router
 -- ssRegServiceRet = 127,			--Router返回注册结果
--- ssClientClose = 129,				--客户端断开(网关->游戏服务)
--- ssServiceClose = 130,			--服务断开(路由->所有服务)
--- ssKickClient = 135,				--踢玩家下线
--- ssBroadcastGate = 136,			--广播网关指令
-RegSrvSrvCmd(130, "OnServiceClose", "ii") 	--服务断开
-RegSrvSrvCmd(135, "KickClient", "")			--踢玩家下线
+RegSrvSrvCmd(129, "OnClientClose", "ii") 	--客户端断开(网关->游戏服务)
+RegSrvSrvCmd(130, "OnServiceClose", "ii") 	--服务断开(路由->所有服务)
 RegSrvSrvCmd(136, "BroadcastGate", "") 		--广播网关指令(广播全服玩家)
+RegSrvSrvCmd(135, "KickClient", "")			--踢玩家下线(游戏服务->网关)
 
 
 -----------------注册服务器间自定义协议(40001-50000)---------------------

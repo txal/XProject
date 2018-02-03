@@ -1,0 +1,5 @@
+[INFO 2018-02-02 18:02:29]: 连接数据库成功: 	{sIP="192.168.0.9",nPort=3308,sDBName="mengzhu_s1",sUserName="root",sPassword="123456",}
+timer count: 2 (...\Bin\_LocalServer/../Script/Common/TimerMgr/TimerMgr.lua:12: )
+[INFO 2018-02-02 18:02:29]: LogServer lua start successful
+timer count: 2 (...\Bin\_LocalServer/../Script/Common/TimerMgr/TimerMgr.lua:12: )
+[INFO 2018-02-02 18:56:47]: LogServer lua start successful

@@ -1,36 +1,53 @@
 --玩家管理模块
-gnBaseCharID = 100000	--玩家ID起始
-local nMaxCharID = 999999-gnBaseCharID --玩家ID上限
+gnBasePlayerID = 1000000 --玩家ID起始
+local nMaxPlayerID = 9999999-gnBasePlayerID --玩家ID上限
 
 function CPlayerMgr:Ctor()
-	self.m_tSessionMap = {}
-	self.m_tAccountMap= {}
-	self.m_tCharIDMap = {}
-
-	--账号数据
-	self.m_tAccountDataMap = {}
+	self.m_tAccountIDMap = {}		--账号ID影射: {[accountid]=account, ...}
+	self.m_tAccountNameMap = {}		--账号名字影射: {[accountkey]=account, ...}
+	self.m_tAccountSessionMap = {}	--账号SESSION影射: {[combindid]=account, ...}
 end
 
---是否被禁言
-function CPlayerMgr:IsJinYan(oPlayer)
-	local nSource, sAccount = oPlayer:GetSource(), oPlayer:GetAccount()
-	local sKey = self:MakeAccountKey(nSource, sAccount)
-	local tAccount = self.m_tAccountDataMap[sKey]
-	if tAccount then
-		return (tAccount.nState == gtUserState.eJinYan)
+--生成唯一账号/角色ID
+function CPlayerMgr:GenPlayerID()
+	local nIncr = goDBMgr:GetSSDB(0, "center"):HIncr(gtDBDef.sPlayerIDDB, "data")
+	local nPlayerID = gnBasePlayerID + nIncr % nMaxPlayerID
+	return nPlayerID
+end
+
+function CPlayerMgr:GetAccountIDMap()
+	return self.m_tAccountIDMap
+end
+
+function CPlayerMgr:GetAccountSessionMap()
+	return self.m_tAccountSessionMap
+end
+
+--通过账号ID取在线账号对象
+function CPlayerMgr:GetAccountByID(nAccountID)
+	return self.m_tAccountIDMap[nAccountID]
+end
+
+--通过SERVER,SESSION取在线账号对象
+function CPlayerMgr:GetAccountBySession(nServer, nSession)
+	local nKey = nSession<<32|nSession
+	return self.m_tAccountSessionMap[nKey]
+end
+
+--通过账号ID取在线角色对象
+function CPlayerMgr:GetRoleByAccountID(nAccountID)
+	local oAccount = self:GetAccountByID(nAccountID)
+	if oAccount then
+		return oAccount:GetOnlineRole()
 	end
 end
 
-function CPlayerMgr:GetPlayerMap()
-	return self.m_tCharIDMap
-end
-
-function CPlayerMgr:GetSessionMap()
-	return self.m_tSessionMap
-end
-
-function CPlayerMgr:GetPlayerBySession(nSession)
-	return self.m_tSessionMap[nSession]
+--通过SERVER,SESSION取在线角色对象
+function CPlayerMgr:GetRoleBySessionID(nServer, nSession)
+	local oAccount = self:GetAccountBySession(nServer, nSession)
+	if oAccount then
+		return oAccount:GetOnlineRole()
+	end
 end
 
 function CPlayerMgr:MakeAccountKey(nSource, sAccount)
@@ -41,34 +58,36 @@ function CPlayerMgr:MakeAccountKey(nSource, sAccount)
 	return (nSource.."_"..sAccount)
 end
 
-function CPlayerMgr:GetPlayerByAccount(nSource, sAccount)
-	local sKey = self:MakeAccountKey(nSource, sAccount)
-	return self.m_tAccountMap[sKey]
+--角色列表请求
+function CPlayerMgr:RoleListReq(nServer, nSession, nSource, sAccount)
 end
 
-function CPlayerMgr:GetPlayerByCharID(nCharID)
-	return self.m_tCharIDMap[nCharID]
-end
+--登录请求
+function CPlayerMgr:LoginReq(nServer, nSession, nSource, sAccount)
+	print("CPlayerMgr:Login***", nServer, nSession, nSource, sAccount)
+	assert(nServer and nSource and sAccount, "参数错误")
+	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
+	local oAccount = self.m_tAccountNameMap[sAccountKey]
 
---登录
-function CPlayerMgr:Login(nSession, sAccount, sPassword, nSource)
-	print("CPlayerMgr:Login***", sAccount, sPassword, nSource)
-	assert(sAccount and sPassword and nSource)
-	local sKey = self:MakeAccountKey(nSource, sAccount)
-	if self.m_tAccountMap[sKey] then
-		local nOldSession = self.m_tAccountMap[sKey]:GetSession()
-		if nOldSession == nSession then
-			CPlayer:Tips("重复登录了", nSession)
-			return LuaTrace("重复登录", sAccount)
+	if oAccount then
+		local nOldServer, nOldSession = oAccount:GetSession()
+		if nServer == nOldServer and nSession == nOldSession then
+			CPlayer:Tips("重复登录了", nServer, nSession)
+			return LuaTrace("重复登录", nSource, sAccount)
 		end
-		return self:OtherPlaceLogin(nOldSession, nSession, sAccount, sPassword, nSource)
+		return self:OtherPlaceLogin(nOldServer, nOldSession, nServer, nSession, nSource, sAccount)
 	end
-	if self.m_tSessionMap[nSession] then
+
+	local nSessionKey = nServer << 32 | nSession
+	local oAccount = self.m_tAccountSessionMap[nSessionKey]
+	if oAccount then
 		--出现这种状况一般是:点了登陆没反应，再换账号再点登陆
-		local oPlayer = self.m_tSessionMap[nSession]
-		return LuaTrace("会话ID冲突(注销没关连接?)", nSession, sAccount, "--", oPlayer:GetSession(), oPlayer:GetAccount())
+		return LuaTrace("会话ID冲突(注销没关连接?) new:", nServer, nSession, nSource, sAccount
+			, "--old:", oAccount:GetServer(), oAccount:GetSession(), oAccount:GetSource(), oAccount:GetAccount())
 	end
-	local sAccountData = goDBMgr:GetSSDB("Player"):HGet(gtDBDef.sAccountDB, sKey)
+
+	local nAccountID = self:GenPlayerID()
+	local sAccountData = goDBMgr:GetSSDB(nServer, "user", nAccountID):HGet(gtDBDef.sAccountDB, sAccountKey)
 	if sAccountData == "" then
 		return CmdNet.PBSrv2Clt(nSession, "LoginRet", {nCode=-1}) --创建角色
 	end
@@ -114,13 +133,6 @@ function CPlayerMgr:OnLoginSucc(oPlayer)
 
     --LOG
 	goLogger:EventLog(gtEvent.eLogin, oPlayer, oPlayer:GetOnlineTime()-oPlayer:GetOfflineTime())
-end
-
---生成唯一角色ID
-function CPlayerMgr:GenCharID()
-	local nIncr = goDBMgr:GetSSDB("Center"):HIncr(gtDBDef.sCharIDDB, "IDIncr")
-	local nCharID = gnBaseCharID + nIncr % nMaxCharID
-	return nCharID
 end
 
 --创建角色

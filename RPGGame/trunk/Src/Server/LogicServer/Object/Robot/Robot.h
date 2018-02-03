@@ -17,7 +17,7 @@ public:
 	virtual ~Robot();
 
 public:
-	void Init(const GAME_OBJID& oObjID, int nConfID, const char* psName, int nAOIID, int8_t nCamp, uint16_t uSyncHPTime);
+	void Init(int nObjID, int nConfID, const char* psName, int nAOIID, int8_t nCamp, uint16_t uSyncHPTime);
 
 public:
 	virtual void Update(int64_t nNowMS);

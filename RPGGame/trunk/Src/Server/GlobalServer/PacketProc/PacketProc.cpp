@@ -28,6 +28,7 @@ void NSPacketProc::OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	lua_State* pState = poLuaWrapper->GetLuaState();
 	lua_pushinteger(pState, oHeader.uCmd);
+	lua_pushinteger(pState, 0);
 	lua_pushinteger(pState, oHeader.nSrcService);
 	lua_pushinteger(pState, nSrcSessionID);
 

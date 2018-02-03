@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>同步管理员帐号</title>
+
+<script language="javascript" type="text/javascript">
+	//触发管理员限设置下拉选择框
+	function getNum()
+	{
+		var aVisible	=document.getElementById("id_flag").value;
+		aVisible		=(aVisible=="none")?"block":"none";
+		
+		document.getElementById("id_flag").value=aVisible;
+		document.getElementById("id_div").style.display=aVisible;
+	}
+	
+
+	//捕获全局事件
+	document.onclick=function(e)
+	{
+	  e=e||event;
+	  var tag=e.target?e.target:e.srcElement;
+	  if(tag.type=="checkbox")
+	  {
+	    var sv		=document.getElementById("id_vServer");
+	    var pv		=document.getElementById("id_iServer");
+
+		var value	=tag.value.replace(/^\d+\+/,'');
+		
+		var reg = /^\d+/;
+		var iValue 	=reg.exec(tag.value);
+					
+	    if(tag.checked)
+	    {
+		    //选择全部权限
+		    if(parseInt(tag.value)==-1)
+		    {
+				var eLength	=document.getElementsByTagName("input").length;
+				var strAll="";
+				var iAll="";
+				for(var i=0;i<eLength;i++)
+				{
+					var cpt	=document.getElementsByTagName("input").item(i);
+					if(cpt.type	=="checkbox" && parseInt(cpt.value)!=-1)
+					{
+						cpt.checked	=true;
+						strAll		=strAll+" "+cpt.value.replace(/^\d+\+/,'');
+						iAll		=iAll+" "+reg.exec(cpt.value);
+					}
+				}
+
+				sv.value=strAll;
+				pv.value=iAll;
+			}else
+			{
+		    	sv.value=sv.value+" "+value;
+		     	pv.value=pv.value+" "+iValue;
+			}
+	    }
+	    else
+	    {
+		    //取消全部权限
+		    if(parseInt(tag.value)==-1)
+		    {
+				var eLength	=document.getElementsByTagName("input").length;
+				for(var i=0;i<eLength;i++)
+				{
+					var cpt	=document.getElementsByTagName("input").item(i);
+					if(cpt.type	=="checkbox")
+					{
+						cpt.checked=false;
+					}
+				}
+
+				sv.value="";
+				pv.value="";
+			}else		
+			{    
+	    		sv.value=sv.value.replace(new RegExp(value+"( )?","i"),"");
+	    		pv.value=pv.value.replace(new RegExp(iValue+"( )?","i"),"");
+				document.getElementById("id_all").checked=false;	    		
+			}	    	
+	    }
+	    sv.value=sv.value.replace(/(^\s*)|(\s*$)/g, '');
+	    pv.value=pv.value.replace(/(^\s*)|(\s*$)/g, '');    
+
+	  }else if( tag.type!="text")
+	  {
+			document.getElementById("id_flag").value="none";
+			document.getElementById("id_div").style.display="none";
+
+	  }
+	}	
+	
+</script>
+
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+
+<br /><br />
+	<form action="synadmin.php" method="post" onSubmit="javascript: return checkform();">
+		<table width="88%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+			<tr bgcolor="#E7E7E7">
+				<td height="24" colspan="6" background="skin/images/tbg.gif">创建管理员:</td>
+			</tr>
+			<tr  bgcolor="#FAFAF1" height="22">
+				<td align="right" width="40%">数据源:&nbsp;&nbsp;</td>
+				<td align="left" width="60%">
+					<select name="sourceServer" id="id_sourceServer" class="WIDTH" >
+						<!--{loop $serverlist $k $v}-->
+							<option value=$k >$v</option>
+						<!--{/loop}-->
+					</select>
+				</td>
+			  </tr>
+			<tr align="center" bgcolor="#FAFAF1" height="22">
+				<td align="right">目标游戏服:&nbsp;&nbsp;</td>
+				<td  align="left"><input name="inputServer" id="id_vServer" type="text" style="width:150px" onClick="getNum();" onKeydown="return editServer(event);" />
+					<input name="iServer" id="id_iServer" type="hidden" value=""></input><input type="hidden" id="id_flag" name="flag" value="none">
+					<div id="id_div" style="display:none;" class="table" bgcolor="#ffffff">
+						<table >
+							<input id="id_all" type="checkbox" name="area" value=-1>全部</input><br/>
+							<!--{loop $serverlist $k $v}-->
+								<input type="checkbox" name="area" value=$k+$v>$v</input><br/>
+							<!--{/loop}-->	
+						</table>
+					</div> 	
+				</td>
+			  </tr>  
+		
+		
+			<tr align="right" bgcolor="#EEF4EA">
+				<td></td>
+				<td height="36" align="left"><input type="submit" name="submit" value="同步"/></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

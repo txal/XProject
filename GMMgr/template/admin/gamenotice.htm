@@ -1,0 +1,216 @@
+<html>
+        <head>
+            <title>游戏公告</title>
+            <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+            <script type="text/javascript" src="js/ajax.js"></script>
+            <script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>
+            <script type="text/javascript">
+
+                //修改游戏公告
+                function updateNotice(id,server,title,content,endtime,time){
+                    content = decodeURIComponent(decodeURIComponent(content.replace(/\+/g, '%20')));
+                    var cont =
+                        "<table width='98%' border='0' cellpadding='2' cellspacing='1' bgcolor='#D1DDAA' align='center' style='margin-top:20px;margin-bottom:20px;float:left;margin-left: 19px;'>\
+                        <tr bgcolor='#E7E7E7'>\
+                            <td height='24' colspan='10' background='skin/images/tbg.gif'>&nbsp;修改游戏公告&nbsp;</td>\
+                        </tr>\
+                        <tr align='center' bgcolor='#FAFAF1' height='22'>\
+                            <td width='6%'>公告ID</td>\
+                            <td width='6%'>服务器</td>\
+                            <td width='25%'>标题</td>\
+                            <td>内容</td>\
+                            <td>结束时间</td>\
+                            <td>是否有效</td>\
+                            <td width='10%'>操作</td>\
+                        </tr>\
+                        <tr align='left' bgcolor='#FAFAF1' height='22'>\
+                            <td ><input id='id' type='text' style='width:100%;background-color:#E7E7E7;' readonly='readonly' value='"+ id+"'/></td>\
+                            <td>\
+                            <select id='serverid'>\
+                                <!--{loop $_SERVERLIST $key $val}-->\
+                                <option value='$key' <!--{eval if($key=="+server+") echo('selected=\"selected\"');}-->>$val['name']</option>\
+                                <!--{/loop}-->\
+                            </select>\
+                            </td>\
+                            <td ><input id='title' type='text' style='width:100%;' value='"+title+"'/></td>\
+                            <td><textarea id='content' name='notice' cols='80' rows='15' style='border:1px solid #CCCCCC;width:100%;'></textarea></td>\
+                            <td ><input id='endtime' type='text' style='width:100%;' value='"+endtime+"' onFocus='new Calendar().show(this)';/></td>\
+                            <td >\
+                                <select style='width: 100%' id='effect'>\
+                                    <option value='1'>是</option>\
+                                    <option value='0'>否</option>\
+                                </select>\
+                            </td>\
+                            <td >\
+                                <input type='button' style='width:100%;' value='确认' onClick='updateNoticeConfirm()'/>\
+                                <input type='button' style='width:100%;' value='取消' onClick='cancleOperation()'/>\
+                            </td>\
+                        </tr>\
+                    </table>";
+                    document.getElementById('codedetal').innerHTML = cont;
+                    var con = document.getElementById("content");
+                    con.value = content;
+                }
+
+                //确认修改游戏公告
+                function updateNoticeConfirm(){
+                    var id = document.getElementById('id').value;
+                    var serverid = document.getElementById('serverid').value;
+                    var title = document.getElementById('title').value;
+                    var content = document.getElementById('content').value;
+                    var endtime = document.getElementById('endtime').value;
+                    var effect = document.getElementById('effect').value;
+                    if(id=="" || title=="" || content=="" || endtime=="" || serverid==""){
+                        alert("输入框不能有空，请检查");
+                        return false;
+                    }
+                    if (!endtime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+                        alert('没有填写结束时间或格式错误');
+                        return false;
+                    }
+
+                    title = encodeURIComponent(title); //GET 不能传特殊字符串 例如:+
+                    content = encodeURIComponent(content);
+                    var url = '?inajax=yes&action=updateNotice&id='+id+'&serverID='+serverid+'&title='+title+'&content='+content+'&endTime='+endtime+'&effect='+effect+'&rnd='+ Math.random();
+                    ajax(url, 'get', function(data) {
+                        if ( data == "SUCCESS" ) {
+                            alert("操作成功！");
+                            location.href = "youxinotice.php";
+                        } else {
+                            alert("操作失败！"+data);
+                        }
+                    });
+                }
+
+
+                //添加游戏公告
+                function addNotice(){
+                    var cont =
+                        "<table width='98%' border='0' cellpadding='2' cellspacing='1' bgcolor='#D1DDAA' align='center' style='margin-top:20px;margin-bottom:20px;float:left;margin-left: 19px;'>\
+                        <tr bgcolor='#E7E7E7'>\
+                            <td height='24' colspan='10' background='skin/images/tbg.gif'>&nbsp;添加游戏公告&nbsp;</td>\
+                        </tr>\
+                        <tr align='center' bgcolor='#FAFAF1' height='22'>\
+                            <td>服务器</td>\
+                            <td>标题</td>\
+                            <td>内容</td>\
+                            <td>结束时间</td>\
+                            <td>操作</td>\
+                        </tr>\
+                        <tr align='left' bgcolor='#FAFAF1' height='22'>\
+                            <td>\
+                                <select id='serverid'>\
+                                    <!--{loop $_SERVERLIST $key $val}-->\
+                                    <option value='$key'>$val['name']</option>\
+                                    <!--{/loop}-->\
+                                </select>\
+                            </td>\
+                            <td width='35%'><input id='title' type='text' style='width:100%;'  /></td>\
+                            <td ><textarea id='content' name='notice' cols='100' rows='15' style='border:1px solid #CCCCCC;width:100%;'></textarea></td>\
+                            <td ><input id='endtime' type='text' style='width:100%;' value='' onFocus='new Calendar().show(this)';/></td>\
+                            <td width='13%'>\
+                                <input type='button' style='width:100%;' value='确认' onclick='addNoticeConfrim()'/>\
+                                <input type='button' style='width:100%;' value='取消' onclick='cancleOperation()'/>\
+                            </td>\
+                        </tr>\
+                    </table>";
+                    document.getElementById('codedetal').innerHTML = cont;
+                }
+
+                //确定添加游戏公告
+                function addNoticeConfrim(){
+                    var title = document.getElementById('title').value;
+                    var content = document.getElementById('content').value;
+                    var serverid = document.getElementById('serverid').value;
+                    var endtime = document.getElementById('endtime').value;
+                    title = encodeURIComponent(title); //GET 不能传特殊字符串 例如:+
+                    content = encodeURIComponent(content);
+
+                    if (serverid == "") {
+                        alert("请选择服务器");
+                        return false;
+                    }
+
+                    if(title=="" || content=="" ||endtime==""){
+                        alert("输入框不能有空，请检查");
+                        return false;
+                    }
+
+                    var url = '?inajax=yes&action=addNotice&title='+title+'&content='+content+'&endTime='+endtime+'&serverID='+serverid+'&rnd='+ Math.random();
+                    ajax(url, 'get', function(data) {
+                        if ( data == "SUCCESS" ) {
+                            alert("操作成功！");
+                            location.href = "youxinotice.php";
+                        } else {
+                            alert("操作失败！"+data);
+                        }
+                    });
+                }
+
+                //删除
+                function delNotice(noticeID) {
+                    if(!confirm("确定要删除？")){
+                        return;
+                    }
+                    var url = '?inajax=yes&action=delNotice&noticeID='+noticeID+'&rnd='+ Math.random();
+                    ajax(url, 'get', function(data) {
+                        if ( data == "SUCCESS" ) {
+                            alert("删除成功！");
+                            location.href = "youxinotice.php";
+                        } else {
+                            alert("删除失败！"+data);
+                        }
+                    });
+                }
+
+                //取消操作
+                function cancleOperation(){
+                    document.getElementById("codedetal").innerHTML="";
+                }
+
+            </script>
+        </head>
+        <body>
+            <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+                <tr bgcolor="#E7E7E7">
+                    <td height="24" colspan="14">&nbsp;&nbsp;游戏公告列表</td>
+                </tr>
+                <tr align="center" bgcolor="#FAFAF1" height="22">
+                    <td width="4%">公告ID</td>
+                    <td width="4%">服务器</td>
+                    <td width="6%">标题</td>
+                    <td width="10%">内容</td>
+                    <td width="6%">结束时间</td>
+                    <td width="3%">是否有效</td>
+                    <td width="6%">时间</td>
+                    <td width="3%">操作</td>
+                </tr>
+                <!--{loop $noticeList $key $val}-->
+                <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+                    <td>$val[id]</td>
+                    <td>$val[servername]</td>
+                    <td>$val[title]</td>
+                    <td>$val[content]</td>
+                    <td>$val[endtime]</td>
+                    <td>$val[effect]</td>
+                    <td>$val[time]</td>
+                    <td>
+                        [<a href="javascript:;" onClick="updateNotice('$val[id]','$val[server]','$val[title]','$val[econtent]','$val[endtime]','$val[time]')" style="cursor: pointer">修改</a>]
+                        [<a href="javascript:;" onclick="delNotice('$val[id]')">删除</a>]
+                    </td>
+                </tr>
+                <!--{/loop}-->
+                <tr bgcolor="#E7E7E7">
+                    <td height="24" colspan="14" background="skin/images/tbg.gif" align="center">
+                        $multi
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td height="40" bgcolor="#FFFFFF" colspan="9">
+                        <input type='button' style="width: 100px; float: left;" value='添加游戏公告' onClick='addNotice()'/>
+                    </td>
+                </tr>
+            </table>
+            <div id="codedetal" style="float:left; width:auto"></div>
+        </body>
+</html>

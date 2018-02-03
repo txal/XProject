@@ -8,15 +8,15 @@ ServerContext::ServerContext()
 	m_poPacketHandler = NULL;
 }
 
-int ServerContext::GetRandomLogic()
+int ServerContext::RandomLocalLogic()
 {
-	int nCount = (int)m_oSrvConf.oLogicList.size();
+	int nCount = (int)m_oServerConf.oLogicList.size();
 	if (nCount <= 0)
 	{
 		return 0;
 	}
 	int nIndex = XMath::Random(1, nCount);
-	return m_oSrvConf.oLogicList[nIndex-1].oLogic.uService;
+	return m_oServerConf.oLogicList[nIndex-1].uID;
 }
 
 bool ServerContext::LoadServerConfig()
@@ -30,104 +30,116 @@ bool ServerContext::LoadServerConfig()
 
 	lua_State* pState = poLuaWrapper->GetLuaState();
 	lua_getglobal(pState, "gnServerID");
-	m_oSrvConf.uServerID = (uint16_t)luaL_checkinteger(pState, -1);
+	m_oServerConf.uServerID = (uint16_t)lua_tointeger(pState, -1);
 
-	lua_getglobal(pState, "gtNetConf");
+	lua_getglobal(pState, "gnWorldServerID");
+	m_oServerConf.uWorldServerID = (uint16_t)lua_tointeger(pState, -1);
+
+	lua_getglobal(pState, "gtServerConf");
 	int nTbIdx = lua_gettop(pState);
 
 	//网关
-	m_oSrvConf.oGateList.clear();
+	m_oServerConf.oGateList.clear();
+	lua_pushvalue(pState, nTbIdx);
 	lua_getfield(pState, -1, "tGateService");
-	int nTbIdx1 = lua_gettop(pState);
-	lua_pushnil(pState);
-	while (lua_next(pState, nTbIdx1))
+	int nLen = (int)lua_rawlen(pState, -1);
+	for (int i = 1; i <= nLen; i++)
 	{
-		ServerNode oConf;
-		oConf.oGate.uService = (int8_t)lua_tointeger(pState, -2);
-		lua_getfield(pState, -1, "nPort");
-		oConf.oGate.uPort = (uint16_t)lua_tointeger(pState, -1);
-		lua_getfield(pState, -2, "nMaxConns");
-		oConf.oGate.uMaxConns = (uint16_t)lua_tointeger(pState, -1);
-		lua_getfield(pState, -3, "nSecureCPM");
-		oConf.oGate.uSecureCPM = (uint16_t)lua_tointeger(pState, -1);
-		lua_getfield(pState, -4, "nSecureQPM");
-		oConf.oGate.uSecureQPM = (uint16_t)lua_tointeger(pState, -1);
-		lua_getfield(pState, -5, "nSecureBlock");
-		oConf.oGate.uSecureBlock = (uint32_t)lua_tointeger(pState, -1);
-		lua_getfield(pState, -6, "nDeadLinkTime");
-		oConf.oGate.uDeadLinkTime = (uint16_t)lua_tointeger(pState, -1);
-		m_oSrvConf.oGateList.push_back(oConf);
-		lua_pop(pState, 7);
+		GateNode oGate;
+		lua_rawgeti(pState, -1, i);
+		lua_getfield(pState, -1, "nID");
+		oGate.uID = (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -2, "nServer");
+		oGate.uServer= (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -3, "nPort");
+		oGate.uPort = (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -4, "nMaxConns");
+		oGate.uMaxConns = (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -5, "nSecureCPM");
+		oGate.uSecureCPM = (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -6, "nSecureQPM");
+		oGate.uSecureQPM = (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -7, "nSecureBlock");
+		oGate.uSecureBlock = (uint32_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -8, "nDeadLinkTime");
+		oGate.uDeadLinkTime = (uint16_t)lua_tointeger(pState, -1);
+		m_oServerConf.oGateList.push_back(oGate);
+		lua_pop(pState, 9);
+
 	}
 
 	//路由
-	m_oSrvConf.oRouterList.clear();
+	m_oServerConf.oRouterList.clear();
 	lua_pushvalue(pState, nTbIdx);
 	lua_getfield(pState, -1, "tRouterService");
-	nTbIdx1 = lua_gettop(pState);
-	lua_pushnil(pState);
-	while (lua_next(pState, nTbIdx1))
+	nLen = (int)lua_rawlen(pState, -1);
+	for (int i = 1; i <= nLen; i++)
 	{
-		ServerNode oConf;
-		oConf.oRouter.uService = (int8_t)lua_tointeger(pState, -2);
-		lua_getfield(pState, -1, "sIP");
+		RouterNode oRouter;
+		lua_rawgeti(pState, -1, i);
+		lua_getfield(pState, -1, "nID");
+		oRouter.uID = (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -2, "sIP");
 		const char* psIP = lua_tostring(pState, -1);
-		strcpy(oConf.oRouter.sIP, psIP);
-		lua_getfield(pState, -2, "nPort");
-		oConf.oRouter.uPort = (uint16_t)lua_tointeger(pState, -1);
-		m_oSrvConf.oRouterList.push_back(oConf);
-		lua_pop(pState, 3);
+		strcpy(oRouter.sIP, psIP);
+		lua_getfield(pState, -3, "nPort");
+		oRouter.uPort = (uint16_t)lua_tointeger(pState, -1);
+		m_oServerConf.oRouterList.push_back(oRouter);
+		lua_pop(pState, 4);
 	}
 
 	//逻辑
-	m_oSrvConf.oLogicList.clear();
+	m_oServerConf.oLogicList.clear();
 	lua_pushvalue(pState, nTbIdx);
 	lua_getfield(pState, -1, "tLogicService");
-	nTbIdx1 = lua_gettop(pState);
-	lua_pushnil(pState);
-	while (lua_next(pState, nTbIdx1))
+	nLen = (int)lua_rawlen(pState, -1);
+	for (int i = 1; i <= nLen; i++)
 	{
-		ServerNode oConf;
-		oConf.oLogic.uService = (int8_t)lua_tointeger(pState, -2);
-		m_oSrvConf.oLogicList.push_back(oConf);
-		lua_pop(pState, 1);
+		LogicNode oLogic;
+		lua_rawgeti(pState, -1, i);
+		lua_getfield(pState, -1, "nID");
+		oLogic.uID = (uint16_t)lua_tointeger(pState, -1);
+		m_oServerConf.oLogicList.push_back(oLogic);
+		lua_pop(pState, 2);
 	}
 
 	//全局
-	m_oSrvConf.oGlobalList.clear();
+	m_oServerConf.oGlobalList.clear();
 	lua_pushvalue(pState, nTbIdx);
 	lua_getfield(pState, -1, "tGlobalService");
-	nTbIdx1 = lua_gettop(pState);
-	lua_pushnil(pState);
-	while (lua_next(pState, nTbIdx1))
+	nLen = (int)lua_rawlen(pState, -1);
+	for (int i = 1; i <= nLen; i++)
 	{
-		ServerNode oConf;
-		oConf.oGlobal.uService = (int8_t)lua_tointeger(pState, -2);
-		lua_getfield(pState, -1, "sIP");
+		GlobalNode oGlobal;
+		lua_rawgeti(pState, -1, i);
+		lua_getfield(pState, -1, "nID");
+		oGlobal.uID = (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -2, "sIP");
 		const char* psIP = lua_tostring(pState, -1);
-		strcpy(oConf.oGlobal.sIP, psIP);
-		lua_getfield(pState, -2, "nPort");
-		oConf.oGlobal.uPort = (uint16_t)lua_tointeger(pState, -1);
-		m_oSrvConf.oGlobalList.push_back(oConf);
-		lua_pop(pState, 3);
+		strcpy(oGlobal.sIP, psIP);
+		lua_getfield(pState, -3, "nPort");
+		oGlobal.uPort = (uint16_t)lua_tointeger(pState, -1);
+		m_oServerConf.oGlobalList.push_back(oGlobal);
+		lua_pop(pState, 4);
 	}
 
 	//日志
-	m_oSrvConf.oLogList.clear();
+	m_oServerConf.oLogList.clear();
 	lua_pushvalue(pState, nTbIdx);
 	lua_getfield(pState, -1, "tLogService");
-	nTbIdx1 = lua_gettop(pState);
-	lua_pushnil(pState);
-	while (lua_next(pState, nTbIdx1))
+	nLen = (int)lua_rawlen(pState, -1);
+	for (int i = 1; i <= nLen; i++)
 	{
-		ServerNode oConf;
-		oConf.oLog.uService = (int8_t)lua_tointeger(pState, -2);
-		lua_getfield(pState, -1, "nWorkers");
-		oConf.oLog.uWorkers = (uint8_t)lua_tointeger(pState, -1);
-		lua_getfield(pState, -2, "nMysqlConns");
-		oConf.oLog.uMysqlConns = (uint8_t)lua_tointeger(pState, -1);
-		m_oSrvConf.oLogList.push_back(oConf);
-		lua_pop(pState, 3);
+		LogNode oLog;
+		lua_rawgeti(pState, -1, i);
+		lua_getfield(pState, -1, "nID");
+		oLog.uID = (uint16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -2, "nServer");
+		oLog.uServer = (int16_t)lua_tointeger(pState, -1);
+		lua_getfield(pState, -3, "nWorkers");
+		oLog.uWorkers = (uint16_t)lua_tointeger(pState, -1);
+		m_oServerConf.oLogList.push_back(oLog);
+		lua_pop(pState, 4);
 	}
 
 	return true;

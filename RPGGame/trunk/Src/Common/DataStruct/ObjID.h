@@ -4,50 +4,37 @@
 #include "Common/Platform.h"
 #include "Common/DataStruct/XMath.h"
 
-union GAME_OBJID
-{
-	struct
-	{//地址低到高
-		uint16_t uSeriID;	//序列ID
-		uint16_t uSrvID;	//服务ID
-		int nTime;			//本地时间
-	};
-	int64_t llID;
-	GAME_OBJID(int64_t nID = 0) { llID = nID; }
-};
-
-//不支持负数
-static inline const char* objid_str(int64_t llID)
-{
-	assert(llID >= 0);
-	size_t uSize = 0;
-	return XMath::Int2Str(llID, uSize);
-}
-
-static inline int64_t str_objid(const char* psID)
-{
-	int64_t llID = 0;
-	int nLen = (int)strlen(psID);
-	for (int i = 0; i < nLen; i++)
+#define GUID_LEN 64  
+#ifdef _WIN32
+	static const char* GenUUID()
 	{
-		if (isdigit(psID[i]))
-		{
-			llID = llID * 10 + psID[i] - '0';
-		}
+		static char sBuffer[GUID_LEN] = { 0 };
+		memset(sBuffer, sizeof(sBuffer), 0);
+
+		GUID guid;
+		if (CoCreateGuid(&guid))
+			return NULL;
+
+		snprintf(sBuffer, sizeof(sBuffer), "%08X-%04X-%04x-%02X%02X-%02X%02X%02X%02X%02X%02X",
+			guid.Data1, guid.Data2, guid.Data3,
+			guid.Data4[0], guid.Data4[1], guid.Data4[2],
+			guid.Data4[3], guid.Data4[4], guid.Data4[5],
+			guid.Data4[6], guid.Data4[7]);
+		return sBuffer;
 	}
-	return llID;
-}
+#else
+	#include <uuid/uuid.h>  
+	static const char* GenUUID()
+	{
+		static char sBuffer[GUID_LEN] = { 0 };
+		memset(sBuffer, sizeof(sBuffer), 0);
 
-static inline GAME_OBJID MakeGameObjID(int nServiceID)
-{
-	static uint16_t nAutoIncrement = 0;
-	nAutoIncrement++;
-	GAME_OBJID oObjID;
-	oObjID.uSeriID = nAutoIncrement;
-	oObjID.uSrvID = (uint16_t)nServiceID;
-	oObjID.nTime = (int)time(NULL);
-	return oObjID;
-}
-
+		uuid_t uu;
+		uuid_generate(uu);
+		snprintf("%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X"
+			, uu[0], uu[1], uu[2], uu[3], uu[4], uu[5], uu[6], uu[7], uu[8], uu[9], uu[10], uu[11], uu[12], uu[13], uu[14], uu[15]);
+		return sBuffer;
+	}
+#endif
 
 #endif

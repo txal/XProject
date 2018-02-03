@@ -18,8 +18,8 @@ void RouterMgr::InitRouters()
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
 	{
-		const ServerNode& oNode = oSrvConf.oRouterList[i];
-		AddRouter((int8_t)oNode.oRouter.uService, oNode.oRouter.sIP, oNode.oRouter.uPort);
+		const RouterNode& oNode = oSrvConf.oRouterList[i];
+		AddRouter((int8_t)oNode.uID, oNode.sIP, oNode.uPort);
 	}
 	if (m_nUpdateTimer == 0)
 	{
@@ -42,7 +42,7 @@ bool RouterMgr::IsRegisterFinish()
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
 	{
-		int nService = oSrvConf.oRouterList[i].oRouter.uService;
+		int nService = oSrvConf.oRouterList[i].uID;
 		ROUTER* poRouter = GetRouter(nService);
 		if (poRouter == NULL || poRouter->nSession == 0)
 		{

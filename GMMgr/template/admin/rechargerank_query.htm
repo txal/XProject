@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script language="javascript" type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript">
+        function search() {
+            var stime = document.getElementById("stime");
+
+            stime = stime.value.trim();
+
+            if (!stime.match(/^\d+-\d+-\d+$/g)) {
+                alert("没有填写结束时间或格式错误");
+                return false;
+            }
+            window.location.href = "rechargerank_query.php?action=search&stime="+stime;
+        }
+    </script>
+</head>
+<body>
+    <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+        <tr bgcolor="#E7E7E7">
+            <div align="center", style="">
+                                            <span style="margin-left:10px; margin-right:10px;">查询时间:
+                                                            <input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$stime"/>
+                                                        </span>
+                <input type="button" name="search" style="width:80px;" value="查  询" onClick="search()"/>
+            </div>
+        </tr>
+        <tr bgcolor="#E7E7E7">
+            <td height="24" colspan="14">&nbsp;&nbsp;充值排行统计</td>
+        </tr>
+        <tr align="center" bgcolor="#FAFAF1" height="22">
+            <td width="16%">排名</td>
+            <td width="16%">玩家昵称</td>
+            <td width="16%">玩家ID</td>
+            <td width="16%">充值金额</td>
+            <td width="16%">VIP</td>
+        </tr>
+        <!--{loop $resList $k $v}-->
+        <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+            <td>$v[4]</td>
+            <td>$v[0]</td>
+            <td>$v[1]</td>
+            <td>$v[2]</td>
+            <td>$v[3]</td>
+        </tr>
+        <!--{/loop}-->
+    </table>
+
+</body>
+</html>

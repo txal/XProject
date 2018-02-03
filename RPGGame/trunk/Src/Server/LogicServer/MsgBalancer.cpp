@@ -1,6 +1,5 @@
 ﻿
 #include "MsgBalancer.h"
-
 #define MAX_CONN_NUM 102400
 
 MsgBalancer::MsgBalancer() : m_oConnQueue(MAX_CONN_NUM)
@@ -18,21 +17,23 @@ MsgBalancer::~MsgBalancer()
 	}
 }
 
-CONNECTION* MsgBalancer::GetConn(int nSession)
+CONNECTION* MsgBalancer::GetConn(uint16_t uServer, int nSession)
 {
-	ConnIter iter = m_oConnMap.find(nSession);
+	int64_t nKey = GenKey(uServer, nSession);
+	ConnIter iter = m_oConnMap.find(nKey);
 	if (iter != m_oConnMap.end())
 	{
 		return iter->second;
 	}
 	CONNECTION* poConn = XNEW(CONNECTION);
-	m_oConnMap[nSession] = poConn;
+	m_oConnMap[nKey] = poConn;
 	return poConn;
 }
 
-void MsgBalancer::RemoveConn(int nSession)
+void MsgBalancer::RemoveConn(uint16_t uServer, int nSession)
 {
-	ConnIter iter = m_oConnMap.find(nSession);
+	int64_t nKey = GenKey(uServer, nSession);
+	ConnIter iter = m_oConnMap.find(nKey);
 	if (iter != m_oConnMap.end())
 	{
 		assert(iter->second->oEventList.Size() <= 0);
@@ -43,17 +44,21 @@ void MsgBalancer::RemoveConn(int nSession)
 
 bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 {
+	uint16_t uServer = 0;
 	int nSession = 0;
 	INNER_HEADER oHeader;
 	int* pSessionArray = NULL;
+
 	while (m_poEventHandler->RecvEvent(oEvent, 0))
 	{
+		uServer = 0;
 		nSession = 0;
 		if (oEvent.uEventType == NSNetEvent::eEVT_ON_RECV)
 		{
-			if (oEvent.U.oRecv.poPacket->GetInnerHeader(oHeader, &pSessionArray, false) && oHeader.uSessionNum > 0)
+			if (oEvent.U.oRecv.poPacket->GetInnerHeader(oHeader, &pSessionArray, false))
 			{
-				nSession = pSessionArray[0];
+				uServer = oHeader.uSrcServer;
+				nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
 			}
 		}
 		else if (oEvent.uEventType == NSNetEvent::eEVT_ON_CONNECT)
@@ -68,23 +73,26 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 		{
 			XLog(LEVEL_ERROR, "Msg type invalid:%d\n", oEvent.uEventType);
 		}
-		CONNECTION* poConn = GetConn(nSession);
+		CONNECTION* poConn = GetConn(uServer, nSession);
 		poConn->oEventList.PushBack(oEvent);
 		if (poConn->oEventList.Size() == 1)
 		{
-			m_oConnQueue.Push(nSession);
+			m_oConnQueue.Push(GenKey(uServer, nSession));
 		}
 	}
 	if (m_oConnQueue.Size() > 0)
 	{
-		nSession = m_oConnQueue.Pop();
-		CONNECTION* poConn = GetConn(nSession);
+		int64_t nKey = m_oConnQueue.Pop();
+		uServer = (uint16_t)(nKey >> 32);
+		nSession = (int)(nKey & 0xFFFFFFFF);
+
+		CONNECTION* poConn = GetConn(uServer, nSession);
 		assert(poConn->oEventList.Size() > 0);
 		oEvent = poConn->oEventList.Front();
 		poConn->oEventList.PopFront();
 		if (poConn->oEventList.Size() > 0)
 		{
-			m_oConnQueue.Push(nSession);
+			m_oConnQueue.Push(nKey);
 		}
 		return true;
 	}

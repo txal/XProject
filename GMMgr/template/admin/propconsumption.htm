@@ -1,0 +1,128 @@
+<html>
+<head>
+	<title>道具消费情况</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	.STYLEDATETIME {width: 150px;}
+	.STYLEWIDTH {width:150px;}
+	-->
+	</style>
+	<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+	
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<br /><br />
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+	<tr bgcolor="#E7E7E7">
+	  <td height="24" colspan="5" background="skin/images/tbg.gif">&nbsp;道具消费情况:&nbsp;</td>
+	</tr>
+	<tr align="left" bgcolor="#FAFAF1" height="22">
+	  <td  colspan="5" >道具消费排行榜:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	</tr>
+	<tr align="center" bgcolor="#FAFAF1" height="22">
+	  <td width="20%">名称</td>
+	  <td width="20%">消费数量</td>
+	  <td width="20%">元宝购买数量</td>
+	  <td colspan="2">礼券购买数量</td>
+	  
+	</tr>
+	
+	<!--{loop $proplist $v}-->
+	<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+	  <td width="20%">$v[goodname]</td>
+	  <td width="20%">$v[total]</td>
+	  <td width="20%">$v[gold]</td>
+	  <td colspan=2>$v[gift]</td>
+
+	</tr>
+	<!--{/loop}-->
+		
+	<tr align="right" bgcolor="#EEF4EA">
+		<td height="36" colspan="5" align="left"><!--{eval echo("{$msg[1]['pageblock']}"); }--></td>
+	</tr>
+	
+	<tr><td colspan="5" bgcolor="#FFFFFF"><h1/></td></tr>
+	
+	<tr bgcolor="#E7E7E7"><td height="24" colspan="5" background="skin/images/tbg.gif">&nbsp;按日期查询:&nbsp;</td></tr>
+	<tr align="left" bgcolor="#FAFAF1" height="22">
+		<td colspan=5>
+			<form method="post"><table width="100%"><tr align="left">
+				<td width="20%">开始时间:<input name="startdatetime2" id="id_startdatetime2" style="width:150px" onFocus="new Calendar().show(this);"  onKeyDown="javascript: return false;" <!--{eval echo("value=\"{$msg[2]['start']}\"}");  }-->></input></td>
+				<td>结束时间:
+					<input name="enddatetime2" id="id_enddatetime2" style="width:150px" onFocus="new Calendar().show(this);" onKeyDown="javascript: return false;" <!--{eval echo("value=\"{$msg[2]['end']}\"");  }-->></input>
+					<input type="submit" name="submit" id="id_submit" value="查询"></input></td>
+				</tr></table>
+			</form>	
+		</td>	
+	</tr>
+	<tr align="center" bgcolor="#FAFAF1" height="22">
+	  <td width="20%">名称</td>
+	  <td width="20%">消费数量</td>
+	  <td width="20%">元宝购买数量</td>
+	  <td width="20%">礼券购买数量</td>
+	  <td>天数</td>
+	</tr>
+	
+	<!--{loop $proplistdaily $v}-->
+	<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+	  <td width="20%">$v[goodname]</td>
+	  <td width="20%">$v[total]</td>
+	  <td width="20%">$v[gold]</td>
+	  <td width="20%">$v[gift]</td>
+	  <td>$v[dday]</td>
+	</tr>
+	<!--{/loop}-->
+		
+	<tr align="right" bgcolor="#EEF4EA">
+		<td height="36" colspan="5" align="left"><!--{eval echo("{$msg[2]['pageblock']}"); }--></td>
+	</tr>
+</table>
+
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+	<tr bgcolor="#E7E7E7"><td height="24" colspan="5" background="skin/images/tbg.gif">&nbsp;道具来源查询:&nbsp;</td></tr>
+	<tr align="left" bgcolor="#FAFAF1" height="22">
+		<td colspan=5>
+			<form method="post">
+				<table width="100%">
+					<tr align="left">
+						<td width="20%">开始时间:<input name="startdatetime3" id="id_startdatetime3" class="STYLEWIDTH" onFocus="new Calendar().show(this);"  onKeyDown="javascript: return false;" <!--{eval echo("value=\"{$msg[3]['start']}\"}");  }-->></input></td>
+						<td width="20%">结束时间:<input name="enddatetime3" id="id_enddatetime3"  class="STYLEWIDTH"  onFocus="new Calendar().show(this);" onKeyDown="javascript: return false;" <!--{eval echo("value=\"{$msg[3]['end']}\"");  }-->></input></td>
+						<td width="20%">道具来源:
+							<select name="way" id="id_propsource" class="STYLEWIDTH">
+								<option value="-1">全部</option>
+								<!--{loop $propdefinition $k $v}-->
+								<option value="$v[code]">$v[name]</option>
+								<!--{/loop}-->
+							</select></td>
+						<td><input type="submit" name="submit" id="id_submit" value="查询"></input></td>
+					</tr>
+				</table>
+			</form>	
+		</td>	
+	</tr>
+	<tr align="center" bgcolor="#FAFAF1" height="22">
+	  <td width="20%">名称</td>
+	  <td width="20%">来源</td>
+	  <td width="20%">消费数量</td>
+	  <td>天数</td>
+	</tr>
+	
+	<!--{loop $propsourcedaily $v}-->
+	<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+	  <td width="20%">$v[goodname]</td>
+	  <td width="20%">$v[way]</td>
+	  <td width="20%">$v[total]</td>
+	  <td>$v[dday]</td>
+	</tr>
+	<!--{/loop}-->
+		
+	<tr align="right" bgcolor="#EEF4EA">
+		<td height="36" colspan="5" align="left"><!--{eval echo("{$msg[3]['pageblock']}"); }--></td>
+	</tr>
+</table>
+	
+</body>
+</html>

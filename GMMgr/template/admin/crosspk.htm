@@ -1,0 +1,407 @@
+<html>
+<html xmlns:hint>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>跨服PK赛</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css"></link>
+<style type="text/css">
+	mtype\:hint
+	{
+		color:red;
+		solid;
+	}
+
+	.readonly
+	{
+		border:1px; 
+		solid;	
+		color:gray;
+		text-decoration:line-through;
+	}
+
+	.left
+	{
+		float:left;
+	}
+
+	.right
+	{
+		float:right;
+	}
+
+	.warning
+	{
+		background-color:#FF0000;
+		float:right;
+	}
+
+	input[class=warning]
+	{
+		background-color:#FF0000;
+	}
+
+	.container
+	{
+		width:900px;
+	}
+
+</style>
+<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+<script language="javascript" type="text/javascript" src="js/weektime.js"></script>	
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script language="javascript" type="text/javascript" src="js/mashMap.js"></script>	
+<script type="text/javascript">
+	function selectSType(stype)
+	{
+		var itype = parseInt(stype);
+		var url = "?stype=" + stype;
+
+		ajax(url, 'get', 
+			function(data){
+				var itemdiv = document.getElementById("id_step1");
+				itemdiv.innerHTML = data;
+			}
+		);
+	}
+
+
+	var itemMap = new mashMap();
+	function selectAll(checked)
+	{
+		var divItem = document.getElementById("id_div_servers");
+		var itemlist = divItem.getElementsByTagName("input");
+		for(var i= 0 ;i< itemlist.length; i++)
+		{
+			var it = itemlist[i];
+			it.checked = checked;
+
+			if ( checked)
+			{
+				itemMap.put(it.value, it.name);	
+			}else
+			{
+				itemMap.pop(it.value);
+			}
+		}
+		itemMap.pop(0);
+
+		var svStr = itemMap.getValuesWithChacter(",");
+		document.getElementById("id_servers").value = svStr;
+	}
+
+	function showServers()
+	{
+		var itemdiv = document.getElementById("id_div_servers");
+		var display = itemdiv.style.display;
+		if(display == "none")
+		{
+			itemdiv.style.display = "block";
+		}else{
+			itemdiv.style.display = "none";
+		}
+	}
+
+	function selectOne(item, checked)
+	{
+		if(! checked) //取消选择
+		{
+			document.getElementById("id_ckb_0").checked = false;
+		}
+	}
+
+	function onChangeValue(id, checked)
+	{
+		var item = document.getElementById("id_ckb_"+id);
+		if(checked)
+		{
+			itemMap.put(id,item.name);
+		}else{
+			itemMap.pop(id);
+		}
+
+		var svStr = itemMap.getValuesWithChacter(",");
+		document.getElementById("id_servers").value = svStr;
+	}
+
+	function checkform()
+	{
+
+		var mform	= document.getElementById("myform");
+		var mradio	= mform.stype;
+		var stype	= -1;
+		for(var i = 0 ;i< mradio.length; i++)
+		{
+			if (mradio[i].checked)
+			{
+				stype = mradio[i].value;
+				break;
+			}
+		}
+
+		if(stype == 2 ){ //weekly
+			return checkWeekly();
+		}
+
+		return false;
+	}
+
+	function repairTime(stime)
+	{
+		var itime = parseInt(stime);
+		if( itime < 24* 3600 )
+			return itime + 6*24*3600;		
+		else
+			return itime;
+	}
+
+	function checkWeekly()
+	{
+		var date	= new Date();
+		var week 	= date.getDay();
+		var hour 	= date.getHours();
+		var minute	= date.getMinutes();
+		var second	= date.getSeconds();
+		var weekGame = (week == 0 ? 7 : week);
+		var nowGame = (weekGame - 1 ) * 24 * 3600 
+			+ Math.max(0, hour-1) * 3600 
+			+ Math.max(0, minute-1) * 60
+			+ second;
+
+		var s1 = document.getElementById("id_s1_apply_start");
+		if(s1.value.length < 0 ){
+			alert("初赛报名开始时间不能为空!");
+			return false;
+		}
+
+		var e1 = document.getElementById("id_s1_apply_end");
+		if(e1.value.length < 0 ){
+			alert("初赛报名结束时间不能为空!");
+			return false;
+		}
+
+		if(repairTime(e1) <= repairTime(s1) )
+		{
+			alert("'初赛报名结束时间' 必须大于 '初赛报名开始时间' !");
+			return false;
+		}
+
+		var s2 = document.getElementById("id_s1_start");
+		if(s2.value.length < 0 ){
+			alert("初赛开始时间不能为空!");
+			return false;
+		}
+
+		var e2 = document.getElementById("id_s1_end");
+		if(e2.value.length < 0 ){
+			alert("初赛结束时间不能为空!");
+			return false;
+		}
+
+		if(repairTime(e2) <= repairTime(s2) )
+		{
+			alert("'初赛结束时间' 必须大于 '初赛开始时间' !");
+		}	
+
+		var s3 = document.getElementById("id_s2_start");
+		if(s3.value.length < 0 ){
+			alert("跨服赛开始时间不能为空!");
+			return false;
+		}
+
+		if (s3.value - 30*60 < s2.value || s3.value < s2.value)
+		{
+			alert("决赛武将配置期限时间 至少 要晚于 初赛开始时间.")
+			return false;
+		}
+
+		var s4 = document.getElementById("id_s2_end");
+		if(s4.value.length < 0 ){
+			alert("跨服赛结束时间不能为空!");
+			return false;
+		}
+		
+		if(repairTime(s4.value) <= parseInt(s3.value))
+		{
+			
+			alert("跨服赛结束时间必须大于开始时间!");
+			return false;
+		}
+
+		var svStr = itemMap.getKeysWithComma();
+		if(svStr.length < 1 )
+		{
+			alert("必须选择  活动服务器");
+			return false;
+		}
+	
+		document.getElementById("id_srvlist").value = svStr;
+
+		return true;
+	}
+
+	function getTree()
+	{
+		var url = "?stree=1";
+
+		ajax(url, 'get', 
+			function(data){
+				var itemdiv = document.getElementById("id_div_tree");
+				itemdiv.innerHTML = data;
+			}
+		);		
+	}
+
+	function genCrossinPK()
+	{
+		var itemdiv = document.getElementById("id_div_tree");
+		itemdiv.innerHTML = "<img src='./images/loading.gif'></img>";
+		var url = "?viewGen=2";
+		ajax(url, 'get', 
+			function(data)
+			{
+				itemdiv.innerHTML = data;
+			}
+		);
+	}
+
+	function genCrossPK()
+	{/*
+		var itemDiv = document.getElementById("id_div_table");
+		var elist = itemDiv.getElementsByTagName("label");
+		var plist = "";
+		var mod = "";
+		for(var i= 0 ; i< elist.length;i ++)
+		{
+			plist = plist + mod + elist[i].id;
+			mod = ",";
+		}
+		
+		var url = "?genCPK="+plist;
+		ajax(url, 'get', 
+			function(data)
+			{
+				var itemdiv = document.getElementById("id_div_tree");
+				itemdiv.innerHTML = data;
+			}
+		);*/
+	}
+
+	function setLocalType()
+	{
+		document.getElementById("id_laceType").value = 1 ;
+		if(checkform()) 
+			document.getElementById("myform").submit();
+	}
+			 
+	function changeStart1()
+	{
+		alert();
+	}
+
+	function StartNewCrossIssue()
+	{
+		var itemdiv = document.getElementById("idStartNewCrossIssue");
+		itemdiv.innerHTML = "<img src='./images/loading.gif'></img>";
+		var url = "?startCrossIssue=4";
+		ajax(url, 'get', 
+			function(data)
+			{
+				itemdiv.innerHTML = data;
+			}
+		);
+	}
+
+	function StartNewLocalIssue()
+	{
+		if(!checkform()) return; 
+
+		var date	= new Date();
+		var week 	= date.getDay();
+		var hour 	= date.getHours();
+		var minute	= date.getMinutes();
+		var second	= date.getSeconds();
+		var now		= week * 24*3600 + hour*3600 + minute*60 + second;
+		var endtime = parseInt(document.getElementById("id_s1_apply_end").value);
+		if(now >= endtime)
+		{
+			alert("新轮赛事,必须在初赛的时间范围内!");
+			return;
+		}
+
+		if(!confirm("是否开启新轮赛事?"))
+			return;
+
+		var itemdiv = document.getElementById("id_local_msg");
+		var url = "?startLocalIssue=3";
+		ajax(url, 'get', 
+			function(data)
+			{
+				itemdiv.innerHTML = data;
+			}
+		);		
+	}
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<form action="" method="post" id="myform"  onSubmit="return checkform();">
+<div style="text-align:center;">
+<div style="width:900; margin:auto;">
+  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">设置跨服数据</h3>
+  
+	<textarea id="id_servers" rows="5" style="width:100%;" name="n_servers" readonly="readonly" onClick="showServers();">活动服务器</textarea>
+	<div id="id_div_servers" style="text-align:left; display:none" >
+		<input type="checkbox" id="id_ckb_0" name="n_allservers" onClick="selectAll(this.checked);" value=0 />全服
+		<hr/>
+		<!--{loop $_SERVERLIST $sid $sname}-->
+			<input type="checkbox" id="id_ckb_$sid" name="$sname" value=$sid onClick="selectOne(this, this.checked);" onChange="onChangeValue($sid, this.checked);" />$sname<br/>
+		<!--{/loop}-->
+	</div>
+
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+	<div style="margin-bottom:10px;color:#0000FF;" id="giftinfo">
+	
+	  <table class="container" border="0" cellspacing="1" cellpadding="1">
+		<tr>
+          <td><strong>类型：</strong>
+				<input type="radio" name="stype" value="1" disabled=disabled onClick="selectSType(1);">每天</input>
+				<input type="radio" name="stype" value="2" checked onClick="selectSType(2);">每周</input>
+				<input type="radio" name="stype" value="3" disabled=disabled onClick="selectSType(3);">每月</input>
+				<input type="radio" name="stype" value="4" disabled=disabled onClick="selectSType(4);">单次</input>
+		  </td>
+		</tr>
+		<tr>
+          <td>
+			<div id="id_step1"></div>
+			<script type="text/javascript"> selectSType(2); </script>
+		  </td>
+        </tr>		
+      </table>
+	
+
+	<div>
+		<input type="hidden" name ="n_srvlist" id="id_srvlist" />
+		<input type="hidden" name ="n_laceType" id="id_laceType" value="2" />
+		<input name="提交" type="submit" value="设置跨服游戏时间" />
+		
+	</div>
+	</div>
+	</div>
+</div>
+</div>
+</form>
+
+<br/><br/>
+<div align="center">
+	<div  class="container" >
+		<h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">产生跨服玩家数据(<mtype:hint>如下操作,请务必在某一有效的服务器上进行</mtype:hint>)</h3>
+		<div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+			<input type="button" id="id_tree" name="n_tree" value="本服初赛树状图" onClick="getTree();"/>
+			<input type="button" id="id_generate" name="n_generate" value="产生全服 参加跨服玩家(全服)" style="color:red;" onClick="genCrossinPK();"/>
+			<br/>
+			<div id="id_div_tree"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

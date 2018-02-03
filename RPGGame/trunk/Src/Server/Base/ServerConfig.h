@@ -5,28 +5,29 @@
 
 struct LogNode
 {
-	uint16_t uService;
-	uint8_t uWorkers;
-	uint8_t uMysqlConns;
+	uint16_t uID;
+	uint16_t uServer;
+	uint16_t uWorkers;
 };
 
 struct GlobalNode
 {
-	uint16_t uService;
+	uint16_t uID;
 	char sIP[256];
 	uint16_t uPort;
 };
 
 struct RouterNode
 {
-	uint16_t uService;
+	uint16_t uID;
 	char sIP[256];
 	uint16_t uPort;
 };
 
 struct GateNode
 {
-	uint16_t uService;
+	uint16_t uID;
+	uint16_t uServer;
 	uint16_t uPort;
 	uint16_t uMaxConns;
 	uint16_t uSecureCPM;
@@ -37,29 +38,25 @@ struct GateNode
 
 struct LogicNode
 {
-	uint16_t uService;
+	uint16_t uID;
 };
 
 
-union ServerNode
-{
-	GateNode oGate;
-	LogicNode oLogic;
-	RouterNode oRouter;
-	GlobalNode oGlobal;
-	LogNode oLog;
-};
-
-typedef std::vector<ServerNode> ServerVector;
+typedef std::vector<GateNode> GateVector;
+typedef std::vector<LogicNode> LogicVector;
+typedef std::vector<RouterNode> RouterVector;
+typedef std::vector<GlobalNode> GlobalVector;
+typedef std::vector<LogNode> LogVector;
 
 struct ServerConfig
 {
 	uint16_t uServerID;
-	ServerVector oGateList;
-	ServerVector oLogicList;
-	ServerVector oRouterList;
-	ServerVector oGlobalList;
-	ServerVector oLogList;
+	uint16_t uWorldServerID;
+	GateVector oGateList;
+	LogicVector oLogicList;
+	RouterVector oRouterList;
+	GlobalVector oGlobalList;
+	LogVector oLogList;
 };
 
 

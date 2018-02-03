@@ -1,7 +1,7 @@
 --常量
-nMAX_INTEGER = 0x4000000000000	--最大整数(100兆)
-nSERVICE_SHIFT = 24				--会话ID中的服务ID移位
 nMAX_NAMELEN = 128				--名字长度--玩家状态
+nSERVICE_SHIFT = 24				--会话ID中的服务ID移位
+nMAX_INTEGER = 0x4000000000000	--最大整数(100兆)
 
 --玩家状态
 gtUserState = 

@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>消CD记录</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	-->
+	</style>
+	
+	<script type="text/javascript">
+	
+	</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<br /><br />
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="4" background="skin/images/tbg.gif">&nbsp;
+		用户消CD记录:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</td>
+	<td align="center">
+		<a href="?export=csv" target="_blank"><B><font size="1" color="blue">导出数据</font></B></a>
+	</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td >用户名</td>
+	<td >消耗物品数量<br/>(元宝/<B><font color=red>礼券</font></B>)</td>
+	<td >CD类型<br/>(移城冷却/<B><font color="blue">建筑冷却</font></B><br/><B><font color="#00ff00">科技冷却</font></B>/<B><font color="#cccccc">城防工事</font></B>)</td>
+	<td >CD时间消去数</td>
+	<td >操作时间</td>
+</tr>
+<!--{loop $datalist $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+  <td>$v[player]</td>
+  <td>$v[currency]</td>
+  <td>$v[type]</td>
+  <td>$v[etr]</td>
+  <td>$v[ttime]</td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="6" align="left">$pageblock</td>
+</tr>
+</table>
+<div id="unionmembers"></div>
+</body>
+</html>

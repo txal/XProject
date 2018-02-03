@@ -1,0 +1,71 @@
+<html>
+<head>
+	<title>注册查询</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<style type="text/css"> </style>
+	<script type="text/javascript" src="js/calendar.js"></script>
+	<script type="text/javascript">
+		function searchUser() {
+			var stime = document.getElementById("stime");
+			var etime = document.getElementById("etime");
+			stime = stime.value.trim();
+			etime = etime.value.trim();
+			if (!stime.match(/^\d+-\d+-\d+$/g)) {
+				alert('没有填写开始时间或格式错误');
+				return false;
+			}
+		
+			if (!etime.match(/^\d+-\d+-\d+$/g)) {
+				alert('没有填写结束时间或格式错误');
+				return false;
+			}
+			window.location.href = "register_query.php?action=search&stime="+stime+"&etime="+etime;
+		}
+	</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<div align="center", style="">
+		<span style="margin-right:10px;">起始时间:
+			<input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;"
+				onFocus="new Calendar().show(this);" value="$stime" />
+		</span>
+		<span style="margin-right:10px;">结束时间:
+			<input name="etime" type="text" class="mytxt" id="etime" style="border:1px solid #CCCCCC;"
+				onFocus="new Calendar().show(this);" value="$etime" />
+		</span>
+		<input type="button" name="search" style="width:80px;" onClick="searchUser()" value="查  询" onClick=""/>
+	</div>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="8%">日期</td>
+	<td width="5%">注册人数</td>
+	<td width="5%">平均在线</td>
+	<td width="5%">最高在线</td>
+	<td width="5%">登录过人数</td>
+	<td width="5%">付费总额</td>
+	<td width="5%">付费人数</td>
+	<td width="5%">付费比例</td>
+</tr>
+<!--{loop $memberList $k $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+  <td>$k</td>
+  <td>$v[regcount]</td>
+  <td>$v[avgonline]</td>
+  <td>$v[toponline]</td>
+  <td>$v[oneonline]</td>
+  <td>$v[rechargemoney]</td>
+  <td>$v[rechargepeople]</td>
+  <td>$v[rechargerate]</td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="10" align="center">
+		<lable style="float:left">总注册: $totalPlayer</lable>
+		<!--{if $multi}-->$multi<!--{/if}-->
+	</td>
+</tr> 
+</table>
+</body>
+</html>

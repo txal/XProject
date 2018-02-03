@@ -13,17 +13,17 @@ bool InitNetwork(int8_t nServiceID)
 {
 	g_poContext->LoadServerConfig();
 
-	ServerNode* poServer = NULL;
+	LogNode* poLog = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLogList.size(); i++)
 	{
-		if (oSrvConf.oLogList[i].oLog.uService == nServiceID)
+		if (oSrvConf.oLogList[i].uID == nServiceID)
 		{
-			poServer = &oSrvConf.oLogList[i];
+			poLog = &oSrvConf.oLogList[i];
 			break;
 		}
 	}
-	if (poServer == NULL)
+	if (poLog == NULL)
 	{
 		XLog(LEVEL_ERROR, "LogServer conf:%d not found\n", nServiceID);
 		return false;
@@ -117,7 +117,7 @@ int main(int nArg, char *pArgv[])
 	assert(bRes);
 
 	//工作线程
-	WorkerMgr::Instance()->Init(g_poContext->GetServerConfig().oLogList[0].oLog.uWorkers);
+	WorkerMgr::Instance()->Init(g_poContext->GetServerConfig().oLogList[0].uWorkers);
 	printf("LogServer start successful\n");
 
 	atexit(OnExit);

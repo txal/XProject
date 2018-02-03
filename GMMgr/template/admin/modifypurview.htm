@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>修改权限</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<style>
+body {
+	margin:0;
+	background:#EEEEEE;
+}
+</style>
+<script type="text/javascript">
+
+	//捕获全局事件
+	document.onclick=function(e)
+	{
+	  e=e||event;
+	  var tag=e.target?e.target:e.srcElement;
+	  if(tag.type=="checkbox")
+	  {
+	    var pv = document.getElementById("id_purviewNew");
+		var value = tag.value.replace(/^\d+\+/,'');
+		
+		var reg = /^\d+/;
+		var iValue = reg.exec(tag.value);
+		var vTable = document.getElementById("id_table3");					
+
+		if(tag.checked)
+	    {
+		    //选择全部权限
+		    if(parseInt(tag.value)==-1)
+			{    
+				var vTblList = vTable.getElementsByTagName("input");
+				var eLength	= vTblList.length;
+				var strAll="";
+				var iAll="";  
+				
+				for(var i=0;i<eLength;i++)
+				{
+					var cpt	=vTable.getElementsByTagName("input").item(i);
+					if(cpt.type	=="checkbox" && parseInt(cpt.value)!=-1)
+					{
+						cpt.checked	=true;
+						iAll = iAll+" "+reg.exec(cpt.value);
+					}
+				}
+				pv.value=iAll;
+			}
+			else
+			{
+		     	pv.value=pv.value+" "+iValue;
+			}
+	    }
+	    else
+	    {
+		    //取消全部权限
+		    if(parseInt(tag.value)==-1)
+		    {
+				var eLength	=vTable.getElementsByTagName("input").length;
+				for(var i=0;i<eLength;i++)
+				{
+					var cpt	=vTable.getElementsByTagName("input").item(i);
+					if(cpt.type	=="checkbox")
+					{
+						cpt.checked=false;
+					}
+				}
+
+				pv.value="";
+			}else		
+			{    
+	    		pv.value=pv.value.replace(new RegExp(iValue+"( )?","i"),"");
+				document.getElementById("id_all").checked=false;	    		
+			}	    	
+	    }
+	    pv.value=pv.value.replace(/(^\s*)|(\s*$)/g, '');    
+	  }
+	}	
+
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+	<div style="text-align:center;">
+		<div style="width:100%; margin:auto;">
+			<h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">权限列表</h3>
+			  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+					<div id="id_table3">
+						<input id="id_all" type="checkbox" name="area" value=-1>全部</input><br/>
+						<!--{loop $moduleList $v}-->
+							<input type="checkbox" name="area" value=$v[value]+$v[type] $v[checked]>$v[type]</input><br/>
+						<!--{/loop}-->	
+					</div>
+					<form method=post>
+						<table><tr>
+							<td><input type="hidden" id="id_userID" name="userID" value="$userID"></input>
+								<input type="hidden" id="id_userName" name="userName" value="$userName"></input>
+								<input type="hidden" id="id_purviewOld" name="purviewOld" value="$purviewOld"></input>
+								<input type="hidden" id="id_purviewNew" name="purviewNew" value="$purviewNew"></input>
+								<input type="submit" id="id_submit" value="submit" name="submit"></input>
+							</td></tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+

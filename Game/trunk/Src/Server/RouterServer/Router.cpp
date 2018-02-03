@@ -151,7 +151,7 @@ void Router::OnRouterDisconnect(int nSessionID)
 	PacketWriter oPacketWriter(poPacket);
 	oPacketWriter << nServiceID<<nServerID;
 	BroadcastService(poPacket);
-	XLog(LEVEL_ERROR, "%s: Service:%d server:%d disconnect\n", GetServiceName(), nServiceID, nServerID);
+	XLog(LEVEL_ERROR, "%s: server:%d Service:%d disconnect\n", GetServiceName(), nServerID, nServiceID);
 }
 
 void Router::OnAddDataSock(HSOCKET hSock, int nSessionID)
@@ -209,7 +209,7 @@ void Router::BroadcastService(Packet* poPacket)
 	{
 		ServiceNode* poService = iter->second;
 		Packet* poNewPacket = poPacket->DeepCopy();
-		INNER_HEADER oHeader(NSSysCmd::ssServiceClose, GetServiceID(), poService->GetServiceID(), 0, poService->GetServerID());
+		INNER_HEADER oHeader(NSSysCmd::ssServiceClose, 0, GetServiceID(), poService->GetServerID(), poService->GetServiceID(), 0);
 		poNewPacket->AppendInnerHeader(oHeader, NULL, 0);
 		if (!poService->GetInnerNet()->SendPacket(poService->GetSessionID(), poNewPacket))
 		{
@@ -239,6 +239,6 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID)
 		return false;
 	}
 	m_oServiceMap[nKey] = poService;
-	XLog(LEVEL_INFO, "RegService: service %d register successful\n", nServiceID);
+	XLog(LEVEL_INFO, "RegService: service:%d register successful\n", nServiceID);
 	return true;
 }

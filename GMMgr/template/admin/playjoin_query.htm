@@ -1,0 +1,73 @@
+<html>
+
+            <head>
+                <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+                <script type="text/javascript" src="js/ajax.js"></script>
+                <script language="javascript" type="text/javascript" src="js/calendar.js"></script>
+                <script type="text/javascript">
+                    function search() {
+                        var stime = document.getElementById("stime");
+                        var etime = document.getElementById("etime");
+                        var play = document.getElementById("play");
+
+                        stime = stime.value.trim();
+                        etime = etime.value.trim();
+                        play = play.value;
+
+                        if (!stime.match(/^\d+-\d+-\d+$/g)) {
+                            alert("没有填写结束时间或格式错误");
+                            return false;
+                        }
+
+                        if (!etime.match(/^\d+-\d+-\d+$/g)) {
+                            alert("没有填写结束时间或格式错误");
+                            return false;
+                        }
+
+                        window.location.href = "playjoin_query.php?action=search&stime="+stime+"&etime="+etime+"&play="+play;
+                    }
+                </script>
+            </head>
+            <body>
+                <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+                    <tr bgcolor="#E7E7E7">
+                        <div align="center", style="">
+                            <span style="margin-left:10px; margin-right:10px;">起始时间:
+                                            <input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$stime"/>
+                                        </span>
+                            <span style="margin-left:10px; margin-right:10px;">结束时间:
+                                            <input name="etime" type="text" class="mytxt" id="etime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$etime"/>
+                                        </span>
+                            <span style="margin-left:10px; margin-right:10px;"> 选择玩法&nbsp;&nbsp;<select id="play" style="width: 100px">
+                                <option value="1">副本</option>
+                                <option value="2">玩法</option>
+                                <option value="3">活动</option>
+                            </select>
+                                </span>
+                            <input type="button" name="search" style="width:80px;" value="查  询" onClick="search()"/>
+                        </div>
+                    </tr>
+                    <tr bgcolor="#E7E7E7">
+                        <td height="24" colspan="14">&nbsp;&nbsp;玩家参与度统计</td>
+                    </tr>
+                    <tr align="center" bgcolor="#FAFAF1" height="22">
+                        <td width="24%">日期</td>
+                        <td width="24%">参与人数</td>
+                        <td width="24%">可参与人数</td>
+                        <td width="24%">参与度</td>
+                    </tr>
+                    <!--&lt;!&ndash;{loop $resList $k $v}&ndash;&gt;-->
+                    <!--<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">-->
+                        <!--<td>$k</td>-->
+                        <!--<td>$v[0]</td>-->
+                        <!--<td>$v[1]</td>-->
+                        <!--<td></td>-->
+                        <!--<td>$v[2]</td>-->
+                        <!--<td></td>-->
+                        <!--<td></td>-->
+                    <!--</tr>-->
+                    <!--&lt;!&ndash;{/loop}&ndash;&gt;-->
+                </table>
+            </body>
+
+</html>

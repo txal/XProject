@@ -1,0 +1,415 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>卡型创建</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<script type="text/javascript" src="/js/ajax.js"></script>
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	.colleft{
+		background:#FFFFFF;
+		padding:6px;
+		float:left;
+		width:50%a?
+	}
+	.colright{
+		background:#FFFFFF;
+		padding:6px;
+		float:right;
+		width:50%a?
+	}	
+body {
+	margin-left: 0px;
+}
+	-->
+	</style>
+		
+	<script type="text/javascript">
+	function push_gift(id, name) {
+		var amount = document.getElementById('num_'+id);
+		var parent = window.parent;
+	
+		if (!parseInt(amount.value)) {
+			alert('必须填写数量');
+			return;
+		}
+	
+
+		parent.gifttext += '<font style="color:blue">' + name+'</font>' + ' x <font style="color:red">' + amount.value + '<font> | ';
+		
+		parent.document.getElementById('giftinfo').innerHTML = parent.gifttext;
+		
+		sure();
+	}
+
+	</script>
+	
+	<script type="text/javascript">
+		var isRemark = false;
+		var isPlayer = false;
+		
+		var giftdetail	='';
+		var giftinfo	=[];
+		var gifttext	= '';
+		
+		function set_gifts_ids() {
+			var gids = document.getElementById('giftids').value;
+			
+			if (gids == '') {
+				alert("卡号不能为空");
+				return false;
+			}
+		
+			return true;
+		}
+		
+		function delgift(id) {
+			var v = giftinfo.join('|');
+			document.getElementById('giftids').value = v;
+		}
+		
+		var players = [];
+		function push_member() {
+			var members = document.getElementById('members');
+			var player  = document.getElementById('player');
+			
+			players.push(player.options[player.options.selectedIndex].value);
+			
+			members.value = players.join(',');
+		}
+
+		function checkform()
+		{
+			if(document.getElementById("id_cardname").value.length==0)
+			{
+				alert("卡型名称不能为空");
+				return false;
+			}
+			
+			//单一卡号
+			if(document.getElementById("id_single").style.display=="block")
+			{
+				if(document.getElementById("id_cardno").value.length==0)
+				{
+					alert("单一卡号不能为空");
+					return false;
+				}
+			}
+
+			//道具列表是否为空
+			if(gifttext.replace(/(^[\\s]*)|([\\s]*$)/g,"")=="")
+			{
+				alert("道具列表不能为空！");
+				return false;
+			}
+
+			document.getElementById("id_objects").value		=gifttext;
+			document.getElementById("id_objects_CN").value	=giftdetail;
+
+			var srvList = getServers();
+			document.getElementById("id_server_id").value = srvList;
+			return true;
+		}
+
+		function showlabel()
+		{
+			var cardtype=parseInt(document.getElementById("id_cardtype").value);
+		
+			document.getElementById("id_single").style.display=(cardtype==1)?"block":"none";
+
+		}
+
+		function modifycardtype(cardtypeid)
+		{
+			
+			//首先清空现有的iframe
+			var iTable	=document.getElementById("id_table2");
+			var iTr		=iTable.getElementsByTagName("tr");
+			for(var i=0;i<iTr.length;i++)
+			{
+				var iTd	=iTr[i].getElementsByTagName("td");
+				
+				for(var j=0;j<iTd.length;j++)
+				{
+					var iDiv	=iTd[j].getElementsByTagName("div");
+					for(var k=0;k<iDiv.length;k++)
+					{
+						if(iDiv[k].name="name_div_cardtype")
+						{
+							iDiv[k].innerHTML="";
+						}
+					}
+				}
+				
+			}
+
+			document.getElementById("id_div_cardtype_"+cardtypeid).innerHTML
+				="<iframe width=\"400\" id=\"d_iframe\" name=\"d_iframe\" src=\"modifycardtype.php?cardtypeid="+cardtypeid
+					+" frameborder=\"0\" onload=\"this.height=d_iframe.document.body.scrollHeight;\"></iframe>";
+		}
+
+		function deletecardtype(cardname,cardtypeid)
+		{
+			var toDelete	=window.confirm(" 确定要删除卡型 ["+cardname+"] 吗? ");
+			if(toDelete)
+			{
+				location.href="?delete=true&cardtypeid="+cardtypeid;
+			}
+		}
+
+				
+
+		function getServers()
+		{
+
+			var indivitualCheckBox = document.getElementById("id_all_subdiv");
+			var iCBXList = indivitualCheckBox.getElementsByTagName("input");
+
+			var srvList = "";
+			var mod = "";
+			for(var i=0; i< iCBXList.length; i++)
+			{
+				var bx = iCBXList[i];
+				if(bx.type == "checkbox" && bx.checked)
+				{
+					srvList = srvList + mod + bx.value;
+					mod = ",";
+				}
+			}
+
+			return srvList;
+		}
+
+		function getServerNames()
+		{
+			var indivitualCheckBox = document.getElementById("id_all_subdiv");
+			var iCBXList = indivitualCheckBox.getElementsByTagName("input");
+
+			var srvList = "";
+			var mod = "";
+			for(var i=0; i< iCBXList.length; i++)
+			{
+				var bx = iCBXList[i];
+				if(bx.type == "checkbox" && bx.checked)
+				{
+					var v = document.getElementById("id_indivitualCheckBox_" + bx.value);
+					srvList = srvList + mod + v.innerHTML;
+					mod = "\n";
+				}
+			}
+
+			return srvList;
+		}
+
+		function pickProp(parentID)
+		{
+			var itemvalue = document.getElementById("id_"+parentID+"_hidden").value;
+			itemvalue = itemvalue.replace(",","_");
+		
+			document.getElementById("id_div").innerHTML
+				="<iframe width=\"100%\" id=\"d_iframe\" name=\"d_iframe\" src=\"cardgift.php?recharge=3&pnt="+parentID+"&iv="+itemvalue+"\" "
+					+" frameborder=\"0\" onload=\"this.height=d_iframe.document.body.scrollHeight;\"></iframe>";
+
+		}
+
+		function CloseDiv()
+		{
+			document.getElementById("id_div").innerHTML = "";
+		}
+		
+		function pickUpServers()
+		{
+			var itemDiv = document.getElementById("id_show_servers_div");
+			var itemDisplay = document.getElementById("id_hidden_display");
+			if(itemDisplay.value == 1 )
+			{
+				itemDiv.style.display = "none";
+				itemDisplay.value = 0 ;
+
+				var srvList = getServers();
+				document.getElementById("id_server_id").value = srvList;
+
+				var srvalueList = getServerNames();
+				document.getElementById("id_server_show").value = srvalueList;
+			}else{
+				itemDiv.style.display = "block";
+				itemDisplay.value = 1 ;
+			}
+		}
+		
+		
+		function selectAllCheckboxs(isChecked)
+		{
+			var spediv = document.getElementById("id_all_subdiv");
+			var checkboxlist = spediv.getElementsByTagName("input");
+	
+			for(var i=0;i< checkboxlist.length; i++)
+			{
+				checkboxlist[i].checked = isChecked;
+			}
+		}
+		
+		function selectOneCheckbox(selectAll, isChecked)
+		{
+			if(!isChecked)
+				selectAll.checked = false;
+		}
+
+		function listAlltypes()
+		{
+			var url = "?list=1";
+			ajax( url, 'get', 
+				function(data)
+				{						
+					var item = document.getElementById("idcardtypes");
+					item.innerHTML = data;
+				}
+
+			);
+		}
+
+		function checkformtypes()
+		{
+
+			var itemdiv = document.getElementById("idcardtypes");
+			var checkboxlist = itemdiv.getElementsByTagName("input");
+
+			var str = "";
+			var mob = "";
+			
+			for(var i=0;i< checkboxlist.length; i++)
+			{
+				if ( checkboxlist[i].checked )
+				{
+					str = str + mob + checkboxlist[i].id ;
+					mob = ",";
+				}
+			}
+
+			if( String(str).length > 0) {			
+				document.getElementById("idtypeshidden").value = str  ;
+				
+				return true;
+			}
+
+			alert("havnot select any one cardtype .");
+			return false ;
+		}
+
+	</script>	
+
+</head>
+<body topmargin="8" >
+	
+	<table width="98%" border="0" cellpadding="2" cellspacing="1"  style="margin-top:8px;margin-left:15px" >
+		<tr valign="top" bgcolor="#EEF4EA">
+			<td width="50%" background="skin/images/tbg.gif" colspan=3>
+				<form method="post" action="generatecardtype.php" onSubmit="javascript: return checkform();">
+					<table width="100%" border="0"  align="left" cellpadding="2" cellspacing="1" bordercolor="#6666FF" bgcolor="#999999" style="margin-top:8px">
+						<tr  bgcolor="#FAFAF1">		
+							<td width="85" align="right">选择服务器:</td>
+							<td ><textarea id="id_server_show" name="n_server_show" onkeydown="return false;" onclick="pickUpServers();"></textarea> 
+								<input id="id_server_id" type="hidden" name = "n_servers" />
+								<input type="hidden" id="id_hidden_display"value=0 />
+								<div id="id_show_servers_div" style="display:none;" bgcolor="#ffffff">
+									<input type="checkbox" name="selectAll" id="id_select_all"  size="1" onClick="selectAllCheckboxs(this.checked);">全选</input>
+									<div id="id_all_subdiv">
+									<!--{loop $serverlist $k $v}-->
+										<input type="checkbox" id="id_cbk0_$k"  value=$k onClick="selectOneCheckbox(selectAll,this.checked);" />
+										<label id="id_indivitualCheckBox_$k">$v</label>
+									<!--{/loop}-->
+									</div>
+								</div>
+								<div id="id_div"></div>
+							</td>
+						</tr>
+						<tr  bgcolor="#FAFAF1">		
+							<td width="85" align="right">卡型名称</td>
+							<td width="525" align="left"><input type="text" style="width=150 px" name="cardname" id="id_cardname" />
+						</tr>
+						<tr bgcolor="#FAFAF1">
+							<td width="85" align="right">卡号类型:</td>
+							<td><select name="cardtype" style="width=150 px" id="id_cardtype" onChange="showlabel();">
+									<option value="0">非单一卡号</option>							
+									<option value="1">单一卡号</option>
+								</select>
+							</td>
+						</tr>
+						<tr bgcolor="#FAFAF1">
+							<td colspan="2" align="left">						
+								<div id="id_single" style="display:none;" class="table" >
+								<table width="100%">
+								   <tr ><td width="78 px" align="right">单一卡型卡号:</td>
+								   		<td align="left"><input type="text"  style="width=150 px" name="cardno" id="id_cardno"></input></td>
+							   	  </tr>
+								</table>
+							  </div>
+
+							</td>
+						</tr>
+				
+						<tr bgcolor="#FAFAF1">
+							<td align="left" colspan=2>道具列表<br/>							
+								<div id="id_giftdetail"></div>
+								<input type="hidden" id="id_objects" name="extdata" value=""></input>
+								<input type="hidden" id="id_objects_CN" name="extdataCN" value=""></input>
+						 	</td>
+						</tr>
+						<tr bgcolor="#FAFAF1">
+							<td colspan=2 align="left"><input type="submit" name="submit" id="id_submit" value="创建卡型"></input></td>
+						</tr>
+						
+					</table>
+				</form>
+			</td>
+			<td colspan=2><iframe width="100%" height="800" src="cardgift.php" frameborder="0"></iframe></td>
+		</tr>
+							<tr bgcolor="#FAFAF1">
+						<td colspan="8">
+							<form method="post" action="generatecardtype.php" onSubmit="javascript: return checkformtypes();">
+								<input type="button" value="选择卡型:" onClick="listAlltypes(); "/> 
+								<input type="submit" name="exporttypes" value="导出">
+								<input type="hidden" id="idtypeshidden" name="nametypehidden" />
+								<div id="idcardtypes" > $exportresults </div>
+							</form>
+						</td>
+					</tr>
+					<tr rowspan="4"><td></td></tr>
+					<tr bgcolor="#FAFAF1">
+						<td colspan="8">
+							<form enctype="multipart/form-data" action="generatecardtype.php" method="post">
+								<input name="upload_file" type="file" > 
+								<input type="submit" value="导入">
+								<input type="hidden" name="nameimport" value="1" />
+							</form>
+						</td>
+					</tr>
+		
+</table><br/>
+
+<table id="id_table2" width="98%" border="0" cellpadding="2" cellspacing="1"  style="margin-top:8px;margin-left:15px" >
+	<tr valign="top" bgcolor="#EEF4EA">
+		<td>卡型名称</td>
+		<td>卡型类型</td>
+		<td>卡型信息</td>
+		<td>操作</td>
+	</tr>
+		
+	<!--{loop $cardinfolist $v}-->
+	<tr bgcolor="#EEF4EA">
+		<td>$v[cardname] &nbsp;</td> 
+		<td>$v[cardtype]</td>
+		<td>$v[extdata]</td>
+		<td><input type="button" name="delete" id="id_delete" value="删除" onClick="deletecardtype('$v[cardname]',$v[id]);">
+			<input type="button" name="modify" id="id_modify" value="编辑" onClick="modifycardtype($v[id]);">
+		</td>
+	</tr>
+	<tr name="name_tr"><td name="name_td" colspan=4><div id="id_div_cardtype_$v[id]" name="name_div_cardtype"></div></td></tr>
+	<!--{/loop}-->
+	
+</table>
+
+
+</body>
+</html>

@@ -13,7 +13,7 @@ namespace NSPacketProc
 	void OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 	void OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 	void OnClientClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
-	void OnServiceClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
+	//void OnServiceClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 
 	//玩家跑动
 	void OnPlayerRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);

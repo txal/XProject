@@ -2,8 +2,8 @@
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
 function CTimerMgr:Ctor()
-	self.m_tTimerMap = {}
 	self.m_nCount = 0
+	self.m_tTimerMap = {}
 end
 
 --注册计时器

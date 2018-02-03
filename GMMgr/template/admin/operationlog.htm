@@ -1,0 +1,31 @@
+<html>
+	<head>
+			<script type="text/javascript">
+				function delCookie(name)//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
+				{
+					var date = new Date();
+					date.setTime(date.getTime() - 10000);
+					document.cookie = name + "=0; expires=" + date.toGMTString();
+				}
+	
+				function clearCookie()//清楚cookie:operationlogpage
+				{
+					var arrStr = document.cookie.split("; ");
+					for(var i = 0;i < arrStr.length;i ++){
+						var temp = arrStr[i].split("=");
+						if(temp[0] =="operationlogpage") 
+						{
+							delCookie("operationlogpage");
+						}  
+						if(temp[0] =="operationlogpage2") 
+						{
+							delCookie("operationlogpage2");
+						}  
+					}
+				}
+			</script>
+	</head>
+		<frameset rows="*,50%" cols="*" frameborder="yes" border="2" framespacing="0">
+			<frame src="loginlog.php" name="bottomFrame" scrolling="no">
+		</frameset>
+</html>

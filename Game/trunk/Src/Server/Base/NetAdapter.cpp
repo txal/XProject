@@ -51,7 +51,7 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, int8_t nToService, i
 		poPacket->Release();
 		return false;
 	}
-    poPacket->AppendInnerHeader(INNER_HEADER(uCmd, poService->GetServiceID(), nToService, 1, nToServer), &nToSession, 1);
+    poPacket->AppendInnerHeader(INNER_HEADER(uCmd, 0, poService->GetServiceID(), nToServer, nToService, 1), &nToSession, 1);
     if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poPacket))
     {
 		poPacket->Release();
@@ -84,15 +84,15 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, int tSessionLis
 		if (oBCHeader.oSessionList.Size() == 0)
 		{
 			oBCHeader.oHeader.uCmd = uCmd;
-			oBCHeader.oHeader.nSrc = poService->GetServiceID();
-			oBCHeader.oHeader.nTar = nService;
+			oBCHeader.oHeader.nSrcService = poService->GetServiceID();
+			oBCHeader.oHeader.nTarService = nService;
 		}
 		oBCHeader.oSessionList.PushBack(nSession);
 	}
 	for (int i = nFreeHeaderIndex - 1; i >= 0; --i)
 	{
 		BROADCAST_HEADER& oBCHeader = tBroadcastHeaderList[i];
-		oBCHeader.oHeader.uSessions = oBCHeader.oSessionList.Size();
+		oBCHeader.oHeader.uSessionNum = oBCHeader.oSessionList.Size();
 		Packet* poNewPacket = NULL;
 		if (i == 0)
 		{
@@ -134,7 +134,7 @@ bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, int tServiceLis
 			poNewPacket = poPacket->DeepCopy();
 		}
 		int nToServer = tServerList == NULL ? 0 : tServerList[i];
-		poNewPacket->AppendInnerHeader(INNER_HEADER(uCmd, poService->GetServiceID(), tServiceList[i], 0, nToServer), NULL, 0);
+		poNewPacket->AppendInnerHeader(INNER_HEADER(uCmd, 0, poService->GetServiceID(), nToServer, tServiceList[i], 0), NULL, 0);
 		if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poNewPacket))
 		{
 			poNewPacket->Release();

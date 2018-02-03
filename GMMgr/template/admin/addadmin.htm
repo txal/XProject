@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>创建管理员权限</title>
+
+<script language="javascript" type="text/javascript">
+	function checkform()
+	{
+		var username=document.getElementById("id_name").value;
+		if(username=="")
+		{
+			alert("用户名不能为空");
+			return false;
+		}
+		return checkPassword();
+	}
+
+
+	function isVName(str)
+	{
+		var reg=/^([a-zA-Z]+(?=[0-9])|([a-zA-Z]))[a-zA-Z0-9]+$/g;
+		return reg.test(str);
+	}        
+
+	function checkUserName()    
+	{      
+		var userName=document.getElementById("id_name").value;      
+		var unLen = userName.replace(/[^\x00-\xff]/g, "**").length;        
+		if(!isVName(userName))     
+		{      
+			alert("姓名只能由6-16位大小写字母(a-zA-Z)、数字(0-9)，并且必须以字母开头");      
+			return;     
+		}        
+	}     
+	
+	function checkReg(reg,str)
+	{
+		return reg.test(str);
+	}     
+
+	function checkPassword()     
+	{      
+		var password=document.getElementById("id_passwd").value;      
+		var reg=/[\'\"\\]/;        
+		if(password == '' || checkReg(reg,password))      
+		{       
+			alert('密码空或包含非法字符  \' \" \\');      
+			return false;     
+		}      
+		pwdLen=password.length;
+		if(pwdLen<6 || pwdLen>16)
+		{
+			alert("密码只能由6-16位大小写字母(a-zA-Z)、数字(0-9)");
+			return false;
+		}
+		return true;    
+	}
+
+	//触发管理员限设置下拉选择框
+	function getNum()
+	{
+		var aVisible = document.getElementById("id_flag").value;
+		aVisible = (aVisible=="none")?"block":"none";
+
+		document.getElementById("id_flag").value=aVisible;
+		document.getElementById("id_div").style.display=aVisible;
+	}
+
+	//捕获全局事件
+	document.onclick=function(e)
+	{
+	  e = e || event;
+	  var tag=e.target ? e.target : e.srcElement;
+	  if(tag.type=="checkbox")
+	  {
+	    var sv = document.getElementById("id_inputpurview");
+	    var pv = document.getElementById("id_purview");
+
+		var value = tag.value.replace(/^\d+\+/,'');
+		
+		var reg = /^\d+/;
+		var iValue = reg.exec(tag.value);
+					
+	    if(tag.checked)
+	    {
+		    //选择全部权限
+		    if(parseInt(tag.value)==-1)
+		    {
+				var eLength	=document.getElementsByTagName("input").length;
+				var strAll="";
+				var iAll="";
+				for(var i=0;i<eLength;i++)
+				{
+					var cpt	=document.getElementsByTagName("input").item(i);
+					if(cpt.type	=="checkbox" && parseInt(cpt.value)!=-1)
+					{
+						cpt.checked	=true;
+						strAll = strAll+" "+cpt.value.replace(/^\d+\+/,'');
+						iAll = iAll+" "+reg.exec(cpt.value);
+					}
+				}
+
+				sv.value=strAll;
+				pv.value=iAll;
+			}else
+			{
+		    	sv.value=sv.value+" "+value;
+		     	pv.value=pv.value+" "+iValue;
+			}
+	    }
+	    else
+	    {
+		    //取消全部权限
+		    if(parseInt(tag.value)==-1)
+		    {
+				var eLength	=document.getElementsByTagName("input").length;
+				for(var i=0;i<eLength;i++)
+				{
+					var cpt	=document.getElementsByTagName("input").item(i);
+					if(cpt.type	=="checkbox")
+					{
+						cpt.checked=false;
+					}
+				}
+
+				sv.value="";
+				pv.value="";
+			}else		
+			{    
+	    		sv.value=sv.value.replace(new RegExp(value+"( )?","i"),"");
+	    		pv.value=pv.value.replace(new RegExp(iValue+"( )?","i"),"");
+				document.getElementById("id_all").checked=false;	    		
+			}	    	
+	    }
+	    sv.value=sv.value.replace(/(^\s*)|(\s*$)/g, '');
+	    pv.value=pv.value.replace(/(^\s*)|(\s*$)/g, '');    
+
+	  }else if( tag.type!="text")
+	  {
+			document.getElementById("id_flag").value="none";
+			document.getElementById("id_div").style.display="none";
+	  }
+	}	
+
+	function editPurview(e)
+	{
+		var keyNum;
+		if(window.event)//IE
+			keyNum=e.keyCode;
+		else if(e.which)//netscape/firefox/opera
+			keyNum=e.which;
+
+		if(keyNum==37 || keyNum==39)
+			return true;
+		return false;
+	}
+
+</script>
+
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+
+<br /><br />
+	<form action="addadmin.php" method="post" onSubmit="javascript: return checkform();">
+		<table width="88%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+			<tr bgcolor="#E7E7E7">
+				<td height="24" colspan="6" background="skin/images/tbg.gif">创建管理员:</td>
+			</tr>
+			<tr  bgcolor="#FAFAF1" height="22">
+				<td align="right" width="40%">账号:&nbsp;&nbsp;</td>
+				<td align="left" width="60%"><input name="name" type="text" id="id_name" style="width:150px" maxlength="16"/></td>
+			  </tr>
+			  <tr align="center" bgcolor="#FAFAF1" height="22">
+				<td align="right" >密码:&nbsp;&nbsp;</td>
+				<td  align="left"><input name="passwd" type="password" id="id_passwd" style="width:150px" maxlength="16"/></td>
+			  </tr>  
+				<tr align="center" bgcolor="#FAFAF1" height="22">
+					<td align="right" valign="top">权限:&nbsp;&nbsp;</td>
+					<td align="left">
+						<input name="purview" id="id_purview" type="hidden" value=""></input>
+						<input name="inputpurview" id="id_inputpurview" type="text" style="width:150px" onClick="getNum();" onKeydown="return editPurview(event);" /><input type="hidden" id="id_flag" name="flag" value="none">
+						<div id="id_div" style="display:none;" class="table" bgcolor="#ffffff">
+							<table >
+								&nbsp;<input id="id_all" type="checkbox" name="area" value=-1>全部</input><br/>
+								<!--{loop $moduleCodeList $v}-->
+									&nbsp;<input type="checkbox" name="area" value=$v[value]+$v[type]>$v[type]</input><br/>
+								<!--{/loop}-->	
+							</table>
+						</div> 	
+						</input>
+					</td>					
+					
+				  </tr>    
+		
+		
+			<tr align="right" bgcolor="#EEF4EA">
+				<td></td>
+				<td height="36" align="left"><input type="submit" name="submit" value="创建"/></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script language="javascript" type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript">
+        function search() {
+            var stime = document.getElementById("stime");
+            var etime = document.getElementById("etime");
+
+            stime = stime.value.trim();
+            etime = etime.value.trim();
+
+            if (!stime.match(/^\d+-\d+-\d+$/g)) {
+                alert("没有填写结束时间或格式错误");
+                return false;
+            }
+
+            if (!etime.match(/^\d+-\d+-\d+$/g)) {
+                alert("没有填写结束时间或格式错误");
+                return false;
+            }
+            window.location.href = "shopconsum_query.php?action=search&stime="+stime+"&etime="+etime;
+        }
+    </script>
+</head>
+<body>
+        <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+            <tr bgcolor="#E7E7E7">
+                <div align="center", style="">
+                                    <span style="margin-left:10px; margin-right:10px;">起始时间:
+                                                    <input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$stime"/>
+                                                </span>
+                    <span style="margin-left:10px; margin-right:10px;">结束时间:
+                                                    <input name="etime" type="text" class="mytxt" id="etime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$etime"/>
+                                                </span>
+                    <input type="button" name="search" style="width:80px;" value="查  询" onClick="search()"/>
+                </div>
+            </tr>
+            <tr bgcolor="#E7E7E7">
+                <td height="24" colspan="14">&nbsp;&nbsp;商品购买消耗表</td>
+            </tr>
+            <tr align="center" bgcolor="#FAFAF1" height="22">
+                <td width="16%">商品名字</td>
+                <td width="16%">购买人数</td>
+                <td width="16%">购买次数</td>
+                <td width="16%">总消耗货币</td>
+                <td width="16%">人均消耗货币</td>
+                <td width="16%">消耗占比</td>
+            </tr>
+            <!--{loop $resList $k $v}-->
+            <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+            <td>$v[0]</td>
+            <td>$v[1]</td>
+            <td>$v[2]</td>
+            <td>$v[3]</td>
+            <td>$v[4]</td>
+            <td>$v[5]</td>
+            </tr>
+            <!--{/loop}-->
+        </table>
+
+</body>
+
+</html>

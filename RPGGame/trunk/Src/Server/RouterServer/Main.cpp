@@ -7,29 +7,28 @@
 #include "Server/RouterServer/PacketProc/RouterPacketProc.h"
 
 ServerContext* g_poContext;
-
 bool InitNetwork(int8_t nServiceID)
 {
 	g_poContext->LoadServerConfig();
 
-	ServerNode* poServer = NULL;
+	RouterNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
 	{
-		if (oSrvConf.oRouterList[i].oRouter.uService == nServiceID)
+		if (oSrvConf.oRouterList[i].uID == nServiceID)
 		{
-			poServer = &oSrvConf.oRouterList[i];
+			poNode = &oSrvConf.oRouterList[i];
 			break;
 		}
 	}
-	if (poServer == NULL)
+	if (poNode == NULL)
 	{
 		XLog(LEVEL_ERROR, "RouterServer conf:%d not found\n", nServiceID);
 		return false;
 	}
 
 	Router* poRouter = (Router*)(g_poContext->GetService());
-	return poRouter->Init(nServiceID, poServer->oRouter.sIP, poServer->oRouter.uPort);
+	return poRouter->Init(nServiceID, poNode->sIP, poNode->uPort);
 }
 
 void StartScriptEngine()

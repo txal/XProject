@@ -58,7 +58,7 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, GetServiceID(), nRouterServiceID, 0, g_poContext->GetServerID());
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), g_poContext->GetServerID(), nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -227,20 +227,20 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet get exter header fail\n", GetServiceName());
 		return;
 	}
-	//XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oExterHeader.uCmd, nDataSize, oExterHeader.nTar);
+	//XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oExterHeader.uCmd, nDataSize, oExterHeader.nTarService);
 
 	//重放攻击检测
-	if (oExterHeader.uIdx <= poClient->uCmdIndex)
+	if (oExterHeader.uPacketIdx <= poClient->uCmdIndex)
 	{
 		poPacket->Release();
 		GetExterNet()->Close(nSessionID);
-		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet cmd index error(%d,%d)\n", GetServiceName(), oExterHeader.uIdx, poClient->uCmdIndex);
+		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet cmd index error(%d,%d)\n", GetServiceName(), oExterHeader.uPacketIdx, poClient->uCmdIndex);
 		return;
 	}
-	poClient->uCmdIndex = oExterHeader.uIdx;
+	poClient->uCmdIndex = oExterHeader.uPacketIdx;
 
 	// Short connection
-	if (oExterHeader.nSrc == -1)
+	if (oExterHeader.nSrcService == -1)
 	{
 		m_poExterNet->SetSentClose(nSessionID);
 	}
@@ -277,7 +277,7 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	if (oHeader.nTar != GetServiceID())
+	if (oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar service error\n", GetServiceName());
 		poPacket->Release();

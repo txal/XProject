@@ -136,7 +136,7 @@ void RegClassObject()
 
 int Object::GetObjID(lua_State* pState)
 {
-	lua_pushinteger(pState, m_oObjID.llID);
+	lua_pushinteger(pState, m_nObjID);
 	return 1;
 }
 

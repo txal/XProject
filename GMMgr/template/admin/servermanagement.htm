@@ -1,0 +1,251 @@
+<html>
+    <head>
+        <title>服务器管理</title>
+        <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+        <script type="text/javascript" src="js/ajax.js"></script>
+        <script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>
+        <script type="text/javascript">
+
+            //删除服务器
+            function deleteServer(id){
+                if(!confirm("确定要删除？")){
+                    return;
+                }
+                var url = '?inajax=yes&action=deleteServer&id='+id+'&rnd='+ Math.random();
+                ajax(url, 'get', function(data) {
+                    if ( data == "SUCCESS" ) {
+                        alert("操作成功！");
+                        location.href = "servermanagement.php";
+                    } else {
+                        alert("操作失败！"+data);
+                    }
+                });
+            }
+
+            //修改服务器
+            function updateServer(id,serverid,displayid,servername,gateaddr,gmaddr,logdb,state,hot,time,platform,version,notice){
+                notice = decodeURIComponent(decodeURIComponent(notice.replace(/\+/g, '%20')));
+                var cont =
+                    "<table width='98%' border='0' cellpadding='2' cellspacing='1' bgcolor='#D1DDAA' align='center' style='margin-top:20px;margin-bottom:20px;float:left;margin-left: 19px;'>\
+                    <tr bgcolor='#E7E7E7'>\
+                        <td height='24' colspan='12' background='skin/images/tbg.gif'>&nbsp;修改属性&nbsp;</td>\
+                    </tr>\
+                    <tr align='center' bgcolor='#FAFAF1' height='22'>\
+                        <td>标识</td>\
+                        <td>服务器ID</td>\
+                        <td>显示区号</td>\
+                        <td>服务器名称</td>\
+                        <td>网关地址</td>\
+                        <td>GM地址</td>\
+                        <td>日志数据库</td>\
+                        <td>是否可用</td>\
+                        <td>推荐状态</td>\
+                        <td>平台</td>\
+                        <td>版本</td>\
+                        <td>维护公告</td>\
+                        <td>时间</td>\
+                        <td>操作</td>\
+                    </tr>\
+                    <tr align='left' bgcolor='#FAFAF1' height='22'>\
+                        <td width='5%'><input id='id' type='text' style='width:100%;background-color:#E7E7E7;' readonly='readonly' value='"+id+"'/></td>\
+                        <td width='5%'><input id='serverid' type='text' style='width:100%;' value='"+serverid+"'/></td>\
+                        <td width='5%'><input id='displayid' type='text' style='width:100%;' value='"+displayid+"'/></td>\
+                        <td width='5%'><input id='servername' type='text' style='width:100%;' value='"+servername+"'/></td>\
+                        <td width='11%'><input id='gateaddr' type='text' style='width:100%;' value='"+gateaddr+"'/></td>\
+                        <td width='11%'><input id='gmaddr' type='text' style='width:100%;' value='"+gmaddr+"'/></td>\
+                        <td width='18%'><input id='logdb' type='text' style='width:100%;' value='"+logdb+"'/></td>\
+                        <td width='5%'><input id='state' type='text' style='width:100%;' value='"+state+"'/></td>\
+                        <td width='5%'><input id='hot' type='text' style='width:100%;' value='"+hot+"'/></td>\
+                        <td width='5%'><input id='platform' type='text' style='width:100%;' value='"+platform+"'/></td>\
+                        <td width='5%'><input id='version' type='text' style='width:100%;' value='"+version+"'/></td>\
+                        <td ><textarea id='notice' style='width:100%;' rows='5'></textarea></td>\
+                        <td width='11%'><input id='time' type='text' style='width:100%;' value='"+time+"' onFocus='new Calendar().show(this)';/></td>\
+                        <td width='3%'>\
+                            <input type='button' style='width:100%;' value='确认' onClick='updateServerConfrim()'/>\
+                            <input type='button' style='width:100%;' value='取消' onClick='cancleOperation()'/>\
+                        </td>\
+                    </tr>\
+                </table>";
+                document.getElementById('serverdetal').innerHTML = cont;
+                var con = document.getElementById("notice");
+                con.value = notice;
+            }
+
+            //确认修改服务器
+            function updateServerConfrim(){
+                var id = document.getElementById('id').value;
+                var serverid = document.getElementById('serverid').value;
+                var displayid = document.getElementById('displayid').value;
+                var servername = document.getElementById('servername').value;
+                var gateaddr = document.getElementById('gateaddr').value;
+                var gmaddr = document.getElementById('gmaddr').value;
+                var logdb = document.getElementById('logdb').value;
+                var state = document.getElementById('state').value;
+                var hot = document.getElementById('hot').value;
+                var time = document.getElementById('time').value;
+                var notice = document.getElementById('notice').value;
+                notice = encodeURIComponent(notice);
+                var platform = document.getElementById('platform').value;
+                var version  = document.getElementById('version').value;
+
+                if(id=="" || serverid=="" || displayid=="" 
+                    || servername=="" || gateaddr==""|| gmaddr==""
+                    || logdb=="" || platform=="" || version==""){
+                        alert("输入框不能有空，请检查");
+                        return false;
+                }
+                if (!time.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+                    alert('没有填写时间或格式错误');
+                    return false;
+                }
+                var url = '?inajax=yes&action=updateServer&id='+id+'&serverid='+serverid+'&displayid='+displayid+'&servername='
+                    +servername+'&gateaddr='+gateaddr+'&gmaddr='+gmaddr+'&logdb='+logdb+'&state='+state+'&hot='+hot+'&notice='+notice
+                    +'&platform='+platform+'&version='+version+'&time='+time+'&rnd='+ Math.random();
+                ajax(url, 'get', function(data) {
+                    if ( data == "SUCCESS" ) {
+                        alert("操作成功！");
+                        location.href = "servermanagement.php";
+                    } else {
+                        alert("操作失败！"+data);
+                    }
+                });
+            }
+
+            //添加服务器
+            function addServer(){
+                var cont =
+                    "<table width='98%' border='0' cellpadding='2' cellspacing='1' bgcolor='#D1DDAA' align='center' style='margin-top:20px;margin-bottom:20px;float:left;margin-left: 19px;'>\
+                    <tr bgcolor='#E7E7E7'>\
+                        <td height='24' colspan='10' background='skin/images/tbg.gif'>&nbsp;添加服务器&nbsp;</td>\
+                    </tr>\
+                    <tr align='center' bgcolor='#FAFAF1' height='22'>\
+                        <td>服务器ID</td>\
+                        <td>显示区号</td>\
+                        <td>服务器名称</td>\
+                        <td>网关地址</td>\
+                        <td>GM地址</td>\
+                        <td>日志数据库</td>\
+                        <td>是否可用</td>\
+                        <td>推荐状态<br>(0普通;1推荐;2:爆满;3:维护中)</td>\
+                        <td>平台</td>\
+                        <td>版本</td>\
+                        <td>维护公告</td>\
+                        <td>操作</td>\
+                    </tr>\
+                    <tr align='left' bgcolor='#FAFAF1' height='22'>\
+                        <td width='5%'><input id='serverid' type='text' style='width:100%;'  /></td>\
+                        <td width='5%'><input id='displayid' type='text' style='width:100%;'  /></td>\
+                        <td width='7%'><input id='servername' type='text' style='width:100%;' /></td>\
+                        <td width='15%'><input id='gateaddr' type='text' style='width:100%;'/></td>\
+                        <td width='16%'><input id='gmaddr' type='text' style='width:100%;' /></td>\
+                        <td width='20%'><input id='logdb' type='text' style='width:100%;' /></td>\
+                        <td width='5%'><input id='state' type='text' style='width:100%;' /></td>\
+                        <td width='5%'><input id='hot' type='text' style='width:100%;' /></td>\
+                        <td width='5%'><input id='platform' type='text' style='width:100%;' /></td>\
+                        <td width='5%'><input id='version' type='text' style='width:100%;' /></td>\
+                        <td><textarea id='notice' style='width: 100%'></textarea></td>\
+                        <td >\
+                            <input type='button' style='width:100%;' value='确认' onclick='addServerConfrim()'/>\
+                            <input type='button' style='width:100%;' value='取消' onclick='cancleOperation()'/>\
+                        </td>\
+                    </tr>\
+                </table>";
+                document.getElementById('serverdetal').innerHTML = cont;
+            }
+
+            //确定添加服务器
+            function addServerConfrim(){
+                var serverid = document.getElementById('serverid').value;
+                var displayid = document.getElementById('displayid').value;
+                var servername = document.getElementById('servername').value;
+                var gateaddr = document.getElementById('gateaddr').value;
+                var gmaddr = document.getElementById('gmaddr').value;
+                var logdb = document.getElementById('logdb').value;
+                var state = document.getElementById('state').value;
+                var hot = document.getElementById('hot').value;
+                var platform = document.getElementById('platform').value;
+                var version = document.getElementById('version').value;
+                var notice = document.getElementById('notice').value;
+                notice = encodeURIComponent(notice);
+
+                if(serverid=="" || displayid=="" || servername=="" || gateaddr==""
+                    || gmaddr=="" || logdb=="" || state=="" || hot=="" || platform=="" || version==""){
+                    alert("输入框不能有空，请检查");
+                    return false;
+                }
+                if(!serverid.match(/^[0-9]/)){
+                    alert("服务器ID必须是数字");
+                    return false;
+                }
+                var url = '?inajax=yes&action=addServer&serverid='+serverid+'&displayid='+displayid+'&servername='+servername
+                +'&gateaddr='+gateaddr+'&gmaddr='+gmaddr+'&logdb='+logdb+'&state='+state+'&hot='+hot+'&notice='+notice
+                +'&platform='+platform+'&version='+version+'&rnd='+ Math.random();
+                ajax(url, 'get', function(data) {
+                    if ( data == "SUCCESS" ) {
+                        alert("操作成功！");
+                        location.href = "servermanagement.php";
+                    } else {
+                        alert("操作失败！"+data);
+                    }
+                });
+            }
+
+            //取消操作
+            function cancleOperation(){
+                document.getElementById("serverdetal").innerHTML="";
+            }
+
+        </script>
+    </head>
+    <body>
+        <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+            <tr bgcolor="#E7E7E7">
+                <td height="24" colspan="14">&nbsp;服务器列表&nbsp;</td>
+            </tr>
+            <tr align="center" bgcolor="#FAFAF1" height="22">
+                <td>标识</td>
+                <td>服务器ID</td>
+                <td>显示区号</td>
+                <td>服务器名</td>
+                <td>网关地址</td>
+                <td>GM地址</td>
+                <td width="16%">日志数据库</td>
+                <td>是否可用</td>
+                <td>推荐状态</td>
+                <td>平台</td>
+                <td>版本</td>
+                <td>维护公告</td>
+                <td>开服时间</td>
+                <td width="10%">操作</td>
+            </tr>
+            <!--{loop $servers $key $val}-->
+            <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+                <td>$val[id]</td>
+                <td>$val[serverid]</td>
+                <td>$val[displayid]</td>
+                <td>$val[servername]</td>
+                <td>$val[gateaddr]</td>
+                <td>$val[gmaddr]</td>
+                <td>$val[logdb]</td>
+                <td>$val[state]</td>
+                <td>$val[hot]</td>
+                <td>$val[platform]</td>
+                <td>$val[version]</td>
+                <td>$val[notice]</td>
+                <td>$val[time]</td>
+                <td>
+                    [<a href="javascript:;"
+                    , onClick="updateServer('$val[id]','$val[serverid]','$val[displayid]','$val[servername]','$val[gateaddr]','$val[gmaddr]','$val[logdb]','$val[state]','$val[hot]','$val[time]','$val[platform]','$val[version]','$val[notice]')" style="cursor: pointer">修改</a>]
+                    [<a href="javascript:;", onClick="deleteServer('$val[id]')" style="cursor: pointer">删除</a>]
+                </td>
+            </tr>
+            <!--{/loop}-->
+            <tr align="center">
+                <td height="40" bgcolor="#FFFFFF" colspan="12">
+                    <input type='button' style="width: 100px; float: left;" value='添加服务器' onClick='addServer()'/>
+                </td>
+            </tr>
+        </table>
+        <div id="serverdetal" style="float:left; width:auto"></div>
+    </body>
+</html>

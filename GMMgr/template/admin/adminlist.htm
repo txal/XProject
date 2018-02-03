@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>管理员权限操作</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	-->
+	</style>
+	<script type="text/javascript">
+
+		function deleteAdmin(id,name)
+		{
+			location.href="?option=delete&id="+id+"&name="+name;
+			return;
+		}
+
+		function modifyPurview(userID, userName)
+		{
+			//首先清空现有的iframe
+			var iTable = document.getElementById("id_table2");
+			var iTr = iTable.getElementsByTagName("tr");
+			for(var i=0; i < iTr.length; i++)
+			{
+				var iTd	= iTr[i].getElementsByTagName("td");
+				for(var j=0; j < iTd.length; j++)
+				{
+					var iDiv = iTd[j].getElementsByTagName("div");
+					for(var k=0; k < iDiv.length; k++)
+					{
+						if(iDiv[k].name="name_div_user")
+						{
+							iDiv[k].innerHTML="";
+						}
+					}
+				}
+				
+			}
+			document.getElementById("id_div_username_"+userID).innerHTML
+				="<iframe width=\"400\" id=\"d_iframe\" name=\"d_iframe\" src=\"modifypurview.php?userID="+userID+"&userName="+userName+"\" "
+					+" frameborder=\"0\" onload=\"this.height=d_iframe.document.body.scrollHeight;\"></iframe>";
+		}
+	</script>
+	
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<br /><br />
+<table id="id_table2" width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="6" background="skin/images/tbg.gif">&nbsp;管理员列表:&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="15%">帐号</td>
+	<td width="55%">权限</td>
+	<td width="15%">创建日期</td>
+	<td width="15%">操作</td>
+	</tr>
+<!--{loop $adminlist $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+  <td>$v[name]</td>
+  <td>$v[purview]</td>
+  <td>$v[createtime]</td>
+  <td>$v[option]</td>
+</tr>
+<tr name="name_tr" align='center' bgcolor="#FFFFFF" >
+	<td></td>
+	<td name="name_td">
+		<div id="id_div_username_$v[id]" name="name_div_user"></div>
+	</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="5" align="left">$pageblock</td>
+</tr>
+</table>
+<div id="unionmembers"></div>
+</body>
+</html>

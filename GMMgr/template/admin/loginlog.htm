@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>后台登录日志</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<script type="text/javascript" src="/js/ajax.js"></script>
+	<script type="text/javascript">
+	function getminfo(mid)
+	{
+			var url = '?inajax=yes&mid=' + mid;
+			ajax(url, 'get', function(data) {
+				if (data != 'NONE')
+				{
+					data = eval(data);
+					var table = '<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px"><tr bgcolor="#E7E7E7"><td height="24" colspan="6" background="skin/images/tbg.gif">&nbsp;联盟列表&nbsp;</td></tr><tr align="center" bgcolor="#FAFAF1" height="22"><td width="23%">成员名称</td><td width="16%">职位</td><td width="16%">等级</td><td width="16%">共享值</td><td width="15%">捐献元宝</td><td width="14%">捐献金币</td></tr>';
+					for (var e in data) {
+						table += '<tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor=\'#FCFDEE\';" onMouseOut="javascript:this.bgColor=\'#FFFFFF\';" height="22"><td>'+data[e]['name']+'</td><td width="16%">'+data[e]['zhiwei']+'</td><td width="16%">'+data[e]['dengji']+'</td><td width="16%">'+data[e]['gongxian']+'</td><td width="15%">'+data[e]['yuanbao']+'</td><td width="14%">'+data[e]['jinbi']+'</td></tr>';
+					}
+	
+	
+					table += '<tr align="right" bgcolor="#EEF4EA"><td height="36" colspan="6" align="left">总页数: </td></tr></table>';
+					
+					document.getElementById('unionmembers').innerHTML = table;
+				}
+			});
+	}
+	</script>
+	
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	-->
+	</style>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+
+<!-- 后台登陆日志 -->
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="5" background="skin/images/tbg.gif">&nbsp;后台登陆日志:&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="20">
+	<td width="9%">编号</td>
+	<td width="22%">操作人</td>
+	<td width="25%">登录IP</td>
+	<td width="25%">操作时间</td>
+	<td >状态</td>
+	</tr>
+<!--{loop $loglist2 $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="20">
+  <td>$v[adminID]</td>
+  <td>$v[operator]</a></td>
+  <td>$v[loginIp]</td>
+  <td>$v[time]</td>
+  <td>$v[state]</td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="34" colspan="6" align="left">总页数: $pageblock2</td>
+</tr>
+</table>
+<div id="unionmembers"></div>
+</body>
+</html>

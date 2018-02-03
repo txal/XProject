@@ -1,0 +1,50 @@
+<?php 
+	//模块编码
+	$_moduleCodeList=array(
+		'USERQUERY' => array('code'=>1, 'name'=>"用户查询"),
+		'PUBNOTICE' => array('code'=>2, 'name'=>"发布公告"),
+		'OPLOG' => array('code'=>3, 'name'=>"操作日志") ,
+		'USERMAIL' => array('code'=>4, 'name'=>"用户邮件"),
+		'REGISTER' => array('code'=>5, 'name'=>"注册统计"),
+		'RECHARGE' => array('code'=>6, 'name'=>"充值统计"),
+		'ADDADMIN' => array('code'=>7, 'name'=>"创建管理员"),
+		'LISADMIN' => array('code'=>8, 'name'=>"管理员列表"),
+		'EXCHANGE' => array('code'=>9, 'name'=>"交易管理"),	
+		'SYS' => array('code'=>10, 'name'=>'系统管理'),
+		'USERLOG' => array('code'=>11, 'name'=>'玩家日志'),
+		'GMRECHARGE' => array('code'=>12, 'name'=>'后台充值'),
+		'PMTMGR' => array('code'=>13, 'name'=>'推广员管理'),
+		'OPENACT' => array('code'=>14, 'name'=>'开启活动'),
+        'CODEMANAGEMENT' => array('code'=>15,'name'=>'兑换码管理'),
+        'SERVERMANAGEMENT' => array('code'=>16,'name'=>'服务器管理'),
+        'GAMENOTICE' => array('code'=>17,'name'=>'游戏公告'),
+        'TASKSTOPQUERY' => array('code'=>18,'name'=>'任务停留统计'),
+        'ITEMQUERY' => array('code'=>19,'name'=>'物品消耗统计'),
+        'ONLINEMONITOR' => array('code'=>20,'name'=>'实时在线监控'),
+        'SOURCEHORDMONITOR' => array('code'=>21,'name'=>'资源囤积监控'),
+        'PLAYJOINQUERY' => array('code'=>22,'name'=>'玩法参与度统计'),
+        'SHOPCONSUMEQUERY' => array('code'=>23,'name'=>'商城消费统计'),
+        'RECHARGESECTIONQUERY' => array('code'=>24,'name'=>'充值区间统计'),
+        'ZHANDOULIRANKQUERY' => array('code'=>25,'name'=>'战斗力排行统计'),
+        'RECHARGERANKQUERY' => array('code'=>26,'name'=>'充值排行统计'),
+        'WHITELIST' => array('code'=>27,'name'=>'白名单'),
+	);
+	
+	//获取操作名称记录表
+	$_opCodeList = array(
+		'LOGIN'	=> array('code'=>1,	'name'=>"登入"),
+		'LOGOUT' => array('code'=>2, 'name'=>"登出"),
+		'DELADMIN' => array('code'=>3, 'name'=>"删除账号"),
+		'MODADMIN' => array('code'=>4, 'name'=>"修改账号"),
+		'MODPWD' => array('code'=>5, 'name'=>"修改密码"),
+		'PUBNOTICE' => array('code'=>6, 'name'=>"发布公告"),
+		'DELNOTICE' => array('code'=>7, 'name'=>"删除公告"),
+		'GMCMD' => array('code'=>8, 'name'=>"GM指令"),
+		'MODUSER' => array('code'=>9, 'name'=>"修改玩家属性"),
+		'GMRECHARGE' => array('code'=>10, 'name'=>"后台充值"),
+		'USERMAIL' => array('code'=>11, 'name'=>"发送邮件"),
+		'OPENACT' => array('code'=>15, 'name'=>"开启活动"),
+        'SERVERUPDATE' => array('code'=>16, 'name'=>"修改服务器"),
+        'SERVERINSERT' => array('code'=>17, 'name'=>"添加服务器"),
+	);	
+?>

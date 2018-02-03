@@ -11,7 +11,7 @@ public:
 public:
 	Detector();
 	virtual ~Detector();
-	void Init(const GAME_OBJID& oObjID, int nConfID, const char* psName);
+	void Init(int nID, int nConfID, const char* psName);
 
 public:
 	virtual void Update(int64_t nNowMS);

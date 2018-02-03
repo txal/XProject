@@ -22,9 +22,9 @@ end
 
 --Common script
 require = gfRawRequire or require  --恢复原生require
+require("ServerConf")
 require("Config/Main")
 require("Common/CommonInc")
-require("ServerConf")
 OpenProto()
 
 --GlobalServer script
@@ -32,15 +32,15 @@ gfRawRequire = require 	--hook require
 require = function(sScript)
 	gfRawRequire("GlobalServer/"..sScript)
 end
-require("Browser/BrowserInc")
 require("GMMgr/GMMgrInc")
 require("Global/GlobalInc")
 require("Notice/NoticeInc")
+require("Browser/BrowserInc")
 require("GPlayer/GPlayerInc")
 require("Recharge/RechargeInc")
-require("GiftExchange/GiftExchangeInc")
 require("MailTask/MailTaskInc")
 require("HDCircle/HDCircleInc")
+require("GiftExchange/GiftExchangeInc")
 
 --连接数据库
 goDBMgr = goDBMgr or CDBMgr:new()
@@ -56,11 +56,13 @@ end
 
 --全局反初始化
 local function _UninitGlobal()
-    xpcall(function() goRecharge:OnRelease() end, function(sErr) LuaTrace(sErr) end)
-    xpcall(function() goNoticeMgr:OnRelease() end, function(sErr) LuaTrace(sErr) end)
-    xpcall(function() goMailTask:OnRelease() end, function(sErr) LuaTrace(sErr) end)
-    xpcall(function() goHDCircle:OnRelease() end, function(sErr) LuaTrace(sErr) end)
-    
+    local bSuccess = true
+    local function fnError(sErr) bSuccess=false LuaTrace(sErr, debug.traceback()) end
+    xpcall(function() goRecharge:OnRelease() end, fnError)
+    xpcall(function() goNoticeMgr:OnRelease() end, fnError)
+    xpcall(function() goMailTask:OnRelease() end, fnError)
+    xpcall(function() goHDCircle:OnRelease() end, fnError)
+    return bSuccess
 end
 
 
@@ -80,7 +82,13 @@ function Main()
 end
 
 function OnExitServer()
-    LuaTrace("OnExitServer***")
-    _UninitGlobal()
-	os.exit()
+    LuaTrace("OnExitServer start***")
+    goTimerMgr:Clear(gnGCTimer)
+    local bSuccess = _UninitGlobal()
+    assert(bSuccess, "注意！！！关服报错了！！！")
+    if goTimerMgr:TimerCount() > 0 then
+        assert(false, "！！！计时器泄漏！！！剩余:"..goTimerMgr:TimerCount())
+    end
+    LuaTrace("OnExitServer finish***")
+    os.exit()
 end

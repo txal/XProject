@@ -1,0 +1,239 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>文档管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script type="text/javascript" src="js/ajax.js"></script>
+<script language="javascript">
+
+function getMemberInfo(member,memberID) {
+	var pmember = member.replace("+","%2B");
+    var pmemberID = memberID.replace("+","%2B");
+	var url = "?inajax=yes&action=member&member="+ pmember +"&memberID="+pmemberID+"&rnd="+ Math.random();
+	if (pmember == ""&&pmemberID =="") {
+		url = "?inajax=yes&rnd="+ Math.random();
+	}
+	ajax(url, "get", function(data) {
+		document.close(); //清空原页面
+		document.write(data);
+	});
+}
+
+function getMenber(member){
+    var pmember = member.replace("+","%2B");
+    var url = "?inajax=yes&action=member&member=" + pmember +"&rnd="+ Math.random();
+    if (pmember == "") {
+        url = "?inajax=yes&rnd="+ Math.random();
+    }
+    ajax(url, "get", function(data) {
+        document.close(); //清空原页面
+        document.write(data);
+    });
+}
+
+//搜索
+function onClickSearch() {
+	var pageSize = "<?=$pageSize?>";
+	 var search = document.getElementById('member').value;
+	 var searchID = document.getElementById('memberID').value;
+	 getMemberInfo(search,searchID);
+}
+
+//封号/解封
+function banUser(account, state) {
+	if (!confirm("确定要封号/解封吗?")) {
+		return;
+	}
+	state = state != 2 ? 2 : 0;
+	var url = '?inajax=yes&action=banuser&account='+account+'&state='+state+'&rnd='+ Math.random();
+	ajax(url, 'get', function(data) {
+		if ( data == "SUCCESS" ) {
+			alert("操作成功！");
+            location.href = "member.php";
+		} else {
+			alert("操作失败！"+data);
+		}
+	});
+}
+
+//禁言/解禁
+function jinYan(account, state) {
+    if (!confirm("确定要禁言/解禁吗?")) {
+        return;
+    }
+    state = state != 1 ? 1 : 0;
+    var url = '?inajax=yes&action=banuser&account='+account+'&state='+state+'&rnd='+ Math.random();
+    ajax(url, 'get', function(data) {
+        if ( data == "SUCCESS" ) {
+            alert("操作成功！");
+            location.href = "member.php";
+        } else {
+            alert("操作失败！"+data);
+        }
+    });
+}
+
+//下线
+function kickUser(charid, online) {
+	if (online == "false") {
+		alert("玩家当前不在线");
+		return;
+	}
+	var url = '?inajax=yes&action=kickuser&charid='+charid+'&rnd='+ Math.random();
+	ajax(url, 'get', function(data) {
+		if ( data == "SUCCESS" ) {
+			alert("操作成功！");
+            location.href = "member.php";
+		} else {
+			alert("操作失败！["+data+"]");
+		}
+	});
+
+}
+
+//修改属性
+function modUser(charid, yuanbao, yinliang, weiwang, waijiao, vip) {
+	var cont = 
+	"<table width='50%' border='0' cellpadding='2' cellspacing='1' bgcolor='#D1DDAA' align='center' style='margin-top:8px;float:left;'>\
+	<tr bgcolor='#E7E7E7'>\
+		<td height='24' colspan='10' background='skin/images/tbg.gif'>&nbsp;修改属性&nbsp;</td>\
+	</tr>\
+	<tr align='center' bgcolor='#FAFAF1' height='22'>\
+		<td width='8%'>角色ID</td> \
+		<td width='5%'>元宝</td>\
+		<td width='5%'>银两</td>\
+		<td width='5%'>威望</td>\
+		<td width='5%'>外交</td>\
+		<td width='5%'>VIP</td>\
+		<td width='5%'>操作</td>\
+	</tr>\
+	<tr align='left' bgcolor='#FAFAF1' height='22'>\
+		<td><input id='charid' type='text' style='width:100%;background-color:#E7E7E7;' readonly='readonly' value='"+ charid+"'/></td>\
+		<td><input id='yuanbao' type='text' style='width:100%;' value='"+yuanbao+"'/></td>\
+		<td><input id='yinliang' type='text' style='width:100%;' value='"+yinliang+"'/></td>\
+		<td><input id='weiwang' type='text' style='width:100%;' value='"+weiwang+"'/></td>\
+		<td><input id='waijiao' type='text' style='width:100%;' value='"+waijiao+"'/></td>\
+		<td><input id='vip' type='text' style='width:100%;' value='"+vip+"'/></td>\
+		<td><input type='button' style='width:100%;' value='确认' onClick='modUserConfirm()'/></td>\
+	</tr>\
+	</table>";
+	document.getElementById('memberdetal').innerHTML = cont;
+}
+
+//修改属性确认
+function modUserConfirm() {
+	var charid = document.getElementById('charid').value;
+	var yuanbao = document.getElementById('yuanbao').value;
+	var yinliang = document.getElementById('yinliang').value;
+	var weiwang = document.getElementById('weiwang').value;
+	var waijiao = document.getElementById('waijiao').value;
+	var vip = document.getElementById('vip').value;
+	if (yuanbao <= 0) return alert("元宝必须>0");
+	if (yinliang < 0) return alert("银两必须>=0");
+	if (weiwang < 0) return alert("威望必须>=0");
+	if (vip < 0) return alert("vip必须>=0");
+	var url = '?inajax=yes&action=moduser&charid='+charid+'&yuanbao='+yuanbao+'&yinliang='+yinliang+'&weiwang='+weiwang+'&waijiao='+waijiao+'&vip='+vip
+		+'&rnd='+ Math.random();
+	ajax(url, 'get', function(data) {
+		if ( data == "SUCCESS" ) {
+			alert("操作成功！");
+            location.href = "member.php";
+		} else {
+			alert("操作失败！"+data);
+		}
+	});
+}
+
+</script>
+
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<table width='98%'  border='0' cellpadding='1' cellspacing='1' bgcolor='#CBD8AC' align="center" style="margin-top:8px">
+  <tr bgcolor='#EEF4EA'>
+    <td background='skin/images/wbg.gif' align='center'>
+      <table border='0' cellpadding='0' cellspacing='0'>
+        <tr>
+        <td width='80'> <div align="right">玩家帐号：</div></td>
+        <td width='172'> <input name='member' type='text' id="member" style='width:150px' class="mytxt" value="$searchAccount"/> </td>
+			<td width='80'> <div align="right">角色ID：</div></td>
+			<td width='172'> <input name='memberID' type='text' id="memberID" style='width:150px' class="mytxt" value="$searchID"/> </td>
+        <td width="66">
+          <input type="image" src="skin/images/frame/search.gif" width="45" height="20" border="0" class="np"
+          	onClick="onClickSearch()">
+		</td>
+       	</tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="14">&nbsp;玩家列表&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="3%">账号</td>
+	<td width="4%">角色ID</td>
+	<td width="4%">角色名</td>
+	<td width="2%">渠道号</td>
+	<td width="5%">创建时间</td>
+	<td width="3%">元宝</td>
+	<td width="3%">银两</td>
+	<td width="2%">国力</td>
+	<td width="2%">威望</td>
+	<td width="2%">外交</td>
+	<td width="1%">VIP</td>
+	<td width="1%">是否在线</td>
+
+	<td width="1%">宗人府席位</td>
+	<td width="1%">寝宫席位</td>
+	<td width="1%">冷宫席位</td>
+	<td width="2%">子嗣数量</td>
+	<td width="3%">银库上限</td>
+	<td width="3%">粮库上限</td>
+	<td width="3%">兵营上限</td>
+    <td width="5%">操作</td>
+
+</tr>
+<!--{loop $members $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+	<td>$v[account]</td>
+	<td>$v[charid]</td>
+	<td>$v[charname]</td>
+	<td>$v[source]</td>
+	<td>$v[createtime]</td>
+	<td>$v[yuanbao]</td>
+	<td>$v[yinliang]</td>
+	<td>$v[guoli]</td>
+	<td>$v[weiwang]</td>
+	<td>$v[waijiao]</td>
+	<td>$v[vip]</td>
+	<td>$v[online]</td>
+
+	<td>$v[zrfgrid]</td>
+	<td>$v[qggrid]</td>
+	<td>$v[lggrid]</td>
+	<td>$v[zsnum]</td>
+	<td>$v[maxyk]</td>
+	<td>$v[maxlc]</td>
+	<td>$v[maxby]</td>
+    <td>
+    	[<a href="javascript:;", onClick="banUser('$v[account]', '$v[state]')"><!--{if $v[state] == 2}-->解封<!--{else}-->封号<!--{/if}--></a>]
+		[<a href="javascript:;", onClick="jinYan('$v[account]', '$v[state]')"><!--{if $v[state] == 1}-->解禁<!--{else}-->禁言<!--{/if}--></a>]
+    	[<a href="javascript:;", onClick="kickUser('$v[charid]', '$v[online]')">下线</a>]
+    	[<a href="javascript:;", onClick="modUser('$v[charid]', '$v[yuanbao]', '$v[yinliang]', '$v[weiwang]', '$v[waijiao]', '$v[vip]')">修改</a>]
+	</td>
+</tr>
+<!--{/loop}-->
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="14" background="skin/images/tbg.gif" align="center">
+		<lable style="float:left">当前在线: $onlineCount</lable>
+		$multi
+	</td>
+</tr>
+</table>
+
+<br />
+<div id="memberdetal" style="float:left; width:auto"></div>
+
+</body>
+</html>

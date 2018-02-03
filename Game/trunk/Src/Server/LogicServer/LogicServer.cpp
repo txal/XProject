@@ -59,7 +59,7 @@ bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, GetServiceID(), poRouter->nService, 0, g_poContext->GetServerID());
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), g_poContext->GetServerID(), poRouter->nService, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_pInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -157,7 +157,7 @@ void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	if (oHeader.nTar != GetServiceID())
+	if (oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_ERROR, "%s: Packet target error\n", GetServiceName());
 		poPacket->Release();

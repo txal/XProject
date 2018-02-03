@@ -12,7 +12,7 @@ void NSPacketProc::RegisterPacketProc()
 	poPacketHandler->RegsterInnerPacketProc(NSMsgType::eLuaCmdMsg, (void*)OnLuaCmdMsg);
 
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceRet, (void*)OnRegisterRouterCallback);
-	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssServiceClose, (void*)OnServiceClose);
+	//poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssServiceClose, (void*)OnServiceClose);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssClientClose, (void*)OnClientClose);
 
 	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::cPlayerRun, (void*)OnPlayerRun);
@@ -68,16 +68,18 @@ void NSPacketProc::OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER
 
 void NSPacketProc::OnClientClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	((LogicServer*)g_poContext->GetService())->ClientCloseHandler(oHeader.uSessionNum > 0 ? pSessionArray[0] : 0);
+	LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
+	poLogic->OnClientClose(oHeader.uSrcServer, oHeader.uSessionNum > 0 ? pSessionArray[0] : 0);
+	OnLuaCmdMsg(nSrcSessionID, poPacket, oHeader, pSessionArray);
 }
 
-void NSPacketProc::OnServiceClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
-{
-	PacketReader oPacketReader(poPacket);
-	int nService = 0;
-	oPacketReader >> nService;
-	LuaWrapper::Instance()->FastCallLuaRef<void>("OnServiceClose", 0, "i", nService);
-}
+//void NSPacketProc::OnServiceClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+//{
+//	PacketReader oPacketReader(poPacket);
+//	int nService = 0;
+//	oPacketReader >> nService;
+//	LuaWrapper::Instance()->FastCallLuaRef<void>("OnServiceClose", 0, "i", nService);
+//}
 
 void NSPacketProc::OnPlayerRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {

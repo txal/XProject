@@ -1,0 +1,271 @@
+<html>
+<head>
+	<title>开启活动</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<script type="text/javascript" src="js/ajax.js"></script>
+	<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+	<script type="text/javascript">
+
+		var bigActList = [];
+		var subActList = [];
+		var fzList = [];
+
+		//查询
+		function searchAct() {
+            var actText = document.getElementById("bigsel");
+            var subText = document.getElementById("subsel");
+            var fzText = document.getElementById("fzsel");
+            var actIndex = parseInt(actText.value);
+            var actSubIndex = subText ? parseInt(subText.value) : 0;
+            var fzIndex = fzText ? parseInt(fzText.value) : 0;
+			window.location.href = "openact.php?action=search&actindex="+actIndex+"&actSubIndex="+actSubIndex+"&fzIndex="+fzIndex;
+		}
+
+		//开启活动
+		function openAct() {
+
+		    /*获取活动索引，值*/
+            var actText = document.getElementById("bigsel");
+            var subText = document.getElementById("subsel");
+            var fzText = document.getElementById("fzsel");
+            var prop = document.getElementById('propid');
+            var round = document.getElementById('roundid');
+            var awardTime = document.getElementById('atimeval');
+
+            var stime = document.getElementById("stime");
+            var etime = document.getElementById("etime");
+            stime = stime.value.trim();
+            etime = etime.value.trim();
+
+			var actIndex = parseInt(actText.value);
+            var actSubIndex = subText ? subText.value : 0;
+            var fzIndex = fzText ? parseInt(fzText.value) : 0;
+            var propID = prop ? parseInt(prop.value) : 0;
+            var roundID = round ? parseInt(round.value) : 0;
+            var awardTime = awardTime ? parseInt(awardTime.value) : 0;
+
+            var timeStart = Date.parse(new Date(stime));
+            var timeEnd = Date.parse(new Date(etime));
+
+			if (prop && !prop.value.match(/^[0-9]/)){
+                alert('道具ID必须是数字');
+                return false;
+			}
+            if (prop && propID <= 0) {
+                alert('道具ID必须大于0');
+                return false;
+            }
+
+            if (round && !round.value.match(/^[0-9]/)) {
+                alert('轮次ID必须是数字');
+                return false;
+            }
+
+            if (round && roundID <= 0) {
+                alert('轮次ID必须大于0');
+                return false;
+            }
+
+			if (!stime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+				alert('没有填写开始时间或格式错误');
+				return false;
+			}
+			if (!etime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+				alert('没有填写结束时间或格式错误');
+				return false;
+			}
+
+			/*选择服务器*/
+			var server = "";
+			var serverAll = "";
+			var serverAllCheckBox = document.getElementsByName("serverAll");
+			for(i=0; i<serverAllCheckBox.length; i++){
+			    if(serverAllCheckBox[i].checked){
+			        var v = serverAllCheckBox[i].value;
+			        serverAll = serverAll+v;
+				}
+			}
+			var serverCheckBox = document.getElementsByName("server")
+		    for(i=0; i<serverCheckBox.length; i++) {
+		        if(serverCheckBox[i].checked) {
+		            var val = serverCheckBox[i].value;
+		            server = server + val + "|";
+		        }
+		    }
+		    if (server == ""&&serverAll == "") {
+		    	return alert("请选择服务器");
+		    }
+			window.location.href = "openact.php?action=open&actindex="+actIndex+"&actSubIndex="+actSubIndex
+				+"&fzIndex="+fzIndex+"&stime="+stime+"&etime="+etime+"&server="+server+"&serverAll="+serverAll
+				+"&propID="+propID+"&roundID="+roundID+"&awardTime="+awardTime;
+		}
+
+		//取消子选框
+		function cancleSubCheckbox() {
+            var serverCheckBox = document.getElementsByName("server");
+            for(i=0; i<serverCheckBox.length; i++) {
+                serverCheckBox[i].checked=false;
+            }
+        }
+
+        //取消全选框
+        function cancleCheckBox(){
+            var serverAllCheckBox = document.getElementsByName("serverAll")[0];
+            serverAllCheckBox.checked = false;
+		}
+
+		//加载所有活动类
+		function onLoadAct() {
+            bigActList = JSON.parse(document.getElementById("bigact").innerHTML);
+            subActList = JSON.parse(document.getElementById("subact").innerHTML);
+            fzList = JSON.parse(document.getElementById("fzlist").innerHTML);
+
+			for(i=0;i<bigActList.length;i++){
+                var act = document.getElementById("bigsel");
+			   	act.innerHTML+="<option value="+i+">"+bigActList[i]['sName']+"</option>";
+			}
+			checkSubAct();
+        }
+
+        //检测子活动领奖时间
+       	function checkSubActAwardTime() {
+            var bigIndex = document.getElementById("bigsel").value;
+            var bigActID = bigActList[bigIndex]['nID'];
+
+            var subIndex = document.getElementById("subsel").value;
+            if(!subActList[bigActID]) return;
+
+		   document.getElementById("atimeval").value = subActList[bigActID][subIndex].nAwardTime;
+       	}
+
+        //检索是否有子活动
+		function checkSubAct(){
+            var bigIndex = document.getElementById("bigsel").value;
+            var bigActID = bigActList[bigIndex]['nID'];
+
+            var subSpan = document.getElementById("subspan");
+            var fzSpan = document.getElementById("fzspan");
+            var libaoSpan = document.getElementById("libaospan");
+            var atime = document.getElementById('atime');
+            var subIndex = document.getElementById('subsel');
+            var subActID = subIndex ? subIndex.value : 0;
+
+			subSpan.innerHTML = "";
+			fzSpan.innerHTML = "";
+			libaoSpan.innerHTML = "";
+
+            if(subActList[bigActID]){
+               var sub = "<span>子活动:\
+                   <select name='subsel' id='subsel' style='height:25px; width:150px;' onchange='checkSubActAwardTime()'>\
+                   </select></span>";
+               subSpan.innerHTML = sub;
+               var subSel = document.getElementById("subsel");
+			   for(j=0; j<subActList[bigActID].length; j++){
+				   subSel.innerHTML+="<option value="+j+">"+subActList[bigActID][j]['sName']+"</option>";
+			   }
+			   checkSubActAwardTime()
+
+			} else {
+			    document.getElementById("atimeval").value = bigActList[bigIndex].nAwardTime;
+
+				if (bigActID == 14) { //限时选秀
+					var sub = "<span>妃子:\
+					<select name='fzsel' id='fzsel' style='height:25px; width:150px;'>\
+					</select></span>";
+					fzSpan.innerHTML = sub;
+					var fzSel = document.getElementById("fzsel");
+					for(j=0; j<fzList.length; j++){
+						fzSel.innerHTML+="<option value="+j+">"+fzList[j]['sName']+"</option>";
+					}
+				} else if (bigActID == 6) {
+					var liBao = "<span>道具ID:<input type='text' style='width:80px;' id='propid'/></span>";
+					libaoSpan.innerHTML = liBao;
+				} else if (bigActID == 7) {
+	                var liBao = "<span>道具ID:<input type='text' style='width:80px;' id='propid'/> 轮次ID:<input type='text' style='width:80px;' id='roundid'/></span>";
+	                libaoSpan.innerHTML = liBao;
+				} else if (bigActID == 8) {
+	                var liBao = "<span>轮次ID：<input type='text' style='width:80px;' id='roundid'/></span>";
+	                libaoSpan.innerHTML = liBao;
+				}
+			}
+	}
+
+</script>
+</head>
+<label id='bigact' hidden>$bigActListJS</label>
+<label id='subact' hidden>$subActListJS</label>
+<label id='fzlist' hidden>$fzListJS</label>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif' onload="onLoadAct()">
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+	<tr bgcolor="#E7E7E7">
+		<label style="color: red;font-weight: 700; margin-bottom: 10px; display: inline-block;">注意：非结束状态的活动不能开启，否则活动数据会被清空！</label>
+		<br/>
+		<label>选择服务器：</label>
+		<div align="left", style="border:1px solid #CCCCCC;">
+			<!--{loop $_SERVERLIST $id $srv}-->
+			<label><input name="server" type="checkbox" value="$id" id="$id" onclick="cancleCheckBox()"/>$srv[name]</label>
+			<!--{/loop}-->
+			<label><input name="serverAll" type="checkbox" value="all" onclick="cancleSubCheckbox()"/>全选</label>
+		</div>
+		<br/>
+		<div align="center", style="">
+			<span>活动:
+				<select name="bigsel" id="bigsel" style="height:25px; width:150px;" onchange="checkSubAct()">
+				</select>
+			</span>
+			<span id="subspan"></span>
+			<span id="fzspan"></span>
+			<span id="libaospan"></span>
+			<input type="button" name="search" style="width:80px;" onClick="searchAct()" value="查 询"/>
+			<span id="atime" style="margin-left:5px; display: inline;">领奖时间:
+				<input type="text" id='atimeval' style="width:80px" />
+			</span>
+			<span style="margin-left:10px;">起始时间:
+				<input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;"
+					onFocus="new Calendar().show(this);" value="$stime" />
+			</span>
+			<span style="margin-left:5px;">结束时间:
+				<input name="etime" type="text" class="mytxt" id="etime" style="border:1px solid #CCCCCC;"
+					onFocus="new Calendar().show(this);" value="$etime" />
+			</span>
+			<input type="button" name="openact" style="width:80px;" onClick="openAct()" value="开 启"/>
+		</div>
+	</tr>
+	<tr align="center" bgcolor="#FAFAF1" height="22">
+	  	<td width="%4">服务器名</td>
+	  	<td width="%4">活动ID</td>
+		<td width="%4">活动子ID</td>
+	  	<td width="%4">活动名</td>
+		<td width="%4">子活动名</td>
+		<td width="%3">道具ID</td>
+		<td width="%3">轮次ID</td>
+	  	<td width="%4">开始时间</td>
+	  	<td width="%4">结束时间</td>
+		<td width="%4">领奖结束时间</td>
+	  	<td width="%4">状态</td>
+	  	<td width="%4">操作时间</td>
+	</tr>
+
+	<!--{loop $list $v}-->
+	<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+		<td>$v['srvname']</td>
+		<td>$v['actid']</td>
+		<td>$v['subactid']</td>
+		<td>$v['actname']</td>
+		<td>$v['subactname']</td>
+		<td>$v['propid']</td>
+		<td>$v['roundid']</td>
+		<td>$v['stime']</td>
+		<td>$v['etime']</td>
+		<td>$v['atime']</td>
+		<td>$v['sstate']</td>
+		<td>$v['optime']</td>
+	</tr>
+	<!--{/loop}-->
+</table>
+<div align="center" style="width:98%; height:25px; background:#EEF4EA; margin-left: 10px">
+	<!--{if $multi}-->$multi<!--{/if}-->
+</div > 
+
+</body>
+</html>

@@ -64,13 +64,13 @@ void NSPacketProc::OnKeepAlive(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 /////////////////////////内部处理函数/////////////////////////////////////
 void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrc);
+	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
 
 }
 
 void NSPacketProc::OnSyncLogicService(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	int nSession = oHeader.uSessions > 0 ? pSessionArray[0] : 0;
+	int nSession =oHeader.uSessionNum> 0 ? pSessionArray[0] : 0;
 	Gateway* poGateway = (Gateway*)g_poContext->GetService();
 	CLIENT* poClient = poGateway->GetClientMgr()->GetClient(nSession);	
 	if (poClient == NULL)
@@ -86,7 +86,7 @@ void NSPacketProc::OnSyncLogicService(int nSrcSessionID, Packet* poPacket, INNER
 
 void NSPacketProc::OnKickClient(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	int nSession = oHeader.uSessions > 0 ? pSessionArray[0] : 0;
+	int nSession =oHeader.uSessionNum> 0 ? pSessionArray[0] : 0;
 	if (nSession > 0)
 	{
 		Gateway* poGateway = (Gateway*)g_poContext->GetService();
@@ -96,7 +96,7 @@ void NSPacketProc::OnKickClient(int nSrcSessionID, Packet* poPacket, INNER_HEADE
 
 void NSPacketProc::OnClientIPReq(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	int nSession = oHeader.uSessions > 0 ? pSessionArray[0] : 0;
+	int nSession =oHeader.uSessionNum> 0 ? pSessionArray[0] : 0;
 	if (nSession > 0)
 	{
 		Gateway* poGateway = (Gateway*)g_poContext->GetService();
@@ -111,7 +111,7 @@ void NSPacketProc::OnClientIPReq(int nSrcSessionID, Packet* poPacket, INNER_HEAD
 			return;
 		}
 		poPacket->WriteBuf(&(poClient->uRemoteIP), sizeof(poClient->uRemoteIP));
-		NetAdapter::SendInner(NSSysCmd::ssClientIPRet, poPacket, oHeader.nSrc, nSession);
+		NetAdapter::SendInner(NSSysCmd::ssClientIPRet, poPacket, oHeader.nSrcService, nSession);
 	}
 }
 

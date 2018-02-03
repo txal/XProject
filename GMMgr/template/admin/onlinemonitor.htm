@@ -1,0 +1,56 @@
+<html>
+
+            <head>
+                <title>实时在线监控</title>
+                <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+                <script type="text/javascript" src="js/ajax.js"></script>
+                <script language="javascript" type="text/javascript" src="js/calendar.js"></script>
+                <script type="text/javascript">
+
+                    //查询
+                    function search(){
+
+                        var searchTime = document.getElementById("searchtime");
+                        searchTime = searchTime.value;
+                        if (!searchTime.match(/^\d+-\d+-\d+/g)) {
+                                alert("查询时间格式有误");
+                                return false;
+                            }
+                        window.location.href = "onlinemonitor.php?action=search&searchTime="+searchTime;
+                    }
+
+                </script>
+            </head>
+
+            <body>
+                <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+                    <tr bgcolor="#E7E7E7">
+                        <div align="center", style="">
+                            <span style="margin-right:10px;">查询日期：
+			                    <input type="text" id="searchtime" name="searchtime" class="mytxt" style="border:1px solid #CCCCCC;" onFocus='new Calendar().show(this)' value="$stime"/>
+		                    </span>
+                            <input type="button" name="search" style="width:80px;" value="查  询" onClick="search()"/>
+                        </div>
+                    </tr>
+                    <tr bgcolor="#E7E7E7">
+                        <td height="24" colspan="14">&nbsp;&nbsp;在线监控列表</td>
+                    </tr>
+                    <tr align="center" bgcolor="#FAFAF1" height="22">
+                        <td>时段</td>
+                        <td>在线用户</td>
+                        <td>新用户在线</td>
+                        <td>老用户在线</td>
+                        <td>无效用户</td>
+                    </tr>
+                    <!--{loop $resList $k $v}-->
+                    <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+                        <td>$k</td>
+                        <td>$v[0]</td>
+                        <td>$v[1]</td>
+                        <td>$v[2]</td>
+                        <td>$v[3]</td>
+                    </tr>
+                    <!--{/loop}-->
+                </table>
+            </body>
+</html>

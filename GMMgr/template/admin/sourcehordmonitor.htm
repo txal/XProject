@@ -1,0 +1,92 @@
+<html>
+
+            <head>
+                <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+                <script type="text/javascript" src="js/ajax.js"></script>
+                <script language="javascript" type="text/javascript" src="js/calendar.js"></script>
+                <script type="text/javascript">
+
+                    //查询
+                    function search() {
+                        var activeUser = document.getElementById("activeuser");
+                        var user = document.getElementsByName("user");
+                        var stime = document.getElementById("stime");
+                        var etime = document.getElementById("etime");
+                        var item = document.getElementById('item').value;
+
+                        var userVal = "";
+                        for(var i = 0;i<user.length;i++) {
+                            if(user[i].checked==true) {
+                                userVal = user[i].value;
+                                break;
+                            }
+                        }
+
+                        activeUser = activeUser.checked;
+
+                        stime = stime.value.trim();
+                        etime = etime.value.trim();
+
+                        if (!stime.match(/^\d+-\d+-\d+$/g)) {
+                            alert("没有填写结束时间或格式错误");
+                            return false;
+                        }
+
+                        if (!stime.match(/^\d+-\d+-\d+$/g)) {
+                            alert("没有填写结束时间或格式错误");
+                            return false;
+                        }
+
+                        window.location.href = "sourcehordmonitor.php?action=search&activeuser="+activeUser+"&user="+userVal+"&stime="+stime+"&etime="+etime+"&item="+item+'&rnd='+ Math.random();
+                    }
+
+                </script>
+            </head>
+
+            <body>
+                <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+                    <tr bgcolor="#E7E7E7">
+                        <div align="center", style="">
+                            <input type="checkbox" name="activeuser" id="activeuser" checked="checked" disabled="disabled"/>活跃用户
+                            <input type="radio" name="user" id="vipuser" value="1" <!--{if $userVal==1}-->checked="checked"<!--{/if}-->/>vip用户
+                            <input type="radio" name="user" id="alluser" value="2" <!--{if $userVal==2}-->checked="checked"<!--{/if}-->/>所有用户
+                            <select id='item' style="margin-right:10px; width:100px; height:26px;">
+                                <!--{loop $itemList $k $v}-->
+                                <option value='$k' <!--{if $k==$item}-->selected="selected"<!--{/if}-->>$v[0]</option>
+                                <!--{/loop}-->
+                            </select>
+                            <span style="margin-left:10px; margin-right:10px;">起始时间:
+                                        <input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$stime"/>
+                                    </span>
+                            <span style="margin-left:10px; margin-right:10px;">结束时间:
+                                        <input name="etime" type="text" class="mytxt" id="etime" style="border:1px solid #CCCCCC;" onFocus="new Calendar().show(this);" value="$etime"/>
+                                    </span>
+                            <input type="button" name="search" style="width:80px;" value="查  询" onClick="search()"/>
+                        </div>
+                    </tr>
+                    <tr bgcolor="#E7E7E7">
+                        <td height="24" colspan="14">&nbsp;&nbsp;资源囤积监控列表</td>
+                    </tr>
+                    <tr align="center" bgcolor="#FAFAF1" height="22">
+                        <td width="14%">日期</td>
+                        <td width="14%">当日消耗量</td>
+                        <td width="14%">当日增加量</td>
+                        <td width="14%">资源囤积量</td>
+                        <td width="14%">统计人数</td>
+                        <td width="14%">人均囤积量</td>
+                        <td width="14%">囤积占比</td>
+                    </tr>
+                    <!--{loop $resList $k $v}-->
+                    <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+                        <td>$k</td>
+                        <td>$v[0]</td>
+                        <td>$v[1]</td>
+                        <td>$v[2]</td>
+                        <td>$v[3]</td>
+                        <td>$v[4]</td>
+                        <td>$v[5]</td>
+                    </tr>
+                    <!--{/loop}-->
+                </table>
+            </body>
+</html>

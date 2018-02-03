@@ -5,8 +5,8 @@
 struct PacketHeader
 {
 	uint16_t uCmd;
-	int8_t nSrc;
-	int8_t nTar;
+	int8_t nSrcService;
+	int8_t nTarService;
 };
 
 const char cInt8 = 'c';
@@ -221,8 +221,8 @@ static int LuaCmdPack(lua_State* pState)
 	//添加包尾
 	PacketHeader oHeader;
 	oHeader.uCmd = uCmd;
-	oHeader.nSrc = 0;
-	oHeader.nTar = nService;
+	oHeader.nSrcService = 0;
+	oHeader.nTarService = nService;
 	if (nLen + sizeof(oHeader) > MAX_PACKET_SIZE)
 	{
 		return luaL_error(pState, "Pack packet out of range:4k");
@@ -459,7 +459,7 @@ static int LuaPacketHeader(lua_State* pState)
 	lua_pushlightuserdata(pState, (void*)pData);
 	lua_pushinteger(pState, nLen - sizeof(oHeader)-sizeof(int));
 	lua_pushinteger(pState, oHeader.uCmd);
-	lua_pushinteger(pState, oHeader.nSrc);
+	lua_pushinteger(pState, oHeader.nSrcService);
 	return 4;
 }
 
@@ -488,8 +488,8 @@ static int PBAddHeader(lua_State* pState)
 		return luaL_error(pState, "Packet out of size:4k");
 	}
 	oHeader.uCmd = uCmd;
-	oHeader.nSrc = 0;
-	oHeader.nTar = nService;
+	oHeader.nSrcService = 0;
+	oHeader.nTarService = nService;
 
 	int nSize = (int)uSize;
 	memcpy(sBuf + sizeof(int), pData, nSize);

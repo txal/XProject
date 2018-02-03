@@ -14,24 +14,24 @@ PlayerMgr::PlayerMgr()
 {
 }
 
-Player* PlayerMgr::CreatePlayer(const GAME_OBJID& oID, int nRoleID, const char* psName, int8_t nCamp)
+Player* PlayerMgr::CreatePlayer(int nID, int nRoleID, const char* psName, int8_t nCamp)
 {
 	
-	Player* poPlayer = GetPlayerByID(oID);
+	Player* poPlayer = GetPlayerByID(nID);
 	if (poPlayer != NULL)
 	{
-		XLog(LEVEL_ERROR, "CreatePlayer: %lld exist\n", oID.llID);
+		XLog(LEVEL_ERROR, "CreatePlayer: %lld exist\n", nID);
 		return NULL;
 	}
 	poPlayer = XNEW(Player);
-	poPlayer->Init(oID, nRoleID, psName, nCamp);
-	m_oPlayerIDMap[oID.llID] = poPlayer;
+	poPlayer->Init(nID, nRoleID, psName, nCamp);
+	m_oPlayerIDMap[nID] = poPlayer;
 	return poPlayer;
 }
 
-void PlayerMgr::BindSession(const GAME_OBJID& oID, int nSession)
+void PlayerMgr::BindSession(int nID, int nSession)
 {
-	Player* poPlayer = GetPlayerByID(oID);
+	Player* poPlayer = GetPlayerByID(nID);
 	if (poPlayer == NULL)
 	{
 		return;
@@ -48,9 +48,9 @@ void PlayerMgr::BindSession(const GAME_OBJID& oID, int nSession)
 	}
 }
 
-void PlayerMgr::RemovePlayer(const GAME_OBJID& oID)
+void PlayerMgr::RemovePlayer(int nID)
 {
-	PlayerIDIter iter = m_oPlayerIDMap.find(oID.llID);
+	PlayerIDIter iter = m_oPlayerIDMap.find(nID);
 	if (iter == m_oPlayerIDMap.end())
 	{
 		return;
@@ -69,9 +69,9 @@ void PlayerMgr::RemovePlayer(const GAME_OBJID& oID)
 	SAFE_DELETE(poPlayer);
 }
 
-Player* PlayerMgr::GetPlayerByID(const GAME_OBJID& oID)
+Player* PlayerMgr::GetPlayerByID(int nID)
 {
-	PlayerIDIter iter = m_oPlayerIDMap.find(oID.llID);
+	PlayerIDIter iter = m_oPlayerIDMap.find(nID);
 	if (iter != m_oPlayerIDMap.end())
 	{
 		return iter->second;

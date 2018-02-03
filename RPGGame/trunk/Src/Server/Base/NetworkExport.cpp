@@ -115,7 +115,11 @@ static int BroadcastInner(lua_State* pState)
 		oNaviCache.PushBack(NetAdapter::SERVICE_NAVI(uSrcServer, nSrcService, uTarServer, nTarService, nTarSession));
 	}
 
-	poPacket->WriteBuf(&uRawCmd, sizeof(uRawCmd));
+	//兼容RPCNet(无RawCmd和CMDNet(有RawCmd)
+	if (uRawCmd > 0)
+	{
+		poPacket->WriteBuf(&uRawCmd, sizeof(uRawCmd));
+	}
 	if (!NetAdapter::BroadcastInner(uBroadcastCmd, poPacket, oNaviCache))
 	{
 		return LuaWrapper::luaM_error(pState, "Broadcast inner packet fail!");

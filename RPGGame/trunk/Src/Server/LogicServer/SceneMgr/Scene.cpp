@@ -124,7 +124,7 @@ bool Scene::IsTimeToCollected(int64_t nNowMS)
 
 int Scene::AddObj(Object* poObject, int nPosX, int nPosY, int8_t nAOIMode, int8_t nAOIType, int nAOIArea[])
 {
-	int64_t nObjID = poObject->GetID().llID;
+	int nObjID = poObject->GetID();
 	int nObjType = poObject->GetType();
 	if (m_oObjMap.find(nObjID) != m_oObjMap.end())
 	{
@@ -168,7 +168,7 @@ void Scene::KickAllPlayer()
 void Scene::OnObjEnterScene(AOI_OBJ* pObj)
 {
 	Object* poGameObj = pObj->poGameObj;
-	m_oObjMap.insert(std::make_pair(poGameObj->GetID().llID, poGameObj));
+	m_oObjMap.insert(std::make_pair(poGameObj->GetID(), poGameObj));
 	poGameObj->OnEnterScene(this, Point(pObj->nPos[0], pObj->nPos[1]), pObj->nAOIObjID);
 	if (poGameObj->GetType() == eOT_Player)
 	{
@@ -205,7 +205,7 @@ void Scene::OnObjLeaveScene(AOI_OBJ* pObj)
 	pEngine->CallLuaRef("OnObjLeaveScene", 2, 0);
 
 	Object* poGameObj = pObj->poGameObj;
-	m_oObjMap.erase(poGameObj->GetID().llID);
+	m_oObjMap.erase(poGameObj->GetID());
 	poGameObj->OnLeaveScene();
 	if (poGameObj->GetType() == eOT_Player)
 	{
@@ -290,20 +290,20 @@ void Scene::UpdateDamage(Actor* poAtker, Actor* poDefer, int nHP, int nAtkID, in
 	}
 	if (m_uBattleType  == eBT_BugStorm || m_uBattleType == eBT_BugHole || m_uBattleType == eBT_BugHole1 || m_uBattleType == eBT_BugHole2)
 	{
-		GAME_OBJID& oID = poAtker->GetID();
-		DmgData* poData = m_oDmgRanking.GetDataByID(oID.llID);
+		int nID = poAtker->GetID();
+		DmgData* poData = m_oDmgRanking.GetDataByID(nID);
 		if (poData == NULL)
 		{
 			DmgData oData;
-			oData.llID = oID.llID;
+			oData.llID = nID;
 			strcpy(oData.sName, poAtker->GetName());
 			oData.nValue = nHP;
-			m_oDmgRanking.InsertData(oID.llID, oData);
+			m_oDmgRanking.InsertData(nID, oData);
 		}
 		else
 		{
 			poData->nValue += nHP;
-			m_oDmgRanking.UpdateData(oID.llID);
+			m_oDmgRanking.UpdateData(nID);
 		}
 		int& nTotalDmg = m_oDmgRanking.GetTotalDmg();
 		nTotalDmg += nHP;

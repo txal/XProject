@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>系统管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+	function sendGmCmd() {
+		var body = document.getElementById('gmcmd');
+		var cmd = body.value;
+		if (cmd.match(/^\s*$/g)) {
+			return alert('请输入指令');
+		}
+		cmd = encodeURIComponent(cmd); //GET 不能传特殊字符串 例如:+
+		var url = "?inajax=yes&action=gmcmd&cmd="+cmd+"&rnd="+ Math.random();
+		ajax(url, 'get', function(data) {
+			if (data == "SUCCESS") {
+				alert("操作成功！");
+				window.location.href = "sys.php?cmd="+cmd;
+			} else {
+				alert("操作失败！");
+				window.location.href = "sys.php?cmd="+cmd+"&err="+data;
+			}
+		});
+	}
+
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<div style="text-align:center;">
+<div style="width:60%; margin:auto;">
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+	<div style="margin-bottom:10px;color:#0000FF;" id="giftinfo">
+	
+	  <table width="80%" border="0" cellspacing="1" cellpadding="1">
+		<tr>
+			<td><strong>GM指令:</strong></td>
+		</tr>
+        <tr>
+          <td >
+		    <span style="margin-right:10px;">
+			    <textarea id="gmcmd" name="gmcmd" cols="100" rows="15" style="width:100%;height:100px">$cmd</textarea>
+		    </span>
+          </td>
+		</tr>
+		<tr>
+			<div>$err</div>
+		</tr>
+      </table>
+	</div>
+	<div>
+		<input name="提交" type="button" style="width:100px" onClick="sendGmCmd()" value="提   交" />
+	</div>
+  </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<html>
+        <head>
+            <title>兑换码管理</title>
+            <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+            <script type="text/javascript" src="js/ajax.js"></script>
+            <script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>
+            <script type="text/javascript">
+
+                //修改兑换码类型
+                function updateCodeType(id,name,desc,starttime,endtime,award){
+                    var updateServer = "updateServer";
+                    var cont =
+                        "<table width='98%' border='0' cellpadding='2' cellspacing='1' bgcolor='#D1DDAA' align='center' style='margin-top:20px;margin-bottom:20px;float:left;margin-left: 19px;'>\
+                        <tr bgcolor='#E7E7E7'>\
+                            <td height='24' colspan='10' background='skin/images/tbg.gif'>&nbsp;修改属性&nbsp;</td>\
+                        </tr>\
+                        <tr align='center' bgcolor='#FAFAF1' height='22'>\
+                            <td width='6%'>礼包ID</td>\
+                            <td width='8%'>礼包名称</td>\
+                            <td>礼包描述</td>\
+                            <td width='14%'>生效时间</td>\
+                            <td width='14%'>截止时间</td>\
+                            <td>奖品</td>\
+                            <td width='10%'>操作</td>\
+                        </tr>\
+                        <tr align='left' bgcolor='#FAFAF1' height='22'>\
+                            <td ><input id='id' type='text' style='width:100%;background-color:#E7E7E7;' readonly='readonly' value='"+ id+"'/></td>\
+                            <td ><input id='name' type='text' style='width:100%;' value='"+name+"'/></td>\
+                            <td ><input id='desc' type='text' style='width:100%;' value='"+desc+"'/></td>\
+                            <td ><input id='starttime' type='text' style='width:100%;' value='"+starttime+"' onFocus='new Calendar().show(this)';/></td>\
+                            <td ><input id='endtime' type='text' style='width:100%;' value='"+endtime+"' onFocus='new Calendar().show(this)';/></td>\
+                            <td ><input id='award' type='text' style='width:100%;' value='"+award+"'/></td>\
+                            <td >\
+                                <input type='button' style='width:100%;' value='确认' onClick='updateCodeConfrim()'/>\
+                                <input type='button' style='width:100%;' value='取消' onClick='cancleOperation()'/>\
+                            </td>\
+                    </tr>\
+                </table>";
+                    document.getElementById('codedetal').innerHTML = cont;
+                }
+
+                //确认修改兑换码
+                function updateCodeConfrim(){
+                    var id = document.getElementById('id').value;
+                    var name = document.getElementById('name').value;
+                    var starttime = document.getElementById('starttime').value;
+                    var endtime = document.getElementById('endtime').value;
+                    var award = document.getElementById('award').value;
+                    var desc = document.getElementById('desc').value;
+                    if(id=="" || name=="" || award=="" || desc==""){
+                        alert("输入框不能有空，请检查");
+                        return false;
+                    }
+
+                    if (!starttime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+                        alert('没有填写生效时间或格式错误');
+                        return false;
+                    }
+
+                    if (!endtime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+                        alert('没有填写截止时间或格式错误');
+                        return false;
+                    }
+
+                    if (!award.match(/^(\[\[\d+,\d+,\d+\])(,\[\d+,\d+,\d+\])*\]$/g)){
+                        alert('奖品列表格式错误');
+                        return false;
+                    }
+
+                    var url = '?inajax=yes&action=updateCode&id='+id+'&name='+name+'&starttime='+starttime+'&endtime='+endtime+'&award='+award+'&desc='+desc+'&rnd='+ Math.random();
+                    ajax(url, 'get', function(data) {
+                        if ( data == "SUCCESS" ) {
+                            alert("操作成功！");
+                            location.href = "codemanagement.php";
+                        } else {
+                            alert("操作失败！"+data);
+                        }
+                    });
+                }
+
+                //创建兑换码类型
+                function addCodeType(){
+                    var cont =
+                        "<table width='98%' border='0' cellpadding='2' cellspacing='1' bgcolor='#D1DDAA' align='center' style='margin-top:20px;margin-bottom:20px;float:left;margin-left: 19px;'>\
+                        <tr bgcolor='#E7E7E7'>\
+                            <td height='24' colspan='10' background='skin/images/tbg.gif'>&nbsp;添加兑换码类型&nbsp;</td>\
+                        </tr>\
+                        <tr align='center' bgcolor='#FAFAF1' height='22'>\
+                            <td>兑换码类型</td>\
+                            <td>礼包名称</td>\
+                            <td>礼包描述</td>\
+                            <td>生效时间</td>\
+                            <td>截止时间</td>\
+                            <td>奖品</td>\
+                            <td>操作</td>\
+                        </tr>\
+                        <tr align='left' bgcolor='#FAFAF1' height='22'>\
+                            <td width='8%'>\
+                                <select id='keycode'>\
+                                    <option value=''>请选择兑换码类型</option>\
+                                    <option value='1'>神秘宝箱</option>\
+                                    <option value='2'>多人一KEY</option>\
+                                    <option value='3'>一人多KEY</option>\
+                                    <option value='4'>一人一KEY </option>\
+                                </select>\
+                            </td>\
+                            <td width='9%'><input id='name' type='text' style='width:100%;'  /></td>\
+                            <td ><input id='desc' type='text' style='width:100%;'  /></td>\
+                            <td width='19%'><input id='starttime' type='text' style='width:100%;' onFocus='new Calendar().show(this)'; /></td>\
+                            <td width='19%'><input id='endtime' type='text' style='width:100%;' onFocus='new Calendar().show(this)';/></td>\
+                            <td><input id='award' type='text' style='width:100%;' /></td>\
+                            <td width='13%'>\
+                                <input type='button' style='width:100%;' value='确认' onclick='addCodeTypeConfrim()'/>\
+                                <input type='button' style='width:100%;' value='取消' onclick='cancleOperation()'/>\
+                            </td>\
+                        </tr>\
+                    </table>";
+                    document.getElementById('codedetal').innerHTML = cont;
+                }
+
+                //确定创建兑换码类型
+                function addCodeTypeConfrim(){
+                    var name = document.getElementById('name').value;
+                    var starttime = document.getElementById('starttime').value;
+                    var endtime = document.getElementById('endtime').value;
+                    var award = document.getElementById('award').value;
+                    var desc = document.getElementById('desc').value;
+                    var keyType = document.getElementById('keycode').value;
+
+                    if(keyType == ""){
+                        alert("兑换码类型不能为空");
+                        return false;
+                    }
+                    if(name=="" || award=="" || desc==""){
+                        alert("输入框不能有空，请检查");
+                        return false;
+                    }
+                    if (!starttime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+                        alert('没有填写生效时间或格式错误');
+                        return false;
+                    }
+                    if (!endtime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+                        alert('没有填写截止时间或格式错误');
+                        return false;
+                    }
+                    if (!award.match(/^(\[\[\d+,\d+,\d+\])(,\[\d+,\d+,\d+\])*\]$/g)){
+                        alert('奖品列表格式错误');
+                        return false;
+                    }
+                    var url = '?inajax=yes&action=addCodeType&name='+name+'&starttime='+starttime+'&endtime='+endtime+'&award='+award+'&desc='+desc+'&keyType='+keyType+'&rnd='+ Math.random();
+                    ajax(url, 'get', function(data) {
+                        if ( data == "SUCCESS" ) {
+                            alert("操作成功！");
+                            location.href = "codemanagement.php";
+                        } else {
+                            alert("操作失败！"+data);
+                        }
+                    });
+                }
+
+                //生成兑换码
+                function createKey(){
+                    var serverID = document.getElementById('serverid').value;
+                    var codeType = document.getElementById('keytype').value;
+                    var keycount = document.getElementById('keycount').value;
+
+                    if (serverID=="" || codeType=="" ){
+                        alert("服务器或礼包不能为空");
+                        return false;
+                    }
+                    if (keycount.match(/^\s*$/g)) {
+                        alert('没有填写兑换码数量');
+                        return false;
+                    }
+                    if (!keycount.match(/^[0-9]/)){
+                        alert('兑换数量必须为数字');
+                        return false;
+                    }
+                    if (keycount<0 || keycount<1){
+                        alert("兑换数量必须为整数");
+                        return false;
+                    }
+                    var url = '?inajax=yes&action=createKey&serverID='+serverID+'&codeType='+codeType+'&keycount='+keycount+'&rnd='+ Math.random();
+                    ajax(url, 'get', function(data) {
+                        if ( data == "SUCCESS" ) {
+                            alert("生成成功！");
+                            location.href = "codemanagement.php";
+                        } else {
+                            alert("生成失败！"+data);
+                        }
+                    });
+                }
+
+                //查询
+                function search() {
+                    var serverID = document.getElementById('serverid').value;
+                    var codeType = document.getElementById('keytype').value;
+                    var url = "?inajax=yes&action=search&serverID="+ serverID +"&codeType="+codeType+"&rnd="+ Math.random();
+
+                    if (serverID == ""&&codeType =="") {
+                        url = "?inajax=yes&rnd="+ Math.random();
+                        var searchcodelist = document.getElementById('searchcodelist');
+                        for (var i=0; i<trList.length; i++) {
+                            trList[i].style.display = 'block';
+                        }
+                    }
+
+                    ajax(url, "get", function(data) {
+                        document.close();
+                        var trList = document.getElementsByClassName('keycodelist');
+                        var json = eval(data);
+                        var tab = document.getElementById('codelisttab');
+
+                        for (var i=0; i<trList.length; i++) {
+                            trList[i].style.display = 'none';
+                        }
+
+                        if (document.getElementsByClassName('codeList')) {
+                            var removeTrList = document.getElementsByClassName('codeList');
+                            var removeListLength = removeTrList.length;
+                            for (var i=0; i<removeListLength; i++) {
+                                tab.deleteRow(removeTrList[i].rowIndex);
+                                removeListLength = removeListLength - 1;
+                                i = i - 1;
+                            }
+                            codeCreate(json);
+                        }
+                        else {
+                            codeCreate(json);
+                        }
+                    });
+                }
+
+                //生成查询数据行
+                function codeCreate(data) {
+                    var tab = document.getElementById('codelisttab');
+                    for (var key in data) {
+                        var tr = document.createElement('tr');
+                        tr.style.textAlign='center';
+                        tr.style.backgroundColor = '#FFFFFF';
+                        tr.setAttribute('class','codeList');
+                        tr.innerHTML = "<td>"+data[key].key+"</td>" +
+                            "<td>"+data[key].name+"</td>" +
+                            "<td>"+data[key].server+"</td>" +
+                            "<td>"+data[key].charlist+"</td>" +
+                            "<td>"+data[key].time+"</td>";
+                        tab.appendChild(tr);
+                    }
+                }
+                
+                //删除礼包
+                function delAward(awardID) {
+                    if(!confirm("确定要删除？")){
+                        return;
+                    }
+                    var url = '?inajax=yes&action=delAward&awardID='+awardID+'&rnd='+ Math.random();
+                    ajax(url, 'get', function(data) {
+                        if ( data == "SUCCESS" ) {
+                            alert("删除成功！");
+                            location.href = "codemanagement.php";
+                        } else {
+                            alert("删除失败！"+data);
+                        }
+                    });
+                }
+
+                //显示服务器对应的兑换码类型
+                function selServer(sid) {
+                     window.location.href="codemanagement.php?sid="+sid;
+                }
+
+                //导出兑换码
+                function exportCode() {
+                    var sid = document.getElementById("sid");
+                    var ktype = document.getElementById("ktype");
+                    sid = sid.value;
+                    ktype = ktype.value;
+
+                    if (sid =="" || ktype=="") {
+                        alert("服务器或者兑换码类型不能为空");
+                        return false;
+                    }
+                    window.location.href = "codemanagement.php?action=exportCode&sid="+sid+'&ktype='+ktype;
+                }
+
+                //取消下拉框
+                function cancleSelect(){
+                    var serverID = document.getElementById('serverid');
+                    serverID.value="";
+                }
+
+                //取消全选
+                function cancleAllServer(){
+                    var allServer = document.getElementsByName('allserver')[0];
+                    allServer.checked=false;
+                }
+
+                //取消操作
+                function cancleOperation(){
+                    document.getElementById("codedetal").innerHTML="";
+                }
+
+
+
+            </script>
+        </head>
+        <body>
+            <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+                <tr bgcolor="#E7E7E7">
+                    <td height="24" colspan="14">&nbsp;&nbsp;兑换码类型列表</td>
+                </tr>
+                <tr align="center" bgcolor="#FAFAF1" height="22">
+                    <td width="10%">礼包ID</td>
+                    <td width="10%">兑换码类型</td>
+                    <td width="10%">礼包名称</td>
+                    <td>礼包描述</td>
+                    <td width="16%">生效时间</td>
+                    <td width="16%">截止时间</td>
+                    <td>奖品</td>
+                    <td width="10%">操作</td>
+                </tr>
+                <!--{loop $codeType $key $val}-->
+                <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+                    <td>$val[id]</td>
+                    <td>$val[type]</td>
+                    <td>$val[name]</td>
+                    <td>$val[desc]</td>
+                    <td>$val[starttime]</td>
+                    <td>$val[endtime]</td>
+                    <td>$val[award]</td>
+                    <td>
+                        [<a href="javascript:;" onClick="updateCodeType('$val[id]','$val[name]','$val[desc]','$val[starttime]','$val[endtime]','$val[award]')" style="cursor: pointer">修改</a>]
+                        [<a href="javascript:;" onclick="delAward('$val[id]')">删除</a>]
+                    </td>
+                </tr>
+                <!--{/loop}-->
+                <tr bgcolor="#E7E7E7">
+                    <td height="24" colspan="14" background="skin/images/tbg.gif" align="center">
+                        $multi
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td height="40" bgcolor="#FFFFFF" colspan="9">
+                        <input type='button' style="width: 100px; float: left;" value='创建兑换码类型' onClick='addCodeType()'/>
+                    </td>
+                </tr>
+            </table>
+
+            <div id="codedetal" style="float:left; width:auto"></div>
+
+            <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:40px" id="codelisttab">
+                <tr align="center">
+                    <td height="35" bgcolor="#FFFFFF" colspan="9">
+                        <span style="float: left;margin-left: 10px;font-weight: 700; margin-top: 5px;">生成兑换码:&nbsp;</span>
+                        <select name="serverid" id="serverid" style="float: left;margin-top: 5px;margin-left: 15px;" onclick="cancleAllServer()">
+                            <option value="">请选择服务器</option>
+                            <!--{loop $_SERVERLIST $key $val}-->
+                            <option value="$key" >$val['name']</option>
+                            <!--{/loop}-->
+                        </select>
+                        <select name="keytype" id="keytype" style="float: left;margin-top:5px;margin-left: 15px;margin-right: 8px;">
+                            <option value="">请选择礼包</option>
+                            <!--{loop $codeType $key $val}-->
+                            <option value="$val[id]">$val['id']</option>
+                            <!--{/loop}-->
+                        </select>
+                        <input id='keycount' type='text' style='width:160px;float: left;margin-right: 5px;' placeholder="请填写生成兑换码的数量"/>
+                        <input type='button' style="width: 100px; float: left;" value='生成' onClick='createKey()'/>
+                        <input type='button' style="width: 100px; float: left; margin-left: 5px;" value='查询' onClick='search()'/>
+                    </td>
+                </tr>
+                <tr bgcolor="#E7E7E7">
+                    <td height="24" colspan="14">&nbsp;&nbsp;兑换码列表</td>
+                </tr>
+                <tr align="center" bgcolor="#FAFAF1" height="22">
+                    <td width="7%">兑换码</td>
+                    <td width="5%">礼包名</td>
+                    <td width="3%">服务器</td>
+                    <td width="22%">兑换玩家</td>
+                    <td width="5%">兑换时间</td>
+                </tr>
+                <!--{loop $keyCode $key $val}-->
+                <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" class="keycodelist">
+                    <td>$val[key]</td>
+                    <td>$val[name]</td>
+                    <td>$val[server]</td>
+                    <td>$val[charlist]</td>
+                    <td>$val[time]</td>
+                </tr>
+                <!--{/loop}-->
+                <tr bgcolor="#E7E7E7" class="keycodelist">
+                    <td height="24" colspan="14" background="skin/images/tbg.gif" align="center">
+                        $multi2
+                    </td>
+                </tr>
+            </table>
+
+            <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:40px">
+                <tr align="center">
+                    <td height="35" bgcolor="#FFFFFF" colspan="9">
+                        <span style="float: left;margin-left: 10px;font-weight: 700; margin-top: 5px;">导出兑换码:&nbsp;</span>
+                        <select name="sid" id="sid" style="float: left;margin-top: 5px;margin-left: 15px;" onchange="selServer(this.value)">
+                            <option value="">请选择服务器</option>
+                            <!--{loop $_SERVERLIST $key $val}-->
+                            <option value="$key" <!--{eval if($key==$sID) echo("selected=\"selected\"");}--> >$val[name]</option>
+                            <!--{/loop}-->
+                        </select>
+                        <select name="ktype" id="ktype" style="float: left;margin-top:5px;margin-left: 15px;margin-right: 8px;">
+                            <option value="">请选择兑换码类型</option>
+                            <!--{if $cType}-->
+                                <!--{loop $cType $key $val}-->
+                                <option value="$val[id]" >$val[name]</option>
+                                <!--{/loop}-->
+                            <!--{/if}-->
+                        </select>
+                        <input type='button' style="width: 100px; float: left;" value='确认' onclick="exportCode()"/>
+                    </td>
+                </tr>
+            </table>
+        </body>
+</html>

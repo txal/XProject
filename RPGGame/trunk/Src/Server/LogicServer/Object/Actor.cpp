@@ -76,7 +76,7 @@ void Actor::OnDead(Actor* poAtker, int nAtkID, int nAtkType)
 	m_oHateMap.clear();
 	BroadcastActorDead();
 
-	LuaWrapper::Instance()->FastCallLuaRef<void>("OnActorDead", 0, "iiiiii", m_oObjID.llID, m_nObjType, poAtker->GetID().llID, poAtker->GetType(), nAtkID, nAtkType);
+	LuaWrapper::Instance()->FastCallLuaRef<void>("OnActorDead", 0, "iiiiii", m_nObjID, m_nObjType, poAtker->GetID(), poAtker->GetType(), nAtkID, nAtkType);
 
 }
 
@@ -360,7 +360,7 @@ void Actor::UpdateBuff(int64_t nNowMS)
 		if (poBuff->IsExpired(nNowMS))
 		{
 			iter = m_oBuffMap.erase(iter);
-			LuaWrapper::Instance()->FastCallLuaRef<void>("OnActorBuffExpired", 0, "iii", m_oObjID.llID, m_nObjType, poBuff->GetID());
+			LuaWrapper::Instance()->FastCallLuaRef<void>("OnActorBuffExpired", 0, "iii", m_nObjID, m_nObjType, poBuff->GetID());
 			SAFE_DELETE(poBuff);
 			continue;
 		}
@@ -389,9 +389,9 @@ void Actor::ClearBuff()
 	m_oBuffMap.clear();
 }
 
-HATE* Actor::GetHate(GAME_OBJID& oObjID)
+HATE* Actor::GetHate(int nID)
 {
-	HateIter iter = m_oHateMap.find(oObjID.llID);
+	HateIter iter = m_oHateMap.find(nID);
 	if (iter != m_oHateMap.end())
 	{
 		return &(iter->second);
@@ -405,8 +405,8 @@ void Actor::AddHate(Actor* poAtker, int nValue)
 	{
 		return;
 	}
-	GAME_OBJID& oAtkerID = poAtker->GetID();
-	HATE* poHate = GetHate(oAtkerID);
+	int nID = poAtker->GetID();
+	HATE* poHate = GetHate(nID);
 	if (poHate != NULL)
 	{
 		poHate->nValue += nValue;
@@ -416,7 +416,7 @@ void Actor::AddHate(Actor* poAtker, int nValue)
 		HATE oHate;
 		oHate.nValue = nValue;
 		oHate.uRelives = poAtker->GetRelives();
-		m_oHateMap[oAtkerID.llID] = oHate;
+		m_oHateMap[nID] = oHate;
 	}
 }
 

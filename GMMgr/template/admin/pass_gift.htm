@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>公告管理</title>
+<script type="text/javascript" src="/js/calendar.js"></script>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script type="text/javascript">
+
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="9" background="skin/images/tbg.gif">&nbsp;发奖审核&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="50px">编号</td>
+	<td width="80px">领奖人</td>
+	<td width="80px">标题</td>
+	<td width="80px">内容</td>
+	<td>发奖物品极数量</td>
+	<td width="80px">发奖人</td>
+	<td width="170px">发送时间</td>
+    <td width="170px">原因</td>
+    <td width="80px">审核</td>
+</tr>
+<!--{loop $gifts $gift}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+	<td>$gift[id]</td>
+	<td>$gift[users]</td>
+	<td align="left">$gift[title]</td>
+	<td align="left">$gift[content]</td>
+	<td>$gift[msg]</td>
+	<td>$gift[admin]</td>
+	<td><!--{eval echo date('Y-m-d H:i:s', $gift['ptime']);}--></td>
+    <td>$gift[remark]</td>
+    <td><a href="pass_gift.php?action=pass&id=$gift[id]">通过</a> / <a href="pass_gift.php?action=unpass&id=$gift[id]">不通过</a></td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="9" align="center"><!--{if $multi}-->$multi<!--{/if}--></td>
+</tr>
+</table>
+<br/>
+<br/>
+<br/>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="9" background="skin/images/tbg.gif">&nbsp;审核记录&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="50px">编号</td>
+	<td width="80px">领奖人</td>
+	<td width="80px">标题</td>
+	<td width="80px">内容</td>
+	<td >发奖物品极数量</td>
+	<td width="80px">发奖人</td>
+	<td width="170px">发奖时间</td>
+    <td width="170px">原因/<br/>审核时间</td>
+    <td width="80px">审核结果</td>
+</tr>
+<!--{loop $gifts2 $gift}-->
+<tr align='center' bgcolor="$gift[color]" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='$gift[color]';" height="22" >
+	<td>$gift[id]</td>
+	<td>$gift[users]</td>
+	<td align="left">$gift[title]</td>
+	<td align="left">$gift[content]</td>
+	<td>$gift[msg]</td>
+	<td>$gift[admin]</td>
+	<td><!--{eval echo date('Y-m-d H:i:s', $gift['ptime']);}--></td>
+    <td>$gift[remark]</td>
+    <td>$gift[type]</td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="9" align="center"><!--{if $multi2}-->$multi2<!--{/if}--></td>
+</tr>
+</table>
+</body>
+</html>

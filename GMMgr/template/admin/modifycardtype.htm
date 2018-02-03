@@ -1,0 +1,152 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>道具列表</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<style>
+body {
+	margin:0;
+	background:#EEEEEE;
+}
+</style>
+<script type="text/javascript">
+
+function push_gift(tagtype,tagname,id, name) {
+	var amount = document.getElementById('num_'+id);
+	var parent = window.parent;
+	
+	if (!parseInt(amount.value)) {
+		alert('必须填写数量');
+		return;
+	}
+
+	//防止相同物品重复添加,预先清楚(统计到数据库这部分)
+	var re = new RegExp("\\\["+id+"]=[0-9]*,");
+	new_gifttext	=parent.gifttext.replace(re,"");
+
+	if(parent.gifttext!=new_gifttext)
+	{
+		parent.gifttext=new_gifttext;
+	}
+
+
+	//防止相同物品重复添加,预先清楚(界面显示部分)
+	var re = new RegExp("\<font style=\"color:blue\"\>"+name+"\s*\<\/font\>\s* x \s*\<font style=\"color:red\"\>\s*[0-9]*个\<\/font\>\s* \\\|");
+	new_giftdetail	=parent.giftdetail.replace(re,"");
+
+	if(parent.giftdetail=new_giftdetail)
+	{
+		parent.new_giftdetail=new_giftdetail;
+		
+	}
+
+
+	//添加新物
+	parent.gifttext		= parent.gifttext+"["+id+"]="+amount.value+" 个 | ";
+	parent.giftdetail += '<font style="color:blue">' + name+'</font>' + ' x <font style="color:red">' + amount.value + '个</font> | ';
+
+	document.getElementById('id_delete_'+id).disabled=false;
+
+	parent.document.getElementById("id_giftdetail").innerHTML = parent.giftdetail;
+}
+
+function pop_gift(tagtype,tagname,id,name){
+	var amount = document.getElementById('num_'+id);
+	var parent = window.parent;
+	
+	if (!parseInt(amount.value)) {
+		alert('必须填写数量');
+		return;
+	}
+
+	var re = new RegExp("\\\["+id+"]=[0-9]*,");
+	new_gifttext=parent.gifttext.replace(re,"");
+	if(parent.gifttext!=new_gifttext)
+	{
+		parent.gifttext=new_gifttext;
+		document.getElementById("num_"+id).value="";
+		document.getElementById('id_delete_'+id).disabled=true;
+	}
+
+	var re = new RegExp("\<font style=\"color:blue\"\>"+name+"\s*\<\/font\>\s* x \s*\<font style=\"color:red\"\>\s*[0-9]*个\<\/font\>\s* \\\|");
+	new_giftdetail	=parent.giftdetail.replace(re,"");
+	if(parent.giftdetail=new_giftdetail)
+	{
+		parent.new_giftdetail=new_giftdetail;
+	}
+
+	parent.document.getElementById("id_giftdetail").innerHTML = parent.giftdetail;
+}
+
+//提交修改前生成道具信息数据
+function checkform()
+{
+	var gifttext="";
+	
+	//遍历所有道具
+	var div_main	=document.getElementById("id_div_main");
+	var element		=div_main.getElementsByTagName("input");
+	
+	for(var i=0;i<element.length;i++)
+	{
+		//道具div id
+		var eid=element[i].id;
+
+		//道具个数
+		var value=parseInt(element[i].value);
+
+		if(value==null)
+		{
+			alert("道具["+trim(document.getElementById(eid.replace("num_","id_label_").innerHTML))+"]的数量必须是数字");
+			return false;
+		}
+
+		//按照[道具编码]=个数  进行组织道具信息
+		if(value>0)
+		{
+			gifttext=gifttext+"["+eid.replace("num_","")+"]="+value+",";
+		}
+
+	}
+
+	gifttext	="{"+gifttext+"}";
+	gifttext	=gifttext.replace(",}","}");
+
+	document.getElementById("id_gifttext").value=gifttext;
+	return true;
+}
+
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<div style="text-align:center;">
+	<div style="width:100%; margin:auto;">
+	  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">道具列表</h3>
+		<div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+			<div id="id_div_main">
+				<!--{loop $sobjectlist $v}-->
+				<li style="display:block;margin:5px 10px;">
+					<label id="id_label_$v[id]" style="width=120px"> $v[cardname] :</label>
+					<input type="text" id="num_$v[id]" style="width:50px; font-size:12px; height:25px;" value="$v[count]"/>个 
+				</li>
+				<!--{/loop}-->
+			</div>
+								
+			<form method="post" onSubmit="javascript: return checkform();">
+				<table>
+					<tr><td >
+						<input type="hidden" name="cardtypeid" id="id_cardtypeid" value="$cardtypeid" />
+						<input type="hidden" name="gifttext" id="id_gifttext" value="" />
+						<input type="submit" name="modify_submit" id="id_modify_submit" value="确定"></input></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+

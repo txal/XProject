@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<script type="text/javascript">	
+			var slist = "";
+			var mod = "";
+			
+			function getServerList()
+			{
+				return slist;
+			}
+		
+			function selectAllItem(ibool)
+			{
+				var divItem = document.getElementById("id_div"); 
+				var chklist = divItem.getElementsByTagName("input");
+				for( var i = 0;i < chklist.length; i++)
+				{
+					var ct = chklist[i];
+					if( ct.type == "checkbox" ) 
+					{
+						ct.checked = ibool;
+						if(ibool)
+						{
+							slist = slist + mod + "["+ (ct.value) +"]";
+							mod = ",";
+						}
+					}
+				}
+				
+				if( !ibool)
+				{
+					slist = "";
+					mod = "";
+				}
+			}
+			
+			
+			function doSelect(item)
+			{
+				if(item.id == -1) //select all checkbox
+				{
+					if(item.checked)
+					{
+						selectAllItem(true);
+
+					}else{
+						selectAllItem(false);
+					}					
+				}else{
+					if(item.checked)
+					{
+						slist = slist + mod + "["+(item.value)+"]";
+						mod = ",";						
+					}else{
+						document.getElementById(-1).checked = false;
+						
+						var res = "[" + (item.value) +"]";
+						slist = slist.replace(res, "");
+						slist = slist.replace(",,","");
+						if(slist.length <1)
+							mod = "";
+					}
+				}
+			}
+		</script>
+	</head>
+	
+	<body>
+		<input type="checkbox" id =-1 value=-1 onClick="doSelect(this);">全部</input>
+		<div id = "id_div">
+		<!--{loop $serverlist $id $value}-->
+			<input type="checkbox" id=$id value=$id onClick="doSelect(this);">$value</input>
+		<!--{/loop}-->
+		</div>
+	</body>
+</html>

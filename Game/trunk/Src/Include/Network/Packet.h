@@ -10,32 +10,34 @@ const int nPACKET_MAX_SIZE = 0xFFFF + 1;	//pack max size
 struct EXTER_HEADER 
 {
 	uint16_t uCmd;
-	int8_t nSrc;
-	int8_t nTar;
-	uint32_t uIdx;
-	EXTER_HEADER(uint16_t _uCmd = 0, int8_t _nSrc = 0, int8_t _nTar = 0, uint32_t _uIdx = 0)
+	int8_t nSrcService;
+	int8_t nTarService;
+	uint32_t uPacketIdx;
+	EXTER_HEADER(uint16_t _uCmd = 0, int8_t _nSrcService = 0, int8_t _nTarService = 0, uint32_t _uPacketIdx = 0)
 	{
 		uCmd = _uCmd;
-		nSrc = _nSrc;
-		nTar = _nTar;
-		uIdx = _uIdx;
+		nSrcService = _nSrcService;
+		nTarService = _nTarService;
+		uPacketIdx = _uPacketIdx;
 	}
 };
 
 struct INNER_HEADER 
 {
 	uint16_t uCmd;	
-	int8_t nSrc;
-	int8_t nTar;
-	uint16_t uServer;      //目的服务器ID
-	uint16_t uSessions;    //目的会话ID
-	INNER_HEADER(uint16_t _uCmd = 0, int8_t _nSrc = 0, int8_t _nTar = 0, uint16_t _uSessions = 0, uint16_t _uServer = 0)
+	uint16_t uSrcServer;	//源服务器ID
+	int8_t nSrcService;		//源服务ID
+	uint16_t uTarServer;	//目的服务器ID
+	int8_t nTarService;		//目的服务ID
+	uint16_t uSessionNum;	//目的服务数量
+	INNER_HEADER(uint16_t _uCmd = 0, uint16_t _uSrcServer = 0, int8_t _nSrcService = 0, uint16_t _uTarServer = 0, int8_t _nTarService = 0, uint16_t _uSessionNum = 0)
 	{
-		uCmd = _uCmd;
-		nSrc = _nSrc;
-		nTar = _nTar;
-		uServer = _uServer;
-		uSessions = _uSessions;
+		uCmd = _uCmd;	
+		uSrcServer = _uSrcServer;
+		nSrcService = _nSrcService;
+		uTarServer = _uTarServer;
+		nTarService = _nTarService;
+		uSessionNum = _uSessionNum;
 	}
 };
 

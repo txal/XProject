@@ -59,7 +59,7 @@ bool GlobalServer::RegToRouter(int nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, GetServiceID(), nRouterServiceID, 0, g_poContext->GetServerID());
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(),g_poContext->GetServerID(), nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -206,7 +206,7 @@ void GlobalServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	if (oHeader.nTar != GetServiceID())
+	if (oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar service error\n", GetServiceName());
 		poPacket->Release();

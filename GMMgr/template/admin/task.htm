@@ -1,0 +1,64 @@
+<html>
+<head>
+
+	<script type="text/javascript" src="/js/ajax.js"></script>
+	<script type="text/javascript">
+		function viewnpclist(page)
+		{
+
+			var url = "?npcpage="+page;
+			ajax(url, 'GET', 
+				function(data)
+				{
+					var item = document.getElementById("idivnpc");
+					item.innerHTML = data;
+				}
+			);
+		}
+
+		function findnpc()
+		{
+			var npcid = document.getElementById("idnpcid").value;
+			var npcname = document.getElementById("idnpcname").value;
+			npcname = encodeURIComponent(npcname);
+			
+			var url = "?findnpc=1&npcid="+npcid+"&npcname="+npcname;
+			ajax(url, 'GET', 
+				function(data)
+				{
+					var item = document.getElementById("idivnpc");
+					item.innerHTML = data;
+				}
+			);
+		}
+
+	</script>
+</head>
+	<table>
+		<tr>
+			<td>ID:<input id="idnpcid" name="npcid" /></td>
+			<td>名称:<input id="idnpcname" name="npcname" /></td>
+			<td><input type="button" value="查找" onclick="findnpc();" /></td>
+		</tr>
+	</table>
+	<hr/>
+
+	<div id="idivnpc">
+		<table width='98%'  border='0' cellpadding='1' cellspacing='1' bgcolor='#CBD8AC' align="center" style="margin-top:8px">
+			<tr>
+				<td>ID</td>
+				<td>名称</td>
+				<td>内容</td>
+			</tr>
+			<!--{loop $npclist $npc}-->
+				<tr bgcolor='#EEF4EA'>
+					<td>$npc[id]</td>
+					<td>$npc[name]</td>
+					<td>$npc[content]</td>
+				</tr>
+			<!--{/loop}-->
+			<tr bgcolor="#D1DDAA"><td colspan="7">$npcpageblock</td></tr>
+		</table>
+	</div>
+</body>
+</html>

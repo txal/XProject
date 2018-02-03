@@ -42,7 +42,7 @@ bool LogServer::RegToRouter(int nRouterServiceID)
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, GetServiceID(), nRouterServiceID, 0, g_poContext->GetServerID());
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), g_poContext->GetServerID(), nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -148,7 +148,7 @@ void LogServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	if (oHeader.nTar != GetServiceID())
+	if (oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar service error\n", GetServiceName());
 		poPacket->Release();

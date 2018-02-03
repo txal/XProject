@@ -9,8 +9,8 @@ namespace NSMsgType
 {
    enum 
     {
-        eLuaRpcMsg = CMD_MIN,    //Rpc消息标识
-        eLuaCmdMsg,              //Cmd消息标识
+        eLuaRpcMsg = 1,		//Rpc消息标识
+        eLuaCmdMsg = 2,		//Cmd消息标识
     }; 
 }
 

@@ -16,7 +16,7 @@ GatewayPacketHandler::GatewayPacketHandler()
 void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket, EXTER_HEADER& oHeader)
 {
 	Gateway* poGateway = (Gateway*)g_poContext->GetService();
-	if (oHeader.nTar == poGateway->GetServiceID() || oHeader.uCmd == NSCltSrvCmd::ppKeepAlive)
+	if (oHeader.nTarService == poGateway->GetServiceID() || oHeader.uCmd == NSCltSrvCmd::ppKeepAlive)
 	{
 		PacketProcIter iter = m_poExterPacketProcMap->find(oHeader.uCmd);
 		if (iter != m_poExterPacketProcMap->end())
@@ -32,21 +32,21 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 	else
 	{
 		//Send to logic server
-		if (oHeader.nTar == 0)
+		if (oHeader.nTarService == 0)
 		{
-			oHeader.nTar = poGateway->GetClientMgr()->GetClientLogicService(nSrcSessionID);
-			if (oHeader.nTar <= 0)
+			oHeader.nTarService = poGateway->GetClientMgr()->GetClientLogicService(nSrcSessionID);
+			if (oHeader.nTarService <= 0)
 			{
-				oHeader.nTar = g_poContext->GetRandomLogic();
+				oHeader.nTarService = g_poContext->GetRandomLogic();
 			}
-			if (oHeader.nTar <= 0)
+			if (oHeader.nTarService <= 0)
 			{
 				XLog(LEVEL_ERROR, "%s: Player logic server error\n", poGateway->GetServiceName());
 				poPacket->Release();
 				return;
 			}
 		}
-		if (!NetAdapter::SendInner(oHeader.uCmd, poPacket, oHeader.nTar, nSrcSessionID))
+		if (!NetAdapter::SendInner(oHeader.uCmd, poPacket, oHeader.nTarService, nSrcSessionID))
 		{
 			XLog(LEVEL_ERROR, "%s: Send packet to router fail\n", poGateway->GetServiceName());
 		}
@@ -77,16 +77,16 @@ void GatewayPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket
 
 void GatewayPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	super::CacheSessionArray(pSessionArray, oHeader.uSessions);
+	super::CacheSessionArray(pSessionArray, oHeader.uSessionNum);
 	Service* poService = g_poContext->GetService();
 	INet* pExterNet = poService->GetExterNet();
 
 	EXTER_HEADER oExterHeader;
 	oExterHeader.uCmd = oHeader.uCmd;
-	oExterHeader.nSrc = poService->GetServiceID();
-	oExterHeader.nTar = 0;
+	oExterHeader.nSrcService = poService->GetServiceID();
+	oExterHeader.nTarService = 0;
 	poPacket->AppendExterHeader(oExterHeader);
-	for (int i = oHeader.uSessions - 1; i >= 0; --i)
+	for (int i =oHeader.uSessionNum- 1; i >= 0; --i)
 	{
 		if (i == 0)
 		{

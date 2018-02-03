@@ -1,0 +1,13 @@
+<?PHP exit;?>	2011-06-02 14:47:25		192.168.1.178	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:47:37		192.168.1.178	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:50:14		192.168.1.178	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:50:30		192.168.1.178	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:52:25		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:57:34		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:57:37		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:57:37		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:57:38		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:57:38		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:57:38		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:57:38		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.
+<?PHP exit;?>	2011-06-02 14:57:38		192.168.0.22	/login.php	File: D:\works\fss\./data/tpl_cache/template_admin_login.php write error.

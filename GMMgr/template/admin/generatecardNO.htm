@@ -1,0 +1,354 @@
+<html>
+<head>
+	<title>卡号生成</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<script type="text/javascript" src="/js/ajax.js"></script>
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	-->
+	</style>
+	
+	<script type="text/javascript">
+
+		function delCookie(name)//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
+		{
+		var date = new Date();
+		date.setTime(date.getTime() - 10000);
+		document.cookie = name + "=0; expires=" + date.toGMTString();
+		}	
+		
+		function clearCookie()
+		{
+			var arrStr = document.cookie.split("; ");
+			for(var i = 0;i < arrStr.length;i ++)
+			{
+				var temp = arrStr[i].split("=");
+				if(temp[0] == "newcards_cardNO")
+				{
+					delCookie("newcards_cardNO");
+				}
+			}
+		}
+
+		function fornumber(self)
+		{
+			var value = self.value;
+			
+			self.value = value.replace(/\D/, "");
+		}
+
+		function showValue()
+		{
+			
+		}
+
+		
+
+		function getServers()
+		{
+
+			var indivitualCheckBox = document.getElementById("id_all_subdiv");
+			var iCBXList = indivitualCheckBox.getElementsByTagName("input");
+
+			var srvList = "";
+			var mod = "";
+			for(var i=0; i< iCBXList.length; i++)
+			{
+				var bx = iCBXList[i];
+				if(bx.type == "checkbox" && bx.checked)
+				{
+					srvList = srvList + mod + bx.value;
+					mod = ",";
+				}
+			}
+
+			return srvList;
+		}
+
+		function getServerNames()
+		{
+			var indivitualCheckBox = document.getElementById("id_all_subdiv");
+			var iCBXList = indivitualCheckBox.getElementsByTagName("input");
+
+			var srvList = "";
+			var mod = "";
+			for(var i=0; i< iCBXList.length; i++)
+			{
+				var bx = iCBXList[i];
+				if(bx.type == "checkbox" && bx.checked)
+				{
+					var v = document.getElementById("id_indivitualCheckBox_" + bx.value);
+					srvList = srvList + mod + v.innerHTML;
+					mod = "\n";
+				}
+			}
+
+			return srvList;
+		}
+
+		function pickProp(parentID)
+		{
+			var itemvalue = document.getElementById("id_"+parentID+"_hidden").value;
+			itemvalue = itemvalue.replace(",","_");
+		
+			document.getElementById("id_div").innerHTML
+				="<iframe width=\"100%\" id=\"d_iframe\" name=\"d_iframe\" src=\"cardgift.php?recharge=3&pnt="+parentID+"&iv="+itemvalue+"\" "
+					+" frameborder=\"0\" onload=\"this.height=d_iframe.document.body.scrollHeight;\"></iframe>";
+
+		}
+
+		function CloseDiv()
+		{
+			document.getElementById("id_div").innerHTML = "";
+		}
+		
+		function pickUpServers()
+		{
+			var itemDiv = document.getElementById("id_show_servers_div");
+			var itemDisplay = document.getElementById("id_hidden_display");
+			if(itemDisplay.value == 1 )
+			{
+				itemDiv.style.display = "none";
+				itemDisplay.value = 0 ;
+
+				var srvList = getServers();
+				document.getElementById("id_server_id").value = srvList;
+
+				var srvalueList = getServerNames();
+				document.getElementById("id_server_show").value = srvalueList;
+			}else{
+				itemDiv.style.display = "block";
+				itemDisplay.value = 1 ;
+			}
+		}
+		
+		
+		function selectAllCheckboxs(isChecked)
+		{
+			var spediv = document.getElementById("id_all_subdiv");
+			var checkboxlist = spediv.getElementsByTagName("input");
+	
+			for(var i=0;i< checkboxlist.length; i++)
+			{
+				checkboxlist[i].checked = isChecked;
+			}
+		}
+		
+		function selectOneCheckbox(selectAll, isChecked)
+		{
+			if(!isChecked)
+				selectAll.checked = false;
+		}
+
+		function checkform()
+		{
+			
+			var srvList = getServers();
+			document.getElementById("id_server_id").value = srvList;
+
+			var cardamount = document.getElementById("id_cardamount").value;
+			if( cardamount == ""){
+				alert("卡数量不能为空 .")
+				return false ;
+			}
+
+			return true;
+		}
+
+		function listAlltypes()
+		{
+			var url = "?list=1";
+			ajax( url, 'get', 
+				function(data)
+				{										
+					var item = document.getElementById("idcardtypes");
+					item.innerHTML = data;
+				}
+
+			);
+		}
+
+		function checkformtypes()
+		{
+
+			var itemdiv = document.getElementById("idcardtypes");
+			var checkboxlist = itemdiv.getElementsByTagName("input");
+
+			var str = "";
+			var mob = "";
+			
+			for(var i=0;i< checkboxlist.length; i++)
+			{
+				if ( checkboxlist[i].checked )
+				{
+					str = str + mob + checkboxlist[i].id ;
+					mob = ",";
+				}
+			}
+
+			if( String(str).length > 0) {			
+				document.getElementById("idtypeshidden").value = str  ;
+				
+				return true;
+			}
+
+			alert("havnot select any one cardtype .");
+			return false ;
+		}		
+		
+	</script>
+
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+
+
+	<table width="98%" border="0" cellpadding="2" cellspacing="1"  align="center" style="margin-top:8px">
+		<tr bgcolor="#E7E7E7">
+			<td background="skin/images/tbg.gif" colspan="8">
+				<form method="post" action="generatecardNO.php" onsubmit="javascript: return checkform();">
+					<table width="100%">
+						<tr bgcolor="#E7E7E7">
+							<td width="85" align="right">选择服务器:</td>
+							<td ><textarea id="id_server_show" name="n_server_show" onkeydown="return false;" onclick="pickUpServers();"></textarea> 
+								<input id="id_server_id" type="hidden" name = "n_servers" />
+								<input type="hidden" id="id_hidden_display"value=0 />
+								<div id="id_show_servers_div" style="display:none;" bgcolor="#ffffff">
+									<input type="checkbox" name="selectAll" id="id_select_all"  size="1" onClick="selectAllCheckboxs(this.checked);">全选</input>
+									<div id="id_all_subdiv">
+									<!--{loop $serverlist $k $v}-->
+										<input type="checkbox" id="id_cbk0_$k"  value=$k onClick="selectOneCheckbox(selectAll,this.checked);" />
+										<label id="id_indivitualCheckBox_$k">$v</label>
+									<!--{/loop}-->
+									</div>
+								</div>
+								<div id="id_div"></div>
+							</td>	
+							<td><font color="red">$opmessage</font></td>	
+						</tr>
+						<tr bgcolor="#E7E7E7">				
+							<td width="12%" align="right">卡号生成数量:</td>
+							<td width="10%" align="left"><input type="text" name="cardamount" id="id_cardamount" onkeyup="fornumber(this);"/>
+							<td width="8%" align="right">卡号类型:</td>
+							<td width="12%" align="left">
+								<select name="cardtype">
+									<!--{loop $typelist $id $cardname}-->
+									<option value="$id">$cardname</option>
+									<!--{/loop}-->
+								</select></td>
+							<td align="left"><input type="submit" name="generatesubmit" value="确认生成"/></td>
+						</tr>
+
+					</table>
+				</form>
+
+				<hr/><br/><br/>
+				<form method="post" action="generatecardNO.php" onSubmit="javascript: return checkformtypes();">
+					<input type="button" value="选择卡型:" onClick="listAlltypes(); "/> 
+					<input type="submit" name="exporttypes" value="导出">
+					<input type="hidden" id="idtypeshidden" name="nametypehidden" />
+					<div id="idcardtypes" > $exportresults </div>
+				</form>
+		
+			</td>
+		</tr>
+		<tr bgcolor="#E7E7E7">
+			<td colspan="8">
+				<form enctype="multipart/form-data" action="generatecardNO.php" method="post">
+					<input name="upload_file" type="file" > 
+					<input type="submit" value="import">
+					<input type="hidden" name="nameimport" value="1" />
+				</form>
+			</td>
+		</tr>
+		<tr bgcolor="#E7E7E7">
+			<td background="skin/images/tbg.gif" colspan="8"></td>
+		</tr>
+
+		
+		
+		<tr bgcolor="#E7E7E7">
+			<td background="skin/images/tbg.gif" colspan="4">
+				<form method="post" action="generatecardNO.php">
+					<table width="100%">
+						<tr bgcolor="#E7E7E7">
+							<td align="left" width="70px">卡号类型: &nbsp;</td>
+							<td align="left">
+								<select name="excardtype" >
+									<option value="-1">全部</option>
+									<!--{loop $typelist $id $cardname}-->
+									<option value="$id">$cardname</option>
+									<!--{/loop}-->
+								</select>
+								</td>
+							<td align="right" widt="250px">导出卡号: &nbsp;从编号:</td>
+							<td align="left"><input type="text" name="startNO" onkeyup="fornumber(this);"/></td>
+							<td align="center">到</td>
+							<td align="left"><input type="text" name="endNO" onkeyup="fornumber(this);"/></td>
+							<td align="left"><input type="submit" name="exportsubmit" value="导  出"/></td>
+						</tr>
+					</table>
+				</form>			
+			</td>
+			<td background="skin/images/tbg.gif" colspan="4">
+				<form method="post" action="generatecardNO.php">
+					<table width="100%">
+						<tr bgcolor="#E7E7E7">
+							<td  align="right">卡号类型:&nbsp;</td>
+							<td  align="left">
+								<select name="scardtype">
+									<!--{eval if($msg['scardtype']==-1) echo("<option value=\"-1\" selected>全部</option>"); else echo("<option value=\"-1\">全部</option>");  }-->
+									<!--{loop $alltypelist $id $cardname}-->
+									<!--{eval if($msg['scardtype']==$id) echo("<option value=\"$id\" selected>$cardname</option>"); else echo("<option value=\"$id\">$cardname</option>");  }-->
+								
+									<!--{/loop}-->
+								</select></td>
+							<td  align="right">卡号搜索:&nbsp;</td>
+							<td  align="left"><input type="text" name="scardid"/ <!--{eval echo("value={$msg['scardno']}");  }-->></td>
+							<td  align="center">用户名搜索:&nbsp; </td>
+							<td  align="left"><input type="text" name="susername" <!--{eval echo("value={$msg['susername']}");  }-->></td>
+							<td align="left"><input type="submit" name="ssubmit" value="查询"/></td>
+						</tr>
+					</table>
+				</form>	
+			</td>
+		</tr>
+
+		
+		<tr bgcolor="#E7E7E7">
+			<td background="skin/images/tbg.gif" colspan="8">
+				<table width="100%">
+					<tr bgcolor="#ffffff">
+						<td width="12%" align="center">编号</td>
+						<td width="12%" align="center">卡号</td>
+						<td width="15%" align="center">生成时间</td>
+						<td width="12%" align="center">使用者</td>
+						<td width="8%" align="center">状态</td>
+						<td width="15%" align="center">使用时间</td>
+						<td align="center">使用IP</td>
+						<td align="center">类型</td>
+					</tr>
+
+		
+					<!--{loop $cardlist $v}-->
+					<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+					  <td>$v[id]</td>
+					  <td>$v[cardNO]</td>
+					  <td>$v[buildtime]</td>
+					  <td>$v[username]</td>
+					  <td>$v[state]</td>
+					  <td>$v[usetime]</td>
+					  <td>$v[Ip]</td>
+					  <td>$v[type]</td>
+					</tr>
+					<!--{/loop}-->
+					<tr align="right" bgcolor="#EEF4EA">
+						<td height="36" colspan="8" align="left">总页数: $pageblock</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

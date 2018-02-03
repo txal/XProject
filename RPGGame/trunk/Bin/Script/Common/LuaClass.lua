@@ -1,8 +1,12 @@
+local _rawget = rawget
+local _assert = assert
+local _insert = table.insert
+
 local tClassDefineMt = {}
 function tClassDefineMt.__index(tbl, key)
 	local tBaseClass = tbl.__tbl_baseclass__
 	for i = 1, #tBaseClass do
-		local xValue = rawget(tBaseClass[i], key)
+		local xValue = _rawget(tBaseClass[i], key)
 		if xValue then
 			--rawset(tbl, key, xValue) --这里会导致基类reload无效，但访问效率会提高，10w次相差10倍，为了稳定性牺牲效率
 			return xValue
@@ -16,11 +20,11 @@ function class(...)
     --基本取/设函数
     tClassDefine.Get = function(self, field)
         local value = self[field]
-        assert(value ~= nil, "变量:"..field.."不能为nil,需要先定义")
+        _assert(value ~= nil, "变量:"..field.."不能为nil,需要先定义")
         return value
     end
     tClassDefine.Set = function(self, field, value)
-        assert(self[field], "需要先定义变量:"..field)
+        _assert(self[field], "需要先定义变量:"..field)
         self[field] = value
     end
 
@@ -28,9 +32,9 @@ function class(...)
     tClassDefine.__tbl_baseclass__ = {}
     for k= 1, #tArg do
     	local tBaseClass = tArg[k]
-        table.insert(tClassDefine.__tbl_baseclass__, tBaseClass)
+        _insert(tClassDefine.__tbl_baseclass__, tBaseClass)
         for j = 1, #tBaseClass.__tbl_baseclass__ do
-        	table.insert(tClassDefine.__tbl_baseclass__, tBaseClass.__tbl_baseclass__[j])
+        	_insert(tClassDefine.__tbl_baseclass__, tBaseClass.__tbl_baseclass__[j])
         end
     end
 
@@ -63,8 +67,8 @@ function class(...)
         end
         --这里要放到调用构造函数之前,因为构造函数里面,可能调用基类的成员函数或者成员变量
         setmetatable(tNewInstance, tInstanceMt)
-      	local fnCtor = rawget(self, "Ctor")
-        assert(fnCtor, "构造函数未定义")
+      	local fnCtor = _rawget(self, "Ctor")
+        _assert(fnCtor, "构造函数未定义")
 	    fnCtor(tNewInstance, ... )
     	return tNewInstance
     end

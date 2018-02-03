@@ -1,0 +1,164 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>公告管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script type="text/javascript">
+var isRemark = false;
+var isPlayer = false;
+
+var giftinfo = [];
+var gifttext = '';
+//var giftmsg  = '';
+
+function set_gifts_ids() {
+	var gids = document.getElementById('giftids').value;
+	var msg  = document.getElementById('msg');
+	if (gids == '') {
+		alert("没有选择要发送的道具");
+		return false;
+	}
+	
+	msg.value = gifttext;
+	
+	return true;
+}
+
+function delgift(id) {
+	var v = giftinfo.join('|');
+	document.getElementById('giftids').value = v;
+}
+
+var players = [];
+function push_member() {
+	var members = document.getElementById('members');
+	var player  = document.getElementById('player');
+	
+	players.push(player.options[player.options.selectedIndex].value);
+	
+	members.value = players.join(',');
+}
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<form action="" method="post" onSubmit="return set_gifts_ids();">
+<div style="width:90%; margin:auto;">
+  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">发奖/补偿系统</h3>
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+    <table width="100%" border="0" cellspacing="1" cellpadding="1">
+      <tr>
+        <td colspan="2"><div align="center"><span style="margin-bottom:10px;">玩家发奖
+          <input name="type" type="radio" value="1" checked>
+  &nbsp;&nbsp;&nbsp;
+          全服发奖
+          <input type="radio" name="type" value="2">
+  &nbsp;&nbsp;&nbsp;
+          联盟发奖
+          <input type="radio" name="type" value="3">
+        </span>
+            <input name="union" id="union" size="15"/>联盟ID
+          </div></td>
+        <td width="50%" rowspan="7"><iframe width="100%" height="500" src="gift.php" frameborder="0"></iframe></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div id="giftinfo" align="center" style="background:#FFFFCC;"></div></td>
+      </tr>
+      <tr>
+        <td width="16%"><div align="right">用户：</div></td>
+        <td width="34%"><textarea name="members" cols="50" rows="8" id="members" style="border:1px solid #CCCCCC;padding:10px;color:#999;" onFocus="doplayer();" onBlur="unplayer();">填写玩家名. 一行一个</textarea></td>
+      </tr>
+      <tr>
+        <td><div align="right">邮件标题：</div></td>
+        <td><input type="text" name="title" size="50"/></td>
+      </tr>
+      <tr>
+        <td> <div align="right">邮件内容： </div></td>
+        <td><textarea name="content" cols="50" rows="8" id="content"></textarea></td>
+      </tr>
+      <tr>
+        <td><div align="right">备注： </div></td>
+        <td><textarea name="remark" cols="50" rows="8" id="remark" style="border:1px solid #CCCCCC;color:#999;padding:10px;" onFocus="doremark();" onBlur="unremark();">填写发奖原因</textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">
+          <input type="hidden" name="giftids" id="giftids"/>
+		  <input type="hidden" name="msg" id="msg"/>
+          <input type="hidden" value="fajiang" name="action" />
+<input name="提交" type="submit" value="发   奖" />
+        </div></td>
+        </tr>
+    </table>
+    <script type="text/javascript">	
+	function doremark() {
+		var mark = document.getElementById('remark');
+		if (!isRemark) {
+			mark.style.color = '#000';
+			mark.value = '';
+			isRemark = true;
+		}
+	}
+	
+	function unremark() {
+		var mark = document.getElementById('remark');
+		if (mark.value.match(/^\s*$/g)) {
+			mark.style.color = '#999';
+			mark.value = '填写发奖原因';
+			isRemark = false;
+		}
+	}
+	
+	function doplayer() {
+		var palyer = document.getElementById('members');
+		if (!isPlayer) {
+			palyer.style.color = '#000';
+			palyer.value = '';
+			isPlayer = true;
+		}
+	}
+	
+	function unplayer() {
+		var palyer = document.getElementById('members');
+		if (palyer.value.match(/^\s*$/g)) {
+			palyer.style.color = '#999';
+			palyer.value = '填写玩家名. 一行一个';
+			isPlayer = false;
+		}
+	}
+	</script>
+	<div style="margin-bottom:10px;color:#0000FF;" id="giftinfo"></div>
+	</div>
+</div>
+</form>
+<br />
+<br />
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+  <tr bgcolor="#E7E7E7">
+    <td height="24" colspan="7" background="skin/images/tbg.gif">&nbsp;公告列表&nbsp;</td>
+  </tr>
+  <tr align="center" bgcolor="#FAFAF1" height="22">
+    <td width="6%">编号</td>
+    <td width="18%">用户名</td>
+    <td width="11%">物品</td>
+    <td width="5%">数量</td>
+    <td width="12%">发奖时间</td>
+    <td width="10%">操作人</td>
+    <td width="38%">原因</td>
+  </tr>
+  <!--{loop $logs $log}-->
+  <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+    <td>$log[id]</td>
+    <td>$log[ext1]</td>
+    <td>$log[goods]</td>
+    <td>$log[amount]</td>
+    <td><!--{eval echo date('Y-m-d H:i:s', $log['time']);}--></td>
+    <td>$log[adminName]</td>
+    <td>$log[remark]</td>
+  </tr>
+  <!--{/loop}-->
+  <tr align="right" bgcolor="#EEF4EA">
+    <td height="36" colspan="7" align="center">$multi</td>
+  </tr>
+</table>
+
+</body>
+</html>

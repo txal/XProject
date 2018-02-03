@@ -289,7 +289,18 @@ function XML2Lua($sXMLFile, $sScriptDir)
 		$sScript .= "$sRowScript}\n";
 	}
 	$sScript = "$sRootTable={}\n$sScript";
-	file_put_contents($sLuaFile, $sScript);
+	if (file_exists($sLuaFile))
+	{
+		$sOldScript = file_get_contents($sLuaFile);
+		if ($sOldScript != $sScript)
+		{
+			file_put_contents($sLuaFile, $sScript);
+		}
+	}
+	else 
+	{
+		file_put_contents($sLuaFile, $sScript);
+	}
 }
 $sMainFile = $sScriptDir.$DIRECTORY_SEPARATOR."Main.lua";
 $hMainFile = fopen($sMainFile, "w");

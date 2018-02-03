@@ -18,8 +18,9 @@ struct CONNECTION
 class MsgBalancer
 {
 public:
-	typedef std::unordered_map<int, CONNECTION*> ConnMap;
+	typedef std::unordered_map<int64_t, CONNECTION*> ConnMap;
 	typedef ConnMap::iterator ConnIter;
+	int64_t GenKey(int16_t uServer, int nSession) { return (int64_t)uServer << 32 | nSession; }
 
 public:
 	MsgBalancer();
@@ -27,14 +28,14 @@ public:
 
 	void SetEventHandler(NetEventHandler* poEventHandler)	{ m_poEventHandler = poEventHandler; }
 	bool GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS);
-	void RemoveConn(int nSession);
+	void RemoveConn(uint16_t uServer, int nSession);
 
 protected:
-	CONNECTION* GetConn(int nSession);
+	CONNECTION* GetConn(uint16_t uServer, int nSession);
 
 private:
 	ConnMap m_oConnMap;
-	CircleQueue<int> m_oConnQueue;
+	CircleQueue<int64_t> m_oConnQueue;
 	NetEventHandler* m_poEventHandler;
 	DISALLOW_COPY_AND_ASSIGN(MsgBalancer);
 };

@@ -10,10 +10,11 @@ function CBrowser:BrowserReq(nSession, tData)
 	if oFunc then
 		xpcall(oFunc, function(sErr)
 			LuaTrace(sErr)
-			CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode({error=sErr})) end, self, nSession, tData)
+			CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({error=sErr}))
+		end, self, nSession, tData)
 	else
 		local sErr = "方法不存在: "..sMethod
-		CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode({error=sErr}))
+		CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({error=sErr}))
 		LuaTrace(sErr)
 	end
 end
@@ -40,13 +41,13 @@ CBrowser["moduser"] = function (self, nSession, tData)
 			tMsg.data = false
 			tMsg.error = "角色不存在"
 		end
-		CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+		CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
 	end
 end
 function CBrowser:OnModUserRet(nBsrSession, bRes)
 --逻辑服返回
 	local tMsg = {data=bRes}
-	CmdNet.Srv2Bsr(nBsrSession, "BrowserRet", cjson.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nBsrSession, cjson.encode(tMsg))
 end
 
 --踢下线
@@ -57,8 +58,9 @@ CBrowser["kickuser"] = function (self, nSession, tData)
 	if oPlayer then
 		bRes = true
 		if oPlayer:IsOnline() then
-			local nClientSession = oPlayer:GetSession()
-			CmdNet.Srv2Srv("KickClient", nClientSession>>nSERVICE_SHIFT, nClientSession)
+			local nTarServer = oPlayer:GetServer()
+			local nTarSession = oPlayer:GetSession()
+			CmdNet.Srv2Srv("KickClient", nTarServer, nTarSession>>nSERVICE_SHIFT, nTarSession)
 		end
 	end
 	local tMsg= {data=bRes}
@@ -80,7 +82,7 @@ CBrowser["banuser"] = function (self, nSession, tData)
 		end
 	end
 	local tMsg = {data=bRes}
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
 end
 
 --取玩家模块数据
@@ -134,7 +136,7 @@ CBrowser["memberinfo"] = function (self, nSession, tData)
 		end
 	end
 	local tMsg = {data={tMemberMap, goGPlayerMgr:GetOnlineCount()}}
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson_raw.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", gnServer, nSession, cjson_raw.encode(tMsg))
 end
 
 --充值商品列表
@@ -145,7 +147,7 @@ CBrowser["productlist"] = function (self, nSession, tData)
 		table.insert(tProductList, tItem)
 	end
 	local tMsg = {data=tProductList}
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
 end
 
 --执行指令
@@ -159,7 +161,7 @@ CBrowser["gmcmd"] = function (self, nSession, tData)
 	else
 		oFunc()
 	end
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
 end
 
 --发送邮件
@@ -169,19 +171,19 @@ CBrowser["sendmail"] = function (self, nSession, tData)
 	if not tData.title or not tData.content or (not tData.target and not tData.server) then
 		tMsg.data = false
 		tMsg.error = "邮件格式错误"
-		return CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+		return CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
 	end
 	if tData.itemlist then
 		local itemlist = cjson.decode(tData.itemlist)
 		if #itemlist > 15 then
 			tMsg.data = false
 			tMsg.error = "最多支持15个物品"
-			return CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+			return CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
 		end
 		tData.itemlist = itemlist
 	end
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
-	Srv2Srv.GMSendMailReq(nLogicService, 0, tData)
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
+	-- Srv2Srv.GMSendMailReq(nLogicService, 0, tData)
 end
 
 --发送公告
@@ -192,26 +194,26 @@ CBrowser["pubnotice"] = function (self, nSession, tData)
 	if tData.id <= 0 or tData.content == "" or not (tData.starttime and tData.endtime and tData.interval) then
 		tMsg.data = false
 		tMsg.error = "公告格式错误"
-		return CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+		return CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
 	end
 	if not goNoticeMgr:GMSendNotice(tData.id, tData.starttime, tData.endtime, tData.interval, tData.content) then
 		tMsg.data = false
 		tMsg.error = "发送公告失败"
 	end
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
 end
 
 --删除公告
 CBrowser["delnotice"] = function (self, nSession, tData)
 	tData.id = tonumber(tData.id) or 0
 	goNoticeMgr:RemoveNotice(tData.id)
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode({data=true}))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=true}))
 end
 
 --开启活动
 CBrowser["openact"] = function (self, nSession, tData)
-	Srv2Srv.GMOpenActReq(nLogicService, 0, tData)
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode({data=true}))
+	-- Srv2Srv.GMOpenActReq(nLogicService, 0, tData)
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=true}))
 end
 
 --活动列表
@@ -227,7 +229,7 @@ CBrowser["hdlist"] = function (self, nSession, tData)
 		end
 	end
 	local tData = {bigActList=tBigList, subActList=tSubList}
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson_raw.encode({data=tData}))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson_raw.encode({data=tData}))
 end
 
 --取妃子列表
@@ -236,7 +238,7 @@ CBrowser["fzlist"] = function (self, nSession, tData)
 	-- for nID, tConf in pairs(ctFeiZiConf) do
 	-- 	table.insert(tList, {nID=nID, sName=tConf.sName})
 	-- end
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode({data=tList}))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=tList}))
 end
 
 --非货币道具
@@ -247,7 +249,7 @@ CBrowser["djlist"] = function (self, nSession, tData)
 			table.insert(tList, {nID=nID, sName=tConf.sName})
 		end
 	end
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode({data=tList}))
+	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=tList}))
 end
 
 goBrowser = goBrowser or CBrowser:new()

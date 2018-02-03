@@ -19,7 +19,6 @@ function AddStrict(tTable)
 
 	tMeta.__newindex = function(t, n, v)
 		if not tMeta.__declared[n] then
-            --print("__newindex", n, v)
 			local w = what()
 			if w ~= "main" and w ~= "C" then
 				error("Assignment to undeclared variable '" .. n .. "'", 2)

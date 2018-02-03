@@ -1,0 +1,114 @@
+<html>
+<head>
+	<title>后台充值</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<style type="text/css"> </style>
+	<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+	<script type="text/javascript" src="js/ajax.js"></script>
+	<script type="text/javascript">
+		function search() {
+			var charid = document.getElementById("charid");
+			charid = charid.value.trim();
+			window.location.href = "gmrecharge.php?action=search&charid="+charid;
+		}
+
+		function recharge() {
+			var charid = document.getElementById("charid");
+			charid = charid.value.trim();
+			if (charid.match(/^\s*$/g)) {
+				alert('请输入角色ID');
+				return false;
+			}
+            if (!charid.match(/^[0-9]*$/)){
+                alert('角色ID必须是数字');
+                return false;
+            }
+			var rechargeid = document.getElementById("rechargeid");
+			var index = rechargeid.selectedIndex;
+			rechargeid = rechargeid.options[index].value;
+			if (rechargeid.match(/^\s*$/g)) {
+				alert('请选择充值编号');
+				return false;
+			}
+			window.location.href = "gmrecharge.php?action=recharge&charid="+charid+"&rechargeid="+rechargeid;
+		}
+		function onSelectChange() {
+			var obj = document.getElementById("rechargetype");
+			var index = obj.selectedIndex;
+			var rechargetype = obj.options[index].value;
+
+			var url = '?inajax=yes&action=productlist&rechargetype='+rechargetype+'&rnd='+ Math.random();
+			ajax(url, 'get', function(data) {
+				var obj = document.getElementById('rechargeid');
+				obj.options.length = 0;
+				var list = JSON.parse(data);
+				for (var id in list) {
+					var val = list[id];
+					var name = val['sName'];
+					obj.options.add(new Option(name, id));
+				}
+			});
+		}
+	</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+	<tr bgcolor="#E7E7E7">
+		<div align="center", style="">
+
+			<div align="center", style="display:inline">
+				<span style="margin-right:10px;">角色ID:
+					<input name="charid" type="text" class="mytxt" id="charid" style="border:1px solid #CCCCCC;" value="$searchCharID" />
+				</span>
+				<input type="button" name="search" style="width:80px;" onClick="search()" value="查  询" onClick=""/>
+				<span style="margin-left:20px;">充值:
+					<select name="rechargeid" id="rechargeid" style="width: 120px">
+					<!--{loop $productMap $k $v}-->
+						<option value="$k" <!--{if $rechargeID==$k}-->selected='selected'<!--{/if}-->>$v[sName]</option>
+					<!--{/loop}-->
+					</select>
+				</span>
+				<input type="button" name="recharge" style="width:80px;" onClick="recharge()" value="充  值"/>
+			</div>
+		</div>
+	</tr>
+
+	<tr align="center" bgcolor="#FAFAF1" height="22">
+	  <td width="8%">订单号</td>
+		<td width="3%">渠道号</td>
+	  <td width="5%">服务器</td>
+	  <td width="5%">角色ID</td>
+	  <td width="5%">充值ID</td>
+	  <td width="8%">商品标识</td>
+	  <td width="5%">金额</td>
+	  <td width="5%">状态</td>
+	  <td width="8%">时间</td>
+	  <td width="5%">类型</td>
+	</tr>
+	
+	<!--{loop $rechargeList $v}-->
+	<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+	  <td>$v[orderid]</td>
+		<td>$v[source]</td>
+	  <td>$v[servername]</td>
+	  <td>$v[charid]</td>
+	  <td>$v[rechargeid]</td>
+	  <td>$v[productid]</td>
+	  <td>$v[money]</td>
+	  <td>$v[sstate]</td>
+	  <td>$v[stime]</td>
+	  <td>$v[stype]</td>
+	</tr>
+	<!--{/loop}-->
+	
+	<tr align="right" bgcolor="#EEF4EA">
+		<td height="36" colspan="11" align="center">
+			<label style="float: left">总充值: $totalRecharge </label>
+			<!--{if $multi}-->$multi<!--{/if}-->
+		</td>
+	</tr> 
+
+</table>
+
+</body>
+</html>

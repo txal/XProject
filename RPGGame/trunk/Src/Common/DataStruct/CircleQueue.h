@@ -28,7 +28,7 @@ class CircleQueue {
 			m_nTail = 0;
 		}
 
-		bool Push(T& Data)
+		bool Push(const T& Data)
 		{
 			int nTmp = (m_nTail + 1) % m_nSize;
 			/* Full */

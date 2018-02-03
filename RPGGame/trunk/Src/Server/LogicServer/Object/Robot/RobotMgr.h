@@ -15,8 +15,8 @@ public:
 
 public:
 	RobotMgr();
-	Robot* CreateRobot(const GAME_OBJID& oID, int nRobotID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime);
-	Robot* GetRobotByID(const GAME_OBJID& oID);
+	Robot* CreateRobot(int nID, int nRobotID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime);
+	Robot* GetRobotByID(int nID);
 
 public:
 	void UpdateRobots(int64_t nNowMS);

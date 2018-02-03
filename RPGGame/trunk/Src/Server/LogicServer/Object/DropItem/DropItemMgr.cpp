@@ -12,23 +12,23 @@ DropItemMgr::DropItemMgr()
 {
 }
 
-DropItem* DropItemMgr::CreateDropItem(const GAME_OBJID& oID, int nConfID, const char* psName, int nAliveTime, int nCamp)
+DropItem* DropItemMgr::CreateDropItem(int nID, int nConfID, const char* psName, int nAliveTime, int nCamp)
 {
-	DropItem* poDropItem = GetDropItemByID(oID);
+	DropItem* poDropItem = GetDropItemByID(nID);
 	if (poDropItem != NULL)
 	{
-		XLog(LEVEL_ERROR, "CreateDropItem: %lld exist\n", oID.llID);
+		XLog(LEVEL_ERROR, "CreateDropItem: %lld exist\n", nID);
 		return NULL;
 	}
 	poDropItem = XNEW(DropItem);
-	poDropItem->Init(oID, nConfID, psName, nAliveTime, nCamp);
-	m_oDropItemMap[oID.llID] = poDropItem;
+	poDropItem->Init(nID, nConfID, psName, nAliveTime, nCamp);
+	m_oDropItemMap[nID] = poDropItem;
 	return poDropItem;
 }
 
-DropItem* DropItemMgr::GetDropItemByID(const GAME_OBJID& oID)
+DropItem* DropItemMgr::GetDropItemByID(int nID)
 {
-	DropItemIter iter = m_oDropItemMap.find(oID.llID);
+	DropItemIter iter = m_oDropItemMap.find(nID);
 	if (iter != m_oDropItemMap.end())
 	{
 		return iter->second;
@@ -53,7 +53,7 @@ void DropItemMgr::UpdateDropItems(int64_t nNowMS)
 		if (poDropItem->IsTimeToCollected(nNowMS))
 		{
 			iter = m_oDropItemMap.erase(iter);
-			 LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poDropItem->GetID().llID, poDropItem->GetType());
+			 LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poDropItem->GetID(), poDropItem->GetType());
 			SAFE_DELETE(poDropItem);
 			continue;
 		}

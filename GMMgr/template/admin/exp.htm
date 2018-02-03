@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>公告管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<form action="" method="post" id="myform">
+<div style="text-align:center;">
+<div style="width:60%; margin:auto;">
+  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">经验设置</h3>
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+	<div style="margin-bottom:10px;color:#0000FF;" id="giftinfo">
+	
+	  <table width="80%" border="0" cellspacing="1" cellpadding="1">
+		<tr>
+			<td><strong>经验加成设置：</strong></td>
+		</tr>
+        <tr>
+          <td >
+			野地：<input type="text" name="GBC_EXP_BONUS_YD" value="{$exps['GBC_EXP_BONUS_YD']}"/>倍,默认为0,越大越多<br/>
+			仙山：<input type="text" name="GBC_EXP_BONUS_XS" value="{$exps['GBC_EXP_BONUS_XS']}"/>倍,默认为0,越大越多<br/>
+          </td>
+		</tr>
+		<tr>
+			<td><strong>建筑升级速度设置：</strong></td>
+		</tr>
+		<tr>
+			<td>
+				建筑建造：<input type="text" name="GBC_BD_BONUS" value="{$exps['GBC_BD_BONUS']}"/>倍,默认为1，越小越快<br/>
+				科技升级：<input type="text" name="GBC_SK_BONUS" value="{$exps['GBC_SK_BONUS']}"/>倍,默认为1，越小越快<br/>
+				征兵速度：<input type="text" name="GBC_RC_BONUS" value="{$exps['GBC_RC_BONUS']}"/>倍,默认为1，越小越快<br/>
+				行军速度：<input type="text" name="GBC_SO_BONUS" value="{$exps['GBC_SO_BONUS']}"/>倍,默认为1，越小越快<br/>
+				将领经验加成：<input type="text" name="GBC_NONEEDBONUS" value="{$exps['GBC_NONEEDBONUS']}"/>设置成0.5则表示增加 50% 经验<br/>
+			</td>
+		</tr>
+		<tr>
+          <td><strong>世界聊天收费：</strong></td>
+		</tr>
+		<tr>
+          <td><input name="GBC_FREECHAT" type="radio" <!--{if $exps['GBC_FREECHAT'] == 'true'}-->checked<!--{/if}--> value="1">免费&nbsp;&nbsp;<input name="GBC_FREECHAT" type="radio"<!--{if $exps['GBC_FREECHAT']=='false'}-->checked<!--{/if}--> value="0">收费</td>
+        </tr>
+		
+		<tr>
+          <td><strong>创建角色：</strong></td>
+		</tr>
+		<tr>
+          <td><input name="GBC_REG_DENY" type="radio" <!--{if $exps['GBC_REG_DENY'] == 'true'}-->checked<!--{/if}--> value="1">不允许&nbsp;&nbsp;<input name="GBC_REG_DENY" type="radio"<!--{if $exps['GBC_REG_DENY']=='false'}-->checked<!--{/if}--> value="0">允许</td>
+        </tr>		
+      </table>
+	</div>
+	<div>
+	<input type="hidden" value="exp" name="action" />
+	<input name="提交" type="submit" value="设   置" />&nbsp;&nbsp;&nbsp;</div>
+  </div>
+</div>
+</div>
+</form>
+</body>
+</html>

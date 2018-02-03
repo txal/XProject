@@ -1,7 +1,13 @@
 protobuf = require("Common/Network/protobuf")
 parser = require("Common/Network/parser")
 
+local tNetConf = gtNetConf
+
+local _pairs = pairs
+local _assert = assert
 local _clock = os.clock
+local _insert = table.insert
+
 local _cmd_pack = NetworkExport.CmdPack
 local _cmd_unpack = NetworkExport.CmdUnpack
 local _pb_pack = NetworkExport.PBPack
@@ -28,7 +34,7 @@ SrvCmdProc = SrvCmdProc or {}       --服务端CMD包处理
 BsrCmdProc = BsrCmdProc or {}       --浏览器CMD包处理
 
 --@xPacket 可能是Packet对象或者字符串(PB)
-CmdMessageCenter = function(nCmd, nSrc, nSession, xPacket)
+CmdMessageCenter = function(nCmd, nSrcServer, nSrcService, nTarSession, xPacket)
     local nStartTime = _clock()
 
     local tProtoType, tProcType, fnDecoder
@@ -53,7 +59,7 @@ CmdMessageCenter = function(nCmd, nSrc, nSession, xPacket)
         fnDecoder = _cmd_unpack
 
     else
-        assert(false, "非法指令号"..nCmd)
+        _assert(false, "非法指令号"..nCmd)
     end
     local tProto = tProtoType[nCmd]
     if tProto then
@@ -69,24 +75,24 @@ CmdMessageCenter = function(nCmd, nSrc, nSession, xPacket)
             return
         end
         if gbInnerServer then
-            xpcall(function() fnProc(nCmd, nSrc, nSession, fnDecoder(sProto, xPacket)) end
+            xpcall(function() fnProc(nCmd, nSrcServer, nSrcService, nTarSession, fnDecoder(sProto, xPacket)) end
                 , function(sErr) 
-                    local oPlayer = goPlayerMgr:GetPlayerBySession(nSession)
+                    local nKey = nSrcServer << 32 | nTarSession
+                    local oPlayer = goPlayerMgr:GetPlayerBySession(nKey)
                     if oPlayer then
                         sErr = string.format("角色ID:%d 账号:%s error:%s", oPlayer:GetCharID(), oPlayer:GetAccount(), sErr)
                     end
-                    LuaTrace(sErr)
-                    LuaTrace(debug.traceback())
-                    CPlayer:Tips(sErr, nSession) 
+                    LuaTrace(sErr, debug.traceback())
+                    CPlayer:Tips(sErr, nKey) 
                 end)
         else
-            fnProc(nCmd, nSrc, nSession, fnDecoder(sProto, xPacket)) 
+            fnProc(nCmd, nSrcServer, nSrcService, nTarSession, fnDecoder(sProto, xPacket)) 
         end
     else
         local sTips = "Cmd:"..nCmd.." proto not register!!!"
         LuaTrace(sTips)
         if gbInnerServer then
-            CPlayer:Tips(sTips, nSession)
+            CPlayer:Tips(sTips, nSrcServer<<32|nTarSession)
         end
     end
 
@@ -94,115 +100,105 @@ CmdMessageCenter = function(nCmd, nSrc, nSession, xPacket)
 end
 
 -------自定义-------
-function CmdNet.Srv2Clt(nSessionID, sCmdName, ...)
-    if nSessionID <= 0 then
-        return
-    end
-    local tProto = assert(tCltCmdRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
+function CmdNet.Srv2Clt(sCmdName, nTarServer, nTarSession, ...)
+    _assert(nTarServer>0 and nTarSession>0, "参数错误:"..nTarServer..":"..nTarSession)
+    local tProto = _assert(tCltCmdRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local oPacket = _cmd_pack(sProto, ...)
-    _send_exter(nCmd, oPacket, nSessionID>>24, nSessionID)
+    _send_exter(nCmd, oPacket, nTarServer, nTarSession>>24, nTarSession, 0)
 end
 
-function CmdNet.Clt2Srv(nPacketIdx, nSessionID, sCmdName, ...)
-    if nSessionID <= 0 then
-        return
-    end
-    local tProto = assert(tCltCmdReq[sCmdName], "CmdName '"..sCmdName.."' proto not register")
+function CmdNet.Clt2Srv(sCmdName, nPacketIdx, nTarSession, ...)
+    _assert(nTarSession>0, "参数错误:"..nTarSession)
+    local tProto = _assert(tCltCmdReq[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sCmdName, sProto, nService = table.unpack(tProto)
     local oPacket = _cmd_pack(sProto, ...)
-    _send_exter(nCmd, oPacket, nService, nSessionID, nPacketIdx)
+    _send_exter(nCmd, oPacket, 0, nService, nTarSession, nPacketIdx)
 end
 
---广播若干客户端
-function CmdNet.BroadcastExter(tSessionID, sCmdName, ...)
-    if #tSessionID <= 0 then
-        return
-    end
-    local tProto = assert(tCltCmdRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
+--广播若干客户端tTarSession:{server,session,server,session,...}
+function CmdNet.BroadcastExter(sCmdName, tTarSession, ...)
+    _assert(#tTarSession>0 and #tTarSession%2==0, "参数错误")
+    local tProto = _assert(tCltCmdRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local oPacket = _cmd_pack(sProto, ...)
-    _broadcast_exter(nCmd, oPacket, tSessionID)
+    _broadcast_exter(nCmd, oPacket, tTarSession)
 end
 
 --服务器到服务器
-function CmdNet.Srv2Srv(sCmdName, nToService, nToSession, ...)
-    local tProto = assert(tSrvSrvCmd[sCmdName], "sCmdName '"..sCmdName.."' proto not register")
+function CmdNet.Srv2Srv(sCmdName, nTarServer, nTarService, nTarSession, ...)
+    _assert(nTarServer>0 and nTarService>0 and nTarSession>=0, "参数错误")
+    local tProto = _assert(tSrvSrvCmd[sCmdName], "sCmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local oPacket = _cmd_pack(sProto, ...)
-    _send_inner(nCmd, oPacket, nToService, nToSession)
+    _send_inner(nCmd, oPacket, nTarServer, nTarService, nTarSession)
 end
 
 
--------------Bsr----------
-function CmdNet.Srv2Bsr(nSessionID, sCmdName, ...)
-    if nSessionID <= 0 then
-        return
-    end
-    local tProto = assert(tBsrCmdRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
+-------------BSR----------
+function CmdNet.Srv2Bsr(sCmdName, nTarServer, nTarSession, ...)
+    _assert(nTarServer>0 and nTarSession>0, "参数错误:"..nTarServer..":"..nTarSession)
+    local tProto = _assert(tBsrCmdRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local oPacket = _cmd_pack(sProto, ...)
-    _send_exter(nCmd, oPacket, nSessionID>>24, nSessionID)
+    _send_exter(nCmd, oPacket, nTarServer, nTarSession>>24, nTarSession)
 end
 
 
 -------------PB----------
-function CmdNet.PBSrv2Clt(nSessionID, sCmdName, tData) 
-    if nSessionID <= 0 then
-        return
-    end
-    local tProto = assert(tCltPBRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
+function CmdNet.PBSrv2Clt(sCmdName, nTarServer, nTarSession, tData) 
+    _assert(nTarServer>0 and nTarSession>0, "参数错误:"..nTarServer..":"..nTarSession)
+    local tProto = _assert(tCltPBRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local sData = pbc_encode(sProto, tData)
     local oPacket = _pb_pack(sData)
-    _send_exter(nCmd, oPacket, nSessionID>>24, nSessionID)
+    _send_exter(nCmd, oPacket, nTarServer, nTarSession>>24, nTarSession)
 end
 
-function CmdNet.PBClt2Srv(nPacketIdx, nSessionID, sCmdName, tData) 
-    if nSessionID <= 0 then
-        return
-    end
-    local tProto = assert(tCltPBReq[sCmdName], "CmdName '"..sCmdName.."' proto not register")
+function CmdNet.PBClt2Srv(sCmdName, nPacketIdx, nTarSession, tData) 
+    _assert(nTarSession>0, "参数错误:"..nTarSession)
+    local tProto = _assert(tCltPBReq[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sCmdName, sProto, nService = table.unpack(tProto)
     local sData = pbc_encode(sProto, tData)
     local oPacket = _pb_pack(sData)
-    _send_exter(nCmd, oPacket, nService, nSessionID, nPacketIdx)
+    _send_exter(nCmd, oPacket, 0, nService, nTarSession, nPacketIdx)
 end
 
---广播若干客户端
-function CmdNet.PBBroadcastExter(tSessionID, sCmdName, tData)
-    if #tSessionID <= 0 then
-        return
-    end
-    local tProto = assert(tCltPBRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
+--广播若干客户端:tTarSession:{server,session,server,session,...}
+function CmdNet.PBBroadcastExter(sCmdName, tTarSession, tData)
+    _assert(#tTarSession>0 and #tTarSession%2==0, "参数错误")
+    local tProto = _assert(tCltPBRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local sData = pbc_encode(sProto, tData)
     local oPacket = _pb_pack(sData)
-    _broadcast_exter(nCmd, oPacket, tSessionID)
+    _broadcast_exter(nCmd, oPacket, tTarSession)
 end
 
 --广播所有客户端
 function CmdNet.PBSrv2All(sCmdName, tData) 
-    local tProto = assert(tCltPBRet[sCmdName], "sCmdName '"..sCmdName.."' proto not register")
-    local tService = {}
-    for nService, tConf in pairs(gtNetConf.tGateService) do
-        table.insert(tService, nService)
+    local tProto = _assert(tCltPBRet[sCmdName], "sCmdName '"..sCmdName.."' proto not register")
+
+    --网关服务列表
+    local tTarService = {}
+    for _, tConf in _pairs(tNetConf.tGateService) do
+        _insert(tTarService, {tConf.nServer, tConf.nID, 0})
     end
-    if #tService <= 0 then
+    if #tTarService <= 0 then
         return
     end
+
     local nRawCmd, sProto = tProto[1], tProto[3]
     local sData = pbc_encode(sProto, tData)
     local oPacket = _pb_pack(sData)
     local nBroadcastCmd = tSrvSrvCmd["BroadcastGate"][1]
-    _broadcast_inner(nBroadcastCmd, nRawCmd, oPacket, tService)
+    _broadcast_inner(nBroadcastCmd, nRawCmd, oPacket, tTarService)
 end
 
 
 
 -----------------------------注册协议相关----------------------------
 local function CmdCheck(nCmd, sCmdName, sProto, bReq)
-    assert(nCmd and sCmdName and sProto)
+    _assert(nCmd and sCmdName and sProto)
     local tRegType
     if nCmd >= tCltCmdDef[1] and nCmd <= tCltCmdDef[2] then
         tRegType = bReq and tCltCmdReq or tCltCmdRet
@@ -213,10 +209,10 @@ local function CmdCheck(nCmd, sCmdName, sProto, bReq)
     elseif nCmd >= tBsrCmdDef[1] and nCmd <= tBsrCmdDef[2] then
         tRegType = bReq and tBsrCmdReq or tBsrCmdRet
     else
-        assert(false, "非法指令号"..nCmd)
+        _assert(false, "非法指令号"..nCmd)
     end
-    assert(not tRegType[nCmd], "命令号重复注册"..nCmd)
-    assert(not tRegType[sCmdName], "命令名重复注册"..sCmdName)
+    _assert(not tRegType[nCmd], "命令号重复注册"..nCmd)
+    _assert(not tRegType[sCmdName], "命令名重复注册"..sCmdName)
     return tRegType 
 end
 

@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>推广员管理</title>
+<script language="javascript" type="text/javascript">
+	function delPmt(id) {
+		if (confirm("确认要删除广员?")) {
+			window.location.href = "promotermgr.php?action=del&id="+id;
+		}
+	}
+	function addPmt() {
+		var name = document.getElementById("name");
+		var passwd = document.getElementById("passwd");
+		name = name.value.trim();
+		passwd = passwd.value.trim();
+		if (name.match(/^\s*$/g)) {
+			return alert("账号不能为空");
+		}
+		if (passwd.match(/^\s*$/g)) {
+			return alert("密码不能为空");
+		}
+		window.location.href = "promotermgr.php?action=add&name="+name+"&passwd="+passwd;
+	}
+</script>
+</head>
+<body>
+<div align="center" bgcolor="#FAFAF1">
+	账号: <input id="name" name="name" type='text'/>
+	密码: <input id="passwd" name="passwd" type='password'/>
+	<input type="button" style="width:100px;" onclick="addPmt()" value="添加" />
+</div>
+
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="14">&nbsp;推广员列表&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="8%">账号</td>
+	<td width="8%">最后登录IP</td>
+	<td width="8%">最后登录时间</td>
+	<td width="8%">创建时间</td>
+    <td width="8%">操作</td>
+</tr>
+<!--{loop $pmtList $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+	<td>$v[name]</td>
+	<td>$v[loginIp]</td>
+	<td>$v[loginTime]</td>
+	<td>$v[createTime]</td>
+    <td>
+    	[<a href="javascript:;", onClick="delPmt('$v[id]')">删除</a>]
+	</td>
+</tr>
+<!--{/loop}-->
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="14" align="center">
+		<lable style="float:left">推广员数量: $total</lable>
+		$multi
+	</td>
+</tr>
+</table>
+</body>
+</html>

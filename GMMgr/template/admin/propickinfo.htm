@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>用户获得物品信息</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script type="text/javascript" src="/js/calendar.js"></script>
+
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<form id='id_form' name='n_form' action='' method='post'>
+<input type='hidden' name='dopost' value='' />
+<table width='98%'  border='0' cellpadding='1' cellspacing='1' bgcolor='#CBD8AC' align="center" style="margin-top:8px">
+  <tr bgcolor='#EEF4EA' align='center'>
+    <td>用户名<input type='test' id='id_player' name='n_player' <!--{eval echo("value=$g_name");}--> ></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		获取日期<input type='text' id='id_date' name='n_date' onFocus="new Calendar().show(this);" style="border:1px solid #CCCCCC;" <!--{eval echo("value=$g_date");}--> ></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type='hidden' id='id_index' name='n_index' value=1 />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		类型
+		<select id="id_ptype" name="n_ptype">
+			<option value=1 <!--{eval if($g_ptype == 1 ) echo "selected"; }--> >武将</option>
+			<option value=2 <!--{eval if($g_ptype == 2 ) echo "selected"; }--> >装备</option>
+			<option value=3 <!--{eval if($g_ptype == 3 ) echo "selected"; }--> >道具</option>
+		</select>		
+		<input type='submit' id='id_submit' name='n_submit' value='查询'/>
+  </tr>
+</table>
+</form>
+<br /><br />
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="5" background="skin/images/tbg.gif">&nbsp;用户获得物品信息&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="9%">用户名</td>
+	<td width="32%">物品名称</td>
+	<td width="14%">获得时间</td>
+	</tr>
+	
+<!--{loop $propInfoList $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+  <td width="32%">$v[player]</td>
+  <td width="14%">$v[prop]</td>
+  <td width="15%">$v[gettime]</td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="6" align="left">$g_multi</td>
+</tr>
+</table>
+<div id="unionmembers"></div>
+</body>
+</html>

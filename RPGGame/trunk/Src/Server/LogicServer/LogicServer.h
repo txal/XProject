@@ -31,7 +31,7 @@ public:
 	DropItemMgr* GetDropItemMgr()			{ return &m_oDropItemMgr; }
 
 public:
-	void ClientCloseHandler(int nSession);
+	void OnClientClose(uint16_t uServer, int nSession);
 
 private:
 	// Connect and reg to router

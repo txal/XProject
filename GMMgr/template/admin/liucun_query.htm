@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>留存查询</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<style type="text/css"> </style>
+	<script type="text/javascript" src="js/calendar.js"></script>
+	<script type="text/javascript">
+		function searchLiuCun() {
+			var stime = document.getElementById("stime");
+			stime = stime.value.trim();
+			if (!stime.match(/^\d+-\d+-\d+$/g)) {
+				alert('没有填写开始时间或格式错误');
+				return false;
+			}
+			window.location.href = "liucun_query.php?action=search&stime="+stime;
+		}
+	</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<div align="center", style="">
+		<span style="margin-right:10px;">日期:
+			<input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;"
+				onFocus="new Calendar().show(this);" value="$stime" />
+		</span>
+		<input type="button" name="search" style="width:80px;" onClick="searchLiuCun()" value="查  询" onClick=""/>
+	</div>
+</tr>
+<tr><td>注册人数:$regCount</td></tr>
+<!--{loop $dayList $k $v}-->
+<tr align='left' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+  <td>$k 留:$v[liucun]</td>
+  <td>充值人数:$v[rechargecount]</td>
+  <td>充值金额:$v[rechargemoney]</td>
+</tr>
+<!--{/loop}-->
+</table>
+</body>
+</html>

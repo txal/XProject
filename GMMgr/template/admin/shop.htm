@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>公告管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script type="text/javascript" src="/js/calendar.js"></script>
+<script type="text/javascript">
+function submitform(flag) {
+
+	var Itemmyform = document.getElementById('myform');
+	var Itemwhattodo = document.getElementById('whattodo');
+	
+	if (document.getElementById('name').value.match(/^\s*$/g)) {
+		alert('没有填写物品名称');
+		return false;
+	}
+	
+	if (flag == 1) {
+alert(11);
+		Itemwhattodo.value = 1;
+		Itemmyform.submit();
+	} else {
+alert(22);
+		Itemwhattodo.value = 0;
+		Itemmyform.submit();
+	}
+}
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<form action="" method="post" id="myform" name="myform">
+<div style="text-align:center;">
+<div style="width:98%; margin:auto;">
+  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">商城管理</h3>
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+	<div style="margin-bottom:10px;color:#0000FF;" id="giftinfo">
+	<div style="width:39%;float:right;"><iframe width="100%" height="500" src="daoju.php" frameborder="0"></iframe></div>
+	<div style="width:60%;float:left;">
+	  <table width="100%" border="0" cellspacing="1" cellpadding="1">
+        <tr>
+          <td width="13%"><div align="right">物品名称：            </div></td>
+          <td width="37%"><input name="name" type="text" class="mytxt" id="name"></td>
+          <td width="16%"><div align="right">道具ID：            </div></td>
+          <td width="34%"><input name="gid" type="text" class="mytxt" id="gid"></td>
+          </tr>
+        <tr>
+          <td><div align="right">道具类型：</div></td>
+          <td>
+		  <select name="type" style="border:1px solid #999;font-size:13px;" id="type">
+            <option value="2">内政</option>
+            <option value="3">军事</option>
+            <option value="4">宝物</option>
+          </select>          </td>
+          <td><div align="right">是否可以用礼券兑换：</div></td>
+          <td><select name="gift" style="border:1px solid #999;font-size:13px;" id="gift">
+            <option value="1">可以</option>
+            <option value="0">不可以</option>
+          </select>          </td>
+        </tr>
+        <tr>
+          <td><div align="right">物品价格：</div></td>
+          <td><input name="gold" type="text" class="mytxt" id="gold">
+（元宝）</td>
+          <td><div align="right">折扣价格：</div></td>
+          <td><input name="discount" type="text" class="mytxt" id="discount">
+            元宝</td>
+          </tr>
+        <tr>
+          <td><div align="right">折扣价开始：            </div></td>
+          <td><input name="uptime" type="text" class="mytxt" id="uptime" onFocus="new Calendar().show(this);"></td>
+          <td><div align="right">折扣价结束：            </div></td>
+          <td><input name="endtime" type="text" class="mytxt" id="endtime" onFocus="new Calendar().show(this);">
+            <input name="forever" type="checkbox" id="forever" value="1">
+            永久不过期</td>
+          </tr>
+        <tr>
+          <td><div align="right">物品价格：</div></td>
+          <td><input name="honour" type="text" class="mytxt" id="honour">
+            （荣誉）</td>
+          <td><div align="right">是否热门：</div></td>
+          <td><select name="hot" id="hot" style="border:1px solid #999;font-size:13px;">
+            <option value="1">是</option>
+            <option value="0">否</option>
+          </select>          </td>
+        </tr>
+        <tr>
+          <td><div align="right">描述：</div></td>
+          <td><textarea name="desc" cols="35" rows="5" id="desc" style="border:1px solid #999;"></textarea></td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+	  </div>
+	  <div style="clear:both;"></div>
+	</div>
+	<div>
+	<input type="hidden" value="shop" name="action" />
+	<input type="hidden" id="whattodo" name="whattodo" />
+	<input name="提交" type="button" value="上   架" onClick="submitform(1);" />&nbsp;&nbsp;&nbsp;
+	<input name="提交2" type="button" value="下   架" onClick="submitform(0);" />
+	</div>
+  </div>
+</div>
+</div>
+</form>
+<br />
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+  <tr bgcolor="#E7E7E7">
+    <td height="24" colspan="7" background="skin/images/tbg.gif">道具列表&nbsp;</td>
+  </tr>
+  <tr align="center" bgcolor="#FAFAF1" height="22">
+    <td width="7%">ID</td>
+    <td width="15%">道具名称</td>
+    <td width="9%">价格(元宝)</td>
+    <td width="9%">折扣价</td>
+    <td width="8%">价格(荣誉)</td>
+    <td width="45%">描述</td>
+    <td width="7%">操作</td>
+  </tr>
+  <!--{loop $goods $v}-->
+  <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+    <td>$v[id]</td>
+    <td width="15%">$v[name]</a></td>
+    <td width="9%">$v[gold] </td>
+    <td width="9%">$v[discount]</td>
+    <td width="8%">$v[honour]</td>
+    <td><div align="left">$v[desc]</div></td>
+    <td><a href="javascript:void(0);" onClick="if (confirm('确定要下架吗?')) {location.href='shop.php?action=repeal&id=$v[id]';}">下架</a></td>
+  </tr>
+  <!--{/loop}-->
+  <tr align="right" bgcolor="#EEF4EA">
+    <td height="36" colspan="7" align="left">总页数: $pageblock</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<title>公告管理</title>
+<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+
+	function pubNotice() {
+		var stime = document.getElementById('stime');
+		var etime = document.getElementById('etime');
+		var rate = document.getElementById('rate');
+		var body = document.getElementById('id_notice');
+
+	   	var type = 0
+	    var radio = document.getElementsByName("type");
+		for(var i=0; i<radio.length; i++) {
+			if (radio[i].checked) {
+				type = radio[i].getAttribute("value");
+				break;
+			}
+		}
+
+		if (!stime.value.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+			myAlert(stime, '没有填写开始时间或格式错误.');
+			return false;
+		}
+	
+		if (!etime.value.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+			myAlert(etime, '没有填写结束时间或格式错误.');
+			return false;
+		}
+		
+		if (!rate.value.match(/^\d+$/g)) {
+			myAlert(rate, '没有填写时间间隔.');
+			return false;
+		}
+
+		if (parseInt(rate.value) < 60) {
+			myAlert(rate, '时间间隔至少60秒.');
+			return false;
+		}
+		
+		if (body.value.match(/^\s*$/g)) {
+			myAlert(body, '没有填写公告内容.');
+			return false;
+		}
+
+        var server = "";
+        var serverAll = "";
+        var serverAllCheckBox = document.getElementsByName("serverAll");
+        for(i=0; i<serverAllCheckBox.length; i++){
+            if(serverAllCheckBox[i].checked){
+                var v = serverAllCheckBox[i].value;
+                serverAll = serverAll+v;
+            }
+        }
+        var serverCheckBox = document.getElementsByName("server")
+        for(i=0; i<serverCheckBox.length; i++) {
+            if(serverCheckBox[i].checked) {
+                var val = serverCheckBox[i].value;
+                server = server + val + "|";
+            }
+        }
+        if (server == ""&&serverAll == "") {
+            return alert("请选择服务器");
+        }
+
+		var url = '?inajax=yes&action=pubnotice&body='+body.value+'&stime='+stime.value+'&etime='
+			+etime.value+'&rate='+rate.value+'&server='+server+'&serverAll='+serverAll+'&rnd='+ Math.random();
+		ajax(url, 'get', function(data) {
+                alert("操作成功");
+                window.location = "report.php";
+		});
+		return true;
+	}
+
+    //取消子选框
+    function cancleSubCheckbox() {
+        var serverCheckBox = document.getElementsByName("server");
+        for(i=0; i<serverCheckBox.length; i++) {
+            serverCheckBox[i].checked=false;
+        }
+    }
+
+    //取消全选框
+    function cancleCheckBox(){
+        var serverAllCheckBox = document.getElementsByName("serverAll")[0];
+        serverAllCheckBox.checked = false;
+    }
+
+	function delNotice(id) {
+		if(confirm('确定要删除公告吗?')) {
+			var url = '?inajax=yes&action=delnotice&id='+id+'&rnd='+ Math.random();
+			ajax(url, 'get', function(data) {
+				if (data == "SUCCESS") {
+					alert("操作成功！");
+					window.location.href = "report.php";
+				} else {
+					alert("操作失败！"+data);
+				}
+			});
+		}
+	}
+
+	function myAlert(obj, msg) {
+		var oldStyle = '';
+		
+		alert(msg);
+		obj.focus();
+		obj.value = '';
+		
+		oldStyle = obj.style.border;
+		obj.style.border = '1px solid green';
+		setTimeout(function() {obj.style.border=oldStyle;}, 100);
+	}
+
+
+</script>
+</head>
+<body leftmargin="8" topmargin="8">
+<CENTER>
+<div style="width:90%; margin:auto;">
+	<div id="id_div_servers" style="text-align:left; display:block;" >
+
+		<span>选择服务器：</span>
+		<div align="left", style="border:1px solid #CCCCCC;">
+		<!--{loop $_SERVERLIST $sid $server}-->
+			<input type="checkbox" id="id_ckb_$sid" name="server" value=$sid onClick="cancleCheckBox()"/>$server["name"]
+		<!--{/loop}-->
+		<input type="checkbox" id="id_ckb_0" name="serverAll" onClick="cancleSubCheckbox()" value=0 />全选
+		</div>
+	</div>
+
+</div>
+</CENTER>
+
+<div style="text-align:center;">
+<div style="width:90%; margin:auto;">
+  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">发布公告</h3>
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+  	<div style="margin-bottom:10px;">
+	<span style="margin-right:10px;">
+		开始时间:
+		<input type="text" id="stime" name="stime" value="<!--{eval echo date('Y-m-d H:i:s', time());}-->" class="mytxt"
+			onFocus="new Calendar().show(this);" style="border:1px solid #CCCCCC;" />
+	</span>
+	<span style="margin-right:10px;">结束时间:
+		<input name="etime" type="text" class="mytxt" id="etime" style="border:1px solid #CCCCCC;"
+			onFocus="new Calendar().show(this);" value="<!--{eval echo date('Y-m-d H:i:s', time() + 60);}-->" />
+	</span>
+	<span style="margin-right:10px;">间隔(秒):
+		<input name="rate" type="text" class="mytxt" id="rate" style="border:1px solid #CCCCCC;" value="60" size="8" />
+	</span>
+	</div>
+    <span style="margin-right:10px;"><textarea id="id_notice" name="notice" cols="100" rows="15" style="border:1px solid #CCCCCC;"></textarea></span>
+	<div> <input type="button" onClick="pubNotice()", value="发   布" /> </div>
+  </div>
+</div>
+</div>
+<br/>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="10" background="skin/images/tbg.gif">&nbsp;公告列表公告列表&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="5%">编号</td>
+	<td width="4%">服务器名</td>
+	<td width="4%">操作人</td>
+	<td width="25%">公告内容</td>
+	<td width="8%">开始时间</td>
+	<td width="8%">结束时间</td>
+	<td width="5%">状态</td>
+	<td width="5%">执行间隔(秒)</td>
+	<td width="8%">创建时间</td>
+    <td width="5%">操作</td>
+</tr>
+<!--{loop $notices $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+	<td>$v[id]</td>
+	<td>$v[servername]</td>
+	<td>$v[sender]</td>
+	<td align="left">$v[content]</td>
+	<td>$v[begintime]</td>
+	<td>$v[endtime]</td>
+	<td>$v[sstate]</td>
+	<td>$v[interval]</td>
+	<td>$v[stime]</td>
+    <td><a href="javascript:;" onClick="delNotice($v[id])">删除</a></td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="10" align="center"><!--{if $multi}-->$multi<!--{/if}--></td>
+</tr>
+</table>
+
+</body>
+</html>

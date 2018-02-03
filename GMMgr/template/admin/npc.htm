@@ -1,0 +1,136 @@
+<html>
+<head>
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript">
+
+function serialize(a) {
+	var s = [];
+	if (a.constructor == Array) {
+		for (var i = 0; i < a.length; i++)
+			s.push(a[i].name + "=" + encodeURIComponent(a[i].value));
+	} else {
+		for (var j in a) {
+			s.push(j + "=" + encodeURIComponent(a[j]));
+		}
+	}
+	return s.join('&');
+}
+</script>
+<script type="text/javascript">
+function updateNpc() {
+	if (confirm('确定要刷新NPC吗?')) {
+		var url = "?npc=do";
+		ajax(url, 'GET', 
+			function(data)
+			{
+				if (data == 'Ok') {
+					alert('刷新NPC成功');
+				} else {
+					alert('刷新NPC失败');
+				}				
+			}
+		);
+	}
+	return true;
+}
+
+	function checkform()
+	{
+		for(var i=0; i< document.nform.length; i++)
+		{
+			var item = document.nform.elements[i];
+			if(item.type == "text" )
+			{
+				if(!	(item.value != ""
+						&& parseInt(item.value)~=NaN
+						&& parseFloat(item.value)!=NaN ))
+				{
+					alert("value:["+ item.value+"] is not valid!");
+					return false
+				}
+			}
+		}
+		
+		
+		var btnModify = document.getElementById(idTDSubmit);
+		btnModify.innerHTML = "<img src='images/loading.gif' width='30px'></img>";
+		return true;
+	}
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>文档管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<style type="text/css">
+	.container
+	{
+		width:1200px;
+		text-align:center;
+		background:#CBD8AC;
+
+	}
+
+	.detail
+	{
+		width:100%;
+		border:5px;
+	}
+
+	.trtitle
+	{
+		background:#EEF4EA;
+	}
+
+	.inputc {
+		width:100px;
+	}
+
+</style>
+
+</head>
+<body leftmargin="8" topmargin="8">
+<table width="900px" style="margin-top:8px;" border='0' cellpadding='1' cellspacing='1' align="left" >
+  <tr bgcolor='#EEF4EA'>
+	<td align='center'><input type="submit" name="Submit" value="刷新NPC" onClick="updateNpc();"></td>
+  </tr>
+</table>
+
+<div style="display:$adjCaptivesPriority">
+	<table style="margin-top:8px;" border='0' cellpadding='1' cellspacing='1' align="left" >
+	  <tr>
+		<td align="center" bgcolor='#AEF4EA'>
+			<h5>俘虏率调整</h5>
+			<label style="color:red">宣战所产生的随机俘虏对方校场内闲赋兵种的功能不受此调整影响</label>
+			<form id="idform" name="nform" method="post" onsubmit="checkform();">
+				<table class="container">
+					<tr color="blue">
+						<td>对象名称</td>
+						<td>伤兵获得率</td>
+						<td>俘虏获得率</td>
+						<td>经验获得率</td>
+						<td>荣誉获得率</td>
+						<td>资源获得率</td>
+						<td>声望获得率</td>
+						<td>体力消耗量</td>
+						<td>忠诚消耗量</td>
+					</tr>
+
+					<!--{loop $adjTable $tb}-->
+					<tr >
+						<td>$tb[name]</td>
+						<!--{loop $tb[confs] $k $v}-->
+							<td><input class="inputc" name='<!--{eval echo("npc_".$tb["id"]."_".$k);}-->' value="$v"  ></input></td>
+						<!--{/loop}-->
+					</td>
+					<!--{/loop}-->
+					<tr>
+						<td colspan="9" id="idTDSubmit"><input type="submit" name="fsubmit" value="保存" style="width:100px;background-color:yellow" /></td>
+					</tr>
+				</table>
+			</form>
+		</td>
+	  </tr>
+	</table>
+</div>
+
+</body>
+</html>

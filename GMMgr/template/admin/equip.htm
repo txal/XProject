@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>文档管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<form name='form3' action='' method='get'>
+<table width='98%'  border='0' cellpadding='1' cellspacing='1' bgcolor='#CBD8AC' align="center" style="margin-top:8px">
+  <tr bgcolor='#EEF4EA'>
+    <td background='skin/images/wbg.gif' align='center'>
+      <table border='0' cellpadding='0' cellspacing='0'>
+        <tr>
+          <td width='110' align='center'><div align="right">获取方式：</div></td>
+          <td width='147'><select name="searchType">
+            <option value="1">用户名</option>
+            <option value="2">强化数大于</option>
+            <option value="3">镶嵌数大于</option>
+            <option value="4">装备名称</option>
+          </select>
+          </td>
+          <td width='34'><div align="right">值： </div></td>
+        <td width='271'>
+          	<input name='searchText' type='text' id="mname" style='width:150px' value='' />        </td>
+        <td width="75">
+          <input type="image" src="skin/images/frame/search.gif" width="45" height="20" border="0" class="np" />        </td>
+       </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</form>
+<br /><br />
+<!--{if !empty($record)}-->
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="9" background="skin/images/tbg.gif">&nbsp;装备列表&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="9%">帐号</td>
+	<td width="14%">装备名称</td>
+	<td width="15%">职业</td>
+	<td width="10%">装备等级</td>
+	<td width="10%">武力</td>
+	<td width="11%">智慧</td>
+	<td width="10%">统帅</td>
+	<td width="11%">强化等级</td>
+	<td width="10%">镶嵌数控</td>
+	</tr>
+<!--{loop $record $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+  <td>$v[loginName]</td>
+  <td width="14%">$v[name]</td>
+  <td width="15%">$v[carr]</td>
+  <td width="10%">$v[grade]</td>
+  <td width="10%">$v[power]</td>
+  <td width="11%">$v[intell]</td>
+  <td width="10%">$v[tongshuai]</td>
+  <td width="11%">$v[qianghua_cur]/$v[qianghua_max]</td>
+  <td width="10%">$v[xiangqian_cur]/$v[xiangqian_max]</td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="9" align="left">总页数: $pagelist </td>
+</tr>
+</table>
+<!--{/if}-->
+</body>
+</html>

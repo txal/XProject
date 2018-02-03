@@ -21,7 +21,7 @@ public:
 	friend class SceneMgr;
 
 	//<GameObjID, GameObjPointer>
-	typedef std::unordered_map<int64_t, Object*> ObjMap;
+	typedef std::unordered_map<int, Object*> ObjMap;
 	typedef ObjMap::iterator  ObjIter;
 
 public:

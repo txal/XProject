@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>工具</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+<style>
+body {
+	margin:0;
+	background:#EEEEEE;
+}
+</style>
+<script type="text/javascript">
+function add_daoju(id, name, shuoming, lijuan, yuanbao, dazhe, type) {
+alert(id);
+	var parent = window.parent;
+	parent.document.getElementById('gid').value = id;
+	parent.document.getElementById('name').value = name;
+	parent.document.getElementById('gold').value = yuanbao;
+	parent.document.getElementById('desc').value = shuoming;
+	parent.document.getElementById('discount').value = dazhe;
+	
+	parent.document.getElementById('type').options[type - 2].selected = 'selected';
+	parent.document.getElementById('gift').options[(lijuan == 'TRUE' ? 0 : 1)].selected = 'selected';
+}
+
+var prevTab = 2;
+function showtab(id) {
+	var tab = document.getElementById("tab_"+id);
+	if (prevTab)
+	{
+		document.getElementById("tab_" + prevTab).style.display = 'none';
+	}
+	
+	tab.style.display = 'block';
+	prevTab = id;
+}
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<div style="text-align:center;">
+<div style="width:100%; margin:auto;">
+  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">道具列表</h3>
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+	<div style="margin-bottom:10px;color:#0000FF;text-align:left;" id="giftinfo">
+	<!--{loop $goodstype $k $v}-->
+	<h3 style="margin-top:20px;display:inline;margin-right:10px;"><a href="javascript:;" onClick="showtab($v);">$k</a></h3>
+	<!--{/loop}-->
+	<hr>
+	<!--{eval $index = 2;}-->
+	<!--{loop $goodstype $k $v}-->
+	<ul <!--{if $index == $v}-->style="display:block;"<!--{else}-->style="display:none;"<!--{/if}--> id="tab_$v">
+	<!--{loop $shopgoods[$v] $good}-->
+	<li style="display:block;margin:5px 10px;">$good[name]:  
+	  <input type="button" value="添加" onClick="add_daoju($good[id], '$good[name]', '$good[shuoming]', '$good[lijuan]', '$good[yuanbao]', '$good[dazhe]', $good[type])" /></li>
+	<!--{/loop}-->
+	</ul>
+	<!--{eval $index++;}-->
+	<!--{/loop}-->
+	</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

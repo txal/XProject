@@ -1,0 +1,304 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>拍卖市场上下架</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	.colleft{
+		background:#FFFFFF;
+		padding:6px;
+		float:left;
+		width:50%a?
+	}
+	.colright{
+		background:#FFFFFF;
+		padding:6px;
+		float:right;
+		width:50%a?
+	}	
+body {
+	margin-left: 0px;
+}
+	-->
+	</style>
+	<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+	<script language="javascript" type="text/javascript" src="js/mashMap.js"></script>	
+	<script type="text/javascript">
+	function push_gift(id, name) {
+		var amount = document.getElementById('num_'+id);
+		var parent = window.parent;
+	
+		if (!parseInt(amount.value)) {
+			alert('必须填写数量');
+			return;
+		}
+	
+
+		parent.gifttext += '<font style="color:blue">' + name+'</font>' + ' x <font style="color:red">' + amount.value + '<font> | ';
+		parent.document.getElementById('giftinfo').innerHTML = parent.gifttext;
+		
+		sure();
+	}
+
+	</script>
+	
+	<script type="text/javascript">
+		var isRemark = false;
+		var isPlayer = false;
+		
+		var giftdetail	='';
+		var giftinfo	=[];
+		var gifttext	= '';
+
+		var itemMap = new mashMap();
+		
+		function set_gifts_ids() {
+			var gids = document.getElementById('giftids').value;
+			
+			if (gids == '') {
+				alert("卡号不能为空");
+				return false;
+			}
+		
+			return true;
+		}
+		
+		function delgift(id) {
+			var v = giftinfo.join('|');
+			document.getElementById('giftids').value = v;
+		}
+		
+		var players = [];
+		function push_member() {
+			var members = document.getElementById('members');
+			var player  = document.getElementById('player');
+			
+			players.push(player.options[player.options.selectedIndex].value);
+			
+			members.value = players.join(',');
+		}
+
+		function checkform()
+		{
+			if(document.getElementById("id_cardname").value.length==0)
+			{
+				alert("道具名称不能为空!");
+				return false;
+			}
+			
+			if(document.getElementById("id_gold").value.length==0)
+			{
+				alert("元宝数不能为空!");
+				return false;
+			}
+
+			if(document.getElementById("id_uptime").value.length==0)
+			{
+				alert("上架时间不能为空!");
+				return false;
+			}
+
+			var svStr = itemMap.getKeysWithComma();
+			if(svStr.length < 1 )
+			{
+				alert("必须选择  活动服务器");
+				return false;
+			}
+			document.getElementById("id_hidden_servers").value = svStr;
+
+			return true;
+		}
+
+		function showlabel()
+		{
+			var cardtype=parseInt(document.getElementById("id_cardtype").value);
+		
+			document.getElementById("id_single").style.display=(cardtype==1)?"block":"none";
+
+		}
+
+		function modifycardtype(cardname, id, money, uptime)
+		{
+
+			//首先清空现有的iframe
+			var iTable	=document.getElementById("id_table2");
+			var iTr		=iTable.getElementsByTagName("tr");
+			for(var i=0;i<iTr.length;i++)
+			{
+				if (iTr[i].name != "targetTR") continue;
+			
+				var iTd	=iTr[i].getElementsByTagName("td");
+				for(var j=0;j<iTd.length;j++)
+				{
+					var iDiv	=iTd[j].getElementsByTagName("div");
+					for(var k=0;k<iDiv.length;k++)
+					{
+						if(iDiv[k].name="name_div_cardid")
+						{
+							iDiv[k].innerHTML="";
+						}
+					}
+				}
+				
+			}
+
+			document.getElementById("id_div_cardid_"+id).innerHTML
+				="<iframe width=\"100%\" id=\"d_iframe\" name=\"d_iframe\" src=\"modifyaucton.php?id="+id+"&cardname="+cardname+"&money="+money+"&uptime="+uptime+"\""
+					+" frameborder=\"0\" onload=\"this.height=d_iframe.document.body.scrollHeight;\"></iframe>";
+		}
+
+		function deletecardtype(cardname,cardtypeid)
+		{
+			var toDelete	=window.confirm(" 确定要删除卡型 ["+cardname+"] 吗? ");
+			if(toDelete)
+			{
+				location.href="?delete=true&cardtypeid="+cardtypeid+"&cardname="+cardname;
+			}
+		}
+
+		function pickServers()
+		{
+			
+			var divItem = document.getElementById("id_div_servers")
+			var display = divItem.style.display ;
+			if(display == "none")
+				divItem.style.display = "block";
+			else
+				divItem.style.display = "none";
+		}
+
+		function selectAll(checked)
+		{
+			var divItem = document.getElementById("id_div_servers")
+			var checkboxlist = divItem.getElementsByTagName("input")
+			
+			for(var i=0;i< checkboxlist.length; i++)
+			{
+				checkboxlist[i].checked = checked;					
+				var sid = "id_ckb_"+(checkboxlist[i].value);
+				var item = document.getElementById(sid);
+				if(checked)
+				{
+					itemMap.put(checkboxlist[i].value, item.name);
+				}else{
+					itemMap.pop(checkboxlist[i].value);
+				}
+			}
+			itemMap.pop(0);
+
+			var svStr = itemMap.getValuesWithChacter("\n");
+			document.getElementById("id_servers").value = svStr;
+		}
+
+		function selectOne(item, checked)
+		{
+			if(! checked) //取消选择
+			{
+				document.getElementById("id_ckb_0").checked = false;
+			}
+		}
+
+		function onChangeValue(id, checked)
+		{
+			var item = document.getElementById("id_ckb_"+id);
+			if(checked)
+			{
+				itemMap.put(id,item.name);
+			}else{
+				itemMap.pop(id);
+			}
+
+			var svStr = itemMap.getValuesWithChacter("\n");
+			document.getElementById("id_servers").value = svStr;
+		}
+	</script>	
+
+</head>
+
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+	<table width="98%" border="0" cellpadding="2" cellspacing="1"  style="margin-top:8px;margin-left:15px" >
+		<tr valign="top" bgcolor="#EEF4EA">
+			<td width="30%" background="skin/images/tbg.gif">
+				<table width="100%"><tr bgcolor="#D1DDAA" ><td>添加新道具 :</td></tr>
+					<tr><td colspan=6>
+						<form method="post" action="auctionshift.php" onSubmit="return checkform();">
+							<table width="100%" border="0"  align="left" cellpadding="2" cellspacing="1" bordercolor="#6666FF" bgcolor="#999999" style="margin-top:8px">
+								<tr  bgcolor="#FAFAF1">
+									<td width="120" align="right"><input type="hidden" id="id_cardid" name="cardid" />道具名称 :</td>
+									<td align="left"><input type="text" readonly="readonly" style="width=160 px" name="cardname" id="id_cardname" /></td></tr>
+								<tr  bgcolor="#FAFAF1">
+									<td align="right">元宝 :</td>
+									<td align="left"><input type="text" style="width=160 px" name="money" id="id_gold" /></td></tr>
+								<tr  bgcolor="#FAFAF1">
+									<td align="right">上架时间 :</td>
+									<td align="left"><input name="uptime" id="id_uptime" style="width:160px" onFocus="new Calendar().show(this);" onKeyDown="javascript: return false;"></input></td></tr>
+								<tr  bgcolor="#FAFAF1">
+									<td align="right">下架时间 :</td>
+									<td align="left"><input name="downtime" id="id_downtime" style="width:160px" onFocus="new Calendar().show(this);" onKeyDown="javascript: return false;"></input></td></tr>
+								<tr  bgcolor="#FAFAF1">
+									<td align="right">活动服务器:</td>
+									<td align="left"><textarea id="id_servers" name="n_servers" rows="20" readonly="readonly"  onkeydown=" return false; " onClick="pickServers();" >选择</textarea><input type="hidden" id="id_hidden_servers" name="s_hidden" /></td></tr>
+								<tr  bgcolor="#FAFAF1"><td align="center" colspan=2><input type="submit" value="确认" name="submit" id="id_submit" /></td></tr>
+								
+							</table>
+						</form></td>
+					</tr>
+					<tr  bgcolor="#FAFAF1"><td span="2">
+						<div id="id_div_servers" style="display:none">
+							<input type="checkbox" id="id_ckb_0" value="0" name="全服" onClick="selectAll(this.checked);">全服</input>
+							<hr/>
+							<!--{loop $_SERVERLIST $sid $sname}-->
+								<input type="checkbox" id="id_ckb_$sid" name="$sname" value="$sid" onClick="selectOne(this, this.checked);" onChange="onChangeValue($sid, this.checked);">$sname</input><br/>
+							<!--{/loop}-->
+						</div></td>
+					</tr>
+					<script type="text/javascript">
+						var it = document.getElementById("id_ckb_"+$G_SERVERID);
+						it.checked = true;
+						selectOne(it, true);
+						onChangeValue($G_SERVERID, true);
+					</script>
+
+				</table>
+			</td>
+			
+			<td ><iframe width="100%" height="800" src="cardgift.php?auction=1" frameborder="0"></iframe></td>
+		</tr>
+
+	</table><br/><br/><br/><br/>
+
+	
+	<table id="id_table2" width="98%" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1DDAA" align="center" style="margin-top:1px">
+		<tr><td>上架道具列表:</td></tr>
+		<tr valign="top" bgcolor="#EEF4EA">
+			<td width="20%"  align="center">道具名称</td>
+			<td width="20%"  align="center">元宝</td>
+			<td width="20%"  align="center">上架时间</td>
+			<td width="20%"  align="center">下架时间</td>
+			<td align="center">操作</td>
+		</tr>
+			
+		<!--{loop $cardinfolist $v}-->
+		<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="18">
+			<td align="center">$v[cardname] &nbsp;</td> 
+			<td align="center">$v[money]</td>
+			<td align="center">$v[uptime]</td>
+			<td align="center">$v[downtime]</td>
+			<td align="center"><input type="button" name="modify" id="id_modify" $v[disabled] value="修改" onClick="modifycardtype('$v[cardname]',$v[id], $v[money], '$v[uptime]');">
+								<input type="button" name="delete" id="id_delete" value="下架" onClick="deletecardtype('$v[cardname]',$v[id]);">
+			</td>
+		</tr>
+		<tr name="targetTR">
+			<td colspan=4>
+				<div id="id_div_cardid_$v[id]" name="name_div_cardid"></div>
+			</td>	
+		</tr>
+		<!--{/loop}-->
+		
+	</table>
+
+
+</body>
+</html>

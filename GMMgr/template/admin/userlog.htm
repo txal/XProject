@@ -1,0 +1,144 @@
+<html>
+<head>
+	<title>玩家日志查询</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>	
+	<script type="text/javascript">
+		function searchLog() {
+			var event = document.getElementById("event");
+			var charid = document.getElementById("charid");
+			var stime = document.getElementById("stime");
+			var etime = document.getElementById("etime");
+			var field1 = document.getElementById("field1");
+            var field2 = document.getElementById("field2");
+            var field3 = document.getElementById("field3");
+            var field4 = document.getElementById("field4");
+            var field5 = document.getElementById("field5");
+            var field6 = document.getElementById("field6");
+			event = event.value.trim();
+			charid = charid.value.trim();
+			stime = stime.value.trim();
+			etime = etime.value.trim();
+			field1 = field1.value.trim();
+            field2 = field2.value.trim();
+            field3 = field3.value.trim();
+            field4 = field4.value.trim();
+            field5 = field5.value.trim();
+            field6 = field6.value.trim();
+			if (event.match(/^\s*$/g)) {
+				alert('请指定事件')
+				return false;	
+			}
+			if(event.match(/[A-Za-z]/)){
+			    alert("事件不能包含字母");
+			    return false;
+			}
+			if(event.match(/^[0]/)){
+			    alert("事件不能为0");
+				return false;
+			}
+			if(charid.match(/[a-zA-Z_.]/)){
+			    alert("角色ID必须是数字");
+			    return false;
+			}
+			if((field1.match(/[a-zA-Z_.]/)&&!field1.match(/^[true]/)) || (field2.match(/[a-zA-Z_.]/)&&!field2.match(/^[true]/)) || (field3.match(/[a-zA-Z_.]/)&&!field3.match(/^[true]/)) || (field4.match(/[a-zA-Z_.]/)&&!field4.match(/^[true]/)) || (field5.match(/[a-zA-Z_.]/)&&!field5.match(/^[true]/)) || (field6.match(/[a-zA-Z_.]/)&&!field6.match(/^[true]/))) {
+			    alert("field存在非法字符");
+			    return false;
+			}
+			if (!stime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+				alert('没有填写开始时间或格式错误');
+				return false;
+			}
+		
+			if (!etime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+				alert('没有填写结束时间或格式错误');
+				return false;
+			}
+			window.location.href = "userlog.php?action=search&event="+event+"&field1="+field1+"&field2="+field2+"&field3="+field3+"&field4="+field4+"&field5="+field5+"&field6="+field6+"&charid="+charid+"&stime="+stime+"&etime="+etime;
+		}
+	</script>
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px;table-layout:fixed;">
+	<tr bgcolor="#E7E7E7">
+		<div align="center", style="">
+			<span style="margin-left:10px; float: left">事件:
+				<input name="event" type="text" class="mytxt" id="event" style="border:1px solid #CCCCCC;" value="$searchEvent" />
+			</span>
+			<span style="margin-left:10px; float: left">角色ID:
+				<input name="charid" type="text" class="mytxt" id="charid" style="border:1px solid #CCCCCC;" value="$searchCharID" />
+			</span>
+			<br/>
+			<br/>
+			<span style="margin-left:10px; float: left">FIELD1:
+				<input name="field1" type="text" class="mytxt" id="field1" style="border:1px solid #CCCCCC;" value="$field1"/>
+			</span>
+			<span style="margin-left:10px; float: left">FIELD2:
+				<input name="field2" type="text" class="mytxt" id="field2" style="border:1px solid #CCCCCC;" value="$field2"/>
+			</span>
+			<span style="margin-left:10px; float: left">FIELD3:
+				<input name="field3" type="text" class="mytxt" id="field3" style="border:1px solid #CCCCCC;" value="$field3" />
+			</span>
+			<span style="margin-left:10px; float: left;">FIELD4:
+				<input name="field4" type="text" class="mytxt" id="field4" style="border:1px solid #CCCCCC;" value="$field4" />
+			</span>
+			<span style="margin-left:10px; float: left">FIELD5:
+				<input name="field5" type="text" class="mytxt" id="field5" style="border:1px solid #CCCCCC;" value="$field5" />
+			</span>
+			<span style="margin-left:10px; float: left">FIELD6:
+				<input name="field6" type="text" class="mytxt" id="field6" style="border:1px solid #CCCCCC;" value="$field6" />
+			</span>
+			<br/>
+			<br/>
+			<span style="margin-left:10px; float: left; margin-bottom: 10px">起始时间:
+				<input name="stime" type="text" class="mytxt" id="stime" style="border:1px solid #CCCCCC;"
+					onFocus="new Calendar().show(this);" value="$stime" />
+			</span>
+			<span style="margin-left:10px; float: left;margin-bottom: 10px">结束时间:
+				<input name="etime" type="text" class="mytxt" id="etime" style="border:1px solid #CCCCCC;"
+					onFocus="new Calendar().show(this);" value="$etime" />
+			</span>
+			<input type="button" name="searchbyuser" style="margin-left:10px; float: left;margin-bottom: 10px" onClick="searchLog()" value="查  询" />
+		</div>
+	</tr>
+	<tr align="center" bgcolor="#FAFAF1" height="22">
+	  	<td width="%4">事件</td>
+	  	<td width="%4">原因</td>
+	  	<td width="%3">角色ID</td>
+	  	<td width="%4">角色名</td>
+	  	<td width="%2">角色等级</td>
+	  	<td width="%2">VIP</td>
+	  	<td width="%5">FIELD1</td>
+	  	<td width="%5">FIELD2</td>
+	  	<td width="%5">FIELD3</td>
+	  	<td width="%5">FIELD4</td>
+	  	<td width="%5">FIELD5</td>
+	  	<td width="%5">FIELD6</td>
+	  	<td width="%4">时间</td>
+	</tr>
+	
+	<!--{loop $logList $v}-->
+	<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+		<td>$v[sevent]</td>
+		<td>$v[sreason]</td>
+		<td>$v['char_id']</td>
+		<td>$v['char_name']</td>
+		<td>$v['level']</td>
+		<td>$v['vip']</td>
+		<td>$v['field1']</td>
+		<td>$v['field2']</td>
+		<td>$v['field3']</td>
+		<td style="overflow:scroll;white-space:nowrap;">$v['field4']</td>
+		<td style="overflow:scroll;white-space:nowrap;">$v['field5']</td>
+		<td>$v['field6']</td>
+		<td>$v['stime']</td>
+	</tr>
+	<!--{/loop}-->
+</table>
+<div align="center" style="width:98%; height:25px; background:#EEF4EA; margin-left: 18px">
+	<!--{if $multi}-->$multi<!--{/if}-->
+</div > 
+
+</body>
+</html>

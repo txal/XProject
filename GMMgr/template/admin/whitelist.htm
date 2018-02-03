@@ -1,0 +1,108 @@
+<html>
+
+            <head>
+                <title>白名单</title>
+                <link rel="stylesheet" type="text/css" href="skin/css/base.css">
+                <script type="text/javascript" src="js/ajax.js"></script>
+                <script type="text/javascript">
+
+                    //添加白名单
+                    function addWhite(){
+                        var cont =
+                            "<table width='80%' border='0' cellpadding='2' cellspacing='1' bgcolor='#D1DDAA' align='center' style='margin-top:20px;margin-bottom:20px;float:left;margin-left: 19px;'>\
+                            <tr bgcolor='#E7E7E7'>\
+                                <td height='24' colspan='10' background='skin/images/tbg.gif'>&nbsp;添加白名单&nbsp;</td>\
+                            </tr>\
+                            <tr align='center' bgcolor='#FAFAF1' height='22'>\
+                                <td>玩家</td>\
+                                <td>操作</td>\
+                            </tr>\
+                            <tr align='left' bgcolor='#FAFAF1' height='22'>\
+                                <td width='40%'><input id='account' type='text' style='width:100%;'  /></td>\
+                                <td width='20%'>\
+                                    <input type='button' style='width:100%;' value='确认' onclick='addServerConfrim()'/>\
+                                    <input type='button' style='width:100%;' value='取消' onclick='cancleOperation()'/>\
+                                </td>\
+                            </tr>\
+                        </table>";
+                        document.getElementById('serverdetal').innerHTML = cont;
+                    }
+
+                    //确定添加白名单
+                    function addServerConfrim(){
+                        var account = document.getElementById('account').value;
+
+                        if(account == ""){
+                            alert("输入框不能有空，请检查");
+                            return false;
+                        }
+                        var url = '?inajax=yes&action=addWhite&account='+account+'&rnd='+ Math.random();
+                        ajax(url, 'get', function(data) {
+                            if ( data == "SUCCESS" ) {
+                                alert("操作成功！");
+                                location.href = "whitelist.php";
+
+                            } else if(data == "EXIT") {
+                                alert("白名单已存在此玩家");
+                                return false;
+
+                            } else {
+                                alert("操作失败"+data);
+                                return false;
+                            }
+                        });
+                    }
+
+                    //删除白名单
+                    function deleteServer(account){
+                        if(!confirm("确定要删除？")){
+                            return;
+                        }
+                        var url = '?inajax=yes&action=delWhite&account='+account+'&rnd='+ Math.random();
+                        ajax(url, 'get', function(data) {
+                            if ( data == "SUCCESS" ) {
+                                alert("操作成功！");
+                                location.href = "whitelist.php";
+                            } else {
+                                alert("操作失败！"+data);
+                            }
+                        });
+                    }
+
+                    //取消操作
+                    function cancleOperation(){
+                        document.getElementById("serverdetal").innerHTML="";
+                    }
+
+                </script>
+            </head>
+
+            <body>
+                <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+                    <tr bgcolor="#E7E7E7">
+                        <td height="24" colspan="14">&nbsp;白名单列表&nbsp;</td>
+                    </tr>
+                    <tr align="center" bgcolor="#FAFAF1" height="22">
+                        <td width="32%">玩家</td>
+                        <td width="32%">时间</td>
+                        <td width="32%">操作</td>
+                    </tr>
+                    <!--{loop $resArray $val}-->
+                    <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+                        <td>$val[account]</td>
+                        <td>$val[time]</td>
+                        <td>
+                            [<a href="javascript:;", onClick="deleteServer('$val[account]')" style="cursor: pointer">删除</a>]
+                        </td>
+                    </tr>
+                    <!--{/loop}-->
+                    <tr align="center">
+                        <td height="40" bgcolor="#FFFFFF" colspan="12">
+                            <input type='button' style="width: 100px; float: left;" value='添加白名单' onClick='addWhite()'/>
+                        </td>
+                    </tr>
+                </table>
+                <div id="serverdetal" style="float:left; width:auto"></div>
+            </body>
+
+</html>

@@ -14,23 +14,23 @@ MonsterMgr::MonsterMgr()
 {
 }
 
-Monster* MonsterMgr::CreateMonster(const GAME_OBJID& oID, int nConfID, const char* psName, int nAIID, int8_t nCamp)
+Monster* MonsterMgr::CreateMonster(int nID, int nConfID, const char* psName, int nAIID, int8_t nCamp)
 {
-	Monster* poMonster = GetMonsterByID(oID);
+	Monster* poMonster = GetMonsterByID(nID);
 	if (poMonster != NULL)
 	{
-		XLog(LEVEL_ERROR, "CreateMonster: %lld exist\n", oID.llID);
+		XLog(LEVEL_ERROR, "CreateMonster: %lld exist\n", nID);
 		return NULL;
 	}
 	poMonster = XNEW(Monster);
-	poMonster->Init(oID, nConfID, psName, nAIID, nCamp);
-	m_oMonsterIDMap[oID.llID] = poMonster;
+	poMonster->Init(nID, nConfID, psName, nAIID, nCamp);
+	m_oMonsterIDMap[nID] = poMonster;
 	return poMonster;
 }
 
-void MonsterMgr::RemoveMonster(const GAME_OBJID& oID)
+void MonsterMgr::RemoveMonster(int nID)
 {
-	MonsterIDIter iter = m_oMonsterIDMap.find(oID.llID);
+	MonsterIDIter iter = m_oMonsterIDMap.find(nID);
 	if (iter == m_oMonsterIDMap.end())
 	{
 		return;
@@ -45,9 +45,9 @@ void MonsterMgr::RemoveMonster(const GAME_OBJID& oID)
 	SAFE_DELETE(poMonster);
 }
 
-Monster* MonsterMgr::GetMonsterByID(const GAME_OBJID& oID)
+Monster* MonsterMgr::GetMonsterByID(int nID)
 {
-	MonsterIDIter iter = m_oMonsterIDMap.find(oID.llID);
+	MonsterIDIter iter = m_oMonsterIDMap.find(nID);
 	if (iter != m_oMonsterIDMap.end())
 	{
 		return iter->second;
@@ -67,7 +67,7 @@ void MonsterMgr::UpdateMonsters(int64_t nNowMS)
 			if (poMonster->IsTimeToCollected(nNowMS))
 			{
 				iter = m_oMonsterIDMap.erase(iter);
-				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poMonster->GetID().llID, poMonster->GetType());
+				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poMonster->GetID(), poMonster->GetType());
 				SAFE_DELETE(poMonster);
 				continue;
 			}

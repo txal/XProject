@@ -22,9 +22,9 @@ end
 
 --通用脚本
 require = gfRawRequire or require  --恢复原生require
+require("ServerConf")
 require("Config/Main")
 require("Common/CommonInc")
-require("ServerConf")
 OpenProto()
 
 --逻辑服
@@ -33,7 +33,6 @@ require = function(sScript)
 	gfRawRequire("LogicServer/"..sScript)
 end
 require("MainRpc")
-require("ItemDef")
 require("Player/PlayerInc")
 require("Module/ModuleInc")
 require("Global/GlobalInc")
@@ -47,31 +46,11 @@ goDBMgr:Init()
 
 --全局初始化
 local function _InitGlobal()
-    goUnionMgr:LoadData()
-    goMailMgr:LoadData()
-    goOfflineDataMgr:LoadData()
-    goRankingMgr:LoadData()
-    goOfflineTask:LoadData()
-    goHDMgr:LoadData()
-    goTalk:LoadData()
-    goAwardRecordMgr:LoadData()
-    goBroadcast:LoadData()
 end
 
 --全局反初始化
 local function _UninitGlobal()
-    local bSuccess = true
-    local function fnError(sErr) bSuccess=false LuaTrace(sErr, debug.traceback()) end
-    xpcall(function() goOfflineDataMgr:OnRelease() end, fnError)
-    xpcall(function() goUnionMgr:OnRelease() end, fnError)
-    xpcall(function() goRankingMgr:OnRelease() end, fnError)
-    xpcall(function() goOfflineTask:OnRelease() end, fnError)
-    xpcall(function() goMailMgr:OnRelease() end, fnError)
-    xpcall(function() goHDMgr:OnRelease() end, fnError)
-    xpcall(function() goTalk:OnRelease() end, fnError)
-    xpcall(function() goAwardRecordMgr:OnRelease() end, fnError)
-    xpcall(function() goBroadcast:OnRelease() end, fnError)
-    return bSuccess
+    return true
 end
 
 --GC

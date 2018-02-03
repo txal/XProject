@@ -1,5 +1,7 @@
 require = gfRawRequire or require
+
 require("Common/LuaClass")
+require("Common/ItemDef")
 require("Common/GlobalDef")
 require("Common/DataStruct/DataStructInc")
 require("Common/Extension/ExtensionInc")

@@ -1,0 +1,94 @@
+<html>
+<head>
+	
+	<title>新手卡列表</title>
+	<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	
+	<style type="text/css">
+	<!--
+	.STYLE1 {font-weight: bold; color: #3333FF;}
+	-->
+	</style>
+	
+	<script type="text/javascript">
+
+		function delCookie(name)//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
+		{
+		var date = new Date();
+		date.setTime(date.getTime() - 10000);
+		document.cookie = name + "=0; expires=" + date.toGMTString();
+		}	
+		
+		function clearCookie()
+		{
+			var arrStr = document.cookie.split("; ");
+			for(var i = 0;i < arrStr.length;i ++)
+			{
+				var temp = arrStr[i].split("=");
+				if(temp[0] == "newcards_cardNO")
+				{
+					delCookie("newcards_cardNO");
+				}
+			}
+		}
+	</script>
+
+</head>
+<body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td background="skin/images/tbg.gif" colspan="4">
+		<form method="post" action="newcardlist.php">
+		<table>
+			<tr><td>
+				&nbsp;卡号搜索:&nbsp;
+				<input type="text" name="cardNO" id="id_cardNO" value=$cardNO></input>&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" name="cardNOsubmit" value="搜  索">
+				</td>
+			</tr>
+		</table>
+		</form>
+	</td>
+	<td height="24" background="skin/images/tbg.gif" colspan="4">
+		<form method="post">
+		<table>
+			<tr><td>
+				&nbsp;用户名搜索:&nbsp;
+				<input type="text" name="username" id="id_username" value=$username></input>&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" name="usernamesubmit" value="搜  索">
+				</td>
+			</tr>
+		</table>
+		</form>
+	</td>
+</tr>
+<tr bgcolor="#ffffff">
+	<td width="12%" align="center">编号</td>
+	<td width="18%" align="center">卡号</td>
+	<td width="18%" align="center">生成时间</td>
+	<td width="18%" align="center">使用者</td>
+	<td width="8%" align="center">状态</td>
+	<td width="18%" align="center">使用时间</td>
+	<td  align="center">使用IP</td>
+	<td  align="center">类型</td>
+</tr>
+
+<!--{loop $newcardlist $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+  <td align="center">$v[id]</td>
+  <td align="left">$v[cardNO]</td>
+  <td>$v[buildtime]</td>
+  <td>$v[username]</td>
+  <td>$v[state]</td>
+  <td>$v[usetime]</td>
+  <td>$v[Ip]</td>
+  <td>$v[type]</td>
+</tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="8" align="left">总页数: $pageblock</td>
+</tr>
+</table>
+<div id="unionmembers"></div>
+</body>
+</html>

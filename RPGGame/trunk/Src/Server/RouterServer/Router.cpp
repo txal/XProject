@@ -109,20 +109,20 @@ void Router::OnRouterAccept(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemoteP
 	{
 		SAFE_DELETE(iter->second);
 		m_oSockMap.erase(iter);
-		XLog(LEVEL_ERROR, "%s: Socket:%d conflict\n", GetServiceName(), hSock);
+		XLog(LEVEL_ERROR, "OnRouterAccept: Socket:%d conflict\n", hSock);
 	}
 
     ServiceNode* poService = XNEW(ServiceNode);
 	if (!poService->Init(GetServiceID(), &m_oNetEventHandler))
 	{
 		SAFE_DELETE(poService);
-		XLog(LEVEL_ERROR, "%s: Socket:%u init service node fail\n", GetServiceName(), hSock);
+		XLog(LEVEL_ERROR, "OnRouterAccept: Socket:%u init service node fail\n", hSock);
 		return;
 	}
 
 	poService->GetInnerNet()->AddDataSock(hSock, uRemoteIP, uRemotePort);
 	m_oSockMap[hSock] = poService;
-	XLog(LEVEL_INFO, "%s: OnRouterAccept socket:%u \n", GetServiceName(), hSock);
+	XLog(LEVEL_INFO, "OnRouterAccept: OnRouterAccept socket:%u \n", hSock);
 }
 
 void Router::OnRouterDisconnect(int nSessionID)
@@ -130,7 +130,7 @@ void Router::OnRouterDisconnect(int nSessionID)
 	SessionIter iter = m_oSessionMap.find(nSessionID);
 	if (iter == m_oSessionMap.end())
 	{
-		XLog(LEVEL_ERROR, "%s: Session:%d not found on disconnect!\n", GetServiceName(), nSessionID);
+		XLog(LEVEL_ERROR, "OnRouterDisconnect: Session:%d not found on disconnect!\n", nSessionID);
 		return;
 	}
 	ServiceNode* poService = iter->second;
@@ -149,9 +149,9 @@ void Router::OnRouterDisconnect(int nSessionID)
 		return;
 	}
 	PacketWriter oPacketWriter(poPacket);
-	oPacketWriter << nServiceID<<nServerID;
-	BroadcastService(poPacket);
-	XLog(LEVEL_ERROR, "%s: Service:%d server:%d disconnect\n", GetServiceName(), nServiceID, nServerID);
+	oPacketWriter<<nServerID<<nServiceID;
+	BroadcastService(nServerID, poPacket);
+	XLog(LEVEL_ERROR, "OnRouterDisconnect: server:%d service:%d disconnect\n", nServerID, nServiceID);
 }
 
 void Router::OnAddDataSock(HSOCKET hSock, int nSessionID)
@@ -179,7 +179,7 @@ void Router::OnRouterMsg(int nSessionID, Packet* poPacket)
 	int* pSessionArray = NULL;
 	if (!poPacket->GetInnerHeader(oHeader, &pSessionArray, false))
 	{
-		XLog(LEVEL_ERROR, "%s: Packet header invalid\n", GetServiceName());
+		XLog(LEVEL_ERROR, "OnRouterMsg: Packet header invalid\n");
 		poPacket->Release();
 		return;
 	}
@@ -197,22 +197,20 @@ ServiceNode* Router::GetService(int nServerID, int nServiceID)
 	return NULL;
 }
 
-void Router::BroadcastService(Packet* poPacket)
+void Router::BroadcastService(int nServerID, Packet* poPacket)
 {
-	if (poPacket == NULL)
-	{
-		return;
-	}
-
 	for (ServiceIter iter = m_oServiceMap.begin(); iter != m_oServiceMap.end(); iter++)
 	{
 		ServiceNode* poService = iter->second;
-		Packet* poNewPacket = poPacket->DeepCopy();
-		INNER_HEADER oHeader(NSSysCmd::ssServiceClose, GetServiceID(), poService->GetServiceID(), 0, poService->GetServerID());
-		poNewPacket->AppendInnerHeader(oHeader, NULL, 0);
-		if (!poService->GetInnerNet()->SendPacket(poService->GetSessionID(), poNewPacket))
+		if (poService->GetServerID() == nServerID)
 		{
-			poNewPacket->Release();
+			Packet* poNewPacket = poPacket->DeepCopy();
+			INNER_HEADER oHeader(NSSysCmd::ssServiceClose, 0, GetServiceID(), nServerID, poService->GetServiceID(), 0);
+			poNewPacket->AppendInnerHeader(oHeader, NULL, 0);
+			if (!poService->GetInnerNet()->SendPacket(poService->GetSessionID(), poNewPacket))
+			{
+				poNewPacket->Release();
+			}
 		}
 	}
 	poPacket->Release();
@@ -224,7 +222,7 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID)
 	SessionIter iter = m_oSessionMap.find(nSessionID);
 	if (iter == m_oSessionMap.end())
 	{
-		XLog(LEVEL_ERROR, "RegService: service:%d session not found!\n", nServiceID);
+		XLog(LEVEL_ERROR, "RegService: server:%d service:%d session not found!\n", nServerID, nServiceID);
 		return false;
 	}
 	ServiceNode* poService = iter->second;
@@ -234,10 +232,10 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID)
 	if (m_oServiceMap.find(nKey) != m_oServiceMap.end())
 	{
 		poService->GetInnerNet()->Close(nSessionID);
-		XLog(LEVEL_ERROR, "RegService: service:%d already register!\n", nServiceID);
+		XLog(LEVEL_ERROR, "RegService: server:%d service:%d already register!\n", nServerID, nServiceID);
 		return false;
 	}
 	m_oServiceMap[nKey] = poService;
-	XLog(LEVEL_INFO, "RegService: service %d register successful\n", nServiceID);
+	XLog(LEVEL_INFO, "RegService: server:%d service:%d register successful\n", nServerID, nServiceID);
 	return true;
 }

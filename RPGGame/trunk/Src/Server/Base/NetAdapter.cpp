@@ -20,7 +20,7 @@ bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi,
     assert(poPacket != NULL);
 	Service* poService = g_poContext->GetService();
 	oNavi.nTarService = oNavi.nTarSession >> SERVICE_SHIFT;
-	if (oNavi.nTarService == poService->GetServiceID() && oNavi.uTarServer == g_poContext->GetServerID())
+	if (oNavi.uTarServer == g_poContext->GetServerID() && oNavi.nTarService == poService->GetServiceID())
 	{
 		poPacket->AppendExterHeader(EXTER_HEADER(uCmd, poService->GetServiceID(), oNavi.nTarService, uPacketIdx));
 		if (!poService->GetExterNet()->SendPacket(oNavi.nTarSession, poPacket))

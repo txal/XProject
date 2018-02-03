@@ -61,7 +61,7 @@ bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, GetServiceID(), poRouter->nService, 0, g_poContext->GetServerID());
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, poRouter->nService, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_pInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -135,6 +135,8 @@ void LogicServer::ProcessTimer(int64_t nNowMSTime)
 
 void LogicServer::OnConnected(int nSessionID, int nRemoteIP, uint16_t nRemotePort)
 {
+	char sIPBuf[128] = { 0 };
+	XLog(LEVEL_INFO, "%s: On connectioned session:%d ip:%s\n", GetServiceName(), nSessionID, NetAPI::N2P(nRemoteIP, sIPBuf, sizeof(sIPBuf)));
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
 	assert(poRouter != NULL);
     RegToRouter(poRouter->nService);
@@ -142,8 +144,9 @@ void LogicServer::OnConnected(int nSessionID, int nRemoteIP, uint16_t nRemotePor
 
 void LogicServer::OnDisconnect(int nSessionID)
 {
-	XLog(LEVEL_INFO, "%s: On connection disconnect\n", GetServiceName());
+	XLog(LEVEL_INFO, "%s: On disconnect session:%d\n", GetServiceName(), nSessionID);
 	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	m_oMsgBalancer.RemoveConn(0, nSessionID);
 }
 
 void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket) 
@@ -168,8 +171,7 @@ void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket)
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }
 
-void LogicServer::ClientCloseHandler(int nSession)
+void LogicServer::OnClientClose(uint16_t uServer, int nSession)
 {
-	m_oMsgBalancer.RemoveConn(nSession);
-	LuaWrapper::Instance()->FastCallLuaRef<void>("OnClientClose", 0, "i", nSession);
+	m_oMsgBalancer.RemoveConn(uServer, nSession);
 }

@@ -8,9 +8,9 @@ gfRawRequire = require 	--hook require
 require = function(sScript)
 	gfRawRequire("LogServer/"..sScript)
 end
-require("LogRpc")
-require("MysqlPool")
 require("GMMgr/GMMgrInc")
+require("LogMgr/LogMgrInc")
+require("MysqlPool/MysqlPoolInc")
 
 local function _InitGlobal()
 	InitMysql()

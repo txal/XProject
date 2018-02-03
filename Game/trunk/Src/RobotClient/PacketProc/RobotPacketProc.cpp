@@ -24,7 +24,7 @@ void NSPacketProc::OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 {
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	lua_State* pState = poLuaWrapper->GetLuaState();
-	lua_pushinteger(pState, oHeader.nSrc);
+	lua_pushinteger(pState, oHeader.nSrcService);
 	lua_pushinteger(pState, nSrcSessionID);
 	lua_pushlightuserdata(pState, poPacket);
 	poLuaWrapper->CallLuaRef("RpcMessageCenter", 3, 0);
@@ -35,7 +35,7 @@ void NSPacketProc::OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	lua_State* pState = poLuaWrapper->GetLuaState();
 	lua_pushinteger(pState, oHeader.uCmd);
-	lua_pushinteger(pState, oHeader.nSrc);
+	lua_pushinteger(pState, oHeader.nSrcService);
 	lua_pushinteger(pState, nSrcSessionID);
 	if (oHeader.uCmd >= CMD_MIN && oHeader.uCmd <= CMD_MAX)
 	{

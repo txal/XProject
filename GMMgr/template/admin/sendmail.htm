@@ -1,0 +1,186 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>公告管理</title>
+<link rel="stylesheet" type="text/css" href="skin/css/base.css">
+	<script language="javascript" type="text/javascript" src="js/calendar_with_time.js"></script>
+	<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+
+//清理角色ID
+function clearCharID(){
+    var target = document.getElementById('target');
+    target.value = "";
+}
+
+//取消选择全服选项
+function cancleAllserver(){
+    var allserver= document.getElementById('allserver');
+    allserver.checked=false;
+}
+
+function sendMail() {
+	var target = document.getElementById('target');
+	var title = document.getElementById('title');
+	var content = document.getElementById('content');
+	var allserver= document.getElementById('allserver');
+	var itemlist = document.getElementById('itemlist');
+	var sendtime = document.getElementById('sendtime');
+
+    target = target.value;
+	title = title.value;
+	content = content.value;
+	allserver = allserver.checked;
+	itemlist = itemlist.value;
+	sendtime = sendtime.value;
+
+	if (!allserver) {
+		if (target.match(/^\s*$/g)) {
+			alert('请填收件人');
+			return false;
+		}
+		if (!target.match(/^[0-9]*$/)){
+		    alert('角色ID必须是数字');
+		    return false;
+		}
+	}
+	
+	if (title.match(/^\s*$/g)) {
+		alert('没有填写邮件标题');
+		return false;
+	}
+	
+	if (content.match(/^\s*$/g)) {
+		alert('没有填写邮件内容');
+		return false;
+	}
+
+	if (content.match(/^\s*$/g)) {
+		alert('没有填写邮件内容');
+		return false;
+	}
+
+	if (sendtime != "") {
+        if (!sendtime.match(/^\d+-\d+-\d+ \d+:\d+:\d+$/g)) {
+			alert("发送时间格式有误");
+			return false;
+        }
+	}
+
+	if(itemlist != ""){
+        if (!itemlist.match(/^(\[\[\d+,\d+,\d+\])(,\[\d+,\d+,\d+\])*\]$/g)){
+            alert('物品列表格式错误');
+            return false;
+        }
+	}
+
+    target = allserver ? -1 : target;
+	var serverid = $curServerID;
+	title = encodeURIComponent(title); //GET 不能传特殊字符串 例如:+
+	content = encodeURIComponent(content);
+	var url = '?inajax=yes&action=sendmail&target='+target+'&title='+title+'&content='+content+'&itemlist='+itemlist+'&serverid='+serverid+'&sendtime='+sendtime+'&rnd='+ Math.random();
+	ajax(url, 'get', function(data) {
+		if (data == "SUCCESS") {
+			alert("操作成功！");
+			window.location.href = "sendmail.php?target="+target+"&title="+title+"&content="+content+"&itemlist="+itemlist+'&serverid='+serverid+'&sendtime='+sendtime;
+		}else if(data == "NOTEXIST"){
+		    alert("角色ID不存在");
+		    return false;
+		}
+		else {
+			alert("操作失败！"+data);
+		}
+	});
+	return true;
+}
+
+//删除邮件
+function deleteServer(id){
+    if(!confirm("确定要删除？")){
+        return;
+    }
+    var url = '?inajax=yes&action=deleteMail&id='+id+'&rnd='+ Math.random();
+    ajax(url, 'get', function(data) {
+        if ( data == "SUCCESS" ) {
+            alert("操作成功！");
+            location.href = "sendmail.php";
+        } else {
+            alert("操作失败！"+data);
+        }
+    });
+}
+
+</script>
+</head>
+<body leftmargin="8" topmargin="8">
+<div style="text-align:center;">
+<div style="width:90%; margin:auto;">
+  <h3 style="padding:5px 20px;background:#E0E0E0;border:1px solid #BBB;">发布邮件：</h3>
+  <div align="center" style="padding:10px 0;background:#EEE; border-bottom:1px solid #BBB;border-left:1px solid #BBB;border-right:1px solid #BBB;">
+  	<div style="margin-bottom:10px;">
+		<span style="margin-right:10px;">收件人(角色ID)：
+			<input type="text" id="target" name="target" class="mytxt" style="border:1px solid #CCCCCC;" onkeydown="cancleAllserver()"
+			<!--{if $receiver != -1}-->value="$receiver"<!--{/if}-->/>
+		</span>
+		<span style="margin-right:10px;">发送时间：
+			<input type="text" id="sendtime" name="sendtime" class="mytxt" style="border:1px solid #CCCCCC;" onFocus='new Calendar().show(this)' value="$strTime"/>
+		</span>
+		<span>
+			<input name="allserver" type="checkbox" id="allserver" value="1" onclick="clearCharID()" <!--{if $receiver == -1}-->checked="checked"<!--{/if}-->/> 全服发送
+		</span>
+  	</div>
+	<div style="margin-bottom:10px;">标题:
+		<input id="title" name="title" type="text" class="mytxt" size="80" style="border:1px solid #CCCCCC;" value="$title"/>
+	</div>
+    <div style="margin-bottom:10px;">
+	    <textarea name="content" cols="100" rows="15" id="content" style="border:1px solid #CCCCCC;padding:5px;">$content</textarea>
+    </div>
+    <div style="margin-bottom:10px;">物品:
+	    <input type="text" name="itemlist" id="itemlist" style="width:30%; border:1px solid #CCCCCC;padding:5px;" value="$itemlist"></input>
+	    [[x,y,z],[x,y,z]....]
+    </div>
+	<div>
+		<input type="button" style="width:200px;" value="发   送" onClick="sendMail()"/>
+	</div>
+  </div>
+</div>
+</div>
+<br/>
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="11" background="skin/images/tbg.gif">&nbsp;邮件列表&nbsp;</td>
+</tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="3%">编号</td>
+	<td width="3%">服务器名</td>
+	<td width="3%">操作人</td>
+	<td width="6%">标题</td>
+	<td width="10%">内容</td>
+	<td width="3%">收件人</td>
+    <td width="6%">物品</td>
+	<td width="5%">创建时间</td>
+	<td width="5%">发布时间</td>
+	<td width="2%">状态</td>
+	<td width="3%">操作</td>
+  </tr>
+<!--{loop $mailList $v}-->
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+	<td>$v[id]</td>
+	<td>$v[servername]</td>
+	<td>$v[sender]</td>
+	<td align="left">$v[title]</td>
+	<td align="left">$v[content]</td>
+	<td>$v[sreceiver]</td>
+    <td>$v[itemlist]</td>
+	<td>$v[stime]</td>
+	<td>$v[etime]</td>
+	<td>$v[state]</td>
+	<td>[<a href="javascript:;", onClick="deleteServer('$v[id]')" style="cursor: pointer">删除</a>]</td>
+  </tr>
+<!--{/loop}-->
+<tr align="right" bgcolor="#EEF4EA">
+	<td height="36" colspan="11" align="center"><!--{if $multi}-->$multi<!--{/if}--></td>
+</tr>
+</table>
+</body>
+</html>
