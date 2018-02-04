@@ -11,24 +11,24 @@ bool InitNetwork(int8_t nServiceID)
 {
 	g_poContext->LoadServerConfig();
 
-	ServerNode* poServer = NULL;
+	GlobalNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGlobalList.size(); i++)
 	{
-		if (oSrvConf.oGlobalList[i].oGlobal.uService == nServiceID)
+		if (oSrvConf.oGlobalList[i].uID == nServiceID)
 		{
-			poServer = &oSrvConf.oGlobalList[i];
+			poNode = &oSrvConf.oGlobalList[i];
 			break;
 		}
 	}
-	if (poServer == NULL)
+	if (poNode == NULL)
 	{
 		XLog(LEVEL_ERROR, "GlobalServer conf:%d not found\n", nServiceID);
 		return false;
 	}
 
 	GlobalServer* poGlobalServer = (GlobalServer*)g_poContext->GetService();
-	if (!poGlobalServer->Init(nServiceID, poServer->oGlobal.sIP, poServer->oGlobal.uPort))
+	if (!poGlobalServer->Init(nServiceID, poNode->sIP, poNode->uPort))
 	{
 		return false;
 	}

@@ -9,9 +9,9 @@ gtServerConf=
 	--SSDB数据库(游戏数据)
 	tGameDB=
 	{
-		["center"]={sIP="192.168.0.9", nPort=9000}, --唯一ID生成数据库
-		["global"]={sIP="127.0.0.1", nPort=9100},	--本服全局数据(排行榜,活动,帮会等)
-		["user"]={sIP="127.0.0.1", nPort=9101}, --玩家自身数据
+		["center"]={sIP="192.168.0.9", nPort=9000, nServer=0}, --唯一ID生成数据库
+		["global"]={sIP="127.0.0.1", nPort=9100, nServer=gnServerID},	--本服全局数据(排行榜,活动,帮会等)
+		["user"]={sIP="127.0.0.1", nPort=9101, nSever=gnServerID}, --玩家自身数据
 	},
 	--MYSQL数据库(日志数据)
 	tLogDB={ sIP="192.168.0.9", nPort=3308, sDBName=gsGamePrefix.."_s"..gnServerID, sUserName="root",sPassword="123456",},

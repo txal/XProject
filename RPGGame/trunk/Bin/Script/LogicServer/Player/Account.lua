@@ -1,19 +1,25 @@
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 --账号模块
+gnBasePlayerID = 1000000 --玩家ID起始
+local nMaxPlayerID = 9999999-gnBasePlayerID --玩家ID上限
 
 local nAutoSaveTime = 5*60 --自动保存时间
-function CAccount:Ctor(nServer, nSource, nID, sName)
-	self.m_nSaveTick = nil
-	self.m_bDirty = false
-
+local nMaxRolePerAccount = 3 --每个帐号创建角色上限
+function CAccount:Ctor(nID, nServer, nSession, nSource, sName)
 	self.m_nID = nID
 	self.m_sName = sName
 	self.m_nSource = nSource
 	self.m_nServer = nServer
 
-	self.m_tRoleSummaryMap = {} 	--角色摘要信息
-	self.m_nLastRoleID = 0 			--上次登录的角色ID
+	self.m_tRoleSummaryMap = {} 	--角色摘要信息:{[roleid]={sName="",nLevel=0,nGender=0,nSchool=0,tEquipment={},},...}
+	self.m_nLastRoleID = 0 			--最后登录的角色ID
 	self.m_oOnlineRole = nil 		--在线角色对象(同时只允许一个角色在线)
+
+	--不保存
+	self.m_bDirty = false
+	self.m_nSaveTick = nil
+	self.m_nSession = nSession
+
 end
 
 function CAccount:IsDirty()
@@ -25,7 +31,13 @@ function CAccount:MarkDirty(bDirty)
 end
 
 function CAccount:LoadData()
-	--fix pd
+	local oDB = goDBMgr:GetSSDB(self.m_nServer, "user", self.m_nID)
+	local sData = oDB:HGet(gtDBDef.sAccountDB, self.m_nID) 
+	if sData then
+		local tData = cjson.decode(sData)
+		self.m_tRoleSummaryMap = tData.m_tRoleSummaryMap
+		self.m_nLastRoleID = tData.m_nLastRoleID
+	end
 end
 
 function CAccount:SaveData()
@@ -34,7 +46,12 @@ function CAccount:SaveData()
 		return
 	end
 	self:MarkDirty(false)
-	--fix pd
+
+	local tData = {}
+	tData.m_tRoleSummaryMap = self.m_tRoleSummaryMap
+	tData.m_nLastRoleID = self.m_nLastRoleID
+	local oDB = goDBMgr:GetSSDB(self.m_nServer, "user", self.m_nID)
+	oDB:HGet(gtDBDef.sAccountDB, self.m_nID, cjson.encode(tData)) 
 end
 
 function CAccount:OnRelease()
@@ -67,6 +84,11 @@ function CAccount:GetServer()
 	return self.m_nServer
 end
 
+function CAccount:GetSession()
+	return self.m_nSession
+end
+
+--取当前在线的角色对象
 function CAccount:GetOnlineRole()
 	return self.m_oOnlineRole
 end
@@ -90,6 +112,7 @@ function CAccount:Offline()
 	self.m_oOnlineRole = nil
 end
 
+--更新角色摘要信息
 function CAccount:UpdateSummary()
 	if not self.m_oOnlineRole then
 		return
@@ -97,8 +120,45 @@ function CAccount:UpdateSummary()
 	--fix pd
 end
 
-function CAccount:CreateRole()
+
+--生成唯一账号/角色ID
+function CAccount:GenPlayerID()
+	local oDB = goDBMgr:GetSSDB(0, "center")
+	local nIncr = oDB:HIncr(gtDBDef.sPlayerIDDB, "data")
+	local nPlayerID = gnBasePlayerID + nIncr % nMaxPlayerID
+	return nPlayerID
 end
 
-function CAccount:DeleteRole()
+--取角色数量
+function CAccount:GetRoleCount()
+	local nCount = 0
+	for nRoleID, v in pairs(self.m_tRoleSummaryMap) do
+		nCount = nCount +1
+	end
+	return nCount
+end
+
+--角色登录
+function CAccount:RoleLogin(nID)
+end
+
+--创建角色
+function CAccount:CreateRole(sName, nGender, nSchool)
+	if self:GetRoleCount() >= nMaxRolePerAccount then
+		return CRole:Tips("每个帐号只能创建三个角色", self.m_nServer, self.m_nSession)
+	end
+	local oDB = goDBMgr:GetSSDB(0, "center")
+	local sData = oDB:HGet(gtDBDef.sRoleNameDB, sName)
+	if sData ~= "" then
+		return CRole:Tips("角色名已被使用", self.m_nServer, self.m_nSession)
+	end
+
+	local nID = goPlayerMgr:GenPlayerID()
+	local oRole = CRole:new(self, nID, sName, nGender, nSchool)
+	self.m_oOnlineRole = oRole
+	return oRole
+end
+
+--删除角色
+function CAccount:DeleteRole(nID)
 end

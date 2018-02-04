@@ -1,18 +1,9 @@
 --玩家管理模块
-gnBasePlayerID = 1000000 --玩家ID起始
-local nMaxPlayerID = 9999999-gnBasePlayerID --玩家ID上限
 
 function CPlayerMgr:Ctor()
 	self.m_tAccountIDMap = {}		--账号ID影射: {[accountid]=account, ...}
 	self.m_tAccountNameMap = {}		--账号名字影射: {[accountkey]=account, ...}
 	self.m_tAccountSessionMap = {}	--账号SESSION影射: {[combindid]=account, ...}
-end
-
---生成唯一账号/角色ID
-function CPlayerMgr:GenPlayerID()
-	local nIncr = goDBMgr:GetSSDB(0, "center"):HIncr(gtDBDef.sPlayerIDDB, "data")
-	local nPlayerID = gnBasePlayerID + nIncr % nMaxPlayerID
-	return nPlayerID
 end
 
 function CPlayerMgr:GetAccountIDMap()

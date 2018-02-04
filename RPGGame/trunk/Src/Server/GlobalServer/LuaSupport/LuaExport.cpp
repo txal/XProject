@@ -22,18 +22,9 @@ int GetServiceID(lua_State* pState)
 	return 1;
 }
 
-//生成游戏唯一ID
-int MakeGameObjID(lua_State* pState)
-{
-	GAME_OBJID oID = MakeGameObjID(g_poContext->GetService()->GetServiceID());
-	lua_pushinteger(pState,oID.llID);
-	return 1;
-}
-
 luaL_Reg _global_lua_func[] =
 {
 	{ "GetServiceID", GetServiceID},
-	{ "MakeGameObjID", MakeGameObjID},
 	{ NULL, NULL },
 };
 

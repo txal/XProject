@@ -26,10 +26,9 @@ public:
     uint16_t GetServerID() { return m_oServerConf.uServerID; }
     uint16_t GetWorldServerID() { return m_oServerConf.uWorldServerID; }
 
-	int RandomLocalLogic();
+	int SelectLogic(int nSession);
 
 	bool LoadServerConfig();
-
 	ServerConfig& GetServerConfig() { return m_oServerConf; }
 
 private:

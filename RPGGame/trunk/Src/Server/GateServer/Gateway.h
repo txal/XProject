@@ -11,7 +11,7 @@ class Gateway : public Service
 public:
 	Gateway();
 	virtual ~Gateway();
-	bool Init(ServerNode* poConf);
+	bool Init(GateNode* poConf);
 	bool Start();
 
 public:

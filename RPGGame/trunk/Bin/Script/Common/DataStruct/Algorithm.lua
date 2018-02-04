@@ -1,7 +1,5 @@
-CAlg = {}
-
 --二分查找
-function CAlg:BinarySearch(tbl, fncomp, param)
+function CAlgorithm:BinarySearch(tbl, fncomp, param)
 	local low, high = 1, #tbl
 	while low <= high do
 		local mid = math.floor((low+high)/2)

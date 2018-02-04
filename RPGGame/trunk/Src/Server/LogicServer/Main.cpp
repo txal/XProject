@@ -15,17 +15,17 @@ bool InitNetwork(int8_t nServiceID)
 {
 	g_poContext->LoadServerConfig();
 
-	ServerNode* poServer = NULL;
+	LogicNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLogicList.size(); i++)
 	{
-		if (oSrvConf.oLogicList[i].oLogic.uService == nServiceID)
+		if (oSrvConf.oLogicList[i].uID == nServiceID)
 		{
-			poServer = &oSrvConf.oLogicList[i];
+			poNode = &oSrvConf.oLogicList[i];
 			break;
 		}
 	}
-	if (poServer == NULL)
+	if (poNode == NULL)
 	{
 		XLog(LEVEL_ERROR, "LogicServer conf:%d not found\n", nServiceID);
 		return false;

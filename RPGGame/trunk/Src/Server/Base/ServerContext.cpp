@@ -1,4 +1,5 @@
 ﻿#include "Server/Base/ServerContext.h"
+#include "Common/DataStruct/HashFunc.h"
 #include "Common/DataStruct/XMath.h"
 
 ServerContext::ServerContext()
@@ -8,15 +9,15 @@ ServerContext::ServerContext()
 	m_poPacketHandler = NULL;
 }
 
-int ServerContext::RandomLocalLogic()
+int ServerContext::SelectLogic(int nSession)
 {
-	int nCount = (int)m_oServerConf.oLogicList.size();
-	if (nCount <= 0)
+	uint32_t uCount = (uint32_t)m_oServerConf.oLogicList.size();
+	if (uCount <= 0)
 	{
 		return 0;
 	}
-	int nIndex = XMath::Random(1, nCount);
-	return m_oServerConf.oLogicList[nIndex-1].uID;
+	int nIndex = jhash_1word(nSession, 0) % uCount;
+	return m_oServerConf.oLogicList[nIndex].uID;
 }
 
 bool ServerContext::LoadServerConfig()

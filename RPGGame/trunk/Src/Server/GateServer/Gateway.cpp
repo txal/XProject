@@ -26,24 +26,24 @@ Gateway::~Gateway()
 {
 }
 
-bool Gateway::Init(ServerNode* poConf)
+bool Gateway::Init(GateNode* poConf)
 {
 	char sServiceName[32];
-	sprintf(sServiceName, "Gateway:%d", poConf->oGate.uService);
+	sprintf(sServiceName, "Gateway:%d", poConf->uID);
 	m_oNetEventHandler.GetMailBox().SetName(sServiceName);
 
-	if (!Service::Init((int8_t)poConf->oGate.uService, sServiceName))
+	if (!Service::Init((int8_t)poConf->uID, sServiceName))
 	{
 		return false;
 	}
-	m_uListenPort = poConf->oGate.uPort;
-	m_poExterNet = INet::CreateNet(NET_TYPE_WEBSOCKET, poConf->oGate.uService, poConf->oGate.uMaxConns, &m_oNetEventHandler
-		, poConf->oGate.uSecureCPM, poConf->oGate.uSecureQPM, poConf->oGate.uSecureBlock, poConf->oGate.uDeadLinkTime);
+	m_uListenPort = poConf->uPort;
+	m_poExterNet = INet::CreateNet(NET_TYPE_WEBSOCKET, poConf->uID, poConf->uMaxConns, &m_oNetEventHandler
+		, poConf->uSecureCPM, poConf->uSecureQPM, poConf->uSecureBlock, poConf->uDeadLinkTime);
 	if (m_poExterNet == NULL)
 	{
 		return false;
 	}
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, poConf->oGate.uService, 1024, &m_oNetEventHandler);
+	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, poConf->uID, 1024, &m_oNetEventHandler);
 	if (m_poInnerNet == NULL)
 	{
 		return false;
@@ -170,50 +170,28 @@ void Gateway::OnExterNetAccept(int nSessionID, uint32_t uRemoteIP)
 
 void Gateway::OnExterNetClose(int nSessionID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(GetServiceID());
-	m_oClientMgr.RemoveClient(nSessionID);
-	if (poRouter == NULL)
+	CLIENT* poClient = m_oClientMgr.GetClient(nSessionID);
+	if (poClient == NULL)
 	{
-		XLog(LEVEL_ERROR, "%s: Get router fail\n", GetServiceName());
+		XLog(LEVEL_ERROR, "%s: Client:%d not found\n", GetServiceName(), nSessionID);
 		return;
 	}
-	ServerVector& oLogicList = g_poContext->GetLogicList();
-
 	NetAdapter::SERVICE_NAVI oNavi;
 	oNavi.uSrcServer = g_poContext->GetServerID();
 	oNavi.uSrcServer = g_poContext->GetService()->GetServiceID();
-	oNavi.uTarServer = g_poContext->GetServerID();
+	oNavi.uTarServer = poClient->uServerID;
+	oNavi.nTarService = poClient->nLogicService;
 	oNavi.nTarSession = nSessionID;
-	for (int i = 0; i < oLogicList.size(); i++)
-	{
-		int8_t nTarService = (int8_t)oLogicList[i].oLogic.uService;
-		if (nTarService <= 0)
-			break;
-		Packet* poPacket = Packet::Create();
-		if (poPacket == NULL)
-			return;
-		oNavi.nTarService = nTarService;
-		if (!NetAdapter::SendInner(NSSysCmd::ssClientClose, poPacket, oNavi))
-		{
-			XLog(LEVEL_ERROR, "%s: Send packet back fail\n", GetServiceName());
-		}
-	}
 
-	oNavi.uTarServer = g_poContext->GetWorldServerID();
-	ServerVector& oWorldLogicList = g_poContext->GetWorldLogicList();
-	for (int i = 0; i < oWorldLogicList.size(); i++)
+	m_oClientMgr.RemoveClient(nSessionID);
+	Packet* poPacket = Packet::Create();
+	if (poPacket == NULL)
 	{
-		int8_t nTarService = (int8_t)oWorldLogicList[i].oLogic.uService;
-		if (nTarService <= 0)
-			break;
-		Packet* poPacket = Packet::Create();
-		if (poPacket == NULL)
-			return;
-		oNavi.nTarService = nTarService;
-		if (!NetAdapter::SendInner(NSSysCmd::ssClientClose, poPacket, oNavi))
-		{
-			XLog(LEVEL_ERROR, "%s: Send packet back fail\n", GetServiceName());
-		}
+		return;
+	}
+	if (!NetAdapter::SendInner(NSSysCmd::ssClientClose, poPacket, oNavi))
+	{
+		XLog(LEVEL_ERROR, "%s: Send packet back fail\n", GetServiceName());
 	}
 }
 

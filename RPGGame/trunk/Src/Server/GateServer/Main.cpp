@@ -11,23 +11,23 @@ bool InitNetwork(int8_t nServiceID)
 {
 	g_poContext->LoadServerConfig();
 
-	ServerNode* poServer = NULL;
+	GateNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGateList.size(); i++)
 	{
-		if (oSrvConf.oGateList[i].oGate.uService == nServiceID)
+		if (oSrvConf.oGateList[i].uID == nServiceID)
 		{
-			poServer = &oSrvConf.oGateList[i];
+			poNode = &oSrvConf.oGateList[i];
 			break;
 		}
 	}
-	if (poServer == NULL)
+	if (poNode == NULL)
 	{
 		XLog(LEVEL_ERROR, "GateServer conf:%d not found\n", nServiceID);
 		return false;
 	}
 	Gateway* poGateway = (Gateway*)g_poContext->GetService();
-	if (!poGateway->Init(poServer))
+	if (!poGateway->Init(poNode))
 	{
 		return false;
 	}
