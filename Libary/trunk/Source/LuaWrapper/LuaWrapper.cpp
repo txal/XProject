@@ -337,27 +337,20 @@ int LuaWrapper::CustomLoader(lua_State* pState)
 		FILE* poFile = fopen(sPath, "r");
 		if (poFile == NULL)
 		{
-			return 0;
+			sprintf(sPath, "../Script/%s", sFileName);
+			poFile = fopen(sPath, "r");
+			if (poFile == NULL)
+			{ 
+				XLog(LEVEL_ERROR, "File not found:%s\n", sPath);
+				return 0;
+			}
 		}
-		struct stat oStat;
-		int nRes = stat(sPath, &oStat);
-		if (nRes != 0)
-		{
-			fclose(poFile);
-			XLog(LEVEL_ERROR, "%s", strerror(errno));
-			return 0;
-		}
-		nFileSize = oStat.st_size;
+		fseek(poFile, 0, SEEK_END);
+		nFileSize = ftell(poFile);
+		fseek(poFile, 0, SEEK_SET);
 		pCont = (char*)XALLOC(NULL, nFileSize);
 		memset(pCont, 0, nFileSize);
-		int nReadSize = (int)fread(pCont, 1, nFileSize, poFile);
-		if (nFileSize != nReadSize)
-		{
-			SAFE_FREE(pCont);
-			fclose(poFile);
-			XLog(LEVEL_ERROR, "Read file size error '%s'!\n", sPath);
-			return 0;
-		}
+		nFileSize = fread(pCont, 1, nFileSize, poFile);
 		fclose(poFile);
 	}
 	else
