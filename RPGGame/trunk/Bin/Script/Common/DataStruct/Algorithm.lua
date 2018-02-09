@@ -1,4 +1,6 @@
 --二分查找
+local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
+
 function CAlgorithm:BinarySearch(tbl, fncomp, param)
 	local low, high = 1, #tbl
 	while low <= high do

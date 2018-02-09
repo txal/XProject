@@ -16,25 +16,20 @@ gtServerConf=
 	--MYSQL数据库(日志数据)
 	tLogDB={ sIP="192.168.0.9", nPort=3308, sDBName=gsGamePrefix.."_s"..gnServerID, sUserName="root",sPassword="123456",},
 	
+	
 	--网关服务
-    tGateService=
-	{
-		{nID=10, nServer=gnServerID, nPort=9102, nMaxConns=20000, nSecureCPM=120, nSecureQPM=180, nSecureBlock=60, nDeadLinkTime=120} ,
-	},
-	--全局服务
-    tGlobalService={ {nID=20, sIP="192.168.3.182", nPort=9103} },
-	--日志服务
-    tLogService={ {nID=30, nServer=gnServerID, nWorkers=4 } },
+    tGateService={ {nID=10, nServer=gnServerID, nPort=9102, nMaxConns=20000, nSecureCPM=120, nSecureQPM=180, nSecureBlock=60, nDeadLinkTime=120},},
+	--登录服务
+    tLoginService={ {nID=20}, },
 	--场景服务
-    tLogicService=
-	{
-		{nID=40},
-	},
+    tLogicService={ {nID=30}, },
+	--全局服务
+    tGlobalService={ {nID=40, sIP="192.168.3.182", nPort=9103},},
+	--日志服务
+    tLogService={ {nID=50, nServer=gnServerID, nWorkers=4 },},
+
 	--路由服务
-	tRouterService=
-	{
-		{nID=1, sIP="127.0.0.1", nPort=8600},
-	},
+	tRouterService={ {nID=1, sIP="127.0.0.1", nPort=8600},},
 
 }
 

@@ -1,5 +1,26 @@
 package login;
 
+//角色列表请求
+message RoleListReq
+{
+    required int32 nSource = 1;     //渠道号
+    required string sAccount = 2;   //账号名
+}
+
+//角色列表返回
+message RoleListRet
+{
+    message _Role
+    {
+        required int32 nID = 1;         //角色ID
+        required string sName = 2;      //角色名
+        required int32 nGender = 3;     //性别(1:男; 2:女)
+        required int32 nSchool = 4;     //门派()
+        required int32 nLevel = 5;      //等级
+    } 
+    repeated _Role tList = 1;           //角色列表
+}
+
 //登陆
 message LoginReq
 {
@@ -11,9 +32,7 @@ message LoginReq
 //登陆返回
 message LoginRet
 {
-	required int32 nCode = 1;		    //0成功;-1需要创建角色
-    optional bool bFirstOnline = 2;     //是否每天首次登陆
-    optional bool bNewAccount = 3;      //是否新号
+    required int32 nServerID = 1;   //服务器ID
 }
 
 //创建角色

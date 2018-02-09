@@ -42,21 +42,29 @@ struct LogicNode
 };
 
 
+struct LoginNode
+{
+	uint16_t uID;
+};
+
+typedef std::vector<LogNode> LogVector;
 typedef std::vector<GateNode> GateVector;
 typedef std::vector<LogicNode> LogicVector;
 typedef std::vector<RouterNode> RouterVector;
 typedef std::vector<GlobalNode> GlobalVector;
-typedef std::vector<LogNode> LogVector;
+typedef std::vector<LoginNode> LoginVector;
 
 struct ServerConfig
 {
 	uint16_t uServerID;
 	uint16_t uWorldServerID;
+
+	LogVector oLogList;
 	GateVector oGateList;
 	LogicVector oLogicList;
 	RouterVector oRouterList;
 	GlobalVector oGlobalList;
-	LogVector oLogList;
+	LoginVector oLoginList;
 };
 
 

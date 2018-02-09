@@ -1,8 +1,9 @@
 gtDBDef = {}
-gtDBDef.sPlayerIDDB = "PlayerIDDB"		--玩家ID数据库(CENTER)
-gtDBDef.sRoleNameDB = "RoleNameDB"      --唯一角色名数据库(CENTER)
-gtDBDef.sAccountDB = "AccountDB"		--账号数据表
-gtDBDef.sPlayerDB = "PlayerDB"			--玩家数据数据表
+gtDBDef.sPlayerIDDB = "PlayerIDDB"			--玩家ID数据库(CENTER)
+gtDBDef.sRoleDB = "RoleDB"					--角色数据数据表(USER)
+gtDBDef.sRoleNameDB = "RoleNameDB"      	--唯一角色名数据库(GLOBAL)
+gtDBDef.sAccountDB = "AccountDB"			--账号数据表(USER)
+gtDBDef.sAccountNameDB = "AccountNameDB" 	--唯一角账名数据库(GLOABAL)
 
 gtDBDef.sJZRankingDB = "JZRankingDB"	--建筑加成排行榜
 gtDBDef.sGLRankingDB = "GLRankingDB"	--国力加成排行榜

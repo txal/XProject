@@ -28,7 +28,7 @@ CBrowser["moduser"] = function (self, nSession, tData)
 	else
 		local tMsg = {data=true}
 		local oSSDB = goDBMgr:GetSSDB("Player")
-		local sPlayerData = oSSDB:HGet(gtDBDef.sPlayerDB, nCharID)
+		local sPlayerData = oSSDB:HGet(gtDBDef.sRoleDB, nCharID)
 		if sPlayerData ~= "" then
 			local tPlayerData = cjson.decode(sPlayerData)
 			tPlayerData.m_nYuanBao = tData.yuanbao
@@ -36,7 +36,7 @@ CBrowser["moduser"] = function (self, nSession, tData)
 			tPlayerData.m_nWeiWang = tData.weiwang 
 			tPlayerData.m_nWaiJiao = tData.waijiao
 			tPlayerData.m_nVIP = tData.vip
-			oSSDB:HSet(gtDBDef.sPlayerDB, nCharID, cjson.encode(tPlayerData))
+			oSSDB:HSet(gtDBDef.sRoleDB, nCharID, cjson.encode(tPlayerData))
 		else
 			tMsg.data = false
 			tMsg.error = "角色不存在"
@@ -100,7 +100,7 @@ CBrowser["memberinfo"] = function (self, nSession, tData)
 	local oSSDB = goDBMgr:GetSSDB("Player")
 	for _, nCharID in ipairs(tData) do
 		nCharID = tonumber(nCharID)
-		local sPlayerData = oSSDB:HGet(gtDBDef.sPlayerDB, nCharID)
+		local sPlayerData = oSSDB:HGet(gtDBDef.sRoleDB, nCharID)
 		if sPlayerData ~= "" then
 			local tInfo = {nState=0, nYuanBao=0, nYinLiang=0, nGuoLi=0, nWeiWang=0, nWaiJiao=0, nVIP=0, bOnline=false}
 			local tPlayerData = cjson.decode(sPlayerData)

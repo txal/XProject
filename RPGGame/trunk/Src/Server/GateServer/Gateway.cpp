@@ -180,7 +180,7 @@ void Gateway::OnExterNetClose(int nSessionID)
 	oNavi.uSrcServer = g_poContext->GetServerID();
 	oNavi.uSrcServer = g_poContext->GetService()->GetServiceID();
 	oNavi.uTarServer = poClient->uServerID;
-	oNavi.nTarService = poClient->nLogicService;
+	oNavi.nTarService = (int8_t)g_poContext->GetServerConfig().oLoginList[0].uID;
 	oNavi.nTarSession = nSessionID;
 
 	m_oClientMgr.RemoveClient(nSessionID);

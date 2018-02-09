@@ -17,7 +17,7 @@ local function _InitGlobal()
 	goMysqlPool:Init()
 end
 
-local nGCTime = 60
+local nGCTime = 180
 local function _LuaGC()
     collectgarbage()
 end	

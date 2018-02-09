@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{F5F492F5-0CFC-4F2A-80A8-C60CA9824067}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GateServer", "GateServer\GateServer.vcxproj", "{0CCDCA14-9E7E-4D9E-BC3E-142D54CDFC91}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GlobalServer", "GlobalServer\GlobalServer.vcxproj", "{DE67EB28-1D3C-482E-BE78-04DD1EF85405}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoginServer", "LoginServer\LoginServer.vcxproj", "{69CA58FA-D0ED-476C-9D28-FCD017CE539E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -142,6 +144,20 @@ Global
 		{DE67EB28-1D3C-482E-BE78-04DD1EF85405}.Release|Win32.Build.0 = Release|Win32
 		{DE67EB28-1D3C-482E-BE78-04DD1EF85405}.Release|x64.ActiveCfg = Release|x64
 		{DE67EB28-1D3C-482E-BE78-04DD1EF85405}.Release|x64.Build.0 = Release|x64
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Debug|Win32.Build.0 = Debug|Win32
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Debug|x64.ActiveCfg = Debug|x64
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Debug|x64.Build.0 = Debug|x64
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Release|Any CPU.ActiveCfg = Release|Win32
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Release|Win32.ActiveCfg = Release|Win32
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Release|Win32.Build.0 = Release|Win32
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Release|x64.ActiveCfg = Release|x64
+		{69CA58FA-D0ED-476C-9D28-FCD017CE539E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

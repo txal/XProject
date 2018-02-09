@@ -66,7 +66,7 @@ local function _UninitGlobal()
 end
 
 
-local nGCTime = 60 --秒
+local nGCTime = 180 --秒
 local function _LuaGC()
     collectgarbage()
 end	
