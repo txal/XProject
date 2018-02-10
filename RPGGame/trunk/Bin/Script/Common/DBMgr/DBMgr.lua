@@ -8,7 +8,7 @@ function CDBMgr:Init()
 	self.m_tSSDBMap = {}
 
 	--连接SSDB
-	for _, tConf in ipairs(gtSSDBConf) do
+	for _, tConf in ipairs(gtServerConf.tGameDB) do
 		local oSSDB = SSDBDriver:new()
 		local bRes = oSSDB:Connect(tConf.sIP, tConf.nPort)
 		assert(bRes, "连接SSDB失败:", tConf)
@@ -29,3 +29,5 @@ function CDBMgr:GetSSDB(nServer, sDBName, nAccountID)
 	local tServerMap = assert(self.m_tSSDBMap[nServer], "服务器ID错误:"..nServer)
 	return assert(tServerMap[sDBName], "找不到SSDB:"..nServer..":"..sDBName)
 end
+
+goDBMgr = goDBMgr or CDBMgr:new()

@@ -11,17 +11,17 @@ bool InitNetwork(int8_t nServiceID)
 {
 	g_poContext->LoadServerConfig();
 
-	LogNode* poLog = NULL;
+	LoginNode* poLogin = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
-	for (int i = 0; i < oSrvConf.oLogList.size(); i++)
+	for (int i = 0; i < oSrvConf.oLoginList.size(); i++)
 	{
-		if (oSrvConf.oLogList[i].uID == nServiceID)
+		if (oSrvConf.oLoginList[i].uID == nServiceID)
 		{
-			poLog = &oSrvConf.oLogList[i];
+			poLogin = &oSrvConf.oLoginList[i];
 			break;
 		}
 	}
-	if (poLog == NULL)
+	if (poLogin == NULL)
 	{
 		XLog(LEVEL_ERROR, "LoginServer conf:%d not found\n", nServiceID);
 		return false;

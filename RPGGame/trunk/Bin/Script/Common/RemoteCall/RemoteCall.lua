@@ -2,8 +2,8 @@
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
 local function fnCompare(v1, v2)
-	local oCo1 = goRemoveCall:GetCoroutine(v1)
-	local oCo2 = goRemoveCall:GetCoroutine(v2)
+	local oCo1 = goRemoteCall:GetCoroutine(v1)
+	local oCo2 = goRemoteCall:GetCoroutine(v2)
 	if oCo1.nExpireTime > oCo2.nExpireTime then
 		return 1
 	end
@@ -19,6 +19,11 @@ function CRemoteCall:Ctor()
 	self.m_nCallID = 0
 	self.m_tCoroutineMap = {}
 	self.m_oMinHeap = CMinHeap:new(fnCompare)
+	self.m_nTimer = nil
+end
+
+--初始化
+function CRemoteCall:Init()
 	self.m_nTimer = goTimerMgr:Interval(3, function() self:CheckExpire() end)
 end
 
@@ -28,7 +33,7 @@ function CRemoteCall:OnRelease()
 end
 
 function CRemoteCall:GenCallID()
-	self.m_nCallID = self.m_nCallID % nMAX_INTERGER + 1
+	self.m_nCallID = self.m_nCallID % nMAX_INTEGER + 1
 	return self.m_nCallID
 end
 
@@ -36,13 +41,15 @@ function CRemoteCall:GetCoroutine(nCallID)
 	return self.m_tCoroutineMap[nCallID]
 end
 
-local function _CoroutineFunc(nCallID, sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
+local function fnCoroutineFunc(nCallID, sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
 	Srv2Srv.RemoveCallReq(nTarServer, nTarService, nTarSession, nCallID, sCallFunc, true, ...)
 	local nCode, tData = coroutine.yield(true)
 
 	if nCode == 0 then
 		LuaTrace("协程执行成功:", nCallID, sCallFunc)
-		fnCallBack(table.unpack(tData))
+		if fnCallBack then
+			fnCallBack(table.unpack(tData))
+		end
 
 	elseif nCode == -1 then
 		return LuaTrace("协程执行失败:", nCallID, sCallFunc, table.unpack(tData))
@@ -60,12 +67,12 @@ end
 
 --远程调用请求(需要返回)
 function CRemoteCall:CallWait(sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
-	assert(sFunc and nTarServer and nTarService, "参数错误")
+	assert(sCallFunc and nTarServer and nTarService, "参数错误")
 	nTarSession = nTarSession or 0
 	local nCallID = self:GenCallID()
-	local oCo = coroutine.create(_CoroutineFunc)
+	local oCo = coroutine.create(fnCoroutineFunc)
 	self.m_tCoroutineMap[nCallID] = {oCo=oCo, nExpireTime=os.time()+3}
-	self.m_oMinHeap.Push(nCallID)
+	self.m_oMinHeap:Push(nCallID)
 	coroutine.resume(oCo, nCallID, sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
 end
 
@@ -78,7 +85,7 @@ function CRemoteCall:OnCallRet(nTarSession, nCallID, nCode, ...)
 	local tData = {...}
 	local bRet, sErr = coroutine.resume(tCo.oCo, nCode, tData)
 	if not bRet then
-		LuaTrace("OnCallRet:", sErr)
+		LuaTrace("CRemoteCall:OnCallRet:", sErr)
 	end
 	assert(coroutine.status(tCo.oCo) == "dead")
 	self.m_tCoroutineMap[nCallID] = nil
@@ -100,7 +107,7 @@ function CRemoteCall:CheckExpire()
 			end
 			local bRet, sErr = coroutine.resume(tCo.oCo, -2)
 			if not bRet then
-				LuaTrace("CheckExpire:", sErr)
+				LuaTrace("CRemoteCall:CheckExpire:", sErr)
 			end
 			assert(coroutine.status(tCo.oCo) == "dead")
 			self.m_tCoroutineMap[nCallID] = nil
@@ -111,3 +118,5 @@ function CRemoteCall:CheckExpire()
 		end
 	end
 end
+
+goRemoteCall = goRemoteCall or CRemoteCall:new()

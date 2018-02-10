@@ -8,7 +8,7 @@ local function OpenProto()
     local f = io.open("protopath.txt", "r")
     if not f then
         require("../../Data/Protobuf/LoadPBCProto")
-        LoadProto("../Data/Protobuf")
+        LoadProto("../../Data/Protobuf")
         return
     else
         local sLoaderPath = f:read("l")
@@ -34,13 +34,10 @@ require = function(sScript)
 end
 require("GMMgr/GMMgrInc")
 
---连接数据库
-goDBMgr = goDBMgr or CDBMgr:new()
-goDBMgr:Init()
-
 --全局初始化
 local function _InitGlobal()
-
+    goDBMgr:Init()
+    goRemoteCall:Init()
 end
 
 --全局反初始化
@@ -61,7 +58,8 @@ function Main()
     collectgarbage("setstepmul", 300)
     collectgarbage()
     gnGCTimer = goTimerMgr:Interval(nGCTime, function() _LuaGC() end)
-	LuaTrace("GlobalServer lua start successful")
+	LuaTrace("LoginServer lua start successful")
+    Test()
 end
 
 function OnExitServer()
@@ -74,4 +72,9 @@ function OnExitServer()
     end
     LuaTrace("OnExitServer finish***")
     os.exit()
+end
+
+function Test()
+    goRemoteCall:Call("Test", 1, 30, 0, "hehehe")
+    goRemoteCall:CallWait("Test", nil, 1, 30, 0, "hehehe")
 end

@@ -1,3 +1,4 @@
 CRemoteCall = CRemoteCall or class()
 
-require("RemoteCall/RemoteCall")
+require("Common/RemoteCall/RemoteCall")
+require("Common/RemoteCall/RemoteCallRpc")

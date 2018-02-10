@@ -1,4 +1,4 @@
---错误捕捉函数
+--错误处理函数
 local function fnError(sErr)
 	LuaTrace(sErr, debug.traceback())
 end

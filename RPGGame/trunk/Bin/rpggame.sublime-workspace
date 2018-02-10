@@ -560,10 +560,7 @@
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common",
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common/DataStruct",
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common/RemoteCall",
-		"/E/XProject/RPGGame/trunk/Bin/Script/Common/TimerMgr",
-		"/E/XProject/RPGGame/trunk/Bin/Script/GlobalServer/Global",
-		"/E/XProject/RPGGame/trunk/Bin/Script/LogicServer/Player",
-		"/E/XProject/RPGGame/trunk/Bin/Script/LoginServer/LoginMgr"
+		"/E/XProject/RPGGame/trunk/Bin/Script/Common/TimerMgr"
 	],
 	"file_history":
 	[
