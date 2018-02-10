@@ -58,6 +58,7 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 			if (oEvent.U.oRecv.poPacket->GetInnerHeader(oHeader, &pSessionArray, false))
 			{
 				uServer = oHeader.uSrcServer;
+				assert(uServer > 0);
 				nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
 			}
 		}

@@ -4,7 +4,6 @@ local table, string, math, os, pairs, ipairs, assert = table, string, math, os, 
 function CLoginMgr:Ctor()
 	self.m_tAccountIDMap = {}		--账号ID影射: {[accountid]=account, ...}
 	self.m_tAccountNameMap = {}		--账号名字影射: {[accountkey]=account, ...}
-	self.m_tAccountSessionMap = {}	--账号SESSION影射: {[combindid]=account, ...}
 end
 
 function CLoginMgr:MakeAccountKey(nSource, sAccount)
@@ -13,6 +12,14 @@ function CLoginMgr:MakeAccountKey(nSource, sAccount)
 		return sAccount
 	end
 	return (nSource.."_"..sAccount)
+end
+
+function CLoginMgr:GetAccountByID(nAccountID)
+	return self.m_tAccountIDMap[nAccountID]
+end
+
+function CLoginMgr:GetAccountByName(sAccountKey)
+	return self.m_tAccountNameMap[sAccountKey]
 end
 
 --角色列表请求

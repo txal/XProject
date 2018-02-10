@@ -125,5 +125,8 @@
     <ClInclude Include="..\..\Src\Server\LoginServer\LuaSupport\LuaExport.h">
       <Filter>Src\LuaSupport</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\MinHeap.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

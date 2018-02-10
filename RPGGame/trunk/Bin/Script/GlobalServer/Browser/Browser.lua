@@ -24,7 +24,7 @@ CBrowser["moduser"] = function (self, nSession, tData)
 	local nCharID = tonumber(tData.charid)
 	local oPlayer = goGPlayerMgr:GetPlayerByCharID(nCharID)
 	if oPlayer then
-		Srv2Srv.GMModUserReq(oPlayer:GetLogicService(), 0, nSession, tData)
+		Srv2Srv.GMModUserReq(oPlayer:GetServer(), oPlayer:GetLogicService(), nSession, tData)
 	else
 		local tMsg = {data=true}
 		local oSSDB = goDBMgr:GetSSDB("Player")

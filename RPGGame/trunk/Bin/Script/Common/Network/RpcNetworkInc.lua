@@ -62,7 +62,7 @@ end
 setmetatable(Srv2Clt, tSrv2CltMeta)
 
 --------------------------------------服务器内部------------------------------------------------
---单发
+--单发(异步)
 --格式:Srv2Srv.XXX(nTarServer, nTarService, nTarSession, ...)
 local tInternalMeta = {}
 local tRpcInfo = {}
@@ -77,10 +77,16 @@ tInternalMeta.__index = function(tRpcType, sFunc)
 end
 setmetatable(Srv2Srv, tInternalMeta)
 
---广播
+--广播(异步)
 --格式:Srv2Srv.Broadcast(sRpcFunc, tServiceList, ...): tServiceList:{{nTarServer, nTarService, nTarSession}, ...}
 Srv2Srv.Broadcast = function(sRpcFunc, tServiceList, ...)
     assert(#tServiceList>0 and #tServiceList%3==0, "参数错误")
     local oPacket = _rpc_pack(Srv2Srv.sName, sRpcFunc, ...)
     _broadcast_inner(gtMsgType.eLuaRpcMsg, 0, oPacket, tServiceList)
+end
+
+--远程调用(同步,挂起协程等对方返回)
+Srv2Srv.RemoteCallReq = function(nTarServer, nTarService, nTarSession, nCallID, sCallFunc, ...)
+    local oPacket = _rpc_pack(Srv2Srv.sName, "RemoteCallDisp", nCallID, sCallFunc, ...)
+    _send_inner(gtMsgType.eLuaRpcMsg, oPacket, nTarServer, nTarService, nTarSession)
 end

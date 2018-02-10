@@ -1,10 +1,14 @@
---最小堆
+--最小堆(10W级别)
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
 function CMinHeap:Ctor(fnCmp)
 	self.m_fnCmp = fnCmp
 	self.m_tHeap = {}
 	self.m_nCount = 0
+end
+
+function CMinHeap:GetCount()
+	return self.m_nCount
 end
 
 function CMinHeap:FilterUp(nIndex)
@@ -15,7 +19,7 @@ function CMinHeap:FilterUp(nIndex)
 	local j = math.floor(i/2)
 	local tmp = self.m_tHeap[i]
 	while i > 1 do
-		if self.m_fnCmp(m_tHeap[j], tmp) <= 0 then
+		if self.m_fnCmp(self.m_tHeap[j], tmp) <= 0 then
 			break
 		end
 		self.m_tHeap[i] = self.m_tHeap[j]
@@ -59,6 +63,7 @@ function CMinHeap:Min()
 	return self.m_tHeap[1]
 end
 
+--假定通常只移除最小的
 function CMinHeap:RemoveByValue(value)
 	local nIndex = 0
 	for i = 1, self.m_nCount do

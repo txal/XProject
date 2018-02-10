@@ -125,7 +125,7 @@ function CmdNet.BroadcastExter(sCmdName, tTarSession, ...)
     _broadcast_exter(nCmd, oPacket, tTarSession)
 end
 
---服务器到服务器
+--服务器内部
 function CmdNet.Srv2Srv(sCmdName, nTarServer, nTarService, nTarSession, ...)
     _assert(nTarServer>0 and nTarService>0 and nTarSession>=0, "参数错误")
     local tProto = _assert(tSrvSrvCmd[sCmdName], "sCmdName '"..sCmdName.."' proto not register")

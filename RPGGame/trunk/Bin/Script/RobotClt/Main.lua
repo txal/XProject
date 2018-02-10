@@ -22,7 +22,7 @@ end
 --Global script
 require = gfRawRequire or require  --恢复原生require
 require("Config/Main")
-require("ServerConf")
+-- require("ServerConf")
 require("Common/CommonInc")
 OpenProto()
 
@@ -46,10 +46,26 @@ function Main()
 end
 
 function Test()
-    function t(...)
-        local m = table.pack(...)
-        print(m)
+    local function _compare(v1, v2)
+        if v1 > v2 then
+            return 1
+        end
+        if v1 < v2 then
+            return -1 
+        end
+        return 0
     end
-    t(1, 2, 3)
+    local oMinHeap = CMinHeap:new(_compare)
+    local beg = os.clock()
+    for k = 1, 100000 do
+        oMinHeap:Push(k)
+    end
+    print("time push:", os.clock() - beg, oMinHeap:GetCount())
+
+    beg = 0
+    for k = 1, 100000 do
+        oMinHeap:RemoveByValue(k)
+    end
+    print("time remove:", os.clock() - beg, oMinHeap:GetCount())
 end
 

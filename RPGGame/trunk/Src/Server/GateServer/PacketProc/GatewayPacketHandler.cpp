@@ -38,7 +38,7 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 		if (oHeader.nTarService == 0)
 		{
 			oNavi.nTarService = poGateway->GetClientMgr()->GetClientLogicService(nSrcSessionID);
-			if (oNavi.nTarService <= 0) //没有目标服务，随机1个本服的LogicServer
+			if (oNavi.nTarService <= 0) //没有目标服务，选1个本服的LogicServer
 			{
 				oNavi.nTarService = g_poContext->SelectLogic(nSrcSessionID);
 			}

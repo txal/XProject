@@ -68,16 +68,16 @@ end
 --发送到LogicServer的GM
 CGMMgr["lgm"] = function(self, nSession, tArgs)
 	local sCmd = table.concat(tArgs, " ")
-	for nLogic, tConf in pairs(gtNetConf.tLogicService) do
-		Srv2Srv.GMCommandReq(nLogic, nSession, sCmd)
+	for _, tConf in pairs(gtNetConf.tLogicService) do
+		Srv2Srv.GMCommandReq(tConf.nServer, tConf.nID, sCmd)
 	end
 end
 
 --发送到LogServer的GM
 CGMMgr["rgm"] = function(self, nSession, tArgs)
 	local sCmd = table.concat(tArgs, " ")
-	for nService, tConf in pairs(gtNetConf.tLogService) do
-		Srv2Srv.GMCommandReq(nService, nSession, sCmd)
+	for _, tConf in pairs(gtNetConf.tLogService) do
+		Srv2Srv.GMCommandReq(tConf.nServer, tConf.ID, sCmd)
 	end
 end
 
