@@ -21,18 +21,19 @@ message RoleListRet
     repeated _Role tList = 1;           //角色列表
 }
 
-//登陆
+//登陆请求
 message LoginReq
 {
-	required string sAccount = 1;	//帐号
-	required string sPassword = 2; 	//密码
-    optional int32 nSource = 3;     //渠道号
+    optional int32 nSource = 1;     //渠道号
+    required string sAccount = 2;   //帐号名
+    required string nRoleID = 3;    //角色ID
 }
 
-//登陆返回
+//登陆成功返回
 message LoginRet
 {
     required int32 nServerID = 1;   //服务器ID
+    required int32 nRoleID = 2;     //角色ID
 }
 
 //创建角色

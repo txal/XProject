@@ -1,4 +1,4 @@
---玩家登陆管理
+--账号(玩家)登陆管理
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
 function CLoginMgr:Ctor()
@@ -26,21 +26,86 @@ end
 function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
 	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
 	local oAccount = self.m_tAccountNameMap[sAccountKey]
+
+	--账号在线需要先到逻辑服更新当前在线角色摘要信息
 	if oAccount then
-		oAccount:RoleListReq()
+		goRemoteCall:CallWait("UpdateRoleSummaryReq", function(nAccountID)
+			--要重新取Account对象并重新加载数据
+			local oAccount = self:GetAccountByID(nAccountID)
+			if oAccount then
+				oAccount:LoadData()
+				oAccount:RoleListReq()
+			end
+		end , oAccount:GetServer(), oAccount:GetLogicID(), 0, oAccount:GetID())
+
+	--账号不在线/或新建账号
 	else
+		local nAccountID = 0
 		local oDB = goDBMgr:GetSSDB(nServer, "global")
 		local sData = oDB:HGet(gtDBDef.sAccountNameDB, sAccountKey)
+		--账号不存在,创建之
 		if sData == "" then
-			local nAccountID = CLAccount:GenPlayerID()
+			nAccountID = CLAccount:GenPlayerID()
 			oDB:HSet(gtDBDef.sAccountNameDB, sAccountKey, cjson.encode({nAccountID=nAccountID})
 		else
+			local tData = cjson.decode(sData)
+			nAccountID = tData.nAccountID
+		end
+		--加载账号数据,但是不做缓存
+		oAccount = CLAccount:new(nAccountID, nServer, nServer, nSource, sName)
+		oAccount:LoadData()
+		oAccount:RoleListReq()
+	end
+
+end
+
+function CLoginMgr:KickAccount()
+
+--创建角色请求
+function CLoginMgr:CreateRoleReq(nServer, nSession, nSource, sAccount, sRole, nGender, nSchool)
+	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
+	local oAccount = self.m_tAccountNameMap[sAccountKey]
+
+	--账号在线则进行异地登陆
+	if oAccount then
+		goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+			--要重新取Account对象并重新加载数据
+			local oAccount = self:GetAccountByID(nAccountID)
+			if oAccount then
+				--同1客户端操作
+				if oAccount:GetServer() == nServer and oAccount:GetSession() == nSession then
+					oAccount:LoadData()
+					oAccount:CreateRole(sRole, nGender, nSchool)
+					
+				--不同客户端操作
+				else
+
+				end
+			end
+		end , oAccount:GetServer(), oAccount:GetLogicID(), 0, oAccount:GetID())
+
+	--账号不在线,但是必须是已经有的账号
+	else
+		local sData = goDBMgr:GetSSDB(nServer, "global"):HGet(gtDBDef.sAccountNameDB, sAccountKey)
+		if sData == "" then
+			return CLAccount:Tips("账号不存在", nServer, nSession)
+		end
+		--加载账号数据
+		local tData = cjson.decode(sData)
+		local nAccountID = tData.nAccountID
+		oAccount = CLAccount:new(nAccountID, nServer, nServer, nSource, sName)
+		oAccount:LoadData()
+
+		--创建角色和登录成功则缓存
+		if oAccount:CreateRole(sRole, nGender, nSchool) then
+			self.m_tAccountIDMap[nAccountID] = oAccount
+			self.m_tAccountNameMap[sAccountKey] = oAccount
 		end
 	end
 end
 
---登录请求
-function CLoginMgr:LoginReq(nServer, nSession, nSource, sAccount)
+--角色登陆请求
+function CLoginMgr:LoginRoleReq(nServer, nSession, nSource, sAccount)
 	print("CLoginMgr:Login***", nServer, nSession, nSource, sAccount)
 	assert(nServer and nSource and sAccount, "参数错误")
 	local sAccountKey = self:MakeAccountKey(nSource, sAccount)

@@ -60,12 +60,12 @@ local function fnCoroutineFunc(nCallID, sCallFunc, fnCallBack, nTarServer, nTarS
 	end
 end
 
---远程调用请求(不需返回)
+--远程调用请求(不需返回)：请求发出，不需要等待返回
 function CRemoteCall:Call(sCallFunc, nTarServer, nTarService, nTarSession, ...)
 	Srv2Srv.RemoveCallReq(nTarServer, nTarService, nTarSession, 0, sCallFunc, false, ...)
 end
 
---远程调用请求(需要返回)
+--远程调用请求(需要返回)：请求发出后协程会挂起，等待返回，3秒钟超时
 function CRemoteCall:CallWait(sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
 	assert(sCallFunc and nTarServer and nTarService, "参数错误")
 	nTarSession = nTarSession or 0
