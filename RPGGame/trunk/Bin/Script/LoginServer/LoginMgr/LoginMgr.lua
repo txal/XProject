@@ -60,32 +60,30 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
 end
 
 function CLoginMgr:KickAccount()
+	if nOldSession > 0 then
+		CmdNet.PBSrv2Clt(nOldSession, "OtherPlaceLoginRet", {})
+		goTimerMgr:Interval(3, function(nTimerID) self:CloseSession(nOldSession, nTimerID) end)
+	end
+	self:OnClientClose(nOldSession, oPlayer)
+	self:Login(nNewSession, sAccount, sPassword, nSource)
+
+	print("CPlayerMgr:CloseSession***", nSession, nTimerID)
+	goTimerMgr:Clear(nTimerID)
+	CmdNet.Srv2Srv("KickClient", nSession>>nSERVICE_SHIFT, nSession)
+end
+
+--发送异地登陆消息
+function CLoginMgr:OtherPlaceLogin(nServer, nSession, sAccount)
+	print("CLoginMgr:OtherPlaceLogin***", sAccount)
+	CmdNet.PBSrv2Clt(nServer, nSession, "OtherPlaceLoginRet", {})
+end
 
 --创建角色请求
 function CLoginMgr:CreateRoleReq(nServer, nSession, nSource, sAccount, sRole, nGender, nSchool)
 	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
 	local oAccount = self.m_tAccountNameMap[sAccountKey]
 
-	--账号在线则进行异地登陆
-	if oAccount then
-		goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
-			--要重新取Account对象并重新加载数据
-			local oAccount = self:GetAccountByID(nAccountID)
-			if oAccount then
-				--同1客户端操作
-				if oAccount:GetServer() == nServer and oAccount:GetSession() == nSession then
-					oAccount:LoadData()
-					oAccount:CreateRole(sRole, nGender, nSchool)
-					
-				--不同客户端操作
-				else
-
-				end
-			end
-		end , oAccount:GetServer(), oAccount:GetLogicID(), 0, oAccount:GetID())
-
-	--账号不在线,但是必须是已经有的账号
-	else
+	local function _CreateRole()
 		local sData = goDBMgr:GetSSDB(nServer, "global"):HGet(gtDBDef.sAccountNameDB, sAccountKey)
 		if sData == "" then
 			return CLAccount:Tips("账号不存在", nServer, nSession)
@@ -93,14 +91,47 @@ function CLoginMgr:CreateRoleReq(nServer, nSession, nSource, sAccount, sRole, nG
 		--加载账号数据
 		local tData = cjson.decode(sData)
 		local nAccountID = tData.nAccountID
-		oAccount = CLAccount:new(nAccountID, nServer, nServer, nSource, sName)
+		oAccount = CLAccount:new(nAccountID, nServer, nSession, nSource, sName)
 		oAccount:LoadData()
 
 		--创建角色和登录成功则缓存
 		if oAccount:CreateRole(sRole, nGender, nSchool) then
 			self.m_tAccountIDMap[nAccountID] = oAccount
 			self.m_tAccountNameMap[sAccountKey] = oAccount
+			LuaTrace("创建角色并登陆成功")
 		end
+	end
+
+	--账号不在线,创建角色并登陆
+	if not oAccount then
+		_CreateRole()
+
+	--账号在线则先进行异地登陆
+	else
+		goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+			--要重新取Account对象并重新加载数据
+			local oAccount = self:GetAccountByID(nAccountID)
+			if oAccount then
+				local nOldServer = oAccount:GetServer()
+				local nOldSession = oAccount:GetSession()
+				oAccount:LoadData() --重新加载数据,逻辑服可能有修改
+				oAccount:RoleOffline() --离线操作
+				self.m_tAccountIDMap[nAccountID] = nil
+				self.m_tAccountNameMap[sAccountKey] = nil
+
+				--同一客户端操作
+				if nOldServer == nServer and nOldSession == nSession then
+					_CreateRole()
+
+				--不同客户端操作
+				else
+					self:OtherPlaceLogin(nOldServer, nOldSession, sAccount)
+					_CreateRole()
+
+				end
+			end
+		end , oAccount:GetServer(), oAccount:GetLogicID(), 0, oAccount:GetID())
+
 	end
 end
 

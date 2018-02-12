@@ -1,7 +1,8 @@
 ﻿#include "Server/Base/RouterMgr.h"
 #include "Include/Logger/Logger.hpp"
-#include "Server/Base/ServerContext.h"
+#include "Common/DataStruct/HashFunc.h"
 #include "Common/TimerMgr/TimerMgr.h"
+#include "Server/Base/ServerContext.h"
 
 extern void StartScriptEngine();
 
@@ -140,7 +141,7 @@ ROUTER* RouterMgr::ChooseRouter(int8_t nTarService)
 		XLog(LEVEL_ERROR, "Router count is 0!\n");
         return NULL;
     }
-    int nIndex = nTarService % m_nRouterNum;
+	int nIndex = jhash_1word(nTarService, 0) % m_nRouterNum;
     ROUTER* poRouter = &m_RouterList[nIndex];
     if (poRouter->nSession > 0)
     {

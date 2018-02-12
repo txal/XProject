@@ -48,15 +48,16 @@ function CLAccount:GetSession() return self.m_nSession end
 function CLAccount:GetOnlineRoleID() return self.m_nOnlineRoleID end
 
 --角色登陆成功
-function CLAccount:OnRoleOnline(nRoleID)
+function CLAccount:RoleOnline(nRoleID)
 	self.m_nLastRoleID = nRoleID
 	self.m_nOnlineRoleID = nRoleID
 	self:SaveData()
 end
 
 --角色离线成功
-function CLAccount:OnRoleOffline(nRoleID)
+function CLAccount:RoleOffline(nRoleID)
 	self.m_nOnlineRoleID = 0
+	self.m_nSession = 0
 	self:SaveData()
 end
 
