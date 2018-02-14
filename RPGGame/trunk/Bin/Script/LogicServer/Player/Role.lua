@@ -1,25 +1,27 @@
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
-function CRole:Ctor(oAccount, nID, sName, nGender, nSchool)
+function CRole:Ctor(oAccount, nID)
     ------不保存------
     self.m_bDirty = false
     self.m_oAccount = oAccount
 
     ------保存--------
-    self.m_nCreateTime = os.time()
-    self.m_nOnlineTime = os.time()
-    self.m_nOfflineTime = os.time()
-
     self.m_nID = nID
-    self.m_sName = sName
-    self.m_nGender = nGender
-    self.m_nSchool = nSchool
-    self.m_nLevel = 1
+    self.m_nCreateTime = 0
+    self.m_nOnlineTime = 0
+    self.m_nOfflineTime = 0
+
+    self.m_sName = ""
+    self.m_nGender = 0
+    self.m_nSchool = 0
+    self.m_nLevel = 0
+    self.m_nCity = 0
+    self.m_nDup = 0
 
     ------其他--------
     self.m_tModuleMap = {}  --映射
     self.m_tModuleList = {} --有序
-    self:LoadSelfData() --这里先加载玩家数据,子模块可能要用到玩家数据
+    self:LoadSelfData() --这里先加载角色数据,子模块可能要用到角色数据
     self:CreateModules()
     self:LoadModuleData()
 
@@ -44,7 +46,7 @@ function CRole:RegisterModule(oModule)
     table.insert(self.m_tModuleList, oModule)
 end
 
---加载玩家数据
+--加载角色数据
 function CRole:LoadSelfData()
     local nServer, nID = self:GetServer(), self:GetID()
     local sData = goDBMgr:GetSSDB(nServer, "user", nID):HGet(gtDBDef.sRoleDB, nID)
@@ -65,7 +67,7 @@ function CRole:LoadSelfData()
 
 end
 
---保存玩家数据
+--保存角色数据
 function CRole:SaveSelfData()
     if not self:IsDirty() then
         return
@@ -142,8 +144,13 @@ function CRole:GetServer() return self.m_oAccount:GetServer() end
 function CRole:GetSession() return self.m_oAccount:GetSession() end
 function CRole:GetAccountID() return self.m_oAccount:GetID() end
 function CRole:GetAccountName() return self.m_oAccount:GetName() end
+function CRole:GetVIP() return self.m_oAccount:GetVIP() end
+function CRole:GetCreateTime() return self.m_nCreateTime end
+function CRole:GetOnlineTime() return self.m_nOnlineTime end
+function CRole:GetOfflineTime() return self.m_nOfflineTime end
+function CRole:GetLogic() GlobalExport.GetServiceID() end --当前所在逻辑服ID
 
---取玩家身上的装备
+--取角色身上的装备
 function CRole:GetEquipment()
     --fix pd
 end
@@ -151,25 +158,52 @@ end
 --同步货币
 function CRole:SyncCurrency(nType, nValue)
     assert(nType and nValue, "参数错误")
-    CmdNet.PBSrv2Clt(self.m_nSession, "PlayerCurrencyRet", {nType=nType, nValue=nValue})
+    CmdNet.PBSrv2Clt("RoleCurrencyRet", self:GetServer(), self:GetSession(), {nType=nType, nValue=nValue})
 end
 
---同步玩家初始数据
+--同步角色初始数据
 function CRole:SyncInitData()
     local tMsg = {}
-    tMsg.nID = self.m_nID
-    tMsg.sName = self.m_sName
-    tMsg.nVIP = self.m_nVIP
+    tMsg.nRoleID = self.m_nID
+    tMsg.sRoleName = self.m_sName
+    tMsg.nVIP = self:GetVIP()
 
-    CmdNet.PBSrv2Clt(self.m_nSession, "PlayerInitDataRet", tMsg)
+    CmdNet.PBSrv2Clt("RoleInitDataRet", self:GetServer(), self:GetSession(), tMsg)
 end 
 
---玩家上线
+--同步角色上下线到GLOBAL
+function CRole:GlobalRoleOnline(bOnline)
+    local tRole = nil
+    if bOnline then
+        tRole = {}
+        tRole.m_nServer = self:GetServer()
+        tRole.m_nSession = self:GetSession()
+
+        tRole.m_nID = self.m_nID
+        tRole.m_sName = self.m_sName
+        tRole.m_nAccountID = self:GetAccountID()
+        tRole.m_sAccountName = self:GetAccountName()
+        tRole.m_nCreateTime = self:GetCreateTime()
+        tRole.m_nLevel = self:GetLevel()
+        tRole.m_nVIP = self:GetVIP()
+    end
+    --本服GLOBAL
+    for _, tConf in pairs(gtServerConf.tGlobalService) do
+        goRemoteCall:Call("GRoleOnlineReq", tConf.nServer, tConf.nID, self:GetSession(), bOnline, tRole)
+    end
+    --世界服GLOBAL
+    for _, tConf in pairs(gtWorldConf.tGlobalService) do
+        goRemoteCall:Call("GRoleOnlineReq", tConf.nServer, tConf.nID, self:GetSession(), bOnline, tRole)
+    end
+end
+
+
+--角色上线
 function CRole:Online()
     print("CRole:Online***", self:GetAccountName(), self:GetName())
     self.m_nOnlineTime = os.time()
     self:MarkDirty(true)
-    self:ClientReady()
+    self:GlobalRoleOnline(true)
 end
 
 --前端准备好了
@@ -181,7 +215,7 @@ function CRole:ClientReady()
     self:SyncInitData()
 end
 
---玩家下线
+--角色下线
 function CRole:Offline()
     self.m_nOfflineTime = os.time()
     self:MarkDirty(true)
@@ -190,6 +224,7 @@ function CRole:Offline()
         oModule:Offline()
     end
     self:SaveData()
+    self:GlobalRoleOnline(false)
 end
 
 --物品数量
@@ -291,10 +326,4 @@ function CRole:Tips(sCont, nServer, nSession)
     nServer = nServer or self:GetServer()
     nSession = nSession or self:GetSession()
     CmdNet.PBSrv2Clt("TipsMsgRet", nServer, nSession, {sCont=sCont})
-end
-
---图标飘字通知
-function CRole:IconTips(nID, nNum)
-    local nServer, nSession = self:GetServer(), self:GetSession()
-    CmdNet.PBSrv2Clt("IconTipsRet", nServer, nSession, {nID=nID, nNum=nNum})
 end

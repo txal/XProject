@@ -6,7 +6,7 @@ local nMaxAccountRole = 3
 --玩家ID上限
 local nMaxPlayerID = 9999999-nBASE_PLAYERID
 
-function CLAccount:Ctor(nID, nServer, nSession, nSource, sName)
+function CLAccount:Ctor(nServer, nSession, nID, nSource, sName)
 	self.m_nID = nID
 	self.m_sName = sName
 	self.m_nSource = nSource
@@ -14,10 +14,10 @@ function CLAccount:Ctor(nID, nServer, nSession, nSource, sName)
 
 	self.m_tRoleSummaryMap = {} 	--角色摘要信息:{[roleid]={nID=0,sName="",nLevel=0,nGender=0,nSchool=0,tEquipment={},nCityID=0,nDupID=0},...}
 	self.m_nLastRoleID = 0 			--最后登录的角色ID
-	self.m_nOnlineRoleID = 0 		--当前在线角色ID(同时只允许一个角色在线)
 
 	--不保存
 	self.m_nSession = nSession
+	self.m_nOnlineRoleID = 0 		--当前在线角色ID(同时只允许一个角色在线)
 
 end
 
@@ -27,7 +27,6 @@ function CLAccount:LoadData()
 		local tData = cjson.decode(sData)
 		self.m_tRoleSummaryMap = tData.m_tRoleSummaryMap
 		self.m_nLastRoleID = tData.m_nLastRoleID
-		self.m_nOnlineRoleID = tData.m_nOnlineRoleID
 	end
 end
 
@@ -35,7 +34,6 @@ function CLAccount:SaveData()
 	local tData = {}
 	tData.m_tRoleSummaryMap = self.m_tRoleSummaryMap
 	tData.m_nLastRoleID = self.m_nLastRoleID
-	tData.m_nOnlineRoleID = self.m_nOnlineRoleID
 
 	goDBMgr:GetSSDB(self:GetServer(), "user", self:GetID()):HSet(gtDBDef.sAccountDB, self:GetID(), cjson.encode(tData)) 
 end
@@ -50,15 +48,15 @@ function CLAccount:GetOnlineRoleID() return self.m_nOnlineRoleID end
 --角色登陆成功
 function CLAccount:RoleOnline(nRoleID)
 	self.m_nLastRoleID = nRoleID
-	self.m_nOnlineRoleID = nRoleID
 	self:SaveData()
+
+	self.m_nOnlineRoleID = nRoleID
 end
 
 --角色离线成功
 function CLAccount:RoleOffline(nRoleID)
-	self.m_nOnlineRoleID = 0
 	self.m_nSession = 0
-	self:SaveData()
+	self.m_nOnlineRoleID = 0
 end
 
 --生成唯一账号/角色ID
@@ -78,7 +76,7 @@ function CLAccount:GetRoleCount()
 end
 
 --取当前登录角色的逻辑服ID
-function CLAccount:GetLogicID()
+function CLAccount:GetLogic()
 	if self.m_nOnlineRoleID == 0 then
 		return 0
 	end
@@ -132,10 +130,13 @@ function CLAccount:RoleLogin(nRoleID)
 	end
 
 	if self.m_nOnlineRoleID > 0 then
-		assert(self.m_oOnlineRoleID == nRoleID, "角色登录冲突")
+		assert(self.m_oOnlineRoleID == nRoleID, "已有登录角色")
 		return CmdNet.PBSrv2Clt("LoginRet", self:GetServer(), self:GetSession(), {nServerID=self:GetServer(), nRoleID=nRoleID})
 	end
-	--通知逻辑服 fix pd
+	self:RoleOnline(nRoleID)
+
+	--通知逻辑服登录成功
+	goRemoteCall:Call("RoleOnlineReq", self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), nRoleID) 
 	return true
 end
 

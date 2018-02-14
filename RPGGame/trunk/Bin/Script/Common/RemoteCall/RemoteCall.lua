@@ -1,4 +1,4 @@
---服务器内部远程同步调用
+--服务器内部远程调用
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
 local function fnCompare(v1, v2)
@@ -41,6 +41,7 @@ function CRemoteCall:GetCoroutine(nCallID)
 	return self.m_tCoroutineMap[nCallID]
 end
 
+--协程体
 local function fnCoroutineFunc(nCallID, sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
 	Srv2Srv.RemoveCallReq(nTarServer, nTarService, nTarSession, nCallID, sCallFunc, true, ...)
 	local nCode, tData = coroutine.yield(true)

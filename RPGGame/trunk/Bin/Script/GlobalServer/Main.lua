@@ -38,9 +38,9 @@ require("Notice/NoticeInc")
 require("Browser/BrowserInc")
 require("GPlayer/GPlayerInc")
 require("Recharge/RechargeInc")
-require("MailTask/MailTaskInc")
+require("MailMgr/MailMgrInc")
 require("HDCircle/HDCircleInc")
-require("GiftExchange/GiftExchangeInc")
+require("Exchange/ExchangeInc")
 
 --连接数据库
 goDBMgr = goDBMgr or CDBMgr:new()

@@ -1,53 +1,112 @@
+--GLOBAL帐号(玩家)管理器
+local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
+
+local nAutoSaveTime = 5*60
+local nServerID = gnServerID
+
 function CGPlayerMgr:Ctor()
-	self.m_tCharIDMap = {}
-	self.m_tSessionMap = {}
+	self.m_tRoleIDMap = {}
+	self.m_tRoleSSMap = {}
+	self.m_tDirtyMap = {}
+	self.m_nSaveTimer = nil
 end
 
-function CGPlayerMgr:PlayerOnline(tPlayer)
-	print("CGPlayerMgr:PlayerOnline***", tPlayer.sName)
-	assert(not self.m_tSessionMap[tPlayer.nSession])
-	local oOrgPlayer =  self.m_tCharIDMap[tPlayer.nCharID]
-	if oOrgPlayer then
-		local nOrgSession = oOrgPlayer:GetSession()
-		self.m_tSessionMap[nOrgSession] = nil
-	end
-	local oPlayer = CGPlayer:new(tPlayer)
-	self.m_tCharIDMap[tPlayer.nCharID] = oPlayer
-	self.m_tSessionMap[tPlayer.nSession] = oPlayer
-end
-
-function CGPlayerMgr:GetPlayerBySession(nSession)
-	return self.m_tSessionMap[nSession]
-end
-
-function CGPlayerMgr:GetPlayerByCharID(nCharID)
-	return self.m_tCharIDMap[nCharID]
-end
-
-function CGPlayerMgr:PlayerOffline(nSession)
-	print("CGPlayerMgr:PlayerOffline***", nSession)
-	local oPlayer = self.m_tSessionMap[nSession]
-	if oPlayer then
-		local nCharID = oPlayer:GetCharID()
-		self.m_tSessionMap[nSession] = nil
-		self.m_tCharIDMap[nCharID] = nil
+function CGPlayerMgr:LoadData()
+	local oDB = goDBMgr:GetSSDB(nServerID, "global")
+	local tKeys = oDB:HKeys(gtDBDef.sGlobalRoleDB)
+	for sRoleID, v in ipairs(tKeys) do
+		local sData = oDB:HGet(gtDBDef.sGlobalRoleDB, sRoleID)
+		local tData = cjson.decode(sData)
+		local oRole = CGRole:new()
+		oRole:LoadData(tData)
+		self.m_tRoleIDMap[oRole:GetID()] = oRole
 	end
 end
 
-function CGPlayerMgr:SyncPlayerData(tData)
+function CGPlayerMgr:SaveData()
+	local oDB = goDBMgr:GetSSDB(nServerID, "global")
+	for nRoleID, v in pairs(self.m_tDirtyMap) do
+		local oRole = self.m_tRoleIDMap[nRoleID]
+		local tData = oRole:SaveData()
+		oDB:HSet(gtDBDef.sGlobalRoleDB, nRoleID, cjson.encode(tData))
+	end
+	self.m_tDirtyMap = {}
+end
+
+function CGPlayerMgr:OnLoaded()
+	self.m_nSaveTimer = goTimerMgr:Interval(nAutoSaveTime, function() self:SaveData() end)
+end
+
+function CGPlayerMgr:OnRelease()
+	self:SaveData()
+	goTimerMgr:Clear(self.m_nSaveTimer)
+end
+
+function CGPlayerMgr:MakeSSKey(nServer, nSession)
+	local nSSKey = nServer << 32 | nSession
+	return nSSKey
+end
+
+function CGPlayerMgr:GetRoleByID(nRoleID)
+	return self.m_tRoleIDMap[nRoleID]
+end
+
+function CGPlayerMgr:GetRoleBySS(nServer, nSession)
+	local nSSKey = self:MakeSSKey(nServer, nSession)
+	return self.m_tRoleSSMap[nSSKey]
+end
+
+function CGPlayerMgr:MarkDirty(nRoleID, bDirty)
+	bDirty = bDirty or nil
+	self.m_tDirtyMap[nRoleID] = bDirty
+end
+
+function CGPlayerMgr:RoleOnlineReq(tData)
+	print("CGPlayerMgr:RoleOnlineReq***", tData)
+	local oRole = self:GetRoleByID(tData.m_nID)
+	if oRole then
+		assert(tData.m_nServer == oRole:GetServer(), "角色服务器错误")
+		oRole:Online(tData.m_nSession)
+		local nSSKey = self:MakeSSKey(oRole:GetServer(), oRole:GetSession())
+		self.m_tRoleSSMap[nSSKey] = oRole
+
+	else
+		local oRole = CGRole:new()
+		oRole:Init(tData)
+
+		local nRoleID = oRole:GetID()
+		self.m_tRoleIDMap[nRoleID] = oRole
+		local nSSKey = self:MakeSSKey(oRole:GetServer(), oRole:GetSession())
+		self.m_tRoleSSMap[nSSKey] = oRole
+		self:MarkDirty(nRoleID, true)
+
+	end
+end
+
+function CGPlayerMgr:RoleOfflineReq(nRoleID)
+	print("CGPlayerMgr:RoleOffline***", nRoleID)
+	local oRole = self:GetRoleByID(nRoleID)
+	if oRole then
+		local nSSKey = self:MakeSSKey(oRole:GetServer(), oRole:GetSession())
+		oRole:Offline()
+		self.m_tRoleSSMap[nSSKey] = nil
+	end
+end
+
+function CGPlayerMgr:RoleUpdateReq(nRoleID, tData)
+	local oRole = self:GetRoleByID(nRoleID)
+	if oRole then
+		oRole:UpdateReq(tData)
+		self:MarkDirty(nRoleID, true)
+	end
 end
 
 function CGPlayerMgr:GetOnlineCount()
 	local nCount = 0
-	for nCharID, v in pairs(self.m_tCharIDMap) do
+	for nSSKey, oRole in pairs(self.m_tRoleSSMap) do
 		nCount = nCount + 1
 	end
 	return nCount
-end
-
-function CGPlayerMgr:PrintOnline()
-	local nCount = self:GetOnlineCount()
-	LuaTrace("online***", nCount)
 end
 
 

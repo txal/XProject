@@ -52,42 +52,19 @@ message CreateRoleRet
 }
 
 //角色数据同步
-message PlayerInitDataSync
+message RoleInitDataRet
 {
-	required int32 nCharID = 1;  		//角色ID
-	required int32 nSource = 2; 		//渠道号
-	required string sName = 3;  		//角色名
+    required int32 nSource = 1;         //渠道号
+	required int32 nRoleID = 2;  		//角色ID
+	required string sRoleName = 3;  	//角色名
     required int32 nVIP = 4;         	//VIP
-    required int32 nYuanBao = 5;     	//元宝
-    required double nYinLiang = 6;      //银两
-    optional int32 nLiangCao = 7;    	//粮草(屏蔽)
-    optional double nBingLi = 8;      	//兵力
-    required int32 nTiLi = 9;       	//体力
-    required int32 nJingLi = 10;      	//精力
-    required double nGuoLi = 11;       	//国力
-    required int32 nWaiJiao = 12;       //外交
-    optional int32 nShiLi = 13;       	//势力(屏蔽)
-    repeated int32 tAttr = 14; 			//国家属性(商,农,政,军)
-    required int32 nServerID = 15;      //服务器编号(充值用的)
-    required string sServerName = 16;   //区名
-    required int32 nCreateTime = 17;    //创建时间
-    required int32 nZoneID = 18;        //区号(显示给玩家看的)
-    optional int32 nLevel = 19;         //国家等等级
-    optional int32 nMaxLevel = 20;      //最大国家等级
-    optional double nExp = 21;          //当前国家经验
-    optional double nNextExp = 22;      //下一级需要经验
-    optional int32 nHeadID = 23;        //头像ID
-    optional int32 nGongDou = 24;       //宫斗分
-    optional double nWenHua = 25;       //文化
 }
 
 //角色货币同步
-message PlayerCurrSync
+message RoleCurrencyRet
 {
-	required int32 nCurrType = 1; 	//货币类型
-	//1:VIP等级 2:元宝 3:银两 4:粮草 5:兵力 7:文化 8:体力 9:体力上限 10:精力 12:国力 13:势力 14:役事点 15:大臣成长点 26:商业属性 27:农业属性 28:政治属性 29:军事属性
-	required double nCurrValue = 2;	//货币值
-	optional bool bFlyWord = 3; 	//是否飘字
+	required int32 nType = 1; 	//货币类型
+	required double nValue = 2;	//货币值
 }
 
 //账号异地登录
@@ -108,7 +85,7 @@ message LogoutRet
 }
 
 //玩家信息
-message PlayerInfo
+message RoleInfo
 {
     required int32 nCharID = 1;     //编号
     required string sCharName = 2;  //昵称
@@ -134,50 +111,22 @@ message PlayerInfo
 }
 
 //请求玩家信息
-message PlayerInfoReq
+message RoleInfoReq
 {
     required int32 nCharID = 1;     //目标玩家ID	
 }
 
 //玩家信息返回
-message PlayerInfoRet
+message RoleInfoRet
 {
-    required PlayerInfo tInfo = 1;  //玩家信息
+    required RoleInfo tInfo = 1;  //玩家信息
 }
 
-//排行榜玩家信息请求
-message RankingPlayerInfoReq
-{
-}
-
-//排行榜玩家信息返回
-message RankingPlayerInfoRet
-{
-    required PlayerInfo tInfo = 1;  //玩家信息 
-}
-
-//玩家改名请求
-message PlayerModNameReq
-{
-    required string sCharName = 1;  //名字
-}
-
-//改名成功返回
-message PlayerModNameRet
-{
-   required string sCharName = 1;   //名字 
-}
-
-//国家等级/经验同步
-message PlayerLevelRet
+//等级/经验同步
+message RoleLevelRet
 {
     required int32 nLevel = 1;      //等级
     required int32 nMaxLevel = 2;   //最大等级
     required double nExp = 3;        //当前经验
     required double nNextExp = 4;    //下一级经验
-}
-
-//进阶请求
-message UpgradeReq
-{
 }

@@ -8,30 +8,30 @@ assert(bRes, "连接数据库失败: "..table.ToString(tMysqlConf, true))
 LuaTrace("连接数据库成功:", tMysqlConf)
 
 --类型
-CGiftExchange.tType = {
+CExchange.tType = {
 	eSMBX = 1,	--神秘宝箱
 	eDuoRenYiKey = 2, 	--多人对一KEY
 	eYiRenDuoKey = 3, 	--一人多KEY
 	eYiRenYiKey = 4, 	--一人一KEY
 }
 
-function CGiftExchange:Ctor()
+function CExchange:Ctor()
 end
 
-function CGiftExchange:LoadData()
+function CExchange:LoadData()
 end
 
-function CGiftExchange:SaveData()
+function CExchange:SaveData()
 end
 
-function CGiftExchange:OnRelease()
+function CExchange:OnRelease()
 end
 
 --兑换
-function CGiftExchange:ExchangeReq(oPlayer, sCDKey, bSMBX)
+function CExchange:ExchangeReq(oPlayer, sCDKey, bSMBX)
 	local nCharID = oPlayer:GetCharID()
 
-	local sSql = "select server,charlist,type,starttime,endtime,award from cdkeycode,cdkeytype where cdkeycode.giftid=cdkeytype.id and `key`='%s';"
+	local sSql = "select server,charlist,type,starttime,endtime,award from cdkeycode,cdkeytype where cdkeycode.id=cdkeytype.id and `key`='%s';"
 	sSql = string.format(sSql, sCDKey)
 	if not oMgrMysql:Query(sSql) then
 		return oPlayer:Tips("查询兑换码失败")	
@@ -69,7 +69,7 @@ function CGiftExchange:ExchangeReq(oPlayer, sCDKey, bSMBX)
 
 	if nType == self.tType.eSMBX then --神秘宝箱
 		Srv2Srv.SMBXExchangeReq(oPlayer:GetLogicService(), oPlayer:GetSession(), nType, sCDKey, tAward)
-		print("CGiftExchange:ExchangeReq***", nType, sCDKey, tAward)
+		print("CExchange:ExchangeReq***", nType, sCDKey, tAward)
 
 	else
 		local tCharList = cjson.decode(sCharList)
@@ -88,7 +88,7 @@ function CGiftExchange:ExchangeReq(oPlayer, sCDKey, bSMBX)
 end
 
 --兑换成功返回
-function CGiftExchange:OnExchangeRet(oPlayer, nType, sCDKey)
+function CExchange:OnExchangeRet(oPlayer, nType, sCDKey)
 	if nType == self.tType.eSMBX then --神秘宝箱不用处理
 		return
 	end
@@ -110,7 +110,7 @@ function CGiftExchange:OnExchangeRet(oPlayer, nType, sCDKey)
 end
 
 --神秘宝箱信息
-function CGiftExchange:SMBXDescReq(oPlayer)
+function CExchange:SMBXDescReq(oPlayer)
 	local sSql = string.format("select `desc` from cdkeytype where type=%d limit 1;", self.tType.eSMBX)
 	if not oMgrMysql:Query(sSql) then
 		return oPlayer:Tips("查询宝箱失败")	
@@ -120,8 +120,8 @@ function CGiftExchange:SMBXDescReq(oPlayer)
 	end
 	local sDesc = oMgrMysql:ToString("desc")
 	CmdNet.PBSrv2Clt(oPlayer:GetSession(), "SMBXDescRet", {sDesc=sDesc})
-	print("CGiftExchange:SMBXDescReq***", sDesc)
+	print("CExchange:SMBXDescReq***", sDesc)
 end
 
 
-goGiftExchange = goGiftExchange or CGiftExchange:new()
+goExchange = goExchange or CExchange:new()

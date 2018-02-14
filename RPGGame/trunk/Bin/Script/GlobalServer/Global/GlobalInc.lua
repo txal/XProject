@@ -1,1 +1,0 @@
-require("Global/GlobalRpc")

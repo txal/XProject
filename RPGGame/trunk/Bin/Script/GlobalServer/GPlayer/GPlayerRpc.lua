@@ -1,7 +1,17 @@
-function Srv2Srv.OnPlayerOnline(nSrc, nSession, tPlayer)
-	goGPlayerMgr:PlayerOnline(tPlayer)
+
+
+------服务器内部------
+--角色上线通知
+function Srv2Srv.GRoleOnlineReq(nSrcServer, nSrcService, nTarSession, tData)
+	goGPlayerMgr:RoleOnlineReq(tData)
 end
 
-function Srv2Srv.OnPlayerOffline(nSrc, nSession)
-	goGPlayerMgr:PlayerOffline(nSession)
+--角色下线通知
+function Srv2Srv.GRoleOfflineReq(nSrcServer, nSrcService, nTarSession, nRoleID)
+	goGPlayerMgr:RoleOfflineReq(nRoleID)
+end
+
+--角色属性更新通知
+function Srv2Srv.GRoleUpdateReq(nSrcServer, nSrcService, nTarSession, nRoleID, tData)
+    goGPlayerMgr:RoleUpdateReq(nRoleID, tData)
 end

@@ -4,6 +4,10 @@ gtDBDef.sRoleDB = "RoleDB"					--角色数据数据表(USER)
 gtDBDef.sRoleNameDB = "RoleNameDB"      	--唯一角色名数据库(GLOBAL)
 gtDBDef.sAccountDB = "AccountDB"			--账号数据表(USER)
 gtDBDef.sAccountNameDB = "AccountNameDB" 	--唯一角账名数据库(GLOABAL)
+gtDBDef.sRoleMailDB = "RoleMailDB"          --角色邮件DB(GLOBAL)
+gtDBDef.sServerMailDB = "ServerMailDB"      --服务器邮件DB(GLOBAL)
+gtDBDef.sRoleMailBodyDB = "RoleMailBodyDB"  --角色邮件体DB(GLOBAL)
+gtDBDef.sGlobalRoleDB = "GlobalRoleDB"      --全局角色数据(GLOBAL)
 
 gtDBDef.sJZRankingDB = "JZRankingDB"	--建筑加成排行榜
 gtDBDef.sGLRankingDB = "GLRankingDB"	--国力加成排行榜

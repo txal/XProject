@@ -33,6 +33,12 @@ gtServerConf=
 
 }
 
+--世界服配置
+gtWorldConf =
+{
+	tGlobalService={{nID=100, nServer=gnWorldServerID}}
+}
+
 --后台MYSQL
 gtMgrMysqlConf=
 {

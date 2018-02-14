@@ -1,0 +1,72 @@
+--GLOBAL角色对象
+local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
+
+function CGRole:Ctor()
+    self.m_nID = 0
+    self.m_sName = ""
+    self.m_nAccountID = 0
+    self.m_sAccountName = ""
+    self.m_nCreateTime = 0
+    self.m_nServer = 0
+    self.m_nLevel = 0
+    self.m_nVIP = 0
+
+    --不保存
+    self.m_nSession = 0
+end
+
+--第1次创建初始化
+function CGRole:Init(tData)
+    for sKey, xVal in pairs(tData)
+        self[sKey] = xVal
+    end
+end
+
+function CGRole:LoadData(tData)
+    for sKey, xVal in pairs(tData)
+        self[sKey] = xVal
+    end
+end
+
+function CGRole:SaveData()
+    local tData = {}
+    tData.m_nID = self.m_nID
+    tData.m_sName = self.m_sName
+    tData.m_nAccountID = self.m_nAccountID
+    tData.m_sAccountName = self.m_sAccountName
+    tData.m_nCreateTime = self.m_nCreateTime
+    tData.m_nServer = self.m_nServer
+    tData.m_nLevel = self.m_nLevel
+    tData.m_nVIP = self.m_nVIP
+    return tData
+end
+
+function CGRole:UpdateReq(tData)
+    for sKey, xVal in pairs(tData)
+        self[sKey] = xVal
+    end
+end
+
+function CGRole:GetID() return self.m_nID end
+function CGRole:GetName() return self.m_sName end
+function CGRole:IsOnline() return self.m_nSession > 0 end
+function CGRole:GetSession() return self.m_nSession end
+function CGRole:GetAccountID() return self.m_nAccountID end
+function CGRole:GetAccountName() return self.m_sAccountName end
+function CGRole:GetCreateTime() return self.m_nCreateTime end
+function CGRole:GetLevel() return self.m_nLevel end
+function CGRole:GetVIP() return self.m_nVIP end
+
+function CGRole:Online(nSession)
+    self.m_nSession = nSession
+end
+
+function CGRole:Offline()
+    self.m_nSession = 0
+end
+
+function CGRole:Tips(sCont, nServer, nSession)
+    nServer = nServer or self.m_nServer
+    nSession = nSession or self.m_nSession
+    CmdNet.PBSrv2Clt(nServer, nSession, "TipsMsgRet", {sCont=sCont})
+end
