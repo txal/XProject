@@ -130,11 +130,11 @@ function CGuoKu:AddItem(nSysID, nCount)
 		end
 	end
 	self:MarkDirty(true)
-	return self:GetItemCount(nSysID)
+	return self:ItemCount(nSysID)
 end
 
 --取物品个数
-function CGuoKu:GetItemCount(nSysID)
+function CGuoKu:ItemCount(nSysID)
 	if not self.m_tGroupMap[nSysID] then
 		return 0
 	end
@@ -181,7 +181,7 @@ function CGuoKu:SubItem(nSysID, nNum)
 		self.m_tGroupMap[nSysID] = tGroupNew
 	end
 	self:MarkDirty(true)
-	return self:GetItemCount(nSysID)
+	return self:ItemCount(nSysID)
 end
 
 --扣除指定格子物品
@@ -272,7 +272,7 @@ function CGuoKu:UseItemReq(nGrid, nNum)
 	local tConf = oProp:GetConf()
 	if tConf.nType == gtPropType.eXiaoHao then
 	--消耗类特殊处理
-		if self.m_oPlayer:GetItemCount(gtItemType.eProp, tConf.nID) < nNum then
+		if self.m_oPlayer:ItemCount(gtItemType.eProp, tConf.nID) < nNum then
 			return self.m_oPlayer:Tips("道具数量不足")
 		end
 
@@ -318,7 +318,7 @@ function CGuoKu:ComposeItemReq(nID)
 	local tCaiLiao = tConf.tCaiLiao
 	for _, tItem in ipairs(tCaiLiao) do
 		if tItem[1] > 0 then
-			if self.m_oPlayer:GetItemCount(tItem[1], tItem[2]) < tItem[3] then
+			if self.m_oPlayer:ItemCount(tItem[1], tItem[2]) < tItem[3] then
 				return self.m_oPlayer:Tips(string.format("%s不足", CGuoKu:PropName(tItem[2])))
 			end
 		end

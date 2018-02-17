@@ -171,10 +171,13 @@ function CRole:SyncInitData()
     CmdNet.PBSrv2Clt("RoleInitDataRet", self:GetServer(), self:GetSession(), tMsg)
 end 
 
---同步角色上下线到GLOBAL
+--同步角色上下线到GLOBAL/WGLOBAL
 function CRole:GlobalRoleOnline(bOnline)
     local tRole = nil
+    local sFunc = "GRoleOfflineReq"
     if bOnline then
+        sFunc = "GRoleOnlineReq"
+
         tRole = {}
         tRole.m_nServer = self:GetServer()
         tRole.m_nSession = self:GetSession()
@@ -187,13 +190,14 @@ function CRole:GlobalRoleOnline(bOnline)
         tRole.m_nLevel = self:GetLevel()
         tRole.m_nVIP = self:GetVIP()
     end
+
     --本服GLOBAL
     for _, tConf in pairs(gtServerConf.tGlobalService) do
-        goRemoteCall:Call("GRoleOnlineReq", tConf.nServer, tConf.nID, self:GetSession(), bOnline, tRole)
+        goRemoteCall:Call(sFunc, self:GetServer(), tConf.nID, self:GetSession(), self:GetID(), tRole)
     end
     --世界服GLOBAL
     for _, tConf in pairs(gtWorldConf.tGlobalService) do
-        goRemoteCall:Call("GRoleOnlineReq", tConf.nServer, tConf.nID, self:GetSession(), bOnline, tRole)
+        goRemoteCall:Call(sFunc, self:GetServer(), tConf.nID, self:GetSession(), self:GetID(), tRole)
     end
 end
 
@@ -228,13 +232,13 @@ function CRole:Offline()
 end
 
 --物品数量
-function CRole:GetItemCount(nItemType, nItemID)
+function CRole:ItemCount(nItemType, nItemID)
     if nItemType == gtItemType.eProp then
         local tConf = assert(ctPropConf[nItemID], "道具不存在:"..nItemID)
         if tConf.nType == gtPropType.eCurr then
-            return self:GetItemCount(gtItemType.eCurr, tConf.nSubType)
+            return self:ItemCount(gtItemType.eCurr, tConf.nSubType)
         else
-            return self.m_oGuoKu:GetItemCount(nItemID)
+            return self.m_oGuoKu:ItemCount(nItemID)
         end
 
     elseif nItemType == gtItemType.eCurr then

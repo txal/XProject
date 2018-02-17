@@ -1,9 +1,17 @@
-call StartPlayerDB.bat
-
+pushd _RouterServer
 call StartRouterServer.bat
-ping 127.0.0.1 -n 2
+popd
+
+pushd _WorldServer
+call StartDB.bat
+call StartGlobalServer.bat
+call StartLogicServer.bat
+popd
+
+pushd _LocalServer
+call StartDB.bat
 call StartLogServer.bat
-ping 127.0.0.1 -n 2
+call StartLoginServer.bat
 call StartGlobalServer.bat
 call StartLogicServer.bat
 call StartGateServer.bat

@@ -143,9 +143,10 @@ void Router::OnRouterDisconnect(int nSessionID)
 	m_oServiceMap.erase(nKey);
     SAFE_DELETE(poService);
 
-	//通知全服服务断开
+	//通知本地全服服务断开
 	Packet* poPacket = Packet::Create();
-	if (poPacket == NULL) {
+	if (poPacket == NULL)
+	{
 		return;
 	}
 	PacketWriter oPacketWriter(poPacket);
@@ -205,7 +206,8 @@ void Router::BroadcastService(int nServerID, Packet* poPacket)
 		if (poService->GetServerID() == nServerID)
 		{
 			Packet* poNewPacket = poPacket->DeepCopy();
-			INNER_HEADER oHeader(NSSysCmd::ssServiceClose, 0, GetServiceID(), nServerID, poService->GetServiceID(), 0);
+			//注意路由本身不属于任何服,所以源服务器赋值为目标服务器
+			INNER_HEADER oHeader(NSSysCmd::ssServiceClose, nServerID, GetServiceID(), nServerID, poService->GetServiceID(), 0);
 			poNewPacket->AppendInnerHeader(oHeader, NULL, 0);
 			if (!poService->GetInnerNet()->SendPacket(poService->GetSessionID(), poNewPacket))
 			{

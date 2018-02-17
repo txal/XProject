@@ -97,10 +97,5 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 		}
 		return true;
 	}
-	if (m_poEventHandler->RecvEvent(oEvent, uWaitMS))
-	{
-		assert(m_oConnQueue.Size() == 0);
-		return true;
-	}
 	return false;
 }

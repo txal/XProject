@@ -97,7 +97,7 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
 		--账号不存在,创建之
 		if sData == "" then
 			nAccountID = CLAccount:GenPlayerID()
-			oDB:HSet(gtDBDef.sAccountNameDB, sAccountKey, cjson.encode({nAccountID=nAccountID})
+			oDB:HSet(gtDBDef.sAccountNameDB, sAccountKey, cjson.encode({nAccountID=nAccountID}))
 		else
 			nAccountID = cjson.decode(sData).nAccountID
 		end
@@ -242,8 +242,10 @@ function CLoginMgr:OnServiceClose(nServer, nService)
 	for nID, oAccount in pairs(self.m_tAccountIDMap) do
 		local nSession = oAccount:GetSession()
 		local nTmpService = self:GetServiceBySession(nSession)
-		if oAccount:GetServer() == nServer and nTmpService = nService and 
+		if oAccount:GetServer() == nServer and nTmpService == nService then
 			self:OnClientClose(nServer, nSession)
 		end
 	end
 end
+
+goLoginMgr = goLoginMgr or CLoginMgr:new()

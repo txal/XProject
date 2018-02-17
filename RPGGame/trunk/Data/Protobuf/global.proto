@@ -15,13 +15,13 @@ message GMCmdReq
 	required string sCmd = 1;
 }
 
-//Tips
+//飘字提示
 message TipsMsgRet
 {
 	required string sCont = 1;	
 }
 
-//公告
+//滚动公告
 message NoticeRet
 {
 	required string sCont = 1;
@@ -30,11 +30,4 @@ message NoticeRet
 //元宝不足弹框
 message YBDlgRet
 {
-}
-
-//图标Tips
-message IconTipsRet
-{
-	required int32 nID = 1;		//道具ID
-	required int32 nNum = 2; 	//道具数量
 }

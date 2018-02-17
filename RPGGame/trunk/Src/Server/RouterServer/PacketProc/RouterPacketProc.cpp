@@ -28,11 +28,13 @@ void NSPacketProc::OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_
 			return;
 		}
 		Packet* poPacketRet = Packet::Create();
-		if (poPacketRet == NULL) {
+		if (poPacketRet == NULL)
+		{
 			return;
 		}
 
-		INNER_HEADER oHeaderRet(NSSysCmd::ssRegServiceRet, g_poContext->GetServerID(), poRouter->GetServiceID(), oHeader.uSrcServer, oHeader.nSrcService, 0);
+		//注意路由本身不属于任何服,所以源服务器赋值为目标服务器
+		INNER_HEADER oHeaderRet(NSSysCmd::ssRegServiceRet, oHeader.uSrcServer, poRouter->GetServiceID(), oHeader.uSrcServer, oHeader.nSrcService, 0);
 		poPacketRet->AppendInnerHeader(oHeaderRet, NULL, 0);
 		if (!poTarService->GetInnerNet()->SendPacket(poTarService->GetSessionID(), poPacketRet))
 		{

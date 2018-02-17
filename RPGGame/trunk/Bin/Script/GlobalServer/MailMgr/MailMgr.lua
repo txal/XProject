@@ -83,7 +83,10 @@ end
 
 function CMailMgr:OnRelease()
 	goTimerMgr:Clear(self.m_nSaveTimer)
+	self.m_nSaveTimer = nil
+
 	goTimerMgr:Clear(self.m_nTaskTimer)
+	self.m_nTaskTimer = nil
 
 	self:SaveData()
 end
@@ -121,7 +124,7 @@ function CMailMgr:GenMailID()
 end
 
 function CMailMgr:CheckValid(sSender, sTitle, sContent, tItems)
-	assert(sSenderand sTitle and sContent and tItems, "参数非法")
+	assert(sSender and sTitle and sContent and tItems, "参数非法")
 	assert(string.len(sTitle) <= 16*3, "邮件标题过长,最多16个汉字")
 	assert(string.len(sContent) <= 128*3, "邮件内容过长,最多128个汉字")
 	assert(type(tItems) == "table", "物品格式错误")
@@ -271,7 +274,7 @@ function CMailMgr:GetRoleMail(nRoleID, nMailID)
 end
 
 --删除邮件
-function CMail:DelMailReq(oRole, nMailID)
+function CMailMgr:DelMailReq(oRole, nMailID)
 	--删除指定
 	local nRoleID = oRole:GetID()
 	local tRoleMailList = self.m_tRoleMailMap[nRoleID] or {}
@@ -316,10 +319,10 @@ end
 function CMailMgr:MailItemsReq(oRole, nMailID)
 	local nRoleID = oRole:GetID()
 
-	local tList = {}
+	local tItemMap = {}
 	local function _GetMailItem(tMail)
 		for _, tItem in ipairs(tMail[4]) do
-			table.insert(tList, {nType=tItem[1], nID=tItem[2], nNum=tItem[3]})
+			tItemMap[tItem[2]] = (tItemMap[tItem[2]] or 0) + tItem[3]
 		end
 		tMail[4], tMail[6] = {}, 1
 		goLogger:EventLog(gtEvent.eGetMail, oRole, tMail[1])
@@ -351,10 +354,14 @@ function CMailMgr:MailItemsReq(oRole, nMailID)
 	end
 	if nCount > 0 then
 		self:MarkDirty(nRoleID, true)
-		goRemoteCall:Call("RoleAddItemReq", oRole:GetServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetAccountID(), tList)
 
-		self:MailListReq(oRole)
+		local tList = {}
+		for nID, nNum in pairs(tItemMap) do
+			table.insert(tList, {nType=gtItemType.eProp, nID=nID, nNum=nNum})
+		end
+		oRole:AddItem(tList, "领取邮件")
 		CmdNet.PBSrv2Clt(oRole:GetServer(), oRole:GetSession(), "MailItemsRet", {tList=tList})
+		self:MailListReq(oRole)
 	else
 		oRole:Tips("没有可领取物品")
 	end
@@ -376,7 +383,8 @@ end
 
 --GM清理全局邮件
 function CMailMgr:GMDelServerMail(nMailID)
-	if nMailID then
+	nMailID = nMailID or 0
+	if nMailID > 0 then
 		self.m_tServerMailMap[nMailID] = {}
 	else
 		self.m_tServerMailMap = {}

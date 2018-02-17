@@ -13,7 +13,7 @@ local function _StrField(xField)
 end
 
 --事件日志
-function Srv2Srv.EventLog(nSrcServer, nSrcService, nSession, nEventID, nReason, nAccountID, RoleID, sRoleName, nLevel, nVIP, ...)
+function Srv2Srv.EventLogReq(nSrcServer, nSrcService, nTarSession, nEventID, nReason, nAccountID, RoleID, sRoleName, nLevel, nVIP, ...)
 	sRoleName = _StrField(sRoleName)
 	local tField = {...}
 	local sField1 = _StrField(tField[1])
@@ -30,21 +30,21 @@ function Srv2Srv.EventLog(nSrcServer, nSrcService, nSession, nEventID, nReason, 
 end
 
 --账号日志
-function Srv2Srv.CreateAccountLog(nSrcServer, nSrcService, nSession, nSource, nAccountID, sAccountName, nVIP, nTime)
+function Srv2Srv.CreateAccountLogReq(nSrcServer, nSrcService, nTarSession, nSource, nAccountID, sAccountName, nVIP, nTime)
 	sAccountName = _StrField(sAccountName)
 	local sSql = string.format(gtGameSql.sInsertAccountSql, nSource, nAccountID, sAccountName, nVIP, nTime)
 	goMysqlPool:Query(sSql)
 end
 
 --角色日志
-function Srv2Srv.CreateRoleLog(nSrcServer, nSrcService, nSession, nAccountID, nRoleID, sRoleName, nLevel, nTime)
+function Srv2Srv.CreateRoleLogReq(nSrcServer, nSrcService, nTarSession, nAccountID, nRoleID, sRoleName, nLevel, nTime)
 	sRoleName = _StrField(sRoleName)
 	local sSql = string.format(gtGameSql.sInsertRoleSql, nAccountID, nRoleID, sRoleName, nLevel, nTime)
 	goMysqlPool:Query(sSql)
 end
 
 --更新账号信息
-function Srv2Srv.UpdateAccountLog(nSrcServer, nSrcService, nSession, nAccountID, tParam)
+function Srv2Srv.UpdateAccountLogreq(nSrcServer, nSrcService, nTarSession, nAccountID, tParam)
 	local sSetSql = ""
 	for k, v in pairs(tParam) do
 		sSetSql = sSetSql .. string.format("%s='%s',", k, _StrField(v))
@@ -55,7 +55,7 @@ function Srv2Srv.UpdateAccountLog(nSrcServer, nSrcService, nSession, nAccountID,
 end
 
 --更新账号信息
-function Srv2Srv.UpdateRoleLog(nSrcServer, nSrcService, nSession, nRoleID, tParam)
+function Srv2Srv.UpdateRoleLogReq(nSrcServer, nSrcService, nTarSession, nRoleID, tParam)
 	local sSetSql = ""
 	for k, v in pairs(tParam) do
 		sSetSql = sSetSql .. string.format("%s='%s',", k, _StrField(v))

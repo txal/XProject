@@ -8,15 +8,15 @@ function CDBMgr:Init()
 	self.m_tSSDBMap = {}
 
 	--连接SSDB
-	for _, tConf in ipairs(gtServerConf.tGameDB) do
+	for sName, tConf in pairs(gtServerConf.tGameDB) do
 		local oSSDB = SSDBDriver:new()
 		local bRes = oSSDB:Connect(tConf.sIP, tConf.nPort)
 		assert(bRes, "连接SSDB失败:", tConf)
 	    LuaTrace("连接SSDB成功:", tConf)
-	    if not self.m_tSSDBMap[tConf.nServerID] then
-	    	self.m_tSSDBMap[tConf.nServerID] = {}
+	    if not self.m_tSSDBMap[tConf.nServer] then
+	    	self.m_tSSDBMap[tConf.nServer] = {}
 	    end
-	    self.m_tSSDBMap[tConf.nServerID][tConf.sName] = oSSDB
+	    self.m_tSSDBMap[tConf.nServer][sName] = oSSDB
 	end
 end
 

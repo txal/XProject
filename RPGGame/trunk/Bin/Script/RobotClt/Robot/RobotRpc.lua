@@ -1,65 +1,57 @@
 local tPingMap = {}
-function CltCmdProc.Ping(nCmd, nSrcService, nTarSession)
+function CltCmdProc.Ping(nCmd, nSrcServer, nSrcService, nTarSession)
     LuaTrace("Test cmd time:", os.clock() - tPingMap[nTarSession])
 end
 
-function CltCmdProc.KeepAlive(nCmd, nSrcService, nSession, nServerTime) 
-    tPingMap[nSession] = os.clock()
-    -- local oRobot = goRobotMgr:GetRobot(nSession)
-    -- CmdNet.Clt2Srv(oRobot:GenPacketIdx(), nSession, "Ping")
+function CltCmdProc.KeepAlive(nCmd, nSrcServer, nSrcService, nTarSession, nServerTime) 
+    tPingMap[nTarSession] = os.clock()
+    local oRobot = goRobotMgr:GetRobot(nTarSession)
+    CmdNet.Clt2Srv("Ping", oRobot:GenPacketIdx(), nTarSession)
 end
 
 
-function CltPBProc.LoginRet(nCmd, nSrcService, nSession, tData)
+function CltPBProc.LoginRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     local nCode = tData.nCode
-    local oRobot = goRobotMgr:GetRobot(nSession)
+    local oRobot = goRobotMgr:GetRobot(nTarSession)
     if oRobot then
         oRobot:OnLoginRet(nCode)
     end
 end
 
-function CltPBProc.CreateRoleRet(nCmd, nSrcService, nSession, tData)
+function CltPBProc.CreateRoleRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     local nCode = tData.nCode
-    local oRobot = goRobotMgr:GetRobot(nSession)
+    local oRobot = goRobotMgr:GetRobot(nTarSession)
     if oRobot then
         oRobot:OnCreateRoleRet(nCode)
     end
 end
 
-function CltPBProc.PlayerInitDataSync(nCmd, nSrcService, nSession, tData)
-    --print("PlayerInitDataSync***", tData)
+function CltPBProc.RoleInitDataRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
 end
 
-function CltPBProc.PlayerEnterSceneRet(nCmd, nSrcService, nSession, tData)
-    local oRobot = goRobotMgr:GetRobot(nSession)
+function CltPBProc.RoleEnterSceneRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+    local oRobot = goRobotMgr:GetRobot(nTarSession)
     if oRobot then
         oRobot:OnEnterScene(tData)
     end
 end
 
-function CltPBProc.PlayerLeaveSceneRet(nCmd, nSrcService, nSession, tData)
+function CltPBProc.RoleLeaveSceneRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
 end
 
-function CltPBProc.PlayerEnterViewSync(nCmd, nSrcService, nSession, tData)
-    local tPlayerList = tData.tPlayerList
-    --print("Enter:", tPlayerList)
+function CltPBProc.RoleEnterVieRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+    local tRoleList = tData.tRoleList
 end
 
-function CltPBProc.MonsterEnterViewSync(nCmd, nSrcService, nSession, tData)
+function CltPBProc.MonsterEnterViewRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     local tMonsterList = tData.tMonsterList
-    --print("Enter:", tMonsterList)
 end
 
 
-function CltPBProc.ObjLeaveViewSync(nCmd, nSrcService, nSession, tData)
+function CltPBProc.ObjLeaveViewRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     local tObjList = tData.tObjList
-    --print("Leave:", tObjList)
 end
 
-function CltPBProc.PlayerSwitchWeaponSync(nCmd, nSrcService, nSession, tData)
-    --print("Leave:", tObjList)
-end
-
-function CltPBProc.TipsMsgRet(nCmd, nSrcService, nSession, tData)
+function CltPBProc.TipsMsgRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     print(tData.sCont)
 end

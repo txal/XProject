@@ -7,7 +7,7 @@ local function OpenProto()
     local f = io.open("protopath.txt", "r")
     if not f then
         require("../../Data/Protobuf/LoadPBCProto")
-        LoadProto("../Data/Protobuf")
+        LoadProto("../../Data/Protobuf")
         return
     else
         local sLoaderPath = f:read("l")
@@ -22,7 +22,6 @@ end
 --Global script
 require = gfRawRequire or require  --恢复原生require
 require("Config/Main")
--- require("ServerConf")
 require("Common/CommonInc")
 OpenProto()
 
@@ -35,9 +34,6 @@ require("TaskProc")
 require("RobotConf")
 require("Robot/RobotInc")
 
---连接数据库
--- goDBMgr = goDBMgr or CDBMgr:new()
--- goDBMgr:Init()
 
 function Main()
 	CmdNet.bServer = false
@@ -46,26 +42,5 @@ function Main()
 end
 
 function Test()
-    local function _compare(v1, v2)
-        if v1 > v2 then
-            return 1
-        end
-        if v1 < v2 then
-            return -1 
-        end
-        return 0
-    end
-    local oMinHeap = CMinHeap:new(_compare)
-    local beg = os.clock()
-    for k = 1, 100000 do
-        oMinHeap:Push(k)
-    end
-    print("time push:", os.clock() - beg, oMinHeap:GetCount())
-
-    beg = 0
-    for k = 1, 100000 do
-        oMinHeap:RemoveByValue(k)
-    end
-    print("time remove:", os.clock() - beg, oMinHeap:GetCount())
 end
 

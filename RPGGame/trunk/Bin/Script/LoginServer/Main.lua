@@ -30,9 +30,10 @@ OpenProto()
 --GlobalServer script
 gfRawRequire = require 	--hook require
 require = function(sScript)
-	gfRawRequire("GlobalServer/"..sScript)
+	gfRawRequire("LoginServer/"..sScript)
 end
 require("GMMgr/GMMgrInc")
+require("LoginMgr/LoginMgrInc")
 
 --全局初始化
 local function _InitGlobal()
@@ -42,7 +43,14 @@ end
 
 --全局反初始化
 local function _UninitGlobal()
-    return true
+    local bSuccess = true
+    local function fnError(sErr)
+        bSuccess=false
+        LuaTrace(sErr, debug.traceback())
+    end
+
+    xpcall(function() goRemoteCall:OnRelease() end, fnError)
+    return bSuccess
 end
 
 
@@ -58,7 +66,7 @@ function Main()
     collectgarbage("setstepmul", 300)
     collectgarbage()
     gnGCTimer = goTimerMgr:Interval(nGCTime, function() _LuaGC() end)
-	LuaTrace("LoginServer lua start successful")
+    LuaTrace("启动 LoginServer 完成******")
     Test()
 end
 
@@ -75,6 +83,6 @@ function OnExitServer()
 end
 
 function Test()
-    goRemoteCall:Call("Test", 1, 30, 0, "hehehe")
-    goRemoteCall:CallWait("Test", nil, 1, 30, 0, "hehehe")
+    -- goRemoteCall:Call("Test", 1, 30, 0, "hehehe")
+    -- goRemoteCall:CallWait("Test", nil, 1, 30, 0, "hehehe")
 end

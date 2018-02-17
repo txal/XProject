@@ -1,11 +1,13 @@
 --VIP系统
+local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
+
 function CVIP:Ctor(oPlayer)
 	self.m_oPlayer = oPlayer
-	self.m_nTotalRecharged = 0 	--累计充值RMB
-	self.m_tAwardMap = {[0]=1} 	--特权礼包:{[nVIP]=nState, ...} nState:0未达成; 1已达成未领取; 2已领取
-	self.m_tRechargeMap = {} 	--充值记录:{[nTime]={nMoney, nYuanBao}, ...}
+	self.m_nTotalMoney = 0 	--累计充值RMB
+	self.m_tRechargeMap = {} 	--充值记录:{[nTime]={nMoney,nYuanBao}, ...}
 	self.m_tRechargeIDMap = {} 	--充值ID记录:{[id]=count}, ...}
 	self.m_nFirstRechargeState = 0 	--首充状态:0未满足; 1未领取; 2已领取
+	self.m_tAwardMap = {[0]=1} 	--特权礼包:{[nVIP]=nState, ...} nState:0未达成; 1已达成未领取; 2已领取
 
 	--不保存(用来防止重复处理同一订单)
 	self.m_tProccessedOrder = {}
@@ -15,7 +17,7 @@ function CVIP:LoadData(tData)
 	if not tData then
 		return
 	end
-	self.m_nTotalRecharged = tData.m_nTotalRecharged
+	self.m_nTotalMoney = tData.m_nTotalMoney
 	self.m_tAwardMap = tData.m_tAwardMap
 	self.m_tAwardMap[0] = self.m_tAwardMap[0] or 1 --vip0也有奖励
 	self.m_tRechargeMap = tData.m_tRechargeMap
@@ -30,7 +32,7 @@ function CVIP:SaveData()
 	self:MarkDirty(false)
 
 	local tData = {}
-	tData.m_nTotalRecharged = self.m_nTotalRecharged
+	tData.m_nTotalMoney = self.m_nTotalMoney
 	tData.m_tAwardMap = self.m_tAwardMap
 	tData.m_tRechargeMap = self.m_tRechargeMap
 	tData.m_tRechargeIDMap = self.m_tRechargeIDMap
@@ -49,11 +51,11 @@ end
 
 --取累计充值
 function CVIP:GetTotalRecharge()
-	return self.m_nTotalRecharged
+	return self.m_nTotalMoney
 end
 
 --处理订单
-function CVIP:OnProcessRechargeOrderReq(sOrderID, nRechargeID, nTime)
+function CVIP:ProcessRechargeOrderReq(sOrderID, nRechargeID, nTime)
 	assert(sOrderID and nRechargeID, "参数错误")
 	if not self.m_tProccessedOrder[sOrderID] then
 		self.m_tProccessedOrder[sOrderID] = nRechargeID
@@ -86,7 +88,7 @@ end
 
 --充值成功
 function CVIP:OnRechargeSuccess(nID, nMoney, nYuanBao, nTime)
-	self.m_nTotalRecharged = math.min(nMAX_INTEGER, math.max(0, self.m_nTotalRecharged+nMoney))
+	self.m_nTotalMoney = math.min(nMAX_INTEGER, math.max(0, self.m_nTotalMoney+nMoney))
     self.m_tRechargeMap[nTime] = {nMoney, nYuanBao}
 	self:MarkDirty(true)
 	self.m_oPlayer:SaveData()
@@ -95,7 +97,7 @@ function CVIP:OnRechargeSuccess(nID, nMoney, nYuanBao, nTime)
 	local nVIP = self.m_oPlayer:GetVIP()
 	for k=#ctVIPConf, nVIP+1, -1 do
 		local tConf = ctVIPConf[k]
-		if self.m_nTotalRecharged >= tConf.nMoney then
+		if self.m_nTotalMoney >= tConf.nMoney then
 			self.m_oPlayer:SetVIP(k, "充值")
 			break
 		end
@@ -118,7 +120,7 @@ function CVIP:OnRechargeSuccess(nID, nMoney, nYuanBao, nTime)
 	self.m_oPlayer.m_oDailyTask:Progress(gtDailyTaskType.eCond1, 1)
 
 	--更新离线数据
-	goOfflineDataMgr:UpdateRecharge(self.m_oPlayer, self.m_nTotalRecharged)
+	goOfflineDataMgr:UpdateRecharge(self.m_oPlayer, self.m_nTotalMoney)
 end
 
 --VIP特权奖励
@@ -205,7 +207,7 @@ end
 --是否第一次充值
 function CVIP:IsFirstRecharge(nID)
 	if not nID then
-		return (self.m_nTotalRecharged == 0)
+		return (self.m_nTotalMoney == 0)
 	end
 	return (not self.m_tRechargeIDMap[nID])
 end
@@ -254,12 +256,12 @@ function CVIP:RechargeListReq()
 	for k = #tCardList, 1, -1 do
 		table.insert(tList, 1, tCardList[k])
 	end
-	CmdNet.PBSrv2Clt(self.m_oPlayer:GetSession(), "RechargeListRet", {tList=tList, nRecharged=self.m_nTotalRecharged})
+	CmdNet.PBSrv2Clt(self.m_oPlayer:GetSession(), "RechargeListRet", {tList=tList, nRecharged=self.m_nTotalMoney})
 end
 
 --同步首充状态
 function CVIP:SyncFirstRecharge()
-	if self.m_nTotalRecharged > 0 then
+	if self.m_nTotalMoney > 0 then
 		if self.m_nFirstRechargeState == 0 then
 			self.m_nFirstRechargeState = 1
 			self:MarkDirty(true)
@@ -294,7 +296,7 @@ end
 --增加VIP经验(相当于人民币)
 function CVIP:AddVIPExp(nVal)
 	self:OnRechargeSuccess(0, nVal, 0)
-	return self.m_nTotalRecharged
+	return self.m_nTotalMoney
 end
 
 --GM模拟充值

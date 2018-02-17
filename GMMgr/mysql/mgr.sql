@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `recharge` (
   `orderid` varchar(32) NOT NULL DEFAULT '',
   `source` int(11) NOT NULL DEFAULT 0,
   `serverid` int(11) NOT NULL DEFAULT 0,
-  `charid` varchar(32) NOT NULL DEFAULT '',
+  `roleid` varchar(32) NOT NULL DEFAULT '',
   `rechargeid` int(11) NOT NULL DEFAULT 0,
   `productid` varchar(256) NOT NULL DEFAULT '',
   `money` double NOT NULL DEFAULT 0,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `recharge` (
   `time` int(11) NOT NULL DEFAULT 0,
   `type` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:测试;1:正式;2:后台',
   PRIMARY KEY (`orderid`),
-  KEY `key_charid` (`charid`,`state`),
+  KEY `key_roleid` (`roleid`,`state`),
   KEY `key_serverid` (`serverid`, `state`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `cdkeycode` (
   `key` varchar(32) NOT NULL DEFAULT '',
   `giftid` int  NOT NULL DEFAULT 0,
   `server` int  NOT NULL DEFAULT 0,
-  `charlist` text NOT NULL COMMENT '兑换过后会保存对应玩家的角色ID',
+  `rolelist` text NOT NULL COMMENT '兑换过后会保存对应玩家的角色ID',
   `time` int  NOT NULL DEFAULT 0,
   PRIMARY KEY (`key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

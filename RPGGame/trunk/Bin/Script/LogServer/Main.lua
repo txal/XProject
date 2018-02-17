@@ -15,6 +15,19 @@ require("MysqlPool/MysqlPoolInc")
 local function _InitGlobal()
 	InitMysql()
 	goMysqlPool:Init()
+    goRemoteCall:Init()
+    
+end
+
+local function _UninitGlobal()
+    local bSuccess = true
+    local function fnError(sErr)
+        bSuccess=false
+        LuaTrace(sErr, debug.traceback())
+    end
+
+    xpcall(function() goRemoteCall:OnRelease() end, fnError)
+    return bSuccess
 end
 
 local nGCTime = 180
@@ -28,7 +41,7 @@ function Main()
     collectgarbage("setstepmul", 300)
     collectgarbage()
     goTimerMgr:Interval(nGCTime, function() _LuaGC() end)
-	LuaTrace("LogServer lua start successful")
+    LuaTrace("启动 LogServer 完成******")
 end
 
 function Test()

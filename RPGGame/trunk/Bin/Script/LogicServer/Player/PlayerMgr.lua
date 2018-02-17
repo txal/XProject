@@ -90,6 +90,7 @@ function CPlayerMgr:OfflineReq(nAccountID)
 	return nAccountID
 end
 
+
 goPlayerMgr = goPlayerMgr or CPlayerMgr:new()
 goCppPlayerMgr = GlobalExport.GetPlayerMgr()
 

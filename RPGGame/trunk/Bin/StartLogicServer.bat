@@ -1,2 +1,0 @@
-start LogicServer 51
-

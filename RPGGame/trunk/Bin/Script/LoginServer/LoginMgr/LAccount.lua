@@ -12,7 +12,7 @@ function CLAccount:Ctor(nServer, nSession, nID, nSource, sName)
 	self.m_nSource = nSource
 	self.m_nServer = nServer
 
-	self.m_tRoleSummaryMap = {} 	--角色摘要信息:{[roleid]={nID=0,sName="",nLevel=0,nGender=0,nSchool=0,tEquipment={},nCityID=0,nDupID=0},...}
+	self.m_tRoleSummaryMap = {} 	--角色摘要信息:{[roleid]={nID=0,sName="",nLevel=0,nGender=0,nSchool=0,tEquipment={},tLastDup={nID,tPos},tCurrDup={nID,tPos}},...}
 	self.m_nLastRoleID = 0 			--最后登录的角色ID
 
 	--不保存
@@ -85,17 +85,9 @@ function CLAccount:GetLogic()
 	if not tSummary then
 		return 0
 	end
-	if tSummary.nDupID > 0 then
-		local tConf = ctDupConf[tSummary.nDupID]
-		if tConf then
-			return tConf.nLogic
-		else
-			tSummary.nDupID = 0
-			self:SaveData()
-		end
-	end
-	local tConf = ctCityConf[tSummary.nCityID]
-	if tConf then
+	local tCurrDup = tSummary.tCurrDup
+	if tCurrDup[1] > 0 then
+		local tConf = ctDupConf[tCurrDup]
 		return tConf.nLogic
 	end
 	return 0

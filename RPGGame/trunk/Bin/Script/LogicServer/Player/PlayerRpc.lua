@@ -24,9 +24,18 @@ function Srv2Srv.RoleOfflineReq(nSrcServer, nSrcService, nTarSession, nAccountID
 end
 
 --道具数量请求(GLOBAL服务)
-function Srv2Srv.RoleGetItemReq(nSrcServer, nSrcService, nTarSession, nAccountID)
+function Srv2Srv.RoleItemCountReq(nSrcServer, nSrcService, nTarSession, nAccountID, nType, nID)
+    local oRole = goPlayerMgr:GetRoleByAccountID(nAccountID)
+    if not oRole then return end
+    return oRole:ItemCount(nType, nID)
 end
 
 --道具数量增减(GLOBAL服务)
-function Srv2Srv.RoleAddItemReq(nSrcServer, nSrcService, nTarSession, nAccountID)
+function Srv2Srv.RoleAddItemReq(nSrcServer, nSrcService, nTarSession, nAccountID, tItemList, sReason)
+    local oRole = goPlayerMgr:GetRoleByAccountID(nAccountID)
+    if not oRole then return end
+    for _, tItem in ipairs(tItemList) do
+        oRole:AddItem(tItem.nType, tItem.nID, tItem.nNum, sReason)
+    end
+    return true
 end

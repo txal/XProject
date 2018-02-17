@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{6c20ebdc-b7ff-4ab5-a59c-34edfff48111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common">
+      <UniqueIdentifier>{715eb57f-bcd9-4942-89b0-225886308bd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\LuaSupport">
+      <UniqueIdentifier>{766bc7ce-13ff-464b-b327-bae197d68fe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Base">
+      <UniqueIdentifier>{fdc46457-ff3f-4d29-930d-e1876c62592f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\PacketProc">
+      <UniqueIdentifier>{2acaaefc-02fc-40ca-815c-6390cae7bf27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\LuaCommon">
+      <UniqueIdentifier>{748bc3f9-c362-4ac4-bdb1-06a408360367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneMgr">
+      <UniqueIdentifier>{c1e62b98-0b4c-4442-aeb3-1a8d31dc29e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Object">
+      <UniqueIdentifier>{ea96a5ab-7c26-4f66-a8df-d891d3688ba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Object\Player">
+      <UniqueIdentifier>{0ea38ac9-8c1f-49a5-8921-658306bb5690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\CSVDocument">
+      <UniqueIdentifier>{4fa7d981-8146-4c2d-a475-4c4e0cfa8f83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\PacketParser">
+      <UniqueIdentifier>{c13ae5e8-83a3-47e7-919a-835c0990adf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\DataStruct">
+      <UniqueIdentifier>{e924fd9e-047d-477c-aa99-a70dc16a17e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ConfMgr">
+      <UniqueIdentifier>{6b1784e0-10a0-4d5e-958b-27466969cfb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Object\Monster">
+      <UniqueIdentifier>{72425920-263d-4d25-893a-994e4ad5ce83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Object\DropItem">
+      <UniqueIdentifier>{c0fa1c88-e458-4881-933c-e0efb29845b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Object\Robot">
+      <UniqueIdentifier>{8662a24d-d4ec-4286-8681-733268ef4a92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component">
+      <UniqueIdentifier>{c45bccaf-43cf-44d1-94f0-aa435c7b24f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\Buff">
+      <UniqueIdentifier>{262b5176-e2e0-482a-afd6-6ee2ffdb0159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\AI">
+      <UniqueIdentifier>{3f276a40-8126-4bef-b7d6-e494a96b8417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\Battle">
+      <UniqueIdentifier>{135a10fa-db43-4934-9d6e-424683f6caa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\Rank">
+      <UniqueIdentifier>{a45050af-e1de-4c4b-9e5c-1c22a3d50c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\AStar">
+      <UniqueIdentifier>{89a37287-ed64-4a8a-9013-e12c5f90cba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Object\Detector">
+      <UniqueIdentifier>{b94d947e-48f3-41c8-9ead-5c1ad771c491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\TimerMgr">
+      <UniqueIdentifier>{de412e46-0ebf-4446-a3c7-4dbdffef7315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\WordFilter">
+      <UniqueIdentifier>{1b883284-1410-4914-aa8a-a45a5c8a6671}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Src\Server\LogicServer\LogicServer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\LuaSupport\LuaExport.cpp">
+      <Filter>Src\LuaSupport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\PacketProc\LogicPacketProc.cpp">
+      <Filter>Src\PacketProc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\Service.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\AOI.cpp">
+      <Filter>Src\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\Scene.cpp">
+      <Filter>Src\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\SceneMgr.cpp">
+      <Filter>Src\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\Tower.cpp">
+      <Filter>Src\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Actor.cpp">
+      <Filter>Src\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Player\Player.cpp">
+      <Filter>Src\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Player\PlayerMgr.cpp">
+      <Filter>Src\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Object.cpp">
+      <Filter>Src\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\CSVDocument\CSVDocument.cpp">
+      <Filter>Src\Common\CSVDocument</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.cpp">
+      <Filter>Src\ConfMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Monster\Monster.cpp">
+      <Filter>Src\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Monster\MonsterMgr.cpp">
+      <Filter>Src\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\MsgBalancer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\DropItem\DropItem.cpp">
+      <Filter>Src\Object\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\DropItem\DropItemMgr.cpp">
+      <Filter>Src\Object\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Robot\Robot.cpp">
+      <Filter>Src\Object\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Robot\RobotMgr.cpp">
+      <Filter>Src\Object\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.cpp">
+      <Filter>Src\ConfMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\AIConf.cpp">
+      <Filter>Src\ConfMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Component\AStar\AStarPathFind.cpp">
+      <Filter>Src\Component\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Component\AI\Action.cpp">
+      <Filter>Src\Component\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Component\AI\AI.cpp">
+      <Filter>Src\Component\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Component\Buff\Buff.cpp">
+      <Filter>Src\Component\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Detector\Detector.cpp">
+      <Filter>Src\Object\Detector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Detector\DetectorMgr.cpp">
+      <Filter>Src\Object\Detector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp">
+      <Filter>Src\Common\WordFilter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\Server\LogicServer\LogicServer.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\LuaSupport\LuaExport.h">
+      <Filter>Src\LuaSupport</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\Service.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\ServerContext.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\PacketProc\LogicPacketProc.h">
+      <Filter>Src\PacketProc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\AOI.h">
+      <Filter>Src\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\Scene.h">
+      <Filter>Src\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\Tower.h">
+      <Filter>Src\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\SceneMgr.h">
+      <Filter>Src\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\CmdDef.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\ObjectDef.h">
+      <Filter>Src\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Actor.h">
+      <Filter>Src\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Player\Player.h">
+      <Filter>Src\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Player\PlayerMgr.h">
+      <Filter>Src\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Object.h">
+      <Filter>Src\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\CSVDocument\CSVDocument.h">
+      <Filter>Src\Common\CSVDocument</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\HexStr.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.h">
+      <Filter>Src\ConfMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Monster\Monster.h">
+      <Filter>Src\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Monster\MonsterMgr.h">
+      <Filter>Src\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\MsgBalancer.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\DropItem\DropItem.h">
+      <Filter>Src\Object\DropItem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\DropItem\DropItemMgr.h">
+      <Filter>Src\Object\DropItem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.h">
+      <Filter>Src\ConfMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Ranking.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\AIConf.h">
+      <Filter>Src\ConfMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Robot\Robot.h">
+      <Filter>Src\Object\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Robot\RobotMgr.h">
+      <Filter>Src\Object\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Memory.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\BattleDef.h">
+      <Filter>Src\Component\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\BattleUtil.h">
+      <Filter>Src\Component\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\WeaponList.h">
+      <Filter>Src\Component\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\AStar\AStarPathFind.h">
+      <Filter>Src\Component\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\AI\Action.h">
+      <Filter>Src\Component\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\AI\AI.h">
+      <Filter>Src\Component\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Buff\Buff.h">
+      <Filter>Src\Component\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Rank\RankData.h">
+      <Filter>Src\Component\Rank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Detector\Detector.h">
+      <Filter>Src\Object\Detector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Detector\DetectorMgr.h">
+      <Filter>Src\Object\Detector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\ObjID.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Md5.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h">
+      <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h">
+      <Filter>Src\Common\WordFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Array.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

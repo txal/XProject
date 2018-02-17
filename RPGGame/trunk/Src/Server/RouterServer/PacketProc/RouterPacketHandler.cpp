@@ -33,6 +33,13 @@ void RouterPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket,
 
 void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader)
 {
+	//目标服务器ID特殊处理(1-100:本服; 101-127:世界)
+	if (oHeader.nTarService > 100)
+	{
+		oHeader.uTarServer = g_poContext->GetWorldServerID();
+		assert(oHeader.uTarServer >= 10000);
+	}
+
 	Router* poService = (Router*)g_poContext->GetService();
 	ServiceNode* poTarService = poService->GetService(oHeader.uTarServer, oHeader.nTarService);
 	if (poTarService == NULL)

@@ -77,7 +77,7 @@ void RegClassDetector()
 
 int DetectorMgr::CreateDetector(lua_State* pState)
 {
-	int64_t nObjID = luaL_checkinteger(pState, 1);
+	int nObjID = (int)luaL_checkinteger(pState, 1);
 	int nConfID = (int)luaL_checkinteger(pState, 2);
 	const char* psName = luaL_checkstring(pState, 3);
 	int nAliveTime  = (int)luaL_checkinteger(pState, 4);
@@ -93,7 +93,7 @@ int DetectorMgr::CreateDetector(lua_State* pState)
 
 int DetectorMgr::GetDetector(lua_State* pState)
 {
-	int64_t nObjID = luaL_checkinteger(pState, 1);
+	int nObjID = (int)luaL_checkinteger(pState, 1);
 	Detector* poDetector = GetDetectorByID(nObjID);
 	if (poDetector != NULL)
 	{

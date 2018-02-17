@@ -1,5 +1,5 @@
-﻿#ifndef __LOG_SERVER_H__
-#define __LOG_SERVER_H__
+﻿#ifndef __GLOBAL_SERVER_H__
+#define __GLBOAL_SERVER_H__
 
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/Array.h"

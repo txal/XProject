@@ -32,6 +32,7 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.uSrcServer = g_poContext->GetServerID();
 		oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+		oNavi.uTarServer = g_poContext->GetServerID();
 		oNavi.nTarSession = nSrcSessionID;
 
 		//确定目标服务
@@ -49,12 +50,6 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 				return;
 			}
 		}
-
-		//确定目标服务器(1-100:本服; 101-127:世界)
-		if (oNavi.nTarService <= 100)
-			oNavi.uTarServer = g_poContext->GetServerID();
-		else
-			oNavi.uTarServer = g_poContext->GetWorldServerID();
 
 		if (!NetAdapter::SendInner(oHeader.uCmd, poPacket, oNavi))
 		{

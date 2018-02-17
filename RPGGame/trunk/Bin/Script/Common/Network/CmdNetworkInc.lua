@@ -1,7 +1,7 @@
 protobuf = require("Common/Network/protobuf")
 parser = require("Common/Network/parser")
 
-local tNetConf = gtNetConf
+local tServerConf = gtServerConf
 
 local _pairs = pairs
 local _assert = assert
@@ -180,7 +180,7 @@ function CmdNet.PBSrv2All(sCmdName, tData)
 
     --网关服务列表
     local tTarService = {}
-    for _, tConf in _pairs(tNetConf.tGateService) do
+    for _, tConf in _pairs(tServerConf.tGateService) do
         _insert(tTarService, {tConf.nServer, tConf.nID, 0})
     end
     if #tTarService <= 0 then

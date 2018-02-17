@@ -1,6 +1,6 @@
 CLAccount = CLAccount or class()
 CLoginMgr = CLoginMgr or class()
 
-require("LoginMgr/Account")
+require("LoginMgr/LAccount")
 require("LoginMgr/LoginMgr")
-require("LoginMgr/LoginRpc")
+require("LoginMgr/LoginMgrRpc")

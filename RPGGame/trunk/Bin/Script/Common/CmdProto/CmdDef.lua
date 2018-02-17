@@ -37,11 +37,10 @@ RegCmdRet(1100, "KeepAlive", "i", 0)
 RegPBReq(8001, "TestPack", "global.TestPack", 0)		--测试包请求
 RegPBRet(8002, "TestPack", "global.TestPack", 0)		--测试包返回
 
-RegPBReq(8003, "GMCmdReq", "global.GMCmdReq", 31)		--GM指令	
-RegPBRet(8004, "TipsMsgRet", "global.TipsMsgRet", 0)	--通用飘字消息提示
-RegPBRet(8005, "NoticeRet", "global.NoticeRet", 0)		--公告返回
+RegPBReq(8003, "GMCmdReq", "global.GMCmdReq", 40)		--GM指令	
+RegPBRet(8004, "TipsMsgRet", "global.TipsMsgRet", 0)	--通用飘字提示
+RegPBRet(8005, "NoticeRet", "global.NoticeRet", 0)		--滚动公告返回
 RegPBRet(8006, "YBDlgRet", "global.YBDlgRet", 0)		--元宝不足弹框
-RegPBRet(8007, "IconTipsRet", "global.IconTipsRet", 0)	--图标飘字
 
 --LOGIN
 RegPBReq(8030, "LoginReq", "login.LoginReq", 0)                      	--登陆请求

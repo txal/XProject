@@ -1,7 +1,7 @@
 --日志模块(支持世界服)
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 --自己服务器ID
-local nSelfServerID = gnSeverID or 0
+local nServerID = gnServerID
 --服务器-日志服务影射
 local tServerLogMap = {}
 if gtServerConf then
@@ -38,13 +38,13 @@ function CLogger:_normal_log(nEventID, nReason, oRole, Field1, Field2, Field3, F
 		nLevel = oRole:GetLevel()
 		nVIP = oRole:GetVIP()
 
-		Srv2Srv.EventLog(nTarServer, nTarService
+		goRemoteCall:Call("EventLogReq", nTarServer, nTarService, 0
 			, nEventID, nReason
 			, nAccountID, nRoleID, sRoleName, nLevel, nVIP
 			, Field1, Field2, Field3, Field4, Field5, Field6, os.time())
 	else
 		for nServerID, tLogList in pairs(tServerLogMap) do
-			Srv2Srv.EventLog(nServerID, tLogList[1].nID
+			goRemoteCall:Call("EventLogReq", nServerID, tLogList[1].nID, 0
 				, nEventID, nReason
 				, nAccountID, nRoleID, sRoleName, nLevel, nVIP
 				, Field1, Field2, Field3, Field4, Field5, Field6, os.time())
@@ -64,33 +64,32 @@ end
 function CLogger:CreateAccountLog(nSource, nAccountID, sAccountName, nVIP)
 	assert(nSource and nAccountID and sAccountName and nVIP)
 	--只会在本服创建账号
-	assert(nSelfServerID < 10000, "世界服创建账号?!")
-	local nLogService = tServerLogMap[nSelfServerID][1].nID
-	Srv2Srv.CreateAccountLog(nSelfServerID, nLogService, nSource, nAccountID, sAccountName, nVIP, os.time())
+	assert(nServerID < 10000, "世界服不能创建账号!")
+	local nLogService = tServerLogMap[nServerID][1].nID
+	goRemoteCall:Call("CreateAccountLogReq", nServerID, nLogService, 0, nSource, nAccountID, sAccountName, nVIP, os.time())
 end
 
 function CLogger:CreateRoleLog(nAccountID, nRoleID, sRoleName, nLevel)
 	assert(nAccountID and nRoleID and sRoleName and nLevel)
 	--只会在本服创建角色
-	assert(nSelfServerID < 10000, "世界服创建角色?!")
-	local nLogService = tServerLogMap[nSelfServerID][1].nID
-	Srv2Srv.CreateRoleLog(nSelfServerID, nLogService, nAccountID, nRoleID, sRoleName, nLevel, os.time())
+	assert(nServerID < 10000, "世界服不能创建角色!")
+	local nLogService = tServerLogMap[nServerID][1].nID
+	goRemoteCall:Call("CreateRoleLogReq", nServerID, nLogService, 0, nAccountID, nRoleID, sRoleName, nLevel, os.time())
 end
 
 function CLogger:UpdateAccountLog(oAccount, tParam) 
 	local nAccountID = oAccount:GetID()
 	local nServerID = oAccount:GetServer()
 	local nLogService = tServerLogMap[nServerID][1].nID
-	Srv2Srv.UpdateAccountLog(nServerID, nLogService, nAccountID, tParam)
+	goRemoteCall:Call("UpdateAccountLogReq", nServerID, nLogService, 0, nAccountID, tParam)
 end
 
 function CLogger:UpdateRoleLog(oRole, tParam) 
 	assert(oRole and next(tParam))
 	local nRoleID = oRole:GetID()
-	local nAccountID = oRole:GetAccountID()
 	local nServerID = oRole:GetServer()
 	local nLogService = tServerLogMap[nServerID][1].nID
-	Srv2Srv.UpdateRoleLog(nServerID, nLogService, nRoleID, tParam)
+	goRemoteCall:Call("UpdateRoleLogReq", nServerID, nLogService, 0, nRoleID, tParam)
 end
 
 goLogger = goLogger or CLogger:new()

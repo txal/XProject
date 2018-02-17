@@ -1,0 +1,2 @@
+start LogicServer 50
+

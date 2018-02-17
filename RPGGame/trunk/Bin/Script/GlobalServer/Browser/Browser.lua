@@ -1,4 +1,5 @@
-local nLogicService = next(gtNetConf.tLogicService) --逻辑服ID
+--浏览器指令
+local nServerID = gnServerID
 
 function CBrowser:Ctor()
 end
@@ -14,129 +15,83 @@ function CBrowser:BrowserReq(nSession, tData)
 		end, self, nSession, tData)
 	else
 		local sErr = "方法不存在: "..sMethod
-		CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({error=sErr}))
+		CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode({error=sErr}))
 		LuaTrace(sErr)
 	end
 end
 
 --修改属性
 CBrowser["moduser"] = function (self, nSession, tData)
-	local nCharID = tonumber(tData.charid)
-	local oPlayer = goGPlayerMgr:GetPlayerByCharID(nCharID)
-	if oPlayer then
-		Srv2Srv.GMModUserReq(oPlayer:GetServer(), oPlayer:GetLogicService(), nSession, tData)
-	else
-		local tMsg = {data=true}
-		local oSSDB = goDBMgr:GetSSDB("Player")
-		local sPlayerData = oSSDB:HGet(gtDBDef.sRoleDB, nCharID)
-		if sPlayerData ~= "" then
-			local tPlayerData = cjson.decode(sPlayerData)
-			tPlayerData.m_nYuanBao = tData.yuanbao
-			tPlayerData.m_nYinLiang = tData.yinliang
-			tPlayerData.m_nWeiWang = tData.weiwang 
-			tPlayerData.m_nWaiJiao = tData.waijiao
-			tPlayerData.m_nVIP = tData.vip
-			oSSDB:HSet(gtDBDef.sRoleDB, nCharID, cjson.encode(tPlayerData))
-		else
-			tMsg.data = false
-			tMsg.error = "角色不存在"
-		end
-		CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
-	end
-end
-function CBrowser:OnModUserRet(nBsrSession, bRes)
---逻辑服返回
-	local tMsg = {data=bRes}
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nBsrSession, cjson.encode(tMsg))
+	local nRoleID = tData.roleid
+	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
+	goRemoteCall.CallWait("ModUserReq", function(nRoleID)
+		CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode({data=true}))
+	end, oRole:GetServer(), oRole:GetLogic(), oRole:GetSession(), nRoleID, tData)
 end
 
 --踢下线
 CBrowser["kickuser"] = function (self, nSession, tData)
-	local nCharID = tonumber(tData.charid)
-	local oPlayer = goGPlayerMgr:GetPlayerByCharID(nCharID)
+	local nRoleID = tData.roleid
+	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
+
 	local bRes = false
-	if oPlayer then
+	if oRole:IsOnline()	 then
 		bRes = true
-		if oPlayer:IsOnline() then
-			local nTarServer = oPlayer:GetServer()
-			local nTarSession = oPlayer:GetSession()
-			CmdNet.Srv2Srv("KickClient", nTarServer, nTarSession>>nSERVICE_SHIFT, nTarSession)
-		end
+		local nTarServer = oPlayer:GetServer()
+		local nTarSession = oPlayer:GetSession()
+		CmdNet.Srv2Srv("KickClient", nTarServer, nTarSession>>nSERVICE_SHIFT, nTarSession)
 	end
-	local tMsg= {data=bRes}
-	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode(tMsg))
+	CmdNet.Srv2Bsr(nSession, "BrowserRet", cjson.encode({data=bRes}))
 end
 
 --封号/解封/禁言
 CBrowser["banuser"] = function (self, nSession, tData)
-	local sAccount = tData.account
+	local nRoleID = tData.roleid
+	local nState = tData.state
+
+	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
+	local nAccountID = oRole:GetAccountID()
+
 	local bRes = false
-	local oSSDB = goDBMgr:GetSSDB("Player")
-	local sAccountData = oSSDB:HGet(gtDBDef.sAccountDB, sAccount)
+	local oDB = goDBMgr:GetSSDB(oRole:GetServer(), "user", nAccountID)
+	local sAccountData = oDB:HGet(gtDBDef.sAccountDB, nAccountID)
 	if sAccountData ~= "" then
 		bRes = true
 		local tAccountData = cjson.decode(sAccountData)
-		if tData.state ~= tAccountData.nState then
-			tAccountData.nState = tData.state
-			oSSDB:HSet(gtDBDef.sAccountDB, sAccount, cjson.encode(tAccountData))
+		if nState ~= tAccountData.m_nState then
+			tAccountData.m_nState = nState
+			oDB:HSet(gtDBDef.sAccountDB, nAccountID, cjson.encode(tAccountData))
 		end
 	end
-	local tMsg = {data=bRes}
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode({data=bRes}))
 end
 
 --取玩家模块数据
-function CBrowser:GetModuleData(sModuleName, nCharID)
-	print("CBrowser:GetModuleData***", sModuleName, nCharID)
-    local sData = goDBMgr:GetSSDB("Player"):HGet(sModuleName, nCharID)
+function CBrowser:GetModuleData(sModuleName, nRoleID)
+	print("CBrowser:GetModuleData***", sModuleName, nRoleID)
+	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
+	local oDB = goDBMgr:GetSSDB(oRole:GetServer(), "user", nRoleID)
+    local sData = oDB:HGet(sModuleName, nRoleID)
     if sData == "" then return {} end
     return cjson.decode(sData)
 end
 
 --玩家信息
 CBrowser["memberinfo"] = function (self, nSession, tData)
-	print("CBrowser[memberinfo]***", tData)
 	local tMemberMap = {}
-	local oSSDB = goDBMgr:GetSSDB("Player")
-	for _, nCharID in ipairs(tData) do
-		nCharID = tonumber(nCharID)
-		local sPlayerData = oSSDB:HGet(gtDBDef.sRoleDB, nCharID)
-		if sPlayerData ~= "" then
-			local tInfo = {nState=0, nYuanBao=0, nYinLiang=0, nGuoLi=0, nWeiWang=0, nWaiJiao=0, nVIP=0, bOnline=false}
-			local tPlayerData = cjson.decode(sPlayerData)
+	for _, nRoleID in ipairs(tData) do
+		local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
+		local oDB = goDBMgr:GetSSDB(oRole:GetServer(), "user", nRoleID)
+		local sRoleData = oSSDB:HGet(gtDBDef.sRoleDB, nRoleID)
+		if sRoleData ~= "" then
+			local tInfo = {}
+			local tRoleData = cjson.decode(sRoleData)
 
-			tInfo.nYuanBao = tPlayerData.m_nYuanBao
-			tInfo.nYinLiang = tPlayerData.m_nYinLiang
-			tInfo.nGuoLi = tPlayerData.m_nGuoLi or 0
-			tInfo.nWeiWang = tPlayerData.m_nWeiWang or 0
-			tInfo.nWaiJiao = tPlayerData.m_nWaiJiao or 0
-			tInfo.nVIP = tPlayerData.m_nVIP or 0
-			local oPlayer = goGPlayerMgr:GetPlayerByCharID(nCharID)
-			tInfo.bOnline = oPlayer and oPlayer:IsOnline() or false
-			--宗人府席位 寝宫数 冷宫厢房数 子嗣数 银库上限 粮库上限 兵营上限
-			tInfo.nZRFGrid = self:GetModuleData("ZongRenFu", nCharID).m_nGrids or ctHZEtcConf[1].nInitPos
-			tInfo.nQGGrid = self:GetModuleData("JingShiFang", nCharID).m_nOpenGrid or 1
-			tInfo.nLGGrid = self:GetModuleData("LengGong", nCharID).m_nOpenGrid or 1
-			tInfo.nZSNum = self:GetModuleData("OfflineDataDB", nCharID).m_nChildNum or 0
-			local tNGLv = self:GetModuleData("NeiGe", nCharID).m_tLv or {1,1,1}
-			tInfo.nMaxYK = 0
-			tInfo.nMaxLC = 0
-			tInfo.nMaxBY = 0
-
-			--玩家状态
-			local nSource = tPlayerData.m_nSource or 0
-			local sAccount = tPlayerData.m_sAccount or ""
-			local sKey = nSource == 0 and sAccount or nSource.."_"..sAccount
-			local sAccountData = oSSDB:HGet(gtDBDef.sAccountDB, sKey)
-			if sAccountData ~= "" then
-				local tAccountData = cjson.decode(sAccountData)
-				tInfo.nState = tAccountData.nState or 0
-			end
-			tMemberMap[nCharID] = tInfo
+			tMemberMap[nRoleID] = tInfo
 		end
 	end
 	local tMsg = {data={tMemberMap, goGPlayerMgr:GetOnlineCount()}}
-	CmdNet.Srv2Bsr("BrowserRet", gnServer, nSession, cjson_raw.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson_raw.encode(tMsg))
 end
 
 --充值商品列表
@@ -147,7 +102,7 @@ CBrowser["productlist"] = function (self, nSession, tData)
 		table.insert(tProductList, tItem)
 	end
 	local tMsg = {data=tProductList}
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode(tMsg))
 end
 
 --执行指令
@@ -161,59 +116,42 @@ CBrowser["gmcmd"] = function (self, nSession, tData)
 	else
 		oFunc()
 	end
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
-end
-
---发送邮件
-CBrowser["sendmail"] = function (self, nSession, tData)
-	local tMsg = {data=true}
-	tData.target = tonumber(tData.target)
-	if not tData.title or not tData.content or (not tData.target and not tData.server) then
-		tMsg.data = false
-		tMsg.error = "邮件格式错误"
-		return CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
-	end
-	if tData.itemlist then
-		local itemlist = cjson.decode(tData.itemlist)
-		if #itemlist > 15 then
-			tMsg.data = false
-			tMsg.error = "最多支持15个物品"
-			return CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
-		end
-		tData.itemlist = itemlist
-	end
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
-	-- Srv2Srv.GMSendMailReq(nLogicService, 0, tData)
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode(tMsg))
 end
 
 --发送公告
 CBrowser["pubnotice"] = function (self, nSession, tData)
 	local tMsg = {data=true}
-	tData.id = tonumber(tData.id) or 0
-	tData.content = tData.content or ""
-	if tData.id <= 0 or tData.content == "" or not (tData.starttime and tData.endtime and tData.interval) then
+
+	local nID = tData.id
+	local sContent = tData.content or ""
+	local nStartTime = tData.starttime
+	local nEndTime = tData.endtime
+	local nInterval = tData.interval
+
+	if nID <= 0 or sContent == "" or not (nStartTime and nEndTime and nInterval) then
 		tMsg.data = false
 		tMsg.error = "公告格式错误"
-		return CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
+		return CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode(tMsg))
 	end
-	if not goNoticeMgr:GMSendNotice(tData.id, tData.starttime, tData.endtime, tData.interval, tData.content) then
+
+	if not goNoticeMgr:GMSendNotice(nID, nStartTime, nEndTime, nInterval, sContent) then
 		tMsg.data = false
 		tMsg.error = "发送公告失败"
 	end
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode(tMsg))
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode(tMsg))
 end
 
 --删除公告
 CBrowser["delnotice"] = function (self, nSession, tData)
-	tData.id = tonumber(tData.id) or 0
-	goNoticeMgr:RemoveNotice(tData.id)
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=true}))
+	local nID = tData.id
+	goNoticeMgr:RemoveNotice(nID)
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode({data=true}))
 end
 
 --开启活动
 CBrowser["openact"] = function (self, nSession, tData)
-	-- Srv2Srv.GMOpenActReq(nLogicService, 0, tData)
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=true}))
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode({data=true}))
 end
 
 --活动列表
@@ -229,27 +167,13 @@ CBrowser["hdlist"] = function (self, nSession, tData)
 		end
 	end
 	local tData = {bigActList=tBigList, subActList=tSubList}
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson_raw.encode({data=tData}))
-end
-
---取妃子列表
-CBrowser["fzlist"] = function (self, nSession, tData)
-	local tList = {}
-	-- for nID, tConf in pairs(ctFeiZiConf) do
-	-- 	table.insert(tList, {nID=nID, sName=tConf.sName})
-	-- end
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=tList}))
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson_raw.encode({data=tData}))
 end
 
 --非货币道具
-CBrowser["djlist"] = function (self, nSession, tData)
+CBrowser["proplist"] = function (self, nSession, tData)
 	local tList = {}
-	for nID, tConf in pairs(ctPropConf) do
-		if tConf.nType ~= 1 then
-			table.insert(tList, {nID=nID, sName=tConf.sName})
-		end
-	end
-	CmdNet.Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=tList}))
+	CmdNet.Srv2Bsr("BrowserRet", nServerID, nSession, cjson.encode({data=tList}))
 end
 
 goBrowser = goBrowser or CBrowser:new()

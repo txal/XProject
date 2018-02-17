@@ -109,7 +109,9 @@ void RobotMgr::ProcessTimer(int64_t nNowMS)
 	}
 	nLastMSTime = nNowMS;
 
-	m_nStartTick = m_nStartTick == 0 ? nNowMS : m_nStartTick;
+	if (m_nStartTick == 0)
+		m_nStartTick = nNowMS;
+
 	int nTickElapsed = (int)(nNowMS - m_nStartTick) - m_uClientTick;
 	assert(nTickElapsed >= 0);
 	m_uClientTick += nTickElapsed;

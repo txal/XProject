@@ -8,7 +8,7 @@ local function OpenProto()
     local f = io.open("protopath.txt", "r")
     if not f then
         require("../../Data/Protobuf/LoadPBCProto")
-        LoadProto("../Data/Protobuf")
+        LoadProto("../../Data/Protobuf")
         return
     else
         local sLoaderPath = f:read("l")

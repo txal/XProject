@@ -1,2 +1,0 @@
-start GateServer 21
-

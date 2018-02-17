@@ -5,7 +5,7 @@ function CGMMgr:Ctor()
 end
 
 --收到GM指令
-function CGMMgr:OnGMCmdReq(nSession, sCmd)
+function CGMMgr:OnGMCmdReq(nServer, nService, nSession, sCmd)
 	local tArgs = string.Split(sCmd, ' ')
 	local sCmdName = assert(tArgs[1])
 
@@ -15,13 +15,13 @@ function CGMMgr:OnGMCmdReq(nSession, sCmd)
 
 	local oFunc = assert(CGMMgr[sCmdName], "找不到指令:["..sCmdName.."]")
 	table.remove(tArgs, 1)
-	oFunc(self, nSession, tArgs)
+	oFunc(self, nServer, nService, nSession, tArgs)
 end
 
 -----------------指令列表-----------------
 
 --重载脚本
-CGMMgr["reload"] = function(self, nSession, tArgs)
+CGMMgr["reload"] = function(self, nServer, nService, nSession, tArgs)
 	if #tArgs == 0 then
 		local bRes = gfReloadAll()
 		LuaTrace("重载所有脚本 "..(bRes and "成功!" or "失败!"))

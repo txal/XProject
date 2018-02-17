@@ -13,8 +13,8 @@ local function fnCompare(v1, v2)
 	return 0
 end
 
---3秒超时
-local nExpireTime = 3
+--超时时间
+local nExpireTime = 2
 function CRemoteCall:Ctor()
 	self.m_nCallID = 0
 	self.m_tCoroutineMap = {}
