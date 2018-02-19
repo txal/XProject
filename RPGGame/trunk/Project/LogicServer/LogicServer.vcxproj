@@ -126,7 +126,9 @@
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y/f  LogicServer* ..\WorldServer\</Command>
+      <Command>pushd $(OutDir)
+xcopy /y/f  LogicServer* ..\_WorldServer\
+popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

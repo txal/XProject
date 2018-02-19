@@ -1,5 +1,5 @@
 @echo off
 
-pushd Server
+pushd Bin
 call StopServer.bat
 popd

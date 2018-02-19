@@ -1,33 +1,41 @@
 local tPingMap = {}
 function CltCmdProc.Ping(nCmd, nSrcServer, nSrcService, nTarSession)
-    LuaTrace("Test cmd time:", os.clock() - tPingMap[nTarSession])
+    LuaTrace("Ping time:", os.clock() - tPingMap[nTarSession])
 end
 
 function CltCmdProc.KeepAlive(nCmd, nSrcServer, nSrcService, nTarSession, nServerTime) 
     tPingMap[nTarSession] = os.clock()
     local oRobot = goRobotMgr:GetRobot(nTarSession)
-    CmdNet.Clt2Srv("Ping", oRobot:GenPacketIdx(), nTarSession)
+    CmdNet.Clt2Srv("Ping", oRobot:PacketID(), nTarSession)
 end
 
-
-function CltPBProc.LoginRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local nCode = tData.nCode
+function CltPBProc.RoleListRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     local oRobot = goRobotMgr:GetRobot(nTarSession)
     if oRobot then
-        oRobot:OnLoginRet(nCode)
+        oRobot:OnRoleListRet(tData)
     end
 end
 
-function CltPBProc.CreateRoleRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local nCode = tData.nCode
+function CltPBProc.RoleLoginRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     local oRobot = goRobotMgr:GetRobot(nTarSession)
     if oRobot then
-        oRobot:OnCreateRoleRet(nCode)
+        oRobot:OnLoginRet(tData)
     end
 end
+
+function CltPBProc.OtherPlayerLoginRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+    local oRobot = goRobotMgr:GetRobot(nTarSession)
+    local sName = ""
+    if oRobot then
+        sName = oRobot:GetName()
+    end
+    print("异地登录", sName)
+end
+
 
 function CltPBProc.RoleInitDataRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
 end
+
 
 function CltPBProc.RoleEnterSceneRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     local oRobot = goRobotMgr:GetRobot(nTarSession)
@@ -53,5 +61,5 @@ function CltPBProc.ObjLeaveViewRet(nCmd, nSrcServer, nSrcService, nTarSession, t
 end
 
 function CltPBProc.TipsMsgRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    print(tData.sCont)
+    print("Tips:", tData.sCont)
 end

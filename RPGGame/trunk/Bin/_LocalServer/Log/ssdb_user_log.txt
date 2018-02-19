@@ -357,3 +357,1403 @@
 2018-02-18 01:55:14.819 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:67.866
 2018-02-18 01:55:15.018 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:67.218
 2018-02-18 01:55:15.239 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:67.426
+2018-02-18 12:36:00.724 [DEBUG] server.cpp(304): long loop time: 37906.330
+2018-02-18 13:34:17.174 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-18 13:34:17.174 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-18 13:34:17.182 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-18 13:34:17.184 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-18 13:34:17.184 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-18 13:34:17.257 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-18 13:34:17.267 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-18 13:34:17.319 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-18 13:34:17.322 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-18 13:34:17.322 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-18 13:34:17.322 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-18 13:34:17.323 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-18 13:34:17.346 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-18 13:34:17.416 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-18 13:34:17.416 [INFO ] server.cpp(146):     allow 192.168
+2018-02-18 13:34:17.446 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-18 13:34:17.446 [INFO ] server.cpp(181): auth: off
+2018-02-18 13:34:17.477 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-18 13:34:17.478 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-18 13:34:17.478 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-18 13:34:17.478 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 18596
+2018-02-18 13:34:17.478 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-18 13:34:17.479 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-18 13:34:17.502 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-18 13:34:17.528 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-18 13:34:17.564 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-18 13:34:17.568 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-18 13:34:17.569 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-18 13:34:17.569 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-18 13:34:17.574 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-18 13:34:17.574 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-18 13:34:17.574 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-18 13:34:17.582 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-18 13:35:32.218 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-18 13:35:32.218 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-18 13:35:32.226 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-18 13:35:32.228 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-18 13:35:32.228 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-18 13:35:32.266 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-18 13:35:32.270 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-18 13:35:32.386 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-18 13:35:32.390 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-18 13:35:32.390 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-18 13:35:32.390 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-18 13:35:32.390 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-18 13:35:32.390 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-18 13:35:32.390 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-18 13:35:32.390 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-18 13:35:32.390 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-18 13:35:32.392 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-18 13:35:32.392 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-18 13:35:32.392 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-18 13:35:32.392 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-18 13:35:32.392 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-18 13:35:32.392 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-18 13:35:32.392 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-18 13:35:32.416 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-18 13:35:32.447 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-18 13:35:32.447 [INFO ] server.cpp(146):     allow 192.168
+2018-02-18 13:35:32.470 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-18 13:35:32.470 [INFO ] server.cpp(181): auth: off
+2018-02-18 13:35:32.475 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-18 13:35:32.475 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-18 13:35:32.475 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-18 13:35:32.476 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 17236
+2018-02-18 13:35:32.476 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-18 13:35:32.476 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-18 13:35:32.476 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-18 13:35:32.477 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-18 13:35:32.478 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-18 13:35:32.486 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-18 13:35:32.490 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-18 13:35:32.496 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-18 13:35:32.497 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-18 13:35:32.497 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-18 13:35:32.499 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-18 13:35:32.499 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-18 13:35:36.940 [DEBUG] server.cpp(241): new link from 127.0.0.1:50671, fd: 17, links: 1
+2018-02-18 13:35:36.941 [DEBUG] server.cpp(241): new link from 127.0.0.1:50670, fd: 18, links: 2
+2018-02-18 13:35:37.569 [DEBUG] server.cpp(241): new link from 127.0.0.1:50677, fd: 19, links: 3
+2018-02-18 13:36:13.487 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:36.547
+2018-02-18 13:36:13.752 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:36.183
+2018-02-18 13:36:14.069 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:37.128
+2018-02-18 13:39:38.919 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-18 13:39:38.919 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-18 13:39:38.929 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-18 13:39:38.930 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-18 13:39:38.930 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-18 13:39:38.950 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-18 13:39:38.961 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-18 13:39:39.065 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-18 13:39:39.068 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-18 13:39:39.095 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-18 13:39:39.119 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-18 13:39:39.119 [INFO ] server.cpp(146):     allow 192.168
+2018-02-18 13:39:39.143 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-18 13:39:39.143 [INFO ] server.cpp(181): auth: off
+2018-02-18 13:39:39.144 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-18 13:39:39.144 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-18 13:39:39.144 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-18 13:39:39.144 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 19012
+2018-02-18 13:39:39.144 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-18 13:39:39.145 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-18 13:39:39.145 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-18 13:39:39.145 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-18 13:39:39.149 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-18 13:39:39.149 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-18 13:39:39.149 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-18 13:39:39.149 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-18 13:39:39.150 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-18 13:39:39.150 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-18 13:39:39.150 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-18 13:39:39.151 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-18 13:39:42.549 [DEBUG] server.cpp(241): new link from 127.0.0.1:50810, fd: 17, links: 1
+2018-02-18 13:39:43.572 [DEBUG] server.cpp(241): new link from 127.0.0.1:50824, fd: 18, links: 2
+2018-02-18 13:39:44.180 [DEBUG] server.cpp(241): new link from 127.0.0.1:50827, fd: 19, links: 3
+2018-02-18 13:49:17.950 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:575.401
+2018-02-18 13:49:18.151 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:573.971
+2018-02-18 13:49:18.345 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:574.773
+2018-02-18 13:49:33.538 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-18 13:49:33.538 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-18 13:49:33.547 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-18 13:49:33.548 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-18 13:49:33.548 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-18 13:49:33.591 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-18 13:49:33.598 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-18 13:49:33.661 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-18 13:49:33.664 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-18 13:49:33.686 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-18 13:49:33.711 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-18 13:49:33.711 [INFO ] server.cpp(146):     allow 192.168
+2018-02-18 13:49:33.732 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-18 13:49:33.732 [INFO ] server.cpp(181): auth: off
+2018-02-18 13:49:33.732 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-18 13:49:33.732 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-18 13:49:33.732 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-18 13:49:33.732 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 7440
+2018-02-18 13:49:33.732 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-18 13:49:33.733 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-18 13:49:33.735 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-18 13:49:33.735 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-18 13:49:33.735 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-18 13:49:33.736 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-18 13:49:33.760 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-18 13:49:33.760 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-18 13:49:33.760 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-18 13:49:33.761 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-18 13:49:33.761 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-18 13:49:33.761 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-18 13:49:37.447 [DEBUG] server.cpp(241): new link from 127.0.0.1:51057, fd: 17, links: 1
+2018-02-18 13:49:38.411 [DEBUG] server.cpp(241): new link from 127.0.0.1:51063, fd: 18, links: 2
+2018-02-18 13:49:38.756 [DEBUG] server.cpp(241): new link from 127.0.0.1:51069, fd: 19, links: 3
+2018-02-18 16:44:24.195 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:10485.439
+2018-02-18 16:44:39.600 [DEBUG] server.cpp(241): new link from 127.0.0.1:54644, fd: 19, links: 3
+2018-02-18 16:46:12.287 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:92.687
+2018-02-18 16:49:29.805 [DEBUG] server.cpp(241): new link from 127.0.0.1:54742, fd: 19, links: 3
+2018-02-18 16:53:42.683 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:252.877
+2018-02-18 16:54:11.881 [DEBUG] server.cpp(241): new link from 127.0.0.1:54817, fd: 19, links: 3
+2018-02-18 16:59:17.134 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:305.253
+2018-02-18 16:59:43.735 [DEBUG] server.cpp(241): new link from 127.0.0.1:54911, fd: 19, links: 3
+2018-02-18 16:59:50.479 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:6.744
+2018-02-18 19:55:03.343 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:21925.896
+2018-02-18 19:55:03.669 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:21925.258
+2018-02-18 20:01:17.540 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-18 20:01:17.540 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-18 20:01:17.548 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-18 20:01:17.550 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-18 20:01:17.550 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-18 20:01:17.574 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-18 20:01:17.580 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-18 20:01:17.668 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-18 20:01:17.673 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-18 20:01:17.694 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-18 20:01:17.718 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-18 20:01:17.718 [INFO ] server.cpp(146):     allow 192.168
+2018-02-18 20:01:17.736 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-18 20:01:17.736 [INFO ] server.cpp(181): auth: off
+2018-02-18 20:01:17.738 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-18 20:01:17.738 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-18 20:01:17.738 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-18 20:01:17.738 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 19564
+2018-02-18 20:01:17.738 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-18 20:01:17.738 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-18 20:01:17.741 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-18 20:01:17.741 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-18 20:01:17.742 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-18 20:01:17.742 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-18 20:01:17.888 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-18 20:01:17.920 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-18 20:01:17.938 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-18 20:01:17.938 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-18 20:01:17.991 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-18 20:01:18.039 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-18 20:01:23.030 [DEBUG] server.cpp(241): new link from 127.0.0.1:58318, fd: 17, links: 1
+2018-02-18 20:01:23.066 [DEBUG] server.cpp(241): new link from 127.0.0.1:58322, fd: 18, links: 2
+2018-02-18 20:01:23.106 [DEBUG] server.cpp(241): new link from 127.0.0.1:58327, fd: 19, links: 3
+2018-02-18 23:32:48.295 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:12685.189
+2018-02-18 23:32:57.215 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:12694.184
+2018-02-18 23:32:57.390 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:12694.323
+2018-02-18 23:36:23.923 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-18 23:36:23.923 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-18 23:36:23.923 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-18 23:36:23.933 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-18 23:36:23.933 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-18 23:36:23.956 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-18 23:36:23.963 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-18 23:36:24.046 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-18 23:36:24.049 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-18 23:36:24.050 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-18 23:36:24.050 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-18 23:36:24.050 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-18 23:36:24.050 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-18 23:36:24.050 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-18 23:36:24.069 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-18 23:36:24.088 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-18 23:36:24.088 [INFO ] server.cpp(146):     allow 192.168
+2018-02-18 23:36:24.107 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-18 23:36:24.107 [INFO ] server.cpp(181): auth: off
+2018-02-18 23:36:24.107 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-18 23:36:24.107 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-18 23:36:24.107 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-18 23:36:24.107 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 6552
+2018-02-18 23:36:24.107 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-18 23:36:24.108 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-18 23:36:24.108 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-18 23:36:24.108 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-18 23:36:24.108 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-18 23:36:24.108 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-18 23:36:24.109 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-18 23:36:24.109 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-18 23:36:24.109 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-18 23:36:24.109 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-18 23:36:24.109 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-18 23:36:24.109 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-18 23:38:20.735 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-18 23:38:20.735 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-18 23:38:20.738 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-18 23:38:20.745 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-18 23:38:20.745 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-18 23:38:20.797 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-18 23:38:20.798 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-18 23:38:20.867 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-18 23:38:20.871 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-18 23:38:20.872 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-18 23:38:20.872 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-18 23:38:20.872 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-18 23:38:20.872 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-18 23:38:20.872 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-18 23:38:20.892 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-18 23:38:20.917 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-18 23:38:20.917 [INFO ] server.cpp(146):     allow 192.168
+2018-02-18 23:38:20.942 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-18 23:38:20.942 [INFO ] server.cpp(181): auth: off
+2018-02-18 23:38:20.974 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-18 23:38:20.974 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-18 23:38:20.974 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-18 23:38:20.975 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 17356
+2018-02-18 23:38:20.975 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-18 23:38:20.981 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-18 23:38:20.999 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-18 23:38:21.000 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-18 23:38:21.025 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-18 23:38:21.027 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-18 23:38:21.062 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-18 23:38:21.094 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-18 23:38:21.106 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-18 23:38:21.106 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-18 23:38:21.126 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-18 23:38:21.189 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-18 23:39:10.096 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-18 23:39:10.096 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-18 23:39:10.101 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-18 23:39:10.106 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-18 23:39:10.106 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-18 23:39:10.151 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-18 23:39:10.158 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-18 23:39:10.252 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-18 23:39:10.256 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-18 23:39:10.256 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-18 23:39:10.257 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-18 23:39:10.281 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-18 23:39:10.345 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-18 23:39:10.345 [INFO ] server.cpp(146):     allow 192.168
+2018-02-18 23:39:10.396 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-18 23:39:10.396 [INFO ] server.cpp(181): auth: off
+2018-02-18 23:39:10.404 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-18 23:39:10.404 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-18 23:39:10.404 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-18 23:39:10.404 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 21380
+2018-02-18 23:39:10.404 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-18 23:39:10.404 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-18 23:39:10.404 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-18 23:39:10.443 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-18 23:39:10.447 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-18 23:39:10.447 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-18 23:39:10.473 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-18 23:39:10.546 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-18 23:39:10.548 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-18 23:39:10.549 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-18 23:39:10.575 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-18 23:39:10.654 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-18 23:39:15.430 [DEBUG] server.cpp(241): new link from 127.0.0.1:62459, fd: 17, links: 1
+2018-02-18 23:39:15.527 [DEBUG] server.cpp(241): new link from 127.0.0.1:62463, fd: 18, links: 2
+2018-02-18 23:39:16.330 [DEBUG] server.cpp(241): new link from 127.0.0.1:62466, fd: 19, links: 3
+2018-02-18 23:39:54.583 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:38.253
+2018-02-18 23:39:54.795 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:39.268
+2018-02-18 23:39:55.049 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:39.619
+2018-02-19 13:36:56.561 [DEBUG] server.cpp(304): long loop time: 44292.526
+2018-02-19 14:13:15.550 [DEBUG] server.cpp(304): long loop time: 295.503
+2018-02-19 16:57:02.645 [DEBUG] server.cpp(304): long loop time: 9798.436
+2018-02-19 17:26:43.576 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 17:26:43.576 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 17:26:43.583 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 17:26:43.586 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 17:26:43.586 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 17:26:43.612 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 17:26:43.620 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 17:26:43.741 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 17:26:43.744 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 17:26:43.763 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-19 17:26:43.792 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 17:26:43.792 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 17:26:43.825 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 17:26:43.826 [INFO ] server.cpp(181): auth: off
+2018-02-19 17:26:43.848 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 17:26:43.848 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 17:26:43.848 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 17:26:43.848 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 15424
+2018-02-19 17:26:43.848 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 17:26:43.850 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 17:26:43.898 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 17:26:43.958 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 17:26:43.977 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 17:26:43.977 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 17:26:43.999 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 17:26:44.021 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 17:26:44.060 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 17:26:44.062 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 17:26:44.103 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 17:26:44.121 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 17:26:47.810 [DEBUG] server.cpp(241): new link from 127.0.0.1:52124, fd: 17, links: 1
+2018-02-19 17:26:49.815 [DEBUG] server.cpp(241): new link from 127.0.0.1:52129, fd: 18, links: 2
+2018-02-19 17:26:49.938 [DEBUG] server.cpp(241): new link from 127.0.0.1:52132, fd: 19, links: 3
+2018-02-19 18:10:01.585 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:2593.775
+2018-02-19 18:10:01.766 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:2591.951
+2018-02-19 18:10:02.293 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:2592.355
+2018-02-19 18:13:55.238 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 18:13:55.238 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 18:13:55.248 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 18:13:55.248 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 18:13:55.248 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 18:13:55.264 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 18:13:55.268 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 18:13:55.360 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 18:13:55.363 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 18:13:55.364 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 18:13:55.364 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 18:13:55.389 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-19 18:13:55.433 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 18:13:55.433 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 18:13:55.461 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 18:13:55.462 [INFO ] server.cpp(181): auth: off
+2018-02-19 18:13:55.503 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 18:13:55.503 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 18:13:55.503 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 18:13:55.503 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 7936
+2018-02-19 18:13:55.503 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 18:13:55.503 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 18:13:55.520 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 18:13:55.540 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 18:13:55.602 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 18:13:55.602 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 18:13:55.610 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 18:13:55.625 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 18:13:55.637 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 18:13:55.637 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 18:13:55.698 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 18:13:55.710 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 18:14:00.539 [DEBUG] server.cpp(241): new link from 127.0.0.1:52690, fd: 17, links: 1
+2018-02-19 18:14:00.930 [DEBUG] server.cpp(241): new link from 127.0.0.1:52695, fd: 18, links: 2
+2018-02-19 18:14:00.938 [DEBUG] server.cpp(241): new link from 127.0.0.1:52699, fd: 19, links: 3
+2018-02-19 18:38:12.081 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:1451.542
+2018-02-19 18:38:12.330 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:1451.392
+2018-02-19 18:38:12.584 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1451.654
+2018-02-19 19:31:48.437 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 19:31:48.437 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 19:31:48.448 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 19:31:48.449 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 19:31:48.449 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 19:31:48.453 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 19:31:48.459 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 19:31:48.595 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 19:31:48.599 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 19:31:48.600 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 19:31:48.600 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 19:31:48.600 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 19:31:48.600 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 19:31:48.600 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 19:31:48.600 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 19:31:48.627 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-19 19:31:48.714 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 19:31:48.714 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 19:31:48.737 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 19:31:48.737 [INFO ] server.cpp(181): auth: off
+2018-02-19 19:31:48.738 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 19:31:48.738 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 19:31:48.738 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 19:31:48.738 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 15260
+2018-02-19 19:31:48.738 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 19:31:48.739 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 19:31:48.740 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 19:31:48.740 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 19:31:48.741 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 19:31:48.741 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 19:31:48.741 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 19:31:48.741 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 19:31:48.742 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 19:31:48.744 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 19:31:48.744 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 19:31:48.744 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 19:31:54.198 [DEBUG] server.cpp(241): new link from 127.0.0.1:53767, fd: 17, links: 1
+2018-02-19 19:31:54.273 [DEBUG] server.cpp(241): new link from 127.0.0.1:53771, fd: 18, links: 2
+2018-02-19 19:31:54.276 [DEBUG] server.cpp(241): new link from 127.0.0.1:53775, fd: 19, links: 3
+2018-02-19 20:04:23.227 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1948.954
+2018-02-19 20:04:23.420 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:1949.144
+2018-02-19 20:04:23.643 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:1949.446
+2018-02-19 20:04:40.767 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 20:04:40.767 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 20:04:40.770 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 20:04:40.777 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 20:04:40.777 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 20:04:40.824 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 20:04:40.827 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 20:04:40.895 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 20:04:40.900 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 20:04:40.933 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-19 20:04:41.002 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 20:04:41.002 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 20:04:41.026 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 20:04:41.026 [INFO ] server.cpp(181): auth: off
+2018-02-19 20:04:41.077 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 20:04:41.077 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 20:04:41.077 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 20:04:41.077 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 6040
+2018-02-19 20:04:41.077 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 20:04:41.084 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 20:04:41.226 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 20:04:41.238 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 20:04:41.257 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 20:04:41.258 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 20:04:41.327 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 20:04:41.342 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 20:04:41.357 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 20:04:41.357 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 20:04:41.433 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 20:04:41.459 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 20:04:45.938 [DEBUG] server.cpp(241): new link from 127.0.0.1:54204, fd: 17, links: 1
+2018-02-19 20:04:45.995 [DEBUG] server.cpp(241): new link from 127.0.0.1:54206, fd: 18, links: 2
+2018-02-19 20:04:46.154 [DEBUG] server.cpp(241): new link from 127.0.0.1:54210, fd: 19, links: 3
+2018-02-19 20:08:26.060 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:220.122
+2018-02-19 20:08:26.262 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:220.267
+2018-02-19 20:08:26.484 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:220.331
+2018-02-19 20:08:28.174 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 20:08:28.174 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 20:08:28.179 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 20:08:28.185 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 20:08:28.185 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 20:08:28.234 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 20:08:28.236 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 20:08:28.314 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 20:08:28.317 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 20:08:28.318 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 20:08:28.318 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 20:08:28.318 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 20:08:28.318 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 20:08:28.336 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-19 20:08:28.363 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 20:08:28.363 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 20:08:28.397 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 20:08:28.397 [INFO ] server.cpp(181): auth: off
+2018-02-19 20:08:28.420 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 20:08:28.420 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 20:08:28.421 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 20:08:28.421 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 22220
+2018-02-19 20:08:28.421 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 20:08:28.421 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 20:08:28.428 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 20:08:28.430 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 20:08:28.460 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 20:08:28.460 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 20:08:28.475 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 20:08:28.477 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 20:08:28.494 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 20:08:28.494 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 20:08:28.511 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 20:08:28.552 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 20:08:33.091 [DEBUG] server.cpp(241): new link from 127.0.0.1:54411, fd: 17, links: 1
+2018-02-19 20:08:33.104 [DEBUG] server.cpp(241): new link from 127.0.0.1:54412, fd: 18, links: 2
+2018-02-19 20:08:33.626 [DEBUG] server.cpp(241): new link from 127.0.0.1:54418, fd: 19, links: 3
+2018-02-19 20:09:30.693 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:57.602
+2018-02-19 20:09:42.103 [DEBUG] server.cpp(241): new link from 127.0.0.1:54441, fd: 17, links: 3
+2018-02-19 20:10:31.109 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:49.006
+2018-02-19 20:10:42.996 [DEBUG] server.cpp(241): new link from 127.0.0.1:54501, fd: 17, links: 3
+2018-02-19 20:13:48.499 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:185.504
+2018-02-19 20:13:53.480 [DEBUG] server.cpp(241): new link from 127.0.0.1:54538, fd: 17, links: 3
+2018-02-19 20:15:47.013 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:113.533
+2018-02-19 20:15:53.669 [DEBUG] server.cpp(241): new link from 127.0.0.1:54564, fd: 17, links: 3
+2018-02-19 20:16:59.774 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:66.105
+2018-02-19 20:17:36.490 [DEBUG] server.cpp(241): new link from 127.0.0.1:54591, fd: 17, links: 3
+2018-02-19 20:18:24.864 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:48.374
+2018-02-19 20:18:25.069 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:591.965
+2018-02-19 20:18:25.289 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:591.663
+2018-02-19 20:30:33.098 [DEBUG] server.cpp(241): new link from 127.0.0.1:54740, fd: 17, links: 1
+2018-02-19 20:30:33.099 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget test data, resp: not_found
+2018-02-19 20:30:34.662 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:1.564
+2018-02-19 20:35:55.939 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 20:35:55.939 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 20:35:55.948 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 20:35:55.949 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 20:35:55.949 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 20:35:55.966 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 20:35:55.969 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 20:35:56.065 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 20:35:56.069 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 20:35:56.069 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 20:35:56.069 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 20:35:56.070 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 20:35:56.091 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 0, max: 0,
+2018-02-19 20:35:56.118 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 20:35:56.118 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 20:35:56.143 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 20:35:56.143 [INFO ] server.cpp(181): auth: off
+2018-02-19 20:35:56.143 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 20:35:56.143 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 20:35:56.143 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 20:35:56.144 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 13876
+2018-02-19 20:35:56.144 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 20:35:56.144 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 20:35:56.144 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 20:35:56.146 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 20:35:56.146 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 20:35:56.147 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 20:35:56.147 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 20:35:56.147 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 20:35:56.147 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 20:35:56.147 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 20:35:56.148 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 20:35:56.148 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 20:36:01.359 [DEBUG] server.cpp(241): new link from 127.0.0.1:54844, fd: 17, links: 1
+2018-02-19 20:36:01.831 [DEBUG] server.cpp(241): new link from 127.0.0.1:54846, fd: 18, links: 2
+2018-02-19 20:36:02.032 [DEBUG] server.cpp(241): new link from 127.0.0.1:54851, fd: 19, links: 3
+2018-02-19 20:36:29.396 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: not_found
+2018-02-19 20:36:29.397 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hset AccountDB 1000001 [106], resp: ok 1
+2018-02-19 20:39:43.218 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:43:06.548 [DEBUG] server.cpp(411): fd: 17, read: 0, delete link, s:425.188
+2018-02-19 20:43:20.084 [DEBUG] server.cpp(241): new link from 127.0.0.1:54928, fd: 17, links: 3
+2018-02-19 20:43:31.852 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:46:37.457 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:48:15.150 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:295.066
+2018-02-19 20:48:15.346 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:733.515
+2018-02-19 20:48:15.873 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:733.841
+2018-02-19 20:48:45.071 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 20:48:45.071 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 20:48:45.072 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 20:48:45.081 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 20:48:45.081 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 20:48:45.104 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 20:48:45.112 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 20:48:45.191 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 20:48:45.194 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 20:48:45.195 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 20:48:45.195 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 20:48:45.221 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 1,
+2018-02-19 20:48:45.238 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 20:48:45.238 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 20:48:45.261 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 20:48:45.261 [INFO ] server.cpp(181): auth: off
+2018-02-19 20:48:45.264 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 20:48:45.265 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 20:48:45.265 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 20:48:45.265 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 18260
+2018-02-19 20:48:45.265 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 20:48:45.265 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 20:48:45.266 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 20:48:45.267 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 20:48:45.267 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 20:48:45.268 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 20:48:45.269 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 20:48:45.270 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 20:48:45.273 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 20:48:45.273 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 20:48:45.273 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 20:48:45.274 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 20:48:49.984 [DEBUG] server.cpp(241): new link from 127.0.0.1:55026, fd: 18, links: 1
+2018-02-19 20:48:50.218 [DEBUG] server.cpp(241): new link from 127.0.0.1:55031, fd: 19, links: 2
+2018-02-19 20:48:50.373 [DEBUG] server.cpp(241): new link from 127.0.0.1:55036, fd: 20, links: 3
+2018-02-19 20:49:15.358 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:49:15.363 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:49:55.581 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:65.364
+2018-02-19 20:49:55.800 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:65.816
+2018-02-19 20:49:56.079 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:65.707
+2018-02-19 20:50:01.432 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 20:50:01.432 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 20:50:01.435 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 20:50:01.442 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 20:50:01.442 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 20:50:01.488 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 20:50:01.494 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 20:50:01.584 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 20:50:01.588 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 20:50:01.608 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 1,
+2018-02-19 20:50:01.683 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 20:50:01.683 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 20:50:01.733 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 20:50:01.733 [INFO ] server.cpp(181): auth: off
+2018-02-19 20:50:01.751 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 20:50:01.751 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 20:50:01.751 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 20:50:01.751 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 16924
+2018-02-19 20:50:01.751 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 20:50:01.752 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 20:50:01.796 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 20:50:01.861 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 20:50:01.865 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 20:50:01.865 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 20:50:01.902 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 20:50:01.961 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 20:50:01.964 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 20:50:01.964 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 20:50:01.968 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 20:50:01.969 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 20:50:06.382 [DEBUG] server.cpp(241): new link from 127.0.0.1:55091, fd: 18, links: 1
+2018-02-19 20:50:06.559 [DEBUG] server.cpp(241): new link from 127.0.0.1:55094, fd: 19, links: 2
+2018-02-19 20:50:07.063 [DEBUG] server.cpp(241): new link from 127.0.0.1:55101, fd: 20, links: 3
+2018-02-19 20:50:24.447 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:50:24.457 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:56:30.452 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:384.070
+2018-02-19 20:56:30.995 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:383.932
+2018-02-19 20:56:31.469 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:384.910
+2018-02-19 20:56:37.162 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 20:56:37.162 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 20:56:37.166 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 20:56:37.172 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 20:56:37.172 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 20:56:37.191 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 20:56:37.192 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 20:56:37.284 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 20:56:37.287 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 20:56:37.756 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 1,
+2018-02-19 20:56:37.819 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 20:56:37.819 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 20:56:37.870 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 20:56:37.870 [INFO ] server.cpp(181): auth: off
+2018-02-19 20:56:37.897 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 20:56:37.897 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 20:56:37.897 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 20:56:37.897 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 22168
+2018-02-19 20:56:37.897 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 20:56:37.897 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 20:56:37.925 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 20:56:37.942 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 20:56:37.972 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 20:56:37.972 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 20:56:38.047 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 20:56:38.074 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 20:56:38.076 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 20:56:38.076 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 20:56:38.105 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 20:56:38.107 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 20:56:41.151 [DEBUG] server.cpp(241): new link from 127.0.0.1:55207, fd: 18, links: 1
+2018-02-19 20:56:42.829 [DEBUG] server.cpp(241): new link from 127.0.0.1:55217, fd: 19, links: 2
+2018-02-19 20:56:43.763 [DEBUG] server.cpp(241): new link from 127.0.0.1:55222, fd: 20, links: 3
+2018-02-19 20:57:29.976 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000002, resp: not_found
+2018-02-19 20:57:29.977 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000002 [106], resp: ok 1
+2018-02-19 20:57:29.984 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000002, resp: ok [106]
+2018-02-19 20:58:29.282 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:108.132
+2018-02-19 20:58:47.237 [DEBUG] server.cpp(241): new link from 127.0.0.1:55310, fd: 18, links: 3
+2018-02-19 20:58:56.657 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:58:56.661 [DEBUG] server.cpp(336): w:-0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [106]
+2018-02-19 20:58:56.666 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000004 [147], resp: ok 1
+2018-02-19 20:58:56.666 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000001 [265], resp: ok 0
+2018-02-19 20:58:56.668 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000001 [271], resp: ok 0
+2018-02-19 20:59:40.855 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:53.618
+2018-02-19 20:59:47.306 [DEBUG] server.cpp(241): new link from 127.0.0.1:55326, fd: 18, links: 3
+2018-02-19 21:00:13.964 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 21:01:41.455 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:114.150
+2018-02-19 21:01:53.370 [DEBUG] server.cpp(241): new link from 127.0.0.1:55350, fd: 18, links: 3
+2018-02-19 21:02:11.916 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 21:02:11.922 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 21:02:11.923 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000001 [271], resp: ok 0
+2018-02-19 21:03:03.079 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:69.709
+2018-02-19 21:03:10.339 [DEBUG] server.cpp(241): new link from 127.0.0.1:55372, fd: 18, links: 3
+2018-02-19 21:03:17.318 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 21:03:17.331 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 21:03:17.331 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000001 [271], resp: ok 0
+2018-02-19 21:48:42.362 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:2732.022
+2018-02-19 21:48:42.576 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:3119.747
+2018-02-19 21:48:43.244 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:3119.481
+2018-02-19 21:50:44.860 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 21:50:44.860 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 21:50:44.860 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 21:50:44.870 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 21:50:44.870 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 21:50:44.893 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 21:50:44.900 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 21:50:44.981 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 21:50:44.984 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 21:50:44.985 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 21:50:44.985 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 21:50:44.985 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 21:50:44.985 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 21:50:44.985 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 21:50:44.985 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 21:50:45.011 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 7,
+2018-02-19 21:50:45.028 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 21:50:45.029 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 21:50:45.046 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 21:50:45.046 [INFO ] server.cpp(181): auth: off
+2018-02-19 21:50:45.047 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 21:50:45.047 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 21:50:45.047 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 21:50:45.047 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 21220
+2018-02-19 21:50:45.047 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 21:50:45.048 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 21:50:45.049 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 21:50:45.049 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 21:50:45.051 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 21:50:45.051 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 21:50:45.052 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 21:50:45.052 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 21:50:45.053 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 21:50:45.053 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 21:50:45.054 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 21:50:45.055 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 21:50:50.363 [DEBUG] server.cpp(241): new link from 127.0.0.1:56497, fd: 19, links: 1
+2018-02-19 21:50:50.542 [DEBUG] server.cpp(241): new link from 127.0.0.1:56500, fd: 20, links: 2
+2018-02-19 21:50:50.820 [DEBUG] server.cpp(241): new link from 127.0.0.1:56506, fd: 21, links: 3
+2018-02-19 21:51:13.364 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 21:51:13.369 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 21:51:13.370 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000001 [271], resp: ok 0
+2018-02-19 22:12:09.676 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:1279.313
+2018-02-19 22:12:09.923 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:1279.102
+2018-02-19 22:12:10.203 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:1279.660
+2018-02-19 22:13:18.639 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 22:13:18.639 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 22:13:18.643 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 22:13:18.649 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 22:13:18.650 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 22:13:18.689 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 22:13:18.694 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 22:13:18.770 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 22:13:18.777 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 22:13:18.830 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 8,
+2018-02-19 22:13:18.870 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 22:13:18.870 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 22:13:18.893 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 22:13:18.894 [INFO ] server.cpp(181): auth: off
+2018-02-19 22:13:18.895 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 22:13:18.895 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 22:13:18.895 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 22:13:18.895 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 20580
+2018-02-19 22:13:18.895 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 22:13:18.895 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 22:13:18.896 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 22:13:18.896 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 22:13:18.896 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 22:13:18.896 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 22:13:18.896 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 22:13:18.897 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 22:13:18.897 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 22:13:18.897 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 22:13:18.897 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 22:13:18.897 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 22:13:22.893 [DEBUG] server.cpp(241): new link from 127.0.0.1:56842, fd: 20, links: 1
+2018-02-19 22:13:25.205 [DEBUG] server.cpp(241): new link from 127.0.0.1:56849, fd: 21, links: 2
+2018-02-19 22:13:25.404 [DEBUG] server.cpp(241): new link from 127.0.0.1:56854, fd: 22, links: 3
+2018-02-19 22:15:22.471 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 22:15:22.475 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 22:15:22.477 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000001 [271], resp: ok 0
+2018-02-19 22:37:27.809 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:1444.916
+2018-02-19 22:37:28.002 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:1442.797
+2018-02-19 22:37:28.219 [DEBUG] server.cpp(411): fd: 22, read: -1, delete link, s:1442.815
+2018-02-19 22:37:33.668 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 22:37:33.668 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 22:37:33.677 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 22:37:33.678 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 22:37:33.678 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 22:37:33.706 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 22:37:33.708 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 22:37:33.788 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 22:37:33.792 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 22:37:33.820 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 9,
+2018-02-19 22:37:33.856 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 22:37:33.856 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 22:37:33.882 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 22:37:33.883 [INFO ] server.cpp(181): auth: off
+2018-02-19 22:37:33.883 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 22:37:33.883 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 22:37:33.883 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 22:37:33.883 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 9272
+2018-02-19 22:37:33.883 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 22:37:33.885 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 22:37:33.888 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 22:37:33.889 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 22:37:33.889 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 22:37:33.889 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 22:37:33.889 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 22:37:33.890 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 22:37:33.890 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 22:37:33.890 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 22:37:33.891 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 22:37:33.891 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 22:37:38.759 [DEBUG] server.cpp(241): new link from 127.0.0.1:57103, fd: 18, links: 1
+2018-02-19 22:37:39.004 [DEBUG] server.cpp(241): new link from 127.0.0.1:57108, fd: 19, links: 2
+2018-02-19 22:37:39.313 [DEBUG] server.cpp(241): new link from 127.0.0.1:57113, fd: 20, links: 3
+2018-02-19 22:41:19.584 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 22:41:19.593 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 22:41:19.594 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hset AccountDB 1000001 [271], resp: ok 0
+2018-02-19 22:41:19.599 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 22:41:19.600 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000004, resp: ok [147]
+2018-02-19 22:41:19.601 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000004, resp: not_found
+2018-02-19 22:46:55.354 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000004 [174], resp: ok 0
+2018-02-19 22:48:16.341 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:637.582
+2018-02-19 22:48:16.603 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:637.290
+2018-02-19 22:48:17.144 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:638.141
+2018-02-19 22:48:24.489 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 22:48:24.489 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 22:48:24.490 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 22:48:24.501 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 22:48:24.501 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 22:48:24.537 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 22:48:24.542 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 22:48:24.609 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 22:48:24.613 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 22:48:24.636 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 11,
+2018-02-19 22:48:24.683 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 22:48:24.683 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 22:48:24.708 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 22:48:24.708 [INFO ] server.cpp(181): auth: off
+2018-02-19 22:48:24.710 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 22:48:24.710 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 22:48:24.711 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 22:48:24.711 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 22160
+2018-02-19 22:48:24.711 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 22:48:24.718 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 22:48:24.718 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 22:48:24.737 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 22:48:24.743 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 22:48:24.744 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 22:48:24.745 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 22:48:24.822 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 22:48:24.894 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 22:48:24.894 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 22:48:24.926 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 22:48:24.965 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 22:48:29.098 [DEBUG] server.cpp(241): new link from 127.0.0.1:57255, fd: 19, links: 1
+2018-02-19 22:48:29.252 [DEBUG] server.cpp(241): new link from 127.0.0.1:57261, fd: 20, links: 2
+2018-02-19 22:48:29.844 [DEBUG] server.cpp(241): new link from 127.0.0.1:57267, fd: 21, links: 3
+2018-02-19 22:50:08.744 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000002, resp: ok [106]
+2018-02-19 22:50:08.746 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000002, resp: ok [106]
+2018-02-19 22:50:08.751 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000005 [147], resp: ok 1
+2018-02-19 22:50:08.752 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000002 [265], resp: ok 0
+2018-02-19 22:50:08.754 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000002 [271], resp: ok 0
+2018-02-19 22:50:08.761 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000002, resp: ok [271]
+2018-02-19 22:50:08.761 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000005, resp: ok [147]
+2018-02-19 22:50:08.762 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000005, resp: not_found
+2018-02-19 22:55:08.780 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000005 [202], resp: ok 0
+2018-02-19 23:19:28.256 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:1859.158
+2018-02-19 23:19:28.504 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:1859.251
+2018-02-19 23:19:29.016 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:1859.171
+2018-02-19 23:19:59.025 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 23:19:59.025 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 23:19:59.033 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 23:19:59.035 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 23:19:59.035 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 23:19:59.071 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 23:19:59.076 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 23:19:59.143 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 23:19:59.145 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 23:19:59.146 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 23:19:59.170 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 15,
+2018-02-19 23:19:59.194 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 23:19:59.194 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 23:19:59.221 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 23:19:59.221 [INFO ] server.cpp(181): auth: off
+2018-02-19 23:19:59.222 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 23:19:59.222 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 23:19:59.222 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 10864
+2018-02-19 23:19:59.222 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 23:19:59.222 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 23:19:59.226 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 23:19:59.226 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 23:19:59.227 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 23:19:59.227 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 23:19:59.227 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 23:19:59.227 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 23:19:59.228 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 23:19:59.228 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 23:19:59.228 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 23:19:59.228 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 23:19:59.228 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 23:20:03.956 [DEBUG] server.cpp(241): new link from 127.0.0.1:57901, fd: 20, links: 1
+2018-02-19 23:20:03.985 [DEBUG] server.cpp(241): new link from 127.0.0.1:57903, fd: 21, links: 2
+2018-02-19 23:20:04.951 [DEBUG] server.cpp(241): new link from 127.0.0.1:57912, fd: 22, links: 3
+2018-02-19 23:20:19.033 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 23:20:19.039 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [271]
+2018-02-19 23:20:19.040 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hset AccountDB 1000001 [282], resp: ok 0
+2018-02-19 23:20:19.043 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [282]
+2018-02-19 23:20:19.045 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000004, resp: ok [174]
+2018-02-19 23:20:19.055 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000004, resp: not_found
+2018-02-19 23:25:19.061 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000004 [202], resp: ok 0
+2018-02-19 23:53:42.968 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:2018.983
+2018-02-19 23:53:43.159 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:2019.203
+2018-02-19 23:53:43.368 [DEBUG] server.cpp(411): fd: 22, read: -1, delete link, s:2018.418
+2018-02-19 23:54:18.357 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-19 23:54:18.357 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-19 23:54:18.367 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-19 23:54:18.373 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-19 23:54:18.373 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-19 23:54:18.420 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-19 23:54:18.431 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-19 23:54:18.498 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-19 23:54:18.502 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-19 23:54:18.534 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 17,
+2018-02-19 23:54:18.582 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-19 23:54:18.582 [INFO ] server.cpp(146):     allow 192.168
+2018-02-19 23:54:18.653 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-19 23:54:18.653 [INFO ] server.cpp(181): auth: off
+2018-02-19 23:54:18.662 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-19 23:54:18.662 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-19 23:54:18.662 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-19 23:54:18.662 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 8232
+2018-02-19 23:54:18.662 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-19 23:54:18.663 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-19 23:54:18.705 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-19 23:54:18.728 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-19 23:54:18.753 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-19 23:54:18.753 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-19 23:54:18.783 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-19 23:54:18.834 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-19 23:54:18.877 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-19 23:54:18.877 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-19 23:54:18.935 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-19 23:54:18.979 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-19 23:54:22.274 [DEBUG] server.cpp(241): new link from 127.0.0.1:58216, fd: 21, links: 1
+2018-02-19 23:54:24.395 [DEBUG] server.cpp(241): new link from 127.0.0.1:58225, fd: 22, links: 2
+2018-02-19 23:54:25.053 [DEBUG] server.cpp(241): new link from 127.0.0.1:58230, fd: 23, links: 3
+2018-02-19 23:55:11.219 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [282]
+2018-02-19 23:55:11.236 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [282]
+2018-02-19 23:55:11.238 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hset AccountDB 1000001 [282], resp: ok 0
+2018-02-19 23:55:11.242 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000001, resp: ok [282]
+2018-02-19 23:55:11.243 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000004, resp: ok [202]
+2018-02-19 23:55:11.246 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000004, resp: not_found
+2018-02-20 00:00:11.265 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000004 [202], resp: ok 0
+2018-02-20 00:05:18.205 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:655.931
+2018-02-20 00:05:18.439 [DEBUG] server.cpp(411): fd: 22, read: -1, delete link, s:654.043
+2018-02-20 00:05:18.680 [DEBUG] server.cpp(411): fd: 23, read: -1, delete link, s:653.626
+2018-02-20 00:08:16.392 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-20 00:08:16.392 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-20 00:08:16.394 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-20 00:08:16.402 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-20 00:08:16.402 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-20 00:08:16.409 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-20 00:08:16.412 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-20 00:08:16.524 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-20 00:08:16.527 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-20 00:08:16.527 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-20 00:08:16.528 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-20 00:08:16.556 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 19,
+2018-02-20 00:08:16.583 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-20 00:08:16.583 [INFO ] server.cpp(146):     allow 192.168
+2018-02-20 00:08:16.606 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-20 00:08:16.606 [INFO ] server.cpp(181): auth: off
+2018-02-20 00:08:16.609 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-20 00:08:16.609 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-20 00:08:16.609 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-20 00:08:16.609 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 14892
+2018-02-20 00:08:16.609 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-20 00:08:16.612 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-20 00:08:16.612 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-20 00:08:16.641 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-20 00:08:16.641 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-20 00:08:16.642 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-20 00:08:16.642 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-20 00:08:16.649 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-20 00:08:16.649 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-20 00:08:16.650 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-20 00:08:16.650 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-20 00:08:16.653 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-20 00:08:21.681 [DEBUG] server.cpp(241): new link from 127.0.0.1:58430, fd: 18, links: 1
+2018-02-20 00:08:21.935 [DEBUG] server.cpp(241): new link from 127.0.0.1:58435, fd: 19, links: 2
+2018-02-20 00:08:22.074 [DEBUG] server.cpp(241): new link from 127.0.0.1:58441, fd: 20, links: 3
+2018-02-20 00:08:47.824 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000002, resp: ok [271]
+2018-02-20 00:08:47.831 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000002, resp: ok [271]
+2018-02-20 00:08:47.833 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000002 [282], resp: ok 0
+2018-02-20 00:08:47.837 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000002, resp: ok [282]
+2018-02-20 00:08:47.839 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000005, resp: ok [202]
+2018-02-20 00:08:47.839 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000005, resp: not_found
+2018-02-20 00:13:47.853 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000005 [202], resp: ok 0
+2018-02-20 00:57:28.305 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:2946.624
+2018-02-20 00:57:28.529 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:2946.455
+2018-02-20 00:57:28.750 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:2946.815
+2018-02-20 00:57:37.641 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-20 00:57:37.641 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-20 00:57:37.644 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-20 00:57:37.651 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-20 00:57:37.651 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-20 00:57:37.685 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-20 00:57:37.691 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-20 00:57:37.772 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-20 00:57:37.776 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-20 00:57:37.801 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 21,
+2018-02-20 00:57:37.829 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-20 00:57:37.829 [INFO ] server.cpp(146):     allow 192.168
+2018-02-20 00:57:37.844 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-20 00:57:37.844 [INFO ] server.cpp(181): auth: off
+2018-02-20 00:57:37.896 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-20 00:57:37.897 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-20 00:57:37.897 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 21480
+2018-02-20 00:57:37.897 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-20 00:57:37.897 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-20 00:57:37.898 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-20 00:57:37.922 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-20 00:57:37.930 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-20 00:57:38.019 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-20 00:57:38.019 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-20 00:57:38.046 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-20 00:57:38.068 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-20 00:57:38.112 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-20 00:57:38.112 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-20 00:57:38.115 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-20 00:57:38.134 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-20 00:57:42.927 [DEBUG] server.cpp(241): new link from 127.0.0.1:59212, fd: 19, links: 1
+2018-02-20 00:57:42.945 [DEBUG] server.cpp(241): new link from 127.0.0.1:59217, fd: 20, links: 2
+2018-02-20 00:57:42.986 [DEBUG] server.cpp(241): new link from 127.0.0.1:59221, fd: 21, links: 3
+2018-02-20 01:00:41.819 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hget AccountDB 1000006, resp: not_found
+2018-02-20 01:00:41.821 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000006 [117], resp: ok 1
+2018-02-20 01:00:41.833 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000006, resp: ok [117]
+2018-02-20 01:00:41.836 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000007 [147], resp: ok 1
+2018-02-20 01:00:41.837 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000006 [276], resp: ok 0
+2018-02-20 01:00:41.838 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000006 [282], resp: ok 0
+2018-02-20 01:00:41.844 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000006, resp: ok [282]
+2018-02-20 01:00:41.845 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000007, resp: ok [147]
+2018-02-20 01:00:41.851 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000007, resp: not_found
+2018-02-20 01:06:41.227 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:538.282
+2018-02-20 01:06:41.407 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:538.480
+2018-02-20 01:06:41.963 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:538.977
+2018-02-20 01:06:46.127 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-20 01:06:46.127 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-20 01:06:46.135 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-20 01:06:46.137 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-20 01:06:46.137 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-20 01:06:46.168 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-20 01:06:46.178 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-20 01:06:46.267 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-20 01:06:46.270 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/user/ssdb.conf
+2018-02-20 01:06:46.270 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-20 01:06:46.270 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_user_log.txt
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-20 01:06:46.271 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-20 01:06:46.311 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 25,
+2018-02-20 01:06:46.339 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-20 01:06:46.339 [INFO ] server.cpp(146):     allow 192.168
+2018-02-20 01:06:46.374 [INFO ] server.cpp(171): server listen on 0.0.0.0:9101
+2018-02-20 01:06:46.374 [INFO ] server.cpp(181): auth: off
+2018-02-20 01:06:46.375 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-20 01:06:46.375 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-20 01:06:46.375 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-20 01:06:46.375 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 13440
+2018-02-20 01:06:46.375 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-20 01:06:46.376 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-20 01:06:46.376 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-20 01:06:46.407 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-20 01:06:46.408 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-20 01:06:46.408 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-20 01:06:46.428 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-20 01:06:46.440 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-20 01:06:46.440 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-20 01:06:46.441 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-20 01:06:46.463 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-20 01:06:46.473 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-20 01:06:50.239 [DEBUG] server.cpp(241): new link from 127.0.0.1:59369, fd: 20, links: 1
+2018-02-20 01:06:51.179 [DEBUG] server.cpp(241): new link from 127.0.0.1:59380, fd: 21, links: 2
+2018-02-20 01:06:51.230 [DEBUG] server.cpp(241): new link from 127.0.0.1:59382, fd: 22, links: 3
+2018-02-20 01:07:03.979 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000008, resp: not_found
+2018-02-20 01:07:03.979 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000008 [117], resp: ok 1
+2018-02-20 01:07:03.985 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000008, resp: ok [117]
+2018-02-20 01:07:03.987 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000009 [147], resp: ok 1
+2018-02-20 01:07:03.988 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000008 [276], resp: ok 0
+2018-02-20 01:07:03.989 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000008 [282], resp: ok 0
+2018-02-20 01:07:03.995 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000008, resp: ok [282]
+2018-02-20 01:07:03.996 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000009, resp: ok [147]
+2018-02-20 01:07:04.001 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000009, resp: not_found
+2018-02-20 01:12:04.016 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000009 [202], resp: ok 0

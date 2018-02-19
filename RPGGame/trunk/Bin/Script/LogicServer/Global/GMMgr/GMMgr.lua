@@ -9,7 +9,7 @@ function CGMMgr:OnGMCmdReq(nServer, nService, nSession, sCmd)
 	local tArgs = string.Split(sCmd, ' ')
 	local sCmdName = assert(tArgs[1])
 
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	local nRoleID, sRoleName, sAccount = 0, "", ""
 	if oRole then
 		nRoleID, sRoleName, sAccount = oRole:GetRoleID(), oRole:GetName(), oRole:GetAccountName()
@@ -34,7 +34,7 @@ end
 -----------------指令列表-----------------
 --测试逻辑模块
 CGMMgr["test"] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 end
 
@@ -70,7 +70,7 @@ end
 
 --添加物品
 CGMMgr["additem"] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	if #tArgs < 3 then return oRole:Tips("参数错误") end
 
@@ -89,7 +89,7 @@ end
 
 --添加所有物品
 CGMMgr["itemall"] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	for nID, tConf in pairs(ctPropConf) do
 		oRole:AddItem(gtItemType.eProp, nID, 999)
@@ -98,13 +98,13 @@ end
 
 --通关副本
 CGMMgr["duppass"] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 end
 
 --模拟充值
 CGMMgr["gmrecharge"] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	local nID = tonumber(tArgs[1]) or 0
 	oRole.m_oVIP:GMRecharge(nID)
@@ -112,7 +112,7 @@ end
 
 --活动时间
 CGMMgr["hdtime"] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	local nID = tonumber(tArgs[1]) or 0 
 	local nMin =  tonumber(tArgs[2]) or 0
@@ -124,7 +124,7 @@ end
 
 --完成主线任务
 CGMMgr['mtask'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	local nID = tonumber(tArgs[1])
 	oRole.m_oMainTask:GMCompleteTask(nID)
@@ -132,7 +132,7 @@ end
 
 --生成主线任务
 CGMMgr['inittask'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	local nID = tonumber(tArgs[1])
 	oRole.m_oMainTask:GMInitTask(nID)
@@ -140,7 +140,7 @@ end
 
 --增加联盟经验
 CGMMgr['addunionexp'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetRoleID())
 	if not oUnion then
@@ -153,7 +153,7 @@ end
 
 --增加联盟贡献
 CGMMgr['addunioncontri'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetRoleID())
 	if not oUnion then
@@ -167,7 +167,7 @@ end
 
 --重置日常任务
 CGMMgr['resetdt'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	oRole.m_oDailyTask:GMReset()
 	oRole:Tips("重置日常任务成功")
@@ -175,7 +175,7 @@ end
 
 --系统消息
 CGMMgr['systalk'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	local sCont = tArgs[1] or "empty"
 	goTalk:SendSystemMsg(sCont)
@@ -183,7 +183,7 @@ end
 
 --重置联盟宴会出战知己
 CGMMgr['resetunfz'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetRoleID())
 	if not oUnion then
@@ -194,14 +194,14 @@ end
 
 --清空国库
 CGMMgr['clrguoku'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	oRole.m_oGuoKu:GMClrGuoKu()
 end
 
 --清空聊天
 CGMMgr['clrtalk'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	goTalk:GMClearTalk(oRole)
 end

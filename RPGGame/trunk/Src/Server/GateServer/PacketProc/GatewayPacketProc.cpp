@@ -22,7 +22,7 @@ void NSPacketProc::RegisterPacketProc()
 	// 内部消息
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssKickClient, (void*)OnKickClient);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceRet, (void*)OnRegisterRouterCallback);
-	poPacketHandler->RegsterInnerPacketProc(NSSrvSrvCmd::ssSyncLogicService, (void*)OnSyncLogicService);
+	poPacketHandler->RegsterInnerPacketProc(NSSrvSrvCmd::ssSyncLogicService, (void*)OnSyncRoleLogic);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssBroadcastGate, (void*)OnBroadcastGate);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssClientIPReq, (void*)OnClientIPReq);
 }
@@ -69,7 +69,7 @@ void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket,
 
 }
 
-void NSPacketProc::OnSyncLogicService(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+void NSPacketProc::OnSyncRoleLogic(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	Gateway* poGateway = (Gateway*)g_poContext->GetService();
 	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
@@ -79,7 +79,6 @@ void NSPacketProc::OnSyncLogicService(int nSrcSessionID, Packet* poPacket, INNER
 		XLog(LEVEL_INFO, "OnSyncLogicService: client already offline\n");
 		return;
 	}
-	poClient->uServerID = oHeader.uSrcServer;
 	poClient->nLogicService = oHeader.nSrcService;
 }
 

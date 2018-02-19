@@ -1,0 +1,6 @@
+require("Common/ConfCheck/LangConfCheck")
+require("Common/ConfCheck/RoleInitConfCheck")
+require("Common/ConfCheck/RechargeConfCheck")
+require("Common/ConfCheck/PropConfCheck")
+require("Common/ConfCheck/TaskConfCheck")
+require("Common/ConfCheck/BoxConfCheck")

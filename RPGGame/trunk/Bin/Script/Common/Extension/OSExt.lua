@@ -143,7 +143,6 @@ function os.NextMinTime(nTimeStamp)
     local tDate = os.date("*t", nTimeStamp)
     tDate.min, tDate.sec = tDate.min+1, 0
     local nNextTime = os.time(tDate)
-    print("os.NextMinTime***", nTimeStamp, nNextTime, tDate)
     return nNextTime - nTimeStamp
 end
 

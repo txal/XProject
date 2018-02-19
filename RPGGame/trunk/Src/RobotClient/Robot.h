@@ -46,7 +46,7 @@ private:
 	RobotMgr* m_poRobotMgr;
 	int m_nSessionID;
 	char m_sName[256];
-	uint32_t m_uPacketIdx;
+	uint32_t m_uPacketID;
 	int64_t m_nLastUpdateTime;
 
 	int m_nMapID;
@@ -74,7 +74,7 @@ public:
 	int StartRun(lua_State* pState);
 	int StopRun(lua_State* pState);
 	int SetMapID(lua_State* pState);
-	int GenPacketIdx(lua_State* pState);
+	int PacketID(lua_State* pState);
 
 };
 

@@ -49,7 +49,7 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 	INNER_HEADER oHeader;
 	int* pSessionArray = NULL;
 
-	while (m_poEventHandler->RecvEvent(oEvent, 0))
+	while (m_poEventHandler->RecvEvent(oEvent, uWaitMS))
 	{
 		uServer = 0;
 		nSession = 0;

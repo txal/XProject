@@ -2,12 +2,15 @@ function CRobot:Ctor(nSessionID, sRobotName)
     self.m_nLastKeepAlive = os.time()
 	self.m_nSessionID = nSessionID
     self.m_sName = sRobotName
+    self.m_nAccountID = 0
+    self.m_nRoleID = 0
 
     self.m_bLogged = false
+    self.m_nLoginTime = 0
+
     self.m_bStartRun = false
     self.m_bEnterScene = false
 
-    self.m_nLoginTime = 0
     self.m_nLastMsgTime = 0
     self.m_nMsgInterval = math.random(3, 9)
 
@@ -19,10 +22,10 @@ function CRobot:GetSession() return self.m_nSessionID end
 function CRobot:GetName() return self.m_sName end
 function CRobot:IsLogged() return self.m_bLogged end
 
-function CRobot:GenPacketIdx()
+function CRobot:PacketID()
     local oCppRobot = goCppRobotMgr:GetRobot(self.m_nSessionID)
     if oCppRobot then
-        return oCppRobot:GenPacketIdx()
+        return oCppRobot:PacketID()
     end
 end
 
@@ -70,25 +73,38 @@ function CRobot:KeepAlive()
     local nTimeNow = os.time()
     if nTimeNow - self.m_nLastKeepAlive >= 10 then
         self.m_nLastKeepAlive = nTimeNow
-        CmdNet.Clt2Srv("KeepAlive", self:GenPacketIdx(), self.m_nSessionID, nTimeNow)
+        CmdNet.Clt2Srv("KeepAlive", self:PacketID(), self.m_nSessionID, nTimeNow)
     end
 end
 
-function CRobot:LoginReq()
+function CRobot:RoleListReq()
     self.m_nLoginTime = os.clock()
-    CmdNet.PBClt2Srv("LoginReq", self:GenPacketIdx(), self.m_nSessionID, {})
+    local nSource = 0
+    CmdNet.PBClt2Srv("RoleListReq", self:PacketID(), self.m_nSessionID, {nSource=0, sAccount=self.m_sName})
 end
 
-function CRobot:OnLoginRet(nRes)
-    --登陆成功
-    if nRes == 0 then
-        goRobotMgr:OnLoginSuccess(self.m_sName, os.clock()-self.m_nLoginTime)
-        self.m_nTimer = goTimerMgr:Interval(1, function() self:Update() end)
-        self.m_bLogged = true
-        self.m_nLastMsgTime = 0
-        self.m_nLoginTime = os.time()
+function CRobot:OnRoleListRet(tData)
+    local nSource = 0
+    if #tData.tList > 0 then
+        print("登录角色请求") 
+        local tRole = tData.tList[math.random(#tData.tList)]
+        CmdNet.PBClt2Srv("RoleLoginReq", self:PacketID(), self.m_nSessionID, {nAccountID=tData.nAccountID, nRoleID=tRole.nID})
+    else
+        print("创建角色请求") 
+        local nConfID = math.random(#ctRoleInitConf)
+        CmdNet.PBClt2Srv("RoleCreateReq", self:PacketID(), self.m_nSessionID, {nAccountID=tData.nAccountID, nConfID=nConfID, sName=self.m_sName})
     end
-    print("登录失败")
+end
+
+function CRobot:OnLoginRet(tData)
+    self.m_nAccountID = tData.nAccountID
+    self.m_nRoleID = tData.nRoleID
+
+    goRobotMgr:OnLoginSuccess(self.m_sName, os.clock()-self.m_nLoginTime)
+    self.m_nTimer = goTimerMgr:Interval(1, function() self:Update() end)
+    self.m_bLogged = true
+    self.m_nLoginTime = os.time()
+    self.m_nLastMsgTime = 0
 
 end
 

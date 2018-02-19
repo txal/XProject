@@ -14,7 +14,7 @@ end
 function CGPlayerMgr:LoadData()
 	local oDB = goDBMgr:GetSSDB(nServerID, "global")
 	local tKeys = oDB:HKeys(gtDBDef.sGlobalRoleDB)
-	for sRoleID, v in ipairs(tKeys) do
+	for _, sRoleID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sGlobalRoleDB, sRoleID)
 		local tData = cjson.decode(sData)
 		local oRole = CGRole:new()

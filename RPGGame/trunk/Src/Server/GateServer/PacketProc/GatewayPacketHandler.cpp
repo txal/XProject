@@ -33,10 +33,11 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 		oNavi.uSrcServer = g_poContext->GetServerID();
 		oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
 		oNavi.uTarServer = g_poContext->GetServerID();
+		oNavi.nTarService = oHeader.nTarService;
 		oNavi.nTarSession = nSrcSessionID;
 
 		//确定目标服务
-		if (oHeader.nTarService == 0)
+		if (oNavi.nTarService == 0)
 		{
 			oNavi.nTarService = poGateway->GetClientMgr()->GetClientLogicService(nSrcSessionID);
 			if (oNavi.nTarService <= 0) //没有目标服务，选1个本服的LogicServer

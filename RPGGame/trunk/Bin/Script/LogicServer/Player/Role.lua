@@ -7,16 +7,16 @@ function CRole:Ctor(oAccount, nID)
 
     ------保存--------
     self.m_nID = nID
-    self.m_nCreateTime = 0
-    self.m_nOnlineTime = 0
-    self.m_nOfflineTime = 0
+    self.m_nCreateTime = os.time()
+    self.m_nOnlineTime = os.time()
+    self.m_nOfflineTime = os.time()
 
     self.m_sName = ""
     self.m_nGender = 0
     self.m_nSchool = 0
     self.m_nLevel = 0
-    self.m_nCity = 0
-    self.m_nDup = 0
+    self.m_tLastDup = {0, 0, 0}
+    self.m_tCurrDup = {0, 0, 0}
 
     ------其他--------
     self.m_tModuleMap = {}  --映射
@@ -55,8 +55,8 @@ function CRole:LoadSelfData()
     end
     local tData = cjson.decode(sData)
 
-    self.m_nOnlineTime = tData.m_nOnlineTime
-    self.m_nOfflineTime = tData.m_nOfflineTime
+    self.m_nOnlineTime = tData.m_nOnlineTime or self.m_nOnlineTime
+    self.m_nOfflineTime = tData.m_nOfflineTime or self.m_nOfflineTime
     self.m_nCreateTime = tData.m_nCreateTime
 
     self.m_nID = tData.m_nID
@@ -64,6 +64,8 @@ function CRole:LoadSelfData()
     self.m_nGender = tData.m_nGender
     self.m_nSchool = tData.m_nSchool
     self.m_nLevel = tData.m_nLevel
+    self.m_tLastDup = tData.m_tLastDup
+    self.m_tCurrDup = tData.m_tCurrDup
 
 end
 
@@ -85,6 +87,8 @@ function CRole:SaveSelfData()
     tData.m_nSchool = self.m_nSchool
     tData.m_nLevel = self.m_nLevel
 
+    tData.m_tLastDup = self.m_tLastDup
+    tData.m_tCurrDup = self.m_tCurrDup
 
     local nServer, nID = self:GetServer(), self:GetID()
     goDBMgr:GetSSDB(nServer, "user", nID):HSet(gtDBDef.sRoleDB, nID, cjson.encode(tData))
@@ -149,6 +153,8 @@ function CRole:GetCreateTime() return self.m_nCreateTime end
 function CRole:GetOnlineTime() return self.m_nOnlineTime end
 function CRole:GetOfflineTime() return self.m_nOfflineTime end
 function CRole:GetLogic() GlobalExport.GetServiceID() end --当前所在逻辑服ID
+function CRole:GetLastDup() return self.m_tLastDup end
+function CRole:GetCurrDup() return self.m_tCurrDup end
 
 --取角色身上的装备
 function CRole:GetEquipment()

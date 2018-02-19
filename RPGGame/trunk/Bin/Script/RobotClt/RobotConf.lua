@@ -1,2 +1,2 @@
 gsServerIP = "127.0.0.1"
-gnServerPort = 8200
+gnServerPort = 9102

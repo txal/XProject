@@ -7,10 +7,10 @@ class RouterPacketHandler : public PacketHandler
 {
 public:
 	RouterPacketHandler();
-	virtual void OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* ppSessionArray);
+	virtual void OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 
 protected:
-	void Forward(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader);
+	void Forward(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 	
 private:
 	DISALLOW_COPY_AND_ASSIGN(RouterPacketHandler);

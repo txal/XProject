@@ -53,6 +53,7 @@ end
 function CGRole:GetID() return self.m_nID end
 function CGRole:GetName() return self.m_sName end
 function CGRole:IsOnline() return self.m_nSession > 0 end
+function CGRole:GetServer() return self.m_nServer end
 function CGRole:GetSession() return self.m_nSession end
 function CGRole:GetAccountID() return self.m_nAccountID end
 function CGRole:GetAccountName() return self.m_sAccountName end

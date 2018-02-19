@@ -42,14 +42,14 @@ function CRemoteCall:GetCoroutine(nCallID)
 end
 
 --协程体
-local function fnCoroutineFunc(nCallID, sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
-	Srv2Srv.RemoveCallReq(nTarServer, nTarService, nTarSession, nCallID, sCallFunc, true, ...)
+local function fnCoroutineFunc(nCallID, sCallFunc, fnCallback, nTarServer, nTarService, nTarSession, ...)
+	Srv2Srv.RemoteCallReq(nTarServer, nTarService, nTarSession, nCallID, sCallFunc, true, ...)
 	local nCode, tData = coroutine.yield(true)
 
 	if nCode == 0 then
 		LuaTrace("协程执行成功:", nCallID, sCallFunc)
-		if fnCallBack then
-			fnCallBack(table.unpack(tData))
+		if fnCallback then
+			fnCallback(table.unpack(tData))
 		end
 
 	elseif nCode == -1 then
@@ -63,18 +63,18 @@ end
 
 --远程调用请求(不需返回)：请求发出，不需要等待返回
 function CRemoteCall:Call(sCallFunc, nTarServer, nTarService, nTarSession, ...)
-	Srv2Srv.RemoveCallReq(nTarServer, nTarService, nTarSession, 0, sCallFunc, false, ...)
+	Srv2Srv.RemoteCallReq(nTarServer, nTarService, nTarSession, 0, sCallFunc, false, ...)
 end
 
 --远程调用请求(需要返回)：请求发出后协程会挂起，等待返回，3秒钟超时
-function CRemoteCall:CallWait(sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
+function CRemoteCall:CallWait(sCallFunc, fnCallback, nTarServer, nTarService, nTarSession, ...)
 	assert(sCallFunc and nTarServer and nTarService, "参数错误")
 	nTarSession = nTarSession or 0
 	local nCallID = self:GenCallID()
 	local oCo = coroutine.create(fnCoroutineFunc)
 	self.m_tCoroutineMap[nCallID] = {oCo=oCo, nExpireTime=os.time()+3}
 	self.m_oMinHeap:Push(nCallID)
-	coroutine.resume(oCo, nCallID, sCallFunc, fnCallBack, nTarServer, nTarService, nTarSession, ...)
+	coroutine.resume(oCo, nCallID, sCallFunc, fnCallback, nTarServer, nTarService, nTarSession, ...)
 end
 
 --远程调用返回

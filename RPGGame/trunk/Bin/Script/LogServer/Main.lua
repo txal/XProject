@@ -1,5 +1,6 @@
 --Common script
 require = gfRawRequire or require  --恢复原生require
+require("Config/Main")
 require("Common/CommonInc")
 require("Common/InitMysql")
 

@@ -178,8 +178,8 @@ void Gateway::OnExterNetClose(int nSessionID)
 	}
 	NetAdapter::SERVICE_NAVI oNavi;
 	oNavi.uSrcServer = g_poContext->GetServerID();
-	oNavi.uSrcServer = g_poContext->GetService()->GetServiceID();
-	oNavi.uTarServer = poClient->uServerID;
+	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uTarServer = g_poContext->GetServerID();
 	oNavi.nTarService = (int8_t)g_poContext->GetServerConfig().oLoginList[0].uID;
 	oNavi.nTarSession = nSessionID;
 

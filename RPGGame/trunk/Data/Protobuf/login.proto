@@ -17,47 +17,50 @@ message RoleListRet
         required int32 nGender = 3;     //性别(1:男; 2:女)
         required int32 nSchool = 4;     //门派()
         required int32 nLevel = 5;      //等级
+        repeated int32 tEquipment = 6;  //装备
     } 
     repeated _Role tList = 1;           //角色列表
+    required int32 nAccountID = 2;      //角色ID
 }
 
 //登陆请求
-message LoginReq
+message RoleLoginReq
 {
-    optional int32 nSource = 1;     //渠道号
-    required string sAccount = 2;   //帐号名
-    required string nRoleID = 3;    //角色ID
-}
-
-//登陆成功返回
-message LoginRet
-{
-    required int32 nServerID = 1;   //服务器ID
+    required int32 nAccountID = 1;  //帐号ID
     required int32 nRoleID = 2;     //角色ID
 }
 
-//创建角色
-message CreateRoleReq
+//登陆成功返回
+message RoleLoginRet
 {
-	required string sAccount = 1;	//帐号
-	required string sPassword = 2;	//密码
-	required string sCharName = 3;	//角色名
-	optional int32 nSource = 4;		//渠道号
+    required int32 nAccountID = 1;  //帐号ID
+    required int32 nRoleID = 2;     //角色ID
 }
 
-//创建角色返回
-message CreateRoleRet
+//创建角色请求
+message RoleCreateReq
 {
-	required int32 nCode = 1;		//0成功;-1角色名重复;-2重复创建
+    required int32 nAccountID = 1; //帐号ID
+    required int32 nConfID = 2;    //角色配置ID
+    required string sName = 3;     //角色名
+}
+
+//账号异地登录返回
+message OtherPlaceLoginRet
+{
+    
 }
 
 //角色数据同步
 message RoleInitDataRet
 {
     required int32 nSource = 1;         //渠道号
+    required string sAccount = 2;       //帐号名
+    required int32 nAccountID = 3;      //帐号ID
 	required int32 nRoleID = 2;  		//角色ID
 	required string sRoleName = 3;  	//角色名
-    required int32 nVIP = 4;         	//VIP
+    required int32 nLevel = 4;          //角色等级
+    required int32 nVIP = 5;         	//VIP
 }
 
 //角色货币同步
@@ -67,66 +70,11 @@ message RoleCurrencyRet
 	required double nValue = 2;	//货币值
 }
 
-//账号异地登录
-message OtherPlaceLoginRet
-{
-	
-}
-
-//注销(登出)请求
-message LogoutReq 
-{
-}
-
-//注销成功返回(此时客户端应该关闭连接退回到登录界面)
-message LogoutRet
-{
-	
-}
-
-//玩家信息
-message RoleInfo
-{
-    required int32 nCharID = 1;     //编号
-    required string sCharName = 2;  //昵称
-    required int32 nVIP = 3;        //VIP
-    required int32 nGuoLi = 4;      //国力
-    repeated int32 tAttr = 5;       //属性(商,农,政,军)
-
-    required int32 nQinMi = 6;      //亲密度
-    required int32 nFeiZiNum = 7;   //妃子数量
-    required int32 nNengLi = 8;     //能力
-    required int32 nChildNum = 9;   //孩子数量
-    required int32 nCaiDe = 10;     //才德
-
-    required int32 nYL = 11;   //银两
-    required int32 nLC = 12;   //粮草
-    required int32 nBL = 13;   //兵力
-
-    required int32 nWeiWang = 14;   //威望
-    required int32 nChapter = 15;   //章节
-
-    optional int32 nLevel = 16;     //当前国家等阶
-    optional int32 nExp = 17;       //当前国家经验
-}
-
-//请求玩家信息
-message RoleInfoReq
-{
-    required int32 nCharID = 1;     //目标玩家ID	
-}
-
-//玩家信息返回
-message RoleInfoRet
-{
-    required RoleInfo tInfo = 1;  //玩家信息
-}
-
 //等级/经验同步
 message RoleLevelRet
 {
     required int32 nLevel = 1;      //等级
     required int32 nMaxLevel = 2;   //最大等级
-    required double nExp = 3;        //当前经验
-    required double nNextExp = 4;    //下一级经验
+    required double nExp = 3;       //当前经验
+    required double nNextExp = 4;   //下一级经验
 }

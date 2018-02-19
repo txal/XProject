@@ -66,10 +66,10 @@ end
 --发送异地登陆消息
 function CLoginMgr:OtherPlaceLogin(nServer, nSession, sAccount)
 	print("CLoginMgr:OtherPlaceLogin***", sAccount)
-	CmdNet.PBSrv2Clt(nServer, nSession, "OtherPlaceLoginRet", {})
+	CmdNet.PBSrv2Clt("OtherPlaceLoginRet", nServer, nSession, {})
 	goTimerMgr:Interval(2, function(nTimerID) 
 		goTimerMgr:Clear(nTimerID)
-		CmdNet.Srv2Srv("KickClient", nServer, nSession>>nSERVICE_SHIFT, nSession)
+		CmdNet.Srv2Srv("KickClientReq", nServer, nSession>>nSERVICE_SHIFT, nSession)
 	end)
 end
 
@@ -98,11 +98,12 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
 		if sData == "" then
 			nAccountID = CLAccount:GenPlayerID()
 			oDB:HSet(gtDBDef.sAccountNameDB, sAccountKey, cjson.encode({nAccountID=nAccountID}))
+			oDB:HSet(gtDBDef.sAccountNameDB, nAccountID, cjson.encode({nSource=nSource, sAccount=sAccount}))
 		else
 			nAccountID = cjson.decode(sData).nAccountID
 		end
 		--加载账号数据,但是不做缓存
-		oAccount = CLAccount:new(nServer, nServer, nAccountID, nSource, sAccount)
+		oAccount = CLAccount:new(nServer, nSession, nAccountID, nSource, sAccount)
 		oAccount:LoadData()
 		oAccount:RoleListReq()
 	end
@@ -110,23 +111,21 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
 end
 
 --创建角色请求
-function CLoginMgr:CreateRoleReq(nServer, nSession, nSource, sAccount, sRole, nGender, nSchool)
-	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
-
+function CLoginMgr:RoleCreateReq(nServer, nSession, nAccountID, nConfID, sRole)
 	--创建角色函数
 	local function _CreateRole()
-		local sData = goDBMgr:GetSSDB(nServer, "global"):HGet(gtDBDef.sAccountNameDB, sAccountKey)
+		local sData = goDBMgr:GetSSDB(nServer, "global"):HGet(gtDBDef.sAccountNameDB, nAccountID)
 		if sData == "" then
 			return CLAccount:Tips("账号不存在", nServer, nSession)
 		end
 		--加载账号数据
-		local nAccountID = cjson.decode(sData).nAccountID
-		oAccount = CLAccount:new(nServer, nSession, nAccountID, nSource, sAccount)
+		oAccount = CLAccount:new(nServer, nSession, nAccountID, 0, "")
 		oAccount:LoadData()
 
 		--创建角色和登录成功则缓存
-		if oAccount:CreateRole(sRole, nGender, nSchool) then
+		if oAccount:CreateRole(nConfID, sRole) then
 			self.m_tAccountIDMap[nAccountID] = oAccount
+			local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
 			self.m_tAccountNameMap[sAccountKey] = oAccount
 			local nSSKey = self:MakeSSKey(nServer, nSession)
 			self.m_tAccountSSMap[nSSKey] = oAccount
@@ -136,7 +135,7 @@ function CLoginMgr:CreateRoleReq(nServer, nSession, nSource, sAccount, sRole, nG
 	end
 
 	--账号在线则先进行异地登陆
-	local oAccount = self:GetAccountByName(sAccountKey)
+	local oAccount = self:GetAccountByID(nAccountID)
 	if oAccount then
 		local nOldServer = oAccount:GetServer()
 		local nOldSession = oAccount:GetSession()
@@ -148,13 +147,14 @@ function CLoginMgr:CreateRoleReq(nServer, nSession, nSource, sAccount, sRole, nG
 				oAccount:RoleOffline() --离线操作
 
 				self.m_tAccountIDMap[nAccountID] = nil
+				local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
 				self.m_tAccountNameMap[sAccountKey] = nil
 				local nSSKey = self:MakeSSKey(nOldServer, nOldSession)
 				self.m_tAccountSSMap[nSSKey] = nil
 
 				--不同客户端操作
 				if nOldServer ~= nServer or nOldSession ~= nSession then
-					self:OtherPlaceLogin(nOldServer, nOldSession, sAccount)
+					self:OtherPlaceLogin(nOldServer, nOldSession, oAccount:GetName())
 				end
 				_CreateRole()
 			end
@@ -168,33 +168,32 @@ function CLoginMgr:CreateRoleReq(nServer, nSession, nSource, sAccount, sRole, nG
 end
 
 --角色登陆请求
-function CLoginMgr:LoginRoleReq(nServer, nSession, nSource, sAccount, nRoleID)
-	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
+function CLoginMgr:RoleLoginReq(nServer, nSession, nAccountID, nRoleID)
 
 	--登录角色函数
 	local function _LoginRole()
-		local sData = goDBMgr:GetSSDB(nServer, "global"):HGet(gtDBDef.sAccountNameDB, sAccountKey)
+		local sData = goDBMgr:GetSSDB(nServer, "global"):HGet(gtDBDef.sAccountNameDB, nAccountID)
 		if sData == "" then
 			return CLAccount:Tips("账号不存在", nServer, nSession)
 		end
 		--加载账号数据
-		local nAccountID = cjson.decode(sData).nAccountID
-		local oAccount = CLAccount:new(nServer, nSession, nAccountID, nSource, sAccount)
+		local oAccount = CLAccount:new(nServer, nSession, nAccountID, 0, "")
 		oAccount:LoadData()
 
 		--登录成功则缓存
 		if oAccount:RoleLogin(nRoleID) then
 			self.m_tAccountIDMap[nAccountID] = oAccount
+			local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
 			self.m_tAccountNameMap[sAccountKey] = oAccount
 			local nSSKey = self:MakeSSKey(nServer, nSession)
 			self.m_tAccountSSMap[nSSKey] = oAccount
 
-			LuaTrace("角色登陆成功")
+			LuaTrace("角色登陆成功", oAccount:GetName(), nRoleID)
 		end
 	end
 
 	--在线就异地登录
-	local oAccount = self:GetAccountByName(sAccountKey)
+	local oAccount = self:GetAccountByID(nAccountID)
 	if oAccount then
 		local nOldServer = oAccount:GetServer()
 		local nOldSession = oAccount:GetSession()
@@ -210,6 +209,7 @@ function CLoginMgr:LoginRoleReq(nServer, nSession, nSource, sAccount, nRoleID)
 				oAccount:RoleOffline() --离线操作
 
 				self.m_tAccountIDMap[nAccountID] = nil
+				local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
 				self.m_tAccountNameMap[sAccountKey] = nil
 				local nSSKey = self:MakeSSKey(nOldServer, nOldSession)
 				self.m_tAccountSSMap[nSSKey] = nil

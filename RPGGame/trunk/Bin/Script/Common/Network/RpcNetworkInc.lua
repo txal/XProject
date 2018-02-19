@@ -52,7 +52,7 @@ local tSrv2CltMeta = {}
 local tRpcInfo = {}
 local function _fnSrv2CltProxy(nTarServer, nTarSession, ...)
     local oPacket = _rpc_pack(tRpcInfo.sRpcType, tRpcInfo.sRpcFunc, ...)
-    _send_exter(gtMsgType.eLuaRpcMsg, oPacket, nTarServer, nTarSession>>24, nTarSession)
+    _send_exter(gtMsgType.eLuaRpcMsg, oPacket, nTarServer, nTarSession>>24, nTarSession, 0)
 end
 tSrv2CltMeta.__index = function(tRpcType, sFunc)
     tRpcInfo.sRpcType = tRpcType.sName or "unknow"
@@ -85,8 +85,14 @@ Srv2Srv.Broadcast = function(sRpcFunc, tServiceList, ...)
     _broadcast_inner(gtMsgType.eLuaRpcMsg, 0, oPacket, tServiceList)
 end
 
---远程调用(同步,挂起协程等对方返回)
+--远程调用请求
 Srv2Srv.RemoteCallReq = function(nTarServer, nTarService, nTarSession, nCallID, sCallFunc, ...)
-    local oPacket = _rpc_pack(Srv2Srv.sName, "RemoteCallDisp", nCallID, sCallFunc, ...)
+    local oPacket = _rpc_pack(Srv2Srv.sName, "RemoteCallDispatcher", nCallID, sCallFunc, ...)
+    _send_inner(gtMsgType.eLuaRpcMsg, oPacket, nTarServer, nTarService, nTarSession)
+end
+
+--远程调用返回
+Srv2Srv.RemoteCallRet = function(nTarServer, nTarService, nTarSession, nCallID, nCode, ...)
+    local oPacket = _rpc_pack(Srv2Srv.sName, "RemoteCallCallback", nCallID, nCode, ...)
     _send_inner(gtMsgType.eLuaRpcMsg, oPacket, nTarServer, nTarService, nTarSession)
 end

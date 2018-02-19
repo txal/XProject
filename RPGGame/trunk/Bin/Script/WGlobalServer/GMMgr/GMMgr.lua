@@ -10,7 +10,7 @@ function CGMMgr:OnGMCmdReq(nServer, nService, nSession, sCmd)
 	local tArgs = string.Split(sCmd, ' ')
 	local sCmdName = assert(tArgs[1])
 
-	local oRole = goGPlayerMgr:GetPlayerBySS(nServer, nSession)
+	local oRole = goGPlayerMgr:GetRoleBySS(nServer, nSession)
 	local nRoleID, sRoleName, sAccount = 0, "", ""
 	if oRole then
 		nRoleID, sRoleName, sAccount = oRole:GetID(), oRole:GetName(), oRole:GetAccountName()

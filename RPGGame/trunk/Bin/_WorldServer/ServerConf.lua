@@ -7,7 +7,7 @@ gtServerConf =
 	--SSDB数据库(游戏数据)
 	tGameDB=
 	{
-		["center"]={sIP="127.0.0.1", nPort=9000, nServer=0}, --唯一ID生成数据库
+		["center"]={sIP="127.0.0.1", nPort=7000, nServer=0}, --唯一ID生成数据库
 		["global"]={sIP="127.0.0.1", nPort=8100, nServer=gnServerID}, --世界全局数据(跨服数据)
 	},
 	--世界全局服务

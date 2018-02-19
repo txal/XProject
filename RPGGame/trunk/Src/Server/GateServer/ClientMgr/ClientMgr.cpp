@@ -16,22 +16,22 @@ ClientMgr::~ClientMgr()
 	}
 }
 	
-CLIENT* ClientMgr::CreateClient(int nClientID, uint32_t uRemoteIP)
+CLIENT* ClientMgr::CreateClient(int nSessionID, uint32_t uRemoteIP)
 {
-	if (GetClient(nClientID) != NULL)
+	if (GetClient(nSessionID) != NULL)
 	{
 		XLog(LEVEL_ERROR, "CreateClient: key duplicated!\n");
 		return NULL;
 	}
 	CLIENT* poClient = XNEW(CLIENT);
 	poClient->uRemoteIP = uRemoteIP;
-	m_oClientMap[nClientID] = poClient;
+	m_oClientMap[nSessionID] = poClient;
 	return poClient;
 }
 
-void ClientMgr::RemoveClient(int nClientID)
+void ClientMgr::RemoveClient(int nSessionID)
 {
-	ClientIter iter = m_oClientMap.find(nClientID);
+	ClientIter iter = m_oClientMap.find(nSessionID);
 	if (iter != m_oClientMap.end())
 	{
 		SAFE_DELETE(iter->second);
@@ -39,9 +39,9 @@ void ClientMgr::RemoveClient(int nClientID)
 	}
 }
 
-CLIENT* ClientMgr::GetClient(int nClientID)
+CLIENT* ClientMgr::GetClient(int nSessionID)
 {
-	ClientIter iter = m_oClientMap.find(nClientID);
+	ClientIter iter = m_oClientMap.find(nSessionID);
 	if (iter != m_oClientMap.end())
 	{
 		return iter->second;
@@ -49,9 +49,9 @@ CLIENT* ClientMgr::GetClient(int nClientID)
 	return NULL;
 }
 
-int ClientMgr::GetClientLogicService(int nClientID)
+int ClientMgr::GetClientLogicService(int nSessionID)
 {
-	CLIENT* poClient = GetClient(nClientID);
+	CLIENT* poClient = GetClient(nSessionID);
 	if (poClient == NULL)
 	{
 		return 0;

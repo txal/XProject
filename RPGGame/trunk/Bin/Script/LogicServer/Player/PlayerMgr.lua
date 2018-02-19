@@ -58,12 +58,13 @@ end
 
 --玩家登陆成功请求
 function CPlayerMgr:OnlineReq(nServer, nSession, nAccountID, nRoleID)
+	assert(nServer < 10000, "源服务器不会是世界服")
 	local oAccount = self:GetAccountByID(nAccountID)
-	assert(not oAccount, "角色已在线")
+	assert(not oAccount, "帐号已在线")
 
-	local oAccount = CAccount:new(nAccountID, nSession)
+	local oAccount = CAccount:new(nServer, nSession, nAccountID)
 	if not oAccount:LoadData() then
-		return CRole:Tips("加载帐号数据失败", nServer, nSession)
+		return CRole:Tips("帐号不存在", nServer, nSession)
 	end
 	if oAccount:Online(nRoleID) then
 		local oRole = oAccount:GetOnlineRole()

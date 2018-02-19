@@ -17,8 +17,14 @@ end
 local function _GMSendCmd(sTask)
 	local oRobot = goRobotMgr:RndRobot()
 	if not oRobot then return end
-	CmdNet.PBClt2Srv("GMCmdReq", oRobot:GenPacketIdx(), oRobot:GetSession(), {sCmd=sTask})
+	CmdNet.PBClt2Srv("GMCmdReq", oRobot:PacketID(), oRobot:GetSession(), {sCmd=sTask})
 end
+
+_tTaskProc["lreload"] = function(tParam, sTask)	--重载
+	local bRes = gfReloadAll()
+	LuaTrace("重载所有脚本 "..(bRes and "成功!" or "失败!"))
+end
+
 _tTaskProc["auth"] = function(tParam, sTask)	--授权
 	_GMSendCmd(sTask)
 end
@@ -36,6 +42,10 @@ _tTaskProc["rgm"] = function(tParam, sTask)		--重载
 end
 
 _tTaskProc["wgm"] = function(tParam, sTask)		--重载
+	_GMSendCmd(sTask)
+end
+
+_tTaskProc["agm"] = function(tParam, sTask)		--重载
 	_GMSendCmd(sTask)
 end
 
@@ -61,8 +71,11 @@ end
 
 
 _tTaskProc["login"] = function(tParam, sTask)	--登录游戏
-	local sPrefix = tParam[1] or ""
-	local nRobotNum = tonumber(tParam[2]) or 100
+	if #tParam ~= 2 then
+		return print("参数错误")
+	end
+	local sPrefix = tostring(tParam[1]) or ""
+	local nRobotNum = tonumber(tParam[2]) or 1
 	goRobotMgr:LoginRobot(sPrefix, nRobotNum)
 end
 

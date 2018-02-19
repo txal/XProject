@@ -18,7 +18,7 @@ Lunar<Robot>::RegType Robot::methods[] =
 	LUNAR_DECLARE_METHOD(Robot, StartRun),
 	LUNAR_DECLARE_METHOD(Robot, StopRun),
 	LUNAR_DECLARE_METHOD(Robot, SetMapID),
-	LUNAR_DECLARE_METHOD(Robot, GenPacketIdx),
+	LUNAR_DECLARE_METHOD(Robot, PacketID),
 	{0, 0}
 };
 
@@ -31,7 +31,7 @@ Robot::Robot(RobotMgr* poRobotMgr)
 	m_poRobotMgr = poRobotMgr;
 	m_nSessionID = 0;
 	m_sName[0] = 0;
-	m_uPacketIdx = 0;
+	m_uPacketID = 0;
 	m_nLastUpdateTime = XTime::MSTime();
 
 	m_nMapID = 0;
@@ -110,7 +110,7 @@ void Robot::StartRun(int nSpeedX, int nSpeedY)
 		Packet* poPacket = m_poPacketCache->DeepCopy();
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.nTarSession = m_nSessionID;
-		NetAdapter::SendExter(NSCltSrvCmd::cPlayerRun, poPacket, oNavi, ++m_uPacketIdx);
+		NetAdapter::SendExter(NSCltSrvCmd::cPlayerRun, poPacket, oNavi, ++m_uPacketID);
 		//XLog(LEVEL_INFO, "%s start run pos:(%d,%d) speed:(%d,%d) tick:%u\n", m_sName, m_oPos.x, m_oPos.y, m_nSpeedX, m_nSpeedY, uClientTick);
 	}
 }
@@ -132,7 +132,7 @@ void Robot::StopRun()
 		Packet* poPacket = m_poPacketCache->DeepCopy();
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.nTarSession = m_nSessionID;
-		NetAdapter::SendExter(NSCltSrvCmd::cPlayerStopRun, poPacket, oNavi, ++m_uPacketIdx);
+		NetAdapter::SendExter(NSCltSrvCmd::cPlayerStopRun, poPacket, oNavi, ++m_uPacketID);
 		//XLog(LEVEL_INFO, "%s stop run pos:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y);
     }
 }
@@ -389,8 +389,8 @@ int Robot::SetMapID(lua_State* pState)
 	return 0;
 }
 
-int Robot::GenPacketIdx(lua_State* pState)
+int Robot::PacketID(lua_State* pState)
 {
-	lua_pushinteger(pState, ++m_uPacketIdx);
+	lua_pushinteger(pState, ++m_uPacketID);
 	return 1;
 }

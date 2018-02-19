@@ -9,8 +9,8 @@ function CGMMgr:OnGMCmdReq(nServer, nService, nSession, sCmd)
 	local tArgs = string.Split(sCmd, ' ')
 	local sCmdName = assert(tArgs[1])
 
-	local nCharID, sCharName, sAccount = 0, "", ""
-	local sInfo = string.format("执行指令:%s [charid:%d,charname:%s,account:%s]", sCmd, nCharID, sCharName, sAccount)
+	local nRoleID, sRoleName, sAccount = 0, "", ""
+	local sInfo = string.format("执行指令:%s [roleid:%d,rolename:%s,account:%s]", sCmd, nRoleID, sRoleName, sAccount)
 	LuaTrace(sInfo)
 
 	local oFunc = assert(CGMMgr[sCmdName], "找不到指令:["..sCmdName.."]")

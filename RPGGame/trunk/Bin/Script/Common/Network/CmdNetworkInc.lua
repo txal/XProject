@@ -141,7 +141,7 @@ function CmdNet.Srv2Bsr(sCmdName, nTarServer, nTarSession, ...)
     local tProto = _assert(tBsrCmdRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local oPacket = _cmd_pack(sProto, ...)
-    _send_exter(nCmd, oPacket, nTarServer, nTarSession>>24, nTarSession)
+    _send_exter(nCmd, oPacket, nTarServer, nTarSession>>24, nTarSession, 0)
 end
 
 
@@ -152,7 +152,7 @@ function CmdNet.PBSrv2Clt(sCmdName, nTarServer, nTarSession, tData)
     local nCmd, sProto = tProto[1], tProto[3]
     local sData = pbc_encode(sProto, tData)
     local oPacket = _pb_pack(sData)
-    _send_exter(nCmd, oPacket, nTarServer, nTarSession>>24, nTarSession)
+    _send_exter(nCmd, oPacket, nTarServer, nTarSession>>24, nTarSession, 0)
 end
 
 function CmdNet.PBClt2Srv(sCmdName, nPacketIdx, nTarSession, tData) 

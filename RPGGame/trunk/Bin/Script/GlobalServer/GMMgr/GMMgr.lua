@@ -31,7 +31,7 @@ function CGMMgr:OnGMCmdReq(nServer, nService, nSession, sCmd, bBrowser)
 		return LuaTrace("GM需要授权")
 	end
 
-	local oRole = goGPlayerMgr:GetPlayerBySS(nServer, nSession)
+	local oRole = goGPlayerMgr:GetRoleBySS(nServer, nSession)
 	local nRoleID, sRoleName, sAccount = 0, "", ""
 	if oRole then
 		nRoleID, sRoleName, sAccount = oRole:GetID(), oRole:GetName(), oRole:GetAccountName()
@@ -87,15 +87,15 @@ end
 CGMMgr["rgm"] = function(self, nServer, nService, nSession, tArgs)
 	local sCmd = table.concat(tArgs, " ")
 	for _, tConf in pairs(gtServerConf.tLogService) do
-		goRemoteCall:Call("GMCommandReq", nServerID, tConf.ID, nSession, sCmd)
+		goRemoteCall:Call("GMCommandReq", nServerID, tConf.nID, nSession, sCmd)
 	end
 end
 
 --发送到WGLOBAL的GM
 CGMMgr["wgm"] = function(self, nServer, nService, nSession, tArgs)
 	local sCmd = table.concat(tArgs, " ")
-	for _, tConf in pairs(gtServerConf.tGlobalService) do
-		goRemoteCall:Call("GMCommandReq", nServerID, tConf.ID, nSession, sCmd)
+	for _, tConf in pairs(gtWorldConf.tGlobalService) do
+		goRemoteCall:Call("GMCommandReq", nServerID, tConf.nID, nSession, sCmd)
 	end
 end
 
@@ -103,7 +103,7 @@ end
 CGMMgr["agm"] = function(self, nServer, nService, nSession, tArgs)
 	local sCmd = table.concat(tArgs, " ")
 	for _, tConf in pairs(gtServerConf.tLoginService) do
-		goRemoteCall:Call("GMCommandReq", nServerID, tConf.ID, nSession, sCmd)
+		goRemoteCall:Call("GMCommandReq", nServerID, tConf.nID, nSession, sCmd)
 	end
 end
 
@@ -139,7 +139,7 @@ end
 
 --SVN更新
 CGMMgr['svnupdate'] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goGPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 
 	local linux = io.open("linux.txt", "r")	
@@ -164,7 +164,7 @@ end
 
 --发送邮件
 CGMMgr["sendmail"] = function(self, nServer, nService, nSession, tArgs)
-	local oRole = goRoleMgr:GetRoleBySS(nServer, nSession)
+	local oRole = goGPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	goMailMgr:SendServerMail("系统", "测试邮件", "邮件测试", {}, true)
 	oRole:Tips("发送邮件成功")

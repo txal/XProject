@@ -12,28 +12,43 @@ function CLAccount:Ctor(nServer, nSession, nID, nSource, sName)
 	self.m_nSource = nSource
 	self.m_nServer = nServer
 
-	self.m_tRoleSummaryMap = {} 	--角色摘要信息:{[roleid]={nID=0,sName="",nLevel=0,nGender=0,nSchool=0,tEquipment={},tLastDup={nID,tPos},tCurrDup={nID,tPos}},...}
+	self.m_tRoleSummaryMap = {} 	--角色摘要信息:{[roleid]={nCreateTime=0,nID=0,sName="",nLevel=0,nGender=0,nSchool=0,tEquipment={},tLastDup={nID,nX,nY},tCurrDup={nID,nX,nY}},...}
 	self.m_nLastRoleID = 0 			--最后登录的角色ID
+	self.m_nVIP = 0
 
 	--不保存
-	self.m_nSession = nSession
 	self.m_nOnlineRoleID = 0 		--当前在线角色ID(同时只允许一个角色在线)
+	self.m_nSession = nSession
 
 end
 
 function CLAccount:LoadData()
 	local sData = goDBMgr:GetSSDB(self:GetServer(), "user", self:GetID()):HGet(gtDBDef.sAccountDB, self:GetID())
-	if sData then
+	if sData ~= "" then
 		local tData = cjson.decode(sData)
+		self.m_nID = tData.m_nID
+		self.m_sName = tData.m_sName
+		self.m_nSource = tData.m_nSource
+		self.m_nServer = tData.m_nServer
+
 		self.m_tRoleSummaryMap = tData.m_tRoleSummaryMap
 		self.m_nLastRoleID = tData.m_nLastRoleID
+		self.m_nVIP = tData.m_nVIP or 0
+	else
+		self:SaveData()
 	end
 end
 
 function CLAccount:SaveData()
 	local tData = {}
+	tData.m_nID = self.m_nID
+	tData.m_sName = self.m_sName
+	tData.m_nSource = self.m_nSource
+	tData.m_nServer = self.m_nServer
+
 	tData.m_tRoleSummaryMap = self.m_tRoleSummaryMap
 	tData.m_nLastRoleID = self.m_nLastRoleID
+	tData.m_nVIP = self.m_nVIP
 
 	goDBMgr:GetSSDB(self:GetServer(), "user", self:GetID()):HSet(gtDBDef.sAccountDB, self:GetID(), cjson.encode(tData)) 
 end
@@ -61,7 +76,8 @@ end
 
 --生成唯一账号/角色ID
 function CLAccount:GenPlayerID()
-	local nIncr = goDBMgr:GetSSDB(0, "center"):HIncr(gtDBDef.sPlayerIDDB, "data")
+	local oDB = goDBMgr:GetSSDB(0, "center")
+	local nIncr = oDB:HIncr(gtDBDef.sPlayerIDDB, "data")
 	local nPlayerID = nBASE_PLAYERID + nIncr % nMaxPlayerID
 	return nPlayerID
 end
@@ -69,7 +85,7 @@ end
 --取角色数量
 function CLAccount:GetRoleCount()
 	local nCount = 0
-	for nRoleID, v in pairs(self.m_tRoleSummaryMap) do
+	for nRoleID, tRole in pairs(self.m_tRoleSummaryMap) do
 		nCount = nCount +1
 	end
 	return nCount
@@ -81,13 +97,13 @@ function CLAccount:GetLogic()
 		return 0
 	end
 
-	local tSummary = m_tRoleSummaryMap[self.m_nOnlineRoleID]
+	local tSummary = self.m_tRoleSummaryMap[self.m_nOnlineRoleID]
 	if not tSummary then
 		return 0
 	end
 	local tCurrDup = tSummary.tCurrDup
 	if tCurrDup[1] > 0 then
-		local tConf = ctDupConf[tCurrDup]
+		local tConf = ctDupConf[tCurrDup[1]]
 		return tConf.nLogic
 	end
 	return 0
@@ -103,29 +119,41 @@ end
 
 --角色列表请求
 function CLAccount:RoleListReq()
+	print("CLAccount:RoleListReq***")
+
 	if self.m_nOnlineRoleID > 0 then
 		return self:Tips("需要先退出当前登陆角色")
 	end
+
 	local tList = {}
 	for nRoleID, tSummary in pairs(self.m_tRoleSummaryMap) do
-		local tRole = {nID=nRoleID, sName=tSummary.sName, nGender=tSummary.nGender, nSchool=tSummary.nSchool, nLevel=tSummary.nLevel}
+		local tRole = {
+			nID = nRoleID,
+			sName = tSummary.sName,
+			nGender = tSummary.nGender,
+			nSchool = tSummary.nSchool,
+			nLevel = tSummary.nLevel,
+			tEquipment = tSummary.tEquipment,
+		}
 		table.insert(tList, tRole)
 	end
-	CmdNet.PBSrv2Clt("RoleListRet", self:GetServer(), self:GetSession(), {tList=tList})
+	CmdNet.PBSrv2Clt("RoleListRet", self:GetServer(), self:GetSession(), {tList=tList, nAccountID=self:GetID()})
 end
 
 --角色登录
 function CLAccount:RoleLogin(nRoleID)
+	print("CLAccount:RoleLogin***", nRoleID)
+
 	local tSummary = self.m_tRoleSummaryMap[nRoleID]
 	if not tSummary then
 		return self:Tips("角色不存在")
 	end
 
 	if self.m_nOnlineRoleID > 0 then
-		assert(self.m_oOnlineRoleID == nRoleID, "已有登录角色")
-		return CmdNet.PBSrv2Clt("LoginRet", self:GetServer(), self:GetSession(), {nServerID=self:GetServer(), nRoleID=nRoleID})
+		assert(self.m_oOnlineRoleID == nRoleID, "需要先退出当前登陆角色")
 	end
 	self:RoleOnline(nRoleID)
+	CmdNet.PBSrv2Clt("RoleLoginRet", self:GetServer(), self:GetSession(), {nAccountID=self:GetID(), nRoleID=nRoleID})
 
 	--通知逻辑服登录成功
 	goRemoteCall:Call("RoleOnlineReq", self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), nRoleID) 
@@ -133,7 +161,11 @@ function CLAccount:RoleLogin(nRoleID)
 end
 
 --创建角色
-function CLAccount:CreateRole(sName, nGender, nSchool)
+function CLAccount:CreateRole(nConfID, sName)
+	print("CLAccount:CreateRole***", nConfID, sName)
+
+	local tRoleConf = assert(ctRoleInitConf[nConfID])
+
 	if self.m_nOnlineRoleID > 0 then
 		return self:Tips("需要先退出当前登陆角色")
 	end
@@ -145,22 +177,20 @@ function CLAccount:CreateRole(sName, nGender, nSchool)
 		return CRole:Tips("角色名已被占用")
 	end
 
+	local tBorn = tRoleConf.tBorn[1]
 	--保存角色数据
-	local tRoleConf = ctRoleInitConf[nSchool]
-	local nInitCity = tRoleConf.nInitCity	
-
 	local nRoleID = self:GenPlayerID()
 	local tData = {
 		m_nCreateTime = os.time(),
 		m_nID = nRoleID,
 		m_sName = sName,
 		m_nLevel = 1,
-		m_nGender = nGender,
-		m_nSchool = nSchool,
-		m_nCityID = nInitCity,
-		m_nDupID = 0,
+		m_nGender = tRoleConf.nGender,
+		m_nSchool = tRoleConf.nSchool,
+		m_tLastDup = {0, 0, 0},
+		m_tCurrDup = {tRoleConf.nInitDup, tBorn[1], tBorn[2]},
 	}
-	goDBMgr:GetSSDB(self:GetServer(), "user", nRoleID):HSet(gtDBDef.sRoleDB, nRoleID, cjson_encode(tData))
+	goDBMgr:GetSSDB(self:GetServer(), "user", nRoleID):HSet(gtDBDef.sRoleDB, nRoleID, cjson.encode(tData))
 
 	--生成角色摘要
 	self.m_tRoleSummaryMap[nRoleID] = {
@@ -168,11 +198,11 @@ function CLAccount:CreateRole(sName, nGender, nSchool)
 		nID = nRoleID,
 		sName = sName,
 		nLevel = 1,
-		nGender = nGender,
-		nSchool = nSchool,
 		tEquipment = {},
-		nCityID = nInitCity,
-		nDupID = 0,
+		nGender = tRoleConf.nGender,
+		nSchool = tRoleConf.nSchool,
+		tLastDup = {0, 0, 0},
+		tCurrDup = {tRoleConf.nInitDup, tBorn[1], tBorn[2]},
 	}
 
 	self:SaveData()

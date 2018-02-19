@@ -1,13 +1,13 @@
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 --账号模块
 local nAutoSaveTime = 5*60 --自动保存时间
-function CAccount:Ctor(nID, nSession)
+function CAccount:Ctor(nServer, nSession, nID)
 	self.m_nID = nID
 	self.m_sName = ""
 	self.m_nSource = 0
-	self.m_nServer = 0
+	self.m_nServer = nServer
 
-	self.m_tRoleSummaryMap = {} 	--角色摘要信息:{[roleid]={nID=0,sName="",nLevel=0,nGender=0,nSchool=0,tEquipment={},nCityID=0,nDupID=0},...}
+	self.m_tRoleSummaryMap = {} 	--角色摘要信息:{[roleid]={nID=0,sName="",nLevel=0,nGender=0,nSchool=0,tEquipment={},tLastDup={0,0,0},tCurrDup={0,0,0}},...}
 	self.m_nLastRoleID = 0 			--最后登录的角色ID
 	self.m_nVIP = 0 				
 
@@ -25,7 +25,7 @@ function CAccount:MarkDirty(bDirty) self.m_bDirty = bDirty end
 
 function CAccount:LoadData()
 	local sData = goDBMgr:GetSSDB(self:GetServer(), "user", self:GetID()):HGet(gtDBDef.sAccountDB, self:GetID())
-	if sData then
+	if sData ~= "" then
 		local tData = cjson.decode(sData)
 		self.m_nID = tData.m_nID
 		self.m_sName = tData.m_sName
@@ -34,7 +34,7 @@ function CAccount:LoadData()
 
 		self.m_tRoleSummaryMap = tData.m_tRoleSummaryMap
 		self.m_nLastRoleID = tData.m_nLastRoleID
-		self.m_nVIP = tData.m_nVIP
+		self.m_nVIP = tData.m_nVIP or 0
 
 		return true
 	end
@@ -118,8 +118,8 @@ function CAccount:UpdateRoleSummary()
 	tSummary.nGender = self.m_oOnlineRole:GetGender()
 	tSummary.nSchool = self.m_oOnlineRole:GetSchool()
 	tSummary.tEquipment = self.m_oOnlineRole:GetEquipment()
-	tSummary.nCityID = self.m_oOnlineRole:GetCityID()
-	tSummary.nDupID = self.m_oOnlineRole:GetDupID()
+	tSummary.tLastDup = self.m_oOnlineRole:GetLastDup()
+	tSummary.tCurrDup = self.m_oOnlineRole:GetCurrDup()
 
 	self:MarkDirty(true)
 	self:SaveData() --需要马上保存,登录服需要这些数据

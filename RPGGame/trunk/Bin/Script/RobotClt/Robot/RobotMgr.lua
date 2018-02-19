@@ -53,7 +53,7 @@ end
 function CRobotMgr:SceneReady()
 	for nSession, oRobot in pairs(self.m_tRobotSessionMap) do
 		if oRobot:IsLogged() then
-		    CmdNet.PBClt2Srv("SceneReadyReq", oRobot:GenPacketIdx(), nSession, {})
+		    CmdNet.PBClt2Srv("SceneReadyReq", oRobot:PacketID(), nSession, {})
 		end
 	end
 end
@@ -64,7 +64,7 @@ function OnRobotConnected(nSessionID)
 	LuaTrace("CRobotMgr.OnRobotConnected***", nSessionID)
 	local sRobotName = goRobotMgr.m_sPrefix.."Robot"..goRobotMgr.m_nRobotID
 	local oRobot = CRobot:new(nSessionID, sRobotName) 
-	oRobot:Login()
+	oRobot:RoleListReq()
 	goRobotMgr.m_tRobotSessionMap[nSessionID] = oRobot
 	goRobotMgr.m_nRobotID = goRobotMgr.m_nRobotID + 1
 end

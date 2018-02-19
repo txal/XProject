@@ -37,20 +37,23 @@ require("Player/PlayerInc")
 require("Module/ModuleInc")
 require("Global/GlobalInc")
 
---检测配置
-require("ConfCheck/ConfCheckInc")
-
---连接数据库
-goDBMgr = goDBMgr or CDBMgr:new()
-goDBMgr:Init()
-
 --全局初始化
 local function _InitGlobal()
+    goDBMgr:Init()
+    goRemoteCall:Init()
+
 end
 
 --全局反初始化
 local function _UninitGlobal()
-    return true
+    local bSuccess = true
+    local function fnError(sErr)
+        bSuccess=false
+        LuaTrace(sErr, debug.traceback())
+    end
+
+    xpcall(function() goRemoteCall:OnRelease() end, fnError)
+    return bSuccess
 end
 
 --GC

@@ -9,7 +9,7 @@ gtServerConf=
 	--SSDB数据库(游戏数据)
 	tGameDB=
 	{
-		["center"]={sIP="127.0.0.1", nPort=9000, nServer=0}, --唯一ID生成数据库
+		["center"]={sIP="127.0.0.1", nPort=7000, nServer=0}, --唯一ID生成数据库
 		["global"]={sIP="127.0.0.1", nPort=9100, nServer=gnServerID},	--本服全局数据(排行榜,活动,帮会等)
 		["user"]={sIP="127.0.0.1", nPort=9101, nServer=gnServerID}, --玩家自身数据
 	},
@@ -38,7 +38,7 @@ gtServerConf=
 gtWorldConf =
 {
 	tGlobalService={{nID=100, },},
-    tLogicService={{nID=105, },},
+    tLogicService={{nID=110, },},
 }
 
 --后台MYSQL

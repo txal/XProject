@@ -96,7 +96,7 @@ function CHDCircle:GetNeedOpenAct()
 	if nOpenDay == 0 then
 		nOpenDay = 1
 	end
-	LuaTrace("检测开服日期:", nOpenDay)
+	-- LuaTrace("检测开服日期:", nOpenDay)
 
 	local tOpenList = {}
 	local tConfList = _ctHDCircleConf[nOpenDay]

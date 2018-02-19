@@ -13,7 +13,7 @@ local function _StrField(xField)
 end
 
 --事件日志
-function Srv2Srv.EventLogReq(nSrcServer, nSrcService, nTarSession, nEventID, nReason, nAccountID, RoleID, sRoleName, nLevel, nVIP, ...)
+function Srv2Srv.EventLogReq(nSrcServer, nSrcService, nTarSession, nEventID, nReason, nAccountID, nRoleID, sRoleName, nLevel, nVIP, ...)
 	sRoleName = _StrField(sRoleName)
 	local tField = {...}
 	local sField1 = _StrField(tField[1])
@@ -25,7 +25,7 @@ function Srv2Srv.EventLogReq(nSrcServer, nSrcService, nTarSession, nEventID, nRe
 	local nTime = assert(tField[7])
 
 	local sSql = string.format("call proc_log(%d, %d, %d, %d ,'%s', %d, %d,'%s','%s','%s','%s','%s', '%s', %d);"
-		, nEventID, nReason, nAccountID, RoleID, sRoleName, nLevel, nVIP, sField1, sField2, sField3, sField4, sField5, sField6, nTime)
+		, nEventID, nReason, nAccountID, nRoleID, sRoleName, nLevel, nVIP, sField1, sField2, sField3, sField4, sField5, sField6, nTime)
 	goMysqlPool:Query(sSql)
 end
 

@@ -3,11 +3,11 @@
 
 
 echo 生成客户端表======
-pushd Client
+rem pushd Client
 
-call Xls2Js.bat
+rem call Xls2Js.bat
 
-popd
+rem popd
 
 
 
