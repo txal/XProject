@@ -12,12 +12,8 @@ void NSPacketProc::RegisterPacketProc()
 	poPacketHandler->RegsterExterPacketProc(NSMsgType::eLuaCmdMsg, (void*)OnLuaCmdMsg);
 
 	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sSyncActorPos, (void*)OnSyncActorPos);
-	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sBroadcastActorRun, (void*)OnBroadcastActorRun);
+	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sBroadcastActorStartRun, (void*)OnBroadcastActorStartRun);
 	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sBroadcastActorStopRun, (void*)OnBroadcastActorStopRun);
-	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::ppActorStartAttack, (void*)OnBroadcastActorAttack);
-	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sBroadcastActorHurt, (void*)OnBroadcastActorHurt);
-	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sBroadcastActorDead, (void*)OnBroadcastActorDead);
-	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sSyncActorHP, (void*)OnSyncActorHP);
 }
 
 void NSPacketProc::OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
@@ -67,7 +63,7 @@ void NSPacketProc::OnSyncActorPos(int nSrcSessionID, Packet* poPacket, EXTER_HEA
 	poRobot->OnSyncActorPosHandler(poPacket);
 }
 
-void NSPacketProc::OnBroadcastActorRun(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
+void NSPacketProc::OnBroadcastActorStartRun(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
 {
 
 }
@@ -77,22 +73,3 @@ void NSPacketProc::OnBroadcastActorStopRun(int nSrcSessionID, Packet* poPacket, 
 
 }
 
-void NSPacketProc::OnBroadcastActorAttack(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
-{
-
-}
-
-void NSPacketProc::OnBroadcastActorHurt(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
-{
-
-}
-
-void NSPacketProc::OnBroadcastActorDead(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
-{
-
-}
-
-void NSPacketProc::OnSyncActorHP(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
-{
-
-}

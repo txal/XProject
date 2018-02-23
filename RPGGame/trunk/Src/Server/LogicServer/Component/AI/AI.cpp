@@ -115,17 +115,17 @@ void MonsterAI::Update(int64_t nNowMS)
 	{
 		return;
 	}
-	if (m_poActor == NULL || m_poActor->GetScene() == NULL || m_poActor->IsDead())
-	{
-		return;
-	}
+	//if (m_poActor == NULL || m_poActor->GetScene() == NULL || m_poActor->IsDead())
+	//{
+	//	return;
+	//}
 
-	if (m_poTarget != NULL && (m_poTarget->IsDead() || m_poTarget->GetScene() == NULL))
-	{
-		m_poTarget = NULL;
-		m_poAction->SetTarget(m_poTarget);
-		SetState(eAIS_Idle, GetStateTime(eAIS_Idle), __LINE__);
-	}
+	//if (m_poTarget != NULL && (m_poTarget->IsDead() || m_poTarget->GetScene() == NULL))
+	//{
+	//	m_poTarget = NULL;
+	//	m_poAction->SetTarget(m_poTarget);
+	//	SetState(eAIS_Idle, GetStateTime(eAIS_Idle), __LINE__);
+	//}
 
 	switch (m_nState)
 	{
@@ -216,20 +216,17 @@ void MonsterAI::SearchNearTarget(int64_t nNowMS)
 	for (; iter != iter_end; ++iter)
 	{
 		Object* poObj = iter->second;
-		if (poObj->GetType() != eOT_Player
+		if (poObj->GetType() != eOT_Role
 			&& poObj->GetType() != eOT_Monster)
 		{
 			continue;
 		}
 
 		Actor* poActor = (Actor*)poObj;
-		if (m_poActor == poActor
-			|| poActor->IsDead()
-			|| poActor->GetScene() != poScene
-			|| !m_poActor->CheckCamp(poActor))
-		{
-			continue;
-		}
+		//if (m_poActor == poActor || poActor->IsDead() || poActor->GetScene() != poScene || !m_poActor->CheckCamp(poActor))
+		//{
+		//	continue;
+		//}
 
 		if (poActor->GetType() == eOT_Monster)
 		{
@@ -271,17 +268,17 @@ void RobotAI::Update(int64_t nNowMS)
 	{
 		return;
 	}
-	if (m_poActor == NULL || m_poActor->GetScene() == NULL || m_poActor->IsDead())
-	{
-		return;
-	}
+	//if (m_poActor == NULL || m_poActor->GetScene() == NULL || m_poActor->IsDead())
+	//{
+	//	return;
+	//}
 
-	if (m_poTarget != NULL && (m_poTarget->IsDead() || m_poTarget->GetScene() == NULL))
-	{
-		m_poTarget = NULL;
-		m_poAction->SetTarget(m_poTarget);
-		SetState(eAIS_Idle, GetStateTime(eAIS_Idle), __LINE__);
-	}
+	//if (m_poTarget != NULL && (m_poTarget->IsDead() || m_poTarget->GetScene() == NULL))
+	//{
+	//	m_poTarget = NULL;
+	//	m_poAction->SetTarget(m_poTarget);
+	//	SetState(eAIS_Idle, GetStateTime(eAIS_Idle), __LINE__);
+	//}
 
 	switch (m_nState)
 	{
@@ -368,24 +365,21 @@ void RobotAI::SearchNearTarget(int64_t nNowMS)
 	Point& oMyPos = m_poActor->GetPos();
 
 	Scene* poScene = m_poActor->GetScene();
-	Array<AOI_OBJ*>& oObjList = poScene->GetAreaObserveds(m_poActor->GetAOIID(), 0);
+	Array<AOIOBJ*>& oObjList = poScene->GetAreaObserveds(m_poActor->GetAOIID(), 0);
 	for (int i = 0; i < oObjList.Size(); ++i)
 	{
 		Object* poObj = oObjList[i]->poGameObj;
-		if (poObj->GetType() != eOT_Player
+		if (poObj->GetType() != eOT_Role
 			&& poObj->GetType() != eOT_Robot)
 		{
 			continue;
 		}
 
 		Actor* poActor = (Actor*)poObj;
-		if (m_poActor == poActor
-			|| poActor->IsDead()
-			|| poActor->GetScene() != poScene
-			|| !m_poActor->CheckCamp(poActor))
-		{
-			continue;
-		}
+		//if (m_poActor == poActor || poActor->IsDead() || poActor->GetScene() != poScene || !m_poActor->CheckCamp(poActor))
+		//{
+		//	continue;
+		//}
 
 		Point& oTarPos = poActor->GetPos();
 		int nDistance = oMyPos.Distance(oTarPos);
@@ -413,37 +407,34 @@ void RobotAI::SearchViewTarget(int64_t nNowMS)
 	m_poTarget = NULL;
 	int nMaxHateVal = 0;
 
-	Array<AOI_OBJ*>& oObjList = poScene->GetAreaObserveds(m_poActor->GetAOIID(), 0);
+	Array<AOIOBJ*>& oObjList = poScene->GetAreaObserveds(m_poActor->GetAOIID(), 0);
 	for (int i = 0; i < oObjList.Size(); ++i)
 	{
 		Object* poObj = oObjList[i]->poGameObj;
 		int nObjType = poObj->GetType();
-		if (nObjType != eOT_Player && nObjType != eOT_Robot)
+		if (nObjType != eOT_Role && nObjType != eOT_Robot)
 		{
 			continue;
 		}
 
 		Actor* poTarget = (Actor*)poObj;
-		if (m_poActor == poTarget
-			|| poTarget->IsDead()
-			|| poTarget->GetScene() != poScene
-			|| !m_poActor->CheckCamp(poTarget))
-		{
-			continue;
-		}
+		//if (m_poActor == poTarget || poTarget->IsDead() || poTarget->GetScene() != poScene || !m_poActor->CheckCamp(poTarget))
+		//{
+		//	continue;
+		//}
 
 		int nHateVal = 0;
-		HATE* poHate = m_poActor->GetHate(poTarget->GetID());
-		if (poHate != NULL)
-		{
-			int nRelives = poTarget->GetRelives();
-			if (nRelives != poHate->uRelives)
-			{
-				poHate->nValue = 0;
-				poHate->uRelives = (uint8_t)nRelives;
-			}
-			nHateVal = poHate->nValue;
-		}
+		//HATE* poHate = m_poActor->GetHate(poTarget->GetID());
+		//if (poHate != NULL)
+		//{
+		//	int nRelives = poTarget->GetRelives();
+		//	if (nRelives != poHate->uRelives)
+		//	{
+		//		poHate->nValue = 0;
+		//		poHate->uRelives = (uint8_t)nRelives;
+		//	}
+		//	nHateVal = poHate->nValue;
+		//}
 		//XLog(LEVEL_DEBUG, "%s Hate %s %d\n", m_poActor->GetName(), poTarget->GetName(), nHateVal);
 
 		Point& oTarPos = poTarget->GetPos();

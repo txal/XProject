@@ -12,16 +12,10 @@ void NSPacketProc::RegisterPacketProc()
 	poPacketHandler->RegsterInnerPacketProc(NSMsgType::eLuaCmdMsg, (void*)OnLuaCmdMsg);
 
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceRet, (void*)OnRegisterRouterCallback);
-	//poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssServiceClose, (void*)OnServiceClose);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssClientClose, (void*)OnClientClose);
 
-	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::cPlayerRun, (void*)OnPlayerRun);
-	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::cPlayerStopRun, (void*)OnPlayerStopRun);
-	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::ppActorStartAttack, (void*)OnActorStartAttack);
-	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::ppActorStopAttack, (void*)OnActorStopAttack);
-	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::cActorHurted, (void*)OnActorHurted);
-	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::cActorDamage, (void*)OnActorDamage);
-	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::cEveHurted, (void*)OnEveHurted);
+	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::cRoleStartRun, (void*)OnRoleStartRun);
+	poPacketHandler->RegsterInnerPacketProc(NSCltSrvCmd::cRoleStopRun, (void*)OnRoleStopRun);
 }
 
 void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
@@ -73,87 +67,24 @@ void NSPacketProc::OnClientClose(int nSrcSessionID, Packet* poPacket, INNER_HEAD
 	OnLuaCmdMsg(nSrcSessionID, poPacket, oHeader, pSessionArray);
 }
 
-//void NSPacketProc::OnServiceClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
-//{
-//	PacketReader oPacketReader(poPacket);
-//	int nService = 0;
-//	oPacketReader >> nService;
-//	LuaWrapper::Instance()->FastCallLuaRef<void>("OnServiceClose", 0, "i", nService);
-//}
-
-void NSPacketProc::OnPlayerRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+void NSPacketProc::OnRoleStartRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Player* poPlayer = ((LogicServer*)g_poContext->GetService())->GetPlayerMgr()->GetPlayerBySession(nSession);
-	if (poPlayer == NULL)
+	Role* poRole = ((LogicServer*)g_poContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
+	if (poRole == NULL)
 	{
 		return;
 	}
-	poPlayer->PlayerRunHandler(poPacket);
+	poRole->RoleStartRunHandler(poPacket);
 }
 
-void NSPacketProc::OnPlayerStopRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+void NSPacketProc::OnRoleStopRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Player* poPlayer = ((LogicServer*)g_poContext->GetService())->GetPlayerMgr()->GetPlayerBySession(nSession);
-	if (poPlayer == NULL)
+	Role* poRole = ((LogicServer*)g_poContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
+	if (poRole == NULL)
 	{
 		return;
 	}
-	poPlayer->PlayerStopRunHandler(poPacket);
-}
-
-void NSPacketProc::OnActorStartAttack(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
-{
-	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Player* poPlayer = ((LogicServer*)g_poContext->GetService())->GetPlayerMgr()->GetPlayerBySession(nSession);
-	if (poPlayer == NULL)
-	{
-		return;
-	}
-	poPlayer->PlayerStartAttackHandler(poPacket);
-}
-
-void NSPacketProc::OnActorStopAttack(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
-{
-	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Player* poPlayer = ((LogicServer*)g_poContext->GetService())->GetPlayerMgr()->GetPlayerBySession(nSession);
-	if (poPlayer == NULL)
-	{
-		return;
-	}
-	poPlayer->PlayerStopAttackHandler(poPacket);
-}
-
-void NSPacketProc::OnActorHurted(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
-{
-	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Player* poPlayer = ((LogicServer*)g_poContext->GetService())->GetPlayerMgr()->GetPlayerBySession(nSession);
-	if (poPlayer == NULL)
-	{
-		return;
-	}
-	poPlayer->PlayerHurtedHandler(poPacket);
-}
-
-void NSPacketProc::OnActorDamage(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
-{
-	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Player* poPlayer = ((LogicServer*)g_poContext->GetService())->GetPlayerMgr()->GetPlayerBySession(nSession);
-	if (poPlayer == NULL)
-	{
-		return;
-	}
-	poPlayer->PlayerDamageHandler(poPacket);
-}
-
-void NSPacketProc::OnEveHurted(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
-{
-	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Player* poPlayer = ((LogicServer*)g_poContext->GetService())->GetPlayerMgr()->GetPlayerBySession(nSession);
-	if (poPlayer == NULL)
-	{
-		return;
-	}
-	poPlayer->EveHurtedHandler(poPacket);
+	poRole->RoleStopRunHandler(poPacket);
 }

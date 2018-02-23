@@ -17,7 +17,7 @@ end
 
 --远程调用请求
 function Srv2Srv.RemoteCallDispatcher(nSrcServer, nSrcService, nTarSession, nCallID, sCallFunc, bNeedReturn, ...) 
-	print("Srv2Srv.RemoteCallDispatcher***")
+	print("Srv2Srv.RemoteCallDispatcher***", sCallFunc)
     local oFunc = _rawget(Srv2Srv, sCallFunc)
 	if not oFunc then
 		if bNeedReturn then

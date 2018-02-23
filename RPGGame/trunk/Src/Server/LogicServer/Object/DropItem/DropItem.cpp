@@ -19,7 +19,7 @@ DropItem::~DropItem()
 
 void DropItem::Init(int nID, int nConfID, const char* psName, int nAliveTime, int nCamp)
 {
-	m_nCamp = (int8_t)nCamp;
+	//m_nCamp = (int8_t)nCamp;
 	m_nObjID = nID;
 	m_nConfID = nConfID;
 	strcpy(m_sName, psName);
@@ -35,7 +35,7 @@ void DropItem::Update(int64_t nNowMS)
 		Scene* poScene = GetScene();
 		if (poScene != NULL && m_nAOIID > 0)
 		{
-			poScene->RemoveObj(m_nAOIID);
+			poScene->LeaveScene(m_nAOIID);
 		}
 	}
 }

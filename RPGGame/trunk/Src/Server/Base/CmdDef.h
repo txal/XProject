@@ -46,23 +46,11 @@ namespace NSCltSrvCmd
 		ppPing= 1025,					    //客户端Ping
 
 		ppKeepAlive = 1100,					//客户端心跳包
-		cPlayerRun = 1110,					//玩家跑步
-		cPlayerStopRun = 1111,				//玩家停止跑步
+		cRoleStartRun = 1110,				//玩家开始跑步
+		cRoleStopRun = 1111,				//玩家停止跑步
 		sSyncActorPos = 1112,				//同步角色位置
-		sBroadcastActorRun = 1113,			//广播角色跑步
+		sBroadcastActorStartRun = 1113,		//广播角色开始跑步
 		sBroadcastActorStopRun = 1114,		//广播角色停止跑步
-		cActorHurted = 1117,				//角色受伤
-		cActorDamage = 1118,				//角色伤害
-		sBroadcastActorHurt = 1119,			//广播角色受伤/伤害
-
-		sBroadcastActorDead = 1121,			//广播角色死亡
-		sSyncActorHP = 1122,				//同步/广播角色血量
-
-		sBroadcastRanking = 1145,			//排行榜广播
-		cEveHurted = 1146,					//队长上上报物打物伤害
-
-		ppActorStartAttack = 1150,			//角色开始攻击
-		ppActorStopAttack = 1151,			//角色停止攻击
 
 		eCMD_END = 8000,
 	};

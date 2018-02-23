@@ -5,27 +5,29 @@
 #include "Common/DataStruct/Array.h"
 #include "Common/Platform.h"
 
-#define DEFAULT_CAP 16
-
-struct AOI_OBJ;
+struct AOIOBJ;
 class Tower
 {
 public:
-	Tower(int nX, int nY, uint16_t nTowerWidth, uint16_t nTowerHeight);
-	void AddObserver(AOI_OBJ* pObj);
-	void AddObserved(AOI_OBJ* pObj);
-	bool RemoveObserver(AOI_OBJ* pObj);
-	bool RemoveObserved(AOI_OBJ* pObj);
-	Array<AOI_OBJ*>& GetObserverSet();
-	Array<AOI_OBJ*>& GetObservedSet();
+	typedef std::unordered_map<int, AOIOBJ*> AOIObjMap;
+	typedef AOIObjMap::iterator AOIObjIter;
+
+public:
+	Tower(int nUnitX, int nUnitY, uint16_t nTowerWidth, uint16_t nTowerHeight);
+	void AddObserver(AOIOBJ* pObj);
+	void AddObserved(AOIOBJ* pObj);
+	bool RemoveObserver(AOIOBJ* pObj);
+	bool RemoveObserved(AOIOBJ* pObj);
+	AOIObjMap& GetObserverMap();
+	AOIObjMap& GetObservedMap();
 
 private:
-	Array<AOI_OBJ*> m_ObserverSet;
-	Array<AOI_OBJ*> m_ObservedSet;
+	AOIObjMap m_oObserverMap;
+	AOIObjMap m_oObservedMap;
 
-	int16_t m_nLeftTop[2];		// 0:x 1:y
-	uint16_t m_nTowerWidth;		//Grid nNum
-	uint16_t m_nTowerHeight;
+	int16_t m_nLeftTop[2];		//灯塔坐标(格子)
+	uint16_t m_nTowerWidth;		//灯塔高(格子)
+	uint16_t m_nTowerHeight;	//灯塔宽(格子)
 
 	DISALLOW_COPY_AND_ASSIGN(Tower);
 };

@@ -15,7 +15,7 @@
 
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
-#include "Server/LogicServer/Object/Player/PlayerMgr.h"
+#include "Server/LogicServer/Object/Role/RoleMgr.h"
 #include "Server/LogicServer/LogicServer.h"
 #include "Server/LogicServer/SceneMgr/SceneMgr.h"
 
@@ -36,11 +36,11 @@ int GetSceneMgr(lua_State* pState)
 	return 1;
 }
 
-int GetPlayerMgr(lua_State* pState)
+int GetRoleMgr(lua_State* pState)
 {
 	LogicServer* poServer = (LogicServer*)g_poContext->GetService();
-	PlayerMgr* poMgr = poServer->GetPlayerMgr();
-	Lunar<PlayerMgr>::push(pState, poMgr);
+	RoleMgr* poMgr = poServer->GetRoleMgr();
+	Lunar<RoleMgr>::push(pState, poMgr);
 	return 1;
 }
 
@@ -98,8 +98,8 @@ int MD5(lua_State* pState)
 luaL_Reg _global_lua_func[] =
 {
 	{ "GetServiceID", GetServiceID},
-	{ "GetSceneMgr", GetSceneMgr},
-	{ "GetPlayerMgr", GetPlayerMgr},
+	{ "GetDupMgr", GetSceneMgr},
+	{ "GetPlayerMgr", GetRoleMgr},
 	{ "GetMonsterMgr", GetMonsterMgr},
 	{ "GetDropItemMgr", GetDropItemMgr},
 	{ "GetRobotMgr", GetRobotMgr},
@@ -126,7 +126,7 @@ void OpenLuaExport()
 
 	RegClassScene();
 	RegClassObject();
-	RegClassPlayer();
+	RegClassRole();
 	RegClassMonster();
 	RegClassRobot();
 	RegClassDropItem();

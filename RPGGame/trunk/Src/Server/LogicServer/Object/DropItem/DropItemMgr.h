@@ -19,7 +19,7 @@ public:
 	DropItem* GetDropItemByID(int nID);
 
 public:
-	void UpdateDropItems(int64_t nNowMS);
+	void Update(int64_t nNowMS);
 
 private:
 	DISALLOW_COPY_AND_ASSIGN(DropItemMgr);

@@ -55,12 +55,12 @@ message OtherPlaceLoginRet
 message RoleInitDataRet
 {
     required int32 nSource = 1;         //渠道号
-    required string sAccount = 2;       //帐号名
-    required int32 nAccountID = 3;      //帐号ID
-	required int32 nRoleID = 2;  		//角色ID
-	required string sRoleName = 3;  	//角色名
-    required int32 nLevel = 4;          //角色等级
-    required int32 nVIP = 5;         	//VIP
+    required int32 nAccountID = 2;      //帐号ID
+    required string sAccountName = 3;   //帐号名
+	required int32 nRoleID = 4;  		//角色ID
+	required string sRoleName = 5;  	//角色名
+    required int32 nLevel = 6;          //角色等级
+    required int32 nVIP = 7;         	//VIP
 }
 
 //角色货币同步
@@ -78,3 +78,4 @@ message RoleLevelRet
     required double nExp = 3;       //当前经验
     required double nNextExp = 4;   //下一级经验
 }
+

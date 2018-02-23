@@ -439,8 +439,8 @@ namespace BattleUtil
 	//位置误差是否可接受
 	inline bool IsAcceptablePositionFaultBit(int nPosX1, int nPosY1, int nPosX2, int nPosY2)
 	{
-		int nAcceptableX = gnUnitWidth * gnTowerWidth;
-		int nAcceptableY = gnUnitHeight * gnTowerHeight;
+		static int nAcceptableX = gnUnitWidth * gnTowerWidth;
+		static int nAcceptableY = gnUnitHeight * gnTowerHeight;
 
 		int nDistX = abs(nPosX2 - nPosX1);
 		int nDistY = abs(nPosY2 - nPosY1);

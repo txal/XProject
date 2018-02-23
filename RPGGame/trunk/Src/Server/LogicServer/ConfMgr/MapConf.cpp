@@ -1,7 +1,7 @@
-﻿#include "MapConf.h"
+﻿#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Include/Logger/Logger.hpp"
 
-std::string gsMapDir = "../Data/ServerMap/";
+std::string gsMapDir = "../../Data/ServerMap/";
 
 MapConf* MapConfMgr::GetConf(int nID)
 {

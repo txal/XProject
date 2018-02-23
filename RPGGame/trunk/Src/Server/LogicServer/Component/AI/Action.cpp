@@ -343,7 +343,7 @@ void Action::MoveTo(int nLine)
 		//XLog(LEVEL_DEBUG,"%s Line path:[%d,%d]->[%d,%d] line:%d\n", m_poActor->GetName(), oMyPos.x/gnUnitWidth, poMapConf->nUnitNumY-1- oMyPos.y/gnUnitHeight, m_oNextPos.x/gnUnitWidth, poMapConf->nUnitNumY-1-m_oNextPos.y/gnUnitHeight, nLine );
 	}
 	//XLog(LEVEL_DEBUG, "%s MoveTo:(%d,%d)->(%d,%d) a*:%d line:%d\n", m_poActor->GetName(), oMyPos.x, oMyPos.y, m_oNextPos.x, m_oNextPos.y, !bResult, nLine);
-	StartMove(oMyPos, m_oNextPos, m_poActor->GetStaticSpeed(), nLine);
+	//StartMove(oMyPos, m_oNextPos, m_poActor->GetStaticSpeed(), nLine);
 }
 
 void Action::StartMove(const Point& oStartPos, const Point& oTarPos, int nMoveSpeed, int nLine)
@@ -374,7 +374,7 @@ bool Action::CheckDistance(const Point& oSrcPos, const Point& oTarPos, const Poi
 		{
 			m_oNextPos = m_oListPath.front();
 			m_oListPath.pop_front();
-			StartMove(oSrcPos, m_oNextPos, m_poActor->GetStaticSpeed(), __LINE__);
+			//StartMove(oSrcPos, m_oNextPos, m_poActor->GetStaticSpeed(), __LINE__);
 			return false;
 		}
 		return true;
@@ -401,7 +401,7 @@ bool Action::CheckDistance(const Point& oSrcPos, const Point& oTarPos, const Poi
 					m_oListPath.push_front(m_oNextPos);
 					m_oNextPos = oNewPos;
 				}
-				StartMove(oSrcPos, m_oNextPos, m_poActor->GetStaticSpeed(), __LINE__);
+				//StartMove(oSrcPos, m_oNextPos, m_poActor->GetStaticSpeed(), __LINE__);
 				m_nLastActorFrame = 0;
 
 				//int nNextUnitX = m_oNextPos.x / gnUnitWidth;
@@ -481,27 +481,27 @@ void Action::GetRandomPos(const Point& oRefPos, int nRadius, Point& oTarPos)
 	}
 }
 
-
-///////////怪物行为//////////
+//
+/////////////怪物行为//////////
 void MonsterAction::Attack(float fAngle)
 {
 	Monster* poMon = (Monster*)m_poActor;
-	poMon->StartMonsterAttack(fAngle);
+	//poMon->StartMonsterAttack(fAngle);
 }
 
 void MonsterAction::StopAttack()
 {
 	Monster* poMon = (Monster*)m_poActor;
-	poMon->StopMonsterAttack();
+	//poMon->StopMonsterAttack();
 }
 
 //////////机器人行为////////
 void RobotAction::Attack(float fAngle)
 {
-	((Robot*)m_poActor)->StartRobotAttack(fAngle);
+	//((Robot*)m_poActor)->StartRobotAttack(fAngle);
 }
 
 void RobotAction::StopAttack()
 {
-	((Robot*)m_poActor)->StopRobotAttack();
+	//((Robot*)m_poActor)->StopRobotAttack();
 }

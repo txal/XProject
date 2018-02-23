@@ -27,14 +27,13 @@ end
 
 function CRobotMgr:LoginRobot(sPrefix, nRobotNum)
 	self.m_sPrefix = sPrefix
-	goCppRobotMgr:CreateRobot(gsServerIP, gnServerPort, nRobotNum)
+	goNativeRobotMgr:CreateRobot(gsServerIP, gnServerPort, nRobotNum)
 end
 
 function CRobotMgr:LogoutRobot()
-	goCppRobotMgr:LogoutRobot()
+	goNativeRobotMgr:LogoutRobot()
 	self.m_sPrefix = ""
 	self.m_nRobotID = 0
-	self.m_nRobotNum = 0
 end
 
 function CRobotMgr:OnLoginSuccess(sRobotName, nMSTime)
@@ -59,7 +58,7 @@ function CRobotMgr:SceneReady()
 end
 
 
--------------cpp call--------------
+-------------Native call--------------
 function OnRobotConnected(nSessionID)
 	LuaTrace("CRobotMgr.OnRobotConnected***", nSessionID)
 	local sRobotName = goRobotMgr.m_sPrefix.."Robot"..goRobotMgr.m_nRobotID
@@ -86,4 +85,4 @@ end
 
 
 goRobotMgr = goRobotMgr or CRobotMgr:new()
-goCppRobotMgr = GlobalExport.GetRobotMgr()
+goNativeRobotMgr = GlobalExport.GetRobotMgr()

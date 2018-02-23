@@ -1,0 +1,64 @@
+package scene;
+
+//角色进入副本请求
+message RoleEnterSceneReq
+{
+	required int32 nDupID = 1;		//副本配置ID
+}
+
+//角色进入副本返回
+message RoleEnterSceneRet
+{
+	required int32 nMixID = 1;		//副本唯一ID
+	required int32 nDupID = 2;		//副本配置ID
+	required int32 nAOIID = 3;		//副本内对象唯一ID	
+	required int32 nPosX = 4;		//坐标
+	required int32 nPosY = 5;
+}
+
+//角色离开副本请求
+message RoleLeaveSceneReq
+{
+	required int32 nMixID = 1;		//副本唯一ID
+}
+
+//角色离开副本返回
+message RoleLeaveSceneRet
+{
+}
+
+//视野内对象形象基本数据
+message ObjBaseData
+{
+	required int32 nAOIID = 1;		//副本内对象唯一ID	
+	required int32 nObjType = 2; 	//对象类型:1角色;2怪物
+	required int32 nConfID = 3;		//配置ID
+	required string sName = 4;		//名字
+	required int32 nLevel = 5;		//等级
+	required int32 nPosX = 6;		//坐标
+	required int32 nPosY = 7;
+	required int32 nSpeedX = 8;		//速度
+	required int32 nSpeedY = 9;
+}
+
+//角色进入视野返回
+message RoleEnterViewRet
+{
+	message _RoleData
+	{
+		required ObjBaseData tBaseData = 1;
+	}
+	repeated _RoleData tList = 1;	//角色列表
+}
+
+//怪物进入视野返回
+message MonsterEnterViewRet
+{
+	repeated ObjBaseData tList = 1;	//怪物列表
+}
+
+//对象离开视野返回
+message ObjLeaveViewRet
+{
+	repeated int32 tList = 1;	//对象列表
+}

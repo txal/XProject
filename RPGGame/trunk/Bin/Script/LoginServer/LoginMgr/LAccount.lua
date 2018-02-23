@@ -62,6 +62,7 @@ function CLAccount:GetOnlineRoleID() return self.m_nOnlineRoleID end
 
 --角色登陆成功
 function CLAccount:RoleOnline(nRoleID)
+	print("CLAccount:RoleOnline***", nRoleID)
 	self.m_nLastRoleID = nRoleID
 	self:SaveData()
 
@@ -69,7 +70,8 @@ function CLAccount:RoleOnline(nRoleID)
 end
 
 --角色离线成功
-function CLAccount:RoleOffline(nRoleID)
+function CLAccount:RoleOffline()
+	print("CLAccount:RoleOffline***", self:GetName())
 	self.m_nSession = 0
 	self.m_nOnlineRoleID = 0
 end
@@ -103,8 +105,14 @@ function CLAccount:GetLogic()
 	end
 	local tCurrDup = tSummary.tCurrDup
 	if tCurrDup[1] > 0 then
-		local tConf = ctDupConf[tCurrDup[1]]
-		return tConf.nLogic
+		local nDupID = GF.GetDupID(tCurrDup[1])
+		local tConf = ctDupConf[nDupID]
+		if tConf then
+			return tConf.nLogic
+		end
+		local tLastDup = tSummary.tLastDup
+		local nDupID = GF.GetDupID(tLastDup[1])
+		return ctDupConf[nDupID].nLogic
 	end
 	return 0
 end
@@ -118,12 +126,9 @@ function CLAccount:Tips(sCont, nServer, nSession)
 end
 
 --角色列表请求
-function CLAccount:RoleListReq()
-	print("CLAccount:RoleListReq***")
-
-	if self.m_nOnlineRoleID > 0 then
-		return self:Tips("需要先退出当前登陆角色")
-	end
+function CLAccount:RoleListReq(nServer, nSession)
+	local nServer = nServer or self:GetServer()
+	local nSession = nSession or self:GetSession()
 
 	local tList = {}
 	for nRoleID, tSummary in pairs(self.m_tRoleSummaryMap) do
@@ -137,20 +142,19 @@ function CLAccount:RoleListReq()
 		}
 		table.insert(tList, tRole)
 	end
-	CmdNet.PBSrv2Clt("RoleListRet", self:GetServer(), self:GetSession(), {tList=tList, nAccountID=self:GetID()})
+	CmdNet.PBSrv2Clt("RoleListRet", nServer, nSession, {tList=tList, nAccountID=self:GetID()})
 end
 
 --角色登录
 function CLAccount:RoleLogin(nRoleID)
-	print("CLAccount:RoleLogin***", nRoleID)
-
 	local tSummary = self.m_tRoleSummaryMap[nRoleID]
 	if not tSummary then
 		return self:Tips("角色不存在")
 	end
+	print("CLAccount:RoleLogin***", nRoleID, tSummary.sName)
 
 	if self.m_nOnlineRoleID > 0 then
-		assert(self.m_oOnlineRoleID == nRoleID, "需要先退出当前登陆角色")
+		assert(self.m_nOnlineRoleID == nRoleID, "需要先退出当前登陆角色")
 	end
 	self:RoleOnline(nRoleID)
 	CmdNet.PBSrv2Clt("RoleLoginRet", self:GetServer(), self:GetSession(), {nAccountID=self:GetID(), nRoleID=nRoleID})

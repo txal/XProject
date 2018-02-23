@@ -1,4 +1,4 @@
---游戏对象类型
+--对象类型
 gtItemType = 
 {
 	eNone = 0,
@@ -12,10 +12,6 @@ gtCurrType =
 	eVIP = 1, 		--VIP等级
 	eYuanBao = 2,	--元宝
 	eYinLiang = 3,	--银两
-	eShang = 4, 	--商
-	eNong = 5,		--农
-	eZheng = 6,		--政
-	eJun = 7, 		--军
 }
 
 --道具类型
@@ -65,4 +61,11 @@ gtCurrProp =
 {
 	[gtCurrType.eYuanBao] = 10001, 	--元宝
 	[gtCurrType.eYinLiang] = 10002, --银两
+}
+
+--场景对象类型
+gtObjType = 
+{
+	eRole = 1,	 	--角色对象
+	eMonster = 2, 	--怪物对象
 }

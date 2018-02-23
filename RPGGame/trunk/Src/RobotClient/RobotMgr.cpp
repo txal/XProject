@@ -121,11 +121,12 @@ void RobotMgr::ProcessTimer(int64_t nNowMS)
 
 void RobotMgr::ProcessRobotUpdate(int64_t nNowMS)
 {
+	static float nFRAME_MSTIME = 1000.0f / 30.0f;
 	RobotIter iter = m_oRobotMap.begin();
 	RobotIter iter_end = m_oRobotMap.end();
 	for (; iter != iter_end; iter++)
 	{
-		if (nNowMS - iter->second->GetLastUpdateTime() >= FRAME_MSTIME)
+		if (nNowMS - iter->second->GetLastUpdateTime() >= nFRAME_MSTIME)
 		{
 			iter->second->Update(nNowMS);
 		}

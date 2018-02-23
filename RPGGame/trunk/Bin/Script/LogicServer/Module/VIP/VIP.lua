@@ -45,8 +45,8 @@ function CVIP:GetType()
 end
 
 function CVIP:Online()
-	self:VIPAwardListReq()
-	self:SyncFirstRecharge()
+	-- self:VIPAwardListReq()
+	-- self:SyncFirstRecharge()
 end
 
 --取累计充值

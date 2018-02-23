@@ -49,6 +49,7 @@ function CLoginMgr:OnClientClose(nServer, nSession)
 	local nSource, sAccount = oAccount:GetSource(), oAccount:GetName()
 	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
 
+	oAccount:LoadData() --需要重新加载数据,逻辑服可能修改了
 	goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
 		local oAccount = self:GetAccountByID(nAccountID)
 		if oAccount then
@@ -75,6 +76,7 @@ end
 
 --角色列表请求
 function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
+	print("CLoginMgr:RoleListReq***", nServer, nSession)
 	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
 	local oAccount = self:GetAccountByName(sAccountKey)
 
@@ -85,7 +87,7 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
 			local oAccount = self:GetAccountByID(nAccountID)
 			if oAccount then
 				oAccount:LoadData() --重新加载数据,逻辑服可能有修改
-				oAccount:RoleListReq()
+				oAccount:RoleListReq(nServer, nSession)
 			end
 		end , oAccount:GetServer(), oAccount:GetLogic(), oAccount:GetSession(), oAccount:GetID())
 
@@ -213,6 +215,9 @@ function CLoginMgr:RoleLoginReq(nServer, nSession, nAccountID, nRoleID)
 				self.m_tAccountNameMap[sAccountKey] = nil
 				local nSSKey = self:MakeSSKey(nOldServer, nOldSession)
 				self.m_tAccountSSMap[nSSKey] = nil
+
+				--异地登录
+				self:OtherPlaceLogin(nOldServer, nOldSession, oAccount:GetName())
 
 				_LoginRole()
 

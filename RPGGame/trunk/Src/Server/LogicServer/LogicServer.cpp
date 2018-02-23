@@ -80,11 +80,11 @@ bool LogicServer::Start()
 		ProcessNetEvent(1);
 		nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
-	    m_oSceneMgr.UpdateScenes(nNowMS);
-	    m_oPlayerMgr.UpdatePlayers(nNowMS);
-	    m_oMonsterMgr.UpdateMonsters(nNowMS);
-		m_oRobotMgr.UpdateRobots(nNowMS);
-		m_oDropItemMgr.UpdateDropItems(nNowMS);
+	    m_oSceneMgr.Update(nNowMS);
+	    m_oRoleMgr.Update(nNowMS);
+	    m_oMonsterMgr.Update(nNowMS);
+		m_oRobotMgr.Update(nNowMS);
+		m_oDropItemMgr.Update(nNowMS);
 	}
 	return true;
 }

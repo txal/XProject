@@ -1,65 +1,60 @@
 #include "Server/LogicServer/SceneMgr/Tower.h"
 #include "Server/LogicServer/SceneMgr/AOI.h"
 
-Tower::Tower(int nX, int nY, uint16_t nTowerWidth, uint16_t nTowerHeight)
+//nUnitX,nUnitY¸ñ×Ó
+Tower::Tower(int nUnitX, int nUnitY, uint16_t nTowerWidth, uint16_t nTowerHeight)
 {
-	assert(nX >= 0 && nX <= 0x7FFF && nY >= 0 && nY <= 0x7FFF);
-	m_nLeftTop[0] = nX;
-	m_nLeftTop[1] = nY;
+	assert(nUnitX >= 0 && nUnitX <= 0x7FFF && nUnitY >= 0 && nUnitY <= 0x7FFF);
+	m_nLeftTop[0] = nUnitX;
+	m_nLeftTop[1] = nUnitY;
 	m_nTowerWidth = nTowerWidth;
 	m_nTowerHeight = nTowerHeight;
 }
 
-void Tower::AddObserver(AOI_OBJ* pObj)
+void Tower::AddObserver(AOIOBJ* pObj)
 {
-	m_ObserverSet.PushBack(pObj);
+	m_oObserverMap[pObj->nAOIID] = pObj;
 	pObj->nRef++;
 }
 
-void Tower::AddObserved(AOI_OBJ* pObj)
+void Tower::AddObserved(AOIOBJ* pObj)
 {
-	m_ObservedSet.PushBack(pObj);
+	m_oObservedMap[pObj->nAOIID] = pObj;
 	pObj->nRef++;
 }
 
-bool Tower::RemoveObserver(AOI_OBJ* pObj)
+bool Tower::RemoveObserver(AOIOBJ* pObj)
 {
-	int nSize = m_ObserverSet.Size();
-	for (int i = 0; i < nSize; i++)
+	AOIObjIter iter = m_oObserverMap.find(pObj->nAOIID);
+	if (iter != m_oObserverMap.end())
 	{
-		if (m_ObserverSet[i] == pObj)
-		{
-			m_ObserverSet.Ptr()[i] = m_ObserverSet.Ptr()[--nSize];
-			m_ObserverSet.SetSize(nSize);
-			pObj->nRef--;
-			return true;
-		}
+		m_oObserverMap.erase(iter);
+		pObj->nRef--;
+		assert(pObj->nRef >= 0);
+		return true;
 	}
 	return false;
 }
 
-bool Tower::RemoveObserved(AOI_OBJ* pObj)
+bool Tower::RemoveObserved(AOIOBJ* pObj)
 {
-	int nSize = m_ObservedSet.Size();
-	for (int i = 0; i < nSize; i++)
+	AOIObjIter iter = m_oObservedMap.find(pObj->nAOIID);
+	if (iter != m_oObservedMap.end())
 	{
-		if (m_ObservedSet[i] == pObj)
-		{
-			m_ObservedSet.Ptr()[i] = m_ObservedSet.Ptr()[--nSize];
-			m_ObservedSet.SetSize(nSize);
-			pObj->nRef--;
-			return true;
-		}
+		m_oObservedMap.erase(iter);
+		pObj->nRef--;
+		assert(pObj->nRef >= 0);
+		return true;
 	}
 	return false;
 }
 
-Array<AOI_OBJ*>& Tower::GetObserverSet()
+Tower::AOIObjMap& Tower::GetObserverMap()
 {
-	return m_ObserverSet;
+	return m_oObserverMap;
 }
 
-Array<AOI_OBJ*>& Tower::GetObservedSet()
+Tower::AOIObjMap& Tower::GetObservedMap()
 {
-	return m_ObservedSet;
+	return m_oObservedMap;
 }

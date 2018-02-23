@@ -87,18 +87,26 @@ function CAccount:GetSession() return self.m_nSession end
 function CAccount:GetOnlineRole() return self.m_oOnlineRole end
 function CAccount:GetVIP() return self.m_nVIP end
 
-function CAccount:Online(nRoleID)
+function CAccount:Online(nRoleID, bSwitchLogic)
+	print("CAccount:Online***", nRoleID)
 	local tSummary = self.m_tRoleSummaryMap[nRoleID]
 	if not tSummary then
 		return CRole:Tips("角色不存在", self:GetServer(), self:GetSession())
 	end
 	self.m_oOnlineRole = CRole:new(self, tSummary.nID)
-	self.m_oOnlineRole:Online()
+	if not bSwitchLogic then
+		self.m_oOnlineRole:Online()
+	end
 	self:RegAutoSave()
 	return true
 end
 
+function CAccount:AfterOnline()
+	self.m_oOnlineRole:AfterOnline()
+end
+
 function CAccount:Offline()
+	print("CAccount:Offline***", self.m_oOnlineRole:GetID())
 	self.m_oOnlineRole:Offline()
 	self:UpdateRoleSummary()
 end
@@ -106,6 +114,7 @@ end
 --更新角色摘要信息
 function CAccount:UpdateRoleSummary()
 	local nID = self.m_oOnlineRole:GetID() 
+	print("CAccount:UpdateRoleSummary***", nID)
 	local tSummary = self.m_tRoleSummaryMap[nID]
 	if not tSummary then
 		tSummary = {}

@@ -5,8 +5,8 @@ end
 
 function CltCmdProc.KeepAlive(nCmd, nSrcServer, nSrcService, nTarSession, nServerTime) 
     tPingMap[nTarSession] = os.clock()
-    local oRobot = goRobotMgr:GetRobot(nTarSession)
-    CmdNet.Clt2Srv("Ping", oRobot:PacketID(), nTarSession)
+    -- local oRobot = goRobotMgr:GetRobot(nTarSession)
+    -- CmdNet.Clt2Srv("Ping", oRobot:PacketID(), nTarSession)
 end
 
 function CltPBProc.RoleListRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
@@ -23,7 +23,7 @@ function CltPBProc.RoleLoginRet(nCmd, nSrcServer, nSrcService, nTarSession, tDat
     end
 end
 
-function CltPBProc.OtherPlayerLoginRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+function CltPBProc.OtherPlaceLoginRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     local oRobot = goRobotMgr:GetRobot(nTarSession)
     local sName = ""
     if oRobot then
@@ -34,10 +34,12 @@ end
 
 
 function CltPBProc.RoleInitDataRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+    print("CltPBProc.RoleInitDataRet***", tData)
 end
 
 
 function CltPBProc.RoleEnterSceneRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+    print("CltPBProc.RoleEnterSceneRet***", tData)
     local oRobot = goRobotMgr:GetRobot(nTarSession)
     if oRobot then
         oRobot:OnEnterScene(tData)
@@ -45,19 +47,23 @@ function CltPBProc.RoleEnterSceneRet(nCmd, nSrcServer, nSrcService, nTarSession,
 end
 
 function CltPBProc.RoleLeaveSceneRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+    print("CltPBProc.RoleLeaveSceneRet***", tData)
 end
 
 function CltPBProc.RoleEnterVieRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local tRoleList = tData.tRoleList
+    print("CltPBProc.RoleEnterVieRet***", tData)
+    local tList = tData.tList
 end
 
 function CltPBProc.MonsterEnterViewRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local tMonsterList = tData.tMonsterList
+    print("CltPBProc.MonsterEnterViewRet***", tData)
+    local tList = tData.tList
 end
 
 
 function CltPBProc.ObjLeaveViewRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local tObjList = tData.tObjList
+    print("CltPBProc.ObjLeaveViewRet***", tData)
+    local tList = tData.tList
 end
 
 function CltPBProc.TipsMsgRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)

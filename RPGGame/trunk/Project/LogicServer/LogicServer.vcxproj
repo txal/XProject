@@ -184,10 +184,10 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Monster\Monster.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Monster\MonsterMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Object.cpp" />
-    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Player\Player.cpp" />
-    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Player\PlayerMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Robot\Robot.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Robot\RobotMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Role\Role.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Role\RoleMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\PacketProc\LogicPacketProc.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\AOI.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\Scene.cpp" />
@@ -241,10 +241,10 @@ popd</Command>
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Monster\MonsterMgr.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Object.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\ObjectDef.h" />
-    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Player\Player.h" />
-    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Player\PlayerMgr.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Robot\Robot.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Robot\RobotMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Role\Role.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Role\RoleMgr.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\PacketProc\LogicPacketProc.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\AOI.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\Scene.h" />

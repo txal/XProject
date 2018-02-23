@@ -21,7 +21,7 @@ public:
 
 public:
 	virtual void Update(int64_t nNowMS);
-	virtual void OnEnterScene(Scene* poScene, const Point& oPos, int nAOIID);
+	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
 	virtual void OnDead(Actor* poAtker, int nAtkID, int nAtkType);

@@ -36,21 +36,20 @@ DropItem* DropItemMgr::GetDropItemByID(int nID)
 	return NULL;
 }
 
-void DropItemMgr::UpdateDropItems(int64_t nNowMS)
+void DropItemMgr::Update(int64_t nNowMS)
 {
 	static int nLastUpdateTime = 0;
-	if (nLastUpdateTime == (int)time(0))
-	{
+	int nNowSec = (int)time(0);
+	if (nLastUpdateTime == nNowSec)
 		return;
-	}
-	nLastUpdateTime = (int)time(0);
+	nLastUpdateTime = nNowSec;
 
 	DropItemIter iter = m_oDropItemMap.begin();
 	DropItemIter iter_end = m_oDropItemMap.end();
 	for (; iter != iter_end; )
 	{
 		DropItem* poDropItem = iter->second;
-		if (poDropItem->IsTimeToCollected(nNowMS))
+		if (poDropItem->IsTime2Collect(nNowMS))
 		{
 			iter = m_oDropItemMap.erase(iter);
 			 LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poDropItem->GetID(), poDropItem->GetType());
@@ -77,7 +76,7 @@ void RegClassDropItem()
 
 int DropItemMgr::CreateDropItem(lua_State* pState)
 {
-	int64_t nObjID = luaL_checkinteger(pState, 1);
+	int nObjID = (int)luaL_checkinteger(pState, 1);
 	int nConfID = (int)luaL_checkinteger(pState, 2);
 	const char* psName = luaL_checkstring(pState, 3);
 	int nAliveTime  = (int)luaL_checkinteger(pState, 4);
@@ -93,7 +92,7 @@ int DropItemMgr::CreateDropItem(lua_State* pState)
 
 int DropItemMgr::GetDropItem(lua_State* pState)
 {
-	int64_t nObjID = luaL_checkinteger(pState, 1);
+	int nObjID = (int)luaL_checkinteger(pState, 1);
 	DropItem* poDropItem = GetDropItemByID(nObjID);
 	if (poDropItem != NULL)
 	{

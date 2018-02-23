@@ -10,8 +10,8 @@ class MonsterMgr
 public:
 	LUNAR_DECLARE_CLASS(MonsterMgr);
 
-	typedef std::unordered_map<int64_t, Monster*> MonsterIDMap;
-	typedef MonsterIDMap::iterator MonsterIDIter;
+	typedef std::unordered_map<int, Monster*> MonsterMap;
+	typedef MonsterMap::iterator MonsterIter;
 
 public:
 	MonsterMgr();
@@ -20,7 +20,7 @@ public:
 	Monster* GetMonsterByID(int nID);
 
 public:
-	void UpdateMonsters(int64_t nNowMS);
+	void Update(int64_t nNowMS);
 
 
 
@@ -31,7 +31,7 @@ public:
 	int GetMonster(lua_State* pState);
 
 private:
-	MonsterIDMap m_oMonsterIDMap;
+	MonsterMap m_oMonsterIDMap;
 };
 
 

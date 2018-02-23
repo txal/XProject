@@ -1,2 +1,2 @@
-start LogicServer 110
+start LogicServer 100
 

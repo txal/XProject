@@ -1,2 +1,2 @@
-start WGlobalServer 100
+start WGlobalServer 110
 

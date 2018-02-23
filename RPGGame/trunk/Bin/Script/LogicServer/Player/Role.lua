@@ -1,3 +1,4 @@
+--角色对象
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
 function CRole:Ctor(oAccount, nID)
@@ -15,8 +16,8 @@ function CRole:Ctor(oAccount, nID)
     self.m_nGender = 0
     self.m_nSchool = 0
     self.m_nLevel = 0
-    self.m_tLastDup = {0, 0, 0}
-    self.m_tCurrDup = {0, 0, 0}
+    self.m_tLastDup = {0, 0, 0} --mixdupid,x,y
+    self.m_tCurrDup = {0, 0, 0} --mixdupid,x,y
 
     ------其他--------
     self.m_tModuleMap = {}  --映射
@@ -25,9 +26,14 @@ function CRole:Ctor(oAccount, nID)
     self:CreateModules()
     self:LoadModuleData()
 
+    -----Native-------
+    self.m_oNativeObj = goNativePlayerMgr:CreateRole(oAccount:GetID(), self:GetID(), self.m_sName, oAccount:GetServer(), oAccount:GetSession())
 end
 
 function CRole:OnRelease()
+    goNativePlayerMgr:RemoveRole(self:GetAccountID())
+    self.m_oNativeObj = nil
+
     for nModuleID, oModule in pairs(self.m_tModuleMap) do
         oModule:OnRelease()
     end
@@ -146,15 +152,21 @@ function CRole:GetSchool() return self.m_nSchool end
 function CRole:GetLevel() return self.m_nLevel end
 function CRole:GetServer() return self.m_oAccount:GetServer() end
 function CRole:GetSession() return self.m_oAccount:GetSession() end
+function CRole:GetSource() return self.m_oAccount:GetSource() end
 function CRole:GetAccountID() return self.m_oAccount:GetID() end
 function CRole:GetAccountName() return self.m_oAccount:GetName() end
 function CRole:GetVIP() return self.m_oAccount:GetVIP() end
 function CRole:GetCreateTime() return self.m_nCreateTime end
 function CRole:GetOnlineTime() return self.m_nOnlineTime end
 function CRole:GetOfflineTime() return self.m_nOfflineTime end
-function CRole:GetLogic() GlobalExport.GetServiceID() end --当前所在逻辑服ID
 function CRole:GetLastDup() return self.m_tLastDup end
 function CRole:GetCurrDup() return self.m_tCurrDup end
+function CRole:GetLogic()return GlobalExport.GetServiceID() end --当前逻辑服ID
+function CRole:GetAOIID() return self.m_oNativeObj:GetAOIID() end
+function CRole:GetPos() return self.m_oNativeObj:GetPos() end
+function CRole:GetSpeed() return self.m_oNativeObj:GetRunSpeed() end
+function CRole:GetDupMixID() return self.m_oNativeObj:GetDupMixID() end
+function CRole:GetNativeObj() return self.m_oNativeObj end
 
 --取角色身上的装备
 function CRole:GetEquipment()
@@ -170,10 +182,14 @@ end
 --同步角色初始数据
 function CRole:SyncInitData()
     local tMsg = {}
+    tMsg.nSource = self:GetSource()
+    tMsg.nAccountID = self:GetAccountID()
+    tMsg.sAccountName = self:GetAccountName()
     tMsg.nRoleID = self.m_nID
     tMsg.sRoleName = self.m_sName
+    tMsg.nLevel = self.m_nLevel
     tMsg.nVIP = self:GetVIP()
-
+    
     CmdNet.PBSrv2Clt("RoleInitDataRet", self:GetServer(), self:GetSession(), tMsg)
 end 
 
@@ -201,40 +217,79 @@ function CRole:GlobalRoleOnline(bOnline)
     for _, tConf in pairs(gtServerConf.tGlobalService) do
         goRemoteCall:Call(sFunc, self:GetServer(), tConf.nID, self:GetSession(), self:GetID(), tRole)
     end
-    --世界服GLOBAL
-    for _, tConf in pairs(gtWorldConf.tGlobalService) do
-        goRemoteCall:Call(sFunc, self:GetServer(), tConf.nID, self:GetSession(), self:GetID(), tRole)
+    --世界服GLOBAL(世界服本身没有gtWorldConf)
+    if gtWorldConf then
+        for _, tConf in pairs(gtWorldConf.tGlobalService) do
+            goRemoteCall:Call(sFunc, self:GetServer(), tConf.nID, self:GetSession(), self:GetID(), tRole)
+        end
+    end
+end
+
+--更新角色信息到GLOBAL/WGLOBAL
+function CRole:GlobalRoleUpdate(tParam)
+    --本服GLOBAL
+    for _, tConf in pairs(gtServerConf.tGlobalService) do
+        goRemoteCall:Call("GRoleUpdateReq", self:GetServer(), tConf.nID, self:GetSession(), self:GetID(), tParam)
+    end
+    --世界服GLOBAL(世界服本身没有gtWorldConf)
+    if gtWorldConf then
+        for _, tConf in pairs(gtWorldConf.tGlobalService) do
+            goRemoteCall:Call("GRoleUpdateReq", self:GetServer(), tConf.nID, self:GetSession(), self:GetID(), tParam)
+        end
     end
 end
 
 
---角色上线
+--角色上线(注意:切换逻辑服不会调用)
 function CRole:Online()
     print("CRole:Online***", self:GetAccountName(), self:GetName())
     self.m_nOnlineTime = os.time()
     self:MarkDirty(true)
-    self:GlobalRoleOnline(true)
-end
 
---前端准备好了
-function CRole:ClientReady()
+    --GLOBAL/WGLOBAL上线通知
+    self:GlobalRoleOnline(true)
+
     --各模块上线(可能有依赖关系所以用list)
     for _, oModule in ipairs(self.m_tModuleList) do
         oModule:Online()
     end
+
+    --发送初始化数据 
     self:SyncInitData()
 end
 
---角色下线
+--上线成功(注意:切换逻辑服不会调用)
+function CRole:AfterOnline()
+    --进入场景
+    local tCurrDup = self:GetCurrDup() 
+    local oDup = goDupMgr:GetDup(tCurrDup[1])
+    if not oDup then
+        local tLastDup = self:GetLastDup()
+        oDup = goDupMgr:GetDup(tLastDup[1])
+        if not oDup then
+            return LuaTrace("登录进入场景失败(不存在):", tLastDup[1])
+        end
+        return oDup:Enter(self.m_oNativeObj, tLastDup[2], tLastDup[3], -1)
+    end
+    return oDup:Enter(self.m_oNativeObj, tCurrDup[2], tCurrDup[3], -1)
+end
+
+--角色下线(注意:切换逻辑服不会调用)
 function CRole:Offline()
     self.m_nOfflineTime = os.time()
     self:MarkDirty(true)
 
+    --各模块下线
     for nModuleID, oModule in pairs(self.m_tModuleMap) do
         oModule:Offline()
     end
     self:SaveData()
+
+    --GLOBAL/WGLOBAL下线通知
     self:GlobalRoleOnline(false)
+
+    --离开场景
+    goDupMgr:LeaveDup(self:GetDupMixID(), self:GetAOIID())
 end
 
 --物品数量
@@ -336,4 +391,114 @@ function CRole:Tips(sCont, nServer, nSession)
     nServer = nServer or self:GetServer()
     nSession = nSession or self:GetSession()
     CmdNet.PBSrv2Clt("TipsMsgRet", nServer, nSession, {sCont=sCont})
+end
+
+--取角色视野信息
+function CRole:GetViewData()
+    local tInfo = {}
+    tInfo.nAOIID = self:GetAOIID()
+    tInfo.nObjType = gtObjType.eRole
+    tInfo.nConfID = 0
+    tInfo.sName = self:GetName()
+    tInfo.nLevel = self:GetLevel()
+    tInfo.nPosX, tInfo.nPosY = self:GetPos()
+    tInfo.nSpeedX, tInfo.nSpeedY = self:GetSpeed()
+    return tInfo
+end
+
+--同步逻辑服到网关
+function CRole:SyncRoleLogic()
+    local nSession = self:GetSession()
+    local nGateService = GF.GetService(nSession)
+    CmdNet.Srv2Srv("SyncRoleLogic", self:GetServer(), nGateService, nSession)
+end
+
+--角色进入场景
+function CRole:OnEnterScene(nDupMixID)
+    print("CRole:OnEnterScene***", nDupMixID, self:GetName())
+    local tCurrDup = self:GetCurrDup()
+    tCurrDup[1] = nDupMixID
+    tCurrDup[2], tCurrDup[3] = self:GetPos()
+    self:MarkDirty(true)
+
+    --更新角色摘要
+    self.m_oAccount:UpdateRoleSummary()
+
+    --通知GLOBAL/WGLOBAL
+    local nDupID = GF.GetDupID(nDupMixID)
+    self:GlobalRoleUpdate({m_nDupID=nDupID})
+
+    --通知网关服当前逻辑服
+    self:SyncRoleLogic()
+
+    --通知客户端
+    local tMsg = {
+        nMixID = nDupMixID,
+        nDupID = nDupID, 
+        nAOIID = self:GetAOIID(),
+        nPosX = tCurrDup[2],
+        nPosY = tCurrDup[3],
+    }
+    CmdNet.PBSrv2Clt("RoleEnterSceneRet", self:GetServer(), self:GetSession(), tMsg)
+end
+
+--角色进入场景后(同步视野后)
+function CRole:AfterEnterScene(nDupMixID)
+end
+
+--角色离开场景
+function CRole:OnLeaveScene(nDupMixID)
+    print("CRole:OnLeaveScene***", nDupMixID, self:GetName())
+    local nDupID = GF.GetDupID(nDupMixID)
+    local nPosX, nPosY = self:GetPos()
+
+    --记录上次所在的城镇
+    local tDupConf = ctDupConf[nDupID]
+    if tDupConf.nType == CDupBase.tType.eCity then
+        local tLastDup = self:GetLastDup()
+        tLastDup[1], tLastDup[2], tLastDup[3] = nDupMixID, nPosX, nPosY
+        self:MarkDirty(true)
+    end
+    CmdNet.PBSrv2Clt("RoleLeaveSceneRet", self:GetServer(), self:GetSession(), {})
+end
+
+--场景对象进入视野
+function CRole:OnObjEnterObj(tObserved)
+    local nObjPerPacket = 64 --N个对象发1次(以免包过大)
+    
+    local tRoleList = {}
+    local tMonsterList = {}
+    for j = 1, #tObserved do
+        local oNativeObj = tObserved[j]
+        local nObjID, nObjType = oNativeObj:GetObjID(), oNativeObj:GetObjType()
+
+       if nObjType == gtObjType.eRole then
+            local oRole = goRoleMgr:GetRoleByAccountID(nObjID)
+            local tViewData = oRole:GetViewData()
+            table.insert(tRoleList, tViewData)
+
+        elseif nObjType == gtObjType.eMonster then
+            local oMonster = goMonsterMgr:GetMonster(nObjID)
+            local tViewData = oMonster:GetViewData()
+            table.insert(tMonsterList, tViewData)
+
+        else
+            assert(false, "不存在对象类型:"..nObjType)
+        end
+        
+        if #tRoleList >= nObjPerPacket then
+            CmdNet.PBSrv2Clt("RoleEnterViewRet", self:GetServer(), self:GetSession(), {tList=tRoleList})
+            tRoleList = {}
+        end
+        if #tMonsterList >= nObjPerPacket then
+            CmdNet.PBSrv2Clt("MonsterEnterViewRet", self:GetServer(), self:GetSession(), {tList=tMonsterList})
+            tMonsterList = {}
+        end
+    end
+    if #tRoleList > 0 then
+        CmdNet.PBSrv2Clt("RoleEnterViewRet", self:GetServer(), self:GetSession(), {tList=tRoleList})
+    end
+    if #tMonsterList > 0 then
+        CmdNet.PBSrv2Clt("MonsterEnterViewRet", self:GetServer(), self:GetSession(), {tList=tMonsterList})
+    end
 end

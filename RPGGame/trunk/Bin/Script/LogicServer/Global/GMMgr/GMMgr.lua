@@ -12,7 +12,7 @@ function CGMMgr:OnGMCmdReq(nServer, nService, nSession, sCmd)
 	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	local nRoleID, sRoleName, sAccount = 0, "", ""
 	if oRole then
-		nRoleID, sRoleName, sAccount = oRole:GetRoleID(), oRole:GetName(), oRole:GetAccountName()
+		nRoleID, sRoleName, sAccount = oRole:GetID(), oRole:GetName(), oRole:GetAccountName()
 	end
 	local sInfo = string.format("执行指令:%s [roleid:%d,rolename:%s,account:%s]", sCmd, nRoleID, sRoleName, sAccountName)
 	LuaTrace(sInfo)
@@ -142,7 +142,7 @@ end
 CGMMgr['addunionexp'] = function(self, nServer, nService, nSession, tArgs)
 	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
-	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetRoleID())
+	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetID())
 	if not oUnion then
 		return oRole:Tips("请先加入联盟")
 	end
@@ -155,12 +155,12 @@ end
 CGMMgr['addunioncontri'] = function(self, nServer, nService, nSession, tArgs)
 	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
-	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetRoleID())
+	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetID())
 	if not oUnion then
 		return oRole:Tips("请先加入联盟")
 	end
 	local nContri = tonumber(tArgs[1]) or 0
-	local oUnionPlayer = goUnionMgr:GetUnionPlayer(oRole:GetRoleID())
+	local oUnionPlayer = goUnionMgr:GetUnionPlayer(oRole:GetID())
 	oUnionPlayer:AddUnionContri(nContri, "GM", oRole)
 	oRole:Tips(string.format("增加%d点联盟贡献", nContri))
 end
@@ -185,7 +185,7 @@ end
 CGMMgr['resetunfz'] = function(self, nServer, nService, nSession, tArgs)
 	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
-	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetRoleID())
+	local oUnion = goUnionMgr:GetUnionByCharID(oRole:GetID())
 	if not oUnion then
 		return oRole:Tips("请先加入联盟")
 	end

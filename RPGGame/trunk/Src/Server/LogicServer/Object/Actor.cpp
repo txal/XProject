@@ -5,9 +5,8 @@
 #include "Common/DataStruct/TimeMonitor.h"
 
 #include "Server/Base/CmdDef.h"
-#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Server/LogicServer/Component/Battle/BattleUtil.h"
-#include "Server/LogicServer/Component/Buff/Buff.h"
+#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Server/LogicServer/LogicServer.h"
 #include "Server/LogicServer/SceneMgr/SceneMgr.h"
 
@@ -20,6 +19,7 @@ LUNAR_IMPLEMENT_CLASS(Actor)
 
 Actor::Actor()
 {
+	m_uServer = 0;
 	m_nSession = 0;
 
 	m_nRunSpeedX = 0;
@@ -29,21 +29,15 @@ Actor::Actor()
 	m_nRunStartMSTime = 0;
 	m_nClientRunStartMSTime = 0;
 
-	m_bDead = false;
-	m_bAttacking = false;
-	m_bBloodChange = false;
-	m_nLastBuffUpdateTime = XTime::Time();
 }
 
 Actor::~Actor()
 {
-	ClearBuff();
 }
 
-void Actor::OnEnterScene(Scene* poScene, const Point& oPos, int nAOIID)
+void Actor::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
 {
-	Object::OnEnterScene(poScene, oPos, nAOIID);
-	m_bDead = false;
+	Object::OnEnterScene(poScene, nAOIID, oPos);
 	StopRun();
 }
 
@@ -55,76 +49,12 @@ void Actor::AfterEnterScene()
 void Actor::OnLeaveScene()
 {
 	Object::OnLeaveScene();
-	ClearBuff();
-	m_uRelives = 0;
-}
-
-void Actor::OnDead(Actor* poAtker, int nAtkID, int nAtkType)
-{
-	if (poAtker == NULL)
-	{
-		return;
-	}
-	if (IsDead() || GetScene() == NULL)
-	{
-		return;
-	}
-	m_bDead = true;
-	StopRun();
-	ClearBuff();
-	StopAttack();
-	m_oHateMap.clear();
-	BroadcastActorDead();
-
-	LuaWrapper::Instance()->FastCallLuaRef<void>("OnActorDead", 0, "iiiiii", m_nObjID, m_nObjType, poAtker->GetID(), poAtker->GetType(), nAtkID, nAtkType);
-
-}
-
-void Actor::OnHurted(Actor* poAtker, int nHP, int nAtkID, int nAtkType)
-{
-	if (IsDead() || GetScene() == NULL)
-	{
-		return;
-	}
-
-	if (poAtker == NULL || poAtker->GetScene() != GetScene())
-	{
-		return;
-	}
-
-	int nOrgHP = m_oFightParam[eFP_HP];
-	int nAtkerType = poAtker->GetType();
-	if (GetType() == eOT_Player)
-	{//玩家广播伤害
-		BroadcastActorHurt(poAtker->GetAOIID(), nAtkerType, nOrgHP, nHP);
-	}
-
-	m_oFightParam[eFP_HP] = XMath::Max(0, m_oFightParam[eFP_HP] - nHP);
-	bool bDead = m_oFightParam[eFP_HP] <= 0;
-	m_bBloodChange = true;
-
-	if (nAtkerType == eOT_Player || nAtkerType == eOT_Robot)
-	{
-		//伤害统计
-		int nDmgHP = nOrgHP - m_oFightParam[eFP_HP];
-		GetScene()->UpdateDamage(poAtker, this, nDmgHP, nAtkID, nAtkType, bDead);
-		if (poAtker != this)
-		{//仇恨值
-			AddHate(poAtker, nDmgHP);
-		}
-	}
-
-	if (bDead)
-	{
-		OnDead(poAtker, nAtkID, nAtkType);
-	}
 }
 
 void Actor::Update(int64_t nNowMS)
 {
 	Object::Update(nNowMS);
 	UpdateRunState(nNowMS);
-	UpdateBuff(nNowMS);
 }
 
 void Actor::StartRun(int nSpeedX, int nSpeedY)
@@ -160,19 +90,20 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 	bool bCanMove = false;
 	if (m_nRunStartMSTime > 0 && GetScene() != NULL)
 	{
-		int nNewPosX = 0, nNewPosY = 0;
-		bCanMove = CalcNewPositionAtTime(nNowMS, nNewPosX, nNewPosY);
+		int nNewPosX = 0;
+		int nNewPosY = 0;
+		bCanMove = CalcPositionAtTime(nNowMS, nNewPosX, nNewPosY);
 		Object::SetPos(Point(nNewPosX, nNewPosY));
-		//XLog(LEVEL_DEBUG, "Pos(%d,%d)\n", nNewPosX, nNewPosY);
 		if (!bCanMove || (m_nRunSpeedX == 0 && m_nRunSpeedY == 0))
 		{
 			StopRun();
 		}
+		//XLog(LEVEL_DEBUG, "Pos(%d,%d) canmove:%d\n", nNewPosX, nNewPosY, bCanMove);
 	}
 	return bCanMove;
 }
 
-bool Actor::CalcNewPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
+bool Actor::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
 {
 	int nNewX = m_nRunStartX;
 	int nNewY = m_nRunStartY;
@@ -181,75 +112,21 @@ bool Actor::CalcNewPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
 	if (nTimeElapased > 0)
 	{
 		//常规移动计算
-		nNewX += (m_nRunSpeedX * nTimeElapased) / 1000;
-		nNewY += (m_nRunSpeedY * nTimeElapased) / 1000;
+		nNewX += (int)((m_nRunSpeedX * nTimeElapased) * 0.001);
+		nNewY += (int)((m_nRunSpeedY * nTimeElapased) * 0.001);
 	}
 
-	bool bResult = true;
+	bool bRes = true;
 	if (nNewX != m_oPos.x || nNewY != m_oPos.y)
 	{
-		bResult = BattleUtil::FixLineMovePoint(GetScene()->GetMapConf(), m_oPos.x, m_oPos.y, nNewX, nNewY, this);
+		bRes = BattleUtil::FixLineMovePoint(GetScene()->GetMapConf(), m_oPos.x, m_oPos.y, nNewX, nNewY, this);
 	}
 	nNewPosX = nNewX;
 	nNewPosY = nNewY;
-	return bResult;
+	return bRes;
 }
 
-void Actor::StartAttack(int nPosX, int nPosY, int nAtkID, int nAtkType, float fAngle, int nRemainBullet)
-{
-	m_bAttacking = true;
-
-	CacheActorNavi();
-	if (goNaviCache.Size() <= 0)
-	{
-		return;
-	}
-
-	gpoPacketCache->Reset();
-	goPKWriter << m_nAOIID << (uint16_t)nPosX << (uint16_t)nPosY << (uint16_t)nAtkID << (uint8_t)nAtkType << fAngle << (int16_t)nRemainBullet;
-	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::ppActorStartAttack, poPacket, goNaviCache);
-}
-
-void Actor::StopAttack()
-{
-	if (!m_bAttacking)
-	{
-		return;
-	}
-	m_bAttacking = false;
-
-	CacheActorNavi();
-	if (goNaviCache.Size() <= 0)
-	{
-		return;
-	}
-	gpoPacketCache->Reset();
-	goPKWriter << m_nAOIID;
-	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::ppActorStopAttack, poPacket, goNaviCache);
-}
-
-bool Actor::Relive(int nPosX, int nPosY)
-{
-	if (!IsDead() || Object::GetScene() == NULL)
-	{
-		return false;
-	}
-	m_bDead = false;
-	m_uRelives++;
-
-	Scene* poScene = Object::GetScene();
-	MapConf* poMapConf = poScene->GetMapConf();
-	nPosX = XMath::Max(0, XMath::Min(poMapConf->nPixelWidth - 1, nPosX));
-	nPosY = XMath::Max(0, XMath::Min(poMapConf->nPixelHeight - 1, nPosY));
-	Object::SetPos(Point(nPosX, nPosY));
-
-	OnRelive();
-	return true;
-}
-
-void Actor::SendSyncPosition(const char* pWhere)
+void Actor::SyncPosition(const char* pWhere)
 {
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y;
@@ -273,7 +150,7 @@ void Actor::BroadcastStartRun()
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY;
 	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorRun, poPacket, goNaviCache);
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorStartRun, poPacket, goNaviCache);
 }
 
 void Actor::BroadcastStopRun()
@@ -290,138 +167,6 @@ void Actor::BroadcastStopRun()
 	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorStopRun, poPacket, goNaviCache);
 }
 
-void Actor::BroadcastActorHurt(int nSrcAOIID, int nSrcType, int nCurrHP, int nHurtHP)
-{
-	CacheActorNavi(GetServer(), GetSession());
-	if (goNaviCache.Size() <= 0)
-	{
-		return;
-	}
-
-	gpoPacketCache->Reset();
-	goPKWriter << nSrcAOIID << (uint8_t)nSrcType << m_nAOIID << (uint8_t)m_nObjType << nCurrHP << nHurtHP;
-	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorHurt, poPacket, goNaviCache);
-}
-
-void Actor::BroadcastActorDead()
-{
-	CacheActorNavi(GetServer(), GetSession());
-	if (goNaviCache.Size() <= 0)
-	{
-		return;
-	}
-	gpoPacketCache->Reset();
-	goPKWriter << m_nAOIID << (uint8_t)m_nObjType;
-	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorDead, poPacket, goNaviCache);
-}
-
-void Actor::BroadcastSyncHP()
-{
-	if (IsDead() || GetScene() == NULL)
-	{
-		return;
-	}
-
-	if (!m_bBloodChange)
-	{
-		return;
-	}
-	m_bBloodChange = false;
-
-	CacheActorNavi();
-	if (goNaviCache.Size() <= 0)
-	{
-		return;
-	}
-
-	gpoPacketCache->Reset();
-	goPKWriter << m_nAOIID << m_oFightParam[eFP_HP];
-	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sSyncActorHP, poPacket, goNaviCache);
-}
-
-void Actor::UpdateBuff(int64_t nNowMS)
-{
-
-	int nNowSec = XTime::Time();
-	if (nNowSec == m_nLastBuffUpdateTime)
-	{
-		return;
-	}
-	m_nLastBuffUpdateTime = nNowSec;
-
-	BuffIter iter = m_oBuffMap.begin();
-	BuffIter iter_end = m_oBuffMap.end();
-	for (; iter != iter_end;)
-	{
-		Buff* poBuff = iter->second;
-		if (poBuff->IsExpired(nNowMS))
-		{
-			iter = m_oBuffMap.erase(iter);
-			LuaWrapper::Instance()->FastCallLuaRef<void>("OnActorBuffExpired", 0, "iii", m_nObjID, m_nObjType, poBuff->GetID());
-			SAFE_DELETE(poBuff);
-			continue;
-		}
-		iter++;
-	}
-}
-
-Buff* Actor::GetBuff(int nBuffID)
-{
-	BuffIter iter = m_oBuffMap.find(nBuffID);
-	if (iter != m_oBuffMap.end())
-	{
-		return iter->second;
-	}
-	return NULL;
-}
-
-void Actor::ClearBuff()
-{
-	BuffIter iter = m_oBuffMap.begin();
-	BuffIter iter_end = m_oBuffMap.end();
-	for (; iter != iter_end; iter++)
-	{
-		SAFE_DELETE(iter->second);
-	}
-	m_oBuffMap.clear();
-}
-
-HATE* Actor::GetHate(int nID)
-{
-	HateIter iter = m_oHateMap.find(nID);
-	if (iter != m_oHateMap.end())
-	{
-		return &(iter->second);
-	}
-	return NULL;
-}
-
-void Actor::AddHate(Actor* poAtker, int nValue)
-{
-	if (poAtker == NULL || nValue <= 0)
-	{
-		return;
-	}
-	int nID = poAtker->GetID();
-	HATE* poHate = GetHate(nID);
-	if (poHate != NULL)
-	{
-		poHate->nValue += nValue;
-	}
-	else
-	{
-		HATE oHate;
-		oHate.nValue = nValue;
-		oHate.uRelives = poAtker->GetRelives();
-		m_oHateMap[nID] = oHate;
-	}
-}
-
-
-
 
 ///////////////lua export//////////////////
 #define GET_FIGHT_PARAM(pState, nType) \
@@ -437,108 +182,9 @@ lua_pushinteger(pState, m_oFightParam[nType]); \
 lua_rawseti(pState, -2, nType);\
 }
 
-int Actor::InitFightParam(lua_State* pState)
-{
-	luaL_checktype(pState, 1, LUA_TTABLE);
-
-	for (int i = 1; i < eFP_Count; i++)
-	{
-		GET_FIGHT_PARAM(pState, i);
-	}
-
-	m_bBloodChange = true;
-	return 0;
-}
-
-int Actor::UpdateFightParam(lua_State* pState)
-{
-	int nType = (int)luaL_checkinteger(pState, 1);
-	int nValue = (int)luaL_checkinteger(pState, 2);
-	if (nType < eFP_Atk || nType >= eFP_Count)
-	{
-		return LuaWrapper::luaM_error(pState, "Fight param type error:%d\n", nType);
-	}
-	m_oFightParam[nType] = nValue;
-	if (nType == eFP_HP)
-	{
-		m_bBloodChange = true;
-	}
-	return 0;
-}
-
-int Actor::GetFightParam(lua_State* pState)
-{
-	if (lua_isnoneornil(pState, 1))
-	{
-		lua_newtable(pState);
-		for (int i = 1; i < eFP_Count; i++)
-		{
-			PUSH_FIGHT_PARAM(pState, i);
-		}
-	}
-	else
-	{
-		int nType = (int)luaL_checkinteger(pState, 1);
-		if (nType < eFP_Atk || nType >= eFP_Count)
-		{
-			return LuaWrapper::luaM_error(pState, "Fight param type error:%d\n", nType);
-		}
-		lua_pushinteger(pState, m_oFightParam[nType]);
-	}
-	return 1;
-}
-
-int Actor::GetRunningSpeed(lua_State* pState)
+int Actor::GetRunSpeed(lua_State* pState)
 {
 	lua_pushinteger(pState, m_nRunSpeedX);
 	lua_pushinteger(pState, m_nRunSpeedY);
 	return 2;
-}
-
-int Actor::AddBuff(lua_State* pState)
-{
-	if (IsDead() || GetScene() == NULL)
-	{
-		return 0;
-	}
-	int nBuffID = (int)luaL_checkinteger(pState, 1);
-	int nMSTime = (int)luaL_checkinteger(pState, 2);
-	Buff* poBuff = GetBuff(nBuffID);
-	if (poBuff != NULL)
-	{
-		poBuff->Restart();
-	}
-	else
-	{
-		poBuff = XNEW(Buff)(nBuffID, nMSTime);
-		m_oBuffMap[nBuffID] = poBuff;
-	}
-	lua_pushboolean(pState, 1);
-	return 1;
-}
-
-int Actor::ClearBuff(lua_State* pState)
-{
-	ClearBuff();
-	return 0;
-}
-
-int Actor::IsDead(lua_State* pState)
-{
-	lua_pushboolean(pState, IsDead());
-	return 1;
-}
-
-int Actor::Relive(lua_State* pState)
-{
-	int nPosX = -1;
-	int nPosY = -1;
-	if (!lua_isnoneornil(pState, 1) && !lua_isnoneornil(pState, 2))
-	{
-		nPosX = (int)luaL_checkinteger(pState, 1);
-		nPosY = (int)luaL_checkinteger(pState, 2);
-	}
-	bool bRes = Relive(nPosX, nPosY);
-	lua_pushboolean(pState, bRes);
-	return 1;
 }

@@ -19,18 +19,18 @@ Monster* MonsterMgr::CreateMonster(int nID, int nConfID, const char* psName, int
 	Monster* poMonster = GetMonsterByID(nID);
 	if (poMonster != NULL)
 	{
-		XLog(LEVEL_ERROR, "CreateMonster: %lld exist\n", nID);
+		XLog(LEVEL_ERROR, "CreateMonster: %d exist\n", nID);
 		return NULL;
 	}
 	poMonster = XNEW(Monster);
-	poMonster->Init(nID, nConfID, psName, nAIID, nCamp);
+	poMonster->Init(nID, nConfID, psName);
 	m_oMonsterIDMap[nID] = poMonster;
 	return poMonster;
 }
 
 void MonsterMgr::RemoveMonster(int nID)
 {
-	MonsterIDIter iter = m_oMonsterIDMap.find(nID);
+	MonsterIter iter = m_oMonsterIDMap.find(nID);
 	if (iter == m_oMonsterIDMap.end())
 	{
 		return;
@@ -47,7 +47,7 @@ void MonsterMgr::RemoveMonster(int nID)
 
 Monster* MonsterMgr::GetMonsterByID(int nID)
 {
-	MonsterIDIter iter = m_oMonsterIDMap.find(nID);
+	MonsterIter iter = m_oMonsterIDMap.find(nID);
 	if (iter != m_oMonsterIDMap.end())
 	{
 		return iter->second;
@@ -55,23 +55,24 @@ Monster* MonsterMgr::GetMonsterByID(int nID)
 	return NULL;
 }
 
-void MonsterMgr::UpdateMonsters(int64_t nNowMS)
+void MonsterMgr::Update(int64_t nNowMS)
 {
-	MonsterIDIter iter = m_oMonsterIDMap.begin();
-	MonsterIDIter iter_end = m_oMonsterIDMap.end();
+	static float nFRAME_MSTIME = 1000.0f / 30.0f;
+	MonsterIter iter = m_oMonsterIDMap.begin();
+	MonsterIter iter_end = m_oMonsterIDMap.end();
 	for (; iter != iter_end;)
 	{
 		Monster* poMonster = iter->second;
-		if (nNowMS - poMonster->GetLastUpdateTime() >= FRAME_MSTIME)
+		if (nNowMS - poMonster->GetLastUpdateTime() >= nFRAME_MSTIME)
 		{
-			if (poMonster->IsTimeToCollected(nNowMS))
+			if (poMonster->IsTime2Collect(nNowMS))
 			{
 				iter = m_oMonsterIDMap.erase(iter);
 				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poMonster->GetID(), poMonster->GetType());
 				SAFE_DELETE(poMonster);
 				continue;
 			}
-			if (!poMonster->IsDead() && poMonster->GetScene() != NULL)
+			if (poMonster->GetScene() != NULL)
 			{
 				poMonster->Update(nNowMS);
 			}
@@ -90,13 +91,11 @@ void RegClassMonster()
 
 int MonsterMgr::CreateMonster(lua_State* pState)
 {
-	int64_t nObjID = luaL_checkinteger(pState, 1);
+	int nObjID = (int)luaL_checkinteger(pState, 1);
 	int nConfID = (int)luaL_checkinteger(pState, 2);
 	const char* psName = luaL_checkstring(pState, 3);
-	int nAIID = (int)luaL_checkinteger(pState, 4);
-	int8_t nCamp = (int8_t)luaL_checkinteger(pState, 5);
 
-	Monster* poMonster = CreateMonster(nObjID, nConfID, psName, nAIID, nCamp);
+	Monster* poMonster = CreateMonster(nObjID, nConfID, psName, 0, 0);
 	if (poMonster != NULL)
 	{
 		Lunar<Monster>::push(pState, poMonster);
@@ -107,14 +106,14 @@ int MonsterMgr::CreateMonster(lua_State* pState)
 
 int MonsterMgr::RemoveMonster(lua_State* pState)
 {
-	int64_t nObjID = luaL_checkinteger(pState, 1);
+	int nObjID = (int)luaL_checkinteger(pState, 1);
 	RemoveMonster(nObjID);
 	return 0;
 }
 
 int MonsterMgr::GetMonster(lua_State* pState)
 {
-	int64_t nObjID = luaL_checkinteger(pState, 1);
+	int nObjID = (int)luaL_checkinteger(pState, 1);
 	Monster* poMonster = GetMonsterByID(nObjID);
 	if (poMonster != NULL)
 	{

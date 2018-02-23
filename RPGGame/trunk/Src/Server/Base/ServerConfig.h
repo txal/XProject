@@ -13,6 +13,7 @@ struct LogNode
 struct GlobalNode
 {
 	uint16_t uID;
+	uint16_t uServer;
 	char sIP[256];
 	uint16_t uPort;
 };

@@ -1,6 +1,6 @@
-﻿#include "ConfMgr.h"
+﻿#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 
-std::string sCSVDir = "../Data/Config/CSV/";
+std::string sCSVDir = "../../Data/Config/CSV/";
 
 ConfMgr* ConfMgr::Instance()
 {
@@ -10,6 +10,6 @@ ConfMgr* ConfMgr::Instance()
 
 void ConfMgr::LoadConf()
 {
-	LOAD_CSV_CONF(m_oMapConfMgr, sCSVDir+"Map/MapConf.csv");
-	LOAD_CSV_CONF(m_oAIConfMgr, sCSVDir+"AI/AIConf.csv");
+	LOAD_CSV_CONF(m_oMapConfMgr, sCSVDir+"MapConf.csv");
+	LOAD_CSV_CONF(m_oAIConfMgr, sCSVDir+"AIConf.csv");
 }

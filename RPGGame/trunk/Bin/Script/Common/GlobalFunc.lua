@@ -1,9 +1,11 @@
-GF = {}
+--全局函数
+local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
+GF = GF or {}
 
 --名字库随机名字
 function GF.GenNameByPool()
-	local nIndex = math.random(1, #ctPlayerNamePoolConf)
-	local tPoolConf = ctPlayerNamePoolConf[nIndex]
+	local nIndex = math.random(1, #ctRoleNamePoolConf)
+	local tPoolConf = ctRoleNamePoolConf[nIndex]
 	local nRndXing = math.random(1, #tPoolConf.tXing)
 	local nRndMing = math.random(1, #tPoolConf.tMing)
 	local sXing = tPoolConf.tXing[nRndXing][1]
@@ -32,4 +34,18 @@ function GF.FilterBadWord(sCont)
     else
     	return sCont
     end
+end
+
+--通过副本唯一ID取副本ID
+--@nDupMixID: 副本唯一ID, 城镇:dupid 副本:autoid<<16|dupid
+function GF.GetDupID(nDupMixID)
+    assert(nDupMixID, "参数错误")
+    return (nDupMixID & 0xFFFF)
+end
+
+--通过会话ID取网关服务ID
+--@nSession: 会话ID
+function GF.GetService(nSession)
+    assert(nSession, "参数错误")
+    return (nSession >> nSERVICE_SHIFT)
 end

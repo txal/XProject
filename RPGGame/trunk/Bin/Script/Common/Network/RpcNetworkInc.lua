@@ -18,6 +18,7 @@ Srv2Srv = Srv2Srv or {sName = "Srv2Srv"}
 local function _fnUnpackProxy(nSrcServer, nSrcService, nTarSession, sRpcType, sRpcFunc, ...)
     local nStartTime = _clock()
 
+    LuaTrace("------rpc message------", sRpcType, sRpcFunc)
     local tRpcType = _LG[sRpcType]
     _assert(tRpcType, string.format("Rpc type '%s' not exist", sRpcType))
     local oFunc = _rawget(tRpcType, sRpcFunc)

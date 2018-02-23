@@ -75,7 +75,7 @@ int main(int nArg, char *pArgv[])
 	XMath::RandomSeed((uint32_t)XTime::MSTime());
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
-	//ConfMgr::Instance()->LoadConf();
+	ConfMgr::Instance()->LoadConf();
 
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 	g_poContext = XNEW(ServerContext);

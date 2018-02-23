@@ -19,7 +19,7 @@ public:
 	Robot* GetRobotByID(int nID);
 
 public:
-	void UpdateRobots(int64_t nNowMS);
+	void Update(int64_t nNowMS);
 
 
 

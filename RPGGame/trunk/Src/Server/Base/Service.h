@@ -6,7 +6,6 @@
 
 #define SERVICE_SHIFT 24
 #define MAX_SERVICE_NUM 0x7F
-#define FRAME_MSTIME 33
 #define MAX_ROUTER_NUM 8
 #define MAX_GATEWAY_NUM 8
 

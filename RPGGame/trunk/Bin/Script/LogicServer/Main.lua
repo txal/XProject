@@ -33,14 +33,16 @@ require = function(sScript)
 	gfRawRequire("LogicServer/"..sScript)
 end
 require("MainRpc")
+require("Global/GlobalInc")
 require("Player/PlayerInc")
 require("Module/ModuleInc")
-require("Global/GlobalInc")
+require("Dup/DupInc")
 
 --全局初始化
 local function _InitGlobal()
     goDBMgr:Init()
     goRemoteCall:Init()
+    goDupMgr:Init()
 
 end
 

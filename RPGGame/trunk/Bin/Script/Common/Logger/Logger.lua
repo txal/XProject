@@ -4,7 +4,7 @@ local table, string, math, os, pairs, ipairs, assert = table, string, math, os, 
 local nServerID = gnServerID
 --服务器-日志服务影射
 local tServerLogMap = {}
-if gtServerConf then
+if gtServerConf then --Robot没有gtServerConf
 	for _, tConf in ipairs(gtServerConf.tLogService) do
 		tServerLogMap[tConf.nServer] = tServerLogMap[tConf.nServer] or {}
 		table.insert(tServerLogMap[tConf.nServer], tConf)

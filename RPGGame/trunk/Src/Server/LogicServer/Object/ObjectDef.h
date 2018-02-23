@@ -4,10 +4,10 @@
 #include "Common/DataStruct/ObjID.h"
 
 //游戏对象类型
-enum GAME_OBJ_TYPE
+enum GAMEOBJ_TYPE
 {
 	eOT_None = 0,
-	eOT_Player = 1,		//玩家
+	eOT_Role = 1,		//玩家
 	eOT_Monster = 2,	//怪物
 	eOT_Robot = 10,		//机器人
 	eOT_SceneDrop = 11,	//场景掉落

@@ -45,7 +45,7 @@ void Robot::Init(int nID, int nConfID, const char* psName, int nAIID, int8_t nCa
 	Actor::m_nConfID = nConfID;
 	strcpy(Actor::m_sName, psName);
 	m_nAIID = nAIID;
-	Actor::m_nCamp = nCamp;
+	//Actor::m_nCamp = nCamp;
 	m_nHPSyncInterval = uSyncHPTime;
 }
 
@@ -57,7 +57,7 @@ void Robot::Update(int64_t nNowMS)
 	if (nNowMS - m_nLastHPSyncTime >= m_nHPSyncInterval)
 	{
 		m_nLastHPSyncTime = nNowMS;
-		Actor::BroadcastSyncHP();
+		//Actor::BroadcastSyncHP();
 	}
 	//更新AI
 	if (m_poAI != NULL)
@@ -80,9 +80,9 @@ void Robot::Update(int64_t nNowMS)
 	}
 }
 
-void Robot::OnEnterScene(Scene* poScene, const Point& oPos, int nAOIID)
+void Robot::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
 {
-	Actor::OnEnterScene(poScene, oPos, nAOIID);
+	Actor::OnEnterScene(poScene, nAOIID, oPos);
 }
 
 void Robot::AfterEnterScene()
@@ -110,7 +110,7 @@ void Robot::OnLeaveScene()
 
 void Robot::OnDead(Actor* poAtker, int nAtkID, int nAtkType)
 {
-	Actor::OnDead(poAtker, nAtkID, nAtkType);
+	//Actor::OnDead(poAtker, nAtkID, nAtkType);
 	StopRobotAttack();
 	if (m_poAI != NULL)
 	{
@@ -162,7 +162,7 @@ void Robot::StopRobotAttack()
 	{
 		m_fAtkAngle = 0;
 		m_nStartAttackTime = 0;
-		Actor::StopAttack();
+		//Actor::StopAttack();
 	}
 }
 
@@ -259,7 +259,7 @@ bool Robot::IsReloading(int64_t nNowMS)
 		if (m_nStartAttackTime > 0)
 		{
 			Gun& oGun = m_oHotWeaponList.tGunList[m_nGunIndex];
-			Actor::StartAttack(m_oPos.x, m_oPos.y, oGun.uID, 0, m_fAtkAngle, oGun.uClipCap);
+			//Actor::StartAttack(m_oPos.x, m_oPos.y, oGun.uID, 0, m_fAtkAngle, oGun.uClipCap);
 			oGun.uClipCap--;
 			m_nStartAttackTime = nNowMS;
 		}
@@ -280,7 +280,7 @@ bool Robot::CheckReloadAndAttack()
 	Gun* poGun = &m_oHotWeaponList.tGunList[m_nGunIndex];
 	if (poGun->uClipCap > 0)
 	{
-		Actor::StartAttack(m_oPos.x, m_oPos.y, poGun->uID, 0, m_fAtkAngle, poGun->uClipCap);
+		//Actor::StartAttack(m_oPos.x, m_oPos.y, poGun->uID, 0, m_fAtkAngle, poGun->uClipCap);
 		if (m_nStartAttackTime == 0)
 		{
 			poGun->uClipCap--;
@@ -289,7 +289,7 @@ bool Robot::CheckReloadAndAttack()
 		return true;
 	}
 
-	Actor::StopAttack();
+	//Actor::StopAttack();
 
 	//雷攻
 	int nRnd = XMath::Random(1, 100);
@@ -317,7 +317,7 @@ bool Robot::CheckReloadAndAttack()
 			assert(bRet);
 			return false;
 		}
-		Actor::StartAttack(m_oPos.x, m_oPos.y, poGun->uID, 0, m_fAtkAngle, poGun->uClipCap);
+		//Actor::StartAttack(m_oPos.x, m_oPos.y, poGun->uID, 0, m_fAtkAngle, poGun->uClipCap);
 		poGun->uClipCap--;
 		m_nStartAttackTime = nNowMS;
 	}
@@ -333,7 +333,7 @@ bool Robot::CheckReloadAndAttack()
 		assert(bRet);
 		return false;
 	}
-	Actor::StartAttack(m_oPos.x, m_oPos.y, poGun->uID, 0, m_fAtkAngle, poGun->uClipCap);
+	//Actor::StartAttack(m_oPos.x, m_oPos.y, poGun->uID, 0, m_fAtkAngle, poGun->uClipCap);
 	poGun->uClipCap--;
 	m_nStartAttackTime = nNowMS;
 	return true;
@@ -370,7 +370,7 @@ void Robot::BombAttack()
 	}
 	int nRnd = XMath::Random(1, nBombNum);
 	Bomb* poBomb = tUsableBomb[nRnd - 1];
-	Actor::StartAttack(m_oPos.x, m_oPos.y, poBomb->uID, 0, m_fAtkAngle, poBomb->uBombCap);
+	//Actor::StartAttack(m_oPos.x, m_oPos.y, poBomb->uID, 0, m_fAtkAngle, poBomb->uBombCap);
 	poBomb->uBombCap--;
 	poBomb->nCDCompleteTime = nNowMS + poBomb->uBombCD;
 }

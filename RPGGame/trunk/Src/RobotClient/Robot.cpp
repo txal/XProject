@@ -110,7 +110,7 @@ void Robot::StartRun(int nSpeedX, int nSpeedY)
 		Packet* poPacket = m_poPacketCache->DeepCopy();
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.nTarSession = m_nSessionID;
-		NetAdapter::SendExter(NSCltSrvCmd::cPlayerRun, poPacket, oNavi, ++m_uPacketID);
+		NetAdapter::SendExter(NSCltSrvCmd::cRoleStartRun, poPacket, oNavi, ++m_uPacketID);
 		//XLog(LEVEL_INFO, "%s start run pos:(%d,%d) speed:(%d,%d) tick:%u\n", m_sName, m_oPos.x, m_oPos.y, m_nSpeedX, m_nSpeedY, uClientTick);
 	}
 }
@@ -132,7 +132,7 @@ void Robot::StopRun()
 		Packet* poPacket = m_poPacketCache->DeepCopy();
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.nTarSession = m_nSessionID;
-		NetAdapter::SendExter(NSCltSrvCmd::cPlayerStopRun, poPacket, oNavi, ++m_uPacketID);
+		NetAdapter::SendExter(NSCltSrvCmd::cRoleStopRun, poPacket, oNavi, ++m_uPacketID);
 		//XLog(LEVEL_INFO, "%s stop run pos:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y);
     }
 }

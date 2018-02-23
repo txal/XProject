@@ -19,7 +19,7 @@ public:
 	Detector* GetDetectorByID(int nID);
 
 public:
-	void UpdateDetectors(int64_t nNowMS);
+	void Update(int64_t nNowMS);
 
 private:
 	DISALLOW_COPY_AND_ASSIGN(DetectorMgr);

@@ -23,16 +23,16 @@ function CRobot:GetName() return self.m_sName end
 function CRobot:IsLogged() return self.m_bLogged end
 
 function CRobot:PacketID()
-    local oCppRobot = goCppRobotMgr:GetRobot(self.m_nSessionID)
-    if oCppRobot then
-        return oCppRobot:PacketID()
+    local oNativeRobot = goNativeRobotMgr:GetRobot(self.m_nSessionID)
+    if oNativeRobot then
+        return oNativeRobot:PacketID()
     end
 end
 
 function CRobot:GetPos()
-    local oCppRobot = goCppRobotMgr:GetRobot(self.m_nSessionID)
-    if oCppRobot then
-        return oCppRobot:GetPos()
+    local oNativeRobot = goNativeRobotMgr:GetRobot(self.m_nSessionID)
+    if oNativeRobot then
+        return oNativeRobot:GetPos()
     end
     return 0, 0
 end
@@ -52,20 +52,20 @@ function CRobot:CheckRun()
     if not self.m_bLogged or not self.m_bEnterScene then
         return
     end
-    local oCppRobot = goCppRobotMgr:GetRobot(self.m_nSessionID)
-    if not oCppRobot then
+    local oNativeRobot = goNativeRobotMgr:GetRobot(self.m_nSessionID)
+    if not oNativeRobot then
         return
     end
 
     if not self.m_bStartRun then
-        return oCppRobot:StopRun()
+        return oNativeRobot:StopRun()
     end
 
     local nTimeNow = os.time()
     if nTimeNow - self.m_nStartRunTime > 6 then
         self.m_nStartRunTime = nTimeNow
         local nDir = math.random(0, 9)
-        oCppRobot:StartRun(nDir)
+        oNativeRobot:StartRun(nDir)
     end
 end
 
@@ -86,11 +86,11 @@ end
 function CRobot:OnRoleListRet(tData)
     local nSource = 0
     if #tData.tList > 0 then
-        print("登录角色请求") 
+        print("登录角色请求", self.m_nSessionID) 
         local tRole = tData.tList[math.random(#tData.tList)]
         CmdNet.PBClt2Srv("RoleLoginReq", self:PacketID(), self.m_nSessionID, {nAccountID=tData.nAccountID, nRoleID=tRole.nID})
     else
-        print("创建角色请求") 
+        print("创建角色请求", self.m_nSessionID) 
         local nConfID = math.random(#ctRoleInitConf)
         CmdNet.PBClt2Srv("RoleCreateReq", self:PacketID(), self.m_nSessionID, {nAccountID=tData.nAccountID, nConfID=nConfID, sName=self.m_sName})
     end
@@ -109,12 +109,12 @@ function CRobot:OnLoginRet(tData)
 end
 
 function CRobot:OnEnterScene(tData)
-    -- local oCppRobot = goCppRobotMgr:GetRobot(self.m_nSessionID)
+    -- local oNativeRobot = goNativeRobotMgr:GetRobot(self.m_nSessionID)
     -- local nPosX, nPosY = tData.nPosX, tData.nPosY 
     -- local tSceneConf = ctSceneConf[tData.nSceneID]
-    -- oCppRobot:SetMapID(tSceneConf.nMapID)
-    -- oCppRobot:SetName(self.m_sName)
-    -- oCppRobot:SetPos(nPosX, nPosY)
+    -- oNativeRobot:SetMapID(tSceneConf.nMapID)
+    -- oNativeRobot:SetName(self.m_sName)
+    -- oNativeRobot:SetPos(nPosX, nPosY)
     -- self.m_bEnterScene = true
     -- print(self.m_sName, " enter scene")
 end

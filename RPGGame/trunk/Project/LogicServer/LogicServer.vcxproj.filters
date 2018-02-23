@@ -25,9 +25,6 @@
     <Filter Include="Src\Object">
       <UniqueIdentifier>{ea96a5ab-7c26-4f66-a8df-d891d3688ba1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Object\Player">
-      <UniqueIdentifier>{0ea38ac9-8c1f-49a5-8921-658306bb5690}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Common\CSVDocument">
       <UniqueIdentifier>{4fa7d981-8146-4c2d-a475-4c4e0cfa8f83}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,9 @@
     </Filter>
     <Filter Include="Src\Common\WordFilter">
       <UniqueIdentifier>{1b883284-1410-4914-aa8a-a45a5c8a6671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Object\Role">
+      <UniqueIdentifier>{a14691a0-ea2f-4020-9432-35d15f8cd5e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -128,12 +128,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Actor.cpp">
       <Filter>Src\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Player\Player.cpp">
-      <Filter>Src\Object\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Player\PlayerMgr.cpp">
-      <Filter>Src\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Object.cpp">
       <Filter>Src\Object</Filter>
@@ -207,6 +201,12 @@
     <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp">
       <Filter>Src\Common\WordFilter</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Role\Role.cpp">
+      <Filter>Src\Object\Role</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Role\RoleMgr.cpp">
+      <Filter>Src\Object\Role</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Server\LogicServer\LogicServer.h">
@@ -262,12 +262,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Actor.h">
       <Filter>Src\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Player\Player.h">
-      <Filter>Src\Object\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Player\PlayerMgr.h">
-      <Filter>Src\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Object.h">
       <Filter>Src\Object</Filter>
@@ -373,6 +367,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\DataStruct\Array.h">
       <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Role\Role.h">
+      <Filter>Src\Object\Role</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Role\RoleMgr.h">
+      <Filter>Src\Object\Role</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

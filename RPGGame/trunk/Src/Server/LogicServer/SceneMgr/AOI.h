@@ -12,23 +12,27 @@
 #define AOI_TYPE_RECT 1
 #define AOI_TYPE_CIRCLE 2
 
+#define MAX_LINE 11	//分线上限
+#define MAX_OBJ_PERLINE 500 //每条线对象上限
+
 class Object;
-struct AOI_OBJ
+struct AOIOBJ
 {
-	uint32_t nRef;
-	int nAOIObjID;
+	uint8_t nRef;
+	int nAOIID;
 	int8_t nAOIMode;
-	int8_t nAOIType;	//AOI_(RECT|CIRCLE)
-	int16_t nPos[2];	//Pixel pos
-	int16_t nArea[2];	//(Width, Height) or Radius(Pixel)
+	int8_t nAOIType;	//矩形或者圆形
+	int16_t nPos[2];	//坐标(像素)
+	int16_t nArea[2];	//矩形(像素):(宽,高); 圆形(像素):(半径,0)
 	Object* poGameObj;	//游戏对象
+	int8_t nLine;		//所在分线
 };
 
 class Scene;
 class AOI
 {
 public:
-	typedef std::unordered_map<int, AOI_OBJ*> AOIObjMap;
+	typedef std::unordered_map<int, AOIOBJ*> AOIObjMap;
 	typedef AOIObjMap::iterator AOIObjIter;
 	friend class Scene;
 
@@ -37,47 +41,56 @@ public:
 	~AOI();
 
 	bool Init(Scene *pScene, int nMapWidth, int nMapHeight);
-	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int8_t nAOIType, int nAOIArea[], Object* poGameObj);
-	void MoveObj(int nID, int nX, int nY);
-	void RemoveObj(int nID);
-	void RemoveObserver(int nID, bool bLeaveScene = false);
-	void RemoveObserved(int nID);
-	void AddObserver(int nID);
+
+	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1);
+	void MoveObj(int nID, int nPosX, int nPosY);
+	void RemoveObj(int nID, bool bLeaveScene=false);
+
 	void AddObserved(int nID);
-	void GetAreaObservers(int nID, Array<AOI_OBJ*>& oObjCache, int nGameObjType);
-	void GetAreaObserveds(int nID, Array<AOI_OBJ*>& oObjCache, int nGameObjType);
-	AOI_OBJ* GetObj(int nID) ;
-	int GetObjCount()				{ return (int)m_oObjMap.size(); }
-	AOIObjIter GetObjIterBegin()	{ return m_oObjMap.begin(); }
-	AOIObjIter GetObjIterEnd()		{ return m_oObjMap.end(); }
-	void ClearDropObj(int64_t nNowMS);
+	void AddObserver(int nID);
+	void RemoveObserved(int nID);
+	void RemoveObserver(int nID, bool bLeaveScene = false);
+	void GetAreaObservers(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType); //nGameObjType:0表示所有
+	void GetAreaObserveds(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType);
+
+	AOIOBJ* GetObj(int nID) ;
+	int GetObjCount() { return (int)m_oObjMap.size(); }
+	AOIObjIter GetObjIterBegin() { return m_oObjMap.begin(); }
+	AOIObjIter GetObjIterEnd() { return m_oObjMap.end(); }
 
 public:
 	void PrintTower();
+	void ClearDropObj(int64_t nNowMS);
 
 private:
-	int GenObjID();
-	void MoveObserver(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2]);
-	void MoveObserved(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2]);
+	int GenAOIID();
+	void MoveObserver(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2]);
+	void MoveObserved(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2]);
 
-	void CalTowerPos(int nPosX, int nPosY, int& nTowerX, int& nTowerY);
-	void CalCircleTowerArea(int nPosX, int nPosY, int nRadius, int nLeftTopTower[], int nRightBottomTower[]);
-	void CalRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int nLeftTopTower[], int nRightBottomTower[]);
+	void CalcTowerPos(int nPosX, int nPosY, int& nTowerX, int& nTowerY);
+	void CalcRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int nLTTower[], int nRBTower[]);
+	void CalcCircleTowerArea(int nPosX, int nPosY, int nRadius, int nLTTower[], int nRBTower[]);
+
+private:
+	int8_t AddLineObj(int8_t nLine=-1);
+	int16_t SubLineObj(int8_t nLine);
 	
 private:
-	Scene* m_poScene;		// scene
-	int m_nMapPixelWidth;	// Map pixel width 
-	int m_nMapPixelHeight;	// Map pixel heiht
-	int m_nMapWidthUnit;	// Map width unit num
-	int m_nMapHeightUnit;	// Map heiht unit num
-	int m_nXTowerNum;		// X tower num
-	int m_nYTowerNum;		// Y tower num
+	Scene* m_poScene;		// 场景对象
+	int m_nMapPixelWidth;	// 地图宽(像素)
+	int m_nMapPixelHeight;	// 地图高(像素)
+	int m_nMapWidthUnit;	// 地图宽(格子)
+	int m_nMapHeightUnit;	// 地图高(格子)
+	int m_nXTowerNum;		// X轴灯塔数量
+	int m_nYTowerNum;		// Y轴灯塔数量
 
-	Tower** m_pTowerArray;
-	AOIObjMap m_oObjMap;
-	int64_t m_nLastClearMSTime; 
+	AOIObjMap m_oObjMap;	//游戏对象映射
+	Tower** m_pTowerArray;	//灯塔数组
+	int64_t m_nLastClearMSTime;		//上次清理时间(毫秒)
 
-	Array<AOI_OBJ*> m_oObjCache; // Cache
+	int16_t m_tLineObj[MAX_LINE];	//分线(0表示公共线)
+
+	Array<AOIOBJ*> m_oObjCache; //AOI对象缓存
 	DISALLOW_COPY_AND_ASSIGN(AOI);
 };
 

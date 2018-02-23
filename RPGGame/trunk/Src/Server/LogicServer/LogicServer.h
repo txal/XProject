@@ -8,7 +8,7 @@
 #include "Server/LogicServer/MsgBalancer.h"
 #include "Server/LogicServer/Object/DropItem/DropItemMgr.h"
 #include "Server/LogicServer/Object/Monster/MonsterMgr.h"
-#include "Server/LogicServer/Object/Player/PlayerMgr.h"
+#include "Server/LogicServer/Object/Role/RoleMgr.h"
 #include "Server/LogicServer/Object/Robot/RobotMgr.h"
 #include "Server/LogicServer/SceneMgr/SceneMgr.h"
 
@@ -25,7 +25,7 @@ public:
 
 public:
 	SceneMgr* GetSceneMgr()					{ return &m_oSceneMgr; }
-	PlayerMgr* GetPlayerMgr()				{ return &m_oPlayerMgr; }
+	RoleMgr* GetRoleMgr()					{ return &m_oRoleMgr; }
 	MonsterMgr* GetMonsterMgr()				{ return &m_oMonsterMgr; }
 	RobotMgr* GetRobotMgr()					{ return &m_oRobotMgr; }
 	DropItemMgr* GetDropItemMgr()			{ return &m_oDropItemMgr; }
@@ -55,8 +55,9 @@ private:
 	uint32_t m_uOutPackets;
 
 	SceneMgr m_oSceneMgr;
-	PlayerMgr m_oPlayerMgr;
+	RoleMgr m_oRoleMgr;
 	MonsterMgr m_oMonsterMgr;
+
 	RobotMgr m_oRobotMgr;
 	DropItemMgr m_oDropItemMgr;
 

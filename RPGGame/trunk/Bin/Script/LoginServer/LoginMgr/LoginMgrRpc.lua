@@ -3,6 +3,7 @@ function CltPBProc.RoleListReq(nCmd, nSrcServer, nSrcService, nTarSession, tData
 end
 
 function CltPBProc.RoleLoginReq(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+    print("CltPBProc.RoleLoginReq***", nSrcServer, nSrcService, nTarSession)
     goLoginMgr:RoleLoginReq(nSrcServer, nTarSession, tData.nAccountID, tData.nRoleID)
 end
 

@@ -36,21 +36,20 @@ Detector* DetectorMgr::GetDetectorByID(int nID)
 	return NULL;
 }
 
-void DetectorMgr::UpdateDetectors(int64_t nNowMS)
+void DetectorMgr::Update(int64_t nNowMS)
 {
 	static int nLastUpdateTime = 0;
-	if (nLastUpdateTime == (int)time(0))
-	{
+	int nNowSec = (int)time(0);
+	if (nLastUpdateTime == nNowSec)
 		return;
-	}
-	nLastUpdateTime = (int)time(0);
+	nLastUpdateTime = nNowSec;
 
 	DetectorIter iter = m_oDetectorMap.begin();
 	DetectorIter iter_end = m_oDetectorMap.end();
 	for (; iter != iter_end; )
 	{
 		Detector* poDetector = iter->second;
-		if (poDetector->IsTimeToCollected(nNowMS))
+		if (poDetector->IsTime2Collect(nNowMS))
 		{
 			iter = m_oDetectorMap.erase(iter);
 			 LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poDetector->GetID(), poDetector->GetType());

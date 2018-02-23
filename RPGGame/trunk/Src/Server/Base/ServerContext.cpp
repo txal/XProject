@@ -126,16 +126,18 @@ bool ServerContext::LoadServerConfig()
 			lua_rawgeti(pState, -1, i);
 			lua_getfield(pState, -1, "nID");
 			oGlobal.uID = (uint16_t)lua_tointeger(pState, -1);
-			lua_getfield(pState, -2, "sIP");
+			lua_getfield(pState, -2, "nServer");
+			oGlobal.uServer = (uint16_t)lua_tointeger(pState, -1);
+			lua_getfield(pState, -3, "sIP");
 			if (!lua_isnil(pState, -1))
 			{
 				const char* psIP = lua_tostring(pState, -1);
 				strcpy(oGlobal.sIP, psIP);
 			}
-			lua_getfield(pState, -3, "nPort");
+			lua_getfield(pState, -4, "nPort");
 			oGlobal.uPort = (uint16_t)lua_tointeger(pState, -1);
 			m_oServerConf.oGlobalList.push_back(oGlobal);
-			lua_pop(pState, 4);
+			lua_pop(pState, 5);
 		}
 	}
 

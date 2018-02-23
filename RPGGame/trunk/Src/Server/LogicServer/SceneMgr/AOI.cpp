@@ -1,4 +1,5 @@
 ﻿#include "Server/LogicServer/SceneMgr/AOI.h"
+
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
@@ -15,6 +16,7 @@ AOI::AOI()
 	m_nYTowerNum = 0;
 	m_pTowerArray = NULL;
 	m_nLastClearMSTime = XTime::MSTime();
+	memset(m_tLineObj, 0, sizeof(m_tLineObj));
 }
 
 AOI::~AOI()
@@ -49,11 +51,11 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight)
 	m_nMapHeightUnit = (int)ceil((double)m_nMapPixelHeight / gnUnitHeight);
 	m_nXTowerNum = (int)ceil((double)m_nMapWidthUnit / gnTowerWidth);
 	m_nYTowerNum = (int)ceil((double)m_nMapHeightUnit / gnTowerHeight);
-	int nEdgeTowerWidth = XMath::Max(0, m_nMapWidthUnit - (m_nXTowerNum - 1) * gnTowerWidth);
-	int nEdgeTowerHeight = XMath::Max(0, m_nMapHeightUnit - (m_nYTowerNum - 1) * gnTowerHeight);
+	int nEdgeTowerWidth = XMath::Max(0, m_nMapWidthUnit - (m_nXTowerNum-1)*gnTowerWidth);
+	int nEdgeTowerHeight = XMath::Max(0, m_nMapHeightUnit - (m_nYTowerNum-1)*gnTowerHeight);
 
 	int nTotalTowerNum = m_nXTowerNum * m_nYTowerNum;
-	m_pTowerArray = (Tower**)XALLOC(NULL, nTotalTowerNum * sizeof(Tower*));
+	m_pTowerArray = (Tower**)XALLOC(NULL, nTotalTowerNum*sizeof(Tower*));
 
 	int nRealTowerWidth = gnTowerWidth;
 	int nRealTowerHeight = gnTowerHeight; 
@@ -64,6 +66,7 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight)
 		{
 			nRealTowerHeight = nEdgeTowerHeight;
 		}
+
 		for (int x = 0; x < m_nXTowerNum; x++)
 		{
 			int nRealX = x * gnTowerWidth;
@@ -82,8 +85,9 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight)
 	return true;
 }
 
-int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int8_t nAOIType, int nAOIArea[], Object* poGameObj)
+int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine)
 {
+	assert(nLine == 0 || nLine == -1);
 	if (nAOIMode & AOI_MODE_DROP)
 	{
 		return -1;
@@ -92,14 +96,15 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int8_t nAOIType, int nAOI
 	{
 		return -1;
 	}
+
 	nPosX = XMath::Min(m_nMapPixelWidth-1, XMath::Max(0, nPosX));
 	nPosY = XMath::Min(m_nMapPixelWidth-1, XMath::Max(0, nPosY));
-	nAOIArea[0] = XMath::Max(nAOIArea[0], 0);
-	nAOIArea[1] = XMath::Max(nAOIArea[1], 0);
+	nAOIArea[0] = XMath::Min(m_nMapPixelWidth, XMath::Max(nAOIArea[0], 0));
+	nAOIArea[1] = XMath::Min(m_nMapPixelHeight, XMath::Max(nAOIArea[1], 0));
 
-	AOI_OBJ* pObj = XNEW(AOI_OBJ);	
+	AOIOBJ* pObj = XNEW(AOIOBJ);	
 	pObj->nRef = 0;
-	pObj->nAOIObjID = GenObjID();
+	pObj->nAOIID = GenAOIID();
 	pObj->nAOIMode = AOI_MODE_NONE;
 	pObj->nAOIType = nAOIType;
 	pObj->nPos[0] = (int16_t)nPosX;
@@ -107,31 +112,37 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int8_t nAOIType, int nAOI
 	pObj->nArea[0] = (int16_t)nAOIArea[0];
 	pObj->nArea[1] = (int16_t)nAOIArea[1];
 	pObj->poGameObj = poGameObj;
-	m_oObjMap.insert(std::make_pair(pObj->nAOIObjID, pObj));
-	m_poScene->OnObjEnterScene(pObj);
 
+	int8_t nTarLine = AddLineObj(nLine);
+	assert(nTarLine >= 0 && nTarLine < MAX_LINE);
+	pObj->nLine = nTarLine;
+
+	m_oObjMap[pObj->nAOIID] =  pObj;
+
+	m_poScene->OnObjEnterScene(pObj);
 	if (nAOIMode & AOI_MODE_OBSERVER)
 	{
-		assert(pObj->nArea[0] > 0 && pObj->nArea[1] > 0);
-		AddObserver(pObj->nAOIObjID);
+		assert(pObj->nArea[0] >= 0 && pObj->nArea[1] >= 0);
+		AddObserver(pObj->nAOIID);
 	} 
 
 	if (nAOIMode & AOI_MODE_OBSERVED)
 	{
-		AddObserved(pObj->nAOIObjID);
+		AddObserved(pObj->nAOIID);
 	}
-
 	m_poScene->AfterObjEnterScene(pObj);
-	return pObj->nAOIObjID;
+
+	return pObj->nAOIID;
 }
 
 void AOI::MoveObj(int nID, int nPosX, int nPosY)
 {
-	AOI_OBJ* pObj = GetObj(nID);
+	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP))
 	{
 		return;
 	}
+
 	nPosX = XMath::Max(0, XMath::Min(nPosX, m_nMapPixelWidth - 1));
 	nPosY = XMath::Max(0, XMath::Min(nPosY, m_nMapPixelHeight - 1));
 	int nOldPos[2] = {pObj->nPos[0], pObj->nPos[1]};
@@ -144,6 +155,7 @@ void AOI::MoveObj(int nID, int nPosX, int nPosY)
 	{
 		return;
 	}
+
 	pObj->nPos[0] = (int16_t)nNewPos[0];
 	pObj->nPos[1] = (int16_t)nNewPos[1];
 	if (pObj->nAOIMode & AOI_MODE_OBSERVER)
@@ -156,60 +168,61 @@ void AOI::MoveObj(int nID, int nPosX, int nPosY)
 	}
 }
 
-void AOI::MoveObserver(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2])
+void AOI::MoveObserver(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 {
 	if (pObj == NULL || !(pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
 		return;
 	}
-	int nOldLeftTopTower[2] = {-1, -1};
-	int nOldRightBottomTower[2] = {-1, -1};
+
+	int nOldLTTower[2] = {-1, -1}; 
+	int nOldRBTower[2] = {-1, -1};
 
 	if (pObj->nAOIType == AOI_TYPE_RECT)
 	{
-		CalRectTowerArea(nOldPos[0], nOldPos[1], pObj->nArea[0], pObj->nArea[1], nOldLeftTopTower, nOldRightBottomTower);
+		CalcRectTowerArea(nOldPos[0], nOldPos[1], pObj->nArea[0], pObj->nArea[1], nOldLTTower, nOldRBTower);
 	}
 	else if (pObj->nAOIType == AOI_TYPE_CIRCLE)
 	{
-		CalCircleTowerArea(nOldPos[0], nOldPos[1], pObj->nArea[0], nOldLeftTopTower, nOldRightBottomTower);
+		CalcCircleTowerArea(nOldPos[0], nOldPos[1], pObj->nArea[0], nOldLTTower, nOldRBTower);
 	}
-	int nNewLeftTopTower[2] = {-1, -1};
-	int nNewRightBottomTower[2] = {-1, -1};
+
+	int nNewLTTower[2] = {-1, -1};
+	int nNewRBTower[2] = {-1, -1};
 	if (pObj->nAOIType == AOI_TYPE_RECT)
 	{
-		CalRectTowerArea(nNewPos[0], nNewPos[1], pObj->nArea[0], pObj->nArea[1], nNewLeftTopTower, nNewRightBottomTower);
+		CalcRectTowerArea(nNewPos[0], nNewPos[1], pObj->nArea[0], pObj->nArea[1], nNewLTTower, nNewRBTower);
 	}
 	else if (pObj->nAOIType == AOI_TYPE_CIRCLE)
 	{
-		CalCircleTowerArea(nNewPos[0], nNewPos[1], pObj->nArea[0], nNewLeftTopTower, nNewRightBottomTower);
+		CalcCircleTowerArea(nNewPos[0], nNewPos[1], pObj->nArea[0], nNewLTTower, nNewRBTower);
 	}
-	// Check if the observer arena equal
-	if (nOldLeftTopTower[0] == nNewLeftTopTower[0] && nOldLeftTopTower[1] == nNewLeftTopTower[1]
-		&& nOldRightBottomTower[0] == nNewRightBottomTower[0] && nOldRightBottomTower[1] == nNewRightBottomTower[1])
+	// 检查观察者区域是否相等
+	if (nOldLTTower[0] == nNewLTTower[0] && nOldLTTower[1] == nNewLTTower[1] && nOldRBTower[0] == nNewRBTower[0] && nOldRBTower[1] == nNewRBTower[1])
 	{
 		return;
 	}
 
 	m_oObjCache.Clear();
-	for (int oy = nOldLeftTopTower[1]; oy <= nOldRightBottomTower[1]; oy++)
+	for (int oy = nOldLTTower[1]; oy <= nOldRBTower[1]; oy++)
 	{
-		for (int ox = nOldLeftTopTower[0]; ox <= nOldRightBottomTower[0]; ox++)
+		for (int ox = nOldLTTower[0]; ox <= nOldRBTower[0]; ox++)
 		{
-			if (ox < nNewLeftTopTower[0] || ox > nNewRightBottomTower[0] || oy < nNewLeftTopTower[1] || oy > nNewRightBottomTower[1])
+			if (ox < nNewLTTower[0] || ox > nNewRBTower[0] || oy < nNewLTTower[1] || oy > nNewRBTower[1])
 			{
 				Tower* pTower = m_pTowerArray[oy * m_nXTowerNum + ox];
-				Array<AOI_OBJ*>& ObservedSet = pTower->GetObservedSet();
-				for (int i = 0; i < ObservedSet.Size(); i++)
+				Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
+				Tower::AOIObjIter iter = oObservedMap.begin();
+				for (; iter != oObservedMap.end(); iter++)
 				{
-					if (ObservedSet[i] == pObj)
-					{
+					if (iter->second == pObj)
 						continue;
-					}
-					m_oObjCache.PushBack(ObservedSet[i]);
+					if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
+						m_oObjCache.PushBack(iter->second);
 				}
 				if (!pTower->RemoveObserver(pObj))
 				{
-					XLog(LEVEL_ERROR, "MoveObserver: remove observer:%d fail\n", pObj->nAOIObjID);
+					XLog(LEVEL_ERROR, "MoveObserver: remove observer:%d fail\n", pObj->nAOIID);
 				}
 			}
 		}
@@ -220,21 +233,21 @@ void AOI::MoveObserver(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2])
 	}
 
 	m_oObjCache.Clear();
-	for (int ny = nNewLeftTopTower[1]; ny <= nNewRightBottomTower[1]; ny++)
+	for (int ny = nNewLTTower[1]; ny <= nNewRBTower[1]; ny++)
 	{
-		for (int nx = nNewLeftTopTower[0]; nx <= nNewRightBottomTower[0]; nx++)
+		for (int nx = nNewLTTower[0]; nx <= nNewRBTower[0]; nx++)
 		{
-			if (nx < nOldLeftTopTower[0] || nx > nOldRightBottomTower[0] || ny < nOldLeftTopTower[1] || ny > nOldRightBottomTower[1])
+			if (nx < nOldLTTower[0] || nx > nOldRBTower[0] || ny < nOldLTTower[1] || ny > nOldRBTower[1])
 			{
 				Tower* pTower = m_pTowerArray[ny * m_nXTowerNum + nx];
-				Array<AOI_OBJ*>& ObservedSet = pTower->GetObservedSet();
-				for (int i = 0; i < ObservedSet.Size(); i++)
+				Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
+				Tower::AOIObjIter iter = oObservedMap.begin();
+				for (; iter != oObservedMap.end(); iter++)
 				{
-					if (pObj == ObservedSet[i])
-					{
+					if (iter->second == pObj)
 						continue;
-					}
-					m_oObjCache.PushBack(ObservedSet[i]);
+					if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
+						m_oObjCache.PushBack(iter->second);
 				}
 				pTower->AddObserver(pObj);
 			}
@@ -246,21 +259,22 @@ void AOI::MoveObserver(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2])
 	}
 }
 
-void AOI::MoveObserved(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2])
+void AOI::MoveObserved(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 {
 	if (pObj == NULL || !(pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
 		return;
 	}
+
 	int nOldTowerX = -1;
 	int nOldTowerY = -1;
-	CalTowerPos(nOldPos[0], nOldPos[1], nOldTowerX, nOldTowerY);
+	CalcTowerPos(nOldPos[0], nOldPos[1], nOldTowerX, nOldTowerY);
 
 	int nNewTowerX = -1;
 	int nNewTowerY = -1;
-	CalTowerPos(nNewPos[0], nNewPos[1], nNewTowerX, nNewTowerY);
+	CalcTowerPos(nNewPos[0], nNewPos[1], nNewTowerX, nNewTowerY);
 
-	// Check if the observed tower equal
+	// 检查被观察者坐标是否相等
 	if (nOldTowerX == nNewTowerX && nOldTowerY == nNewTowerY)
 	{
 		return;
@@ -268,33 +282,35 @@ void AOI::MoveObserved(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2])
 
 	m_oObjCache.Clear();
 	Tower* pOldTower = m_pTowerArray[nOldTowerY * m_nXTowerNum + nOldTowerX];
-	Array<AOI_OBJ*>& oOldObserverSet = pOldTower->GetObserverSet();
-	for (int i = 0; i < oOldObserverSet.Size(); i++)
+	Tower::AOIObjMap& oOldObserverMap = pOldTower->GetObserverMap();
+	Tower::AOIObjIter iter = oOldObserverMap.begin();
+	for (; iter != oOldObserverMap.end(); iter++)
 	{
-		AOI_OBJ* pObserver = oOldObserverSet[i];
+		AOIOBJ* pObserver = iter->second;
 		if (pObserver == pObj)
-		{
 			continue;
-		}
-		int nLeftTopTower[2] = {-1, -1};
-		int nRightBottomTower[2] = {-1, -1};
+		if (pObserver->nLine != 0 && pObserver->nLine != pObj->nLine)
+			continue;
+
+		int nLTTower[2] = {-1, -1};
+		int nRBTower[2] = {-1, -1};
 		if (pObserver->nAOIType == AOI_TYPE_RECT)
 		{
-			CalRectTowerArea(pObserver->nPos[0], pObserver->nPos[1], pObserver->nArea[0], pObserver->nArea[1], nLeftTopTower, nRightBottomTower);
+			CalcRectTowerArea(pObserver->nPos[0], pObserver->nPos[1], pObserver->nArea[0], pObserver->nArea[1], nLTTower, nRBTower);
 		}
 		else if (pObserver->nAOIType == AOI_TYPE_CIRCLE)
 		{
-			CalCircleTowerArea(pObserver->nPos[0], pObserver->nPos[1], pObserver->nArea[0], nLeftTopTower, nRightBottomTower);
+			CalcCircleTowerArea(pObserver->nPos[0], pObserver->nPos[1], pObserver->nArea[0], nLTTower, nRBTower);
 		}
 
-		if (nNewTowerX < nLeftTopTower[0] || nNewTowerX > nRightBottomTower[0] || nNewTowerY < nLeftTopTower[1] || nNewTowerY > nRightBottomTower[1])
+		if (nNewTowerX < nLTTower[0] || nNewTowerX > nRBTower[0] || nNewTowerY < nLTTower[1] || nNewTowerY > nRBTower[1])
 		{
 			m_oObjCache.PushBack(pObserver);
 		}
 	}
 	if (!pOldTower->RemoveObserved(pObj))
 	{
-		XLog(LEVEL_ERROR, "Remove observed:%d fail\n", pObj->nAOIObjID);
+		XLog(LEVEL_ERROR, "MoveObserved: remove observed:%d fail\n", pObj->nAOIID);
 	}
 	if (m_oObjCache.Size() > 0)
 	{
@@ -303,25 +319,27 @@ void AOI::MoveObserved(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2])
 
 	m_oObjCache.Clear();
 	Tower* pNewTower = m_pTowerArray[nNewTowerY * m_nXTowerNum + nNewTowerX];
-	Array<AOI_OBJ*>& oNewObserverSet = pNewTower->GetObserverSet();
-	for (int i = 0; i < oNewObserverSet.Size(); i++)
+	Tower::AOIObjMap& oNewObserverMap = pNewTower->GetObserverMap();
+	iter = oNewObserverMap.begin();
+	for (; iter != oNewObserverMap.end(); iter++)
 	{
-		AOI_OBJ* pObserver = oNewObserverSet[i];
+		AOIOBJ* pObserver = iter->second;
 		if (pObserver == pObj)
-		{
 			continue;
-		}
-		int nLeftTopTower[2] = {-1, -1};
-		int nRightBottomTower[2] = {-1, -1};
+		if (pObserver->nLine != 0 && pObserver->nLine != pObj->nLine)
+			continue;
+
+		int nLTTower[2] = {-1, -1};
+		int nRBTower[2] = {-1, -1};
 		if (pObserver->nAOIType == AOI_TYPE_RECT)
 		{
-			CalRectTowerArea(pObserver->nPos[0], pObserver->nPos[1], pObserver->nArea[0], pObserver->nArea[1], nLeftTopTower, nRightBottomTower);
+			CalcRectTowerArea(pObserver->nPos[0], pObserver->nPos[1], pObserver->nArea[0], pObserver->nArea[1], nLTTower, nRBTower);
 		}
 		else if (pObserver->nAOIType == AOI_TYPE_CIRCLE)
 		{
-			CalCircleTowerArea(pObserver->nPos[0], pObserver->nPos[1], pObserver->nArea[0], nLeftTopTower, nRightBottomTower);
+			CalcCircleTowerArea(pObserver->nPos[0], pObserver->nPos[1], pObserver->nArea[0], nLTTower, nRBTower);
 		}
-		if (nOldTowerX < nLeftTopTower[0] || nOldTowerX > nRightBottomTower[0] || nOldTowerY < nLeftTopTower[1] || nOldTowerY > nRightBottomTower[1])
+		if (nOldTowerX < nLTTower[0] || nOldTowerX > nRBTower[0] || nOldTowerY < nLTTower[1] || nOldTowerY > nRBTower[1])
 		{
 			m_oObjCache.PushBack(pObserver);
 		}
@@ -333,20 +351,20 @@ void AOI::MoveObserved(AOI_OBJ* pObj, int nOldPos[2], int nNewPos[2])
 	}
 }
 
-void AOI::RemoveObj(int nID)
+void AOI::RemoveObj(int nID, bool bLeaveScene)
 {
-	AOI_OBJ* pObj = GetObj(nID);
+	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP))
 	{
 		return;
 	}
-	RemoveObserver(nID, true);
+	RemoveObserver(nID, bLeaveScene);
 	RemoveObserved(nID);
 	if (pObj->nAOIMode == 0)
 	{
 		if (pObj->nRef != 0)
 		{
-			XLog(LEVEL_ERROR, "RemoverObj:%d ref error:%d/%d\n", pObj->nAOIObjID, pObj->nAOIMode, pObj->nRef);
+			XLog(LEVEL_ERROR, "RemoverObj: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
 		}
 		m_poScene->OnObjLeaveScene(pObj);
 		pObj->nAOIMode = AOI_MODE_DROP;
@@ -356,37 +374,37 @@ void AOI::RemoveObj(int nID)
 
 void AOI::AddObserver(int nID)
 {
-	AOI_OBJ* pObj = GetObj(nID);
+	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
 		return;
 	}
 	pObj->nAOIMode |= AOI_MODE_OBSERVER;
-	int nLeftTopTower[2] = { -1, -1 };
-	int nRightBottomTower[2] = { -1, -1 };
+	int nLTTower[2] = { -1, -1 };
+	int nRBTower[2] = { -1, -1 };
 	if (pObj->nAOIType == AOI_TYPE_RECT)
 	{
-		CalRectTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], pObj->nArea[1], nLeftTopTower, nRightBottomTower);
+		CalcRectTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], pObj->nArea[1], nLTTower, nRBTower);
 	}
 	else if (pObj->nAOIType == AOI_TYPE_CIRCLE)
 	{
-		CalCircleTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], nLeftTopTower, nRightBottomTower);
+		CalcCircleTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], nLTTower, nRBTower);
 	}
 
 	m_oObjCache.Clear();
-	for (int y = nLeftTopTower[1]; y <= nRightBottomTower[1]; y++)
+	for (int y = nLTTower[1]; y <= nRBTower[1]; y++)
 	{
-		for (int x = nLeftTopTower[0]; x <= nRightBottomTower[0]; x++)
+		for (int x = nLTTower[0]; x <= nRBTower[0]; x++)
 		{
 			Tower* pTower = m_pTowerArray[y * m_nXTowerNum + x];
-			Array<AOI_OBJ*>& ObservedSet = pTower->GetObservedSet();
-			for (int i = 0; i < ObservedSet.Size(); i++)
+			Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
+			Tower::AOIObjIter iter = oObservedMap.begin();
+			for (; iter != oObservedMap.end(); iter++)
 			{
-				if (ObservedSet[i] == pObj)
-				{
+				if (iter->second == pObj)
 					continue;
-				}
-				m_oObjCache.PushBack(ObservedSet[i]);
+				if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
+					m_oObjCache.PushBack(iter->second);
 			}
 			pTower->AddObserver(pObj);
 		}
@@ -399,41 +417,45 @@ void AOI::AddObserver(int nID)
 
 void AOI::RemoveObserver(int nID, bool bLeaveScene)
 {
-	AOI_OBJ* pObj = GetObj(nID);
+	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || !(pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
 		return;
 	}
 
-	int nLeftTopTower[2] = {-1, -1};
-	int nRightBottomTower[2] = {-1, -1};
+	int nLTTower[2] = { -1, -1 };
+	int nRBTower[2] = { -1, -1 };
 	if (pObj->nAOIType == AOI_TYPE_RECT)
 	{
-		CalRectTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], pObj->nArea[1], nLeftTopTower, nRightBottomTower);
+		CalcRectTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], pObj->nArea[1], nLTTower, nRBTower);
 	}
 	else if (pObj->nAOIType == AOI_TYPE_CIRCLE)
 	{
-		CalCircleTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], nLeftTopTower, nRightBottomTower);
+		CalcCircleTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], nLTTower, nRBTower);
 	}
+
 	m_oObjCache.Clear();
-	for (int y = nLeftTopTower[1]; y <= nRightBottomTower[1]; y++)
+	for (int y = nLTTower[1]; y <= nRBTower[1]; y++)
 	{
-		for (int x = nLeftTopTower[0]; x <= nRightBottomTower[0]; x++)
+		for (int x = nLTTower[0]; x <= nRBTower[0]; x++)
 		{
 			Tower* pTower = m_pTowerArray[y * m_nXTowerNum + x];
-			Array<AOI_OBJ*>& ObservedSet = pTower->GetObservedSet();
-			for (int i = 0; i < ObservedSet.Size(); i++)
+			if (!bLeaveScene) //不是离开场景需要管理视野
 			{
-				if (ObservedSet[i] == pObj)
+				Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
+				Tower::AOIObjIter iter = oObservedMap.begin();
+				for (iter; iter != oObservedMap.end(); iter++)
 				{
-					continue;
+					if (iter->second == pObj)
+						continue;
+					if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
+						m_oObjCache.PushBack(iter->second);
 				}
-				m_oObjCache.PushBack(ObservedSet[i]);
 			}
 			pTower->RemoveObserver(pObj);
 		}
 	}
-	if (!bLeaveScene && m_oObjCache.Size() > 0)
+	if (m_oObjCache.Size() > 0)
 	{
 		m_poScene->OnObjLeaveObj(pObj, m_oObjCache);
 	}
@@ -441,34 +463,36 @@ void AOI::RemoveObserver(int nID, bool bLeaveScene)
 	pObj->nAOIMode &= ~AOI_MODE_OBSERVER;
 	if (pObj->nAOIMode == 0 && pObj->nRef != 0)
 	{
-		XLog(LEVEL_ERROR, "RemoverObserver:%d ref error:%d/%d\n", pObj->nAOIObjID, pObj->nAOIMode, pObj->nRef);
+		XLog(LEVEL_ERROR, "RemoverObserver: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
 	}
 }
 
 void AOI::AddObserved(int nID)
 {
-	AOI_OBJ* pObj = GetObj(nID);
+	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
 		return;
 	}
+	
 	pObj->nAOIMode |= AOI_MODE_OBSERVED;
 	int nTowerX = -1;
 	int nTowerY = -1;
-	CalTowerPos(pObj->nPos[0], pObj->nPos[1], nTowerX, nTowerY);
+	CalcTowerPos(pObj->nPos[0], pObj->nPos[1], nTowerX, nTowerY);
 
 	m_oObjCache.Clear();
 	Tower* pTower = m_pTowerArray[nTowerY * m_nXTowerNum + nTowerX];
-	Array<AOI_OBJ*>& ObserverSet = pTower->GetObserverSet();
-	for (int i = 0; i < ObserverSet.Size(); i++)
+	Tower::AOIObjMap& oObserverMap = pTower->GetObserverMap();
+	Tower::AOIObjIter iter = oObserverMap.begin();
+	for (; iter != oObserverMap.end(); iter++)
 	{
-		if (ObserverSet[i] == pObj)
-		{
+		if (iter->second == pObj)
 			continue;
-		}
-		m_oObjCache.PushBack(ObserverSet[i]);
+		if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
+			m_oObjCache.PushBack(iter->second);
 	}
 	pTower->AddObserved(pObj);
+
 	if (m_oObjCache.Size() > 0)
 	{
 		m_poScene->OnObjEnterObj(m_oObjCache, pObj);
@@ -477,27 +501,29 @@ void AOI::AddObserved(int nID)
 
 void AOI::RemoveObserved(int nID)
 {
-	AOI_OBJ* pObj = GetObj(nID);
+	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || !(pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
 		return;
 	}
+
 	int nTowerX = -1;
 	int nTowerY = -1;
-	CalTowerPos(pObj->nPos[0], pObj->nPos[1], nTowerX, nTowerY);
+	CalcTowerPos(pObj->nPos[0], pObj->nPos[1], nTowerX, nTowerY);
 
 	m_oObjCache.Clear();
 	Tower* pTower = m_pTowerArray[nTowerY * m_nXTowerNum + nTowerX];
-	Array<AOI_OBJ*>& oObserverSet = pTower->GetObserverSet();
-	for (int i = 0; i < oObserverSet.Size(); i++)
+	Tower::AOIObjMap& oObserverMap = pTower->GetObserverMap();
+	Tower::AOIObjIter iter = oObserverMap.begin();
+	for (; iter != oObserverMap.end(); iter++)
 	{
-		if (oObserverSet[i] == pObj)
-		{
+		if (iter->second == pObj)
 			continue;
-		}
-		m_oObjCache.PushBack(oObserverSet[i]);
+		if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
+			m_oObjCache.PushBack(iter->second);
 	}
 	pTower->RemoveObserved(pObj);
+
 	if (m_oObjCache.Size() > 0)
 	{
 		m_poScene->OnObjLeaveObj(m_oObjCache, pObj);
@@ -506,67 +532,71 @@ void AOI::RemoveObserved(int nID)
 	pObj->nAOIMode &= ~AOI_MODE_OBSERVED;
 	if (pObj->nAOIMode == 0 && pObj->nRef != 0)
 	{
-		XLog(LEVEL_ERROR, "RemoveObserved:%d ref error:%d/%d\n", pObj->nAOIObjID, pObj->nAOIMode, pObj->nRef);
+		XLog(LEVEL_ERROR, "RemoveObserved: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
 	}
 }
 
-void AOI::GetAreaObservers(int nID, Array<AOI_OBJ*>& oObjCache, int nGameObjType)
+void AOI::GetAreaObservers(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType)
 {
-	AOI_OBJ* pObj = GetObj(nID);
+	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || !(pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
 		return;
 	}
+
 	int nTowerX = -1;
 	int nTowerY = -1;
-	CalTowerPos(pObj->nPos[0], pObj->nPos[1], nTowerX, nTowerY);
+	CalcTowerPos(pObj->nPos[0], pObj->nPos[1], nTowerX, nTowerY);
+
 	Tower* pTower = m_pTowerArray[nTowerY * m_nXTowerNum + nTowerX];
-	Array<AOI_OBJ*>& oObserverSet = pTower->GetObserverSet();
-	for (int i = 0; i < oObserverSet.Size(); i++)
+	Tower::AOIObjMap& oObserverMap = pTower->GetObserverMap();
+	Tower::AOIObjIter iter = oObserverMap.begin();
+	for (; iter != oObserverMap.end(); iter++)
 	{
-		if (oObserverSet[i] == pObj)
-		{
+		if (iter->second == pObj)
 			continue;
-		}
-		if (nGameObjType == 0 || oObserverSet[i]->poGameObj->GetType() == nGameObjType)
+		if (nGameObjType == 0 || iter->second->poGameObj->GetType() == nGameObjType)
 		{
-			oObjCache.PushBack(oObserverSet[i]);
+			if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
+				oObjCache.PushBack(iter->second);
 		}
 	}
 }
 
-void AOI::GetAreaObserveds(int nID, Array<AOI_OBJ*>& oObjCache, int nGameObjType)
+void AOI::GetAreaObserveds(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType)
 {
-	AOI_OBJ* pObj = GetObj(nID);
+	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || !(pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
 		return;
 	}
-	int nLeftTopTower[2] = {-1, -1};
-	int nRightBottomTower[2] = {-1, -1};
+
+	int nLTTower[2] = {-1, -1};
+	int nRBTower[2] = {-1, -1};
 	if (pObj->nAOIType == AOI_TYPE_RECT)
 	{
-		CalRectTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], pObj->nArea[1], nLeftTopTower, nRightBottomTower);
+		CalcRectTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], pObj->nArea[1], nLTTower, nRBTower);
 	}
 	else if (pObj->nAOIType == AOI_TYPE_CIRCLE)
 	{
-		CalCircleTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], nLeftTopTower, nRightBottomTower);
+		CalcCircleTowerArea(pObj->nPos[0], pObj->nPos[1], pObj->nArea[0], nLTTower, nRBTower);
 	}
-	for (int y = nLeftTopTower[1]; y <= nRightBottomTower[1]; y++)
+
+	for (int y = nLTTower[1]; y <= nRBTower[1]; y++)
 	{
-		for (int x = nLeftTopTower[0]; x <= nRightBottomTower[0]; x++)
+		for (int x = nLTTower[0]; x <= nRBTower[0]; x++)
 		{
 			Tower* pTower = m_pTowerArray[y * m_nXTowerNum + x];
-			Array<AOI_OBJ*>& oObservedSet = pTower->GetObservedSet();
-			for (int i = 0; i < oObservedSet.Size(); i++)
+			Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
+			Tower::AOIObjIter iter = oObservedMap.begin();
+			for (iter; iter != oObservedMap.end(); iter++)
 			{
-				if (oObservedSet[i] == pObj)
-				{
+				if (iter->second == pObj)
 					continue;
-				}
-				if (nGameObjType == 0 || oObservedSet[i]->poGameObj->GetType() == nGameObjType)
+				if (nGameObjType == 0 || iter->second->poGameObj->GetType() == nGameObjType)
 				{
-					oObjCache.PushBack(oObservedSet[i]);
+					if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
+						oObjCache.PushBack(iter->second);
 				}
 			}
 		}
@@ -581,11 +611,11 @@ void AOI::PrintTower()
 		for (int x = 0; x < m_nXTowerNum; x++)
 		{
 			Tower* pTower = m_pTowerArray[y * m_nXTowerNum + x];
-			Array<AOI_OBJ*>& ObserverSet = pTower->GetObserverSet();
-			Array<AOI_OBJ*>& ObservedSet = pTower->GetObservedSet();
-			if (ObserverSet.Size() > 0 || ObservedSet.Size() > 0)
+			Tower::AOIObjMap& oObserverMap = pTower->GetObserverMap();
+			Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
+			if (oObserverMap.size() > 0 || oObservedMap.size() > 0)
 			{
-				XLog(LEVEL_DEBUG, "[%d,%d](%d,%d) ", y, x, ObserverSet.Size(), ObservedSet.Size());
+				XLog(LEVEL_DEBUG, "Tower:[%d,%d] Observe:[%d,%d] ", y, x, oObserverMap.size(), oObservedMap.size());
 				bPrint = true;
 			}
 		}
@@ -597,14 +627,14 @@ void AOI::PrintTower()
 	XLog(LEVEL_DEBUG, "\n");
 }
 
-int AOI::GenObjID()
+int AOI::GenAOIID()
 {
 	static int nIndex = 0;
 	nIndex = nIndex % 0x7FFFFFFF + 1;
 	return nIndex;
 }
 
-AOI_OBJ* AOI::GetObj(int nID)
+AOIOBJ* AOI::GetObj(int nID)
 {
 	AOIObjIter iter = m_oObjMap.find(nID);
 	if (iter != m_oObjMap.end())
@@ -625,7 +655,7 @@ void AOI::ClearDropObj(int64_t nNowMS)
 	{
 		if (iter->second->nAOIMode & AOI_MODE_DROP)
 		{
-			AOI_OBJ* poObj = iter->second;
+			AOIOBJ* poObj = iter->second;
 			iter = m_oObjMap.erase(iter);
 			SAFE_DELETE(poObj);
 			continue;
@@ -634,7 +664,7 @@ void AOI::ClearDropObj(int64_t nNowMS)
 	}
 }
 
-void AOI::CalTowerPos(int nPosX, int nPosY, int& nTowerX, int& nTowerY)
+void AOI::CalcTowerPos(int nPosX, int nPosY, int& nTowerX, int& nTowerY)
 {
 	nPosX = XMath::Max(0, XMath::Min(nPosX, m_nMapPixelWidth - 1));
 	nPosY = XMath::Max(0, XMath::Min(nPosY, m_nMapPixelHeight - 1));
@@ -642,73 +672,128 @@ void AOI::CalTowerPos(int nPosX, int nPosY, int& nTowerX, int& nTowerY)
 	nTowerY = nPosY / gnUnitHeight / gnTowerHeight;
 }
 
-void AOI::CalCircleTowerArea(int nPosX, int nPosY, int nRadius, int nLeftTopTower[2], int nRightBottomTower[2])
+void AOI::CalcCircleTowerArea(int nPosX, int nPosY, int nRadius, int nLTTower[], int nRBTower[])
 {
-	int nLeftTopX = XMath::Max(0, nPosX - nRadius);
-	int nRightBottomX = XMath::Min(m_nMapPixelWidth - 1, nPosX + nRadius);
-	int nLeftTopY = XMath::Max(0, nPosY - nRadius);
-	int nRightBottomY = XMath::Min(m_nMapPixelHeight - 1, nPosY + nRadius);
+	if (nRadius == 0)
+	{
+		nLTTower[0] = 0;
+		nLTTower[1] = 0;
+		nRBTower[0] = -1;
+		nRBTower[1] = -1;
+		return;
+	}
+	int nLTX = XMath::Max(0, nPosX - nRadius);
+	int nRBX = XMath::Min(m_nMapPixelWidth - 1, nPosX + nRadius);
+	int nLTY = XMath::Max(0, nPosY - nRadius);
+	int nRBY = XMath::Min(m_nMapPixelHeight - 1, nPosY + nRadius);
 
-	// fix pz (Edge deal)
+	// 边界处理 fix pd
 
 	int nTowerWidthPixel = gnUnitWidth * gnTowerWidth;
 	int nTowerHeightPixel = gnUnitHeight * gnTowerHeight;
 
-	int nLeftTopTowerX = nLeftTopX / nTowerWidthPixel;
-	int nLeftTopTowerY = nLeftTopY / nTowerHeightPixel;
-	assert(nLeftTopTowerX < m_nXTowerNum && nLeftTopTowerY < m_nYTowerNum);
+	int nLTTowerX = nLTX / nTowerWidthPixel;
+	int nLTTowerY = nLTY / nTowerHeightPixel;
+	assert(nLTTowerX < m_nXTowerNum && nLTTowerY < m_nYTowerNum);
 
-	int nRightBottomTowerX = nRightBottomX / nTowerWidthPixel;
-	int nRightBottomTowerY = nRightBottomY / nTowerHeightPixel;
-	assert(nRightBottomTowerX < m_nXTowerNum && nRightBottomTowerY < m_nYTowerNum);
+	int nRBTowerX = nRBX / nTowerWidthPixel;
+	int nRBTowerY = nRBY / nTowerHeightPixel;
+	assert(nRBTowerX < m_nXTowerNum && nRBTowerY < m_nYTowerNum);
 
-	nLeftTopTower[0] = nLeftTopTowerX;
-	nLeftTopTower[1] = nLeftTopTowerY;
-	nRightBottomTower[0] = nRightBottomTowerX;
-	nRightBottomTower[1] = nRightBottomTowerY;
+	nLTTower[0] = nLTTowerX;
+	nLTTower[1] = nLTTowerY;
+	nRBTower[0] = nRBTowerX;
+	nRBTower[1] = nRBTowerY;
 }
 
-void AOI::CalRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int nLeftTopTower[2], int nRightBottomTower[2])
+void AOI::CalcRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int nLTTower[], int nRBTower[])
 {
 	if (nWidth == 0 && nHeight == 0)
 	{
-		nLeftTopTower[0] = 0;
-		nLeftTopTower[1] = 0;
-		nRightBottomTower[0] = -1;
-		nRightBottomTower[0] = -1;
+		nLTTower[0] = 0;
+		nLTTower[1] = 0;
+		nRBTower[0] = -1;
+		nRBTower[1] = -1;
 		return;
 	}
-	int nLeftTopX = XMath::Max(0, nPosX - nWidth / 2);
-	int nLeftTopY = XMath::Max(0, nPosY - nHeight / 2);
-	int nRightBottomX = XMath::Min(m_nMapPixelWidth - 1, nPosX + nWidth / 2);
-	int nRightBottomY = XMath::Min(m_nMapPixelHeight - 1, nPosY + nHeight / 2);
+	int nLTX = XMath::Max(0, nPosX - nWidth/2);
+	int nLTY = XMath::Max(0, nPosY - nHeight/2);
+	int nRBX = XMath::Min(m_nMapPixelWidth - 1, nPosX + nWidth/2);
+	int nRBY = XMath::Min(m_nMapPixelHeight - 1, nPosY + nHeight/2);
 
-	// Edge deal
-	if (nRightBottomX - nLeftTopX + 1 < nWidth)
+	// 边界处理
+	if (nRBX - nLTX + 1 < nWidth)
 	{
-		(nLeftTopX == 0) ? (nRightBottomX = XMath::Min(nWidth - 1, m_nMapPixelWidth - 1)) : 0;
-		(nRightBottomX == m_nMapPixelWidth - 1) ? (nLeftTopX = XMath::Max(0, m_nMapPixelWidth - nWidth + 1)) : 0;
+		(nLTX == 0) ? (nRBX = XMath::Min(nWidth - 1, m_nMapPixelWidth - 1)) : 0;
+		(nRBX == m_nMapPixelWidth - 1) ? (nLTX = XMath::Max(0, m_nMapPixelWidth - nWidth + 1)) : 0;
 	}
-	if (nRightBottomY - nLeftTopY + 1 < nHeight)
+	if (nRBY - nLTY + 1 < nHeight)
 	{
-		(nLeftTopY == 0) ? (nRightBottomY = XMath::Min(nHeight - 1, m_nMapPixelHeight - 1)) : 0;
-		(nRightBottomY == m_nMapPixelHeight - 1) ? (nLeftTopY = XMath::Max(0, m_nMapPixelHeight - nHeight + 1)) : 0;
+		(nLTY == 0) ? (nRBY = XMath::Min(nHeight - 1, m_nMapPixelHeight - 1)) : 0;
+		(nRBY == m_nMapPixelHeight - 1) ? (nLTY = XMath::Max(0, m_nMapPixelHeight - nHeight + 1)) : 0;
 	}
 
-	int nTowerWidthPixel = gnUnitWidth * gnTowerWidth;
-	int nTowerHeightPixel = gnUnitHeight * gnTowerHeight;
+	static int nTowerWidthPixel = gnUnitWidth * gnTowerWidth;
+	static int nTowerHeightPixel = gnUnitHeight * gnTowerHeight;
 
-	int nLeftTopTowerX = nLeftTopX / nTowerWidthPixel;
-	int nLeftTopTowerY = nLeftTopY / nTowerHeightPixel;
-	assert(nLeftTopTowerX < m_nXTowerNum && nLeftTopTowerY < m_nYTowerNum);
+	int nLTTowerX = nLTX / nTowerWidthPixel;
+	int nLTTowerY = nLTY / nTowerHeightPixel;
+	assert(nLTTowerX < m_nXTowerNum && nLTTowerY < m_nYTowerNum);
 
-	int nRightBottomTowerX = nRightBottomX / nTowerWidthPixel;
-	int nRightBottomTowerY = nRightBottomY / nTowerHeightPixel;
-	assert(nRightBottomTowerX < m_nXTowerNum && nRightBottomTowerY < m_nYTowerNum);
+	int nRBTowerX = nRBX / nTowerWidthPixel;
+	int nRBTowerY = nRBY / nTowerHeightPixel;
+	assert(nRBTowerX < m_nXTowerNum && nRBTowerY < m_nYTowerNum);
 
-	nLeftTopTower[0] = nLeftTopTowerX;
-	nLeftTopTower[1] = nLeftTopTowerY;
-	nRightBottomTower[0] = nRightBottomTowerX;
-	nRightBottomTower[1] = nRightBottomTowerY;
+	nLTTower[0] = nLTTowerX;
+	nLTTower[1] = nLTTowerY;
+	nRBTower[0] = nRBTowerX;
+	nRBTower[1] = nRBTowerY;
 }
 
+int8_t AOI::AddLineObj(int8_t nLine)
+{
+	assert(nLine == 0 || nLine == -1);
+	//公共
+	if (nLine == 0)
+	{
+		m_tLineObj[nLine]++;
+		XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", 0, m_tLineObj[nLine]);
+		return 0;
+	}
+
+	//自动
+	if (nLine == -1)
+	{
+		int nMinLine = 1;
+		int nMinObj = 0;
+		for (int i = 1; i < MAX_LINE; i++)
+		{
+			if (m_tLineObj[i] < MAX_OBJ_PERLINE)
+			{
+				m_tLineObj[i]++;
+				XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", i, m_tLineObj[i]);
+				return i;
+			}
+			else
+			{
+				if (nMinObj == 0 || m_tLineObj[i] < nMinObj)
+				{
+					nMinObj = m_tLineObj[i];
+					nMinLine = i;
+				}
+			}
+		}
+		m_tLineObj[nMinLine]++;
+		XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", nMinLine, m_tLineObj[nMinLine]);
+		return nMinLine;
+	}
+	return -1;
+}
+
+int16_t AOI::SubLineObj(int8_t nLine)
+{
+	assert(nLine >= 0 && nLine < MAX_LINE);
+	m_tLineObj[nLine]--;
+	assert(m_tLineObj[nLine] >= 0);
+	return m_tLineObj[nLine];
+}

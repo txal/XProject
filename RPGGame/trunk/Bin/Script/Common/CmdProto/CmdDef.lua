@@ -53,3 +53,13 @@ RegPBRet(9005, "OtherPlaceLoginRet", "login.OtherPlaceLoginRet", 0)--异地登�
 --角色
 RegPBRet(9050, "RoleInitDataRet", "login.RoleInitDataRet", 0)		--角色初始数据同步
 RegPBRet(9051, "RoleCurrencyRet", "login.RoleCurrencyRet", 0)		--角色货币同步
+
+--场景
+RegPBReq(9100, "RoleEnterSceneReq", "scene.RoleEnterSceneReq", 0)   --角色进入场景请求
+RegPBRet(9101, "RoleEnterSceneRet", "scene.RoleEnterSceneRet", 0)   --角色进入场景返回
+RegPBReq(9102, "RoleLeaveSceneReq", "scene.RoleLeaveSceneReq", 0)   --角色离开副本请求
+RegPBRet(9103, "RoleLeaveSceneRet", "scene.RoleLeaveSceneRet", 0)   --角色离开副本返回
+RegPBRet(9104, "RoleEnterViewRet", "scene.RoleEnterViewRet", 0)         --角色进入视野返回
+RegPBRet(9105, "MonsterEnterViewRet", "scene.MonsterEnterViewRet", 0)   --怪物进入视野返回
+RegPBRet(9106, "ObjLeaveViewRet", "scene.ObjLeaveViewRet", 0)       --对象离开视野返回
+

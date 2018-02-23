@@ -6,7 +6,7 @@
 #include "Server/LogicServer/LogicServer.h"
 #include "Server/LogicServer/SceneMgr/Scene.h"
 
-const int nOBJECT_COLLECT_MSTIME = 3*60*1000; //非玩家对象收集时间
+const int nOBJECT_COLLECT_MSTIME = 3*60*1000; //非玩家对象回收时间
 
 LUNAR_IMPLEMENT_CLASS(Object)
 {
@@ -21,9 +21,8 @@ Object::Object()
 	m_nObjType = eOT_None;
 	m_poScene = NULL;
 	m_nAOIID = 0;
-	m_nCamp = eBC_FreeLand;
-
-	m_nLeaveSceneTime = m_nLastUpdateTime = XTime::MSTime();
+	m_nLeaveSceneTime = 0;
+	m_nLastUpdateTime = 0;
 }
 
 Object::~Object()
@@ -36,16 +35,19 @@ void Object::SetPos(const Point& oPos, const char* pFile, int nLine)
 	{
 		return;
 	}
+
 	m_oPos = oPos;
 	m_poScene->MoveObj(m_nAOIID, m_oPos.x, m_oPos.y);
 }
 
-bool Object::IsTimeToCollected(int64_t nNowMS)
+bool Object::IsTime2Collect(int64_t nNowMS)
 {
-	if (m_nObjType == eOT_Player)
-	{//角色不会被收集
+	//角色不会被回收
+	if (m_nObjType == eOT_Role)
+	{
 		return false;
 	}
+
 	if (m_poScene == NULL && m_nLeaveSceneTime > 0 && nNowMS - m_nLeaveSceneTime >= nOBJECT_COLLECT_MSTIME)
 	{
 		return true;
@@ -58,12 +60,12 @@ void Object::Update(int64_t nNowMS)
 	m_nLastUpdateTime = nNowMS;
 }
 
-void Object::OnEnterScene(Scene* poScene, const Point& oPos, int nAOIID)
+void Object::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
 {
 	assert(poScene != NULL && nAOIID > 0);
 	m_poScene = poScene;
-	m_oPos = oPos;
 	m_nAOIID = nAOIID;
+	m_oPos = oPos;
 	m_nLeaveSceneTime = 0;
 }
 
@@ -74,24 +76,9 @@ void Object::AfterEnterScene()
 void Object::OnLeaveScene()
 {
 	m_poScene = NULL;
-	m_oPos = Point(-1, -1);
 	m_nAOIID = 0;
+	m_oPos = Point(-1, -1);
 	m_nLeaveSceneTime = XTime::MSTime();
-}
-
-bool Object::CheckCamp(Object* poTar)
-{
-	assert(poTar != NULL);
-	int nTarCamp = poTar->m_nCamp;
-	if (m_nCamp == eBC_Neutral || nTarCamp == eBC_Neutral)
-	{
-		return false;
-	}
-	if (m_nCamp == eBC_FreeLand)
-	{
-		return true;
-	}
-	return (m_nCamp != nTarCamp);
 }
 
 void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
@@ -101,6 +88,7 @@ void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 	{
 		return;
 	}
+
 	if (uTarServer> 0 && nTarSession > 0)
 	{
 		NetAdapter::SERVICE_NAVI oNavi;
@@ -115,7 +103,7 @@ void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 	oNavi.uSrcServer = g_poContext->GetServerID();
 	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
 
-	Array<AOI_OBJ*>& oAOIObjList = m_poScene->GetAreaObservers(m_nAOIID, GAME_OBJ_TYPE::eOT_Player);
+	Array<AOIOBJ*>& oAOIObjList = m_poScene->GetAreaObservers(m_nAOIID, GAMEOBJ_TYPE::eOT_Role);
 	for (int i = oAOIObjList.Size() - 1; i >= 0; --i)
 	{
 		Actor* poActor = (Actor*)(oAOIObjList[i]->poGameObj);
@@ -124,8 +112,6 @@ void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 		goNaviCache.PushBack(oNavi);
 	}
 }
-
-
 
 
 /////////////////////////lua export///////////////////////
@@ -158,14 +144,13 @@ int Object::GetName(lua_State* pState)
 	return 1;
 }
 
-int Object::GetSceneIndex(lua_State* pState)
+int Object::GetDupMixID(lua_State* pState)
 {
 	if (m_poScene != NULL)
-	{
-		lua_pushinteger(pState, m_poScene->GetSceneIndex());
-		return 1;
-	}
-	return 0;
+		lua_pushinteger(pState, m_poScene->GetSceneMixID());
+	else
+		lua_pushinteger(pState, 0);
+	return 1;
 }
 
 int Object::GetAOIID(lua_State* pState)
@@ -179,17 +164,4 @@ int Object::GetPos(lua_State* pState)
 	lua_pushinteger(pState, m_oPos.x);
 	lua_pushinteger(pState, m_oPos.y);
 	return 2;
-}
-
-int Object::GetCamp(lua_State* pState)
-{
-	lua_pushinteger(pState, m_nCamp);
-	return 1;
-}
-
-int Object::SetCamp(lua_State* pState)
-{
-	int8_t nCamp = (int8_t)luaL_checkinteger(pState, 1);
-	m_nCamp = nCamp;
-	return 0;
 }

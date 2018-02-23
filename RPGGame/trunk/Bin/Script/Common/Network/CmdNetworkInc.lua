@@ -65,7 +65,7 @@ CmdMessageCenter = function(nCmd, nSrcServer, nSrcService, nTarSession, xPacket)
     if tProto then
         local sCmdName, sProto = tProto[2], tProto[3]
         if CmdNet.bServer then
-            LuaTrace("---message---", sCmdName, sProto)
+            LuaTrace("---cmd message---", sCmdName, sProto)
         end
         local fnProc = tProcType[sCmdName]
         if not fnProc then

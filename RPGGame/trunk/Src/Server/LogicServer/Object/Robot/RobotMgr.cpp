@@ -37,23 +37,24 @@ Robot* RobotMgr::GetRobotByID(int nID)
 	return NULL;
 }
 
-void RobotMgr::UpdateRobots(int64_t nNowMS)
+void RobotMgr::Update(int64_t nNowMS)
 {
+	static float nFRAME_MSTIME = 1000.0f / 30.0f;
 	RobotIDIter iter = m_oRobotIDMap.begin();
 	RobotIDIter iter_end = m_oRobotIDMap.end();
 	for (; iter != iter_end; )
 	{
 		Robot* poRobot = iter->second;
-		if (nNowMS - poRobot->GetLastUpdateTime() >= FRAME_MSTIME)
+		if (nNowMS - poRobot->GetLastUpdateTime() >= nFRAME_MSTIME)
 		{
-			if (poRobot->IsTimeToCollected(nNowMS))
+			if (poRobot->IsTime2Collect(nNowMS))
 			{
 				iter = m_oRobotIDMap.erase(iter);
 				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poRobot->GetID(), poRobot->GetType());
 				SAFE_DELETE(poRobot);
 				continue;
 			}
-			if (!poRobot->IsDead() && poRobot->GetScene() != NULL)
+			if (poRobot->GetScene() != NULL)
 			{
 				poRobot->Update(nNowMS);
 			}
@@ -74,7 +75,7 @@ void RegClassRobot()
 
 int RobotMgr::CreateRobot(lua_State* pState)
 {
-	int64_t nObjID = luaL_checkinteger(pState, 1);
+	int nObjID = (int)luaL_checkinteger(pState, 1);
 	int nConfID = (int)luaL_checkinteger(pState, 2);
 	const char* psName = luaL_checkstring(pState, 3);
 	int nAIID = (int)luaL_checkinteger(pState, 4);
@@ -92,7 +93,7 @@ int RobotMgr::CreateRobot(lua_State* pState)
 
 int RobotMgr::GetRobot(lua_State* pState)
 {
-	int64_t nCharID = luaL_checkinteger(pState, 1);
+	int nCharID = (int)luaL_checkinteger(pState, 1);
 	Robot* poRobot = GetRobotByID(nCharID);
 	if (poRobot != NULL)
 	{

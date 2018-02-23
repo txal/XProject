@@ -20,7 +20,7 @@ Detector::~Detector()
 
 void Detector::Init(int nID, int nConfID, const char* psName)
 {
-	m_nCamp = (int8_t)eBC_Neutral;
+	//m_nCamp = (int8_t)eBC_Neutral;
 	m_nObjID = nID;
 	m_nConfID = nConfID;
 	strcpy(m_sName, psName);

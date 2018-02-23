@@ -94,6 +94,7 @@ function CGPlayerMgr:RoleOfflineReq(nRoleID)
 end
 
 function CGPlayerMgr:RoleUpdateReq(nRoleID, tData)
+	print("CGPlayerMgr:RoleUpdateReq***", nRoleID, tData)
 	local oRole = self:GetRoleByID(nRoleID)
 	if oRole then
 		oRole:UpdateReq(tData)

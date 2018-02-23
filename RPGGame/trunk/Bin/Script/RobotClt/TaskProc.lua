@@ -25,6 +25,7 @@ _tTaskProc["lreload"] = function(tParam, sTask)	--重载
 	LuaTrace("重载所有脚本 "..(bRes and "成功!" or "失败!"))
 end
 
+
 _tTaskProc["auth"] = function(tParam, sTask)	--授权
 	_GMSendCmd(sTask)
 end
@@ -87,6 +88,9 @@ _tTaskProc["startrun"] = function(tParam, sTask)
 	goRobotMgr:StartRun()
 end
 
-_tTaskProc["sceneready"] = function(tParam)
-	goRobotMgr:SceneReady()	
+_tTaskProc["enterdup"] = function(tParam, sTask)
+	local oRobot = goRobotMgr:RndRobot()
+	if not oRobot then return end
+	local nDupID = tonumber(tParam[1])
+	CmdNet.PBClt2Srv("RoleEnterSceneReq", oRobot:PacketID(), oRobot:GetSession(), {nDupID=nDupID})
 end

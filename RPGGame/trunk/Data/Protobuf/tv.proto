@@ -1,7 +1,0 @@
-package tv;
-
-//电视广告返回
-message TVRet
-{
-	required string sCont = 1; 	//广告内容
-}
