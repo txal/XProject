@@ -59,6 +59,7 @@ function CLAccount:GetSource() return self.m_nScoure end
 function CLAccount:GetServer() return self.m_nServer end
 function CLAccount:GetSession() return self.m_nSession end
 function CLAccount:GetOnlineRoleID() return self.m_nOnlineRoleID end
+function CLAccount:BindSession(nSession) return self.m_nSession = nSession end
 
 --角色登陆成功
 function CLAccount:RoleOnline(nRoleID)
@@ -151,11 +152,11 @@ function CLAccount:RoleLogin(nRoleID)
 	if not tSummary then
 		return self:Tips("角色不存在")
 	end
-	print("CLAccount:RoleLogin***", nRoleID, tSummary.sName)
 
 	if self.m_nOnlineRoleID > 0 then
 		assert(self.m_nOnlineRoleID == nRoleID, "需要先退出当前登陆角色")
 	end
+	
 	self:RoleOnline(nRoleID)
 	CmdNet.PBSrv2Clt("RoleLoginRet", self:GetServer(), self:GetSession(), {nAccountID=self:GetID(), nRoleID=nRoleID})
 

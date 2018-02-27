@@ -38,15 +38,19 @@ function CLoginMgr:GetAccountBySS(nServer, nSession)
 	return self.m_tAccountSSMap[nSSKey]
 end
 
---角色离线
-function CLoginMgr:OnClientClose(nServer, nSession)
-	local oAccount = self:GetAccountBySS(nServer, nSession)
+--角色下线
+function CLoginMgr:RoleOffline(nAccountID)
+	local oAccount = self:GetAccountByID(nAccountID)
 	if not oAccount then
 		return
 	end
-	
+
+	local nServer = oAccount:GetServer()
+	local nSession = oAccount:GetSession()
+	local nSource = oAccount:GetSource()
+	local sAccount = oAccount:GetName()
+
 	local nSSKey = self:MakeSSKey(nServer, nSession)
-	local nSource, sAccount = oAccount:GetSource(), oAccount:GetName()
 	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
 
 	oAccount:LoadData() --需要重新加载数据,逻辑服可能修改了
@@ -60,8 +64,21 @@ function CLoginMgr:OnClientClose(nServer, nSession)
 			self.m_tAccountNameMap[sAccountKey] = nil
 			self.m_tAccountSSMap[nSSKey] = nil
 		end
-	end, oAccount:GetServer(), oAccount:GetLogic(), oAccount:GetSession(), oAccount:GetID())
+	end, nServer, oAccount:GetLogic(), nSession, nAccountID)
+end
 
+--角色断开连接
+function CLoginMgr:OnClientClose(nServer, nSession)
+	local oAccount = self:GetAccountBySS(nServer, nSession)
+	if not oAccount and oAccount:GetSession() > 0 then
+		return
+	end
+	local nSSKey = self:MakeSSKey(nServer, nSession)
+	self.m_tAccountSSMap[nSSKey] = nil
+
+	oAccount:LoadData() --需要重新加载数据,逻辑服可能修改了
+	goRemoteCall:Call("RoleDisconnectReq", oAccount:GetServer(), oAccount:GetLogic(), oAccount:GetSession(), oAccount:GetID())
+	oAccount:BindSession(0)
 end
 
 --发送异地登陆消息
@@ -76,157 +93,160 @@ end
 
 --角色列表请求
 function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
-	print("CLoginMgr:RoleListReq***", nServer, nSession)
+	print("CLoginMgr:RoleListReq***", nServer, nSession, nSource, sAccount)
+	local nNewSSKey = self:MakeSSKey(nServer, nSession)
 	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
 	local oAccount = self:GetAccountByName(sAccountKey)
 
-	--账号在线需要先到逻辑服更新当前在线角色摘要信息
 	if oAccount then
-		goRemoteCall:CallWait("UpdateRoleSummaryReq", function(nAccountID)
-			--要重新取Account对象,因可能已下线
-			local oAccount = self:GetAccountByID(nAccountID)
-			if oAccount then
+		local nOldServer = oAccount:GetServer()
+		assert(nOldServer == nServer, "服务器ID错误")
+		local nOldSession = oAccount:GetSession()
+
+		if oAccount:GetOnlineRoleID() > 0 then
+		--已有角色登陆
+			goRemoteCall:CallWait("RoleDisconnectReq", function(nAccountID)
 				oAccount:LoadData() --重新加载数据,逻辑服可能有修改
-				oAccount:RoleListReq(nServer, nSession)
+
+				oAccount:BindSession(nSession)
+				self.m_tAccountSSMap[nNewSSKey] = oAccount
+				oAccount:RoleListReq()
+
+				if nSession ~= nOldSession then
+					self:OtherPlaceLogin(nOldServer, nOldSession, sAccount)
+				end
+
+			end , nOldServer, oAccount:GetLogic(), nOldSession, oAccount:GetID())
+
+		else
+		--没有角色登陆
+			oAccount:BindSession(nSession)
+			self.m_tAccountSSMap[nNewSSKey] = oAccount
+			oAccount:RoleListReq()
+
+			if nSession ~= nOldSession then
+				self:OtherPlaceLogin(nOldServer, nOldSession, sAccount)
 			end
-		end , oAccount:GetServer(), oAccount:GetLogic(), oAccount:GetSession(), oAccount:GetID())
+
+		end
 
 	--账号不在线/或新建账号
 	else
 		local nAccountID = 0
 		local oDB = goDBMgr:GetSSDB(nServer, "global")
 		local sData = oDB:HGet(gtDBDef.sAccountNameDB, sAccountKey)
-		--账号不存在,创建之
 		if sData == "" then
+		--账号不存在,创建之
 			nAccountID = CLAccount:GenPlayerID()
 			oDB:HSet(gtDBDef.sAccountNameDB, sAccountKey, cjson.encode({nAccountID=nAccountID}))
 			oDB:HSet(gtDBDef.sAccountNameDB, nAccountID, cjson.encode({nSource=nSource, sAccount=sAccount}))
 		else
 			nAccountID = cjson.decode(sData).nAccountID
 		end
-		--加载账号数据,但是不做缓存
+		--加载账号数据
 		oAccount = CLAccount:new(nServer, nSession, nAccountID, nSource, sAccount)
 		oAccount:LoadData()
+		self.m_tAccountIDMap[nAccountID] = oAccount
+		self.m_tAccountNameMap[sAccountKey] = oAccount
+		self.m_tAccountSSMap[nNewSSKey] = oAccount
+
 		oAccount:RoleListReq()
+
 	end
 
 end
 
 --创建角色请求
 function CLoginMgr:RoleCreateReq(nServer, nSession, nAccountID, nConfID, sRole)
-	--创建角色函数
-	local function _CreateRole()
-		local sData = goDBMgr:GetSSDB(nServer, "global"):HGet(gtDBDef.sAccountNameDB, nAccountID)
-		if sData == "" then
-			return CLAccount:Tips("账号不存在", nServer, nSession)
-		end
-		--加载账号数据
-		oAccount = CLAccount:new(nServer, nSession, nAccountID, 0, "")
-		oAccount:LoadData()
+	local oAccount = self:GetAccountByID(nAccountID)
+	assert(oAccount, "账号未加载")
 
+	local nOldServer = oAccount:GetServer()
+	local nOldSession = oAccount:GetSession()
+	assert(nOldServer == nServer, "服务器错误")
+	assert(nOldSession == nSession, "SESSION错误")
+
+	if oAccount:GetOnlineRoleID() > 0 then
+		goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+			oAccount:LoadData() --重新加载数据,逻辑服可能有修改
+			oAccount:RoleOffline() --离线操作
+
+			oAccount:BindSession(nSession)
+			if oAccount:RoleLogin(nRoleID) then
+				self.m_tAccountSSMap[nNewSSKey] = oAccount
+				LuaTrace("角色登陆成功", oAccount:GetName(), nRoleID)
+			end
+
+		end , nOldServer, oAccount:GetLogic(), 0, oAccount:GetID())
+
+	else
 		--创建角色和登录成功则缓存
 		if oAccount:CreateRole(nConfID, sRole) then
-			self.m_tAccountIDMap[nAccountID] = oAccount
-			local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
-			self.m_tAccountNameMap[sAccountKey] = oAccount
-			local nSSKey = self:MakeSSKey(nServer, nSession)
-			self.m_tAccountSSMap[nSSKey] = oAccount
-
 			LuaTrace("创建角色并登陆成功")
 		end
-	end
-
-	--账号在线则先进行异地登陆
-	local oAccount = self:GetAccountByID(nAccountID)
-	if oAccount then
-		local nOldServer = oAccount:GetServer()
-		local nOldSession = oAccount:GetSession()
-		goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
-			--要重新取Account对象,因可能已下线
-			local oAccount = self:GetAccountByID(nAccountID)
-			if oAccount then
-				oAccount:LoadData() --重新加载数据,逻辑服可能有修改
-				oAccount:RoleOffline() --离线操作
-
-				self.m_tAccountIDMap[nAccountID] = nil
-				local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
-				self.m_tAccountNameMap[sAccountKey] = nil
-				local nSSKey = self:MakeSSKey(nOldServer, nOldSession)
-				self.m_tAccountSSMap[nSSKey] = nil
-
-				--不同客户端操作
-				if nOldServer ~= nServer or nOldSession ~= nSession then
-					self:OtherPlaceLogin(nOldServer, nOldSession, oAccount:GetName())
-				end
-				_CreateRole()
-			end
-		end , nOldServer, oAccount:GetLogic(), nOldSession, oAccount:GetID())
-
-	--账号不在线,创建角色并登陆
-	else
-		_CreateRole()
 
 	end
+
 end
 
 --角色登陆请求
 function CLoginMgr:RoleLoginReq(nServer, nSession, nAccountID, nRoleID)
+	local nNewSSKey = self:MakeSSKey(nServer, nSession)
 
-	--登录角色函数
-	local function _LoginRole()
+	--在线异地登录
+	local oAccount = self:GetAccountByID(nAccountID)
+	if oAccount then
+		local nOldServer = oAccount:GetServer()
+		assert(nOldServer == nServer, "服务器ID错误")
+		local nOldSession = oAccount:GetSession()
+
+		if oAccount:GetOnlineRoleID() > 0 then
+			goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+				oAccount:LoadData() --重新加载数据,逻辑服可能有修改
+				oAccount:RoleOffline() --离线操作
+
+				oAccount:BindSession(nSession)
+				if oAccount:RoleLogin(nRoleID) then
+					self.m_tAccountSSMap[nNewSSKey] = oAccount
+					LuaTrace("角色登陆成功", oAccount:GetName(), nRoleID)
+				end
+
+				if nSession ~= nOldSession then
+					self:OtherPlaceLogin(nOldServer, nOldSession, oAccount:GetName())
+				end
+
+			end , nOldServer, oAccount:GetLogic(), nOldSession, oAccount:GetID())
+
+		else
+			oAccount:BindSession(nSession)
+			if oAccount:RoleLogin(nRoleID) then
+				self.m_tAccountSSMap[nNewSSKey] = oAccount
+				LuaTrace("角色登陆成功", oAccount:GetName(), nRoleID)
+			end
+
+			if nSession ~= nOldSession then
+				self:OtherPlaceLogin(nOldServer, nOldSession, oAccount:GetName())
+			end
+
+		end
+
+	else
+	--账号未加载
 		local sData = goDBMgr:GetSSDB(nServer, "global"):HGet(gtDBDef.sAccountNameDB, nAccountID)
 		if sData == "" then
 			return CLAccount:Tips("账号不存在", nServer, nSession)
 		end
+
 		--加载账号数据
 		local oAccount = CLAccount:new(nServer, nSession, nAccountID, 0, "")
 		oAccount:LoadData()
-
-		--登录成功则缓存
 		if oAccount:RoleLogin(nRoleID) then
 			self.m_tAccountIDMap[nAccountID] = oAccount
 			local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
 			self.m_tAccountNameMap[sAccountKey] = oAccount
-			local nSSKey = self:MakeSSKey(nServer, nSession)
-			self.m_tAccountSSMap[nSSKey] = oAccount
-
+			self.m_tAccountSSMap[nNewSSKey] = oAccount
 			LuaTrace("角色登陆成功", oAccount:GetName(), nRoleID)
 		end
-	end
-
-	--在线就异地登录
-	local oAccount = self:GetAccountByID(nAccountID)
-	if oAccount then
-		local nOldServer = oAccount:GetServer()
-		local nOldSession = oAccount:GetSession()
-		if nOldServer == nServer and nOldSession == nSession then
-			return oAccount:RoleLogin(nRoleID)
-		end
-
-		goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
-			--要重新取Account对象,因可能已下线
-			local oAccount = self:GetAccountByID(nAccountID)
-			if oAccount then
-				oAccount:LoadData() --重新加载数据,逻辑服可能有修改
-				oAccount:RoleOffline() --离线操作
-
-				self.m_tAccountIDMap[nAccountID] = nil
-				local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
-				self.m_tAccountNameMap[sAccountKey] = nil
-				local nSSKey = self:MakeSSKey(nOldServer, nOldSession)
-				self.m_tAccountSSMap[nSSKey] = nil
-
-				--异地登录
-				self:OtherPlaceLogin(nOldServer, nOldSession, oAccount:GetName())
-
-				_LoginRole()
-
-			end
-		end , nOldServer, oAccount:GetLogic(), nOldSession, oAccount:GetID())
-
-	--账号不在线,登陆
-	else
-		_LoginRole()
 
 	end
 end

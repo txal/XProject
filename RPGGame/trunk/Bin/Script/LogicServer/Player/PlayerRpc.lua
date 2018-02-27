@@ -2,19 +2,25 @@
 
 ---------------服务器内部----------------
 --更新角色摘要数据(登录服务)
-function Srv2Srv.UpdateRoleSummaryReq(nSrcServer, nSrcService, nTarSession, nAccountID)
-	return goPlayerMgr:UpdateRoleSummaryReq(nAccountID)
+function Srv2Srv.RoleUpdateSummaryReq(nSrcServer, nSrcService, nTarSession, nAccountID)
+	return goPlayerMgr:RoleUpdateSummaryReq(nAccountID)
 end
 
 --角色上线通知(登录服务)
 function Srv2Srv.RoleOnlineReq(nSrcServer, nSrcService, nTarSession, nAccountID, nRoleID)
-	return goPlayerMgr:OnlineReq(nSrcServer, nTarSession, nAccountID, nRoleID)
+	return goPlayerMgr:RoleOnlineReq(nSrcServer, nTarSession, nAccountID, nRoleID)
 end
 
 --角色下线通知(登录服务)
 function Srv2Srv.RoleOfflineReq(nSrcServer, nSrcService, nTarSession, nAccountID)
-	return goPlayerMgr:OfflineReq(nAccountID)
+	return goPlayerMgr:RoleOfflineReq(nAccountID)
 end
+
+--角色断线通知(登录服务)
+function Srv2Srv.RoleDisconnectReq(nSrcServer, nSrcService, nTarSession, nAccountID)
+    return goPlayerMgr:RoleDisconnectReq(nAccountID)
+end
+
 
 --道具数量请求([W]GLOBAL服务)
 function Srv2Srv.RoleItemCountReq(nSrcServer, nSrcService, nTarSession, nAccountID, nType, nID)

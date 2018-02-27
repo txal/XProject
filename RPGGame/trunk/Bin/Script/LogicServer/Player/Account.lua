@@ -87,6 +87,13 @@ function CAccount:GetSession() return self.m_nSession end
 function CAccount:GetOnlineRole() return self.m_oOnlineRole end
 function CAccount:GetVIP() return self.m_nVIP end
 
+--绑定新的会话ID
+function CAccount:BindSession(nSession)
+	assert(self.m_nSession == nil, "需要先下线")	
+	self.m_nSession = nSession
+	self.m_oOnlineRole:BindSession(nSession)
+end
+
 function CAccount:Online(nRoleID, bSwitchLogic)
 	print("CAccount:Online***", nRoleID)
 	local tSummary = self.m_tRoleSummaryMap[nRoleID]
@@ -101,12 +108,22 @@ function CAccount:Online(nRoleID, bSwitchLogic)
 	return true
 end
 
+--上线成功
 function CAccount:AfterOnline()
 	self.m_oOnlineRole:AfterOnline()
 end
 
+--断线
+function CAccount:Disconnect()
+	print("CAccount:Disconnect***", self.m_sName)
+	self.m_nSession = 0
+	self.m_oOnlineRole:BindSession(0)
+	self:UpdateRoleSummary()
+end
+
+--离线
 function CAccount:Offline()
-	print("CAccount:Offline***", self.m_oOnlineRole:GetID())
+	print("CAccount:Offline***", self.m_sName)
 	self.m_oOnlineRole:Offline()
 	self:UpdateRoleSummary()
 end

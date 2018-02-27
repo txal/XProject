@@ -167,6 +167,8 @@ function CRole:GetPos() return self.m_oNativeObj:GetPos() end
 function CRole:GetSpeed() return self.m_oNativeObj:GetRunSpeed() end
 function CRole:GetDupMixID() return self.m_oNativeObj:GetDupMixID() end
 function CRole:GetNativeObj() return self.m_oNativeObj end
+function CRole:BindSession(nSession) self.m_oNativeObj:BindSession(nSession) end
+
 
 --取角色身上的装备
 function CRole:GetEquipment()
