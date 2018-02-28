@@ -103,7 +103,12 @@ end
 function CDupBase:Enter(oNativeObj, nPosX, nPosY, nLine)
     assert(type(oNativeObj) == "userdata")
     nLine = nLine or -1 --默认为自动分线
-    local nAOIMode = CDupBase.tAOIType.eObserver|CDupBase.tAOIType.eObserved
+
+    local nAOIMode = CDupBase.tAOIType.eObserved
+    if oNativeObj:GetSessionID() > 0 then --掉线的玩家没有观察者身份
+        nAOIMode = nAOIMode | CDupBase.tAOIType.eObserver
+    end
+
     local nAOIWidth, nAOIHeight = nDefAOIWidth, nDefAOIHeight
     return self.m_oNativeObj:EnterDup(oNativeObj, nPosX, nPosY, nAOIMode, nAOIWidth, nAOIHeight, nLine)
 end

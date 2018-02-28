@@ -165,3 +165,9 @@ int Object::GetPos(lua_State* pState)
 	lua_pushinteger(pState, m_oPos.y);
 	return 2;
 }
+
+int Object::GetSessionID(lua_State* pState)
+{
+	lua_pushinteger(pState, GetSession());
+	return 1;
+}

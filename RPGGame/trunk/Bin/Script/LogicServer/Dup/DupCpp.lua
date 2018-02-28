@@ -8,7 +8,7 @@ function OnObjEnterScene(nDupMixID, oNativeObj)
 
     local oLuaObj
    if nObjType == gtObjType.eRole then  
-        oLuaObj = goPlayerMgr:GetRoleByAccountID(nObjID)
+        oLuaObj = goPlayerMgr:GetRoleByID(nObjID)
 
     elseif nObjType == gtObjType.eMonster then
         oLuaObj = goMonsterMgr:GetMonster(nObjID)
@@ -29,7 +29,7 @@ function AfterObjEnterScene(nDupMixID, oNativeObj)
 
     local oLuaObj
    if nObjType == gtObjType.eRole then  
-        oLuaObj = goPlayerMgr:GetRoleByAccountID(nObjID)
+        oLuaObj = goPlayerMgr:GetRoleByID(nObjID)
 
     elseif nObjType == gtObjType.eMonster then
         oLuaObj = goMonsterMgr:GetMonster(nObjID)
@@ -50,7 +50,7 @@ function OnObjLeaveScene(nDupMixID, oNativeObj)
 
     local oLuaObj
     if nObjType == gtObjType.eRole then  
-        oLuaObj = goPlayerMgr:GetRoleByAccountID(nObjID)
+        oLuaObj = goPlayerMgr:GetRoleByID(nObjID)
 
     elseif nObjType == gtObjType.eMonster then  
         oLuaObj = goMonsterMgr:GetMonster(nObjID)
@@ -71,7 +71,7 @@ function OnObjEnterObj(nDupMixID, tObserver, tObserved)
         local nObjType = oNativeObj:GetObjType()
         if nObjType == gtObjType.eRole then
             local nObjID = oNativeObj:GetObjID()
-            local oRole = goPlayerMgr:GetRoleByAccountID(nObjID)
+            local oRole = goPlayerMgr:GetRoleByID(nObjID)
             oRole:OnObjEnterObj(tObserved)
             
         end
@@ -87,7 +87,7 @@ function OnObjLeaveObj(nDupMixID, tObserver, tObserved)
         local nObjType = oNativeObj:GetObjType()
 
         if nObjType == gtObjType.eRole then
-            local oRole = goPlayerMgr:GetRoleByAccountID(nObjID)
+            local oRole = goPlayerMgr:GetRoleByID(nObjID)
             local nServer = oRole:GetServer()
             local nSession = oRole:GetSession()
             table.insert(tSSList, nServer)

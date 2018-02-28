@@ -35,7 +35,7 @@ end
 --测试逻辑模块
 CGMMgr["test"] = function(self, nServer, nService, nSession, tArgs)
 	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
-	if not oRole then return end
+	print(oRole)
 end
 
 --重载脚本

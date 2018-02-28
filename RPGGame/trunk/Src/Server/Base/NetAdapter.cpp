@@ -112,6 +112,8 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 			poNewPacket->Release();
 
 		oBCHeader.oSessionList.Clear();
+		if (iternext == iterend)
+			break;
 	}
 	return true;
 }

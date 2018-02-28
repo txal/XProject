@@ -369,6 +369,7 @@ void AOI::RemoveObj(int nID, bool bLeaveScene)
 		m_poScene->OnObjLeaveScene(pObj);
 		pObj->nAOIMode = AOI_MODE_DROP;
 		pObj->poGameObj = NULL;
+		SubLineObj(pObj->nLine);
 	}
 }
 
@@ -377,6 +378,7 @@ void AOI::AddObserver(int nID)
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
+		XLog(LEVEL_ERROR, "AddObserver: id:%d aoi obj not exist or mode:%d error!\n", pObj->nAOIID, pObj->nAOIMode);
 		return;
 	}
 	pObj->nAOIMode |= AOI_MODE_OBSERVER;
@@ -472,6 +474,7 @@ void AOI::AddObserved(int nID)
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
+		XLog(LEVEL_ERROR, "AddObserved: id:%d aoi obj not exist or mode:%d error!\n", pObj->nAOIID, pObj->nAOIMode);
 		return;
 	}
 	

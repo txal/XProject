@@ -22,6 +22,8 @@ public:
 	Role* GetRoleByID(int nID);
 	Role* GetRoleBySS(uint16_t uServer, int nSession);
 
+	void BindSession(int nID, int nSession);
+
 public:
 	void Update(int64_t nNowMS);
 

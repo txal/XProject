@@ -188,3 +188,11 @@ int Actor::GetRunSpeed(lua_State* pState)
 	lua_pushinteger(pState, m_nRunSpeedY);
 	return 2;
 }
+
+int Actor::BindSession(lua_State* pState)
+{
+	int nSession = (int)lua_tointeger(pState, -1);
+	LogicServer * poLogic = (LogicServer*)g_poContext->GetService();
+	poLogic->GetRoleMgr()->BindSession(m_nObjID, nSession);
+	return 0;
+}

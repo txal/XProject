@@ -63,7 +63,7 @@ function CGPlayerMgr:MarkDirty(nRoleID, bDirty)
 end
 
 function CGPlayerMgr:RoleOnlineReq(nRoleID, tData)
-	print("CGPlayerMgr:RoleOnlineReq***", nRoleID, tData)
+	print("CGPlayerMgr:RoleOnlineReq***", nRoleID)
 	local oRole = self:GetRoleByID(nRoleID)
 	if oRole then
 		assert(tData.m_nServer == oRole:GetServer(), "角色服务器错误")

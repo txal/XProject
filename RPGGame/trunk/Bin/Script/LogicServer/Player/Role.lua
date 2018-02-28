@@ -1,13 +1,20 @@
 --角色对象
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
-function CRole:Ctor(oAccount, nID)
+local nAutoSaveTime = 3*60
+function CRole:Ctor(nServer, nSession, nRoleID)
     ------不保存------
     self.m_bDirty = false
-    self.m_oAccount = oAccount
+    self.m_nSaveTimer = nil
+    self.m_nServer = nServer
+    self.m_nSession = nSession
 
     ------保存--------
-    self.m_nID = nID
+    self.m_nSource = 0
+    self.m_nAccountID = 0
+    self.m_sAccountName = 0
+
+    self.m_nID = nRoleID
     self.m_nCreateTime = os.time()
     self.m_nOnlineTime = os.time()
     self.m_nOfflineTime = os.time()
@@ -19,6 +26,8 @@ function CRole:Ctor(oAccount, nID)
     self.m_tLastDup = {0, 0, 0} --mixdupid,x,y
     self.m_tCurrDup = {0, 0, 0} --mixdupid,x,y
 
+    self.m_nVIP = 0
+
     ------其他--------
     self.m_tModuleMap = {}  --映射
     self.m_tModuleList = {} --有序
@@ -27,11 +36,14 @@ function CRole:Ctor(oAccount, nID)
     self:LoadModuleData()
 
     -----Native-------
-    self.m_oNativeObj = goNativePlayerMgr:CreateRole(oAccount:GetID(), self:GetID(), self.m_sName, oAccount:GetServer(), oAccount:GetSession())
+    self.m_oNativeObj = goNativePlayerMgr:CreateRole(self.m_nID, self.m_nID, self.m_sName, self.m_nServer, self.m_nSession)
+    assert(self.m_oNativeObj, "创建C++对象失败")
+
 end
 
 function CRole:OnRelease()
-    goNativePlayerMgr:RemoveRole(self:GetAccountID())
+    goTimerMgr:Clear(self.m_nSaveTimer)
+    goNativePlayerMgr:RemoveRole(self.m_nID)
     self.m_oNativeObj = nil
 
     for nModuleID, oModule in pairs(self.m_tModuleMap) do
@@ -52,14 +64,23 @@ function CRole:RegisterModule(oModule)
     table.insert(self.m_tModuleList, oModule)
 end
 
+--注册自动保存
+function CRole:RegAutoSave()
+    goTimerMgr:Clear(self.m_nSaveTimer)
+    self.m_nSaveTimer = goTimerMgr:Interval(nAutoSaveTime, function() self:SaveData() end)
+end
+
 --加载角色数据
 function CRole:LoadSelfData()
     local nServer, nID = self:GetServer(), self:GetID()
     local sData = goDBMgr:GetSSDB(nServer, "user", nID):HGet(gtDBDef.sRoleDB, nID)
-    if sData == "" then 
-        return self:MarkDirty(true)
-    end
+    assert(sData ~= "", "角色不存在!!! : "..nID)
+
     local tData = cjson.decode(sData)
+
+    self.m_nSource = tData.m_nSource or 0
+    self.m_nAccountID = tData.m_nAccountID or 0
+    self.m_sAccountName = tData.m_sAccountName or ""
 
     self.m_nOnlineTime = tData.m_nOnlineTime or self.m_nOnlineTime
     self.m_nOfflineTime = tData.m_nOfflineTime or self.m_nOfflineTime
@@ -72,6 +93,7 @@ function CRole:LoadSelfData()
     self.m_nLevel = tData.m_nLevel
     self.m_tLastDup = tData.m_tLastDup
     self.m_tCurrDup = tData.m_tCurrDup
+    self.m_nVIP = tData.m_nVIP
 
 end
 
@@ -82,6 +104,10 @@ function CRole:SaveSelfData()
     end
     self:MarkDirty(false)
     local tData = {}
+
+    tData.m_nSource = self.m_nSource
+    tData.m_nAccountID = self.m_nAccountID
+    tData.m_sAccountName = self.m_sAccountName
 
     tData.m_nOnlineTime = self.m_nOnlineTime
     tData.m_nOfflineTime = self.m_nOfflineTime
@@ -95,6 +121,7 @@ function CRole:SaveSelfData()
 
     tData.m_tLastDup = self.m_tLastDup
     tData.m_tCurrDup = self.m_tCurrDup
+    tData.m_nVIP = self.m_nVIP
 
     local nServer, nID = self:GetServer(), self:GetID()
     goDBMgr:GetSSDB(nServer, "user", nID):HSet(gtDBDef.sRoleDB, nID, cjson.encode(tData))
@@ -150,12 +177,12 @@ function CRole:GetName() return self.m_sName end
 function CRole:GetGender() return self.m_nGender end
 function CRole:GetSchool() return self.m_nSchool end
 function CRole:GetLevel() return self.m_nLevel end
-function CRole:GetServer() return self.m_oAccount:GetServer() end
-function CRole:GetSession() return self.m_oAccount:GetSession() end
-function CRole:GetSource() return self.m_oAccount:GetSource() end
-function CRole:GetAccountID() return self.m_oAccount:GetID() end
-function CRole:GetAccountName() return self.m_oAccount:GetName() end
-function CRole:GetVIP() return self.m_oAccount:GetVIP() end
+function CRole:GetServer() return self.m_nServer end
+function CRole:GetSession() return self.m_nSession  end
+function CRole:GetSource() return self.m_nSource end
+function CRole:GetAccountID() return self.m_nAccountID end
+function CRole:GetAccountName() return self.m_sAccountName end
+function CRole:GetVIP() return self.m_nVIP end
 function CRole:GetCreateTime() return self.m_nCreateTime end
 function CRole:GetOnlineTime() return self.m_nOnlineTime end
 function CRole:GetOfflineTime() return self.m_nOfflineTime end
@@ -167,8 +194,8 @@ function CRole:GetPos() return self.m_oNativeObj:GetPos() end
 function CRole:GetSpeed() return self.m_oNativeObj:GetRunSpeed() end
 function CRole:GetDupMixID() return self.m_oNativeObj:GetDupMixID() end
 function CRole:GetNativeObj() return self.m_oNativeObj end
+function CRole:IsOnline(nSession) return self.m_nSession>0 end
 function CRole:BindSession(nSession) self.m_oNativeObj:BindSession(nSession) end
-
 
 --取角色身上的装备
 function CRole:GetEquipment()
@@ -247,6 +274,7 @@ function CRole:Online()
     print("CRole:Online***", self:GetAccountName(), self:GetName())
     self.m_nOnlineTime = os.time()
     self:MarkDirty(true)
+    self:RegAutoSave()
 
     --GLOBAL/WGLOBAL上线通知
     self:GlobalRoleOnline(true)
@@ -261,19 +289,46 @@ function CRole:Online()
 end
 
 --上线成功(注意:切换逻辑服不会调用)
-function CRole:AfterOnline()
+--@bReconnect: 是否重连
+function CRole:AfterOnline(bReconnect)
     --进入场景
     local tCurrDup = self:GetCurrDup() 
     local oDup = goDupMgr:GetDup(tCurrDup[1])
-    if not oDup then
-        local tLastDup = self:GetLastDup()
-        oDup = goDupMgr:GetDup(tLastDup[1])
-        if not oDup then
-            return LuaTrace("登录进入场景失败(不存在):", tLastDup[1])
+    if oDup then
+        if bReconnect then
+            self:OnEnterScene(oDup:GetMixID())
+            return oDup:AddObserver(self:GetAOIID())
+        else
+            return oDup:Enter(self.m_oNativeObj, tCurrDup[2], tCurrDup[3], -1)
         end
+    end
+
+    local tLastDup = self:GetLastDup()
+    oDup = goDupMgr:GetDup(tLastDup[1])
+    if not oDup then
+        return LuaTrace("登录进入场景失败(不存在):", tLastDup[1])
+    end
+    if bReconnect then
+        self:OnEnterScene(oDup:GetMixID())
+        return oDup:AddObserver(self:GetAOIID())
+    else
         return oDup:Enter(self.m_oNativeObj, tLastDup[2], tLastDup[3], -1)
     end
-    return oDup:Enter(self.m_oNativeObj, tCurrDup[2], tCurrDup[3], -1)
+end
+
+--断线(不清数据)
+function CRole:OnDisconnect()
+    self:BindSession(0)
+    self:SaveData()
+    --保存数据
+
+    --移除观察者身份
+    local tCurrDup = self:GetCurrDup() 
+    local oDup = goDupMgr:GetDup(tCurrDup[1])
+    oDup:RemoveObserver(self:GetAOIID())
+
+    --更新角色摘要到登录服
+    self:UpdateRoleSummary()
 end
 
 --角色下线(注意:切换逻辑服不会调用)
@@ -286,12 +341,13 @@ function CRole:Offline()
         oModule:Offline()
     end
     self:SaveData()
+    --离开场景
+    goDupMgr:LeaveDup(self:GetDupMixID(), self:GetAOIID())
 
     --GLOBAL/WGLOBAL下线通知
     self:GlobalRoleOnline(false)
-
-    --离开场景
-    goDupMgr:LeaveDup(self:GetDupMixID(), self:GetAOIID())
+    --更新角色摘要到登录服
+    self:UpdateRoleSummary()
 end
 
 --物品数量
@@ -397,14 +453,14 @@ end
 
 --取角色视野信息
 function CRole:GetViewData()
-    local tInfo = {}
-    tInfo.nAOIID = self:GetAOIID()
-    tInfo.nObjType = gtObjType.eRole
-    tInfo.nConfID = 0
-    tInfo.sName = self:GetName()
-    tInfo.nLevel = self:GetLevel()
-    tInfo.nPosX, tInfo.nPosY = self:GetPos()
-    tInfo.nSpeedX, tInfo.nSpeedY = self:GetSpeed()
+    local tInfo = {tBaseData={}}
+    tInfo.tBaseData.nAOIID = self:GetAOIID()
+    tInfo.tBaseData.nObjType = gtObjType.eRole
+    tInfo.tBaseData.nConfID = 0
+    tInfo.tBaseData.sName = self:GetName()
+    tInfo.tBaseData.nLevel = self:GetLevel()
+    tInfo.tBaseData.nPosX, tInfo.tBaseData.nPosY = self:GetPos()
+    tInfo.tBaseData.nSpeedX, tInfo.tBaseData.nSpeedY = self:GetSpeed()
     return tInfo
 end
 
@@ -422,9 +478,6 @@ function CRole:OnEnterScene(nDupMixID)
     tCurrDup[1] = nDupMixID
     tCurrDup[2], tCurrDup[3] = self:GetPos()
     self:MarkDirty(true)
-
-    --更新角色摘要
-    self.m_oAccount:UpdateRoleSummary()
 
     --通知GLOBAL/WGLOBAL
     local nDupID = GF.GetDupID(nDupMixID)
@@ -475,7 +528,7 @@ function CRole:OnObjEnterObj(tObserved)
         local nObjID, nObjType = oNativeObj:GetObjID(), oNativeObj:GetObjType()
 
        if nObjType == gtObjType.eRole then
-            local oRole = goRoleMgr:GetRoleByAccountID(nObjID)
+            local oRole = goPlayerMgr:GetRoleByID(nObjID)
             local tViewData = oRole:GetViewData()
             table.insert(tRoleList, tViewData)
 
@@ -503,4 +556,19 @@ function CRole:OnObjEnterObj(tObserved)
     if #tMonsterList > 0 then
         CmdNet.PBSrv2Clt("MonsterEnterViewRet", self:GetServer(), self:GetSession(), {tList=tMonsterList})
     end
+end
+
+--更新角色摘要信息
+function CRole:UpdateRoleSummary()
+    local tSummary = {}
+    tSummary.nID = nID
+    tSummary.sName = self:GetName()
+    tSummary.nLevel = self:GetLevel()
+    tSummary.nGender = self:GetGender()
+    tSummary.nSchool = self:GetSchool()
+    tSummary.tLastDup = self:GetLastDup()
+    tSummary.tCurrDup = self:GetCurrDup()
+    tSummary.tEquipment = self:GetEquipment()
+    goRemoteCall:Call("RoleUpdateSummaryReq", self:GetServer(), gtServerConf:GetLoginService(), self:GetSession()
+        , self:GetAccountID(), self:GetID(), tSummary)
 end

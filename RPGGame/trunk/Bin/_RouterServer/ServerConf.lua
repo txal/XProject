@@ -6,7 +6,7 @@ gtServerConf=
 	--路由服务
 	tRouterService=
 	{
-		{nID=1, sIP="127.0.0.1", nPort=8600},
+		{nID=1, sIP="127.0.0.1", nPort=10001},
 	},
 
 }

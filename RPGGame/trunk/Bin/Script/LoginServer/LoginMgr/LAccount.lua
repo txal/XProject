@@ -5,6 +5,10 @@ local table, string, math, os, pairs, ipairs, assert = table, string, math, os, 
 local nMaxAccountRole = 3
 --玩家ID上限
 local nMaxPlayerID = 9999999-nBASE_PLAYERID
+--断线玩家保留时间
+local nKeepObjTime = 60
+--定时保存时间
+local nAutoSaveTime = 3*60
 
 function CLAccount:Ctor(nServer, nSession, nID, nSource, sName)
 	self.m_nID = nID
@@ -19,7 +23,12 @@ function CLAccount:Ctor(nServer, nSession, nID, nSource, sName)
 	--不保存
 	self.m_nOnlineRoleID = 0 		--当前在线角色ID(同时只允许一个角色在线)
 	self.m_nSession = nSession
+	self.m_bDirty = false
 
+	self.m_nKeepTimer = nil
+	self.m_nSaveTimer = nil
+
+	self:LoadData()
 end
 
 function CLAccount:LoadData()
@@ -35,11 +44,21 @@ function CLAccount:LoadData()
 		self.m_nLastRoleID = tData.m_nLastRoleID
 		self.m_nVIP = tData.m_nVIP or 0
 	else
-		self:SaveData()
+		self:MarkDirty(true)
 	end
+	self:RegAutoSave()
+end
+
+function CLAccount:RegAutoSave()
+	self.m_nSaveTimer = goTimerMgr:Interval(nAutoSaveTime, function() self:SaveData() end)
 end
 
 function CLAccount:SaveData()
+	if not self:IsDirty() then
+		return
+	end
+	self:MarkDirty(false)
+
 	local tData = {}
 	tData.m_nID = self.m_nID
 	tData.m_sName = self.m_sName
@@ -53,21 +72,31 @@ function CLAccount:SaveData()
 	goDBMgr:GetSSDB(self:GetServer(), "user", self:GetID()):HSet(gtDBDef.sAccountDB, self:GetID(), cjson.encode(tData)) 
 end
 
+function CLAccount:OnRelease()
+	goTimerMgr:Clear(self.m_nKeepTimer)
+	goTimerMgr:Clear(self.m_nSaveTimer)
+
+end
+
+function CLAccount:IsDirty() return self.m_bDirty end
+function CLAccount:MarkDirty(bDirty) self.m_bDirty = bDirty end
+
 function CLAccount:GetID() return self.m_nID end
 function CLAccount:GetName() return self.m_sName end
 function CLAccount:GetSource() return self.m_nScoure end
 function CLAccount:GetServer() return self.m_nServer end
 function CLAccount:GetSession() return self.m_nSession end
 function CLAccount:GetOnlineRoleID() return self.m_nOnlineRoleID end
-function CLAccount:BindSession(nSession) return self.m_nSession = nSession end
+function CLAccount:BindSession(nSession) self.m_nSession = nSession end
 
 --角色登陆成功
 function CLAccount:RoleOnline(nRoleID)
 	print("CLAccount:RoleOnline***", nRoleID)
 	self.m_nLastRoleID = nRoleID
-	self:SaveData()
+	self:MarkDirty(true)
 
 	self.m_nOnlineRoleID = nRoleID
+	goTimerMgr:Clear(self.m_nKeepTimer)
 end
 
 --角色离线成功
@@ -75,6 +104,14 @@ function CLAccount:RoleOffline()
 	print("CLAccount:RoleOffline***", self:GetName())
 	self.m_nSession = 0
 	self.m_nOnlineRoleID = 0
+	goTimerMgr:Clear(self.m_nKeepTimer)
+end
+
+--角色断线
+function CLAccount:OnDisconnect()
+	self.m_nSession = 0
+	goTimerMgr:Clear(self.m_nKeepTimer)
+	self.m_nKeepTimer = goTimerMgr:Interval(nKeepObjTime, function() goLoginMgr:RoleOffline(self:GetID()) end)
 end
 
 --生成唯一账号/角色ID
@@ -182,10 +219,13 @@ function CLAccount:CreateRole(nConfID, sName)
 		return CRole:Tips("角色名已被占用")
 	end
 
-	local tBorn = tRoleConf.tBorn[1]
 	--保存角色数据
+	local tBorn = tRoleConf.tBorn[1]
 	local nRoleID = self:GenPlayerID()
 	local tData = {
+		m_nSource = self:GetSource(),
+		m_nAccountID = self:GetID(),
+		m_sAccountName = self:GetName(),
 		m_nCreateTime = os.time(),
 		m_nID = nRoleID,
 		m_sName = sName,
@@ -203,17 +243,23 @@ function CLAccount:CreateRole(nConfID, sName)
 		nID = nRoleID,
 		sName = sName,
 		nLevel = 1,
-		tEquipment = {},
 		nGender = tRoleConf.nGender,
 		nSchool = tRoleConf.nSchool,
 		tLastDup = {0, 0, 0},
 		tCurrDup = {tRoleConf.nInitDup, tBorn[1], tBorn[2]},
+		tEquipment = {},
 	}
 
-	self:SaveData()
+	self:MarkDirty(true)
 	return self:RoleLogin(nRoleID)
 end
 
 --删除角色
 function CLAccount:DeleteRole(nID)
+end
+
+--更新角色摘要
+function CLAccount:UpdateRoleSummary(nRoleID, tSummary)
+	self.m_tRoleSummaryMap[nRoleID] = tSummary
+	self:MarkDirty(true)
 end

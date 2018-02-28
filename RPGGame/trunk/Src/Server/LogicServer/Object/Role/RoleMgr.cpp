@@ -82,6 +82,24 @@ Role* RoleMgr::GetRoleBySS(uint16_t uServer, int nSession)
 	return NULL;
 }
 
+void RoleMgr::BindSession(int nID, int nSession)
+{
+	Role* poRole = GetRoleByID(nID);
+	if (poRole == NULL)
+		return;
+	int nOldSession = poRole->GetSession();
+	if (nOldSession == nSession)
+		return;
+
+	poRole->SetSession(nSession);
+
+	int nOldSSKey = GenSSKey(poRole->GetServer(), nOldSession);
+	m_oRoleSSMap.erase(nOldSSKey);
+
+	int nNewSSKey = GenSSKey(poRole->GetServer(), nSession);
+	m_oRoleSSMap[nNewSSKey] = poRole;
+}
+
 void RoleMgr::Update(int64_t nNowMS)
 {
 	static float nFRAME_MSTIME = 1000.0f / 30.0f;

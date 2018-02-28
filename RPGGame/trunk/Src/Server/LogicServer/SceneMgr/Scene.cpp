@@ -111,6 +111,7 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 	int nObjID = poObj->GetID();
 	int nObjType = poObj->GetType();
 
+	//可以重复进入场景(不添加对象,只同步视野)
 	if (m_oObjMap.find(nObjID) != m_oObjMap.end())
 	{
 		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%d\n", nObjID, nObjType, m_uSceneMixID);
@@ -354,7 +355,7 @@ int Scene::MoveObj(lua_State* pState)
 int Scene::RemoveObserver(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	m_oAOI.RemoveObserver(nAOIID);
+	m_oAOI.RemoveObserver(nAOIID, true);
 	return 0;
 }
 
@@ -369,14 +370,16 @@ int Scene::AddObserver(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
 	m_oAOI.AddObserver(nAOIID);
-	return 0;
+	lua_pushinteger(pState, nAOIID);
+	return 1;
 }
 
 int Scene::AddObserved(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
 	m_oAOI.AddObserved(nAOIID);
-	return 0;
+	lua_pushinteger(pState, nAOIID);
+	return 1;
 }
 
 int Scene::GetAreaObservers(lua_State* pState)

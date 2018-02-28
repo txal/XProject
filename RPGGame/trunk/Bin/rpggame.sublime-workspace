@@ -4,6 +4,70 @@
 		"selected_items":
 		[
 			[
+				"m_o",
+				"m_oNativeObj"
+			],
+			[
+				"m_nS",
+				"m_nSession"
+			],
+			[
+				"nOls",
+				"nOldSession"
+			],
+			[
+				"nOlS",
+				"nOldServer"
+			],
+			[
+				"nOlds",
+				"nOldSession"
+			],
+			[
+				"_",
+				"_RoleLogin"
+			],
+			[
+				"nOldS",
+				"nOldSession"
+			],
+			[
+				"nOl",
+				"nOldSession"
+			],
+			[
+				"nSe",
+				"nSession"
+			],
+			[
+				"nSs",
+				"nSession"
+			],
+			[
+				"nOlsS",
+				"nOldSession"
+			],
+			[
+				"nRo",
+				"nRoleID"
+			],
+			[
+				"nRole",
+				"nRoleOnlineID"
+			],
+			[
+				"GetS",
+				"GetSession"
+			],
+			[
+				"nTarS",
+				"nTarServer"
+			],
+			[
+				"m_n",
+				"m_nKeepTimer"
+			],
+			[
 				"Remo",
 				"RemoveByIndex"
 			],
@@ -16,20 +80,12 @@
 				"FilterUp"
 			],
 			[
-				"nTarS",
-				"nTarService"
-			],
-			[
 				"nTar",
 				"nTarServer"
 			],
 			[
 				"nTarSe",
 				"nTarSession"
-			],
-			[
-				"nSe",
-				"nServer"
 			],
 			[
 				"m",
@@ -42,10 +98,6 @@
 			[
 				"nS",
 				"nSchool"
-			],
-			[
-				"GetS",
-				"GetServer"
 			],
 			[
 				"GetSE",
@@ -78,10 +130,6 @@
 			[
 				"Ge",
 				"GetID"
-			],
-			[
-				"m_nS",
-				"m_nSchool"
 			],
 			[
 				"GetSe",
@@ -316,10 +364,6 @@
 				"GetMaxTiLi"
 			],
 			[
-				"_",
-				"_MingChenSkillConf"
-			],
-			[
 				"GetY",
 				"GetYuanBao"
 			],
@@ -470,55 +514,139 @@
 			[
 				"litt",
 				"littleEndian"
-			],
-			[
-				"li",
-				"limitation"
-			],
-			[
-				"buil",
-				"builder"
-			],
-			[
-				"builder",
-				"builderMap"
-			],
-			[
-				"bui",
-				"builder"
-			],
-			[
-				"prot",
-				"protoBuilder"
-			],
-			[
-				"log",
-				"log"
-			],
-			[
-				"to",
-				"totalCont"
-			],
-			[
-				"pro",
-				"protoFiles"
-			],
-			[
-				"buid",
-				"build"
-			],
-			[
-				"_pro",
-				"_protoBuf"
-			],
-			[
-				"file",
-				"filename"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "Script/LoginServer/LoginMgr/LoginMgr.lua",
+			"settings":
+			{
+				"buffer_size": 9016,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/LogicServer/Player/PlayerMgr.lua",
+			"settings":
+			{
+				"buffer_size": 4250,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/LogicServer/Player/Account.lua",
+			"settings":
+			{
+				"buffer_size": 4223,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/LogicServer/Player/Role.lua",
+			"settings":
+			{
+				"buffer_size": 15573,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/LogicServer/Dup/DupBase.lua",
+			"settings":
+			{
+				"buffer_size": 2767,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/XProject/GMMgr/login.php",
+			"settings":
+			{
+				"buffer_size": 878,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/XProject/RPGGame/trunk/Data/Protobuf/scene.proto",
+			"settings":
+			{
+				"buffer_size": 1093,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/Network/CmdNetworkInc.lua",
+			"settings":
+			{
+				"buffer_size": 9452,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/LogicServer/Global/GMMgr/GMMgr.lua",
+			"settings":
+			{
+				"buffer_size": 6271,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/RemoteCall/RemoteCall.lua",
+			"settings":
+			{
+				"buffer_size": 3405,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/Network/RpcNetworkInc.lua",
+			"settings":
+			{
+				"buffer_size": 4011,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/LoginServer/LoginMgr/LAccount.lua",
+			"settings":
+			{
+				"buffer_size": 6200,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/GlobalServer/GPlayer/GPlayerMgr.lua",
+			"settings":
+			{
+				"buffer_size": 2907,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/RobotClt/RobotConf.lua",
+			"settings":
+			{
+				"buffer_size": 46,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "_LocalServer/ServerConf.lua",
+			"settings":
+			{
+				"buffer_size": 1336,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "_WorldServer/ServerConf.lua",
+			"settings":
+			{
+				"buffer_size": 710,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -556,14 +684,18 @@
 	},
 	"expanded_folders":
 	[
-		"/E/XProject/RPGGame/trunk/Bin/Script",
-		"/E/XProject/RPGGame/trunk/Bin/Script/Common",
-		"/E/XProject/RPGGame/trunk/Bin/Script/Common/DataStruct",
-		"/E/XProject/RPGGame/trunk/Bin/Script/Common/RemoteCall",
-		"/E/XProject/RPGGame/trunk/Bin/Script/Common/TimerMgr"
+		"/E/XProject/GMMgr",
+		"/E/XProject/GMMgr/mysql"
 	],
 	"file_history":
 	[
+		"/E/XProject/RPGGame/trunk/Bin/Script/LogicServer/Player/Role.lua",
+		"/E/XProject/RPGGame/trunk/Bin/Script/LogicServer/Player/PlayerMgr.lua",
+		"/E/XProject/RPGGame/trunk/Bin/_RouterServer/ServerConf.lua",
+		"/E/XProject/RPGGame/trunk/Bin/Script/LoginServer/LoginMgr/LoginMgr.lua",
+		"/E/XProject/RPGGame/trunk/Bin/Script/LoginServer/LoginMgr/LAccount.lua",
+		"/E/XProject/RPGGame/trunk/Bin/_WorldServer/ServerConf.lua",
+		"/E/XProject/RPGGame/trunk/Bin/_LocalServer/ServerConf.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common/RemoteCall/RemoteCallInc.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common/Network/RpcNetworkInc.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common/DataStruct/Algorithm.lua",
@@ -572,11 +704,7 @@
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common/RemoteCall/RemoteCall.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/LoginServer/LoginMgr/LoginMgrInc.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/LogicServer/Player/Account.lua",
-		"/E/XProject/RPGGame/trunk/Bin/Script/LogicServer/Player/PlayerMgr.lua",
-		"/E/XProject/RPGGame/trunk/Bin/Script/LogicServer/Player/Role.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common/DBMgr/DBDef.lua",
-		"/E/XProject/RPGGame/trunk/Bin/Script/LoginServer/LoginMgr/LoginMgr.lua",
-		"/E/XProject/RPGGame/trunk/Bin/Script/LoginServer/LoginMgr/LAccount.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/LoginServer/LoginMgr/Account.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/GlobalServer/Browser/Browser.lua",
 		"/E/XProject/RPGGame/trunk/Bin/Script/Common/Logger/Logger.lua",
@@ -688,14 +816,11 @@
 		"/E/Games/King/Runtime/trunk/Client/assets/scripts/network/cmdDef.js",
 		"/E/Games/King/Runtime/trunk/Client/assets/scripts/module/mingchen/mingchenRpc.js",
 		"/E/Games/King/Runtime/trunk/Server/Script/LogicServer/Player/Player.lua",
-		"/E/Games/King/Runtime/trunk/Server/ServerConf.lua",
-		"/E/Games/King/Runtime/trunk/Server/Script/Common/CmdProto/CmdDef.lua",
-		"/E/Games/King/Runtime/trunk/Client/assets/scripts/3rd/protoBuilder.js",
-		"/E/Games/King/Runtime/trunk/Client/assets/scripts/network/tcpNet.js"
+		"/E/Games/King/Runtime/trunk/Server/ServerConf.lua"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -722,6 +847,53 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"observer",
+			"AfterOnline",
+			"GetAOIID",
+			"GetCurrDup",
+			"BindSession",
+			"discon",
+			"Dis",
+			"m_tAccountSSMap",
+			"_RoleLogin",
+			"角色登陆成功",
+			"nNewSSKey",
+			"oAccount",
+			"m_tAccountSSMap",
+			"OnClientClose",
+			"GetViewData",
+			"m_nLevel",
+			"GetLevel",
+			"GetViewData",
+			"RegAutoSave",
+			"nOldSession",
+			"goRoleMgr",
+			"online(",
+			"online",
+			"OnRelease",
+			"m_oNativeObj",
+			"updater",
+			"nSession",
+			"SetSessioin",
+			"OtherPlaceLogin",
+			"OnClientClose",
+			"nConfID",
+			"sRole",
+			"CreateRole",
+			"nOldSSKey",
+			"nRoleOnlineID",
+			"req",
+			"onlinereq",
+			"onliner",
+			"90",
+			"rechar",
+			"goLoginMgr",
+			"RoleOffline",
+			"m_nKeepTimer",
+			"nOldSession",
+			"BindSession",
+			"RoleDisconnect",
+			"discon",
 			"m_pHeap",
 			"BuildHeap",
 			"MinHeap",
@@ -802,54 +974,7 @@
 			"m_tAwardMap",
 			"onrechr",
 			"onrech",
-			"recharges",
-			"娘娘",
-			"openac",
-			"娘娘",
-			"PlayRaningAward",
-			"HDCircle",
-			"HDCircleInc",
-			"GMOpenAct",
-			"jjcno",
-			"GetTotalAttrPer",
-			"UpdateAttr",
-			"MaxTalentLv",
-			"InitTalent",
-			"MaxTalentLv",
-			"maxtal",
-			"elseif",
-			"m_nTalentLevel",
-			"m_nTalentLv",
-			"m_nTalentLevel",
-			"talen",
-			"tanlent",
-			"m_nTalentLevel",
-			"m_tDupMsg",
-			"nAddYL",
-			"SyncDupInfo",
-			"dupms",
-			"msg",
-			"TurnNextDup",
-			"NormalBattle",
-			"m_tDupMsg",
-			"MatchEnemy",
-			"offlin",
-			"tList",
-			"addyin",
-			"AddYinLiang",
-			"level",
-			"m_nFZID",
-			"AutoSetBL",
-			"auto",
-			"m_nLeiDengCount",
-			"AutoSetBL",
-			"auto",
-			"m_tMCGroup",
-			"AutoSetBL",
-			"m_tMCGroup",
-			"NormalBattle",
-			"MarkDirty",
-			"gen"
+			"recharges"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -857,6 +982,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"goPlayerMgr",
 			"CLAccount",
 			"CLoginMgr",
 			"m_nSaveTimer",
@@ -983,8 +1109,7 @@
 			"CBox",
 			"nTeamMembers",
 			"_gen_born_pos",
-			"tGun, tVal",
-			"tFTAttrType"
+			"tGun, tVal"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -999,19 +1124,505 @@
 		},
 		{
 			"path": "E:\\XProject\\RPGGame\\trunk\\Data\\Protobuf"
+		},
+		{
+			"path": "E:\\XProject\\GMMgr"
 		}
 	],
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Script/LoginServer/LoginMgr/LoginMgr.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9016,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3601,
+								3601
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2070.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Script/LogicServer/Player/PlayerMgr.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4250,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2446,
+								2446
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1297.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Script/LogicServer/Player/Account.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3307,
+								3307
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1946.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Script/LogicServer/Player/Role.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15573,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14809,
+								14809
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 10009.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Script/LogicServer/Dup/DupBase.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2767,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1027,
+								1027
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 395.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/E/XProject/GMMgr/login.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 878,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/E/XProject/RPGGame/trunk/Data/Protobuf/scene.proto",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1093,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								880,
+								880
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 528.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Script/Common/Network/CmdNetworkInc.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9452,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6241,
+								6241
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2904.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Script/LogicServer/Global/GMMgr/GMMgr.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6271,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								982,
+								982
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Script/Common/RemoteCall/RemoteCall.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3405,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1346,
+								1346
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 486.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "Script/Common/Network/RpcNetworkInc.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4011,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3733,
+								3733
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1302.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "Script/LoginServer/LoginMgr/LAccount.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6200,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2484,
+								2484
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1459.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "Script/GlobalServer/GPlayer/GPlayerMgr.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2907,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1647,
+								1647
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 967.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "Script/RobotClt/RobotConf.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 46,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								44,
+								44
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "_LocalServer/ServerConf.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1336,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								362,
+								362
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "_WorldServer/ServerConf.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 710,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								146,
+								146
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 36.0
+		"height": 38.0
 	},
 	"input":
 	{
@@ -1052,7 +1663,7 @@
 	"project": "",
 	"replace":
 	{
-		"height": 66.0
+		"height": 70.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1061,6 +1672,86 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"dupb",
+				"Script\\LogicServer\\Dup\\DupBase.lua"
+			],
+			[
+				"lacc",
+				"Script\\LoginServer\\LoginMgr\\LAccount.lua"
+			],
+			[
+				"role",
+				"Script\\LogicServer\\Player\\Role.lua"
+			],
+			[
+				"playerl",
+				"Script\\LogicServer\\Player\\PlayerMgr.lua"
+			],
+			[
+				"scene",
+				"Protobuf\\scene.proto"
+			],
+			[
+				"login.p",
+				"GMMgr\\login.php"
+			],
+			[
+				"loginm",
+				"Script\\LoginServer\\LoginMgr\\LoginMgr.lua"
+			],
+			[
+				"login",
+				"GMMgr\\login.php"
+			],
+			[
+				"account",
+				"Script\\LogicServer\\Player\\Account.lua"
+			],
+			[
+				"lac",
+				"Script\\LoginServer\\LoginMgr\\LAccount.lua"
+			],
+			[
+				"accou",
+				"Script\\LogicServer\\Player\\Account.lua"
+			],
+			[
+				"rpcne",
+				"Script\\Common\\Network\\RpcNetworkInc.lua"
+			],
+			[
+				"remo",
+				"Script\\Common\\RemoteCall\\RemoteCall.lua"
+			],
+			[
+				"gmm",
+				"Script\\LogicServer\\Global\\GMMgr\\GMMgr.lua"
+			],
+			[
+				"playerm",
+				"Script\\LogicServer\\Player\\PlayerMgr.lua"
+			],
+			[
+				"cmdn",
+				"Script\\Common\\Network\\CmdNetworkInc.lua"
+			],
+			[
+				"gplayrm",
+				"Script\\GlobalServer\\GPlayer\\GPlayerMgr.lua"
+			],
+			[
+				"roboc",
+				"Script\\RobotClt\\RobotConf.lua"
+			],
+			[
+				"la",
+				"Script\\LoginServer\\LoginMgr\\LAccount.lua"
+			],
+			[
+				"plam",
+				"Script\\LogicServer\\Player\\PlayerMgr.lua"
+			],
 			[
 				"rpcn",
 				"Script\\Common\\Network\\RpcNetworkInc.lua"
@@ -1074,14 +1765,6 @@
 				"Script\\LogicServer\\Player\\Role.lua"
 			],
 			[
-				"role",
-				"Script\\LogicServer\\Player\\Role.lua"
-			],
-			[
-				"account",
-				"Script\\LogicServer\\Player\\Account.lua"
-			],
-			[
 				"db",
 				"Script\\Common\\DBMgr\\DBDef.lua"
 			],
@@ -1092,10 +1775,6 @@
 			[
 				"accoun",
 				"Script\\LogicServer\\Player\\Account.lua"
-			],
-			[
-				"playerm",
-				"Script\\LogicServer\\Player\\PlayerMgr.lua"
 			],
 			[
 				"hbm",
@@ -1114,24 +1793,12 @@
 				"Script\\Common\\Logger\\Logger.lua"
 			],
 			[
-				"login",
-				"Protobuf\\login.proto"
-			],
-			[
 				"ro",
 				"LogicServer\\Player\\Role.lua"
 			],
 			[
 				"rl",
 				"LogicServer\\Player\\Role.lua"
-			],
-			[
-				"plam",
-				"LogicServer\\Player\\PlayerMgr.lua"
-			],
-			[
-				"cmdn",
-				"Common\\Network\\CmdNetworkInc.lua"
 			],
 			[
 				"itemd",
@@ -1490,10 +2157,6 @@
 				"Script\\LogicServer\\Module\\NeiGe\\NeiGe.lua"
 			],
 			[
-				"gmm",
-				"Script\\LogicServer\\Global\\GMMgr\\GMMgr.lua"
-			],
-			[
 				"talk",
 				"Script\\LogicServer\\Global\\Talk\\Talk.lua"
 			],
@@ -1520,58 +2183,6 @@
 			[
 				"gm",
 				"Script\\LogicServer\\Global\\GMMgr\\GMMgr.lua"
-			],
-			[
-				"achie",
-				"Protobuf\\achievements.proto"
-			],
-			[
-				"gate",
-				"hdmgr\\gateway\\gateway.php"
-			],
-			[
-				"conf",
-				"hdmgr\\config.php"
-			],
-			[
-				"config",
-				"hdmgr\\config.php"
-			],
-			[
-				"guoku",
-				"Script\\LogicServer\\Module\\GuoKu\\GuoKu.lua"
-			],
-			[
-				"item",
-				"Script\\LogicServer\\ItemDef.lua"
-			],
-			[
-				"imtd",
-				"Script\\LogicServer\\ItemDef.lua"
-			],
-			[
-				"playerr",
-				"Script\\LogicServer\\Player\\PlayerRpc.lua"
-			],
-			[
-				"playerrp",
-				"scripts\\module\\player\\playerRpc.js"
-			],
-			[
-				"modu",
-				"Script\\LogicServer\\Module\\ModuleBase.lua"
-			],
-			[
-				"minchen",
-				"Script\\LogicServer\\Module\\MingChen\\MingChen.lua"
-			],
-			[
-				"mingc",
-				"Protobuf\\mingchen.proto"
-			],
-			[
-				"player.",
-				"Script\\LogicServer\\Player\\Player.lua"
 			]
 		],
 		"width": 0.0

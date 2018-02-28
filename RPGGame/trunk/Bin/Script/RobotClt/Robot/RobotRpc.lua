@@ -50,8 +50,8 @@ function CltPBProc.RoleLeaveSceneRet(nCmd, nSrcServer, nSrcService, nTarSession,
     print("CltPBProc.RoleLeaveSceneRet***", tData)
 end
 
-function CltPBProc.RoleEnterVieRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    print("CltPBProc.RoleEnterVieRet***", tData)
+function CltPBProc.RoleEnterViewRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+    print("CltPBProc.RoleEnterViewRet***", tData)
     local tList = tData.tList
 end
 

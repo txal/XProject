@@ -1,24 +1,19 @@
 
 
 ---------------服务器内部----------------
---更新角色摘要数据(登录服务)
-function Srv2Srv.RoleUpdateSummaryReq(nSrcServer, nSrcService, nTarSession, nAccountID)
-	return goPlayerMgr:RoleUpdateSummaryReq(nAccountID)
-end
-
 --角色上线通知(登录服务)
 function Srv2Srv.RoleOnlineReq(nSrcServer, nSrcService, nTarSession, nAccountID, nRoleID)
 	return goPlayerMgr:RoleOnlineReq(nSrcServer, nTarSession, nAccountID, nRoleID)
 end
 
 --角色下线通知(登录服务)
-function Srv2Srv.RoleOfflineReq(nSrcServer, nSrcService, nTarSession, nAccountID)
-	return goPlayerMgr:RoleOfflineReq(nAccountID)
+function Srv2Srv.RoleOfflineReq(nSrcServer, nSrcService, nTarSession, nRoleID)
+	return goPlayerMgr:RoleOfflineReq(nRoleID)
 end
 
 --角色断线通知(登录服务)
-function Srv2Srv.RoleDisconnectReq(nSrcServer, nSrcService, nTarSession, nAccountID)
-    return goPlayerMgr:RoleDisconnectReq(nAccountID)
+function Srv2Srv.RoleDisconnectReq(nSrcServer, nSrcService, nTarSession, nRoleID)
+    return goPlayerMgr:RoleDisconnectReq(nRoleID)
 end
 
 
@@ -40,7 +35,7 @@ function Srv2Srv.RoleAddItemReq(nSrcServer, nSrcService, nTarSession, nAccountID
 end
 
 --切换逻辑服请求([W]LOGIC服务)
---@nSrcServer: 源服务器ID,可能是世界服
+--@nSrcServer: 源服务器ID(可能是世界服)
 function Srv2Srv.SwitchLogicReq(nSrcServer, nSrcService, nTarSession, nAccountServer, nAccountID, nRoleID, nSrcDupID, nTarDupID, nPosX, nPosY, nLine)
     print("切换逻辑服:", nSrcDupID.."->"..nTarDupID, nPosX, nPosY, nLine)
     goPlayerMgr:OnlineReq(nAccountServer, nTarSession, nAccountID, nRoleID, true)
