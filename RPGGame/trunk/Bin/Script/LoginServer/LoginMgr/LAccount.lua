@@ -111,7 +111,7 @@ end
 function CLAccount:OnDisconnect()
 	self.m_nSession = 0
 	goTimerMgr:Clear(self.m_nKeepTimer)
-	self.m_nKeepTimer = goTimerMgr:Interval(nKeepObjTime, function() goLoginMgr:RoleOffline(self:GetID()) end)
+	self.m_nKeepTimer = goTimerMgr:Interval(nKeepObjTime, function() goLoginMgr:AccountOffline(self:GetID()) end)
 end
 
 --生成唯一账号/角色ID
@@ -198,16 +198,17 @@ function CLAccount:RoleLogin(nRoleID)
 	CmdNet.PBSrv2Clt("RoleLoginRet", self:GetServer(), self:GetSession(), {nAccountID=self:GetID(), nRoleID=nRoleID})
 
 	--通知逻辑服登录成功
-	goRemoteCall:Call("RoleOnlineReq", self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), nRoleID) 
+	goRemoteCall:Call("RoleOnlineReq", self:GetServer(), self:GetLogic(), self:GetSession(), nRoleID) 
 	return true
 end
 
 --创建角色
 function CLAccount:CreateRole(nConfID, sName)
 	print("CLAccount:CreateRole***", nConfID, sName)
+	sName = string.Trim(sName)
+	assert(string.len(sName)>0 and string.len(sName)<=5*3, "名字长度错误")
 
 	local tRoleConf = assert(ctRoleInitConf[nConfID])
-
 	if self.m_nOnlineRoleID > 0 then
 		return self:Tips("需要先退出当前登陆角色")
 	end
@@ -221,6 +222,8 @@ function CLAccount:CreateRole(nConfID, sName)
 
 	--保存角色数据
 	local tBorn = tRoleConf.tBorn[1]
+	local nRndX, nRndY = GF.RandPos(tBorn[1], tBorn[2], 10)
+
 	local nRoleID = self:GenPlayerID()
 	local tData = {
 		m_nSource = self:GetSource(),
@@ -229,11 +232,12 @@ function CLAccount:CreateRole(nConfID, sName)
 		m_nCreateTime = os.time(),
 		m_nID = nRoleID,
 		m_sName = sName,
-		m_nLevel = 1,
+		m_nLevel = 0,
 		m_nGender = tRoleConf.nGender,
 		m_nSchool = tRoleConf.nSchool,
 		m_tLastDup = {0, 0, 0},
-		m_tCurrDup = {tRoleConf.nInitDup, tBorn[1], tBorn[2]},
+		m_tCurrDup = {tRoleConf.nInitDup, nRndX, nRndY},
+		m_bCreate = true, --是否创建新角色,给逻辑服用
 	}
 	goDBMgr:GetSSDB(self:GetServer(), "user", nRoleID):HSet(gtDBDef.sRoleDB, nRoleID, cjson.encode(tData))
 
@@ -242,15 +246,16 @@ function CLAccount:CreateRole(nConfID, sName)
 		nCreateTime = os.time(),
 		nID = nRoleID,
 		sName = sName,
-		nLevel = 1,
+		nLevel = 0,
 		nGender = tRoleConf.nGender,
 		nSchool = tRoleConf.nSchool,
 		tLastDup = {0, 0, 0},
-		tCurrDup = {tRoleConf.nInitDup, tBorn[1], tBorn[2]},
+		tCurrDup = {tRoleConf.nInitDup, nRndX, nRndY},
 		tEquipment = {},
 	}
 
 	self:MarkDirty(true)
+	goLogger:CreateRoleLog(self:GetID(), nRoleID, sName, 1)
 	return self:RoleLogin(nRoleID)
 end
 

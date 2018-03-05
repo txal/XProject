@@ -16,9 +16,9 @@ end
 --使用宝箱
 function CPropBX:Use(nNum)
 	assert(nNum > 0, "参数错误")
-	local oPlayer = self.m_oModule.m_oPlayer
+	local oRole = self.m_oModule.m_oRole
 	if self:GetNum() < nNum then
-		return oPlayer:Tips("道具不足")
+		return oRole:Tips("道具不足")
 	end
 	self.m_oModule:SubGridItem(self:GetSysID(), self:GetGrid(), nNum, "使用道具")
 
@@ -38,8 +38,8 @@ function CPropBX:Use(nNum)
 	local tAwardList = {}
 	for _, tItem in pairs(tAwardMap) do
 		table.insert(tAwardList, tItem)
-		oPlayer:AddItem(tItem.nType, tItem.nID, tItem.nNum, "使用道具")
+		oRole:AddItem(tItem.nType, tItem.nID, tItem.nNum, "使用道具")
 	end
-	CmdNet.PBSrv2Clt(oPlayer:GetSession(), "GuoKuUseItemRet", {nPropID=tConf.nID, nPropNum=nNum, tAwardList=tAwardList})
+	CmdNet.PBSrv2Clt(oRole:GetSession(), "GuoKuUseItemRet", {nPropID=tConf.nID, nPropNum=nNum, tAwardList=tAwardList})
 	return true
 end

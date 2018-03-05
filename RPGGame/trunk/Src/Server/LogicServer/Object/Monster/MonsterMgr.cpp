@@ -19,8 +19,8 @@ Monster* MonsterMgr::CreateMonster(int nID, int nConfID, const char* psName, int
 	Monster* poMonster = GetMonsterByID(nID);
 	if (poMonster != NULL)
 	{
-		XLog(LEVEL_ERROR, "CreateMonster: %d exist\n", nID);
-		return NULL;
+		XLog(LEVEL_ERROR, "CreateMonster error for monster id:%d exist\n", nID);
+		return poMonster;
 	}
 	poMonster = XNEW(Monster);
 	poMonster->Init(nID, nConfID, psName);

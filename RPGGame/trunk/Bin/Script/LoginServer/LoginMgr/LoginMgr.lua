@@ -38,34 +38,39 @@ function CLoginMgr:GetAccountBySS(nServer, nSession)
 	return self.m_tAccountSSMap[nSSKey]
 end
 
---角色下线
-function CLoginMgr:RoleOffline(nAccountID)
+--账号下线(清理数据)
+function CLoginMgr:AccountOffline(nAccountID)
 	local oAccount = self:GetAccountByID(nAccountID)
 	if not oAccount then
-		return
-	end
-	local nOnlineRoleID = oAccount:GetOnlineRoleID()
-	if nOnlineRoleID <= 0 then
 		return
 	end
 
 	local nServer = oAccount:GetServer()
 	local nSession = oAccount:GetSession()
+	local nSSKey = self:MakeSSKey(nServer, nSession)
+
 	local nSource = oAccount:GetSource()
 	local sAccount = oAccount:GetName()
-	local nSSKey = self:MakeSSKey(nServer, nSession)
 	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
 
-	goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
-		local oAccount = self:GetAccountByID(nAccountID)
-		if oAccount then
-			oAccount:RoleOffline()
-			oAccount:OnRelease()
+	local nOnlineRoleID = oAccount:GetOnlineRoleID()
+	if nOnlineRoleID <= 0 then
+		self.m_tAccountIDMap[nAccountID] = nil
+		self.m_tAccountNameMap[sAccountKey] = nil
+		self.m_tAccountSSMap[nSSKey] = nil
+		return
+	end
 
-			self.m_tAccountIDMap[nAccountID] = nil
-			self.m_tAccountNameMap[sAccountKey] = nil
-			self.m_tAccountSSMap[nSSKey] = nil
+	goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+		if nAccountID <= 0 then
+			return LuaTrace("账号离线失败", nAccountID)
 		end
+		oAccount:RoleOffline()
+		oAccount:OnRelease()
+		self.m_tAccountIDMap[nAccountID] = nil
+		self.m_tAccountNameMap[sAccountKey] = nil
+		self.m_tAccountSSMap[nSSKey] = nil
+
 	end, nServer, oAccount:GetLogic(), nSession, nOnlineRoleID)
 end
 
@@ -152,6 +157,8 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount)
 			nAccountID = CLAccount:GenPlayerID()
 			oDB:HSet(gtDBDef.sAccountNameDB, sAccountKey, cjson.encode({nAccountID=nAccountID}))
 			oDB:HSet(gtDBDef.sAccountNameDB, nAccountID, cjson.encode({nSource=nSource, sAccount=sAccount}))
+			goLogger:CreateAccountLog(nSource, nAccountID, sAccount, 0)
+
 		else
 			nAccountID = cjson.decode(sData).nAccountID
 		end
@@ -180,6 +187,10 @@ function CLoginMgr:RoleCreateReq(nServer, nSession, nAccountID, nConfID, sRole)
 	local nOnlineRoleID = oAccount:GetOnlineRoleID()
 	if nOnlineRoleID > 0 then
 		goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+			if nAccountID <= 0 then
+				return LuaTrace("账号离线失败", nAccountID)
+			end
+
 			oAccount:RoleOffline() --离线操作
 			oAccount:BindSession(nSession)
 
@@ -248,6 +259,9 @@ function CLoginMgr:RoleLoginReq(nServer, nSession, nAccountID, nRoleID)
 			else
 			--不同角色就先清理当前角色数据再登陆新角色
 				goRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+					if nAccountID <= 0 then
+						return LuaTrace("账号离线失败", nAccountID)
+					end
 					oAccount:RoleOffline() --离线操作
 					_RoleLogin(oAccount, nSession, nOldServer, nOldSession)
 
@@ -306,6 +320,7 @@ end
 
 --更新角色摘要
 function CLoginMgr:RoleUpdateSummaryReq(nAccountID, nRoleID, tSummary)
+	print("CLoginMgr:RoleUpdateSummaryReq***", nAccountID, nRoleID)
 	local oAccount = self:GetAccountByID(nAccountID)
 	if not oAccount then
 		return LuaTrace("账号未登陆", nAccountID)

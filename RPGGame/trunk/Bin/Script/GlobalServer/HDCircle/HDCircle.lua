@@ -80,17 +80,9 @@ function CHDCircle:OnMinTimer()
 	self:OpenAct(tConfList)
 end
 
---取开服到现在的天数
-function CHDCircle:GetSrvOpenDay()
-	local nNowSec = os.time()
-	local nPassTime = nNowSec - goServerMgr:GetOpenZeroTime()
-	local nDay = math.ceil(nPassTime/(24*3600))
-	return nDay
-end
-
 --取要开启的活动ID
 function CHDCircle:GetNeedOpenAct()
-	local nOpenDay = self:GetSrvOpenDay()
+	local nOpenDay = goServerMgr:GetOpenDays(gnServerID)
 	local nRawOpenDay = nOpenDay
 	nOpenDay = nOpenDay % (nMaxCircleDay+1)
 	if nOpenDay == 0 then

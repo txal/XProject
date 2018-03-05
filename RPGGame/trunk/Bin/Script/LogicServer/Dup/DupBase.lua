@@ -104,6 +104,16 @@ function CDupBase:Enter(oNativeObj, nPosX, nPosY, nLine)
     assert(type(oNativeObj) == "userdata")
     nLine = nLine or -1 --默认为自动分线
 
+    --先离开旧副本
+    local nCurrMixID = oNativeObj:GetDupMixID()
+    if nCurrMixID == self:GetMixID() then
+        return LuaTrace("角色已经在副本中:", GF.GetDupID(nCurrMixID))
+    end
+    if nCurrMixID > 0 then
+        goDupMgr:LeaveDup(nCurrMixID, oNativeObj:GetAOIID())
+    end
+
+    --进入新副本
     local nAOIMode = CDupBase.tAOIType.eObserved
     if oNativeObj:GetSessionID() > 0 then --掉线的玩家没有观察者身份
         nAOIMode = nAOIMode | CDupBase.tAOIType.eObserver

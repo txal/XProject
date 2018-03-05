@@ -16,9 +16,9 @@ end
 --出售道具
 function CPropCL:Sell(nNum)
 	assert(nNum > 0, "参数错误")
-	local oPlayer = self.m_oModule.m_oPlayer
+	local oRole = self.m_oModule.m_oRole
 	if self:GetNum() < nNum then
-		return oPlayer:Tips("道具不足")
+		return oRole:Tips("道具不足")
 	end
 	local tConf = self:GetConf()
 	self.m_oModule:SubGridItem(self:GetSysID(), self:GetGrid(), nNum, "使用道具")
@@ -37,7 +37,7 @@ function CPropCL:Sell(nNum)
 	end
 
 	for _, tItem in pairs(tAwardMap) do
-		oPlayer:AddItem(tItem.nType, tItem.nID, tItem.nNum, "出售道具")
+		oRole:AddItem(tItem.nType, tItem.nID, tItem.nNum, "出售道具")
 	end
 	return true
 end

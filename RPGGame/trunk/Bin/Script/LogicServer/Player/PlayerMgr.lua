@@ -33,7 +33,7 @@ end
 --角色登陆成功请求
 --@nServer: 角色所属的服务器
 --@nSession: 角色的会话ID
-function CPlayerMgr:RoleOnlineReq(nServer, nSession, nAccountID, nRoleID, bSwitchLogic)
+function CPlayerMgr:RoleOnlineReq(nServer, nSession, nRoleID, bSwitchLogic)
 	print("CPlayerMgr:RoleOnlineReq***", nRoleID, nRoleID, bSwitchLogic)
 	assert(nServer < 10000, "角色来源不能是世界服!")
 	local oRole = self:GetRoleByID(nRoleID)
@@ -43,24 +43,28 @@ function CPlayerMgr:RoleOnlineReq(nServer, nSession, nAccountID, nRoleID, bSwitc
 
 	local bReconnect = false
 	if not oRole then
-		oRole = CRole:new(nServer, nSession, nRoleID)
+		oRole = CRole:new(nServer, nRoleID)
 	else
 		bReconnect = true
 		assert(oRole:GetServer() == nServer, "服务器错误")
-		assert(oRole:GetAccountID() == nAccountID, "账号ID错误")
 		assert(oRole:GetID() == nRoleID, "角色错误")
 		assert(oRole:GetSession() == 0, "会话ID错误")
-		oRole:BindSession(nSession)
 	end
+	oRole:BindSession(nSession)
 
+	--切换逻辑服不调用Online
 	if not bSwitchLogic then
 		oRole:Online()
 	end
 
-	local nSSKey = self:MakeSSKey(nServer, nSession)
-	self.m_tRoleSSMap[nSSKey] = oRole
 	self.m_tRoleIDMap[nRoleID] = oRole
+	--可能队长带队,队员离线
+	if nSession > 0 then
+		local nSSKey = self:MakeSSKey(nServer, nSession)
+		self.m_tRoleSSMap[nSSKey] = oRole
+	end
 
+	--切换逻辑服不调用
 	if not bSwitchLogic then
 		oRole:AfterOnline(bReconnect)
 		goLogger:EventLog(gtEvent.eLogin, oRole, oRole:GetOnlineTime()-oRole:GetOfflineTime())
@@ -117,6 +121,17 @@ function CPlayerMgr:RoleDisconnectReq(nRoleID)
 	self.m_tRoleSSMap[nSSKey] = nil
 	oRole:OnDisconnect()
 	return oRole:GetAccountID()
+end
+
+--切换逻辑服请求
+function CPlayerMgr:OnSwitchLogicReq(nRoleSession, nRoleServer, nRoleID, nSrcDupMixID, nTarDupMixID, nPosX, nPosY, nLine)
+	local nSrcDupID = GF.GetDupID(nSrcDupMixID)
+	local nTarDupID = GF.GetDupID(nTarDupMixID)
+    print("切换逻辑服:", nSrcDupID.."->"..nTarDupID, nRoleServer, nRoleSession, nPosX, nPosY, nLine)
+
+    self:RoleOnlineReq(nRoleServer, nRoleSession, nRoleID, true)
+    local oRole = self:GetRoleByID(nRoleID)
+    goDupMgr:EnterDupCreate(nTarDupMixID, oRole:GetNativeObj(), nPosX, nPosY, nLine)
 end
 
 

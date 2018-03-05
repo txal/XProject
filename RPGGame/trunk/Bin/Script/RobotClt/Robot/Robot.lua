@@ -21,6 +21,7 @@ end
 function CRobot:GetSession() return self.m_nSessionID end
 function CRobot:GetName() return self.m_sName end
 function CRobot:IsLogged() return self.m_bLogged end
+function CRobot:GetID() return self.m_nRoleID end
 
 function CRobot:PacketID()
     local oNativeRobot = goNativeRobotMgr:GetRobot(self.m_nSessionID)

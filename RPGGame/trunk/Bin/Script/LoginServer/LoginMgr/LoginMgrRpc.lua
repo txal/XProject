@@ -24,6 +24,6 @@ function SrvCmdProc.OnClientClose(nCmd, nSrcServer, nSrcService, nTarSession)
 end
 
 --更新角色摘要(LOGIC)
-function Srv2Src.RoleUpdateSummaryReq(nSrcServer, nSrcService, nTarSession, nAccountID, nRoleID, tSummary)
-	goLoginMgr:RoleUpdateSummaryReq(nRoleID, tSummary)
+function Srv2Srv.RoleUpdateSummaryReq(nSrcServer, nSrcService, nTarSession, nAccountID, nRoleID, tSummary)
+	goLoginMgr:RoleUpdateSummaryReq(nAccountID, nRoleID, tSummary)
 end

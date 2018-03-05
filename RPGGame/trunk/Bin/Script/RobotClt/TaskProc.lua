@@ -92,5 +92,5 @@ _tTaskProc["enterdup"] = function(tParam, sTask)
 	local oRobot = goRobotMgr:RndRobot()
 	if not oRobot then return end
 	local nDupID = tonumber(tParam[1])
-	CmdNet.PBClt2Srv("RoleEnterSceneReq", oRobot:PacketID(), oRobot:GetSession(), {nDupID=nDupID})
+	CmdNet.PBClt2Srv("RoleEnterSceneReq", oRobot:PacketID(), oRobot:GetSession(), {nDupMixID=nDupID, nRoleID=oRobot:GetID()})
 end

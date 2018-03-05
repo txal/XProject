@@ -565,3 +565,189 @@
 2018-02-28 15:33:14.402 [DEBUG] server.cpp(241): new link from 127.0.0.1:16264, fd: 20, links: 2
 2018-02-28 15:33:15.677 [DEBUG] server.cpp(241): new link from 127.0.0.1:16270, fd: 21, links: 3
 2018-02-28 15:33:29.891 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountNameDB pRobot0, resp: ok {"nAccountID":1000003}
+2018-02-28 15:36:23.252 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 1000004 [152], resp: ok 0
+2018-02-28 16:15:48.452 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:2552.775
+2018-02-28 16:15:50.510 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:2556.108
+2018-02-28 16:15:55.081 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:3572.046
+2018-02-28 16:17:11.103 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-02-28 16:17:11.104 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-02-28 16:17:11.111 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-02-28 16:17:11.114 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-02-28 16:17:11.114 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-02-28 16:17:11.158 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-02-28 16:17:11.164 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-02-28 17:30:51.440 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/global/ssdb.conf
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_global_log.txt
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-02-28 17:30:51.442 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-02-28 17:30:51.443 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-02-28 17:30:51.616 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 23,
+2018-02-28 17:30:51.701 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-02-28 17:30:51.701 [INFO ] server.cpp(146):     allow 192.168
+2018-02-28 17:30:51.707 [INFO ] server.cpp(171): server listen on 0.0.0.0:10011
+2018-02-28 17:30:51.707 [INFO ] server.cpp(181): auth: off
+2018-02-28 17:30:51.708 [DEBUG] cluster.cpp(13): Cluster init
+2018-02-28 17:30:51.708 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-02-28 17:30:51.708 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-02-28 17:30:51.708 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 12900
+2018-02-28 17:30:51.708 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-02-28 17:30:51.708 [DEBUG] worker.cpp(17): writer 0 init
+2018-02-28 17:30:51.708 [DEBUG] worker.cpp(17): reader 0 init
+2018-02-28 17:30:51.708 [DEBUG] worker.cpp(17): reader 1 init
+2018-02-28 17:30:51.709 [DEBUG] worker.cpp(17): reader 2 init
+2018-02-28 17:30:51.709 [DEBUG] worker.cpp(17): reader 3 init
+2018-02-28 17:30:51.709 [DEBUG] worker.cpp(17): reader 4 init
+2018-02-28 17:30:51.709 [DEBUG] worker.cpp(17): reader 5 init
+2018-02-28 17:30:51.709 [DEBUG] worker.cpp(17): reader 6 init
+2018-02-28 17:30:51.710 [DEBUG] worker.cpp(17): reader 7 init
+2018-02-28 17:30:51.710 [DEBUG] worker.cpp(17): reader 8 init
+2018-02-28 17:30:51.710 [DEBUG] worker.cpp(17): reader 9 init
+2018-02-28 17:30:53.599 [DEBUG] server.cpp(241): new link from 127.0.0.1:18601, fd: 20, links: 1
+2018-02-28 17:30:53.603 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hkeys GlobalRoleDB "" "" 18446744073709551615, resp: ok 1000002 1000004 1000006 1000008 1000010
+2018-02-28 17:30:53.604 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000002, resp: ok [152]
+2018-02-28 17:30:53.605 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000004, resp: ok [152]
+2018-02-28 17:30:53.605 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000006, resp: ok [152]
+2018-02-28 17:30:53.607 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000008, resp: ok [154]
+2018-02-28 17:30:53.610 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000010, resp: ok [152]
+2018-02-28 17:30:53.613 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget NoticeDB data, resp: not_found
+2018-02-28 17:30:53.616 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget HDCircleDB data, resp: not_found
+2018-02-28 17:30:54.552 [DEBUG] server.cpp(241): new link from 127.0.0.1:18611, fd: 21, links: 2
+2018-02-28 17:31:31.756 [DEBUG] server.cpp(241): new link from 127.0.0.1:18626, fd: 22, links: 3
+2018-02-28 17:32:13.257 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountNameDB pRobot0, resp: ok {"nAccountID":1000003}
+2018-02-28 17:32:13.265 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleNameDB pRobot0, resp: not_found
+2018-02-28 17:35:53.660 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 1000011 [152], resp: ok 1
+2018-02-28 17:40:53.668 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 1000011 [152], resp: ok 0
+2018-02-28 17:44:13.280 [DEBUG] server.cpp(411): fd: 22, read: -1, delete link, s:761.524
+2018-02-28 17:44:14.301 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:799.749
+2018-02-28 17:44:16.154 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:802.555
+2018-03-04 21:23:46.436 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(47): conf_file        : ./DB/global/ssdb.conf
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_global_log.txt
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 1000000000
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-03-04 21:23:46.438 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-03-04 21:23:46.580 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 24,
+2018-03-04 21:23:46.684 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-03-04 21:23:46.684 [INFO ] server.cpp(146):     allow 192.168
+2018-03-04 21:23:46.692 [INFO ] server.cpp(171): server listen on 0.0.0.0:10011
+2018-03-04 21:23:46.692 [INFO ] server.cpp(181): auth: off
+2018-03-04 21:23:46.692 [DEBUG] cluster.cpp(13): Cluster init
+2018-03-04 21:23:46.692 [DEBUG] ttl.cpp(113): load 0 keys into fast_keys
+2018-03-04 21:23:46.692 [INFO ] serv.cpp(331): key_range.kv: "", ""
+2018-03-04 21:23:46.692 [INFO ] ssdb-server.cpp(85): pidfile: ./ssdb.pid, pid: 10144
+2018-03-04 21:23:46.692 [INFO ] ssdb-server.cpp(86): ssdb server started.
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): writer 0 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 0 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 1 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 2 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 3 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 4 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 5 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 6 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 7 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 8 init
+2018-03-04 21:23:46.693 [DEBUG] worker.cpp(17): reader 9 init
+2018-03-04 21:37:51.980 [DEBUG] server.cpp(241): new link from 127.0.0.1:61590, fd: 13, links: 1
+2018-03-04 21:45:30.953 [DEBUG] server.cpp(241): new link from 127.0.0.1:61796, fd: 14, links: 2
+2018-03-04 21:45:34.402 [DEBUG] server.cpp(241): new link from 127.0.0.1:61809, fd: 20, links: 3
+2018-03-04 21:45:34.423 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hkeys GlobalRoleDB "" "" 18446744073709551615, resp: ok 1000002 1000004 1000006 1000008 [2 more...]
+2018-03-04 21:45:34.425 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000002, resp: ok [152]
+2018-03-04 21:45:34.427 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000004, resp: ok [152]
+2018-03-04 21:45:34.429 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000006, resp: ok [152]
+2018-03-04 21:45:34.431 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000008, resp: ok [154]
+2018-03-04 21:45:34.433 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000010, resp: ok [152]
+2018-03-04 21:45:34.436 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000011, resp: ok [152]
+2018-03-04 21:45:34.439 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget NoticeDB data, resp: not_found
+2018-03-04 21:45:34.449 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget HDCircleDB data, resp: not_found
+2018-03-04 21:47:22.525 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:108.123
+2018-03-04 21:47:23.508 [DEBUG] server.cpp(411): fd: 14, read: -1, delete link, s:112.555
+2018-03-04 21:47:25.976 [DEBUG] server.cpp(411): fd: 13, read: -1, delete link, s:573.996
+2018-03-04 21:47:38.989 [DEBUG] server.cpp(241): new link from 127.0.0.1:61854, fd: 13, links: 1
+2018-03-04 21:47:40.017 [DEBUG] server.cpp(241): new link from 127.0.0.1:61867, fd: 14, links: 2
+2018-03-04 21:47:40.674 [DEBUG] server.cpp(241): new link from 127.0.0.1:61871, fd: 20, links: 3
+2018-03-04 21:47:40.685 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hkeys GlobalRoleDB "" "" 18446744073709551615, resp: ok 1000002 1000004 1000006 1000008 [2 more...]
+2018-03-04 21:47:40.686 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000002, resp: ok [152]
+2018-03-04 21:47:40.688 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000004, resp: ok [152]
+2018-03-04 21:47:40.690 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000006, resp: ok [152]
+2018-03-04 21:47:40.691 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000008, resp: ok [154]
+2018-03-04 21:47:40.693 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000010, resp: ok [152]
+2018-03-04 21:47:40.694 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000011, resp: ok [152]
+2018-03-04 21:47:40.696 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget NoticeDB data, resp: not_found
+2018-03-04 21:47:40.698 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget HDCircleDB data, resp: not_found
+2018-03-04 21:50:01.646 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hget AccountNameDB pRobot0, resp: ok {"nAccountID":1000003}
+2018-03-04 21:58:57.870 [DEBUG] server.cpp(411): fd: 14, read: -1, delete link, s:677.853
+2018-03-04 22:00:53.061 [DEBUG] server.cpp(241): new link from 127.0.0.1:62123, fd: 14, links: 3
+2018-03-04 22:13:23.099 [DEBUG] server.cpp(411): fd: 14, read: -1, delete link, s:750.038
+2018-03-04 22:13:41.388 [DEBUG] server.cpp(241): new link from 127.0.0.1:62350, fd: 14, links: 3
+2018-03-04 22:16:56.482 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget AccountNameDB pRobot1, resp: ok {"nAccountID":1000001}
+2018-03-04 22:16:56.493 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget AccountNameDB pRobot2, resp: not_found
+2018-03-04 22:16:56.562 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountNameDB pRobot2 {"nAccountID":10012}, resp: ok 1
+2018-03-04 22:16:56.564 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountNameDB 10012 {"nSource":0,"sAccount":"pRobot2"}, resp: ok 1
+2018-03-04 22:17:41.106 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 1000011 [152], resp: ok 0
+2018-03-04 22:22:08.490 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleNameDB pRobot1, resp: not_found
+2018-03-04 22:22:41.187 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 1000011 [152], resp: ok 0
+2018-03-04 22:25:42.812 [DEBUG] server.cpp(411): fd: 13, read: -1, delete link, s:2283.823
+2018-03-04 22:25:45.807 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:2285.133
+2018-03-04 22:25:52.778 [DEBUG] server.cpp(411): fd: 14, read: -1, delete link, s:731.390
+2018-03-04 22:26:04.745 [DEBUG] server.cpp(241): new link from 127.0.0.1:62588, fd: 13, links: 1
+2018-03-04 22:26:05.772 [DEBUG] server.cpp(241): new link from 127.0.0.1:62599, fd: 14, links: 2
+2018-03-04 22:26:05.796 [DEBUG] server.cpp(336): w:2.000,p:0.000, req: hkeys GlobalRoleDB "" "" 18446744073709551615, resp: ok 1000002 1000004 1000006 1000008 [2 more...]
+2018-03-04 22:26:05.798 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000002, resp: ok [152]
+2018-03-04 22:26:05.799 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000004, resp: ok [152]
+2018-03-04 22:26:05.800 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000006, resp: ok [152]
+2018-03-04 22:26:05.803 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000008, resp: ok [154]
+2018-03-04 22:26:05.805 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget GlobalRoleDB 1000010, resp: ok [152]
+2018-03-04 22:26:05.806 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget GlobalRoleDB 1000011, resp: ok [152]
+2018-03-04 22:26:05.811 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget NoticeDB data, resp: not_found
+2018-03-04 22:26:05.815 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget HDCircleDB data, resp: not_found
+2018-03-04 22:26:06.662 [DEBUG] server.cpp(241): new link from 127.0.0.1:62608, fd: 20, links: 3
+2018-03-04 22:26:28.236 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountNameDB pRobot0, resp: ok {"nAccountID":1000003}
+2018-03-04 22:26:54.100 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountNameDB xRobot1, resp: not_found
+2018-03-04 22:26:54.105 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hset AccountNameDB xRobot1 {"nAccountID":10014}, resp: ok 1
+2018-03-04 22:26:54.107 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountNameDB 10014 {"sAccount":"xRobot1","nSource":0}, resp: ok 1
+2018-03-04 22:26:54.117 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hget RoleNameDB xRobot1, resp: not_found
+2018-03-04 22:31:05.858 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 1000011 [152], resp: ok 0
+2018-03-04 22:33:39.999 [DEBUG] server.cpp(411): fd: 13, read: -1, delete link, s:455.254
+2018-03-04 22:33:44.686 [DEBUG] server.cpp(241): new link from 127.0.0.1:62767, fd: 13, links: 3
+2018-03-04 22:34:10.476 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget AccountNameDB bRobot0, resp: not_found
+2018-03-04 22:34:10.481 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hset AccountNameDB bRobot0 {"nAccountID":10016}, resp: ok 1
+2018-03-04 22:34:10.482 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountNameDB 10016 {"sAccount":"bRobot0","nSource":0}, resp: ok 1
+2018-03-04 22:34:10.490 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleNameDB bRobot0, resp: not_found
+2018-03-04 22:37:44.511 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget AccountNameDB cRobot0, resp: not_found
+2018-03-04 22:37:44.515 [DEBUG] server.cpp(336): w:0.000,p:1.000, req: hset AccountNameDB cRobot0 {"nAccountID":10018}, resp: ok 1
+2018-03-04 22:37:44.516 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountNameDB 10018 {"sAccount":"cRobot0","nSource":0}, resp: ok 1
+2018-03-04 22:37:44.530 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget RoleNameDB cRobot0, resp: not_found
+2018-03-04 22:39:10.810 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountNameDB pRobot0, resp: ok {"nAccountID":1000003}
+2018-03-04 22:41:06.015 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 1000011 [152], resp: ok 0
+2018-03-04 22:51:08.989 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountNameDB pRobot0, resp: ok {"nAccountID":1000003}
+2018-03-04 22:51:26.991 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountNameDB abRobot0, resp: not_found
+2018-03-04 22:51:26.996 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hset AccountNameDB abRobot0 {"nAccountID":10020}, resp: ok 1
+2018-03-04 22:51:26.997 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountNameDB 10020 {"sAccount":"abRobot0","nSource":0}, resp: ok 1
+2018-03-04 22:51:27.005 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleNameDB abRobot0, resp: not_found
+2018-03-04 22:56:06.195 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 10021 [150], resp: ok 1
+2018-03-04 22:56:06.196 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset GlobalRoleDB 1000011 [152], resp: ok 0
+2018-03-04 22:59:33.409 [DEBUG] server.cpp(411): fd: 14, read: -1, delete link, s:2007.637
+2018-03-04 22:59:38.384 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:2011.722
+2018-03-04 22:59:39.693 [DEBUG] server.cpp(411): fd: 13, read: -1, delete link, s:1555.007
+2018-03-05 09:49:42.537 [DEBUG] server.cpp(304): long loop time: 20876.965

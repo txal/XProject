@@ -67,20 +67,18 @@ function CGPlayerMgr:RoleOnlineReq(nRoleID, tData)
 	local oRole = self:GetRoleByID(nRoleID)
 	if oRole then
 		assert(tData.m_nServer == oRole:GetServer(), "角色服务器错误")
-		oRole:Online(tData.m_nSession)
-		local nSSKey = self:MakeSSKey(oRole:GetServer(), oRole:GetSession())
-		self.m_tRoleSSMap[nSSKey] = oRole
 
 	else
-		local oRole = CGRole:new()
-		oRole:Init(tData)
-
+		oRole = CGRole:new()
 		self.m_tRoleIDMap[nRoleID] = oRole
-		local nSSKey = self:MakeSSKey(oRole:GetServer(), oRole:GetSession())
-		self.m_tRoleSSMap[nSSKey] = oRole
-		self:MarkDirty(nRoleID, true)
 
 	end
+	oRole:Init(tData)
+	oRole:Online()
+
+	local nSSKey = self:MakeSSKey(oRole:GetServer(), oRole:GetSession())
+	self.m_tRoleSSMap[nSSKey] = oRole
+	self:MarkDirty(nRoleID, true)
 end
 
 function CGPlayerMgr:RoleOfflineReq(nRoleID)

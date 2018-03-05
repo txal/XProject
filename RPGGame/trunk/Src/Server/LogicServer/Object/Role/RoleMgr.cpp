@@ -19,7 +19,7 @@ Role* RoleMgr::CreateRole(int nID, int nConfID, const char* psName, uint16_t uSe
 	if (poRole != NULL)
 	{
 		XLog(LEVEL_ERROR, "CreateRole error for role id:%d exist\n", nID);
-		return NULL;
+		return poRole;
 	}
 	poRole = GetRoleBySS(uServer, nSession);
 	if (poRole != NULL)

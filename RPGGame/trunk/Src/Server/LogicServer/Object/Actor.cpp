@@ -137,7 +137,7 @@ void Actor::SyncPosition(const char* pWhere)
 	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
 	oNavi.uTarServer = GetServer();
 	oNavi.nTarSession = GetSession();
-	NetAdapter::SendExter(NSCltSrvCmd::sSyncActorPos, poPacket, oNavi);
+	NetAdapter::SendExter(NSCltSrvCmd::sSyncActorPosRet, poPacket, oNavi);
 }
 
 void Actor::BroadcastStartRun()
@@ -150,7 +150,7 @@ void Actor::BroadcastStartRun()
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY;
 	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorStartRun, poPacket, goNaviCache);
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStartRunRet, poPacket, goNaviCache);
 }
 
 void Actor::BroadcastStopRun()
@@ -164,7 +164,7 @@ void Actor::BroadcastStopRun()
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y;
 	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorStopRun, poPacket, goNaviCache);
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStopRunRet, poPacket, goNaviCache);
 }
 
 

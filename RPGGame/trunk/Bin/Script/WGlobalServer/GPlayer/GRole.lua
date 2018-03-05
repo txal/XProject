@@ -70,8 +70,7 @@ function CGRole:GetLogic()
     return 0
 end
 
-function CGRole:Online(nSession)
-    self.m_nSession = nSession
+function CGRole:Online()
 end
 
 function CGRole:Offline()

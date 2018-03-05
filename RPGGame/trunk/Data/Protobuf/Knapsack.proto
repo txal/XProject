@@ -1,4 +1,4 @@
-package guoku;
+package knapsack;
 
 //道具
 message _Item 
@@ -9,45 +9,45 @@ message _Item
 }
 
 //道具列表
-message GuoKuItemListRet
+message KnapsackItemListRet
 {
 	repeated _Item tItemList = 1;	//道具列表
 }
 
 //道具增加通知
-message GuoKuItemAddRet
+message KnapsackItemAddRet
 {
 	repeated _Item tItemList = 1;	//道具列表
 }
 
 //道具删除通知
-message GuoKuItemRemoveRet
+message KnapsackItemRemoveRet
 {
 	repeated int32 tGrid = 1; 		//格子列表
 }
 
 //道具数量变更通知
-message GuoKuItemModRet
+message KnapsackItemModRet
 {
 	repeated _Item tItemList = 1; 	//道具列表
 }
 
 //出售道具请求
-message GuoKuSellItemReq
+message KnapsackSellItemReq
 {
 	required int32 nGrid = 1; 	//道具格子
 	required int32 nNum = 2; 	//道具数量
 }
 
 //使用道具请求
-message GuoKuUseItemReq
+message KnapsackUseItemReq
 {
 	required int32 nGrid = 1; 	//道具格子	
 	required int32 nNum = 2; 	//道具数量
 }
 
 //使用道具成功返回
-message GuoKuUseItemRet
+message KnapsackUseItemRet
 {
 	message _Award
 	{
@@ -61,7 +61,7 @@ message GuoKuUseItemRet
 }
 
 //使用随机属性宝箱成功返回
-message GuoKuUseAttrBoxRet
+message KnapsackUseAttrBoxRet
 {
 	message _Award
 	{
@@ -79,13 +79,13 @@ message GuoKuUseAttrBoxRet
 }
 
 //道具合成请求
-message GuoKuComposeReq
+message KnapsackComposeReq
 {
 	required int32 nID = 1; 	//合成道具ID	
 }
 
 //道具合成成功返回
-message GuoKuComposeRet
+message KnapsackComposeRet
 {
 	required int32 nType = 1; 	//物品类型
 	required int32 nID = 2; 	//物品ID

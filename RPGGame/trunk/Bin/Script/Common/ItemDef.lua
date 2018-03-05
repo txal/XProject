@@ -11,7 +11,12 @@ gtCurrType =
 {
 	eVIP = 1, 		--VIP等级
 	eYuanBao = 2,	--元宝
-	eYinLiang = 3,	--银两
+	eYinBi = 3,		--银币
+	eTongBi = 4,	--铜币
+	eVitality = 5, 	--活力
+	nExp = 6, 		--经验
+	eStoreExp = 7, 	--储备经验
+	ePotential = 8, --潜力点
 }
 
 --道具类型
@@ -24,43 +29,16 @@ gtPropType =
 	eXiaoHao = 5, 		--消耗品(在道具界面可以直接使用)
 }
 
---道具详细类型
+--道具具体类型
 gtDetType = 
 {
 }
 
---资质类型
-gtQuaType = 
-{
-	eShang = 1, 		--商
-	eNong = 2, 			--农
-	eZheng = 3, 		--政
-	eJun = 4, 			--军
-}
-
---资质名
-gtQuaNameMap = 
-{
-	[1] = "智力",
-	[2] = "才力",
-	[3] = "魅力",
-	[4] = "武力",
-}
-
---属性值
-gtAttrMap = 
-{
-	[1]	= gtCurrType.eShang, 	--商
-	[2] = gtCurrType.eNong,		--农
-	[3] = gtCurrType.eZheng,	--政
-	[4] = gtCurrType.eJun, 		--军
-}
-
---货币道具映射
+--货币类型->货币道具映射
 gtCurrProp = 
 {
 	[gtCurrType.eYuanBao] = 10001, 	--元宝
-	[gtCurrType.eYinLiang] = 10002, --银两
+	[gtCurrType.eYinBi] = 10002, 	--银币
 }
 
 --场景对象类型
@@ -68,4 +46,14 @@ gtObjType =
 {
 	eRole = 1,	 	--角色对象
 	eMonster = 2, 	--怪物对象
+}
+
+--门派类型
+gtSchoolType = 
+{
+	eGW = 1, 	--鬼王
+	eQY = 2, 	--青云
+	eTY = 3,	--天音
+	eHH = 4, 	--合欢
+	eSW = 5, 	--圣巫
 }

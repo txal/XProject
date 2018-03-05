@@ -13,9 +13,11 @@ MysqlDriver::MysqlDriver()
 
 MysqlDriver::~MysqlDriver()
 {
+	XLog(LEVEL_INFO, "MysqlDriver destruct!\n");
     if (m_pMysql != NULL)
     {
         mysql_close(m_pMysql);
+		mysql_thread_end();
     }
     if (m_pMysqlRes != NULL)
     {
@@ -35,6 +37,7 @@ bool MysqlDriver::Connect(const char* pHost, uint16_t nPort, const char* pDB, co
 		XLog(LEVEL_ERROR, "Mysql init fail\n");
 		return false;
 	}
+
 	my_bool bReconnect = true;
 	int nQueryTimeOut = MYSQL_QUERY_TIMEOUT;
 	int nConnectTimeOut = MYSQL_CONN_TIMEOUT;
@@ -42,6 +45,7 @@ bool MysqlDriver::Connect(const char* pHost, uint16_t nPort, const char* pDB, co
 	mysql_options(m_pMysql, MYSQL_OPT_WRITE_TIMEOUT, (char*)&nQueryTimeOut); 
 	mysql_options(m_pMysql, MYSQL_OPT_READ_TIMEOUT, (char*)&nQueryTimeOut); 
 	mysql_options(m_pMysql, MYSQL_OPT_RECONNECT, (char*)&bReconnect); 
+
 	if (!mysql_real_connect(m_pMysql, pHost, pUsr, pPwd, pDB, nPort, NULL, CLIENT_COMPRESS | CLIENT_MULTI_RESULTS | CLIENT_MULTI_STATEMENTS))
 	{
 		XLog(LEVEL_ERROR, "Mysql connect error: %s\n", mysql_error(m_pMysql));
@@ -54,6 +58,7 @@ bool MysqlDriver::Connect(const char* pHost, uint16_t nPort, const char* pDB, co
 		m_pMysql = NULL;
 		return false;
 	}
+
 	return true;
 }
 
@@ -71,11 +76,17 @@ bool MysqlDriver::Query(const char* pCmd)
 	}
 	m_pMysqlRow	= NULL;
 	m_pMysqlFields = NULL;
+
+	//多线程环境下需要调用mysql_thread_init,否则触发重连会崩溃
+	mysql_thread_init();
 	if (mysql_query(m_pMysql, pCmd))
 	{
+		mysql_thread_end();
 		XLog(LEVEL_ERROR, "%s(%s)\n", mysql_error(m_pMysql), pCmd);
 		return false;
 	}
+	mysql_thread_end();
+
 	int nStatus = 0;
 	bool bResult = true;
 	do

@@ -74,8 +74,7 @@ message RoleCurrencyRet
 message RoleLevelRet
 {
     required int32 nLevel = 1;      //等级
-    required int32 nMaxLevel = 2;   //最大等级
-    required double nExp = 3;       //当前经验
-    required double nNextExp = 4;   //下一级经验
+    required double nExp = 2;       //当前经验
+    required double nNextExp = 3;   //下一级经验
 }
 

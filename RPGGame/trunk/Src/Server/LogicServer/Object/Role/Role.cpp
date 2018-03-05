@@ -54,21 +54,23 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
 	{
-		XLog(LEVEL_ERROR, "%s can not run: scene:%d\n", m_sName, m_poScene ? m_poScene->GetSceneMixID() : 0);
+		XLog(LEVEL_ERROR, "%s role not in scene\n", m_sName);
 		return;
 	}
+
+	int nRoleID = 0;
 	uint16_t uPosX = 0;
 	uint16_t uPosY = 0;
 
 	int16_t nSpeedX = 0;
 	int16_t nSpeedY = 0;
 
-	uint32_t uClientMSTime = 0;
+	int64_t nClientMSTime = 0;
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> uClientMSTime;
+	goPKReader >> nRoleID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> nClientMSTime;
 
 	//客户端提供的时间值必须大于起始时间值
-	if (uClientMSTime < m_nClientRunStartMSTime)
+	if (nClientMSTime < m_nClientRunStartMSTime)
 	{
 		XLog(LEVEL_ERROR,  "%s sync pos for start run client time invalid\n", m_sName);
 		Actor::SyncPosition();
@@ -86,7 +88,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	//正在移动则先更新移动后的新位置
 	if (m_nRunStartMSTime > 0)
 	{
-		Actor::UpdateRunState(m_nRunStartMSTime + uClientMSTime - m_nClientRunStartMSTime);
+		Actor::UpdateRunState(m_nRunStartMSTime + nClientMSTime - m_nClientRunStartMSTime);
 	}
 
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
@@ -99,7 +101,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	}
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	
-	m_nClientRunStartMSTime = uClientMSTime;
+	m_nClientRunStartMSTime = nClientMSTime;
 	Actor::StartRun(nSpeedX, nSpeedY);
 }
 
@@ -107,15 +109,17 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
 	{
+		XLog(LEVEL_ERROR, "%s role not in scene\n", m_sName);
 		return;
 	}
 
+	int nRoleID = 0;
 	uint16_t uPosX = 0;
 	uint16_t uPosY = 0;
-	uint32_t uClientMSTime = 0;
+	int64_t nClientMSTime = 0;
 
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> uPosX >> uPosY >> uClientMSTime;
+	goPKReader >> nRoleID >> uPosX >> uPosY >> nClientMSTime;
 
 	if (m_nRunStartMSTime == 0)
 	{
@@ -130,19 +134,19 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 
 	//客户端提交的时间比起跑时提交的时间小，则视为非法数据，强制使用服务器计算的值
 	MapConf* poMapConf = m_poScene->GetMapConf();
-	if (uClientMSTime < m_nClientRunStartMSTime || uPosX >= poMapConf->nPixelWidth || uPosY >= poMapConf->nPixelHeight || poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight))
+	if (nClientMSTime < m_nClientRunStartMSTime || uPosX >= poMapConf->nPixelWidth || uPosY >= poMapConf->nPixelHeight || poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight))
 	{
 		int64_t nNowMS = XTime::MSTime();
 		Actor::UpdateRunState(nNowMS);
 		Actor::SyncPosition();
 		Actor::StopRun(true, true);
-		XLog(LEVEL_ERROR, "%s sync pos: stop run pos(%d,%d) or time(%d) error\n", m_sName, uPosX, uPosY, uClientMSTime-m_nClientRunStartMSTime);
+		XLog(LEVEL_ERROR, "%s sync pos: stop run pos(%d,%d) or time(%d) error\n", m_sName, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 		return;
 	}
 	//正在移动则先更新移动后的新位置
 	if (m_nRunStartMSTime > 0)
 	{
-		Actor::UpdateRunState(m_nRunStartMSTime + uClientMSTime - m_nClientRunStartMSTime);
+		Actor::UpdateRunState(m_nRunStartMSTime + nClientMSTime - m_nClientRunStartMSTime);
 	}
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
