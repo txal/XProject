@@ -40,6 +40,7 @@ end
 
 --账号下线(清理数据)
 function CLoginMgr:AccountOffline(nAccountID)
+	print("CLoginMgr:AccountOffline***", nAccountID)
 	local oAccount = self:GetAccountByID(nAccountID)
 	if not oAccount then
 		return

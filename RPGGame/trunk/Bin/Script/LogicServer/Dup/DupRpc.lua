@@ -7,9 +7,7 @@ function CltPBProc.RoleEnterSceneReq(nCmd, nSrcServer, nSrcService, nTarSession,
     	return oRole:Tips("目标角色不存在")
     end
 
-    local nDupID = GF.GetDupID(tData.nDupMixID)
-    local tBorn = ctDupConf[nDupID].tBorn[1]
-    goDupMgr:EnterDup(tData.nDupMixID, oTarRole:GetNativeObj(), tBorn[1], tBorn[2], -1)
+    goDupMgr:EnterDup(tData.nDupMixID, oTarRole:GetNativeObj(), tData.nPosX, tData.nPosY, -1)
 end
 
 function CltPBProc.RoleLeaveSceneReq(nCmd, nSrcServer, nSrcService, nTarSession, tData)

@@ -131,7 +131,7 @@ function CPlayerMgr:OnSwitchLogicReq(nRoleSession, nRoleServer, nRoleID, nSrcDup
 
     self:RoleOnlineReq(nRoleServer, nRoleSession, nRoleID, true)
     local oRole = self:GetRoleByID(nRoleID)
-    goDupMgr:EnterDupCreate(nTarDupMixID, oRole:GetNativeObj(), nPosX, nPosY, nLine)
+    goDupMgr:EnterDup(nTarDupMixID, oRole:GetNativeObj(), nPosX, nPosY, nLine)
 end
 
 

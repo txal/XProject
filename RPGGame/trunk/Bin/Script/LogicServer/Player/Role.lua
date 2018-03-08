@@ -17,6 +17,7 @@ function CRole:Ctor(nServer, nRoleID)
     self.m_sAccountName = 0
 
     self.m_nID = nRoleID
+    self.m_nConfID = 0
     self.m_nCreateTime = os.time()
     self.m_nOnlineTime = os.time()
     self.m_nOfflineTime = os.time()
@@ -59,6 +60,9 @@ function CRole:Ctor(nServer, nRoleID)
 end
 
 function CRole:OnRelease()
+    print("CRole:OnRelease***")
+    goDupMgr:LeaveDup(self:GetDupMixID(), self:GetAOIID())
+
     goTimerMgr:Clear(self.m_nSaveTimer)
     goNativePlayerMgr:RemoveRole(self.m_nID)
     self.m_oNativeObj = nil
@@ -108,6 +112,7 @@ function CRole:LoadSelfData()
     self.m_nCreateTime = tData.m_nCreateTime
 
     self.m_nID = tData.m_nID
+    self.m_nConfID = tData.m_nConfID or 1
     self.m_sName = tData.m_sName
     self.m_nGender = tData.m_nGender
     self.m_nSchool = tData.m_nSchool
@@ -148,6 +153,7 @@ function CRole:SaveSelfData()
     tData.m_nCreateTime = self.m_nCreateTime
 
     tData.m_nID = self.m_nID
+    tData.m_nConfID = self.m_nConfID
     tData.m_sName = self.m_sName
     tData.m_nGender = self.m_nGender
     tData.m_nSchool = self.m_nSchool
@@ -227,7 +233,7 @@ function CRole:OnLoaded()
         --身上携带1元价值的铜币，1元的算法为(SLV*25+4000)*10 //SLV为服务器等级
         self.m_nTongBi = (goServerMgr:GetServerLevel(gnServerID)*25+4000)*10
         --携带道具：改名许可证
-        self:AddItem(gtItemType.eProp, 10401, 1, "创建角色")
+        self:AddItem(gtItemType.eProp, 10101, 1, "创建角色")
 
         --人物默认学会5级门派技能 fix pd
         --基础0级装备1套，属性指定门派，单独见出生装备标签 fix pd
@@ -235,6 +241,9 @@ function CRole:OnLoaded()
 
         self.m_bCreate = false
         self:MarkDirty(true)
+
+        --更新结果属性
+        self:UpdateAttr()
     end
 end
 
@@ -290,6 +299,11 @@ function CRole:GetMainAttr()
     return tMainAttr
 end
 
+--取结果属性
+function CRole:GetResAttr()
+    return self.m_tResultAttr
+end
+
 --重现计算属性
 function CRole:UpdateAttr()
     local tMainAttr = self:GetMainAttr()
@@ -305,6 +319,8 @@ function CRole:UpdateAttr()
     --魔法默认值根据等级计算
     self.m_tResultAttr[2] = self.m_nLevel*20+30
 
+    --装备属性 fix pd
+    --门派被动技能 fix pd
 
     self:MarkDirty(true)
 end
@@ -381,6 +397,9 @@ end
 function CRole:AfterOnline(bReconnect)
     --进入场景
     local tCurrDup = self:GetCurrDup() 
+    local tLastDup = self:GetLastDup()
+    print("CRole:AfterOnline***", tCurrDup, tLastDup)
+
     local oDup = goDupMgr:GetDup(tCurrDup[1])
     if oDup then
         if bReconnect then
@@ -391,7 +410,6 @@ function CRole:AfterOnline(bReconnect)
         end
     end
 
-    local tLastDup = self:GetLastDup()
     oDup = goDupMgr:GetDup(tLastDup[1])
     if not oDup then
         return LuaTrace("登录进入场景失败(不存在):", tLastDup[1])
@@ -413,7 +431,9 @@ function CRole:OnDisconnect()
     --移除观察者身份
     local tCurrDup = self:GetCurrDup() 
     local oDup = goDupMgr:GetDup(tCurrDup[1])
-    oDup:RemoveObserver(self:GetAOIID())
+    if oDup then
+        oDup:RemoveObserver(self:GetAOIID())
+    end
 
     --更新角色摘要到登录服
     self:UpdateRoleSummary()
@@ -463,8 +483,39 @@ function CRole:AddVitality(nVal)
     self:SyncCurrency(gtCurrType.eVitality, self.m_nVitality)
 end
 
+--计算经验加成
+function CRole:CalcExp(nVal)
+    if nVal <= 0 then
+        return nVal
+    end
+
+    local nServerLevel = goServerMgr:GetServerLevel(self:GetServer())
+    if self.m_nLevel >= nServerLevel + 8 then
+        local nTongBi = math.floor(0.33 * nVal)
+        self:AddItem(gtItemType.eCurr, gtCurrType.eTongBi, nTongBi, "经验转铜币")
+        return 0
+    end
+
+    if self.m_nLevel >= nServerLevel + 5 then
+        return math.floor(nExp*0.66)
+    end
+
+    if self.m_nLevel >= nServerLevel then
+        return math.floor(nExp*0.8)
+    end
+
+    if self.m_nLevel < nServerLevel and nServerLevel >= 60 then
+        return math.floor((nServerLevel-self.m_nLevel)*0.02)
+    end
+    return nVal
+end
+
 --添加经验
 function CRole:AddExp(nVal)
+    nVal = self:CalcExp(nVal)
+    if nVal == 0 then
+        return
+    end
     self.m_nExp = math.max(0, math.min(nMAX_INTEGER, sel.m_nExp+nVal))
     self:MarkDirty(true)
     self:CheckUpgrade()
@@ -509,6 +560,8 @@ function CRole:OnLevelChange(nOldLevel, nNewLevel)
         for k = 1, #tDefault do
             self.m_tPotenAttr[k] = self.m_tPotenAttr[k] + tDefault[k]
             self:MarkDirty(true)
+
+            self:UpdateAttr()
         end
     end
 end
@@ -836,6 +889,6 @@ function CRole:UpdateRoleSummary()
     tSummary.tLastDup = self:GetLastDup()
     tSummary.tCurrDup = self:GetCurrDup()
     tSummary.tEquipment = self:GetEquipment()
-    goRemoteCall:Call("RoleUpdateSummaryReq", self:GetServer(), gtServerConf:GetLoginService(gnServerID), self:GetSession()
+    goRemoteCall:Call("RoleUpdateSummaryReq", self:GetServer(), gtServerConf:GetLoginService(self:GetServer()), self:GetSession()
         , self:GetAccountID(), self:GetID(), tSummary)
 end

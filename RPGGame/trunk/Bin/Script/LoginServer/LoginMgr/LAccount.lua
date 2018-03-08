@@ -231,6 +231,7 @@ function CLAccount:CreateRole(nConfID, sName)
 		m_sAccountName = self:GetName(),
 		m_nCreateTime = os.time(),
 		m_nID = nRoleID,
+		m_nConfID = nConfID,
 		m_sName = sName,
 		m_nLevel = 0,
 		m_nGender = tRoleConf.nGender,

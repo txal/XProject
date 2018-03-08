@@ -1275,3 +1275,62 @@
 2018-03-04 22:59:38.390 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:2011.735
 2018-03-04 22:59:39.685 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1554.999
 2018-03-05 09:49:42.526 [DEBUG] server.cpp(304): long loop time: 20876.945
+2018-03-05 11:30:43.561 [DEBUG] server.cpp(241): new link from 127.0.0.1:6048, fd: 18, links: 1
+2018-03-05 11:30:44.568 [DEBUG] server.cpp(241): new link from 127.0.0.1:6062, fd: 19, links: 2
+2018-03-05 11:30:45.282 [DEBUG] server.cpp(241): new link from 127.0.0.1:6068, fd: 20, links: 3
+2018-03-05 11:31:59.747 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000003, resp: ok [227]
+2018-03-05 11:31:59.755 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget RoleDB 1000011, resp: ok [277]
+2018-03-05 11:31:59.757 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000011, resp: not_found
+2018-03-05 11:31:59.758 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget Knapsack 1000011, resp: not_found
+2018-03-05 11:33:52.348 [DEBUG] server.cpp(241): new link from 127.0.0.1:6146, fd: 21, links: 4
+2018-03-05 11:34:13.718 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget RoleDB 1000011, resp: ok [277]
+2018-03-05 11:34:13.719 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000011, resp: not_found
+2018-03-05 11:34:13.719 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget Knapsack 1000011, resp: not_found
+2018-03-05 11:35:00.179 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 11:35:12.982 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000011, resp: ok [277]
+2018-03-05 11:35:12.984 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget VIP 1000011, resp: not_found
+2018-03-05 11:35:12.986 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget Knapsack 1000011, resp: not_found
+2018-03-05 11:38:00.367 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 11:38:13.004 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 11:40:36.762 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 11:41:00.868 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 11:41:36.911 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 11:42:05.537 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000003, resp: ok [227]
+2018-03-05 11:42:05.543 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000011, resp: ok [291]
+2018-03-05 11:42:05.547 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget VIP 1000011, resp: not_found
+2018-03-05 11:42:05.550 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget Knapsack 1000011, resp: not_found
+2018-03-05 11:45:06.137 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 11:46:58.467 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 12:15:49.742 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:2704.460
+2018-03-05 12:15:50.684 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:2706.116
+2018-03-05 12:15:51.607 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:2708.046
+2018-03-05 12:15:55.446 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:2523.098
+2018-03-05 16:57:00.949 [DEBUG] server.cpp(241): new link from 127.0.0.1:11430, fd: 18, links: 1
+2018-03-05 16:57:01.828 [DEBUG] server.cpp(241): new link from 127.0.0.1:11438, fd: 19, links: 2
+2018-03-05 16:57:02.441 [DEBUG] server.cpp(241): new link from 127.0.0.1:11447, fd: 20, links: 3
+2018-03-05 16:57:11.719 [DEBUG] server.cpp(241): new link from 127.0.0.1:11457, fd: 21, links: 4
+2018-03-05 16:57:41.083 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget AccountDB 1000003, resp: ok [227]
+2018-03-05 16:57:41.092 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget RoleDB 1000011, resp: ok [291]
+2018-03-05 16:57:41.094 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000011, resp: not_found
+2018-03-05 16:57:41.097 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget Knapsack 1000011, resp: not_found
+2018-03-05 16:59:12.187 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 17:00:41.111 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 17:00:41.300 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 17:01:11.498 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget RoleDB 1000011, resp: ok [291]
+2018-03-05 17:01:11.499 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000011, resp: not_found
+2018-03-05 17:01:11.501 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget Knapsack 1000011, resp: not_found
+2018-03-05 17:03:41.497 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 17:04:11.517 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 17:09:41.160 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 17:09:41.914 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 18:11:23.298 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget RoleDB 1000011, resp: ok [291]
+2018-03-05 18:11:23.301 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hget VIP 1000011, resp: not_found
+2018-03-05 18:11:23.307 [DEBUG] server.cpp(336): w:1.000,p:0.000, req: hget Knapsack 1000011, resp: not_found
+2018-03-05 18:12:47.190 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 18:14:23.323 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-05 19:33:53.537 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset AccountDB 1000003 [227], resp: ok 0
+2018-03-05 19:34:23.562 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hset RoleDB 1000011 [291], resp: ok 0
+2018-03-07 19:42:03.170 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:182700.730
+2018-03-07 19:42:04.110 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:182702.282
+2018-03-07 19:42:04.980 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:182704.032
+2018-03-07 19:42:09.420 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:182697.701
