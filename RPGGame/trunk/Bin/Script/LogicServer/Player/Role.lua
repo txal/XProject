@@ -395,31 +395,7 @@ end
 --上线成功(注意:切换逻辑服不会调用)
 --@bReconnect: 是否重连
 function CRole:AfterOnline(bReconnect)
-    --进入场景
-    local tCurrDup = self:GetCurrDup() 
-    local tLastDup = self:GetLastDup()
-    print("CRole:AfterOnline***", tCurrDup, tLastDup)
-
-    local oDup = goDupMgr:GetDup(tCurrDup[1])
-    if oDup then
-        if bReconnect then
-            self:OnEnterScene(oDup:GetMixID())
-            return oDup:AddObserver(self:GetAOIID())
-        else
-            return oDup:Enter(self.m_oNativeObj, tCurrDup[2], tCurrDup[3], -1)
-        end
-    end
-
-    oDup = goDupMgr:GetDup(tLastDup[1])
-    if not oDup then
-        return LuaTrace("登录进入场景失败(不存在):", tLastDup[1])
-    end
-    if bReconnect then
-        self:OnEnterScene(oDup:GetMixID())
-        return oDup:AddObserver(self:GetAOIID())
-    else
-        return oDup:Enter(self.m_oNativeObj, tLastDup[2], tLastDup[3], -1)
-    end
+    self:ReturnScene(bReconnect)
 end
 
 --断线(不清数据)
@@ -530,7 +506,6 @@ function CRole:CheckUpgrade()
         local tConf = ctRoleLevelConf[k]
         if self.m_nExp >= tConf.nNeedExp then
             self.m_nLevel = self.m_nLevel + 1
-            self.m_nExp = self.m_nExp - tConf.nNeedExp
             self:MarkDirty(true)
         end
     end
@@ -790,6 +765,33 @@ function CRole:SyncRoleLogic()
     CmdNet.Srv2Srv("SyncRoleLogic", self:GetServer(), nGateService, nSession)
 end
 
+--返还到当前场景
+function CRole:ReturnScene(bReconnect)
+    local tCurrDup = self:GetCurrDup() 
+    local tLastDup = self:GetLastDup()
+
+    local oDup = goDupMgr:GetDup(tCurrDup[1])
+    if oDup then
+        if bReconnect then
+            self:OnEnterScene(oDup:GetMixID())
+            return oDup:AddObserver(self:GetAOIID())
+        else
+            return oDup:Enter(self.m_oNativeObj, tCurrDup[2], tCurrDup[3], -1)
+        end
+    end
+
+    oDup = goDupMgr:GetDup(tLastDup[1])
+    if not oDup then
+        return LuaTrace("返回场景失败(不存在):", tLastDup[1])
+    end
+    if bReconnect then
+        self:OnEnterScene(oDup:GetMixID())
+        return oDup:AddObserver(self:GetAOIID())
+    else
+        return oDup:Enter(self.m_oNativeObj, tLastDup[2], tLastDup[3], -1)
+    end
+end
+
 --角色进入场景
 function CRole:OnEnterScene(nDupMixID)
     print("CRole:OnEnterScene***", nDupMixID, self:GetName())
@@ -891,4 +893,9 @@ function CRole:UpdateRoleSummary()
     tSummary.tEquipment = self:GetEquipment()
     goRemoteCall:Call("RoleUpdateSummaryReq", self:GetServer(), gtServerConf:GetLoginService(self:GetServer()), self:GetSession()
         , self:GetAccountID(), self:GetID(), tSummary)
+end
+
+--战斗结束返回场景
+function CRole:OnBattleEnd()
+    self:ReturnScene()
 end

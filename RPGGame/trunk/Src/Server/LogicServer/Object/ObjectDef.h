@@ -7,11 +7,14 @@
 enum GAMEOBJ_TYPE
 {
 	eOT_None = 0,
-	eOT_Role = 1,		//玩家
-	eOT_Monster = 2,	//怪物
-	eOT_Robot = 10,		//机器人
-	eOT_SceneDrop = 11,	//场景掉落
-	eOT_Detector = 12,	//探测器
+	eOT_Role = 1,		//角色
+	eOT_Child = 2,		//子女
+	eOT_Partner = 3,	//伙伴
+	eOT_Pet = 4,		//宠物
+	eOT_Monster = 5,	//怪物
+	eOT_Robot = 6,		//机器人
+	eOT_Drop = 7,		//掉落物
+	eOT_Detector = 8,	//探测器
 };
 
 //方向

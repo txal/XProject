@@ -153,10 +153,15 @@ end
 
 --扣除物品
 function CKnapsack:SubItem(nSysID, nNum)
-	nNum = math.abs(nNum)
-	if nNum == 0 then return end
+	assert(nNum >= 0)
+	if nNum == 0 then
+		return
+	end
+
 	local tGroup = self.m_tGroupMap[nSysID]
-	if not tGroup then return end
+	if not tGroup then
+		return
+	end
 
 	local tGroupDel = {}
 	for _, nGrid in ipairs(tGroup) do
@@ -194,10 +199,15 @@ end
 --扣除指定格子物品
 function CKnapsack:SubGridItem(nSysID, nGrid, nNum, sReason)
 	assert(sReason, "请说明原因")
-	nNum = math.abs(nNum)
-	if nNum == 0 then return end
+	assert(nNum >0)
+	if nNum == 0 then
+		return
+	end
+
 	local tGroup = self.m_tGroupMap[nSysID]
-	if not tGroup or #tGroup == 0 then return end
+	if not tGroup or #tGroup == 0 then
+		return
+	end
 
 	for nIndex, nTmpGrid in ipairs(tGroup) do
 		if nTmpGrid == nGrid then

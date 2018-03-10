@@ -45,8 +45,10 @@ gtCurrProp =
 gtObjType = 
 {
 	eRole = 1,	 	--角色
-	eMonster = 2, 	--怪物(NPC/仙侣/伙伴)
-	ePet = 3, 		--宠物
+	eChild = 2, 	--子女
+	ePartner = 3, 	--伙伴
+	ePet = 4, 		--宠物
+	eMonster = 5, 	--怪物
 }
 
 --门派类型

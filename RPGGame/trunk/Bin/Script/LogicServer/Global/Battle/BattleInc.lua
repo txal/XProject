@@ -1,4 +1,5 @@
 CUnit = CUnit or class()
+CBuff = CBuff or class()
 CBattle = CBattle or class()
 CBattleMgr = CBattleMgr or class()
 

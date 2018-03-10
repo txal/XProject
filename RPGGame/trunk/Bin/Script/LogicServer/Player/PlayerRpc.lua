@@ -16,19 +16,35 @@ function Srv2Srv.RoleDisconnectReq(nSrcServer, nSrcService, nTarSession, nRoleID
     return goPlayerMgr:RoleDisconnectReq(nRoleID)
 end
 
---道具数量请求([W]GLOBAL)
+--物品数量请求([W]GLOBAL)
 function Srv2Srv.RoleItemCountReq(nSrcServer, nSrcService, nTarSession, nRoleID, nType, nID)
     local oRole = goPlayerMgr:GetRoleID(nAccountID)
     if not oRole then return end
     return oRole:ItemCount(nType, nID)
 end
 
---道具数量增减([W]GLOBAL)
+--物品数量增加([W]GLOBAL)
 function Srv2Srv.RoleAddItemReq(nSrcServer, nSrcService, nTarSession, nRoleID, tItemList, sReason)
     local oRole = goPlayerMgr:GetRoleByID(nRoleID)
     if not oRole then return end
     for _, tItem in ipairs(tItemList) do
         oRole:AddItem(tItem.nType, tItem.nID, tItem.nNum, sReason)
+    end
+    return true
+end
+
+--物品数量扣除([W]GLOBAL)
+function Srv2Srv.RoleSubItemReq(nSrcServer, nSrcService, nTarSession, nRoleID, tItemList, sReason)
+    local oRole = goPlayerMgr:GetRoleByID(nRoleID)
+    if not oRole then return end
+    for _, tItem in ipairs(tItemList) do
+        local nNum = oRole:ItemCount(tItem.nType, tItem.nID)
+        if nNum < tItem.nNum then
+            return
+        end
+    end
+    for _, tItem in ipairs(tItemList) do
+        oRole:SubItem(tItem.nType, tItem.nID, tItem.nNum, sReason)
     end
     return true
 end
