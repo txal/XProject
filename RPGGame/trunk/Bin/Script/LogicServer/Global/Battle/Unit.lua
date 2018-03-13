@@ -69,12 +69,11 @@ CUnit.tRoundFlag =
 }
 
 
-function CUnit:Ctor(oBattle , nUnitID, nParentUnit, nSpouseID, nServer, nSession
-	, nObjID, nObjType, sObjName, nExp, tResAttr, tAdvAttr, tPropMap, tSkillMap, tPetMap)
+function CUnit:Ctor(oBattle , nUnitID, nSpouseID, nServer, nSession
+	, nObjID, nObjType, sObjName, nLevel, nExp, tResAttr, tAdvAttr, tPropMap, tSkillMap, tPetMap)
 
 	self.m_oBattle = oBattle
 	self.m_nUnitID = nUnitID 			--单位ID
-	self.m_nParentUnit = nParentUnit 	--父单位ID(宠物,伙伴)
 	self.m_nSpouseID = nSpouseID 		--夫妻ID
 
 	self.m_nServer = nServer 	--服务器(角色)
@@ -82,6 +81,7 @@ function CUnit:Ctor(oBattle , nUnitID, nParentUnit, nSpouseID, nServer, nSession
 	self.m_nObjID = nObjID		--对象ID
 	self.m_nObjType = nObjType 	--对象类型
 	self.m_sObjName = sObjName 	--对象名字
+	self.m_nLevel = nLevel 		--等级
 	self.m_nExp = nExp 			--经验
 
     self.m_tResAttr = tResAttr 	--结果属性
@@ -123,6 +123,7 @@ function CUnit:OnRelease()
 end
 
 function CUnit:IsAuto() return self.m_bAuto end
+function CUnit:SetAuto(bAuto)  self.m_bAuto = bAuto end
 function CUnit:IsDead() return self.m_bDead end
 function CUnit:IsReady() return (self.m_tInst.nInst or 0) > 0 end
 function CUnit:IsLeave() return self.m_bLeave end
@@ -133,7 +134,7 @@ function CUnit:GetObjID() return self.m_nObjID end
 function CUnit:GetObjName() return self.m_nObjName end
 function CUnit:GetObjType() return self.m_nObjType end
 function CUnit:GetSpouseID() return self.m_nSpouseID end
-function CUnit:GetParentUnit() return self.m_nParentUnit end
+function CUnit:GetLevel() return self.m_nLevel
 function CUnit:GetExp() return self.m_nExp end
 
 function CUnit:IsPet() return (self.m_nObjType == gtObjType.ePet) end
@@ -162,8 +163,10 @@ function CUnit:AddResAttr(nType, nVal)
 
 	end
 end
+
 function CUnit:GetAdvAttr(nType) return self.m_tAdvAttr[nType] end
 function CUnit:AddAdvAttr(nType, nVal) self.m_tAdvAttr[nType] = math.max(0, self.m_tAdvAttr[nType]+nVal) end
+
 function CUnit:GetHideAttr(nType) return self.m_tAdvAttr[nType] end
 function CUnit:AddHideAttr(nType, nVal) self.m_tHideAttr[nType] = math.max(0, self.m_tHideAttr[nType]+nVal) end
 
@@ -174,17 +177,49 @@ function CUnit:IsSpeedChange() return self.m_tRoundFlag[CUnit.tRoundFlag.eSPC] e
 function CUnit:IsLockAction() return self.m_tRoundFlag[CUnit.tRoundFlag.eLCK] end
 function CUnit:IsInstMiss() return self.m_tInst.bMiss end
 
+--单位信息
+function CUnit:GetInfo()
+	local tInfo = {
+		nUnitID = self:GetUnitID()
+		, nObjID = self:GetObjID()
+		, nObjType = self:GetObjType()
+		, sObjName = self:GetObjName()
+		, nLevel = self:GetLevel()
+		, tResAttr = self:GetResAttrList()
+		, tAdvAttr = self:GetAdvAttrList()
+		, tHidAttr = self:GetHidAttrList()
+	}
+	return tInfo
+end
+
 --回合开始事件
 function CUnit:OnRoundBegin(nRound)
     assert(not self:IsLeave())
     --重置
-    self.m_tInst = {}
+    self.m_tInst = {nInst=0}
     self.m_tRoundFlag = {}
 
     --自动缓冲
     if self:IsAuto() then
-    	goTimerMgr:Clear(self.m_nAutoTimer)
-    	self.m_nAutoTimer = goTimerMgr:Interval(3, function() self:OnAutoTimer() end)
+    	if self:IsRole() then
+	    	goTimerMgr:Clear(self.m_nAutoTimer)
+	    	self.m_nAutoTimer = goTimerMgr:Interval(3, function() self:OnAutoTimer() end)
+
+    		local tMsg = {nRoundID=self.m_oBattle:GetRound(), nMainTime=30, nAutoTime=3, bAuto=true}
+			self.m_oBattle:SendMsg("RoundBeginRet", self:GetServer(), self:GetSession(), tMsg)
+		else
+    		self:OnAutoTimer()
+    	end
+
+    --非自动
+    else
+    	if self:IsRole() then
+    		local tMsg = {nRoundID=self.m_oBattle:GetRound(), nMainTime=30, nAutoTime=30, bAuto=false}
+			self.m_oBattle:SendMsg("RoundBeginRet", self:GetServer(), self:GetSession(), tMsg)
+		else
+			self:OnAutoTimer()
+		end
+
     end
 end
 
@@ -202,23 +237,34 @@ end
 
 --死亡
 function CUnit:OnDead()
-	--添加消息 fix pd
+	local bLeave = self:IsMonster() or self:IsPet()
+	self.m_oBattle:AddRoundAction({nAct=gtACT.eSW, nSrcUnit=self:GetUnitID(), bLeave=bLeave, nTime=1})
 
 	self.m_bDead = true
 	self.m_oBattle:OnUnitDead(self)
-
-	if self:IsMonster() or self:IsPet() then
+	if bLeave then
 		self:SetLeave()
 	end
 end
 
 --进入自动
 function CUnit:EnterAuto()
-	self.m_bAuto = true
+	self:SetAuto(true)
+	--处理自己
 	if not self:IsReady() then
-		local nRndEnemy = self.m_oBattle:RandAliveEnemy(self.m_nUnitID)
+		local nRndEnemy = self.m_oBattle:RandAliveEnemy(self:GetUnitID())
 		assert(nRndEnemy > 0)
 		self:SetInst(CUnit.tINST.eGJ, nRndEnemy)
+	end
+
+	--处理宠物
+	if self:IsRole() then
+		local oPetUnit = self.m_oBattle:GetPetUnit(self:GetUnitID())
+		if oPetUnit and not oPetUnit:IsReady() then
+			local nRndEnemy = self.m_oBattle:RandAliveEnemy(self:GetUnitID())
+			assert(nRndEnemy > 0)
+			self:SetInst(CUnit.tINST.eGJ, nRndEnemy)
+		end
 	end
 end
 
@@ -231,6 +277,7 @@ function CUnit:SetInst(nInst, ...)
 		return
 	end
 	self.m_oBattle:OnUnitReady(self.m_nUnitID)
+	self.m_oBattle:Broadcast("UnitInstRet", {nUnitID=self:GetUnitID(), nInst=nInst})
 end
 
 --下达法术指令
@@ -243,6 +290,7 @@ end
 --下达攻击指令
 function CUnit:GJInst(nTarUnit)
 	assert(self:IsRole() or self:IsPet())
+	assert(nTarUnit ~= self:GetUnitID())
 	self.m_tInst = {nInst=CUnit.tINST.eGJ, nTarUnit=nTarUnit}
 	return true
 end
@@ -262,7 +310,7 @@ function CUnit:WPInst(nTarUnit, nPropID)
 		nServer = self:GetServer()
 		nSession = self:GetSession()
 	else
-		local oRoleUnit = self.m_oBattle:GetUnit(self.m_nParentUnit)
+		local oRoleUnit = self.m_oBattle:GetRoleUnit(self:GetUnitID())
 		nPropUsed = oRoleUnit:GetPropUsed()
 		tPropMap = oRoleUnit:GetPropMap()
 		nServer = oRoleUnit:GetServer()
@@ -306,8 +354,45 @@ function CUnit:ZHInst(nPetID)
 	return true
 end
 
---下达自动指令
-function CUnit:ZDInst()
+--下达/取消自动指令
+function CUnit:ZDInst(bAuto)
+	assert(self:IsRole(), "单位类型错误")
+	local oPetUnit = self.m_oBattle:GetPetUnit(self:GetUnitID())
+
+	if bAuto then --自动
+		if self:IsAuto() then
+			assert(not oPetUnit or oPetUnit:IsAuto(), "不同步")
+			return
+		end
+
+		self:SetAuto(true)
+		self:OnAutoTimer()	
+
+		if oPetUnit then	
+			oPetUnit:SetAuto(true)
+			oPetUnit:OnAutoTimer()
+		end
+		self.m_oBattle:SendMsg("UnitInstRet", self:GetServer() ,self:GetSession(), {nUnitID=self:GetUnitID(), nInst=CUnit.tINST.eZD, bAuto=bAuto})
+
+	else --取消
+		if not self:IsAuto() then
+			assert(not oPetUnit or not oPetUnit:IsAuto(), "不同步")
+			return
+		end
+
+		self:SetAuto(false)
+		if oPetUnit then
+			oPetUnit:SetAuto(false)
+		end
+
+		if self:IsReady() then
+			self.m_oBattle:Tips(self:GetServer(), self:GetSession(), "下回合开始时显示操作菜单")
+		else
+			goTimerMgr:Clear(self.m_nAutoTimer)
+			self.m_nAutoTimer = nil
+			self.m_oBattle:SendMsg("UnitInstRet", self:GetServer() ,self:GetSession(), {nUnitID=self:GetUnitID(), nInst=CUnit.tINST.eZD, bAuto=bAuto})
+		end
+	end
 end
 
 --下达防御指令
@@ -412,42 +497,58 @@ function CUnit:OnGJ(oSrcUnit)
 	local nSrcBJL = oSrcUnit:GetResAttr(CUnit.tHAT.eBJL) --暴击率
 	local nTarKBL = self:GetResAttr(CUnit.tHAT.eKBL) --抗暴率
 
-	--fix pd 命中算法对不对
+	--命中/暴击
 	local bHit = math.random(1,100) <= math.min(20, math.max(100, (nSrcMZL-nTarSBL)))
 	local bCrit = math.random(1,100) <= (nSrcBJL-nTarKBL)
+
+	--攻击动作
+	self.m_oBattle:AddRoundAction({nAct=gtACT.eGJ, nSrcUnit=oSrcUnit:GetUnitID(), nTarUnit=self:GetUnitID(), bCrit=bCrit, nTime=0.5})
 
 	--计算伤害
 	local nHurt = 0
 	if bHit then
 		nHurt = nSrcGJ*math.random(90,110)*0.01 - nTarFY
-		if bCrit then nHurt = nHurt*2 end
-	end
-
-	--是否防御
-	if self:IsInstExec(CUnit.tINST.eFY) then
-		nHurt = nHurt * 0.5
-	end
-
-	--是否保护
-	--被保护者只受到本次伤害的35%，自身受到本次伤害的65%。如果双方是夫妻，则伤害比调整为70%:30%
-	local nProUnit = self:IsProtected()
-	if nProUnit then
-		local oProUnit = self.m_oBattle:GetUnit(nProUnit)
-		if oProUnit and not oProUnit:IsDead() then
-			local nTmpHurt = nHurt
-			local nProHurt = 0
-			if oProUnit:IsRole() and self:IsRole() and oProUnit:GetSpouseID() == self:GetObjID() then
-				nHurt = nTmpHurt * 0.7
-				nProHurt = nTmpHurt - nHurt
-
-			else
-				nHurt = nTmpHurt * 0.35
-				nProHurt = nTmpHurt - nHurt
-			end
-
+		if bCrit then
+			nHurt = nHurt*2
 		end
-	end
 
+		--是否防御
+		if self:IsInstExec(CUnit.tINST.eFY) then
+			nHurt = nHurt * 0.5
+			--防御动作
+			self.m_oBattle:AddRoundAction({nAct=gtACT.eFY, nSrcUnit=self:GetUnitID(), nTime=0.2})
+		end
+
+		--是否被保护
+		local nProUnit = self:IsProtected()
+		if nProUnit then
+			local oProUnit = sGelf.m_oBattle:GetUnit(nProUnit)
+			if oProUnit and not oProUnit:IsDead() then
+				local nTmpHurt = nHurt
+				local nProHurt = 0
+				--夫妻
+				if oProUnit:IsRole() and self:IsRole() and oProUnit:GetSpouseID() == self:GetObjID() then
+					nHurt = nTmpHurt * 0.7
+					nProHurt = nTmpHurt - nHurt
+
+				--普通	
+				else
+					nHurt = nTmpHurt * 0.35
+					nProHurt = nTmpHurt - nHurt
+
+				end
+				--保护指令
+				self.m_oBattle:AddRoundAction({nAct=gtACT.eBH, nSrcUnit=nProHurt, nTarUnit=self:GetUnitID(), nTime=0.3})
+				--受伤动作
+				self.m_oBattle:AddRoundAction({nAct=gtACT.eSS, nSrcUnit=nProHurt, nHurt=nProHurt, nTime=0.2})
+			end
+		end
+		--受伤动作
+		self.m_oBattle:AddRoundAction({nAct=gtACT.eSS, nSrcUnit=self:GetUnitID(), nHurt=nHurt, nTime=0.2})
+	else
+		--闪避动作
+		self.m_oBattle:AddRoundAction({nAct=gtACT.eSB, nSrcUnit=self:GetUnitID(), nTime=0.2})
+	end
 end
 
 --执行物品指令
@@ -457,7 +558,7 @@ end
 
 --执行召唤令
 function CUnit:ZHExec()
-	--fix 召回
+	--fix 召唤
 	self.m_tInst.bExed = true
 	return true
 end
@@ -493,17 +594,20 @@ end
 
 --执行撤退指令
 function CUnit:CTExec()
+	local bLeave = false
 	local nRnd = math.random(1, 100)
 	if nRnd >= self.m_nCTSuccRate then
 		self.m_oBattle:OnUnitCT(self)
+		bLeave = true
 	end
+	self.m_oBattle:AddRoundAction({nAct=gtACT.eCT, nSrcUnitID=self:GetUnitID(), bLeave=bLeave, nTime=3})
 	return true
 end
 
 --撤退成功事件
 function CUnit:OnCTSuccess()
-	print("逃避成功:", self.m_sObjName)
-	--添加消息 fix pd
+	print("撤退成功:", self.m_sObjName)
+	self.m_oBattle:OnUnitLeave(self:GetUnitID())
 	self:SetLeave()
 end
 

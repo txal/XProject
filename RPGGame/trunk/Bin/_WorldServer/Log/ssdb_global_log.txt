@@ -3328,3 +3328,10 @@
 2018-03-05 12:15:55.438 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:2523.085
 2018-03-05 16:57:11.720 [DEBUG] server.cpp(241): new link from 127.0.0.1:11458, fd: 17, links: 1
 2018-03-07 19:42:09.421 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:182697.701
+2018-03-12 20:09:00.664 [DEBUG] backend_dump.cpp(15): BackendDump finalized
+2018-03-12 20:09:00.676 [DEBUG] backend_sync.cpp(38): BackendSync finalized
+2018-03-12 20:09:00.683 [DEBUG] ttl.cpp(155): ExpirationHandler thread quit
+2018-03-12 20:09:00.686 [DEBUG] cluster.cpp(21): Cluster finalized
+2018-03-12 20:09:00.686 [DEBUG] serv.cpp(347): SSDBServer finalized
+2018-03-12 20:09:00.719 [DEBUG] binlog.cpp(387): binlog clean_thread quit
+2018-03-12 20:09:00.736 [INFO ] ssdb-server.cpp(94): ssdb-server exit.

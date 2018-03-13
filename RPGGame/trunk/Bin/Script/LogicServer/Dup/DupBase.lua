@@ -16,8 +16,8 @@ CDupBase.tAOIType =
 }
 
 --默认AOI宽高
-local nDefAOIWidth = 960
-local nDefAOIHeight = 640
+local nDefAOIWidth = 720
+local nDefAOIHeight = 1280
 
 function CDupBase:Ctor(nDupID)
     self.m_nDupID = nDupID

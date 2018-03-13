@@ -35,6 +35,7 @@ end
 require("MainRpc")
 require("Global/GlobalInc")
 require("Player/PlayerInc")
+require("Monster/MonsterInc")
 require("Module/ModuleInc")
 require("Dup/DupInc")
 

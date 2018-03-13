@@ -27,7 +27,7 @@ function CRole:Ctor(nServer, nRoleID)
     self.m_nSchool = 0
     self.m_nLevel = 0
     self.m_tLastDup = {0, 0, 0} --副本唯一ID,坐标X,坐标Y
-    self.m_tCurrDup = {0, 0, 0} --mixdupid,x,y
+    self.m_tCurrDup = {0, 0, 0} --dupmixid,x,y
     self.m_nVIP = 0
 
     --人物基础属性
@@ -44,6 +44,7 @@ function CRole:Ctor(nServer, nRoleID)
     self.m_tBaseAttr = {0, 0, 0, 0, 0}      --基本属性(体质,魔力,力量,耐力,敏捷)
     self.m_tPotenAttr = {0, 0, 0, 0, 0}     --潜力属性(体质,魔力,力量,耐力,敏捷)
     self.m_tResultAttr = {0, 0, 0, 0, 0, 0, 0}  --结果属性(气血,魔法,怒气,攻击,防御,灵力,速度)
+    self.m_tAdvanceAttr = {0, 0, 0, 0, 0}   --高级属性(法术攻击,法术防御,治疗强度,封印命中,封印抗性)
 
     ------其他--------
     self.m_tModuleMap = {}  --映射
@@ -76,9 +77,11 @@ end
 function CRole:CreateModules()
     self.m_oVIP = CVIP:new(self)
     self.m_oKnapsack = CKnapsack:new(self)
+    self.m_oSpouse = CSpouse:new(self)
 
     self:RegisterModule(self.m_oVIP)
     self:RegisterModule(self.m_oKnapsack)
+    self:RegisterModule(self.m_oSpouse)
 end
 
 function CRole:RegisterModule(oModule)
@@ -133,6 +136,7 @@ function CRole:LoadSelfData()
     self.m_tBaseAttr = tData.m_tBaseAttr
     self.m_tPotenAttr = tData.m_tPotenAttr
     self.m_tResultAttr = tData.m_tResultAttr
+    self.m_tAdvanceAttr = tData.m_tAdvanceAttr or self.m_tAdvanceAttr
 
 end
 
@@ -163,18 +167,19 @@ function CRole:SaveSelfData()
     tData.m_tCurrDup = self.m_tCurrDup
     tData.m_nVIP = self.m_nVIP
 
-    tData.m_nVitality = tData.m_nVitality
-    tData.m_nExp = tData.m_nExp
-    tData.m_nStoreExp = tData.m_nStoreExp
-    tData.m_nPotential = tData.m_nPotential
+    tData.m_nVitality = self.m_nVitality
+    tData.m_nExp = self.m_nExp
+    tData.m_nStoreExp = self.m_nStoreExp
+    tData.m_nPotential = self.m_nPotential
 
-    tData.m_nYuanBao = tData.m_nYuanBao
-    tData.m_nYinBi = tData.m_nYinBi
-    tData.m_nTongBi = tData.m_nTongBi
+    tData.m_nYuanBao = self.m_nYuanBao
+    tData.m_nYinBi = self.m_nYinBi
+    tData.m_nTongBi = self.m_nTongBi
 
-    tData.m_tBaseAttr = tData.m_tBaseAttr
-    tData.m_tPotenAttr = tData.m_tPotenAttr
-    tData.m_tResultAttr = tData.m_tResultAttr
+    tData.m_tBaseAttr = self.m_tBaseAttr
+    tData.m_tPotenAttr = self.m_tPotenAttr
+    tData.m_tResultAttr = self.m_tResultAttr
+    tData.m_tAdvanceAttr = self.m_tAdvanceAttr
 
     local nServer, nID = self:GetServer(), self:GetID()
     goDBMgr:GetSSDB(nServer, "user", nID):HSet(gtDBDef.sRoleDB, nID, cjson.encode(tData))
@@ -251,6 +256,7 @@ function CRole:IsDirty() return self.m_bDirty end
 function CRole:MarkDirty(bDirty) self.m_bDirty = bDirty end
 
 function CRole:GetID() return self.m_nID end
+function CRole:GetObjType() return gtObjType.eRole end
 function CRole:GetName() return self.m_sName end
 function CRole:GetGender() return self.m_nGender end
 function CRole:GetSchool() return self.m_nSchool end
@@ -302,6 +308,11 @@ end
 --取结果属性
 function CRole:GetResAttr()
     return self.m_tResultAttr
+end
+
+--取高级属性
+function CRole:GetAdvAttr()
+    return self.m_tAdvanceAttr
 end
 
 --重现计算属性

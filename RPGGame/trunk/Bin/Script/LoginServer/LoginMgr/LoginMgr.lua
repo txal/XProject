@@ -77,11 +77,11 @@ end
 
 --角色断开连接
 function CLoginMgr:OnClientClose(nServer, nSession)
-	print("CLoginMgr:OnClientClose***", nServer, nSession)
 	local oAccount = self:GetAccountBySS(nServer, nSession)
 	if not oAccount then
 		return
 	end
+	print("CLoginMgr:OnClientClose***", nServer, nSession)
 	assert(nSession == oAccount:GetSession(), "会话ID错误")
 	local nSSKey = self:MakeSSKey(nServer, nSession)
 	self.m_tAccountSSMap[nSSKey] = nil

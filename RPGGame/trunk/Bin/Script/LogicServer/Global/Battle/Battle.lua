@@ -8,20 +8,30 @@ CBattle.tBTT =
 	ePVP = 2,
 }
 
-function CBattle:Ctor(nID, nType)
+function CBattle:Ctor(nID, nType, nLeaderID1, nLeaderID2)
 	self.m_nID = nID
 	self.m_nType = nType
+
 	self.m_nRound = 0
 	self.m_tUnitAtkMap = {}		--攻方单元(1x)	{[1x]=battle, ...}
 	self.m_tUnitDefMap = {}		--守方单元(2x)	{[2x]=battle, ...}
+	self.m_nLeaderID1 = 0 		--攻方队长ID
+	self.m_nLeaderID2 = 0 		--守方队长ID
 
 	self.m_nUnitCount = 0
 	self.m_nReadyCount = 0
-	self.m_tBattleResult = {bEnd=false, nWinTeam=0}
+	self.m_tBattleResult = {bEnd=false, nWinner=0}
 
 	self.m_nReadyTimer = nil 	--准备计时器
 	self.m_nRoundTimer = nil 	--回合计时器
-	self.m_tRoundData = {nRoundTime=0, tAction={}}
+	self.m_tRoundData = {nRound=0, nRoundTime=0, tAction={}}
+end
+
+function CBattle:AddUnit(nUnitID, oUnit)
+	local tUnitMap = self:GetTeam(nUnitID)
+	assert(not tUnitMap[nUnitID], "单位已存在")
+	tUnitMap[nUnitID] = oUnit
+	self.m_nUnitCount = self.m_nUnitCount + 1
 end
 
 --释放战斗对象
@@ -53,15 +63,25 @@ function CBattle:SessionList()
 	return tSessionList
 end
 
+--开始战斗
+function CBattle:StartBattle()
+	local tMsg = {nID=self:GetID(), nRound=self.m_nRound, tAtk={}, tDef={}}
+	for nUnitID, oUnit in pairs(self.m_tUnitAtkMap) do
+		table.insert(tMsg.tAtk, oUnit:GetInfo())
+	end
+	for nUnitID, oUnit in pairs(self.m_tUnitDefMap) do
+		table.insert(tMsg.tDef, oUnit:GetInfo())
+	end
+	self:Broadcast("BattleStartRet", tMsg)	
+end
+
 --回合开始
 function CBattle:RoundBegin()
 	self.m_nRound = self.m_nRound + 1
 
 	--重置
-	self.m_nUnitCount = 0
 	self.m_nReadyCount = 0
-	self.m_tBattleResult = {bEnd=false, nWinTeam=0}
-	self.m_tRoundData = {nRoundTime=0, tAction={}}
+	self.m_tRoundData = {nRound=self.m_nRound, nRoundTime=0, tAction={}}
 
 	--倒计时
 	local nReadyTime = 30
@@ -105,24 +125,20 @@ function CBattle:GetRound() return self.m_nRound end
 function CBattle:GetRoundData() return self.m_tRoundData end 
 function CBattle:IsBattleEnd() return self.m_tBattleResult.bEnd end
 
-function CBattle:SetBattleEnd(nWinTeam) 
+function CBattle:SetBattleEnd(nWinner) 
 	self.m_tBattleResult.bEnd = true
-	self.m_tBattleResult.nWinTeam = nWinTeam
+	self.m_tBattleResult.nWinner = nWinner
 end
 
 --取战斗单位
 function CBattle:GetUnit(nUnitID)
-	if nUnitID%10 == 1 then
-		return self.m_tUnitAtkMap[nUnitID]
-	end
-	if nUnitID%10 == 2 then
-		return self.m_tUnitDefMap[nUnitID]
-	end
+	local tUnitMap = self:GetTeam(nUnitID)
+	return tUnitMap[nUnitID]
 end
 
 --取队伍映射
 function CBattle:GetTeam(nUnitID)
-	if nUnitID%10 == 1 then
+	if nUnitID%100 == 1 then
 		return self.m_tUnitAtkMap
 	end
 	return self.m_tUnitDefMap
@@ -130,7 +146,7 @@ end
 
 --是否同一阵营
 function CBattle:IsSameTeam(nUnitID1, nUnitID2)
-	return (nUnitID1%10 == nUnitID2%10)
+	return (nUnitID1%100 == nUnitID2%100)
 end
 
 --单元下达指令完毕
@@ -159,6 +175,12 @@ function CBattle:SortUnit(tList)
 		return nSpeed1 < nSpeed2
 	end
 	table.sort(tList, fnSort)	
+end
+
+--添加回合动作
+function CBattle:AddRoundAction(tAct)
+	self.m_tRoundData.nRoundTime = self.m_tRoundData.nRoundTime + tAct.nTime
+	table.insert(self.m_tRoundData.tAction, tAct)
 end
 
 --所有人下完指令
@@ -246,10 +268,33 @@ function CBattle:OnRoundReady()
 				oUnit:AfterRoundBuff(self.m_nRound)
 			end
 		end
+
 	--战斗结束
 	else
-		--fix pd 战斗结束消息
+		self:AddRoundAction({nAct=gtACT.eJS, nWinner=self.m_tBattleResult.nWinner, nTime=1})
+		
 	end
+	self:Broadcast("RoundDataRet", self.m_tRoundData)
+	self.m_nRoundTimer = goTimerMgr:Interval(self.m_tRoundData.nRoundTime, function() self:OnRoundTimer() end)
+
+end
+
+--回合时间到
+function CBattle:OnRoundTimer()
+	goTimerMgr:Clear(self.m_nRoundTimer)
+	self.m_nRoundTimer = nil
+	if self:IsBattleEnd() then
+		self:BattleResult()
+	else
+		self:RoundBegin()
+	end
+end
+
+--单位离开战斗事件
+function CBattle:OnUnitLeave(nUnitID)
+	local tUnitMap = self:GetTeam(nUnitID)
+	tUnitMap[nUnitID] = nil
+	self.m_nUnitCount = self.m_nUnitCount - 1
 end
 
 --单元死亡事件
@@ -257,38 +302,59 @@ function CBattle:OnUnitDead(oUnit)
 	if not oUnit:IsMonster() or not oUnit:IsPet() then
 		return
 	end
-	local nUnitID = oUnit:GetUnitID()
-	local tUnitMap = self:GetTeam(nUnitID)
-	tUnitMap[nUnitID] = nil
-
+	self:OnUnitLeave(oUnit:GetUnitID())
 	if self:IsTeamDead(nUnitID) then
 		self:SetBattleEnd(self:EnemyFlag(nUnitID))
 	end
 end
 
+--通过角色位置取宠物位置
+function CBattle:GetPetUnitID(nRoleUnit)
+	local nTeam = nRoleUnit % 100
+	local nGrid = nRoleUnit - nTeam*100
+	assert(nGrid >= 1 and nGrid <= 5, "角色位置错误")
+
+	local nPetGrid = nGrid + 5
+	local nPetUnit = nTeam * 100 + nPetGrid
+	return nPetGrid
+end
+
+--通过宠物位置取角色位置
+function CBattle:GetRoleUnitID(nPetUnit)
+	local nTeam = nPetUnit % 100
+	local nGrid = nPetUnit - nTeam*100
+	assert(nGrid >= 6 and nGrid <= 10, "宠物位置错误")
+
+	local nRoleGrid = nGrid - 5
+	local nRoleUnit = nTeam * 100 + nRoleGrid
+	return nRoleUnit
+end
+
 --取玩家的宠物单位
 function CBattle:GetPetUnit(nRoleUnit)
-	local tUnitMap = nil
-	if nRoleUnit % 10 == 1 then
-		tUnitMap = self.m_tUnitAtkMap
-	else
-		tUnitMap = self.m_tUnitDefMap
+	local tUnitMap = self:GetTeam(nRoleUnit)
+	local nPetUnit = self:GetPetUnitID(nRoleUnit)
+	local oPetUnit = tUnitMap[nPetUnit]
+	if oPetUnit then
+		assert(oPetUnit:IsPet())
 	end
-	for nUnit, oUnit in pairs(tUnitMap) do
-		if oUnit:IsPet() and oUnit:GetParentUnit() == nRoleUnit then
-			return oUnit
-		end
+	return oPetUnit
+end
+
+--取宠物的玩家单位
+function CBattle:GetRoleUnit(nPetUnit)
+	local tUnitMap = self:GetTeam(nPetUnit)
+	local nRoleUnit = self:GetPetUnitID(nPetUnit)
+	local oRoleUnit = tUnitMap[nRoleUnit]
+	if oRoleUnit then
+		assert(oRoleUnit:IsRole())
 	end
+	return oRoleUnit
 end
 
 --取随机存活敌人
 function CBattle:RandAliveEnemy(nUnitID)
-	local tUnitMap = nil
-	if nUnitID % 10 == 1 then
-		tUnitMap = self.m_tUnitDefMap
-	else
-		tUnitMap = self.m_tUnitAtkMap
-	end
+	local tUnitMap = self:GetTeam(nUnitID)
 	local tUnitList = {}
 	for nUnit, oUnit in pairs(tUnitMap) do
 		if not oUnit:IsDead() then
@@ -327,16 +393,12 @@ end
 --单位撤退成功事件
 function CBattle:OnUnitCT(oUnit)
 	local nUnitID = oUnit:GetUnitID()
-	local tUnitMap = self:GetTeam(nUnitID)
 
 	if oUnit:IsRole() then
-		local oPetUnit = self:GetPetUnit(nUnitID)
-		tUnitMap[nUnitID] = nil
 		oUnit:OnCTSuccess()
 
+		local oPetUnit = self:GetPetUnit(nUnitID)
 		if oPetUnit then
-			local nPetUnitID = oPetUnit:GetUnitID()
-			tUnitMap[nPetUnitID] = nil
 			oPetUnit:OnCTSuccess()
 
 		end
@@ -348,7 +410,6 @@ function CBattle:OnUnitCT(oUnit)
 		end
 
 	else
-		tUnitMap[nUnitID] = nil
 		oUnit:OnCTSuccess()
 
 		if self:IsTeamDead(nUnitID) then
@@ -358,8 +419,9 @@ function CBattle:OnUnitCT(oUnit)
 	end
 end
 
---战斗结束事件
-function CBattle:OnBattleResult()
+--战斗结束
+function CBattle:BattleResult()
+	print("CBattle:BattleResult***", self.m_tBattleResult)
 	assert(self.m_tBattleResult.bEnd)
 end
 
@@ -372,4 +434,48 @@ end
 function CBattle:Broadcast(sCmd, tMsg)
 	local tSessionList = self:SessionList()
 	CmdNet.PBBroadcastExter(sCmd, tSessionList, tMsg)
+end
+
+--广播房间
+function CBattle:SendMsg(sCmd, nServer, nSession, tMsg)
+	CmdNet.PBSrv2Clt(sCmd, nServer, nSession, tMsg)
+end
+
+--下达指令请求
+function CBattle:AddInstReq(oRole, tData)
+	local oUnit = self:GetUnit(tData.nUnitID)
+	if not oUnit then
+		return
+	end
+	local nInst = tData.nInst
+	if nInst == CUnit.tINST.eFS then
+		oUnit:SetInst(nInst, tDta.nTarUnit, tData.nSkillID)	
+
+	elseif nInst == CUnit.tINST.eGJ then
+		oUnit:SetInst(nInst, tDta.nTarUnit)
+
+	elseif nInst == CUnit.tINST.eWP then
+		oUnit:SetInst(nInst, tDta.nPropID)
+
+	elseif nInst == CUnit.tINST.eZH then
+		oUnit:SetInst(nInst, tDta.nPetID)
+
+	elseif nInst == CUnit.tINST.eZD then
+		oUnit:SetInst(nInst, tDta.bAuto)
+
+	elseif nInst == CUnit.tINST.eFY then
+		oUnit:SetInst(nInst)
+
+	elseif nInst == CUnit.tINST.eBH then
+		oUnit:SetInst(nInst, tData.nTarUnit)
+
+	elseif nInst == CUnit.tINST.eBZ then
+		oRole:Tips("指令未定义:"..nInst)
+
+	elseif nInst == CUnit.tINST.eCT then
+		oUnit:SetInst(nInst)
+
+	else
+		oRole:Tips("指令未定义:"..nInst)
+	end
 end

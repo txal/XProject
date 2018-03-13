@@ -14,7 +14,9 @@ end
 function CDupMgr:Init()
     for nDupID, tConf in pairs(ctDupConf) do
         if tConf.nType == CDupBase.tType.eCity and tLogicMap[tConf.nLogic] then
-            self:CreateDup(nDupID)
+            local oDup = self:CreateDup(nDupID)
+            --fix pd 测试
+            goMonsterMgr:CreateMonster(1, oDup:GetMixID(), 100, 100)
         end
     end
 end

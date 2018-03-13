@@ -293,9 +293,15 @@ end
 function CKnapsack:PropName(nID)
 	local tConf = ctPropConf[nID]
 	if not tConf then
-		return "null"
+		return ""
 	end
 	return tConf.sName
+end
+
+--取战斗道具 fix pd
+function CKnapsack:GetBattlePropMap()
+	local tPropMap = {}
+	return tPropMap
 end
 
 --GM清空背包
@@ -305,3 +311,4 @@ function CKnapsack:GMClrKnapsack()
 	self:SyncKnapsackItem()
 	self.m_oRole:Tips("清空背包成功")
 end
+
