@@ -185,6 +185,11 @@
       <AdditionalDependencies>lua530.lib;LibNetwork.lib;LibLogger.lib;LuaWrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>pushd $(OutDir)
+xcopy /y/f GateServer* E:\Games\mengzhu\Runtime\trunk\Server\_LocalServer\
+popd</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

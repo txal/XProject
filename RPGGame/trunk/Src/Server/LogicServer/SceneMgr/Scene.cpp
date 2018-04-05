@@ -106,7 +106,7 @@ bool Scene::IsTime2Collect(int64_t nNowMS)
 }
 
 
-int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine)
+int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine, int32_t nSeenObjID)
 {
 	int nObjID = poObj->GetID();
 	int nObjType = poObj->GetType();
@@ -327,7 +327,9 @@ int Scene::EnterDup(lua_State* pState)
 	assert(tAOIArea[0] >= 0 && tAOIArea[1] >= 0);
 
 	int nLine = (int)luaL_checkinteger(pState, 7); //0公共线,-1自动
-	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine);
+	int nSeenObjID = (int)luaL_checkinteger(pState, 8); 
+
+	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine, nSeenObjID);
 	if (nAOIID <= 0)
 	{
 		return LuaWrapper::luaM_error(pState, "AddObj to scene fail!");

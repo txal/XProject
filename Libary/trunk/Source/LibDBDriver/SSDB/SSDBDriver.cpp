@@ -286,6 +286,7 @@ bool SSDBDriver::Reconnect()
 	}
 	SAFE_DELETE(m_poSSDBClient);
 	m_poSSDBClient = poSSDBClient;
+	XLog(LEVEL_ERROR, "Reconnect SSDB success %s:%d fail!\n", m_sIP, m_uPort);
 	return true;
 }
 

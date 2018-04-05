@@ -228,8 +228,6 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID)
 		return false;
 	}
 	ServiceNode* poService = iter->second;
-	poService->SetServerID(nServerID);
-	poService->SetServiceID(nServiceID);
 	int nKey = ServiceNode::Key(nServerID, nServiceID);
 	if (m_oServiceMap.find(nKey) != m_oServiceMap.end())
 	{
@@ -237,6 +235,8 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID)
 		XLog(LEVEL_ERROR, "RegService: server:%d service:%d already register!\n", nServerID, nServiceID);
 		return false;
 	}
+	poService->SetServerID(nServerID);
+	poService->SetServiceID(nServiceID);
 	m_oServiceMap[nKey] = poService;
 	XLog(LEVEL_INFO, "RegService: server:%d service:%d register successful\n", nServerID, nServiceID);
 	return true;

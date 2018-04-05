@@ -127,7 +127,9 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f  LogicServer* ..\_WorldServer\
+xcopy /y/f LogicServer* ..\_WorldServer\
+xcopy /y/f LogicServer* E:\Games\mengzhu\Runtime\trunk\Server\_LocalServer
+xcopy /y/f LogicServer* E:\Games\mengzhu\Runtime\trunk\Server\_WorldServer
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

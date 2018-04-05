@@ -81,7 +81,7 @@ void Actor::StopRun(bool bBroadcast, bool bClientStop)
 		{
 			BroadcastStopRun();
 		}
-		//XLog(LEVEL_INFO, "%s Stop run pos:(%d, %d) client:%d time:%d\n", m_sName, m_oPos.x, m_oPos.y, bClientStop, m_nClientRunStartMSTime);
+		//XLog(LEVEL_INFO, "%s Stop run pos:(%d, %d) from_client:%d time:%d\n", m_sName, m_oPos.x, m_oPos.y, bClientStop, m_nClientRunStartMSTime);
 	}
 }
 
@@ -136,6 +136,7 @@ void Actor::SyncPosition(const char* pWhere)
 	oNavi.uSrcServer = g_poContext->GetServerID();
 	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
 	oNavi.uTarServer = GetServer();
+	oNavi.nTarService = GetSession() >> SERVICE_SHIFT;
 	oNavi.nTarSession = GetSession();
 	NetAdapter::SendExter(NSCltSrvCmd::sSyncActorPosRet, poPacket, oNavi);
 }

@@ -135,6 +135,11 @@
       <AdditionalDependencies>LibLogger.lib;LibNetwork.lib;Lua530.lib;LuaWrapper.lib;pbc.lib;LibDBDriver.lib;lpeg.lib;lua_cjson.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>pushd $(OutDir)
+xcopy /y/f RobotClient* E:\Games\mengzhu\Runtime\trunk\Server\_RobotClient\
+popd</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

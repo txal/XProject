@@ -85,7 +85,7 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight)
 	return true;
 }
 
-int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine)
+int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine, int32_t nSeenObjID)
 {
 	assert(nLine == 0 || nLine == -1);
 	if (nAOIMode & AOI_MODE_DROP)
@@ -112,6 +112,7 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* p
 	pObj->nArea[0] = (int16_t)nAOIArea[0];
 	pObj->nArea[1] = (int16_t)nAOIArea[1];
 	pObj->poGameObj = poGameObj;
+	pObj->nSeenObjID = nSeenObjID;
 
 	int8_t nTarLine = AddLineObj(nLine);
 	assert(nTarLine >= 0 && nTarLine < MAX_LINE);
@@ -212,13 +213,15 @@ void AOI::MoveObserver(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 			{
 				Tower* pTower = m_pTowerArray[oy * m_nXTowerNum + ox];
 				Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
-				Tower::AOIObjIter iter = oObservedMap.begin();
-				for (; iter != oObservedMap.end(); iter++)
+				for (Tower::AOIObjIter iter = oObservedMap.begin(); iter != oObservedMap.end(); iter++)
 				{
 					if (iter->second == pObj)
 						continue;
-					if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
-						m_oObjCache.PushBack(iter->second);
+					if (iter->second->nLine != 0 && iter->second->nLine != pObj->nLine)
+						continue;
+					if (iter->second->nSeenObjID != 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
+						continue;
+					m_oObjCache.PushBack(iter->second);
 				}
 				if (!pTower->RemoveObserver(pObj))
 				{
@@ -241,13 +244,15 @@ void AOI::MoveObserver(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 			{
 				Tower* pTower = m_pTowerArray[ny * m_nXTowerNum + nx];
 				Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
-				Tower::AOIObjIter iter = oObservedMap.begin();
-				for (; iter != oObservedMap.end(); iter++)
+				for (Tower::AOIObjIter iter = oObservedMap.begin(); iter != oObservedMap.end(); iter++)
 				{
 					if (iter->second == pObj)
 						continue;
-					if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
-						m_oObjCache.PushBack(iter->second);
+					if (iter->second->nLine != 0 && iter->second->nLine != pObj->nLine)
+						continue;
+					if (iter->second->nSeenObjID != 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
+						continue;
+					m_oObjCache.PushBack(iter->second);
 				}
 				pTower->AddObserver(pObj);
 			}
@@ -289,7 +294,7 @@ void AOI::MoveObserved(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 		AOIOBJ* pObserver = iter->second;
 		if (pObserver == pObj)
 			continue;
-		if (pObserver->nLine != 0 && pObserver->nLine != pObj->nLine)
+		if (pObj->nLine != 0 && pObj->nLine != pObserver->nLine)
 			continue;
 
 		int nLTTower[2] = {-1, -1};
@@ -320,13 +325,12 @@ void AOI::MoveObserved(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 	m_oObjCache.Clear();
 	Tower* pNewTower = m_pTowerArray[nNewTowerY * m_nXTowerNum + nNewTowerX];
 	Tower::AOIObjMap& oNewObserverMap = pNewTower->GetObserverMap();
-	iter = oNewObserverMap.begin();
-	for (; iter != oNewObserverMap.end(); iter++)
+	for (iter = oNewObserverMap.begin(); iter != oNewObserverMap.end(); iter++)
 	{
 		AOIOBJ* pObserver = iter->second;
 		if (pObserver == pObj)
 			continue;
-		if (pObserver->nLine != 0 && pObserver->nLine != pObj->nLine)
+		if (pObj->nLine != 0 && pObj->nLine != pObserver->nLine)
 			continue;
 
 		int nLTTower[2] = {-1, -1};
@@ -378,7 +382,7 @@ void AOI::AddObserver(int nID)
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
-		XLog(LEVEL_ERROR, "AddObserver: id:%d aoi obj not exist or mode:%d error!\n", pObj->nAOIID, pObj->nAOIMode);
+		XLog(LEVEL_ERROR, "AddObserver: id:%d 0x%u aoi obj not exist or mode error!\n", nID, (void*)pObj);
 		return;
 	}
 	pObj->nAOIMode |= AOI_MODE_OBSERVER;
@@ -400,13 +404,15 @@ void AOI::AddObserver(int nID)
 		{
 			Tower* pTower = m_pTowerArray[y * m_nXTowerNum + x];
 			Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
-			Tower::AOIObjIter iter = oObservedMap.begin();
-			for (; iter != oObservedMap.end(); iter++)
+			for (Tower::AOIObjIter iter = oObservedMap.begin(); iter != oObservedMap.end(); iter++)
 			{
 				if (iter->second == pObj)
 					continue;
-				if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
-					m_oObjCache.PushBack(iter->second);
+				if (iter->second->nLine != 0 && pObj->nLine != iter->second->nLine)
+					continue;
+				if (iter->second->nSeenObjID != 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
+					continue;
+				m_oObjCache.PushBack(iter->second);
 			}
 			pTower->AddObserver(pObj);
 		}
@@ -442,16 +448,18 @@ void AOI::RemoveObserver(int nID, bool bLeaveScene)
 		for (int x = nLTTower[0]; x <= nRBTower[0]; x++)
 		{
 			Tower* pTower = m_pTowerArray[y * m_nXTowerNum + x];
-			if (!bLeaveScene) //不是离开场景需要管理视野
+			if (!bLeaveScene) //离开场景不需要管理视野
 			{
 				Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
-				Tower::AOIObjIter iter = oObservedMap.begin();
-				for (iter; iter != oObservedMap.end(); iter++)
+				for (Tower::AOIObjIter iter = oObservedMap.begin(); iter != oObservedMap.end(); iter++)
 				{
 					if (iter->second == pObj)
 						continue;
-					if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
-						m_oObjCache.PushBack(iter->second);
+					if (iter->second->nLine != 0 && iter->second->nLine != pObj->nLine)
+						continue;
+					if (iter->second->nSeenObjID != 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
+						continue;
+					m_oObjCache.PushBack(iter->second);
 				}
 			}
 			pTower->RemoveObserver(pObj);
@@ -474,7 +482,7 @@ void AOI::AddObserved(int nID)
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
-		XLog(LEVEL_ERROR, "AddObserved: id:%d aoi obj not exist or mode:%d error!\n", pObj->nAOIID, pObj->nAOIMode);
+		XLog(LEVEL_ERROR, "AddObserved: id:%d 0x%u aoi obj not exist or mode error!\n", nID, (void*)pObj);
 		return;
 	}
 	
@@ -491,8 +499,11 @@ void AOI::AddObserved(int nID)
 	{
 		if (iter->second == pObj)
 			continue;
-		if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
-			m_oObjCache.PushBack(iter->second);
+		if (pObj->nLine != 0 && pObj->nLine != iter->second->nLine)
+			continue;
+		if (pObj->nSeenObjID > 0 && pObj->nSeenObjID != iter->second->poGameObj->GetID())
+			continue;
+		m_oObjCache.PushBack(iter->second);
 	}
 	pTower->AddObserved(pObj);
 
@@ -507,6 +518,7 @@ void AOI::RemoveObserved(int nID)
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || !(pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
+		XLog(LEVEL_ERROR, "RemoveObserved: id:%d 0x%u aoi obj not exist or mode error!\n", nID, (void*)pObj);
 		return;
 	}
 
@@ -522,8 +534,11 @@ void AOI::RemoveObserved(int nID)
 	{
 		if (iter->second == pObj)
 			continue;
-		if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
-			m_oObjCache.PushBack(iter->second);
+		if (pObj->nLine != 0 && pObj->nLine != iter->second->nLine)
+			continue;
+		if (pObj->nSeenObjID != 0 && pObj->nSeenObjID != iter->second->poGameObj->GetID())
+			continue;
+		m_oObjCache.PushBack(iter->second);
 	}
 	pTower->RemoveObserved(pObj);
 
@@ -558,11 +573,13 @@ void AOI::GetAreaObservers(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType)
 	{
 		if (iter->second == pObj)
 			continue;
-		if (nGameObjType == 0 || iter->second->poGameObj->GetType() == nGameObjType)
-		{
-			if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
-				oObjCache.PushBack(iter->second);
-		}
+		if (nGameObjType != 0 && nGameObjType != iter->second->poGameObj->GetType())
+			continue;
+		if (pObj->nLine != 0 && pObj->nLine != iter->second->nLine)
+			continue;
+		if (pObj->nSeenObjID != 0 && pObj->nSeenObjID != iter->second->poGameObj->GetID())
+			continue;
+		m_oObjCache.PushBack(iter->second);
 	}
 }
 
@@ -591,16 +608,17 @@ void AOI::GetAreaObserveds(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType)
 		{
 			Tower* pTower = m_pTowerArray[y * m_nXTowerNum + x];
 			Tower::AOIObjMap& oObservedMap = pTower->GetObservedMap();
-			Tower::AOIObjIter iter = oObservedMap.begin();
-			for (iter; iter != oObservedMap.end(); iter++)
+			for (Tower::AOIObjIter iter = oObservedMap.begin(); iter != oObservedMap.end(); iter++)
 			{
 				if (iter->second == pObj)
 					continue;
-				if (nGameObjType == 0 || iter->second->poGameObj->GetType() == nGameObjType)
-				{
-					if (iter->second->nLine == 0 || iter->second->nLine == pObj->nLine)
-						oObjCache.PushBack(iter->second);
-				}
+				if (nGameObjType != 0 && nGameObjType != iter->second->poGameObj->GetType())
+					continue;
+				if (iter->second->nLine != 0 && iter->second->nLine != pObj->nLine)
+					continue;
+				if (iter->second->nSeenObjID > 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
+					continue;
+				m_oObjCache.PushBack(iter->second);
 			}
 		}
 	}

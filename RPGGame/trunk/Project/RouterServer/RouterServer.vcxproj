@@ -120,6 +120,11 @@
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
+    <PostBuildEvent>
+      <Command>pushd $(OutDir)
+xcopy /y/f RouterServer* E:\Games\mengzhu\Runtime\trunk\Server\_RouterServer\
+popd</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

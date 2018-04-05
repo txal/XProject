@@ -111,6 +111,11 @@
       <AdditionalDependencies>lua530.lib;LibLogger.lib;LibNetwork.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>pushd $(OutDir)
+xcopy /y/f LogServer* E:\Games\mengzhu\Runtime\trunk\Server\_LocalServer\
+popd</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

@@ -26,6 +26,7 @@ struct AOIOBJ
 	int16_t nArea[2];	//矩形(像素):(宽,高); 圆形(像素):(半径,0)
 	Object* poGameObj;	//游戏对象
 	int8_t nLine;		//所在分线
+	int32_t nSeenObjID;	//该AOI对象只会被nSeenObjID看见
 };
 
 class Scene;
@@ -42,7 +43,7 @@ public:
 
 	bool Init(Scene *pScene, int nMapWidth, int nMapHeight);
 
-	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1);
+	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1, int32_t nSeenObjID=0);
 	void MoveObj(int nID, int nPosX, int nPosY);
 	void RemoveObj(int nID, bool bLeaveScene=false);
 
