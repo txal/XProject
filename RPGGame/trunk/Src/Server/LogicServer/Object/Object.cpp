@@ -6,7 +6,7 @@
 #include "Server/LogicServer/LogicServer.h"
 #include "Server/LogicServer/SceneMgr/Scene.h"
 
-const int nOBJECT_COLLECT_MSTIME = 3*60*1000; //非玩家对象回收时间
+const int nOBJECT_COLLECT_MSTIME = 30*60*1000; //非玩家对象回收时间
 
 LUNAR_IMPLEMENT_CLASS(Object)
 {
@@ -95,6 +95,7 @@ void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 		oNavi.uSrcServer = g_poContext->GetServerID();
 		oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
 		oNavi.uTarServer = uTarServer;
+		oNavi.nTarService = nTarSession >> SERVICE_SHIFT;
 		oNavi.nTarSession = nTarSession;
 		goNaviCache.PushBack(oNavi);
 	}
@@ -108,6 +109,7 @@ void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 	{
 		Actor* poActor = (Actor*)(oAOIObjList[i]->poGameObj);
 		oNavi.uTarServer = poActor->GetServer();
+		oNavi.nTarService = poActor->GetSession() >> SERVICE_SHIFT;
 		oNavi.nTarSession = poActor->GetSession();
 		goNaviCache.PushBack(oNavi);
 	}
@@ -164,4 +166,10 @@ int Object::GetPos(lua_State* pState)
 	lua_pushinteger(pState, m_oPos.x);
 	lua_pushinteger(pState, m_oPos.y);
 	return 2;
+}
+
+int Object::GetSessionID(lua_State* pState)
+{
+	lua_pushinteger(pState, GetSession());
+	return 1;
 }

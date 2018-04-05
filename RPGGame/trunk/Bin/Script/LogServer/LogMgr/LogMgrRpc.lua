@@ -13,7 +13,7 @@ local function _StrField(xField)
 end
 
 --事件日志
-function Srv2Srv.EventLogReq(nSrcServer, nSrcService, nTarSession, nEventID, nReason, nAccountID, nRoleID, sRoleName, nLevel, nVIP, ...)
+function Srv2Srv.EventLogReq(nSrcServer, nSrcService, nTarSession, nEventID, sReason, nAccountID, nRoleID, sRoleName, nLevel, nVIP, ...)
 	sRoleName = _StrField(sRoleName)
 	local tField = {...}
 	local sField1 = _StrField(tField[1])
@@ -24,8 +24,8 @@ function Srv2Srv.EventLogReq(nSrcServer, nSrcService, nTarSession, nEventID, nRe
 	local sField6 = _StrField(tField[6])
 	local nTime = assert(tField[7])
 
-	local sSql = string.format("call proc_log(%d, %d, %d, %d ,'%s', %d, %d,'%s','%s','%s','%s','%s', '%s', %d);"
-		, nEventID, nReason, nAccountID, nRoleID, sRoleName, nLevel, nVIP, sField1, sField2, sField3, sField4, sField5, sField6, nTime)
+	local sSql = string.format("call proc_log(%d, %s, %d, %d ,'%s', %d, %d,'%s','%s','%s','%s','%s','%s', %d);"
+		, nEventID, sReason, nAccountID, nRoleID, sRoleName, nLevel, nVIP, sField1, sField2, sField3, sField4, sField5, sField6, nTime)
 	goMysqlPool:Query(sSql)
 end
 
@@ -44,7 +44,7 @@ function Srv2Srv.CreateRoleLogReq(nSrcServer, nSrcService, nTarSession, nAccount
 end
 
 --更新账号信息
-function Srv2Srv.UpdateAccountLogreq(nSrcServer, nSrcService, nTarSession, nAccountID, tParam)
+function Srv2Srv.UpdateAccountLogReq(nSrcServer, nSrcService, nTarSession, nAccountID, tParam)
 	local sSetSql = ""
 	for k, v in pairs(tParam) do
 		sSetSql = sSetSql .. string.format("%s='%s',", k, _StrField(v))

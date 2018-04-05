@@ -11,9 +11,9 @@ void NSPacketProc::RegisterPacketProc()
 	poPacketHandler->RegsterExterPacketProc(NSMsgType::eLuaRpcMsg, (void*)OnLuaRpcMsg);
 	poPacketHandler->RegsterExterPacketProc(NSMsgType::eLuaCmdMsg, (void*)OnLuaCmdMsg);
 
-	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sSyncActorPos, (void*)OnSyncActorPos);
-	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sBroadcastActorStartRun, (void*)OnBroadcastActorStartRun);
-	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sBroadcastActorStopRun, (void*)OnBroadcastActorStopRun);
+	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sSyncActorPosRet, (void*)OnSyncActorPos);
+	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sActorStartRunRet, (void*)OnBroadcastActorStartRun);
+	poPacketHandler->RegsterExterPacketProc(NSCltSrvCmd::sActorStopRunRet, (void*)OnBroadcastActorStopRun);
 }
 
 void NSPacketProc::OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)

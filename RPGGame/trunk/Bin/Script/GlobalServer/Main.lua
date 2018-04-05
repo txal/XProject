@@ -47,7 +47,7 @@ require("RankingMgr/RankingMgrInc")
 local function _InitGlobal()
     goDBMgr:Init()
     goRemoteCall:Init()
-    goServerMgr:Init(gnServerID)
+    goServerMgr:Init()
     
     goGPlayerMgr:LoadData()
     goNoticeMgr:LoadData()

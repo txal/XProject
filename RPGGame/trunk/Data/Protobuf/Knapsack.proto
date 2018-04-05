@@ -1,0 +1,94 @@
+package knapsack;
+
+//道具
+message _Item 
+{
+	required int32 nSysID = 1;	 	//配置ID
+	required int32 nGrid = 2;		//格子ID
+	required int32 nNum= 3; 		//折叠数量
+}
+
+//道具列表
+message KnapsackItemListRet
+{
+	repeated _Item tItemList = 1;	//道具列表
+}
+
+//道具增加通知
+message KnapsackItemAddRet
+{
+	repeated _Item tItemList = 1;	//道具列表
+}
+
+//道具删除通知
+message KnapsackItemRemoveRet
+{
+	repeated int32 tGrid = 1; 		//格子列表
+}
+
+//道具数量变更通知
+message KnapsackItemModRet
+{
+	repeated _Item tItemList = 1; 	//道具列表
+}
+
+//出售道具请求
+message KnapsackSellItemReq
+{
+	required int32 nGrid = 1; 	//道具格子
+	required int32 nNum = 2; 	//道具数量
+}
+
+//使用道具请求
+message KnapsackUseItemReq
+{
+	required int32 nGrid = 1; 	//道具格子	
+	required int32 nNum = 2; 	//道具数量
+}
+
+//使用道具成功返回
+message KnapsackUseItemRet
+{
+	message _Award
+	{
+		required int32 nType = 1; 	//类型
+		required int32 nID = 2; 	//ID
+		required int32 nNum = 3; 	//数量
+	}
+	repeated _Award tAwardList = 1; //奖励列表
+	required int32 nPropID = 2; 	//使用的道具ID
+	required int32 nPropNum = 3; 	//使用的道具数量
+}
+
+//使用随机属性宝箱成功返回
+message KnapsackUseAttrBoxRet
+{
+	message _Award
+	{
+		required int32 nObjType = 1; 	//5知己
+		required int32 nObjID = 2; 		//目标知己ID
+		required int32 nCurrType = 3; 	//属性类型: 17随机知己成长点; 18随机知己亲密度; 19随机知己好感度; 25随机知己战绩; 26随机知己成长点 
+		required int32 nOrgVal = 4; 	//增加前属性值 
+		required int32 nCurrVal = 5; 	//增加的属性值
+		optional int32 nQuaType = 6; 	//知己成长点类型: 智才魅武(1-4)
+	}
+	repeated _Award tAwardList = 1; //奖励列表
+	required int32 nPropID = 2; 	//所使用的道具ID
+	required int32 nPropNum = 3; 	//所使用的道具数量
+
+}
+
+//道具合成请求
+message KnapsackComposeReq
+{
+	required int32 nID = 1; 	//合成道具ID	
+}
+
+//道具合成成功返回
+message KnapsackComposeRet
+{
+	required int32 nType = 1; 	//物品类型
+	required int32 nID = 2; 	//物品ID
+	required int32 nNum = 3; 	//物品数量
+}
+

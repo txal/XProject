@@ -27,7 +27,7 @@ uint8_t* PacketReader::GetReadingPos(int nReadSize)
 {
 	if ((m_nReadedSize + nReadSize) > m_nBuffSize)
 	{
-		XLog(LEVEL_ERROR, "Read buffer out\n");
+		XLog(LEVEL_ERROR, "Read out of data\n");
 		return NULL;
 	}
 	uint8_t* pbfReadingPos = m_pbfBuff + m_nReadedSize;

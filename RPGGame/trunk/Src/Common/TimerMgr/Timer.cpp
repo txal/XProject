@@ -55,7 +55,7 @@ LuaTimer::~LuaTimer()
 {
 	UnRef();
 	m_bCancel = 1;
-	XLog(LEVEL_DEBUG, "timer destroy: %u (%s)\n", m_uTimerID, m_sWhere);
+	//XLog(LEVEL_DEBUG, "timer destroy: %u (%s)\n", m_uTimerID, m_sWhere);
 }
 
 void LuaTimer::Execute()

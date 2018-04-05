@@ -59,7 +59,18 @@ RegPBReq(9100, "RoleEnterSceneReq", "scene.RoleEnterSceneReq", 0)   --角色进�
 RegPBRet(9101, "RoleEnterSceneRet", "scene.RoleEnterSceneRet", 0)   --角色进入场景返回
 RegPBReq(9102, "RoleLeaveSceneReq", "scene.RoleLeaveSceneReq", 0)   --角色离开副本请求
 RegPBRet(9103, "RoleLeaveSceneRet", "scene.RoleLeaveSceneRet", 0)   --角色离开副本返回
-RegPBRet(9104, "RoleEnterViewRet", "scene.RoleEnterViewRet", 0)         --角色进入视野返回
+RegPBRet(9104, "RoleEnterViewRet", "scene.RoleEnterViewRet", 0)     --角色进入视野返回
 RegPBRet(9105, "MonsterEnterViewRet", "scene.MonsterEnterViewRet", 0)   --怪物进入视野返回
-RegPBRet(9106, "ObjLeaveViewRet", "scene.ObjLeaveViewRet", 0)       --对象离开视野返回
+RegPBRet(9106, "ObjLeaveViewRet", "scene.ObjLeaveViewRet", 0)       	--对象离开视野返回
 
+--背包
+RegPBRet(9200, "KnapsackItemListRet", "knapsack.KnapsackItemListRet", 0)		--道具列表返回
+RegPBRet(9201, "KnapsackItemAddRet", "knapsack.KnapsackItemAddRet", 0)			--道具增加通知
+RegPBRet(9202, "KnapsackItemRemoveRet", "knapsack.KnapsackItemRemoveRet", 0)	--道具删除通知
+RegPBRet(9203, "KnapsackItemModRet", "knapsack.KnapsackItemModRet", 0)			--道具数量变更通知
+-- RegPBReq(9204, "KnapsackSellItemReq", "knapsack.KnapsackSellItemReq", 0)		--出售道具请求
+-- RegPBReq(9205, "KnapsackUseItemReq", "knapsack.KnapsackUseItemReq", 0)		--使用道具请求
+-- RegPBRet(9206, "KnapsackUseItemRet", "knapsack.KnapsackUseItemRet", 0)		--使用道具成功返回
+-- RegPBReq(9207, "KnapsackComposeReq", "knapsack.KnapsackComposeReq", 0)		--道具合成请求
+-- RegPBRet(9208, "KnapsackComposeRet", "knapsack.KnapsackComposeRet", 0)		--道具合成成功返回
+-- RegPBRet(9209, "KnapsackUseAttrBoxRet", "Knapsack.knapsackUseAttrBoxRet", 0)	--使用随机属性宝箱返回

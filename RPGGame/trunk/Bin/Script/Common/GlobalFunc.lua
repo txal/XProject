@@ -49,3 +49,12 @@ function GF.GetService(nSession)
     assert(nSession, "参数错误")
     return (nSession >> nSERVICE_SHIFT)
 end
+
+--随机坐标
+--@nPosX, nPosY: 原点
+--@nRad: 半径
+function GF.RandPos(nPosX, nPosY, nRad)
+    local nRndX = math.max(0, math.random(nPosX-nRad, nPosX+nRad))
+    local nRndY = math.max(0, math.random(nPosY-nRad, nPosY+nRad))
+    return nRndX, nRndY
+end

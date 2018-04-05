@@ -1,4 +1,4 @@
---Mysql连接池(只给写LOG用,不支持SELECT)
+--Mysql连接池(不支持SELECT)
 local math, table = math, table
 local tLogService = gtServerConf.tLogService[1]
 

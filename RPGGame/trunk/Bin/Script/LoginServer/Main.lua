@@ -37,8 +37,8 @@ require("LoginMgr/LoginMgrInc")
 
 --全局初始化
 local function _InitGlobal()
-    goDBMgr:Init()
     goRemoteCall:Init()
+    goDBMgr:Init()
     
 end
 

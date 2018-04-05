@@ -53,7 +53,7 @@ uint32_t TimerMgr::RegisterTimer(uint32_t uMSTime, int nLuaRef, const char* pWhe
 	LuaTimer* poTimer = XNEW(LuaTimer)(uTimerID, uMSTime, nLuaRef, pWhere);
 	m_oTimerHeap.Push(poTimer);
 	m_oTimerMap[uTimerID] = poTimer;
-	XLog(LEVEL_DEBUG, "timer count: %d (%s)\n", m_oTimerMap.size(), pWhere);
+	//XLog(LEVEL_DEBUG, "timer count: %d (%s)\n", m_oTimerMap.size(), pWhere);
 	if (m_oTimerMap.size() >= 100000)
 	{
 		XLog(LEVEL_ERROR, "Too many timer count:%d where:%s\n", m_oTimerMap.size(), pWhere);

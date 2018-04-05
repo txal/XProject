@@ -25,10 +25,10 @@ public:
 	int GetConfID() { return m_nConfID;  }
 	GAMEOBJ_TYPE GetType() { return m_nObjType; }
 
+	int GetAOIID() { return m_nAOIID; }
 	Point& GetPos() { return m_oPos; }
 	void SetPos(const Point& oPos, const char* pFile = "", int nLine = 0);
 	Scene* GetScene() { return m_poScene; }
-	int GetAOIID() { return m_nAOIID; }
 
 	bool IsTime2Collect(int64_t nNowMS);
 	int64_t GetLastUpdateTime() { return m_nLastUpdateTime; }
@@ -37,6 +37,7 @@ public:
 	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
+	virtual int GetSession() { return 0; }
 
 public:
 	void CacheActorNavi(uint16_t nTarServer=0, int nTarSession=0);	//如果传参表示也发给自己
@@ -65,6 +66,7 @@ public:
 	int GetDupMixID(lua_State* pState);
 	int GetAOIID(lua_State* pState);
 	int GetPos(lua_State* pState);
+	int GetSessionID(lua_State* pState);
 };
 
 
@@ -75,7 +77,8 @@ LUNAR_DECLARE_METHOD(Class, GetConfID),\
 LUNAR_DECLARE_METHOD(Class, GetObjType),\
 LUNAR_DECLARE_METHOD(Class, GetDupMixID),\
 LUNAR_DECLARE_METHOD(Class, GetAOIID),\
-LUNAR_DECLARE_METHOD(Class, GetPos)
+LUNAR_DECLARE_METHOD(Class, GetPos),\
+LUNAR_DECLARE_METHOD(Class, GetSessionID)
 
 
 //注册到LUA

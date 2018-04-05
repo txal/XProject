@@ -13,12 +13,17 @@ end
 
 
 ------服务器内部------
---路由服务通知有服务断开(网关断开就关服)
+--服务断开通知(ROUTER)
 function SrvCmdProc.OnServiceClose(nCmd, nSrcServer, nSrcService, nTarSession, nServer, nService)
     goLoginMgr:OnServiceClose(nServer, nService)
 end
 
---客户端断开通知
+--客户端断开通知(GATEWAY)
 function SrvCmdProc.OnClientClose(nCmd, nSrcServer, nSrcService, nTarSession)
     goLoginMgr:OnClientClose(nSrcServer, nTarSession)
+end
+
+--更新角色摘要(LOGIC)
+function Srv2Srv.RoleUpdateSummaryReq(nSrcServer, nSrcService, nTarSession, nAccountID, nRoleID, tSummary)
+	goLoginMgr:RoleUpdateSummaryReq(nAccountID, nRoleID, tSummary)
 end

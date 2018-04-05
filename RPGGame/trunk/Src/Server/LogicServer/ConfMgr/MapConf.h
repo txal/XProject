@@ -5,8 +5,8 @@
 #include "Common/CSVDocument/CSVDocument.h"
 #include "Common/Platform.h"
 
-static const int gnUnitWidth = 32;	//格子宽(像素)
-static const int gnUnitHeight = 32;	//格子高(像素)
+static const int gnUnitWidth = 40;	//格子宽(像素)
+static const int gnUnitHeight = 40;	//格子高(像素)
 static const int gnTowerWidth = 4;	//灯塔宽(格子)
 static const int gnTowerHeight = 4;	//灯塔高(格子)
 

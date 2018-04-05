@@ -43,6 +43,9 @@
 		$serverID = serverID();
 		$query = $mgrdb->query("select time from serverlist where serverid=$serverID;");
 		$sitime = $mgrdb->fetch_array($query)['time'];
+		$tmptime = date("Y-m-d", $sitime)." 0:0:0";
+		$sitime = dt2timestamp($tmptime);
+		
 		$eitime = time();
 		$total = floor($eitime/(24*3600)) - floor($sitime/(24*3600)) + 1;
 

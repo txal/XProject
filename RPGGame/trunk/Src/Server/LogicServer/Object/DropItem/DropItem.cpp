@@ -9,7 +9,7 @@ LUNAR_IMPLEMENT_CLASS(DropItem)
 
 DropItem::DropItem()
 {
-	m_nObjType = eOT_SceneDrop;
+	m_nObjType = eOT_Drop;
 	m_nDisappearTime = (int)time(0) + 180;
 }
 

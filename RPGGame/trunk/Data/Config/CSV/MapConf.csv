@@ -1,4 +1,4 @@
-nID,sFile
-i,s
-地图ID,地图文件
-1,1_zudang.csv
+nID,sFile,nWidth,nHeight
+i,s,i,i
+地图ID,地图文件,地图宽,地图高
+1,1.csv,2160,2560

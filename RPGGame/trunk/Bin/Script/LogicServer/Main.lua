@@ -35,13 +35,15 @@ end
 require("MainRpc")
 require("Global/GlobalInc")
 require("Player/PlayerInc")
+require("Monster/MonsterInc")
 require("Module/ModuleInc")
 require("Dup/DupInc")
 
 --全局初始化
 local function _InitGlobal()
-    goDBMgr:Init()
+    goServerMgr:Init()
     goRemoteCall:Init()
+    goDBMgr:Init()
     goDupMgr:Init()
 
 end

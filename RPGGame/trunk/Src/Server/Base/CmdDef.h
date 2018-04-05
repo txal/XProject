@@ -43,14 +43,14 @@ namespace NSCltSrvCmd
 	{
 		eCMD_BEGIN = 1025,
 
-		ppPing= 1025,					    //客户端Ping
+		ppPing= 1025,					    //客户端PING
 
 		ppKeepAlive = 1100,					//客户端心跳包
-		cRoleStartRun = 1110,				//玩家开始跑步
-		cRoleStopRun = 1111,				//玩家停止跑步
-		sSyncActorPos = 1112,				//同步角色位置
-		sBroadcastActorStartRun = 1113,		//广播角色开始跑步
-		sBroadcastActorStopRun = 1114,		//广播角色停止跑步
+		cRoleStartRunReq = 1110,			//角色开始跑动请求
+		cRoleStopRunReq = 1111,				//角色停止跑步请求
+		sSyncActorPosRet = 1112,			//同步角色位置返回
+		sActorStartRunRet = 1113,			//角色开始跑步返回(广播)
+		sActorStopRunRet = 1114,			//角色停止跑步返回(广播)
 
 		eCMD_END = 8000,
 	};

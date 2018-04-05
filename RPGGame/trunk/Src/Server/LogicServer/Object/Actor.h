@@ -16,7 +16,6 @@ public:
 public:
 	bool IsRunning() { return m_nRunStartMSTime > 0; }
 	uint16_t GetServer() { return m_uServer; }
-	int GetSession() { return m_nSession; }
 	void SetServer(uint16_t uServer) { m_uServer = uServer; }
 	void SetSession(int nSession) { m_nSession = nSession; }
 
@@ -28,6 +27,7 @@ public:
 	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
+	virtual int GetSession() { return m_nSession; }
 
 public:
 	void StartRun(int nSpeedX, int nSpeedY);								//开始跑动
@@ -61,11 +61,14 @@ protected:
 ////////////////lua export//////////////////////
 public:
 	int GetRunSpeed(lua_State* pState);
+	int BindSession(lua_State* pState);
 	
 };
 
 #define DECLEAR_ACTOR_METHOD(Class) \
-	LUNAR_DECLARE_METHOD(Class, GetRunSpeed)
+	LUNAR_DECLARE_METHOD(Class, GetRunSpeed),\
+	LUNAR_DECLARE_METHOD(Class, BindSession)
+
 
 
 #endif

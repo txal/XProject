@@ -16,8 +16,8 @@ CDupBase.tAOIType =
 }
 
 --默认AOI宽高
-local nDefAOIWidth = 960
-local nDefAOIHeight = 640
+local nDefAOIWidth = 720
+local nDefAOIHeight = 1280
 
 function CDupBase:Ctor(nDupID)
     self.m_nDupID = nDupID
@@ -103,7 +103,22 @@ end
 function CDupBase:Enter(oNativeObj, nPosX, nPosY, nLine)
     assert(type(oNativeObj) == "userdata")
     nLine = nLine or -1 --默认为自动分线
-    local nAOIMode = CDupBase.tAOIType.eObserver|CDupBase.tAOIType.eObserved
+
+    --先离开旧副本
+    local nCurrMixID = oNativeObj:GetDupMixID()
+    if nCurrMixID == self:GetMixID() then
+        return LuaTrace("角色已经在副本中:", GF.GetDupID(nCurrMixID))
+    end
+    if nCurrMixID > 0 then
+        goDupMgr:LeaveDup(nCurrMixID, oNativeObj:GetAOIID())
+    end
+
+    --进入新副本
+    local nAOIMode = CDupBase.tAOIType.eObserved
+    if oNativeObj:GetSessionID() > 0 then --掉线的玩家没有观察者身份
+        nAOIMode = nAOIMode | CDupBase.tAOIType.eObserver
+    end
+
     local nAOIWidth, nAOIHeight = nDefAOIWidth, nDefAOIHeight
     return self.m_oNativeObj:EnterDup(oNativeObj, nPosX, nPosY, nAOIMode, nAOIWidth, nAOIHeight, nLine)
 end

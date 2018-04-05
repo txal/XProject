@@ -19,13 +19,17 @@ Role* RoleMgr::CreateRole(int nID, int nConfID, const char* psName, uint16_t uSe
 	if (poRole != NULL)
 	{
 		XLog(LEVEL_ERROR, "CreateRole error for role id:%d exist\n", nID);
-		return NULL;
+		return poRole;
 	}
-	poRole = GetRoleBySS(uServer, nSession);
-	if (poRole != NULL)
+
+	if (nSession > 0)
 	{
-		XLog(LEVEL_ERROR, "CreateRole error for role server:%d session:%d exist\n", uServer, nSession);
-		return NULL;
+		poRole = GetRoleBySS(uServer, nSession);
+		if (poRole != NULL)
+		{
+			XLog(LEVEL_ERROR, "CreateRole error for role server:%d session:%d exist\n", uServer, nSession);
+			return NULL;
+		}
 	}
 
 	poRole = XNEW(Role);
@@ -55,9 +59,12 @@ void RoleMgr::RemoveRole(int nID)
 
 	m_oRoleIDMap.erase(iter);
 
-	uint16_t uServer = poRole->GetServer();
 	int nSession = poRole->GetSession();
-	m_oRoleSSMap.erase(GenSSKey(uServer,nSession));
+	if (nSession > 0)
+	{
+		uint16_t uServer = poRole->GetServer();
+		m_oRoleSSMap.erase(GenSSKey(uServer, nSession));
+	}
 
 	SAFE_DELETE(poRole);
 }
@@ -74,12 +81,38 @@ Role* RoleMgr::GetRoleByID(int nID)
 
 Role* RoleMgr::GetRoleBySS(uint16_t uServer, int nSession)
 {
-	RoleIter iter = m_oRoleSSMap.find(nSession);
+	int nSSKey = GenSSKey(uServer, nSession);
+	RoleIter iter = m_oRoleSSMap.find(nSSKey);
 	if (iter != m_oRoleSSMap.end())
 	{
 		return iter->second;
 	}
 	return NULL;
+}
+
+void RoleMgr::BindSession(int nID, int nSession)
+{
+	Role* poRole = GetRoleByID(nID);
+	if (poRole == NULL)
+		return;
+
+	int nOldSession = poRole->GetSession();
+	if (nOldSession == nSession)
+		return;
+
+	poRole->SetSession(nSession);
+
+	if (nOldSession > 0)
+	{
+		int nOldSSKey = GenSSKey(poRole->GetServer(), nOldSession);
+		m_oRoleSSMap.erase(nOldSSKey);
+	}
+
+	if (nSession > 0)
+	{
+		int nNewSSKey = GenSSKey(poRole->GetServer(), nSession);
+		m_oRoleSSMap[nNewSSKey] = poRole;
+	}
 }
 
 void RoleMgr::Update(int64_t nNowMS)

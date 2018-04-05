@@ -81,7 +81,7 @@ void Actor::StopRun(bool bBroadcast, bool bClientStop)
 		{
 			BroadcastStopRun();
 		}
-		//XLog(LEVEL_INFO, "%s Stop run pos:(%d, %d) client:%d time:%d\n", m_sName, m_oPos.x, m_oPos.y, bClientStop, m_nClientRunStartMSTime);
+		//XLog(LEVEL_INFO, "%s Stop run pos:(%d, %d) from_client:%d time:%d\n", m_sName, m_oPos.x, m_oPos.y, bClientStop, m_nClientRunStartMSTime);
 	}
 }
 
@@ -136,8 +136,9 @@ void Actor::SyncPosition(const char* pWhere)
 	oNavi.uSrcServer = g_poContext->GetServerID();
 	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
 	oNavi.uTarServer = GetServer();
+	oNavi.nTarService = GetSession() >> SERVICE_SHIFT;
 	oNavi.nTarSession = GetSession();
-	NetAdapter::SendExter(NSCltSrvCmd::sSyncActorPos, poPacket, oNavi);
+	NetAdapter::SendExter(NSCltSrvCmd::sSyncActorPosRet, poPacket, oNavi);
 }
 
 void Actor::BroadcastStartRun()
@@ -150,7 +151,7 @@ void Actor::BroadcastStartRun()
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY;
 	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorStartRun, poPacket, goNaviCache);
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStartRunRet, poPacket, goNaviCache);
 }
 
 void Actor::BroadcastStopRun()
@@ -164,7 +165,7 @@ void Actor::BroadcastStopRun()
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y;
 	Packet* poPacket = gpoPacketCache->DeepCopy();
-	NetAdapter::BroadcastExter(NSCltSrvCmd::sBroadcastActorStopRun, poPacket, goNaviCache);
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStopRunRet, poPacket, goNaviCache);
 }
 
 
@@ -187,4 +188,12 @@ int Actor::GetRunSpeed(lua_State* pState)
 	lua_pushinteger(pState, m_nRunSpeedX);
 	lua_pushinteger(pState, m_nRunSpeedY);
 	return 2;
+}
+
+int Actor::BindSession(lua_State* pState)
+{
+	int nSession = (int)lua_tointeger(pState, -1);
+	LogicServer * poLogic = (LogicServer*)g_poContext->GetService();
+	poLogic->GetRoleMgr()->BindSession(m_nObjID, nSession);
+	return 0;
 }

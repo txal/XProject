@@ -40,7 +40,6 @@ require("HDMgr/HDMgrInc")
 local function _InitGlobal()
     goDBMgr:Init()
     goRemoteCall:Init()
-    
     goGPlayerMgr:LoadData()
 end
 

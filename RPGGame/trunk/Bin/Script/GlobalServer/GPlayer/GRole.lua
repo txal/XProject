@@ -24,6 +24,7 @@ function CGRole:Init(tData)
     end
 end
 
+--加载数据
 function CGRole:LoadData(tData)
     for sKey, xVal in pairs(tData) do
         self[sKey] = xVal
@@ -44,6 +45,7 @@ function CGRole:SaveData()
     return tData
 end
 
+--更新角色数据
 function CGRole:UpdateReq(tData)
     for sKey, xVal in pairs(tData) do
         self[sKey] = xVal
@@ -69,8 +71,7 @@ function CGRole:GetLogic()
     return 0
 end
 
-function CGRole:Online(nSession)
-    self.m_nSession = nSession
+function CGRole:Online()
 end
 
 function CGRole:Offline()
@@ -83,19 +84,37 @@ function CGRole:Tips(sCont, nServer, nSession)
     CmdNet.PBSrv2Clt(nServer, nSession, "TipsMsgRet", {sCont=sCont})
 end
 
+--取物品数量
 function CGRole:ItemCount(nType, nID, fnCallBack)
     if fnCallBack then
-        goRemoteCall:CallWait("RoleItemCountReq", fnCallBack, self:GetServer(), self:GetLogic(), self:GetSession(), self:GetAccountID(), nType, nID)
+        goRemoteCall:CallWait("RoleItemCountReq", fnCallBack, self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), nType, nID)
     else
-        goRemoteCall:Call("RoleItemCountReq", self:GetServer(), self:GetLogic(), self:GetSession(), self:GetAccountID(), nType, nID)
+        goRemoteCall:Call("RoleItemCountReq", self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), nType, nID)
     end
 end
 
+--添加物品
 function CGRole:AddItem(tItemList, sReason, fnCallBack)
     assert(#tItemList>0 and sReason, "参数错误")
+    for _, tItem in ipairs(tItemList) do
+        assert(tItem.nNum > 0, "物品数量错误")
+    end
     if fnCallBack then
-        goRemoteCall:CallWait("RoleAddItemReq", fnCallBack, self:GetServer(), self:GetLogic(), self:GetSession(), self:GetAccountID(), tItemList, sReason)
+        goRemoteCall:CallWait("RoleAddItemReq", fnCallBack, self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), tItemList, sReason)
     else
-        goRemoteCall:Call("RoleAddItemReq", self:GetServer(), self:GetLogic(), self:GetSession(), self:GetAccountID(), tItemList, sReason)
+        goRemoteCall:Call("RoleAddItemReq", self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), tItemList, sReason)
+    end
+end
+
+--扣除物品
+function CGRole:SubItem(tItemList, sReason, fnCallBack)
+    assert(#tItemList>0 and sReason, "参数错误")
+    for _, tItem in ipairs(tItemList) do
+        assert(tItem.nNum < 0, "物品数量错误")
+    end
+    if fnCallBack then
+        goRemoteCall:CallWait("RoleSubItemReq", fnCallBack, self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), tItemList, sReason)
+    else
+        goRemoteCall:Call("RoleSubItemReq", self:GetServer(), self:GetLogic(), self:GetSession(), self:GetID(), tItemList, sReason)
     end
 end

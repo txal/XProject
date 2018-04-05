@@ -3,13 +3,16 @@ package scene;
 //角色进入副本请求
 message RoleEnterSceneReq
 {
-	required int32 nDupID = 1;		//副本配置ID
+	required int32 nRoleID = 1; 	//角色ID
+	required int32 nDupMixID = 2;	//副本唯一ID: 城镇:=nDupID; 副本:自增ID<<16|nDupID 下同
+	required int32 nPosX = 3; 		//坐标X
+	required int32 nPosY = 4; 		//坐标Y
 }
 
 //角色进入副本返回
 message RoleEnterSceneRet
 {
-	required int32 nMixID = 1;		//副本唯一ID
+	required int32 nDupMixID = 1;	//副本唯一ID: 城镇:=nDupID; 副本:自增ID<<16|nDupID 下同
 	required int32 nDupID = 2;		//副本配置ID
 	required int32 nAOIID = 3;		//副本内对象唯一ID	
 	required int32 nPosX = 4;		//坐标
@@ -19,7 +22,7 @@ message RoleEnterSceneRet
 //角色离开副本请求
 message RoleLeaveSceneReq
 {
-	required int32 nMixID = 1;		//副本唯一ID
+	required int32 nDupMixID = 1;		//副本唯一ID
 }
 
 //角色离开副本返回

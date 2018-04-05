@@ -43,7 +43,7 @@ public:
 	uint32_t GetSceneMixID() { return m_uSceneMixID; }
 
 public:
-	int EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1);
+	int EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1, int32_t nSeenObjID=0);
 	void LeaveScene(int nAOIID) { m_oAOI.RemoveObj(nAOIID, true); }
 	void KickAllRole();
 

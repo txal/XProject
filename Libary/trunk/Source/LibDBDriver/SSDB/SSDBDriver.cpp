@@ -80,6 +80,7 @@ int SSDBDriver::HGet(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		Reconnect();
 		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
 	}
 	lua_pushlstring(pState, oStrVal.c_str(), oStrVal.size());
@@ -97,6 +98,7 @@ int SSDBDriver::HSize(lua_State* pState)
 #endif
 	if (!oStatus.ok())
 	{
+		Reconnect();
 		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
 	}
 	lua_pushinteger(pState, nSize);
@@ -114,6 +116,7 @@ int SSDBDriver::HKeys(lua_State* pState)
 #endif
 	if (!oStatus.ok())
 	{
+		Reconnect();
 		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
 	}
 	lua_newtable(pState);
@@ -137,6 +140,7 @@ int SSDBDriver::HScan(lua_State* pState)
 #endif
 	if (!oStatus.ok())
 	{
+		Reconnect();
 		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
 	}
 	lua_newtable(pState);
@@ -170,6 +174,7 @@ int SSDBDriver::HDel(lua_State* pState)
 #endif
 	if (!oStatus.ok())
 	{
+		Reconnect();
 		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
 	}
 	lua_pushboolean(pState, 1);
@@ -187,6 +192,7 @@ int SSDBDriver::HClear(lua_State* pState)
 #endif
 	if (!oStatus.ok())
 	{
+		Reconnect();
 		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
 	}
 	lua_pushboolean(pState, 1);
@@ -206,6 +212,7 @@ int SSDBDriver::HIncr(lua_State* pState)
 #endif
 	if (!oStatus.ok())
 	{
+		Reconnect();
 		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
 	}
 	lua_pushinteger(pState, nRet);
@@ -253,6 +260,7 @@ int SSDBDriver::Del(lua_State* pState)
 #endif
 	if (!oStatus.ok())
 	{
+		Reconnect();
 		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
 	}
 	lua_pushboolean(pState, 1);
@@ -278,6 +286,7 @@ bool SSDBDriver::Reconnect()
 	}
 	SAFE_DELETE(m_poSSDBClient);
 	m_poSSDBClient = poSSDBClient;
+	XLog(LEVEL_ERROR, "Reconnect SSDB success %s:%d fail!\n", m_sIP, m_uPort);
 	return true;
 }
 

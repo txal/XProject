@@ -89,20 +89,26 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 		oBCHeader.oSessionList.PushBack(oNavi.nTarSession);
 	}
 
+	if (oBCHeaderMap.size() == 0) 
+	{
+		poPacket->Release();
+		return false;
+	}
+
 	BCHeaderIter iter = oBCHeaderMap.begin();
 	BCHeaderIter iterend = oBCHeaderMap.end();
-	BCHeaderIter itertmp = iter;
-	BCHeaderIter iternext = ++itertmp;
-	for (; iter != iterend; iter++, iternext++)
+	for (; iter != iterend; )
 	{
 		BROADCAST_HEADER& oBCHeader = iter->second;
 		if (oBCHeader.oSessionList.Size() == 0)
+		{
+			++iter;
 			continue;
-
-		oBCHeader.oInnerHeader.uSessionNum = oBCHeader.oSessionList.Size();
+		}
 
 		Packet* poNewPacket = NULL;
-		if (iternext == iterend)
+		oBCHeader.oInnerHeader.uSessionNum = oBCHeader.oSessionList.Size();
+		if (++iter == iterend)
 			poNewPacket = poPacket;
 		else
 			poNewPacket = poPacket->DeepCopy();

@@ -101,7 +101,9 @@ end
 
 -------自定义-------
 function CmdNet.Srv2Clt(sCmdName, nTarServer, nTarSession, ...)
-    _assert(nTarServer>0 and nTarSession>0, "参数错误:"..nTarServer..":"..nTarSession)
+    if nTarServer <= 0 or nTarSession <= 0 then
+        return
+    end
     local tProto = _assert(tCltCmdRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local oPacket = _cmd_pack(sProto, ...)
@@ -147,6 +149,9 @@ end
 
 -------------PB----------
 function CmdNet.PBSrv2Clt(sCmdName, nTarServer, nTarSession, tData) 
+    if nTarServer <= 0 or nTarSession <= 0 then
+        return
+    end
     _assert(nTarServer>0 and nTarSession>0, "参数错误:"..nTarServer..":"..nTarSession)
     local tProto = _assert(tCltPBRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
