@@ -3449,3 +3449,41 @@
 2018-02-24 02:56:46.641 [DEBUG] server.cpp(411): fd: 22, read: -1, delete link, s:1108.905
 2018-02-24 02:56:46.860 [DEBUG] server.cpp(411): fd: 23, read: -1, delete link, s:1108.079
 2018-02-24 02:56:47.105 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:7937.530
+2018-02-24 13:23:59.531 [DEBUG] server.cpp(304): long loop time: 37489.962
+2018-02-24 18:42:22.535 [DEBUG] server.cpp(304): long loop time: 9356.193
+2018-02-25 19:27:38.600 [DEBUG] server.cpp(304): long loop time: 77016.829
+2018-02-26 22:08:57.628 [DEBUG] server.cpp(304): long loop time: 92017.512
+2018-02-27 12:20:13.600 [DEBUG] server.cpp(304): long loop time: 46773.262
+2018-02-27 22:14:58.633 [DEBUG] server.cpp(304): long loop time: 35670.287
+2018-03-02 22:01:03.590 [DEBUG] server.cpp(304): long loop time: 256748.701
+2018-03-03 09:06:37.604 [DEBUG] server.cpp(304): long loop time: 39802.309
+2018-03-03 21:12:37.559 [DEBUG] server.cpp(304): long loop time: 43287.977
+2018-03-04 09:56:06.594 [DEBUG] server.cpp(304): long loop time: 36091.574
+2018-03-04 23:19:07.993 [DEBUG] server.cpp(304): long loop time: 46598.375
+2018-03-05 13:18:02.538 [DEBUG] server.cpp(304): long loop time: 48019.062
+2018-03-05 22:26:52.542 [DEBUG] server.cpp(304): long loop time: 32919.626
+2018-03-06 21:39:28.611 [DEBUG] server.cpp(304): long loop time: 80697.712
+2018-03-07 21:58:35.689 [DEBUG] server.cpp(304): long loop time: 85465.546
+2018-03-08 22:01:58.647 [DEBUG] server.cpp(304): long loop time: 84596.203
+2018-03-08 22:02:04.345 [DEBUG] server.cpp(304): long loop time: 0.531
+2018-03-09 22:44:31.703 [DEBUG] server.cpp(304): long loop time: 87257.699
+2018-03-10 20:49:37.602 [DEBUG] server.cpp(304): long loop time: 76645.835
+2018-03-10 23:26:26.528 [DEBUG] server.cpp(304): long loop time: 2455.225
+2018-03-11 15:38:22.540 [DEBUG] server.cpp(304): long loop time: 52939.828
+2018-03-12 22:16:34.706 [DEBUG] server.cpp(304): long loop time: 110250.597
+2018-03-13 10:21:20.638 [DEBUG] server.cpp(304): long loop time: 40653.973
+2018-03-13 10:58:41.621 [DEBUG] server.cpp(304): long loop time: 2224.593
+2018-03-14 12:33:28.590 [DEBUG] server.cpp(304): long loop time: 46157.065
+2018-03-16 22:31:22.611 [DEBUG] server.cpp(304): long loop time: 198131.146
+2018-03-16 22:31:37.533 [DEBUG] server.cpp(304): long loop time: 3.538
+2018-03-18 09:48:24.781 [DEBUG] server.cpp(304): long loop time: 123986.807
+2018-03-18 11:41:29.737 [DEBUG] server.cpp(304): long loop time: 1997.288
+2018-03-18 12:36:56.643 [DEBUG] server.cpp(304): long loop time: 1195.538
+2018-03-18 18:33:27.549 [DEBUG] server.cpp(304): long loop time: 9826.897
+2018-03-21 16:57:23.614 [DEBUG] server.cpp(304): long loop time: 241672.034
+2018-03-21 22:14:06.764 [DEBUG] server.cpp(304): long loop time: 18891.003
+2018-03-22 21:58:23.609 [DEBUG] server.cpp(304): long loop time: 85157.112
+2018-03-23 21:57:50.573 [DEBUG] server.cpp(304): long loop time: 84377.410
+2018-03-24 15:58:28.566 [DEBUG] server.cpp(304): long loop time: 60828.141
+2018-03-24 15:58:29.638 [DEBUG] server.cpp(304): long loop time: 0.531
+2018-03-24 18:45:46.618 [DEBUG] server.cpp(304): long loop time: 7999.435

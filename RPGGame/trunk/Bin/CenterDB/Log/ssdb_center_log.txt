@@ -289,3 +289,355 @@
 2018-02-20 01:07:03.986 [DEBUG] server.cpp(336): w:0.000,p:0.000, req: hincr PlayerIDDB data 1, resp: ok 9
 2018-02-20 01:09:38.868 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:170.171
 2018-02-20 01:09:49.962 [DEBUG] server.cpp(241): new link from 127.0.0.1:59422, fd: 18, links: 5
+2018-02-20 10:56:17.555 [DEBUG] server.cpp(304): long loop time: 33694.840
+2018-02-20 11:16:38.960 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:36588.685
+2018-02-20 11:16:39.156 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:36587.925
+2018-02-20 11:16:39.158 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:36409.196
+2018-02-20 11:16:39.361 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:36588.185
+2018-02-20 11:16:39.555 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:36591.013
+2018-02-20 11:16:45.203 [DEBUG] server.cpp(241): new link from 127.0.0.1:61138, fd: 17, links: 1
+2018-02-20 11:16:45.878 [DEBUG] server.cpp(241): new link from 127.0.0.1:61156, fd: 18, links: 2
+2018-02-20 11:16:46.666 [DEBUG] server.cpp(241): new link from 127.0.0.1:61163, fd: 19, links: 3
+2018-02-20 11:16:47.965 [DEBUG] server.cpp(241): new link from 127.0.0.1:61170, fd: 20, links: 4
+2018-02-20 11:16:48.216 [DEBUG] server.cpp(241): new link from 127.0.0.1:61173, fd: 21, links: 5
+2018-02-20 11:17:48.633 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:61.968
+2018-02-20 11:17:48.811 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:62.934
+2018-02-20 11:17:48.811 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:60.595
+2018-02-20 11:17:49.000 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:61.035
+2018-02-20 11:17:49.163 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:63.961
+2018-02-20 11:17:53.250 [DEBUG] server.cpp(241): new link from 127.0.0.1:61208, fd: 17, links: 1
+2018-02-20 11:17:53.303 [DEBUG] server.cpp(241): new link from 127.0.0.1:61210, fd: 18, links: 2
+2018-02-20 11:17:54.888 [DEBUG] server.cpp(241): new link from 127.0.0.1:61222, fd: 19, links: 3
+2018-02-20 11:17:55.619 [DEBUG] server.cpp(241): new link from 127.0.0.1:61227, fd: 20, links: 4
+2018-02-20 11:17:55.649 [DEBUG] server.cpp(241): new link from 127.0.0.1:61229, fd: 21, links: 5
+2018-02-20 11:29:08.668 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:673.781
+2018-02-20 11:29:08.851 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:675.602
+2018-02-20 11:29:08.852 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:673.234
+2018-02-20 11:29:09.397 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:673.749
+2018-02-20 11:29:09.873 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:676.571
+2018-02-20 11:29:14.943 [DEBUG] server.cpp(241): new link from 127.0.0.1:61306, fd: 17, links: 1
+2018-02-20 11:29:15.206 [DEBUG] server.cpp(241): new link from 127.0.0.1:61311, fd: 18, links: 2
+2018-02-20 11:29:16.963 [DEBUG] server.cpp(241): new link from 127.0.0.1:61330, fd: 19, links: 3
+2018-02-20 11:29:17.479 [DEBUG] server.cpp(241): new link from 127.0.0.1:61336, fd: 20, links: 4
+2018-02-20 11:29:17.694 [DEBUG] server.cpp(241): new link from 127.0.0.1:61339, fd: 21, links: 5
+2018-02-20 11:36:27.147 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:430.185
+2018-02-20 11:36:27.349 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:432.144
+2018-02-20 11:36:27.357 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:429.664
+2018-02-20 11:36:27.613 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:430.135
+2018-02-20 11:36:27.774 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:432.832
+2018-02-20 11:36:36.022 [DEBUG] server.cpp(241): new link from 127.0.0.1:61398, fd: 17, links: 1
+2018-02-20 11:36:36.504 [DEBUG] server.cpp(241): new link from 127.0.0.1:61400, fd: 18, links: 2
+2018-02-20 11:36:36.750 [DEBUG] server.cpp(241): new link from 127.0.0.1:61408, fd: 19, links: 3
+2018-02-20 11:36:37.005 [DEBUG] server.cpp(241): new link from 127.0.0.1:61414, fd: 20, links: 4
+2018-02-20 11:36:38.669 [DEBUG] server.cpp(241): new link from 127.0.0.1:61427, fd: 21, links: 5
+2018-02-20 11:40:50.979 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:253.975
+2018-02-20 11:40:51.196 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:255.175
+2018-02-20 11:40:51.202 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:252.533
+2018-02-20 11:40:51.450 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:254.701
+2018-02-20 11:40:51.646 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:255.143
+2018-02-20 11:41:05.248 [DEBUG] server.cpp(241): new link from 127.0.0.1:61764, fd: 17, links: 1
+2018-02-20 11:41:05.515 [DEBUG] server.cpp(241): new link from 127.0.0.1:61772, fd: 18, links: 2
+2018-02-20 11:41:06.893 [DEBUG] server.cpp(241): new link from 127.0.0.1:61784, fd: 19, links: 3
+2018-02-20 11:41:07.874 [DEBUG] server.cpp(241): new link from 127.0.0.1:61789, fd: 20, links: 4
+2018-02-20 11:41:08.121 [DEBUG] server.cpp(241): new link from 127.0.0.1:61790, fd: 21, links: 5
+2018-02-20 11:57:48.520 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:1000.645
+2018-02-20 11:57:48.709 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1003.193
+2018-02-20 11:57:48.711 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:1000.589
+2018-02-20 11:57:48.937 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:1002.043
+2018-02-20 11:57:49.447 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:1004.198
+2018-02-20 11:58:02.557 [DEBUG] server.cpp(241): new link from 127.0.0.1:62033, fd: 17, links: 1
+2018-02-20 11:58:02.603 [DEBUG] server.cpp(241): new link from 127.0.0.1:62040, fd: 18, links: 2
+2018-02-20 11:58:03.805 [DEBUG] server.cpp(241): new link from 127.0.0.1:62047, fd: 19, links: 3
+2018-02-20 11:58:04.872 [DEBUG] server.cpp(241): new link from 127.0.0.1:62053, fd: 20, links: 4
+2018-02-20 11:58:04.890 [DEBUG] server.cpp(241): new link from 127.0.0.1:62055, fd: 21, links: 5
+2018-02-20 12:03:42.832 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:339.026
+2018-02-20 12:03:43.046 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:340.442
+2018-02-20 12:03:43.052 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:338.162
+2018-02-20 12:03:43.289 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:338.417
+2018-02-20 12:03:43.479 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:340.921
+2018-02-20 12:05:24.450 [DEBUG] server.cpp(241): new link from 127.0.0.1:62159, fd: 17, links: 1
+2018-02-20 12:05:24.743 [DEBUG] server.cpp(241): new link from 127.0.0.1:62167, fd: 18, links: 2
+2018-02-20 12:05:25.384 [DEBUG] server.cpp(241): new link from 127.0.0.1:62168, fd: 19, links: 3
+2018-02-20 12:05:26.822 [DEBUG] server.cpp(241): new link from 127.0.0.1:62174, fd: 20, links: 4
+2018-02-20 12:05:26.844 [DEBUG] server.cpp(241): new link from 127.0.0.1:62177, fd: 21, links: 5
+2018-02-20 12:14:12.981 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:527.597
+2018-02-20 12:14:13.169 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:528.426
+2018-02-20 12:14:13.169 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:526.347
+2018-02-20 12:14:13.394 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:526.550
+2018-02-20 12:14:13.537 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:529.087
+2018-02-20 12:14:28.238 [DEBUG] server.cpp(241): new link from 127.0.0.1:62277, fd: 17, links: 1
+2018-02-20 12:14:28.390 [DEBUG] server.cpp(241): new link from 127.0.0.1:62281, fd: 18, links: 2
+2018-02-20 12:14:29.750 [DEBUG] server.cpp(241): new link from 127.0.0.1:62294, fd: 19, links: 3
+2018-02-20 12:14:30.759 [DEBUG] server.cpp(241): new link from 127.0.0.1:62300, fd: 20, links: 4
+2018-02-20 12:14:31.038 [DEBUG] server.cpp(241): new link from 127.0.0.1:62306, fd: 21, links: 5
+2018-02-20 12:35:38.348 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:1268.599
+2018-02-20 12:35:38.862 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1270.473
+2018-02-20 12:35:38.878 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:1267.841
+2018-02-20 12:35:39.373 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:1268.615
+2018-02-20 12:35:39.863 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:1271.625
+2018-02-20 12:35:46.488 [DEBUG] server.cpp(241): new link from 127.0.0.1:62565, fd: 17, links: 1
+2018-02-20 12:35:46.842 [DEBUG] server.cpp(241): new link from 127.0.0.1:62571, fd: 18, links: 2
+2018-02-20 12:35:48.657 [DEBUG] server.cpp(241): new link from 127.0.0.1:62588, fd: 19, links: 3
+2018-02-20 12:35:49.374 [DEBUG] server.cpp(241): new link from 127.0.0.1:62593, fd: 20, links: 4
+2018-02-20 12:35:49.549 [DEBUG] server.cpp(241): new link from 127.0.0.1:62598, fd: 21, links: 5
+2018-02-20 12:43:11.782 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:443.125
+2018-02-20 12:43:11.980 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:445.138
+2018-02-20 12:43:11.980 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:442.431
+2018-02-20 12:43:12.507 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:443.133
+2018-02-20 12:43:12.684 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:446.197
+2018-02-20 12:43:18.831 [DEBUG] server.cpp(241): new link from 127.0.0.1:62705, fd: 17, links: 1
+2018-02-20 12:43:18.835 [DEBUG] server.cpp(241): new link from 127.0.0.1:62708, fd: 18, links: 2
+2018-02-20 12:43:19.522 [DEBUG] server.cpp(241): new link from 127.0.0.1:62710, fd: 19, links: 3
+2018-02-20 12:43:21.086 [DEBUG] server.cpp(241): new link from 127.0.0.1:62714, fd: 20, links: 4
+2018-02-20 12:43:21.234 [DEBUG] server.cpp(241): new link from 127.0.0.1:62720, fd: 21, links: 5
+2018-02-20 12:47:05.377 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:225.855
+2018-02-20 12:47:05.563 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:226.732
+2018-02-20 12:47:05.565 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:224.479
+2018-02-20 12:47:05.774 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:224.540
+2018-02-20 12:47:05.955 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:227.120
+2018-02-20 12:47:49.947 [DEBUG] server.cpp(241): new link from 127.0.0.1:62779, fd: 17, links: 1
+2018-02-20 12:47:50.146 [DEBUG] server.cpp(241): new link from 127.0.0.1:62781, fd: 18, links: 2
+2018-02-20 12:47:51.095 [DEBUG] server.cpp(241): new link from 127.0.0.1:62804, fd: 19, links: 3
+2018-02-20 12:47:52.791 [DEBUG] server.cpp(241): new link from 127.0.0.1:62809, fd: 20, links: 4
+2018-02-20 12:47:52.808 [DEBUG] server.cpp(241): new link from 127.0.0.1:62810, fd: 21, links: 5
+2018-02-20 12:55:31.851 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:460.755
+2018-02-20 12:55:32.029 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:461.882
+2018-02-20 12:55:32.034 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:459.242
+2018-02-20 12:55:32.255 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:459.446
+2018-02-20 12:55:32.424 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:462.476
+2018-02-20 12:55:41.694 [DEBUG] server.cpp(241): new link from 127.0.0.1:62906, fd: 17, links: 1
+2018-02-20 12:55:41.845 [DEBUG] server.cpp(241): new link from 127.0.0.1:62907, fd: 18, links: 2
+2018-02-20 12:55:43.662 [DEBUG] server.cpp(241): new link from 127.0.0.1:62917, fd: 19, links: 3
+2018-02-20 12:55:44.248 [DEBUG] server.cpp(241): new link from 127.0.0.1:62921, fd: 20, links: 4
+2018-02-20 12:55:44.529 [DEBUG] server.cpp(241): new link from 127.0.0.1:62923, fd: 21, links: 5
+2018-02-20 13:01:26.751 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:342.503
+2018-02-20 13:01:26.935 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:345.090
+2018-02-20 13:01:26.939 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:342.410
+2018-02-20 13:01:27.164 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:343.502
+2018-02-20 13:01:27.336 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:345.642
+2018-02-20 13:01:33.539 [DEBUG] server.cpp(241): new link from 127.0.0.1:63035, fd: 17, links: 1
+2018-02-20 13:01:33.780 [DEBUG] server.cpp(241): new link from 127.0.0.1:63045, fd: 18, links: 2
+2018-02-20 13:01:34.970 [DEBUG] server.cpp(241): new link from 127.0.0.1:63057, fd: 19, links: 3
+2018-02-20 13:01:36.040 [DEBUG] server.cpp(241): new link from 127.0.0.1:63060, fd: 20, links: 4
+2018-02-20 13:01:36.157 [DEBUG] server.cpp(241): new link from 127.0.0.1:63064, fd: 21, links: 5
+2018-02-20 13:04:35.186 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:180.215
+2018-02-20 13:04:35.364 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:181.583
+2018-02-20 13:04:35.364 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:179.207
+2018-02-20 13:04:35.564 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:179.524
+2018-02-20 13:04:35.739 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:182.199
+2018-02-20 13:04:44.085 [DEBUG] server.cpp(241): new link from 127.0.0.1:63125, fd: 17, links: 1
+2018-02-20 13:04:44.124 [DEBUG] server.cpp(241): new link from 127.0.0.1:63128, fd: 18, links: 2
+2018-02-20 13:04:44.635 [DEBUG] server.cpp(241): new link from 127.0.0.1:63129, fd: 19, links: 3
+2018-02-20 13:04:44.725 [DEBUG] server.cpp(241): new link from 127.0.0.1:63132, fd: 20, links: 4
+2018-02-20 13:04:46.412 [DEBUG] server.cpp(241): new link from 127.0.0.1:63147, fd: 21, links: 5
+2018-02-20 15:17:52.283 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:7987.558
+2018-02-20 15:17:52.471 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:7988.347
+2018-02-20 15:17:52.474 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:7987.839
+2018-02-20 15:17:52.672 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:7986.260
+2018-02-20 15:17:52.852 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:7988.767
+2018-02-20 15:18:02.809 [DEBUG] server.cpp(241): new link from 127.0.0.1:64617, fd: 17, links: 1
+2018-02-20 15:18:03.242 [DEBUG] server.cpp(241): new link from 127.0.0.1:64622, fd: 18, links: 2
+2018-02-20 15:18:03.597 [DEBUG] server.cpp(241): new link from 127.0.0.1:64630, fd: 19, links: 3
+2018-02-20 15:18:05.543 [DEBUG] server.cpp(241): new link from 127.0.0.1:64638, fd: 20, links: 4
+2018-02-20 15:18:05.857 [DEBUG] server.cpp(241): new link from 127.0.0.1:64644, fd: 21, links: 5
+2018-02-20 16:08:22.224 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:3018.628
+2018-02-20 16:08:22.418 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:3019.176
+2018-02-20 16:08:22.418 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:3016.875
+2018-02-20 16:08:22.640 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:3016.783
+2018-02-20 16:08:23.156 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:3020.347
+2018-02-20 16:08:30.551 [DEBUG] server.cpp(241): new link from 127.0.0.1:49321, fd: 17, links: 1
+2018-02-20 16:08:30.622 [DEBUG] server.cpp(241): new link from 127.0.0.1:49323, fd: 18, links: 2
+2018-02-20 16:08:31.870 [DEBUG] server.cpp(241): new link from 127.0.0.1:49335, fd: 19, links: 3
+2018-02-20 16:08:33.130 [DEBUG] server.cpp(241): new link from 127.0.0.1:49342, fd: 20, links: 4
+2018-02-20 16:08:33.325 [DEBUG] server.cpp(241): new link from 127.0.0.1:49348, fd: 21, links: 5
+2018-02-20 18:51:40.670 [DEBUG] server.cpp(304): long loop time: 6645.573
+2018-02-20 20:54:51.411 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:17179.541
+2018-02-20 20:55:05.249 [DEBUG] server.cpp(241): new link from 127.0.0.1:52205, fd: 19, links: 5
+2018-02-20 23:45:16.476 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:10211.227
+2018-02-20 23:45:16.705 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:27406.082
+2018-02-20 23:45:16.713 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:27403.388
+2018-02-20 23:45:17.253 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:27404.123
+2018-02-20 23:45:17.750 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:27407.199
+2018-02-21 12:30:34.537 [DEBUG] server.cpp(304): long loop time: 41489.475
+2018-02-21 17:40:57.650 [DEBUG] server.cpp(304): long loop time: 5552.884
+2018-02-22 12:14:42.698 [DEBUG] server.cpp(304): long loop time: 41004.603
+2018-02-22 16:04:44.531 [DEBUG] server.cpp(304): long loop time: 11920.533
+2018-02-22 16:04:45.099 [DEBUG] server.cpp(304): long loop time: 0.568
+2018-02-22 16:37:03.531 [DEBUG] server.cpp(304): long loop time: 559.087
+2018-02-23 13:06:12.581 [DEBUG] server.cpp(304): long loop time: 47017.126
+2018-02-23 16:10:42.445 [DEBUG] server.cpp(241): new link from 127.0.0.1:61295, fd: 17, links: 1
+2018-02-23 16:10:45.452 [DEBUG] server.cpp(241): new link from 127.0.0.1:61326, fd: 18, links: 2
+2018-02-23 16:10:45.490 [DEBUG] server.cpp(241): new link from 127.0.0.1:61331, fd: 19, links: 3
+2018-02-23 16:12:01.047 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:75.595
+2018-02-23 16:12:01.498 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:76.008
+2018-02-23 16:12:01.703 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:79.259
+2018-02-23 16:12:07.428 [DEBUG] server.cpp(241): new link from 127.0.0.1:61366, fd: 17, links: 1
+2018-02-23 16:12:07.819 [DEBUG] server.cpp(241): new link from 127.0.0.1:61379, fd: 18, links: 2
+2018-02-23 16:12:09.867 [DEBUG] server.cpp(241): new link from 127.0.0.1:61389, fd: 19, links: 3
+2018-02-23 16:12:09.940 [DEBUG] server.cpp(241): new link from 127.0.0.1:61393, fd: 20, links: 4
+2018-02-23 16:12:10.223 [DEBUG] server.cpp(241): new link from 127.0.0.1:61400, fd: 21, links: 5
+2018-02-23 16:27:50.674 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:940.452
+2018-02-23 16:28:33.072 [DEBUG] server.cpp(241): new link from 127.0.0.1:61567, fd: 21, links: 5
+2018-02-23 16:30:11.693 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:1081.826
+2018-02-23 16:30:20.884 [DEBUG] server.cpp(241): new link from 127.0.0.1:61581, fd: 19, links: 5
+2018-02-23 16:31:01.393 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:40.509
+2018-02-23 16:31:01.610 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1133.792
+2018-02-23 16:31:01.615 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:148.543
+2018-02-23 16:31:01.843 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:1131.904
+2018-02-23 16:31:02.043 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:1134.616
+2018-02-23 16:31:25.677 [DEBUG] server.cpp(241): new link from 127.0.0.1:61611, fd: 17, links: 1
+2018-02-23 16:31:26.197 [DEBUG] server.cpp(241): new link from 127.0.0.1:61615, fd: 18, links: 2
+2018-02-23 16:31:28.064 [DEBUG] server.cpp(241): new link from 127.0.0.1:61637, fd: 19, links: 3
+2018-02-23 16:31:29.023 [DEBUG] server.cpp(241): new link from 127.0.0.1:61640, fd: 20, links: 4
+2018-02-23 16:31:29.191 [DEBUG] server.cpp(241): new link from 127.0.0.1:61645, fd: 21, links: 5
+2018-02-23 16:36:18.889 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:289.866
+2018-02-23 16:36:29.176 [DEBUG] server.cpp(241): new link from 127.0.0.1:61710, fd: 20, links: 5
+2018-02-23 16:36:59.861 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:30.685
+2018-02-23 16:37:05.109 [DEBUG] server.cpp(241): new link from 127.0.0.1:61721, fd: 20, links: 5
+2018-02-23 16:37:12.294 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:7.184
+2018-02-23 16:39:58.641 [DEBUG] server.cpp(241): new link from 127.0.0.1:61756, fd: 20, links: 5
+2018-02-23 16:40:16.920 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:18.279
+2018-02-23 16:40:45.211 [DEBUG] server.cpp(241): new link from 127.0.0.1:61769, fd: 20, links: 5
+2018-02-23 16:41:00.963 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:15.752
+2018-02-23 16:42:08.562 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:642.365
+2018-02-23 16:43:29.186 [DEBUG] server.cpp(241): new link from 127.0.0.1:61803, fd: 18, links: 4
+2018-02-23 16:45:35.925 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:126.739
+2018-02-23 16:46:00.332 [DEBUG] server.cpp(241): new link from 127.0.0.1:61830, fd: 18, links: 4
+2018-02-23 16:48:14.530 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:1006.467
+2018-02-23 16:48:19.872 [DEBUG] server.cpp(241): new link from 127.0.0.1:61861, fd: 19, links: 4
+2018-02-23 17:04:16.182 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1095.851
+2018-02-23 17:04:56.690 [DEBUG] server.cpp(241): new link from 127.0.0.1:62009, fd: 18, links: 4
+2018-02-23 17:07:23.525 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:146.835
+2018-02-23 17:07:34.864 [DEBUG] server.cpp(241): new link from 127.0.0.1:62088, fd: 18, links: 4
+2018-02-23 18:07:13.619 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:3578.755
+2018-02-23 18:07:19.248 [DEBUG] server.cpp(241): new link from 127.0.0.1:62644, fd: 18, links: 4
+2018-02-23 18:20:12.646 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:773.398
+2018-02-23 18:20:26.676 [DEBUG] server.cpp(241): new link from 127.0.0.1:62884, fd: 18, links: 4
+2018-02-23 22:50:42.962 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:16216.287
+2018-02-23 22:51:00.204 [DEBUG] server.cpp(241): new link from 127.0.0.1:52843, fd: 18, links: 4
+2018-02-23 22:51:10.312 [DEBUG] server.cpp(241): new link from 127.0.0.1:52854, fd: 20, links: 5
+2018-02-23 22:51:16.650 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:6.338
+2018-02-23 22:51:21.838 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:21.633
+2018-02-23 22:52:40.956 [DEBUG] server.cpp(241): new link from 127.0.0.1:52898, fd: 18, links: 4
+2018-02-23 22:52:50.566 [DEBUG] server.cpp(241): new link from 127.0.0.1:52909, fd: 20, links: 5
+2018-02-23 22:56:03.243 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:192.677
+2018-02-23 22:56:08.425 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:207.469
+2018-02-23 22:56:26.255 [DEBUG] server.cpp(241): new link from 127.0.0.1:53050, fd: 18, links: 4
+2018-02-23 22:56:32.225 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:5.970
+2018-02-23 22:57:19.101 [DEBUG] server.cpp(241): new link from 127.0.0.1:53081, fd: 18, links: 4
+2018-02-23 22:57:29.232 [DEBUG] server.cpp(241): new link from 127.0.0.1:53098, fd: 20, links: 5
+2018-02-23 23:09:44.738 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:745.637
+2018-02-23 23:09:46.896 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:737.664
+2018-02-23 23:10:03.921 [DEBUG] server.cpp(241): new link from 127.0.0.1:53435, fd: 18, links: 4
+2018-02-23 23:10:08.542 [DEBUG] server.cpp(241): new link from 127.0.0.1:53444, fd: 20, links: 5
+2018-02-24 00:00:44.157 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:3040.236
+2018-02-24 00:00:49.450 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:3040.908
+2018-02-24 00:01:04.532 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:25964.660
+2018-02-24 00:01:05.228 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:26976.037
+2018-02-24 00:01:05.434 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:26979.757
+2018-02-24 00:01:24.914 [DEBUG] server.cpp(241): new link from 127.0.0.1:54626, fd: 17, links: 1
+2018-02-24 00:01:25.634 [DEBUG] server.cpp(241): new link from 127.0.0.1:54642, fd: 18, links: 2
+2018-02-24 00:01:27.306 [DEBUG] server.cpp(241): new link from 127.0.0.1:54653, fd: 19, links: 3
+2018-02-24 00:01:28.013 [DEBUG] server.cpp(241): new link from 127.0.0.1:54656, fd: 20, links: 4
+2018-02-24 00:01:28.111 [DEBUG] server.cpp(241): new link from 127.0.0.1:54659, fd: 21, links: 5
+2018-02-24 00:03:46.403 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:139.097
+2018-02-24 00:03:46.618 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:140.984
+2018-02-24 00:03:46.621 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:138.608
+2018-02-24 00:03:46.853 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:138.742
+2018-02-24 00:03:47.369 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:142.455
+2018-02-24 00:03:54.987 [DEBUG] server.cpp(241): new link from 127.0.0.1:54747, fd: 17, links: 1
+2018-02-24 00:03:55.295 [DEBUG] server.cpp(241): new link from 127.0.0.1:54749, fd: 18, links: 2
+2018-02-24 00:03:55.910 [DEBUG] server.cpp(241): new link from 127.0.0.1:54753, fd: 19, links: 3
+2018-02-24 00:04:17.440 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:22.145
+2018-02-24 00:04:40.057 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:44.148
+2018-02-24 00:04:40.465 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:45.479
+2018-02-24 00:04:45.813 [DEBUG] server.cpp(241): new link from 127.0.0.1:54793, fd: 17, links: 1
+2018-02-24 00:04:46.040 [DEBUG] server.cpp(241): new link from 127.0.0.1:54805, fd: 18, links: 2
+2018-02-24 00:04:48.423 [DEBUG] server.cpp(241): new link from 127.0.0.1:54815, fd: 19, links: 3
+2018-02-24 00:04:48.535 [DEBUG] server.cpp(241): new link from 127.0.0.1:54823, fd: 20, links: 4
+2018-02-24 00:07:31.408 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:162.985
+2018-02-24 00:07:31.928 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:165.888
+2018-02-24 00:07:32.168 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:163.633
+2018-02-24 00:07:32.686 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:166.874
+2018-02-24 00:07:37.900 [DEBUG] server.cpp(241): new link from 127.0.0.1:54941, fd: 17, links: 1
+2018-02-24 00:07:38.140 [DEBUG] server.cpp(241): new link from 127.0.0.1:54947, fd: 18, links: 2
+2018-02-24 00:07:40.337 [DEBUG] server.cpp(241): new link from 127.0.0.1:54957, fd: 19, links: 3
+2018-02-24 00:07:40.345 [DEBUG] server.cpp(241): new link from 127.0.0.1:54962, fd: 20, links: 4
+2018-02-24 00:07:40.863 [DEBUG] server.cpp(241): new link from 127.0.0.1:54966, fd: 21, links: 5
+2018-02-24 00:11:05.829 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:204.967
+2018-02-24 00:11:19.272 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:221.132
+2018-02-24 00:11:40.879 [DEBUG] server.cpp(241): new link from 127.0.0.1:55091, fd: 18, links: 4
+2018-02-24 00:11:49.050 [DEBUG] server.cpp(241): new link from 127.0.0.1:55103, fd: 21, links: 5
+2018-02-24 00:19:12.566 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:443.516
+2018-02-24 00:19:16.154 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:455.275
+2018-02-24 00:19:31.210 [DEBUG] server.cpp(241): new link from 127.0.0.1:55298, fd: 18, links: 4
+2018-02-24 00:19:36.403 [DEBUG] server.cpp(241): new link from 127.0.0.1:55309, fd: 21, links: 5
+2018-02-24 00:41:44.153 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1332.943
+2018-02-24 00:41:49.396 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:1332.992
+2018-02-24 00:42:51.487 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:2111.143
+2018-02-24 00:42:52.516 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:2112.180
+2018-02-24 00:42:53.004 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:2115.104
+2018-02-24 00:43:39.746 [DEBUG] server.cpp(241): new link from 127.0.0.1:55975, fd: 17, links: 1
+2018-02-24 00:43:40.909 [DEBUG] server.cpp(241): new link from 127.0.0.1:55979, fd: 18, links: 2
+2018-02-24 00:43:41.661 [DEBUG] server.cpp(241): new link from 127.0.0.1:55985, fd: 19, links: 3
+2018-02-24 00:43:54.650 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:14.904
+2018-02-24 00:43:54.905 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:13.996
+2018-02-24 00:43:55.215 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:13.554
+2018-02-24 00:44:27.402 [DEBUG] server.cpp(241): new link from 127.0.0.1:56043, fd: 17, links: 1
+2018-02-24 00:44:27.436 [DEBUG] server.cpp(241): new link from 127.0.0.1:56047, fd: 18, links: 2
+2018-02-24 00:44:29.573 [DEBUG] server.cpp(241): new link from 127.0.0.1:56056, fd: 19, links: 3
+2018-02-24 00:44:29.623 [DEBUG] server.cpp(241): new link from 127.0.0.1:56061, fd: 20, links: 4
+2018-02-24 00:44:29.991 [DEBUG] server.cpp(241): new link from 127.0.0.1:56063, fd: 21, links: 5
+2018-02-24 01:00:46.420 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:978.984
+2018-02-24 01:00:47.481 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:977.490
+2018-02-24 01:00:57.511 [DEBUG] server.cpp(241): new link from 127.0.0.1:56472, fd: 18, links: 4
+2018-02-24 01:01:04.639 [DEBUG] server.cpp(241): new link from 127.0.0.1:56480, fd: 21, links: 5
+2018-02-24 02:37:15.577 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:5778.065
+2018-02-24 02:37:19.697 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:6770.074
+2018-02-24 02:37:23.104 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:5778.466
+2018-02-24 02:38:13.228 [DEBUG] server.cpp(241): new link from 127.0.0.1:58515, fd: 18, links: 3
+2018-02-24 02:38:17.734 [DEBUG] server.cpp(241): new link from 127.0.0.1:58524, fd: 20, links: 4
+2018-02-24 02:38:18.777 [DEBUG] server.cpp(241): new link from 127.0.0.1:58528, fd: 21, links: 5
+2018-02-24 02:56:46.640 [DEBUG] server.cpp(411): fd: 20, read: -1, delete link, s:1108.905
+2018-02-24 02:56:46.859 [DEBUG] server.cpp(411): fd: 18, read: -1, delete link, s:1113.631
+2018-02-24 02:56:46.859 [DEBUG] server.cpp(411): fd: 21, read: -1, delete link, s:1108.081
+2018-02-24 02:56:47.105 [DEBUG] server.cpp(411): fd: 19, read: -1, delete link, s:7937.532
+2018-02-24 02:56:47.312 [DEBUG] server.cpp(411): fd: 17, read: -1, delete link, s:7939.910
+2018-02-24 13:23:59.531 [DEBUG] server.cpp(304): long loop time: 37489.980
+2018-02-24 18:42:22.572 [DEBUG] server.cpp(304): long loop time: 9356.187
+2018-02-25 19:27:38.599 [DEBUG] server.cpp(304): long loop time: 77016.829
+2018-02-26 22:08:57.628 [DEBUG] server.cpp(304): long loop time: 92017.516
+2018-02-27 12:20:13.528 [DEBUG] server.cpp(304): long loop time: 46773.218
+2018-02-27 22:14:58.633 [DEBUG] server.cpp(304): long loop time: 35670.295
+2018-03-02 22:01:03.590 [DEBUG] server.cpp(304): long loop time: 256748.704
+2018-03-03 09:06:37.604 [DEBUG] server.cpp(304): long loop time: 39802.310
+2018-03-03 21:12:37.533 [DEBUG] server.cpp(304): long loop time: 43287.957
+2018-03-04 09:56:06.542 [DEBUG] server.cpp(304): long loop time: 36091.524
+2018-03-04 23:19:07.993 [DEBUG] server.cpp(304): long loop time: 46598.375
+2018-03-05 13:18:02.538 [DEBUG] server.cpp(304): long loop time: 48019.062
+2018-03-05 22:26:52.640 [DEBUG] server.cpp(304): long loop time: 32919.684
+2018-03-06 21:39:28.607 [DEBUG] server.cpp(304): long loop time: 80697.717
+2018-03-07 21:58:35.688 [DEBUG] server.cpp(304): long loop time: 85465.530
+2018-03-08 22:01:58.616 [DEBUG] server.cpp(304): long loop time: 84596.172
+2018-03-08 22:02:04.345 [DEBUG] server.cpp(304): long loop time: 0.531
+2018-03-09 22:44:31.703 [DEBUG] server.cpp(304): long loop time: 87257.702
+2018-03-10 20:49:37.548 [DEBUG] server.cpp(304): long loop time: 76645.828
+2018-03-10 23:26:26.716 [DEBUG] server.cpp(304): long loop time: 2455.406
+2018-03-11 15:38:22.540 [DEBUG] server.cpp(304): long loop time: 52939.830
+2018-03-12 22:16:34.706 [DEBUG] server.cpp(304): long loop time: 110250.597
+2018-03-13 10:21:20.638 [DEBUG] server.cpp(304): long loop time: 40653.970
+2018-03-13 10:58:41.621 [DEBUG] server.cpp(304): long loop time: 2224.593
+2018-03-14 12:33:28.591 [DEBUG] server.cpp(304): long loop time: 46157.093
+2018-03-16 22:31:22.571 [DEBUG] server.cpp(304): long loop time: 198131.103
+2018-03-16 22:31:37.533 [DEBUG] server.cpp(304): long loop time: 3.542
+2018-03-18 09:48:24.781 [DEBUG] server.cpp(304): long loop time: 123986.807
+2018-03-18 11:41:29.737 [DEBUG] server.cpp(304): long loop time: 1997.283
+2018-03-18 12:36:56.590 [DEBUG] server.cpp(304): long loop time: 1195.494
+2018-03-18 18:33:27.549 [DEBUG] server.cpp(304): long loop time: 9826.897
+2018-03-21 16:57:23.614 [DEBUG] server.cpp(304): long loop time: 241672.031
+2018-03-21 22:14:06.764 [DEBUG] server.cpp(304): long loop time: 18891.003
+2018-03-22 21:58:23.609 [DEBUG] server.cpp(304): long loop time: 85157.113
+2018-03-23 21:57:50.573 [DEBUG] server.cpp(304): long loop time: 84377.404
+2018-03-24 15:58:28.565 [DEBUG] server.cpp(304): long loop time: 60828.116
+2018-03-24 15:58:29.637 [DEBUG] server.cpp(304): long loop time: 0.530
+2018-03-24 18:45:46.586 [DEBUG] server.cpp(304): long loop time: 7999.403
