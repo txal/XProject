@@ -23,18 +23,18 @@
 		return sBuffer;
 	}
 #else
-	#include <uuid/uuid.h>  
-	static const char* GenUUID()
-	{
-		static char sBuffer[GUID_LEN] = { 0 };
-		memset(sBuffer, sizeof(sBuffer), 0);
+	//#include <uuid/uuid.h>  
+	//static const char* GenUUID()
+	//{
+	//	static char sBuffer[GUID_LEN] = { 0 };
+	//	memset(sBuffer, sizeof(sBuffer), 0);
 
-		uuid_t uu;
-		uuid_generate(uu);
-		snprintf(sBuffer, sizeof(sBuffer), "%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X"
-			, uu[0], uu[1], uu[2], uu[3], uu[4], uu[5], uu[6], uu[7], uu[8], uu[9], uu[10], uu[11], uu[12], uu[13], uu[14], uu[15]);
-		return sBuffer;
-	}
+	//	uuid_t uu;
+	//	uuid_generate(uu);
+	//	snprintf(sBuffer, sizeof(sBuffer), "%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X-%02X"
+	//		, uu[0], uu[1], uu[2], uu[3], uu[4], uu[5], uu[6], uu[7], uu[8], uu[9], uu[10], uu[11], uu[12], uu[13], uu[14], uu[15]);
+	//	return sBuffer;
+	//}
 #endif
 
 #endif
