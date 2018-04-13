@@ -11,7 +11,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasuppo
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc         src_packetproc)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/SceneMgr           src_scenemgr)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Object             src_object)
-aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Object/Player      src_object_player)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Object/Role      	src_object_role)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Object/Monster     src_object_monster)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Object/DropItem    src_object_dropitem)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Object/Robot 		src_object_robot)
@@ -32,7 +32,7 @@ add_executable(LogicServer
 	${src_packetproc}
 	${src_scenemgr} 
 	${src_object} 
-	${src_object_player} 
+	${src_object_role} 
 	${src_object_monster} 
 	${src_object_dropitem} 
 	${src_object_robot}
