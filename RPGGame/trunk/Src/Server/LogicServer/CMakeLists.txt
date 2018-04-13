@@ -6,6 +6,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr      src_timermgr
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/LuaCommon     src_luacommon)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser  src_packetparser)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/CSVDocument 	src_csvdocument)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/WordFilter 	src_wordfilter)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}				    src_logicserver)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasupport)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc         src_packetproc)
@@ -40,6 +41,7 @@ add_executable(LogicServer
 	${src_astar}
 	${src_buff}
 	${src_ai}
+	${src_wordfilter}
 )
 
 target_link_libraries(LogicServer logger network dbdriver luawrapper)
