@@ -7,7 +7,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Server/Base      src_base)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport 	src_luasupport)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc		src_packetproc)
 
-add_executable(LogServer
+add_executable(LoginServer
 	${src_loginserver}
 	${src_base}
     ${src_timermgr}
