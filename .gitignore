@@ -7,7 +7,7 @@ x64/
 *.zip
 .svn
 !ssdb.conf
-DB/
-Log/
-Build/Src/
-Build/CMakeFiles/
+*DB/
+*Log/
+*Build/Src/
+*Build/CMakeFiles/
