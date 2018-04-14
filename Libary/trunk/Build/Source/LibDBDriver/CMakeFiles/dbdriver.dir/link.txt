@@ -1,0 +1,2 @@
+/usr/bin/ar cr ../../../Libs/Linux64/Debug/libdbdriver.a  CMakeFiles/dbdriver.dir/SSDB/SSDBDriver.cpp.o CMakeFiles/dbdriver.dir/Mysql/LMysqlDriver.cpp.o CMakeFiles/dbdriver.dir/Mysql/MysqlDriver.cpp.o
+/usr/bin/ranlib ../../../Libs/Linux64/Debug/libdbdriver.a

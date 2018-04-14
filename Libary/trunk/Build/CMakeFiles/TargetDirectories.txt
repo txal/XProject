@@ -1,0 +1,8 @@
+/home/GitXProject/Libary/trunk/Build/Source/Deps/lua-cjson/CMakeFiles/cjson.dir
+/home/GitXProject/Libary/trunk/Build/Source/LibDBDriver/CMakeFiles/dbdriver.dir
+/home/GitXProject/Libary/trunk/Build/Source/LibLogger/CMakeFiles/logger.dir
+/home/GitXProject/Libary/trunk/Build/Source/Deps/lpeg-1.0.0/CMakeFiles/lpeg.dir
+/home/GitXProject/Libary/trunk/Build/Source/Deps/lua-5.3.0/CMakeFiles/lua530.dir
+/home/GitXProject/Libary/trunk/Build/Source/LuaWrapper/CMakeFiles/luawrapper.dir
+/home/GitXProject/Libary/trunk/Build/Source/LibNetwork/CMakeFiles/network.dir
+/home/GitXProject/Libary/trunk/Build/Source/Deps/pbc/CMakeFiles/pbc.dir
