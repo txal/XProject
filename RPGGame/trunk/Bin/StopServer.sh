@@ -2,40 +2,14 @@
 
 path=$PWD
 
-#param: server close/wait
-function closewait()
-{
-	waittime=10
-	cmd="ps -ef | grep -v grep | grep $path | grep $1"
+pushd _LocalServer
+./StopServer.sh
+popd
 
-	if [[ $2 == "close" ]]; then
-		pids=`eval $cmd | awk '{print $2}'`
-		for pid in $pids
-		do
-			kill -15 $pid
-			echo kill $pid
-		done
-	fi
+pushd _WorldServer
+./StopServer.sh
+popd
 
-	for (( i = 1; i <= $waittime; i++ ))  
-	do  
-		process=`eval $cmd`
-		if [[ ! $process ]]; then
-			echo close $1 successful
-			break
-		else
-			echo waitting $1 close ......$i
-		fi
-		sleep 1
-	done  
-
-	if (($i > $waittime)); then
-		echo close $1 fail\(timeout\)
-	fi
-}
-
-closewait "GateServer" "close"
-closewait "LogicServer" "wait"
-closewait "GlobalServer" "wait"
-closewait "LogServer" "close"
-closewait "RouterServer" "close"
+pushd _RouterServer
+./StopServer.sh
+popd
