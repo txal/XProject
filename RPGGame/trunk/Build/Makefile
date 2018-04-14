@@ -141,6 +141,19 @@ LogServer/fast:
 .PHONY : LogServer/fast
 
 #=============================================================================
+# Target rules for targets named LoginServer
+
+# Build rule for target.
+LoginServer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 LoginServer
+.PHONY : LoginServer
+
+# fast build rule for target.
+LoginServer/fast:
+	$(MAKE) -f Src/Server/LoginServer/CMakeFiles/LoginServer.dir/build.make Src/Server/LoginServer/CMakeFiles/LoginServer.dir/build
+.PHONY : LoginServer/fast
+
+#=============================================================================
 # Target rules for targets named LogicServer
 
 # Build rule for target.
@@ -216,6 +229,7 @@ help:
 	@echo "... RouterServer"
 	@echo "... GateServer"
 	@echo "... LogServer"
+	@echo "... LoginServer"
 	@echo "... LogicServer"
 	@echo "... GlobalServer"
 	@echo "... WGlobalServer"

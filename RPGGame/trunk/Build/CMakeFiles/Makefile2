@@ -83,6 +83,7 @@ Src/preinstall: Src/Test/preinstall
 Src/Server/all: Src/Server/RouterServer/all
 Src/Server/all: Src/Server/GateServer/all
 Src/Server/all: Src/Server/LogServer/all
+Src/Server/all: Src/Server/LoginServer/all
 Src/Server/all: Src/Server/LogicServer/all
 Src/Server/all: Src/Server/GlobalServer/all
 Src/Server/all: Src/Server/WGlobalServer/all
@@ -92,6 +93,7 @@ Src/Server/all: Src/Server/WGlobalServer/all
 Src/Server/clean: Src/Server/RouterServer/clean
 Src/Server/clean: Src/Server/GateServer/clean
 Src/Server/clean: Src/Server/LogServer/clean
+Src/Server/clean: Src/Server/LoginServer/clean
 Src/Server/clean: Src/Server/LogicServer/clean
 Src/Server/clean: Src/Server/GlobalServer/clean
 Src/Server/clean: Src/Server/WGlobalServer/clean
@@ -101,6 +103,7 @@ Src/Server/clean: Src/Server/WGlobalServer/clean
 Src/Server/preinstall: Src/Server/RouterServer/preinstall
 Src/Server/preinstall: Src/Server/GateServer/preinstall
 Src/Server/preinstall: Src/Server/LogServer/preinstall
+Src/Server/preinstall: Src/Server/LoginServer/preinstall
 Src/Server/preinstall: Src/Server/LogicServer/preinstall
 Src/Server/preinstall: Src/Server/GlobalServer/preinstall
 Src/Server/preinstall: Src/Server/WGlobalServer/preinstall
@@ -128,7 +131,7 @@ Src/Server/RouterServer/preinstall:
 Src/Server/RouterServer/CMakeFiles/RouterServer.dir/all:
 	$(MAKE) -f Src/Server/RouterServer/CMakeFiles/RouterServer.dir/build.make Src/Server/RouterServer/CMakeFiles/RouterServer.dir/depend
 	$(MAKE) -f Src/Server/RouterServer/CMakeFiles/RouterServer.dir/build.make Src/Server/RouterServer/CMakeFiles/RouterServer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  77 78 79 80 81 82 83 84 85 86 87
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  79 80 81 82 83 84 85 86 87 88
 	@echo "Built target RouterServer"
 .PHONY : Src/Server/RouterServer/CMakeFiles/RouterServer.dir/all
 
@@ -138,7 +141,7 @@ all: Src/Server/RouterServer/CMakeFiles/RouterServer.dir/all
 
 # Build rule for subdir invocation for target.
 Src/Server/RouterServer/CMakeFiles/RouterServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 Src/Server/RouterServer/CMakeFiles/RouterServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 0
 .PHONY : Src/Server/RouterServer/CMakeFiles/RouterServer.dir/rule
@@ -178,7 +181,7 @@ Src/Server/GateServer/preinstall:
 Src/Server/GateServer/CMakeFiles/GateServer.dir/all:
 	$(MAKE) -f Src/Server/GateServer/CMakeFiles/GateServer.dir/build.make Src/Server/GateServer/CMakeFiles/GateServer.dir/depend
 	$(MAKE) -f Src/Server/GateServer/CMakeFiles/GateServer.dir/build.make Src/Server/GateServer/CMakeFiles/GateServer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  1 2 3 4 5 6 7 8 9 10
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  1 2 3 4 5 6 7 8 9
 	@echo "Built target GateServer"
 .PHONY : Src/Server/GateServer/CMakeFiles/GateServer.dir/all
 
@@ -188,7 +191,7 @@ all: Src/Server/GateServer/CMakeFiles/GateServer.dir/all
 
 # Build rule for subdir invocation for target.
 Src/Server/GateServer/CMakeFiles/GateServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 Src/Server/GateServer/CMakeFiles/GateServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 0
 .PHONY : Src/Server/GateServer/CMakeFiles/GateServer.dir/rule
@@ -228,7 +231,7 @@ Src/Server/LogServer/preinstall:
 Src/Server/LogServer/CMakeFiles/LogServer.dir/all:
 	$(MAKE) -f Src/Server/LogServer/CMakeFiles/LogServer.dir/build.make Src/Server/LogServer/CMakeFiles/LogServer.dir/depend
 	$(MAKE) -f Src/Server/LogServer/CMakeFiles/LogServer.dir/build.make Src/Server/LogServer/CMakeFiles/LogServer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  22 23 24 25 26 27 28 29 30 31 32
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  20 21 22 23 24 25 26 27 28 29
 	@echo "Built target LogServer"
 .PHONY : Src/Server/LogServer/CMakeFiles/LogServer.dir/all
 
@@ -238,7 +241,7 @@ all: Src/Server/LogServer/CMakeFiles/LogServer.dir/all
 
 # Build rule for subdir invocation for target.
 Src/Server/LogServer/CMakeFiles/LogServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 Src/Server/LogServer/CMakeFiles/LogServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 0
 .PHONY : Src/Server/LogServer/CMakeFiles/LogServer.dir/rule
@@ -254,6 +257,56 @@ Src/Server/LogServer/CMakeFiles/LogServer.dir/clean:
 
 # clean rule for target.
 clean: Src/Server/LogServer/CMakeFiles/LogServer.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory Src/Server/LoginServer
+
+# Convenience name for "all" pass in the directory.
+Src/Server/LoginServer/all: Src/Server/LoginServer/CMakeFiles/LoginServer.dir/all
+.PHONY : Src/Server/LoginServer/all
+
+# Convenience name for "clean" pass in the directory.
+Src/Server/LoginServer/clean: Src/Server/LoginServer/CMakeFiles/LoginServer.dir/clean
+.PHONY : Src/Server/LoginServer/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Src/Server/LoginServer/preinstall:
+.PHONY : Src/Server/LoginServer/preinstall
+
+#=============================================================================
+# Target rules for target Src/Server/LoginServer/CMakeFiles/LoginServer.dir
+
+# All Build rule for target.
+Src/Server/LoginServer/CMakeFiles/LoginServer.dir/all:
+	$(MAKE) -f Src/Server/LoginServer/CMakeFiles/LoginServer.dir/build.make Src/Server/LoginServer/CMakeFiles/LoginServer.dir/depend
+	$(MAKE) -f Src/Server/LoginServer/CMakeFiles/LoginServer.dir/build.make Src/Server/LoginServer/CMakeFiles/LoginServer.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  55 56 57 58 59 60 61 62 63 64
+	@echo "Built target LoginServer"
+.PHONY : Src/Server/LoginServer/CMakeFiles/LoginServer.dir/all
+
+# Include target in all.
+all: Src/Server/LoginServer/CMakeFiles/LoginServer.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+Src/Server/LoginServer/CMakeFiles/LoginServer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 10
+	$(MAKE) -f CMakeFiles/Makefile2 Src/Server/LoginServer/CMakeFiles/LoginServer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 0
+.PHONY : Src/Server/LoginServer/CMakeFiles/LoginServer.dir/rule
+
+# Convenience name for target.
+LoginServer: Src/Server/LoginServer/CMakeFiles/LoginServer.dir/rule
+.PHONY : LoginServer
+
+# clean rule for target.
+Src/Server/LoginServer/CMakeFiles/LoginServer.dir/clean:
+	$(MAKE) -f Src/Server/LoginServer/CMakeFiles/LoginServer.dir/build.make Src/Server/LoginServer/CMakeFiles/LoginServer.dir/clean
+.PHONY : Src/Server/LoginServer/CMakeFiles/LoginServer.dir/clean
+
+# clean rule for target.
+clean: Src/Server/LoginServer/CMakeFiles/LoginServer.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -278,7 +331,7 @@ Src/Server/LogicServer/preinstall:
 Src/Server/LogicServer/CMakeFiles/LogicServer.dir/all:
 	$(MAKE) -f Src/Server/LogicServer/CMakeFiles/LogicServer.dir/build.make Src/Server/LogicServer/CMakeFiles/LogicServer.dir/depend
 	$(MAKE) -f Src/Server/LogicServer/CMakeFiles/LogicServer.dir/build.make Src/Server/LogicServer/CMakeFiles/LogicServer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54
 	@echo "Built target LogicServer"
 .PHONY : Src/Server/LogicServer/CMakeFiles/LogicServer.dir/all
 
@@ -288,7 +341,7 @@ all: Src/Server/LogicServer/CMakeFiles/LogicServer.dir/all
 
 # Build rule for subdir invocation for target.
 Src/Server/LogicServer/CMakeFiles/LogicServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 28
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 Src/Server/LogicServer/CMakeFiles/LogicServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 0
 .PHONY : Src/Server/LogicServer/CMakeFiles/LogicServer.dir/rule
@@ -328,7 +381,7 @@ Src/Server/GlobalServer/preinstall:
 Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/all:
 	$(MAKE) -f Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/build.make Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/depend
 	$(MAKE) -f Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/build.make Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  11 12 13 14 15 16 17 18 19 20 21
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  10 11 12 13 14 15 16 17 18 19
 	@echo "Built target GlobalServer"
 .PHONY : Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/all
 
@@ -338,7 +391,7 @@ all: Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/all
 
 # Build rule for subdir invocation for target.
 Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 0
 .PHONY : Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir/rule
@@ -378,7 +431,7 @@ Src/Server/WGlobalServer/preinstall:
 Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/all:
 	$(MAKE) -f Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/build.make Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/depend
 	$(MAKE) -f Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/build.make Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  89 90 91 92 93 94 95 96 97 98 99 100
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  90 91 92 93 94 95 96 97 98 99 100
 	@echo "Built target WGlobalServer"
 .PHONY : Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/all
 
@@ -388,7 +441,7 @@ all: Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/all
 
 # Build rule for subdir invocation for target.
 Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 11
 	$(MAKE) -f CMakeFiles/Makefile2 Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 0
 .PHONY : Src/Server/WGlobalServer/CMakeFiles/WGlobalServer.dir/rule
@@ -428,7 +481,7 @@ Src/RobotClient/preinstall:
 Src/RobotClient/CMakeFiles/RobotClt.dir/all:
 	$(MAKE) -f Src/RobotClient/CMakeFiles/RobotClt.dir/build.make Src/RobotClient/CMakeFiles/RobotClt.dir/depend
 	$(MAKE) -f Src/RobotClient/CMakeFiles/RobotClt.dir/build.make Src/RobotClient/CMakeFiles/RobotClt.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  65 66 67 68 69 70 71 72 73 74 75 76 77 78
 	@echo "Built target RobotClt"
 .PHONY : Src/RobotClient/CMakeFiles/RobotClt.dir/all
 
@@ -438,7 +491,7 @@ all: Src/RobotClient/CMakeFiles/RobotClt.dir/all
 
 # Build rule for subdir invocation for target.
 Src/RobotClient/CMakeFiles/RobotClt.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 Src/RobotClient/CMakeFiles/RobotClt.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/GitXProject/RPGGame/trunk/Build/CMakeFiles 0
 .PHONY : Src/RobotClient/CMakeFiles/RobotClt.dir/rule
@@ -478,7 +531,7 @@ Src/Test/preinstall:
 Src/Test/CMakeFiles/Test.dir/all:
 	$(MAKE) -f Src/Test/CMakeFiles/Test.dir/build.make Src/Test/CMakeFiles/Test.dir/depend
 	$(MAKE) -f Src/Test/CMakeFiles/Test.dir/build.make Src/Test/CMakeFiles/Test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  88
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/GitXProject/RPGGame/trunk/Build/CMakeFiles  89
 	@echo "Built target Test"
 .PHONY : Src/Test/CMakeFiles/Test.dir/all
 

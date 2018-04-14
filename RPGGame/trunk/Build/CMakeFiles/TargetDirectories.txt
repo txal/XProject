@@ -2,6 +2,7 @@
 /home/GitXProject/RPGGame/trunk/Build/Src/Server/GlobalServer/CMakeFiles/GlobalServer.dir
 /home/GitXProject/RPGGame/trunk/Build/Src/Server/LogServer/CMakeFiles/LogServer.dir
 /home/GitXProject/RPGGame/trunk/Build/Src/Server/LogicServer/CMakeFiles/LogicServer.dir
+/home/GitXProject/RPGGame/trunk/Build/Src/Server/LoginServer/CMakeFiles/LoginServer.dir
 /home/GitXProject/RPGGame/trunk/Build/Src/RobotClient/CMakeFiles/RobotClt.dir
 /home/GitXProject/RPGGame/trunk/Build/Src/Server/RouterServer/CMakeFiles/RouterServer.dir
 /home/GitXProject/RPGGame/trunk/Build/Src/Test/CMakeFiles/Test.dir
