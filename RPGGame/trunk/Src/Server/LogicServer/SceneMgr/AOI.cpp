@@ -518,7 +518,6 @@ void AOI::RemoveObserved(int nID)
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || !(pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
-		XLog(LEVEL_ERROR, "RemoveObserved: id:%d 0x%u aoi obj not exist or mode error!\n", nID, (void*)pObj);
 		return;
 	}
 
