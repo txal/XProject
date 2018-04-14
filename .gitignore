@@ -9,3 +9,5 @@ x64/
 !ssdb.conf
 DB/
 Log/
+Build/Src
+Build/CMakeFiles
