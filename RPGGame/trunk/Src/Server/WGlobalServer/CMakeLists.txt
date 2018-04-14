@@ -8,7 +8,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}                    src_globalse
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasupport)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc 		src_packetproc)
 
-add_executable(GlobalServer
+add_executable(WGlobalServer
     ${src_base}
     ${src_timermgr}
     ${src_luacommon}
@@ -18,8 +18,8 @@ add_executable(GlobalServer
     ${src_httprequest}
 )
 
-target_link_libraries(GlobalServer logger network dbdriver luawrapper)
-target_link_libraries(GlobalServer lua530 ssdb-client mysqlclient readline lpeg pbc jemalloc pthread rt)
-target_link_libraries(GlobalServer curl cjson z ssl crypto)
+target_link_libraries(WGlobalServer logger network dbdriver luawrapper)
+target_link_libraries(WGlobalServer lua530 ssdb-client mysqlclient readline lpeg pbc jemalloc pthread rt)
+target_link_libraries(WGlobalServer curl cjson z ssl crypto)
 #yum install zlib-devel
 #yum install openssl-devel
