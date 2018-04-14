@@ -8,4 +8,4 @@ add_executable (Test
     ${src_httprequest}
 )   
 
-target_link_libraries(Test logger curl pthread rt)
+target_link_libraries(Test logger curl pthread rt z ssl crypto)
