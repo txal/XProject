@@ -21,6 +21,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Component/AStar 	src_astar)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Component/Buff 	src_buff)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/Component/AI 		src_ai)
 
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_LocalServer ${PROJECT_SOURCE_DIR}/Bin/_WorldServer)
 add_executable(LogicServer
     ${src_base}
     ${src_filter}

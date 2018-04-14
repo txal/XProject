@@ -7,6 +7,8 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasuppo
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser  src_packetparser)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr      src_timermgr)
 
+
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_LocalServer)
 add_executable (RouterServer
 	${src_base}
 	${src_routerserver}

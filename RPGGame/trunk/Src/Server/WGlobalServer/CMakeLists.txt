@@ -8,6 +8,8 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/HttpRequest   src_httprequ
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasupport)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc 		src_packetproc)
 
+
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_WorldServer)
 add_executable(WGlobalServer
     ${src_base}
     ${src_timermgr}
