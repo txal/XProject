@@ -85,7 +85,7 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight)
 	return true;
 }
 
-int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine, int32_t nSeenObjID)
+int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine)
 {
 	assert(nLine == 0 || nLine == -1);
 	if (nAOIMode & AOI_MODE_DROP)
@@ -112,7 +112,7 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* p
 	pObj->nArea[0] = (int16_t)nAOIArea[0];
 	pObj->nArea[1] = (int16_t)nAOIArea[1];
 	pObj->poGameObj = poGameObj;
-	pObj->nSeenObjID = nSeenObjID;
+	pObj->nSeenObjID = 0;
 
 	int8_t nTarLine = AddLineObj(nLine);
 	assert(nTarLine >= 0 && nTarLine < MAX_LINE);

@@ -25,6 +25,9 @@
     <Filter Include="Src\Common\HttpRequest">
       <UniqueIdentifier>{fa5f6b11-d983-4386-8e3e-817c9ea5e363}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\WordFilter">
+      <UniqueIdentifier>{154eadf8-995d-4b03-813c-469f01674016}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\WGlobalServer\WGlobalServer.cpp">
       <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp">
+      <Filter>Src\Common\WordFilter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\WGlobalServer\WGlobalServer.h">
       <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h">
+      <Filter>Src\Common\WordFilter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

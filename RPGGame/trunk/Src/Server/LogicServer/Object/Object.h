@@ -29,6 +29,7 @@ public:
 	Point& GetPos() { return m_oPos; }
 	void SetPos(const Point& oPos, const char* pFile = "", int nLine = 0);
 	Scene* GetScene() { return m_poScene; }
+	void SetDir(int8_t nDir) { m_nDir = nDir; }
 
 	bool IsTime2Collect(int64_t nNowMS);
 	int64_t GetLastUpdateTime() { return m_nLastUpdateTime; }
@@ -51,9 +52,11 @@ protected:
 	Scene* m_poScene;
 	int m_nAOIID;
 	Point m_oPos;
+	int8_t m_nDir;
 
 	int64_t m_nLeaveSceneTime;
 	int64_t m_nLastUpdateTime;
+
 
 	DISALLOW_COPY_AND_ASSIGN(Object);
 
@@ -67,6 +70,7 @@ public:
 	int GetAOIID(lua_State* pState);
 	int GetPos(lua_State* pState);
 	int GetSessionID(lua_State* pState);
+	int GetDir(lua_State* pState);
 };
 
 
@@ -78,7 +82,8 @@ LUNAR_DECLARE_METHOD(Class, GetObjType),\
 LUNAR_DECLARE_METHOD(Class, GetDupMixID),\
 LUNAR_DECLARE_METHOD(Class, GetAOIID),\
 LUNAR_DECLARE_METHOD(Class, GetPos),\
-LUNAR_DECLARE_METHOD(Class, GetSessionID)
+LUNAR_DECLARE_METHOD(Class, GetSessionID),\
+LUNAR_DECLARE_METHOD(Class, GetDir)
 
 
 //注册到LUA

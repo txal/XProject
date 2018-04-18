@@ -23,6 +23,7 @@ Object::Object()
 	m_nAOIID = 0;
 	m_nLeaveSceneTime = 0;
 	m_nLastUpdateTime = 0;
+	m_nDir = 0;
 }
 
 Object::~Object()
@@ -171,5 +172,11 @@ int Object::GetPos(lua_State* pState)
 int Object::GetSessionID(lua_State* pState)
 {
 	lua_pushinteger(pState, GetSession());
+	return 1;
+}
+
+int Object::GetDir(lua_State* pState)
+{
+	lua_pushinteger(pState, m_nDir);
 	return 1;
 }

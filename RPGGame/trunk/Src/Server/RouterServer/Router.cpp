@@ -200,10 +200,11 @@ ServiceNode* Router::GetService(int nServerID, int nServiceID)
 
 void Router::BroadcastService(int nServerID, Packet* poPacket)
 {
+	uint16_t nWorldServerID = g_poContext->GetWorldServerID();
 	for (ServiceIter iter = m_oServiceMap.begin(); iter != m_oServiceMap.end(); iter++)
 	{
 		ServiceNode* poService = iter->second;
-		if (poService->GetServerID() == nServerID)
+		if (poService->GetServerID() == nServerID || poService->GetServerID() == nWorldServerID)
 		{
 			Packet* poNewPacket = poPacket->DeepCopy();
 			//注意路由本身不属于任何服,所以源服务器赋值为目标服务器

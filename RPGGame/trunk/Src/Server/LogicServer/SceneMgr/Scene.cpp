@@ -106,21 +106,22 @@ bool Scene::IsTime2Collect(int64_t nNowMS)
 }
 
 
-int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine, int32_t nSeenObjID)
+int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine, int8_t nDir)
 {
 	int nObjID = poObj->GetID();
 	int nObjType = poObj->GetType();
 
-	//可以重复进入场景(不添加对象,只同步视野)
 	if (m_oObjMap.find(nObjID) != m_oObjMap.end())
 	{
 		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%d\n", nObjID, nObjType, m_uSceneMixID);
 		return -1;
 	}
 
+	poObj->SetDir(nDir);
 	int nAOIID = m_oAOI.AddObj(nPosX, nPosY, nAOIMode, nAOIArea, poObj, nAOIType, nLine);
 	if (nAOIID <= 0)
 	{
+		poObj->SetDir(0);
 		XLog(LEVEL_ERROR, "AOI add obj error id:%lld type:%d\n", nObjID, nObjType);
 		return -1;
 	}
@@ -327,9 +328,9 @@ int Scene::EnterDup(lua_State* pState)
 	assert(tAOIArea[0] >= 0 && tAOIArea[1] >= 0);
 
 	int nLine = (int)luaL_checkinteger(pState, 7); //0公共线,-1自动
-	int nSeenObjID = (int)luaL_checkinteger(pState, 8); 
+	int8_t nDir = (int8_t)luaL_checkinteger(pState, 8); //方向
 
-	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine, nSeenObjID);
+	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine, nDir);
 	if (nAOIID <= 0)
 	{
 		return LuaWrapper::luaM_error(pState, "AddObj to scene fail!");
