@@ -69,6 +69,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\Bin\_LocalServer\</OutDir>
+    <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>
@@ -127,9 +128,9 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f LogicServer* ..\_WorldServer\
-xcopy /y/f LogicServer* E:\Games\mengzhu\Runtime\trunk\Server\_LocalServer
-xcopy /y/f LogicServer* E:\Games\mengzhu\Runtime\trunk\Server\_WorldServer
+xcopy /y/f MZ-LogicServer* ..\_WorldServer\
+xcopy /y/f MZ-LogicServer* E:\mengzhu\Runtime\trunk\Server\_LocalServer
+xcopy /y/f MZ-LogicServer* E:\mengzhu\Runtime\trunk\Server\_WorldServer
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

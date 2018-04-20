@@ -578,7 +578,7 @@ void AOI::GetAreaObservers(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType)
 			continue;
 		if (pObj->nSeenObjID != 0 && pObj->nSeenObjID != iter->second->poGameObj->GetID())
 			continue;
-		m_oObjCache.PushBack(iter->second);
+		oObjCache.PushBack(iter->second);
 	}
 }
 
@@ -617,7 +617,7 @@ void AOI::GetAreaObserveds(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType)
 					continue;
 				if (iter->second->nSeenObjID > 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
 					continue;
-				m_oObjCache.PushBack(iter->second);
+				oObjCache.PushBack(iter->second);
 			}
 		}
 	}

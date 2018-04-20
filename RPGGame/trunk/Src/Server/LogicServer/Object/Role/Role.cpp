@@ -67,8 +67,11 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 
 	int64_t nClientMSTime = 0;
 	double dClientMSTime = 0;
+
+	uint8_t uDir = 0;
+
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nRoleID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime;
+	goPKReader >> nRoleID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uDir;
 	nClientMSTime = (int64_t)dClientMSTime;
 	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, nClientMSTime-m_nClientRunStartMSTime);
 
@@ -105,7 +108,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	
 	m_nClientRunStartMSTime = nClientMSTime;
-	Actor::StartRun(nSpeedX, nSpeedY);
+	Actor::StartRun(nSpeedX, nSpeedY, (int8_t)uDir);
 }
 
 void Role::RoleStopRunHandler(Packet* poPacket)

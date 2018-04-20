@@ -206,9 +206,13 @@ void Router::BroadcastService(int nServerID, Packet* poPacket)
 		ServiceNode* poService = iter->second;
 		if (poService->GetServerID() == nServerID || poService->GetServerID() == nWorldServerID)
 		{
+			int nTarServerID = nServerID;
+			if (poService->GetServerID() == nWorldServerID)
+				nTarServerID = nWorldServerID;
+
 			Packet* poNewPacket = poPacket->DeepCopy();
 			//注意路由本身不属于任何服,所以源服务器赋值为目标服务器
-			INNER_HEADER oHeader(NSSysCmd::ssServiceClose, nServerID, GetServiceID(), nServerID, poService->GetServiceID(), 0);
+			INNER_HEADER oHeader(NSSysCmd::ssServiceClose, nServerID, GetServiceID(), nTarServerID, poService->GetServiceID(), 0);
 			poNewPacket->AppendInnerHeader(oHeader, NULL, 0);
 			if (!poService->GetInnerNet()->SendPacket(poService->GetSessionID(), poNewPacket))
 			{

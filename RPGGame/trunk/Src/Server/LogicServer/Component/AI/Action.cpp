@@ -358,7 +358,7 @@ void Action::StartMove(const Point& oStartPos, const Point& oTarPos, int nMoveSp
 		if (!m_poActor->IsRunning() || nSpeedX != nOldSpeedX || nSpeedY != nOldSpeedY)
 		{
 			//XLog(LEVEL_DEBUG, "%s StartMove:(%d,%d)->(%d,%d) line:%d\n", m_poActor->GetName(), oStartPos.x, oStartPos.y, m_oNextPos.x, m_oNextPos.y, nLine);
-			m_poActor->StartRun(nSpeedX, nSpeedY);
+			m_poActor->StartRun(nSpeedX, nSpeedY, 0);
 		}
 	}
 }
