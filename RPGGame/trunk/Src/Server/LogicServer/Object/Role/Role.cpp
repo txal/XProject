@@ -54,7 +54,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
 	{
-		XLog(LEVEL_ERROR, "%s role not in scene\n", m_sName);
+		XLog(LEVEL_ERROR, "RoleStartRunHandler: %s role not in scene\n", m_sName);
 		return;
 	}
 
@@ -115,7 +115,7 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
 	{
-		XLog(LEVEL_ERROR, "%s role not in scene\n", m_sName);
+		XLog(LEVEL_ERROR, "RoleStopRunHandler: %s role not in scene\n", m_sName);
 		return;
 	}
 
