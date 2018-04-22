@@ -5,6 +5,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr      src_timermgr
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/WordFilter    src_wordfilter)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/LuaCommon     src_luacommon)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/HttpRequest   src_httprequest)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/WordFilter 	src_wordfilter)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}                    src_globalserver)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasupport)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc 		src_packetproc)
@@ -15,6 +16,7 @@ add_executable(GlobalServer
     ${src_timermgr}
     ${src_wordfilter}
     ${src_luacommon}
+    ${src_wordfilter}
 	${src_globalserver}
 	${src_luasupport}
 	${src_packetproc}
