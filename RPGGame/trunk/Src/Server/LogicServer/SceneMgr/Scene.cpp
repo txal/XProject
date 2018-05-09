@@ -152,7 +152,7 @@ void Scene::OnObjEnterScene(AOIOBJ* pObj)
 	Object* poGameObj = pObj->poGameObj;
 	m_oObjMap[poGameObj->GetID()] = poGameObj;
 
-	poGameObj->OnEnterScene(this, pObj->nAOIID, Point(pObj->nPos[0], pObj->nPos[1]));
+	poGameObj->OnEnterScene(this, pObj->nAOIID, Point(pObj->nPos[0], pObj->nPos[1]), pObj->nLine);
 	if (poGameObj->GetType() == eOT_Role)
 		m_nRoleCount++;
 
@@ -419,7 +419,9 @@ int Scene::GetAreaObserveds(lua_State* pState)
 
 int Scene::GetObjList(lua_State* pState)
 {
-	int nObjType = (int)lua_tonumber(pState, 1);
+	int nLine = (int)luaL_checkinteger(pState, 1);
+	int nObjType = (int)luaL_checkinteger(pState, 2);
+
 	AOI::AOIObjIter iter = m_oAOI.GetObjIterBegin();
 	AOI::AOIObjIter iter_end = m_oAOI.GetObjIterEnd();
 
@@ -427,7 +429,7 @@ int Scene::GetObjList(lua_State* pState)
 	for (int n = 1; iter != iter_end; iter++)
 	{
 		Object* poObj = iter->second->poGameObj;
-		if (nObjType == 0 || nObjType == poObj->GetType())
+		if ((nObjType == 0 || nObjType == poObj->GetType()) && iter->second->nLine == nLine)
 		{
 			Lunar<Object>::push(pState, poObj);
 			lua_rawseti(pState, -2, n++);

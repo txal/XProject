@@ -11,6 +11,7 @@
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogServer/WorkerMgr.h"
+#include "Common/WordFilter/WordFilter.h"
 
 //////////////////////////Global funcitons/////////////////////////////
 int GetServiceID(lua_State* pState)
@@ -37,6 +38,7 @@ void OpenLuaExport()
 	RegLuaCmd("NetworkExport");
 	RegLuaRpc("NetworkExport");
 	RegLuaPBPack("NetworkExport");
+	RegWordFilter("GlobalExport");
 	RegLuaNetwork("NetworkExport");
 
 	RegClassSSDBDriver();

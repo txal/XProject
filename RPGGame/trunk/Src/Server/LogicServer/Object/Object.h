@@ -35,7 +35,7 @@ public:
 	int64_t GetLastUpdateTime() { return m_nLastUpdateTime; }
 
 public:
-	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos);
+	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int8_t nLine=0);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
 	virtual int GetSession() { return 0; }
@@ -53,6 +53,7 @@ protected:
 	int m_nAOIID;
 	Point m_oPos;
 	int8_t m_nDir;
+	int8_t m_nLine;
 
 	int64_t m_nLeaveSceneTime;
 	int64_t m_nLastUpdateTime;
@@ -69,8 +70,10 @@ public:
 	int GetDupMixID(lua_State* pState);
 	int GetAOIID(lua_State* pState);
 	int GetPos(lua_State* pState);
+	int SetPos(lua_State* pState);
 	int GetSessionID(lua_State* pState);
 	int GetDir(lua_State* pState);
+	int GetLine(lua_State* pState);
 };
 
 
@@ -82,8 +85,10 @@ LUNAR_DECLARE_METHOD(Class, GetObjType),\
 LUNAR_DECLARE_METHOD(Class, GetDupMixID),\
 LUNAR_DECLARE_METHOD(Class, GetAOIID),\
 LUNAR_DECLARE_METHOD(Class, GetPos),\
+LUNAR_DECLARE_METHOD(Class, SetPos),\
 LUNAR_DECLARE_METHOD(Class, GetSessionID),\
-LUNAR_DECLARE_METHOD(Class, GetDir)
+LUNAR_DECLARE_METHOD(Class, GetDir),\
+LUNAR_DECLARE_METHOD(Class, GetLine)
 
 
 //注册到LUA

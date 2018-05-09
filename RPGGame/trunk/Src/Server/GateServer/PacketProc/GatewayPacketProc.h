@@ -23,7 +23,6 @@ namespace NSPacketProc
 	void OnClientIPReq(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 	//广播网关指令
 	void OnBroadcastGate(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
-
 }
 
 #endif

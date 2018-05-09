@@ -281,12 +281,12 @@ bool SSDBDriver::Reconnect()
 #endif
 	if (poSSDBClient == NULL)
 	{
-		XLog(LEVEL_ERROR, "Reconnect SSDB %s:%d fail!\n", m_sIP, m_uPort);
+		XLog(LEVEL_ERROR, "Reconnect ssdb ip:% port:%d fail!\n", m_sIP, m_uPort);
 		return false;
 	}
 	SAFE_DELETE(m_poSSDBClient);
 	m_poSSDBClient = poSSDBClient;
-	XLog(LEVEL_ERROR, "Reconnect SSDB success %s:%d fail!\n", m_sIP, m_uPort);
+	XLog(LEVEL_ERROR, "Reconnect ssdb success ip:%s port:%d fail!\n", m_sIP, m_uPort);
 	return true;
 }
 

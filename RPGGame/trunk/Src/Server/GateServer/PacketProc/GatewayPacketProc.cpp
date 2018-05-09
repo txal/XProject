@@ -4,6 +4,7 @@
 #include "Include/Logger/Logger.hpp"
 
 #include "Common/PacketParser/PacketReader.h"
+#include "Common/PacketParser/PacketWriter.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
@@ -73,13 +74,45 @@ void NSPacketProc::OnSyncRoleLogic(int nSrcSessionID, Packet* poPacket, INNER_HE
 {
 	Gateway* poGateway = (Gateway*)g_poContext->GetService();
 	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	CLIENT* poClient = poGateway->GetClientMgr()->GetClient(nSession);	
-	if (poClient == NULL)
+	PacketReader oReader(poPacket);
+	int nRoleID = 0;
+	int nRelease = 0;
+	oReader >> nRoleID >> nRelease;
+
+
+	ClientMgr* poClientMgr = poGateway->GetClientMgr();
+	Client* poClientSession = poClientMgr->GetClientBySession(nSession);	
+	Client* poClientRoleID = poClientMgr->GetClientByRoleID(nRoleID);
+	if (poClientSession == NULL && poClientRoleID == NULL)
 	{
-		XLog(LEVEL_INFO, "OnSyncLogicService: client already offline\n");
+		XLog(LEVEL_ERROR, "OnSyncRoleLogic: client roleid:%d session:%d not exist\n", nRoleID, nSession);
 		return;
 	}
-	poClient->nLogicService = oHeader.nSrcService;
+	if (nRelease == 1) 
+	{
+		poClientMgr->OnRoleRelease(nRoleID);
+		return;
+	}
+	if (poClientSession != NULL && poClientRoleID != NULL)
+	{
+		poClientSession->m_nRoleID = nRoleID;
+		poClientSession->m_nLogicService = oHeader.nSrcService;
+		if (poClientSession != poClientRoleID)
+			poClientMgr->AddRoleIDMap(nRoleID, poClientSession);
+		return;
+	}
+	if (poClientSession != NULL)
+	{
+		poClientSession->m_nRoleID = nRoleID;
+		poClientSession->m_nLogicService = oHeader.nSrcService;
+		poClientMgr->AddRoleIDMap(nRoleID, poClientSession);
+		return;
+	}
+	if (poClientRoleID != NULL)
+	{
+		poClientRoleID->m_nLogicService = oHeader.nSrcService;
+		return;
+	}
 }
 
 void NSPacketProc::OnKickClient(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
@@ -98,7 +131,7 @@ void NSPacketProc::OnClientIPReq(int nSrcSessionID, Packet* poPacket, INNER_HEAD
 	if (nSessionID > 0)
 	{
 		Gateway* poGateway = (Gateway*)g_poContext->GetService();
-		CLIENT* poClient = poGateway->GetClientMgr()->GetClient(nSessionID);	
+		Client* poClient = poGateway->GetClientMgr()->GetClientBySession(nSessionID);	
 		if (poClient == NULL)
 		{
 			XLog(LEVEL_INFO, "OnClientIPReq: client:%d not found!\n", nSessionID);
@@ -109,7 +142,7 @@ void NSPacketProc::OnClientIPReq(int nSrcSessionID, Packet* poPacket, INNER_HEAD
 		{
 			return;
 		}
-		poPacket->WriteBuf(&(poClient->uRemoteIP), sizeof(poClient->uRemoteIP));
+		poPacket->WriteBuf(&(poClient->m_uRemoteIP), sizeof(poClient->m_uRemoteIP));
 		uint16_t uSrcServer = g_poContext->GetServerID();
 		int8_t nSrcService = g_poContext->GetService()->GetServiceID();
 		NetAdapter::SERVICE_NAVI oNavi(uSrcServer, nSrcService, oHeader.uSrcServer, oHeader.nSrcService, nSessionID);

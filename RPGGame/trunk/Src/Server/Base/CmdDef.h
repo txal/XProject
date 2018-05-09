@@ -17,20 +17,21 @@ namespace NSMsgType
 //系统指令(126-1024)
 namespace NSSysCmd
 {
-    enum
-    {
+	enum
+	{
 		eCMD_BEGIN = 126,
 
-        ssRegServiceReq = 126,			//注册服务到Router
-        ssRegServiceRet = 127,			//Router返回注册结果
-        ssClientClose = 129,			//客户端断开(网关->游戏服务)
-        ssServiceClose = 130,			//服务断开(路由->所有服务)
+		ssRegServiceReq = 126,			//注册服务到Router
+		ssRegServiceRet = 127,			//Router返回注册结果
+		ssClientClose = 129,			//客户端断开(网关->游戏服务)
+		ssServiceClose = 130,			//服务断开(路由->所有服务)
 
 		ssKickClient = 135,				//踢玩家下线
 		ssBroadcastGate = 136,			//广播网关指令
 
 		ssClientIPReq = 137,			//客户端IP请求
 		ssClientIPRet = 138,			//客户端IP返回
+		ssClientLastPacketTimeRet = 139,//客户端最后包时间返回
 
 		eCMD_END = 1025,
     };

@@ -73,7 +73,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	goPKReader.SetPacket(poPacket);
 	goPKReader >> nRoleID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uDir;
 	nClientMSTime = (int64_t)dClientMSTime;
-	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, nClientMSTime-m_nClientRunStartMSTime);
+	//XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, nClientMSTime-m_nClientRunStartMSTime);
 
 	//客户端提供的时间值必须大于起始时间值
 	if (nClientMSTime < m_nClientRunStartMSTime)
@@ -129,7 +129,7 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	goPKReader >> nRoleID >> uPosX >> uPosY >> dClientMSTime;
 	nClientMSTime = (int64_t)dClientMSTime;
 
-	XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
+	//XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 	if (m_nRunStartMSTime == 0)
 	{
 		//XLog(LEVEL_INFO, "%s server already stop\n", m_sName);

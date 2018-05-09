@@ -29,6 +29,7 @@
     <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\Service.cpp" />
+    <ClCompile Include="..\..\Src\Server\GateServer\ClientMgr\Client.cpp" />
     <ClCompile Include="..\..\Src\Server\GateServer\ClientMgr\ClientMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\GateServer\Gateway.cpp" />
     <ClCompile Include="..\..\Src\Server\GateServer\Main.cpp" />

@@ -24,6 +24,7 @@ Object::Object()
 	m_nLeaveSceneTime = 0;
 	m_nLastUpdateTime = 0;
 	m_nDir = 0;
+	m_nLine = 0;
 }
 
 Object::~Object()
@@ -61,13 +62,14 @@ void Object::Update(int64_t nNowMS)
 	m_nLastUpdateTime = nNowMS;
 }
 
-void Object::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
+void Object::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int8_t nLine)
 {
 	assert(poScene != NULL && nAOIID > 0);
 	m_poScene = poScene;
 	m_nAOIID = nAOIID;
 	m_oPos = oPos;
 	m_nLeaveSceneTime = 0;
+	m_nLine = nLine;
 }
 
 void Object::AfterEnterScene()
@@ -79,6 +81,7 @@ void Object::OnLeaveScene()
 	m_poScene = NULL;
 	m_nAOIID = 0;
 	m_oPos = Point(-1, -1);
+	m_nLine = 0;
 	m_nLeaveSceneTime = XTime::MSTime();
 }
 
@@ -169,6 +172,14 @@ int Object::GetPos(lua_State* pState)
 	return 2;
 }
 
+int Object::SetPos(lua_State* pState)
+{
+	int nPosX = (int)luaL_checkinteger(pState, 1);
+	int nPosY = (int)luaL_checkinteger(pState, 2);
+	SetPos(Point(nPosX, nPosY));
+	return 0;
+}
+
 int Object::GetSessionID(lua_State* pState)
 {
 	lua_pushinteger(pState, GetSession());
@@ -178,5 +189,11 @@ int Object::GetSessionID(lua_State* pState)
 int Object::GetDir(lua_State* pState)
 {
 	lua_pushinteger(pState, m_nDir);
+	return 1;
+}
+
+int Object::GetLine(lua_State* pState)
+{
+	lua_pushinteger(pState, m_nLine);
 	return 1;
 }

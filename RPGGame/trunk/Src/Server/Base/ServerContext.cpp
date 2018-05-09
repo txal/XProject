@@ -181,5 +181,31 @@ bool ServerContext::LoadServerConfig()
 		}
 	}
 
+	lua_getglobal(pState, "gtWorldConf");
+	nTbIdx = lua_gettop(pState);
+	if (!lua_isnil(pState, -1))
+	{
+		//世界全局服
+		m_oServerConf.oWGlobalList.clear();
+		lua_pushvalue(pState, nTbIdx);
+		lua_getfield(pState, -1, "tGlobalService");
+		if (!lua_isnil(pState, -1))
+		{
+			int nLen = (int)lua_rawlen(pState, -1);
+			for (int i = 1; i <= nLen; i++)
+			{
+				GlobalNode oGlobal;
+				lua_rawgeti(pState, -1, i);
+				lua_getfield(pState, -1, "nID");
+				oGlobal.uID = (uint16_t)lua_tointeger(pState, -1);
+				lua_getfield(pState, -2, "nServer");
+				oGlobal.uServer = (uint16_t)lua_tointeger(pState, -1);
+				oGlobal.sIP[0] = 0;
+				oGlobal.uPort = 0;
+				m_oServerConf.oWGlobalList.push_back(oGlobal);
+				lua_pop(pState, 3);
+			}
+		}
+	}
 	return true;
 }

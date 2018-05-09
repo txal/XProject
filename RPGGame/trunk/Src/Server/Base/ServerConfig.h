@@ -66,6 +66,7 @@ struct ServerConfig
 	RouterVector oRouterList;
 	GlobalVector oGlobalList;
 	LoginVector oLoginList;
+	GlobalVector oWGlobalList;
 };
 
 
