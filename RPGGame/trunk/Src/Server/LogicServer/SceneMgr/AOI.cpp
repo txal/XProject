@@ -87,7 +87,7 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight)
 
 int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine)
 {
-	assert(nLine == 0 || nLine == -1);
+	assert(nLine >= -1 && nLine < MAX_LINE);
 	if (nAOIMode & AOI_MODE_DROP)
 	{
 		return -1;
@@ -773,7 +773,8 @@ void AOI::CalcRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int n
 
 int8_t AOI::AddLineObj(int8_t nLine)
 {
-	assert(nLine == 0 || nLine == -1);
+	assert(nLine >= -1 && nLine < MAX_LINE);
+
 	//公共
 	if (nLine == 0)
 	{
@@ -807,6 +808,12 @@ int8_t AOI::AddLineObj(int8_t nLine)
 		m_tLineObj[nMinLine]++;
 		XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", nMinLine, m_tLineObj[nMinLine]);
 		return nMinLine;
+	} 
+	else
+	{
+		m_tLineObj[nLine]++;
+		XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", nLine, m_tLineObj[nLine]);
+		return nLine;
 	}
 	return -1;
 }
@@ -821,6 +828,7 @@ int16_t AOI::SubLineObj(int8_t nLine)
 
 void AOI::ChangeLine(int nID, int8_t nNewLine)
 {
+	assert(nNewLine >= 0 && nNewLine < MAX_LINE);
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP))
 		return;
