@@ -1,2 +1,0 @@
-/usr/bin/ar cr ../../../../Libs/Linux64/Debug/3rd/liblpeg.a  CMakeFiles/lpeg.dir/lpcap.c.o CMakeFiles/lpeg.dir/lpcode.c.o CMakeFiles/lpeg.dir/lpprint.c.o CMakeFiles/lpeg.dir/lptree.c.o CMakeFiles/lpeg.dir/lpvm.c.o
-/usr/bin/ranlib ../../../../Libs/Linux64/Debug/3rd/liblpeg.a
