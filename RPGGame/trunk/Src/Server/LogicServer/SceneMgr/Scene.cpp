@@ -19,6 +19,7 @@ LUNAR_IMPLEMENT_CLASS(Scene)
 	LUNAR_DECLARE_METHOD(Scene, GetMixID),
 	LUNAR_DECLARE_METHOD(Scene, EnterDup),
 	LUNAR_DECLARE_METHOD(Scene, LeaveDup),
+	LUNAR_DECLARE_METHOD(Scene, SetAutoCollected),
 	LUNAR_DECLARE_METHOD(Scene, GetObj),
 	LUNAR_DECLARE_METHOD(Scene, MoveObj),
 	LUNAR_DECLARE_METHOD(Scene, GetObjList),
@@ -106,7 +107,7 @@ bool Scene::IsTime2Collect(int64_t nNowMS)
 }
 
 
-int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine, int8_t nDir)
+int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine, int8_t nFace)
 {
 	int nObjID = poObj->GetID();
 	int nObjType = poObj->GetType();
@@ -117,11 +118,11 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 		return -1;
 	}
 
-	poObj->SetDir(nDir);
+	poObj->SetFace(nFace);
 	int nAOIID = m_oAOI.AddObj(nPosX, nPosY, nAOIMode, nAOIArea, poObj, nAOIType, nLine);
 	if (nAOIID <= 0)
 	{
-		poObj->SetDir(0);
+		poObj->SetFace(0);
 		XLog(LEVEL_ERROR, "AOI add obj error id:%lld type:%d\n", nObjID, nObjType);
 		return -1;
 	}
@@ -328,9 +329,9 @@ int Scene::EnterDup(lua_State* pState)
 	assert(tAOIArea[0] >= 0 && tAOIArea[1] >= 0);
 
 	int nLine = (int)luaL_checkinteger(pState, 7); //0公共线,-1自动
-	int8_t nDir = (int8_t)luaL_checkinteger(pState, 8); //方向
+	int8_t nFace = (int8_t)luaL_checkinteger(pState, 8); //面向
 
-	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine, nDir);
+	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine, nFace);
 	if (nAOIID <= 0)
 	{
 		return LuaWrapper::luaM_error(pState, "AddObj to scene fail!");
@@ -343,6 +344,13 @@ int Scene::LeaveDup(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
 	LeaveScene(nAOIID);
+	return 0;
+}
+
+int Scene::SetAutoCollected(lua_State* pState)
+{
+	bool bAuto = (bool)lua_toboolean(pState, 1);
+	m_bCanCollected = bAuto;
 	return 0;
 }
 

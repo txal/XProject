@@ -53,6 +53,10 @@ int SSDBDriver::HSet(lua_State* pState)
 	nSize = 0;
 	const char* psVal = luaL_checklstring(pState, 3, &nSize);
 	std::string oStrVal(psVal, nSize);
+	if (nSize >= 32 * 1024 * 1024)
+	{
+		XLog(LEVEL_ERROR, "数据超出单次上限32M size:%d !!!\n", nSize);
+	}
 #ifdef __linux
 	ssdb::Status oStatus = m_poSSDBClient->hset(psDB, oStrKey, oStrVal);
 #else

@@ -29,7 +29,7 @@ public:
 	Point& GetPos() { return m_oPos; }
 	void SetPos(const Point& oPos, const char* pFile = "", int nLine = 0);
 	Scene* GetScene() { return m_poScene; }
-	void SetDir(int8_t nDir) { m_nDir = nDir; }
+	void SetFace(int8_t nFace) { m_nFace = nFace; }
 
 	bool IsTime2Collect(int64_t nNowMS);
 	int64_t GetLastUpdateTime() { return m_nLastUpdateTime; }
@@ -52,7 +52,7 @@ protected:
 	Scene* m_poScene;
 	int m_nAOIID;
 	Point m_oPos;
-	int8_t m_nDir;
+	int8_t m_nFace;
 	int8_t m_nLine;
 
 	int64_t m_nLeaveSceneTime;
@@ -72,8 +72,9 @@ public:
 	int GetPos(lua_State* pState);
 	int SetPos(lua_State* pState);
 	int GetSessionID(lua_State* pState);
-	int GetDir(lua_State* pState);
+	int GetFace(lua_State* pState);
 	int GetLine(lua_State* pState);
+	int SetLine(lua_State* pState);
 };
 
 
@@ -87,8 +88,9 @@ LUNAR_DECLARE_METHOD(Class, GetAOIID),\
 LUNAR_DECLARE_METHOD(Class, GetPos),\
 LUNAR_DECLARE_METHOD(Class, SetPos),\
 LUNAR_DECLARE_METHOD(Class, GetSessionID),\
-LUNAR_DECLARE_METHOD(Class, GetDir),\
-LUNAR_DECLARE_METHOD(Class, GetLine)
+LUNAR_DECLARE_METHOD(Class, GetFace),\
+LUNAR_DECLARE_METHOD(Class, GetLine),\
+LUNAR_DECLARE_METHOD(Class, SetLine)
 
 
 //注册到LUA

@@ -27,7 +27,6 @@ struct AOIOBJ
 	Object* poGameObj;	//游戏对象
 	int8_t nLine;		//所在分线
 	int32_t nSeenObjID;	//该AOI对象只会被nSeenObjID看见
-	int8_t nDir;		//方向
 };
 
 class Scene;
@@ -59,6 +58,8 @@ public:
 	int GetObjCount() { return (int)m_oObjMap.size(); }
 	AOIObjIter GetObjIterBegin() { return m_oObjMap.begin(); }
 	AOIObjIter GetObjIterEnd() { return m_oObjMap.end(); }
+
+	void ChangeLine(int nID, int8_t nNewLine);
 
 public:
 	void PrintTower();

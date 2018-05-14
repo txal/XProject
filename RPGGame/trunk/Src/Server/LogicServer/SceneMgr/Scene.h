@@ -43,11 +43,12 @@ public:
 	uint32_t GetSceneMixID() { return m_uSceneMixID; }
 
 public:
-	int EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1, int8_t nDir=0);
+	int EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1, int8_t nFace=0);
 	void LeaveScene(int nAOIID) { m_oAOI.RemoveObj(nAOIID, true); }
 	void KickAllRole();
 
 	void MoveObj(int nAOIID, int nTarX, int nTarY) { m_oAOI.MoveObj(nAOIID, nTarX, nTarY); }
+	void SetLine(int nAOIID, int8_t nLine) { m_oAOI.ChangeLine(nAOIID, nLine); }
 
 	void OnObjEnterScene(AOIOBJ* pObj);		//进入场景但是未同步视野
 	void AfterObjEnterScene(AOIOBJ* pObj);	//同步了视野后
@@ -83,6 +84,7 @@ public:
 	int GetMixID(lua_State* pState);
 	int EnterDup(lua_State* pState);
 	int LeaveDup(lua_State* pState);
+	int SetAutoCollected(lua_State* pState);
 
 	int GetObj(lua_State* pState);
 	int MoveObj(lua_State* pState);

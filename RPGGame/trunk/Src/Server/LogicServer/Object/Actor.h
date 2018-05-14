@@ -30,7 +30,7 @@ public:
 	virtual int GetSession() { return m_nSession; }
 
 public:
-	void StartRun(int nSpeedX, int nSpeedY, int8_t nDir);					//开始跑动
+	void StartRun(int nSpeedX, int nSpeedY, int8_t nFace);					//开始跑动
 	void StopRun(bool bBroadcast=true, bool bClientStop=false);				//停止跑动
 	bool CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY);	//计算角色位置
 

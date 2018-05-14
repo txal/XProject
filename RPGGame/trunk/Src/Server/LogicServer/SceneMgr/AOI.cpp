@@ -370,10 +370,11 @@ void AOI::RemoveObj(int nID, bool bLeaveScene)
 		{
 			XLog(LEVEL_ERROR, "RemoverObj: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
 		}
-		m_poScene->OnObjLeaveScene(pObj);
 		pObj->nAOIMode = AOI_MODE_DROP;
-		pObj->poGameObj = NULL;
 		SubLineObj(pObj->nLine);
+
+		m_poScene->OnObjLeaveScene(pObj);
+		pObj->poGameObj = NULL;
 	}
 }
 
@@ -816,4 +817,18 @@ int16_t AOI::SubLineObj(int8_t nLine)
 	m_tLineObj[nLine]--;
 	assert(m_tLineObj[nLine] >= 0);
 	return m_tLineObj[nLine];
+}
+
+void AOI::ChangeLine(int nID, int8_t nNewLine)
+{
+	AOIOBJ* pObj = GetObj(nID);
+	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP))
+		return;
+	if (pObj->nLine == nNewLine)
+		return;
+	RemoveObserver(nID, true);
+	RemoveObserved(nID);
+	AddObserver(nID);
+	AddObserved(nID);
+	pObj->nLine = nNewLine;
 }

@@ -74,6 +74,7 @@ void NSPacketProc::OnSyncRoleLogic(int nSrcSessionID, Packet* poPacket, INNER_HE
 {
 	Gateway* poGateway = (Gateway*)g_poContext->GetService();
 	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
+
 	PacketReader oReader(poPacket);
 	int nRoleID = 0;
 	int nRelease = 0;
@@ -83,6 +84,9 @@ void NSPacketProc::OnSyncRoleLogic(int nSrcSessionID, Packet* poPacket, INNER_HE
 	ClientMgr* poClientMgr = poGateway->GetClientMgr();
 	Client* poClientSession = poClientMgr->GetClientBySession(nSession);	
 	Client* poClientRoleID = poClientMgr->GetClientByRoleID(nRoleID);
+
+	XLog(LEVEL_DEBUG, "SyncRoleLogic: session:%d role:%d release:%d logic:%d clientsession:0x%x clientroleid:0x%x\n", nSession, nRoleID, nRelease, oHeader.nSrcService, poClientSession, poClientRoleID);
+
 	if (poClientSession == NULL && poClientRoleID == NULL)
 	{
 		XLog(LEVEL_ERROR, "OnSyncRoleLogic: client roleid:%d session:%d not exist\n", nRoleID, nSession);
@@ -110,6 +114,7 @@ void NSPacketProc::OnSyncRoleLogic(int nSrcSessionID, Packet* poPacket, INNER_HE
 	}
 	if (poClientRoleID != NULL)
 	{
+		poClientRoleID->m_nRoleID = nRoleID;
 		poClientRoleID->m_nLogicService = oHeader.nSrcService;
 		return;
 	}

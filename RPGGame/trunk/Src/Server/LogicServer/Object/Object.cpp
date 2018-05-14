@@ -6,7 +6,7 @@
 #include "Server/LogicServer/LogicServer.h"
 #include "Server/LogicServer/SceneMgr/Scene.h"
 
-const int nOBJECT_COLLECT_MSTIME = 30*60*1000; //非玩家对象回收时间
+const int nOBJECT_COLLECT_MSTIME = 3*60*1000; //非玩家对象回收时间
 
 LUNAR_IMPLEMENT_CLASS(Object)
 {
@@ -23,7 +23,7 @@ Object::Object()
 	m_nAOIID = 0;
 	m_nLeaveSceneTime = 0;
 	m_nLastUpdateTime = 0;
-	m_nDir = 0;
+	m_nFace = 0;
 	m_nLine = 0;
 }
 
@@ -186,9 +186,9 @@ int Object::GetSessionID(lua_State* pState)
 	return 1;
 }
 
-int Object::GetDir(lua_State* pState)
+int Object::GetFace(lua_State* pState)
 {
-	lua_pushinteger(pState, m_nDir);
+	lua_pushinteger(pState, m_nFace);
 	return 1;
 }
 
@@ -196,4 +196,13 @@ int Object::GetLine(lua_State* pState)
 {
 	lua_pushinteger(pState, m_nLine);
 	return 1;
+}
+
+int Object::SetLine(lua_State* pState)
+{
+	int8_t nLine = (int8_t)luaL_checkinteger(pState, 1);
+	if (m_poScene == NULL)
+		return 0;
+	m_poScene->SetLine(m_nAOIID, nLine);
+	return 0;
 }
