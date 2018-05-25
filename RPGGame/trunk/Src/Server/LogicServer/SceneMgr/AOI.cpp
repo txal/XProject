@@ -830,13 +830,16 @@ void AOI::ChangeLine(int nID, int8_t nNewLine)
 {
 	assert(nNewLine >= 0 && nNewLine < MAX_LINE);
 	AOIOBJ* pObj = GetObj(nID);
+
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP))
 		return;
 	if (pObj->nLine == nNewLine)
 		return;
+
 	RemoveObserver(nID, true);
 	RemoveObserved(nID);
+
+	pObj->nLine = nNewLine;
 	AddObserver(nID);
 	AddObserved(nID);
-	pObj->nLine = nNewLine;
 }

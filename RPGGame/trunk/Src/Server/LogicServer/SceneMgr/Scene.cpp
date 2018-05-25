@@ -437,7 +437,7 @@ int Scene::GetObjList(lua_State* pState)
 	for (int n = 1; iter != iter_end; iter++)
 	{
 		Object* poObj = iter->second->poGameObj;
-		if ((nObjType == 0 || nObjType == poObj->GetType()) && iter->second->nLine == nLine)
+		if (poObj != NULL && (nObjType == 0 || nObjType == poObj->GetType()) && iter->second->nLine == nLine)
 		{
 			Lunar<Object>::push(pState, poObj);
 			lua_rawseti(pState, -2, n++);
