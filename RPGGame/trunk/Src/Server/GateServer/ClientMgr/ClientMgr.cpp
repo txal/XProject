@@ -85,6 +85,7 @@ void ClientMgr::AddRoleIDMap(int nRoleID, Client* poClient)
 	ClientIter iter = m_oClientRoleIDMap.find(nRoleID);
 	if (iter != m_oClientRoleIDMap.end())
 	{
+		assert(poClient != iter->second);
 		if (GetClientBySession(iter->second->m_nSession) == NULL)
 		{
 			SAFE_DELETE(iter->second);
@@ -103,7 +104,14 @@ void ClientMgr::OnRoleRelease(int nRoleID)
 	ClientIter iter = m_oClientRoleIDMap.find(nRoleID);
 	if (iter != m_oClientRoleIDMap.end())
 	{
-		SAFE_DELETE(iter->second);
+		if (GetClientBySession(iter->second->m_nSession) == NULL)
+		{
+			SAFE_DELETE(iter->second);
+		}
+		else
+		{
+			XLog(LEVEL_ERROR, "OnRoleRelease------session:%d\n", iter->second->m_nSession);
+		}
 		m_oClientRoleIDMap.erase(iter);
 	}
 }

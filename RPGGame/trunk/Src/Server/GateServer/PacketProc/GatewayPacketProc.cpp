@@ -82,8 +82,8 @@ void NSPacketProc::OnSyncRoleLogic(int nSrcSessionID, Packet* poPacket, INNER_HE
 
 
 	ClientMgr* poClientMgr = poGateway->GetClientMgr();
-	Client* poClientSession = poClientMgr->GetClientBySession(nSession);	
 	Client* poClientRoleID = poClientMgr->GetClientByRoleID(nRoleID);
+	Client* poClientSession = poClientMgr->GetClientBySession(nSession);	
 
 	XLog(LEVEL_DEBUG, "SyncRoleLogic: session:%d role:%d release:%d logic:%d clientsession:0x%x clientroleid:0x%x\n", nSession, nRoleID, nRelease, oHeader.nSrcService, poClientSession, poClientRoleID);
 

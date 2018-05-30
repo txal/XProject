@@ -9,12 +9,12 @@ Client::Client()
 {
 	m_uRemoteIP = 0;
 	m_uCmdIndex = 0;
-	m_nLogicService = 0;
-	m_nPacketTime = 0;
-	m_nRoleID = 0;
 	m_nSession = 0;
 
+	m_nPacketTime = 0;
+	m_nLogicService = 0;
 	m_nLastNotifyTime = 0;
+	m_nRoleID = 0;
 }
 
 Client::~Client()

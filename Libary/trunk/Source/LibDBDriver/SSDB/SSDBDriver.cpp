@@ -290,7 +290,7 @@ bool SSDBDriver::Reconnect()
 	}
 	SAFE_DELETE(m_poSSDBClient);
 	m_poSSDBClient = poSSDBClient;
-	XLog(LEVEL_ERROR, "Reconnect ssdb success ip:%s port:%d fail!\n", m_sIP, m_uPort);
+	XLog(LEVEL_ERROR, "Reconnect ssdb success ip:%s port:%d successful!\n", m_sIP, m_uPort);
 	return true;
 }
 
