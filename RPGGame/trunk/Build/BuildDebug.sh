@@ -1,5 +1,5 @@
 #!/bin/sh
-#make clean
+make clean
 cmake -DCMAKE_BUILD_TYPE=Debug ../
 make
 
