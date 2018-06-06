@@ -105,17 +105,19 @@ void RegClassScene()
 
 int SceneMgr::CreateDup(lua_State* pState)
 {
-	int nDupID = (int)luaL_checkinteger(pState, 1); 
+	int nDupType = (int)luaL_checkinteger(pState, 1); 
+	lua_assert(nDupType == 1 || nDupType == 2);
+	int nDupID = (int)luaL_checkinteger(pState, 2); 
 	lua_assert(nDupID > 0 && nDupID <= 0xFFFF);
-	int nMapID = (int)luaL_checkinteger(pState, 2);
-	bool bCanCollected = lua_toboolean(pState, 3) != 0;
+	int nMapID = (int)luaL_checkinteger(pState, 3);
+	bool bCanCollected = lua_toboolean(pState, 4) != 0;
 	MapConf* poMapConf = ConfMgr::Instance()->GetMapMgr()->GetConf(nMapID);
 	if (poMapConf == NULL)
 	{
 		return LuaWrapper::luaM_error(pState, "Dup:%d map:%d not found!\n", nDupID, nMapID);
 	}
 	uint32_t uSceneMixID = nDupID;
-	if (nDupID >= 1000) //[1-999]:城镇; [1000-]:副本
+	if (nDupType == 2) //1:城镇; 2副本
 	{
 		uSceneMixID = GenSceneMixID(nDupID);
 	}

@@ -10,9 +10,9 @@
 
 
 //场景回收时间
-const int nSCENE_COLLECT_MSTIME = 3*60*1000;
+const int nSCENE_COLLECT_MSTIME = 15*60*1000;
 //AOI 废弃对象回收时间
-const int nAOIDROP_COLLECT_MSTIME = 1*60*1000;
+const int nAOIDROP_COLLECT_MSTIME = 5*60*1000;
 
 LUNAR_IMPLEMENT_CLASS(Scene)
 {
@@ -315,21 +315,28 @@ int Scene::GetObj(lua_State* pState)
 
 int Scene::EnterDup(lua_State* pState)
 {
-	luaL_checktype(pState, 1, LUA_TUSERDATA);
-	Lunar<Object>::userdataType *ud = static_cast<Lunar<Object>::userdataType*>(lua_touserdata(pState, 1));
+	int nDupMixID = (int)luaL_checkinteger(pState, 1);
+	LogicServer *poService = (LogicServer*)(g_poContext->GetService());
+	if (poService->GetSceneMgr()->GetScene(nDupMixID) == NULL)
+	{
+		return LuaWrapper::luaM_error(pState, "Scene::EnterDup scene:%d not exist!!!\n");
+	}
+
+	luaL_checktype(pState, 2, LUA_TUSERDATA);
+	Lunar<Object>::userdataType *ud = static_cast<Lunar<Object>::userdataType*>(lua_touserdata(pState, 2));
 	Object* poObject = ud->pT;
 	
-	int nPosX = (int)luaL_checkinteger(pState, 2);
-	int nPosY = (int)luaL_checkinteger(pState, 3);
-	int8_t nAOIMode = (int8_t)luaL_checkinteger(pState, 4);
+	int nPosX = (int)luaL_checkinteger(pState, 3);
+	int nPosY = (int)luaL_checkinteger(pState, 4);
+	int8_t nAOIMode = (int8_t)luaL_checkinteger(pState, 5);
 
 	int tAOIArea[2];
-	tAOIArea[0] = (int)luaL_checkinteger(pState, 5);
-	tAOIArea[1] = (int)luaL_checkinteger(pState, 6);
+	tAOIArea[0] = (int)luaL_checkinteger(pState, 6);
+	tAOIArea[1] = (int)luaL_checkinteger(pState, 7);
 	assert(tAOIArea[0] >= 0 && tAOIArea[1] >= 0);
 
-	int nLine = (int)luaL_checkinteger(pState, 7); //0公共线,-1自动
-	int8_t nFace = (int8_t)luaL_checkinteger(pState, 8); //面向
+	int nLine = (int)luaL_checkinteger(pState, 8); //0公共线,-1自动
+	int8_t nFace = (int8_t)luaL_checkinteger(pState, 9); //面向
 
 	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine, nFace);
 	if (nAOIID <= 0)
@@ -437,7 +444,7 @@ int Scene::GetObjList(lua_State* pState)
 	for (int n = 1; iter != iter_end; iter++)
 	{
 		Object* poObj = iter->second->poGameObj;
-		if (poObj != NULL && (nObjType == 0 || nObjType == poObj->GetType()) && iter->second->nLine == nLine)
+		if (poObj != NULL && (nObjType == 0 || nObjType == poObj->GetType()) && (nLine == -1 || iter->second->nLine == nLine))
 		{
 			Lunar<Object>::push(pState, poObj);
 			lua_rawseti(pState, -2, n++);

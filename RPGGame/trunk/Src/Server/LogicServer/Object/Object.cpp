@@ -186,6 +186,12 @@ int Object::GetSessionID(lua_State* pState)
 	return 1;
 }
 
+int Object::GetServerID(lua_State* pState)
+{
+	lua_pushinteger(pState, GetServer());
+	return 1;
+}
+
 int Object::GetFace(lua_State* pState)
 {
 	lua_pushinteger(pState, m_nFace);

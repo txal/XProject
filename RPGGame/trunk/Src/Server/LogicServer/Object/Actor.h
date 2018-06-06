@@ -15,7 +15,6 @@ public:
 
 public:
 	bool IsRunning() { return m_nRunStartMSTime > 0; }
-	uint16_t GetServer() { return m_uServer; }
 	void SetServer(uint16_t uServer) { m_uServer = uServer; }
 	void SetSession(int nSession) { m_nSession = nSession; }
 
@@ -28,6 +27,7 @@ public:
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
 	virtual int GetSession() { return m_nSession; }
+	virtual uint16_t GetServer() { return m_uServer; }
 
 public:
 	void StartRun(int nSpeedX, int nSpeedY, int8_t nFace);					//开始跑动

@@ -131,7 +131,12 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* p
 	{
 		AddObserved(pObj->nAOIID);
 	}
-	m_poScene->AfterObjEnterScene(pObj);
+	
+	//在OnObjEnterScene里面可能又会跳到别的场景，所以加个判断
+	if (pObj->poGameObj != NULL)
+	{
+		m_poScene->AfterObjEnterScene(pObj);
+	}
 
 	return pObj->nAOIID;
 }

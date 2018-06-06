@@ -39,6 +39,7 @@ public:
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
 	virtual int GetSession() { return 0; }
+	virtual uint16_t GetServer() { return 0; }
 
 public:
 	void CacheActorNavi(uint16_t nTarServer=0, int nTarSession=0);	//如果传参表示也发给自己
@@ -71,6 +72,7 @@ public:
 	int GetAOIID(lua_State* pState);
 	int GetPos(lua_State* pState);
 	int SetPos(lua_State* pState);
+	int GetServerID(lua_State* pState);
 	int GetSessionID(lua_State* pState);
 	int GetFace(lua_State* pState);
 	int GetLine(lua_State* pState);
@@ -87,6 +89,7 @@ LUNAR_DECLARE_METHOD(Class, GetDupMixID),\
 LUNAR_DECLARE_METHOD(Class, GetAOIID),\
 LUNAR_DECLARE_METHOD(Class, GetPos),\
 LUNAR_DECLARE_METHOD(Class, SetPos),\
+LUNAR_DECLARE_METHOD(Class, GetServerID),\
 LUNAR_DECLARE_METHOD(Class, GetSessionID),\
 LUNAR_DECLARE_METHOD(Class, GetFace),\
 LUNAR_DECLARE_METHOD(Class, GetLine),\
