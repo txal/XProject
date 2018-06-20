@@ -204,7 +204,7 @@ void Router::BroadcastService(int nServerID, Packet* poPacket)
 	for (ServiceIter iter = m_oServiceMap.begin(); iter != m_oServiceMap.end(); iter++)
 	{
 		ServiceNode* poService = iter->second;
-		if (poService->GetServerID() == nServerID || nServerID == nWorldServerID)
+		if (poService->GetServerID() == nServerID || poService->GetServerID() == nWorldServerID)
 		{
 			int nTarServerID = poService->GetServerID();
 			Packet* poNewPacket = poPacket->DeepCopy();
