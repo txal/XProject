@@ -53,6 +53,10 @@ int SSDBDriver::HSet(lua_State* pState)
 	nSize = 0;
 	const char* psVal = luaL_checklstring(pState, 3, &nSize);
 	std::string oStrVal(psVal, nSize);
+	if (nSize >= 32 * 1024 * 1024)
+	{
+		XLog(LEVEL_ERROR, "数据超出单次上限32M size:%d !!!\n", nSize);
+	}
 #ifdef __linux
 	ssdb::Status oStatus = m_poSSDBClient->hset(psDB, oStrKey, oStrVal);
 #else
@@ -281,12 +285,12 @@ bool SSDBDriver::Reconnect()
 #endif
 	if (poSSDBClient == NULL)
 	{
-		XLog(LEVEL_ERROR, "Reconnect SSDB %s:%d fail!\n", m_sIP, m_uPort);
+		XLog(LEVEL_ERROR, "Reconnect ssdb ip:% port:%d fail!\n", m_sIP, m_uPort);
 		return false;
 	}
 	SAFE_DELETE(m_poSSDBClient);
 	m_poSSDBClient = poSSDBClient;
-	XLog(LEVEL_ERROR, "Reconnect SSDB success %s:%d fail!\n", m_sIP, m_uPort);
+	XLog(LEVEL_ERROR, "Reconnect ssdb success ip:%s port:%d successful!\n", m_sIP, m_uPort);
 	return true;
 }
 

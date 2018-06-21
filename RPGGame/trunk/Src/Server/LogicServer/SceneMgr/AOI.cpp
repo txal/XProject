@@ -85,9 +85,9 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight)
 	return true;
 }
 
-int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine, int32_t nSeenObjID)
+int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine)
 {
-	assert(nLine == 0 || nLine == -1);
+	assert(nLine >= -1 && nLine < MAX_LINE);
 	if (nAOIMode & AOI_MODE_DROP)
 	{
 		return -1;
@@ -112,7 +112,7 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* p
 	pObj->nArea[0] = (int16_t)nAOIArea[0];
 	pObj->nArea[1] = (int16_t)nAOIArea[1];
 	pObj->poGameObj = poGameObj;
-	pObj->nSeenObjID = nSeenObjID;
+	pObj->nSeenObjID = 0;
 
 	int8_t nTarLine = AddLineObj(nLine);
 	assert(nTarLine >= 0 && nTarLine < MAX_LINE);
@@ -131,7 +131,12 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* p
 	{
 		AddObserved(pObj->nAOIID);
 	}
-	m_poScene->AfterObjEnterScene(pObj);
+	
+	//在OnObjEnterScene里面可能又会跳到别的场景，所以加个判断
+	if (pObj->poGameObj != NULL)
+	{
+		m_poScene->AfterObjEnterScene(pObj);
+	}
 
 	return pObj->nAOIID;
 }
@@ -370,10 +375,11 @@ void AOI::RemoveObj(int nID, bool bLeaveScene)
 		{
 			XLog(LEVEL_ERROR, "RemoverObj: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
 		}
-		m_poScene->OnObjLeaveScene(pObj);
 		pObj->nAOIMode = AOI_MODE_DROP;
-		pObj->poGameObj = NULL;
 		SubLineObj(pObj->nLine);
+
+		m_poScene->OnObjLeaveScene(pObj);
+		pObj->poGameObj = NULL;
 	}
 }
 
@@ -578,7 +584,7 @@ void AOI::GetAreaObservers(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType)
 			continue;
 		if (pObj->nSeenObjID != 0 && pObj->nSeenObjID != iter->second->poGameObj->GetID())
 			continue;
-		m_oObjCache.PushBack(iter->second);
+		oObjCache.PushBack(iter->second);
 	}
 }
 
@@ -617,7 +623,7 @@ void AOI::GetAreaObserveds(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType)
 					continue;
 				if (iter->second->nSeenObjID > 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
 					continue;
-				m_oObjCache.PushBack(iter->second);
+				oObjCache.PushBack(iter->second);
 			}
 		}
 	}
@@ -772,7 +778,8 @@ void AOI::CalcRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int n
 
 int8_t AOI::AddLineObj(int8_t nLine)
 {
-	assert(nLine == 0 || nLine == -1);
+	assert(nLine >= -1 && nLine < MAX_LINE);
+
 	//公共
 	if (nLine == 0)
 	{
@@ -806,6 +813,12 @@ int8_t AOI::AddLineObj(int8_t nLine)
 		m_tLineObj[nMinLine]++;
 		XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", nMinLine, m_tLineObj[nMinLine]);
 		return nMinLine;
+	} 
+	else
+	{
+		m_tLineObj[nLine]++;
+		XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", nLine, m_tLineObj[nLine]);
+		return nLine;
 	}
 	return -1;
 }
@@ -816,4 +829,22 @@ int16_t AOI::SubLineObj(int8_t nLine)
 	m_tLineObj[nLine]--;
 	assert(m_tLineObj[nLine] >= 0);
 	return m_tLineObj[nLine];
+}
+
+void AOI::ChangeLine(int nID, int8_t nNewLine)
+{
+	assert(nNewLine >= 0 && nNewLine < MAX_LINE);
+	AOIOBJ* pObj = GetObj(nID);
+
+	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP))
+		return;
+	if (pObj->nLine == nNewLine)
+		return;
+
+	RemoveObserver(nID, true);
+	RemoveObserved(nID);
+
+	pObj->nLine = nNewLine;
+	AddObserver(nID);
+	AddObserved(nID);
 }

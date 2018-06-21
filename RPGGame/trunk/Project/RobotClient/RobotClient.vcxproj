@@ -137,7 +137,7 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f RobotClient* E:\Games\mengzhu\Runtime\trunk\Server\_RobotClient\
+xcopy /y/f RobotClient* E:\mengzhu\Runtime\trunk\Server\_RobotClient\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

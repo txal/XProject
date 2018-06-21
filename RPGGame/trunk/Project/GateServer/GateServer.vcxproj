@@ -29,6 +29,7 @@
     <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\Service.cpp" />
+    <ClCompile Include="..\..\Src\Server\GateServer\ClientMgr\Client.cpp" />
     <ClCompile Include="..\..\Src\Server\GateServer\ClientMgr\ClientMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\GateServer\Gateway.cpp" />
     <ClCompile Include="..\..\Src\Server\GateServer\Main.cpp" />
@@ -140,7 +141,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\Bin\_LocalServer\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>
@@ -187,7 +188,7 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f GateServer* E:\Games\mengzhu\Runtime\trunk\Server\_LocalServer\
+xcopy /y/f MZ-GateServer* E:\mengzhu\Runtime\trunk\Server\_LocalServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

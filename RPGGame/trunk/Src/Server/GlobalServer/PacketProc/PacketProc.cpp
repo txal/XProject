@@ -35,7 +35,7 @@ void NSPacketProc::OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 	if (oHeader.uCmd >= NSBsrSrvCmd::eCMD_BEGIN && oHeader.uCmd <= NSBsrSrvCmd::eCMD_END)
 	{
 		lua_pushlightuserdata(pState, poPacket);
-		poLuaWrapper->CallLuaRef("CmdMessageCenter", 4, 0);
+		poLuaWrapper->CallLuaRef("CmdMessageCenter", 5, 0);
 	}
 	else
 	{

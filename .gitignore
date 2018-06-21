@@ -11,3 +11,6 @@ x64/
 *Log/
 /RPGGame/trunk/Build/Src
 /RPGGame/trunk/Build/CMakeFiles
+/Libary/trunk/Build/Source/Deps/lua-5.3.0/CMakeFiles
+/Libary/trunk/Build/Source/Deps/lpeg-1.0.0/CMakeFiles/lpeg.dir
+/Libary/trunk/Build/CMakeCache.txt

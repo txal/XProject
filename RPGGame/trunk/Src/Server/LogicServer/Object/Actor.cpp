@@ -57,13 +57,14 @@ void Actor::Update(int64_t nNowMS)
 	UpdateRunState(nNowMS);
 }
 
-void Actor::StartRun(int nSpeedX, int nSpeedY)
+void Actor::StartRun(int nSpeedX, int nSpeedY, int8_t nFace)
 {
 	m_nRunStartMSTime = XTime::MSTime();
 	m_nRunSpeedX = nSpeedX;
 	m_nRunSpeedY = nSpeedY;
 	m_nRunStartX = m_oPos.x;
 	m_nRunStartY = m_oPos.y;
+	Object::SetFace(nFace);
 	BroadcastStartRun();
 	//XLog(LEVEL_INFO,"%s Start run pos:(%d, %d) speed:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, nSpeedX, nSpeedY);
 }
@@ -149,7 +150,7 @@ void Actor::BroadcastStartRun()
 		return;
 	}
 	gpoPacketCache->Reset();
-	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY;
+	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY << (uint8_t)m_nFace;
 	Packet* poPacket = gpoPacketCache->DeepCopy();
 	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStartRunRet, poPacket, goNaviCache);
 }

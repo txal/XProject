@@ -8,6 +8,7 @@
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/LuaCommon/LuaPB.h"
+#include "Common/WordFilter/WordFilter.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
@@ -35,6 +36,7 @@ void OpenLuaExport()
 
 	RegLuaDebugger(NULL);
 	RegTimerMgr("GlobalExport");
+	RegWordFilter("GlobalExport");
 	poWrapper->RegFnList(_global_lua_func, "GlobalExport");
 
 

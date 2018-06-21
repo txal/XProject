@@ -872,3 +872,23 @@
 2018-03-12 20:08:46.436 [DEBUG] serv.cpp(347): SSDBServer finalized
 2018-03-12 20:08:46.487 [DEBUG] binlog.cpp(387): binlog clean_thread quit
 2018-03-12 20:08:46.501 [INFO ] ssdb-server.cpp(94): ssdb-server exit.
+2018-04-19 00:28:52.779 [INFO ] ssdb-server.cpp(46): ssdb-server 1.9.4
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(47): conf_file        : ../DB/center/ssdb.conf
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(48): log_level        : debug
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(49): log_output       : ../../Log/ssdb_center_log.txt
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(50): log_rotate_size  : 10485760
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(52): main_db          : .//data
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(53): meta_db          : .//meta
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(54): cache_size       : 500 MB
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(55): block_size       : 32 KB
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(56): write_buffer     : 64 MB
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(57): max_open_files   : 500
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(58): compaction_speed : 1000 MB/s
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(59): compression      : yes
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(60): binlog           : yes
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(61): binlog_capacity  : 20000000
+2018-04-19 00:28:52.790 [INFO ] ssdb-server.cpp(62): sync_speed       : -1 MB/s
+2018-04-19 00:28:52.947 [INFO ] binlog.cpp(183): binlogs capacity: 20000000, min: 1, max: 21,
+2018-04-19 00:28:53.317 [INFO ] server.cpp(146):     allow 127.0.0.1
+2018-04-19 00:28:53.317 [INFO ] server.cpp(146):     allow 192.168
+2018-04-19 00:28:53.334 [FATAL] server.cpp(167): error opening server socket! Address already in use

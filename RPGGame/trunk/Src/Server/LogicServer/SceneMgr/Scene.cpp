@@ -10,15 +10,16 @@
 
 
 //场景回收时间
-const int nSCENE_COLLECT_MSTIME = 3*60*1000;
+const int nSCENE_COLLECT_MSTIME = 15*60*1000;
 //AOI 废弃对象回收时间
-const int nAOIDROP_COLLECT_MSTIME = 1*60*1000;
+const int nAOIDROP_COLLECT_MSTIME = 5*60*1000;
 
 LUNAR_IMPLEMENT_CLASS(Scene)
 {
 	LUNAR_DECLARE_METHOD(Scene, GetMixID),
 	LUNAR_DECLARE_METHOD(Scene, EnterDup),
 	LUNAR_DECLARE_METHOD(Scene, LeaveDup),
+	LUNAR_DECLARE_METHOD(Scene, SetAutoCollected),
 	LUNAR_DECLARE_METHOD(Scene, GetObj),
 	LUNAR_DECLARE_METHOD(Scene, MoveObj),
 	LUNAR_DECLARE_METHOD(Scene, GetObjList),
@@ -106,21 +107,22 @@ bool Scene::IsTime2Collect(int64_t nNowMS)
 }
 
 
-int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine, int32_t nSeenObjID)
+int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine, int8_t nFace)
 {
 	int nObjID = poObj->GetID();
 	int nObjType = poObj->GetType();
 
-	//可以重复进入场景(不添加对象,只同步视野)
 	if (m_oObjMap.find(nObjID) != m_oObjMap.end())
 	{
 		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%d\n", nObjID, nObjType, m_uSceneMixID);
 		return -1;
 	}
 
+	poObj->SetFace(nFace);
 	int nAOIID = m_oAOI.AddObj(nPosX, nPosY, nAOIMode, nAOIArea, poObj, nAOIType, nLine);
 	if (nAOIID <= 0)
 	{
+		poObj->SetFace(0);
 		XLog(LEVEL_ERROR, "AOI add obj error id:%lld type:%d\n", nObjID, nObjType);
 		return -1;
 	}
@@ -151,7 +153,7 @@ void Scene::OnObjEnterScene(AOIOBJ* pObj)
 	Object* poGameObj = pObj->poGameObj;
 	m_oObjMap[poGameObj->GetID()] = poGameObj;
 
-	poGameObj->OnEnterScene(this, pObj->nAOIID, Point(pObj->nPos[0], pObj->nPos[1]));
+	poGameObj->OnEnterScene(this, pObj->nAOIID, Point(pObj->nPos[0], pObj->nPos[1]), pObj->nLine);
 	if (poGameObj->GetType() == eOT_Role)
 		m_nRoleCount++;
 
@@ -313,23 +315,30 @@ int Scene::GetObj(lua_State* pState)
 
 int Scene::EnterDup(lua_State* pState)
 {
-	luaL_checktype(pState, 1, LUA_TUSERDATA);
-	Lunar<Object>::userdataType *ud = static_cast<Lunar<Object>::userdataType*>(lua_touserdata(pState, 1));
+	int nDupMixID = (int)luaL_checkinteger(pState, 1);
+	LogicServer *poService = (LogicServer*)(g_poContext->GetService());
+	if (poService->GetSceneMgr()->GetScene(nDupMixID) == NULL)
+	{
+		return LuaWrapper::luaM_error(pState, "Scene::EnterDup scene:%d not exist!!!\n");
+	}
+
+	luaL_checktype(pState, 2, LUA_TUSERDATA);
+	Lunar<Object>::userdataType *ud = static_cast<Lunar<Object>::userdataType*>(lua_touserdata(pState, 2));
 	Object* poObject = ud->pT;
 	
-	int nPosX = (int)luaL_checkinteger(pState, 2);
-	int nPosY = (int)luaL_checkinteger(pState, 3);
-	int8_t nAOIMode = (int8_t)luaL_checkinteger(pState, 4);
+	int nPosX = (int)luaL_checkinteger(pState, 3);
+	int nPosY = (int)luaL_checkinteger(pState, 4);
+	int8_t nAOIMode = (int8_t)luaL_checkinteger(pState, 5);
 
 	int tAOIArea[2];
-	tAOIArea[0] = (int)luaL_checkinteger(pState, 5);
-	tAOIArea[1] = (int)luaL_checkinteger(pState, 6);
+	tAOIArea[0] = (int)luaL_checkinteger(pState, 6);
+	tAOIArea[1] = (int)luaL_checkinteger(pState, 7);
 	assert(tAOIArea[0] >= 0 && tAOIArea[1] >= 0);
 
-	int nLine = (int)luaL_checkinteger(pState, 7); //0公共线,-1自动
-	int nSeenObjID = (int)luaL_checkinteger(pState, 8); 
+	int nLine = (int)luaL_checkinteger(pState, 8); //0公共线,-1自动
+	int8_t nFace = (int8_t)luaL_checkinteger(pState, 9); //面向
 
-	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine, nSeenObjID);
+	int nAOIID = EnterScene(poObject, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine, nFace);
 	if (nAOIID <= 0)
 	{
 		return LuaWrapper::luaM_error(pState, "AddObj to scene fail!");
@@ -342,6 +351,13 @@ int Scene::LeaveDup(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
 	LeaveScene(nAOIID);
+	return 0;
+}
+
+int Scene::SetAutoCollected(lua_State* pState)
+{
+	bool bAuto = (bool)lua_toboolean(pState, 1);
+	m_bCanCollected = bAuto;
 	return 0;
 }
 
@@ -418,7 +434,9 @@ int Scene::GetAreaObserveds(lua_State* pState)
 
 int Scene::GetObjList(lua_State* pState)
 {
-	int nObjType = (int)lua_tonumber(pState, 1);
+	int nLine = (int)luaL_checkinteger(pState, 1);
+	int nObjType = (int)luaL_checkinteger(pState, 2);
+
 	AOI::AOIObjIter iter = m_oAOI.GetObjIterBegin();
 	AOI::AOIObjIter iter_end = m_oAOI.GetObjIterEnd();
 
@@ -426,7 +444,7 @@ int Scene::GetObjList(lua_State* pState)
 	for (int n = 1; iter != iter_end; iter++)
 	{
 		Object* poObj = iter->second->poGameObj;
-		if (nObjType == 0 || nObjType == poObj->GetType())
+		if (poObj != NULL && (nObjType == 0 || nObjType == poObj->GetType()) && (nLine == -1 || iter->second->nLine == nLine))
 		{
 			Lunar<Object>::push(pState, poObj);
 			lua_rawseti(pState, -2, n++);

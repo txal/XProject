@@ -43,7 +43,7 @@ public:
 
 	bool Init(Scene *pScene, int nMapWidth, int nMapHeight);
 
-	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1, int32_t nSeenObjID=0);
+	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType = AOI_TYPE_RECT, int8_t nLine = -1);
 	void MoveObj(int nID, int nPosX, int nPosY);
 	void RemoveObj(int nID, bool bLeaveScene=false);
 
@@ -58,6 +58,8 @@ public:
 	int GetObjCount() { return (int)m_oObjMap.size(); }
 	AOIObjIter GetObjIterBegin() { return m_oObjMap.begin(); }
 	AOIObjIter GetObjIterEnd() { return m_oObjMap.end(); }
+
+	void ChangeLine(int nID, int8_t nNewLine);
 
 public:
 	void PrintTower();

@@ -1,2 +1,0 @@
-/usr/bin/ar cr ../../../Libs/Linux64/Debug/libluawrapper.a  CMakeFiles/luawrapper.dir/LuaDebugger.cpp.o CMakeFiles/luawrapper.dir/LuaWrapper.cpp.o
-/usr/bin/ranlib ../../../Libs/Linux64/Debug/libluawrapper.a

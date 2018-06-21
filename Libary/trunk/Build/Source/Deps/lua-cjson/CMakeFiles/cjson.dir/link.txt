@@ -1,2 +1,0 @@
-/usr/bin/ar cr ../../../../Libs/Linux64/Debug/3rd/libcjson.a  CMakeFiles/cjson.dir/lua_cjson.c.o CMakeFiles/cjson.dir/strbuf.c.o CMakeFiles/cjson.dir/lua_cjson_raw.c.o CMakeFiles/cjson.dir/fpconv.c.o
-/usr/bin/ranlib ../../../../Libs/Linux64/Debug/3rd/libcjson.a

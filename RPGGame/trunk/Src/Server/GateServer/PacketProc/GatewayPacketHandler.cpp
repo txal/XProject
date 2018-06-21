@@ -39,22 +39,23 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 		//确定目标服务
 		if (oNavi.nTarService == 0)
 		{
-			oNavi.nTarService = poGateway->GetClientMgr()->GetClientLogicService(nSrcSessionID);
+			oNavi.nTarService = poGateway->GetClientMgr()->GetClientLogic(nSrcSessionID);
 			if (oNavi.nTarService <= 0) //没有目标服务，选1个本服的LogicServer
 			{
 				oNavi.nTarService = g_poContext->SelectLogic(nSrcSessionID);
+				XLog(LEVEL_INFO, "%s: cmd:%d use random logic service:%d\n", poGateway->GetServiceName(), oHeader.uCmd, oNavi.nTarService);
 			}
 			if (oNavi.nTarService <= 0)
 			{
 				poPacket->Release();
-				XLog(LEVEL_ERROR, "%s: Player logic server error\n", poGateway->GetServiceName());
+				XLog(LEVEL_ERROR, "%s: role logic service error\n", poGateway->GetServiceName());
 				return;
 			}
 		}
 
 		if (!NetAdapter::SendInner(oHeader.uCmd, poPacket, oNavi))
 		{
-			XLog(LEVEL_ERROR, "%s: Send packet to router fail\n", poGateway->GetServiceName());
+			XLog(LEVEL_ERROR, "%s: send packet to router fail\n", poGateway->GetServiceName());
 		}
 	}
 }

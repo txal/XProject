@@ -29,15 +29,17 @@ public:
 	Point& GetPos() { return m_oPos; }
 	void SetPos(const Point& oPos, const char* pFile = "", int nLine = 0);
 	Scene* GetScene() { return m_poScene; }
+	void SetFace(int8_t nFace) { m_nFace = nFace; }
 
 	bool IsTime2Collect(int64_t nNowMS);
 	int64_t GetLastUpdateTime() { return m_nLastUpdateTime; }
 
 public:
-	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos);
+	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int8_t nLine=0);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
 	virtual int GetSession() { return 0; }
+	virtual uint16_t GetServer() { return 0; }
 
 public:
 	void CacheActorNavi(uint16_t nTarServer=0, int nTarSession=0);	//如果传参表示也发给自己
@@ -51,9 +53,12 @@ protected:
 	Scene* m_poScene;
 	int m_nAOIID;
 	Point m_oPos;
+	int8_t m_nFace;
+	int8_t m_nLine;
 
 	int64_t m_nLeaveSceneTime;
 	int64_t m_nLastUpdateTime;
+
 
 	DISALLOW_COPY_AND_ASSIGN(Object);
 
@@ -66,7 +71,12 @@ public:
 	int GetDupMixID(lua_State* pState);
 	int GetAOIID(lua_State* pState);
 	int GetPos(lua_State* pState);
+	int SetPos(lua_State* pState);
+	int GetServerID(lua_State* pState);
 	int GetSessionID(lua_State* pState);
+	int GetFace(lua_State* pState);
+	int GetLine(lua_State* pState);
+	int SetLine(lua_State* pState);
 };
 
 
@@ -78,7 +88,12 @@ LUNAR_DECLARE_METHOD(Class, GetObjType),\
 LUNAR_DECLARE_METHOD(Class, GetDupMixID),\
 LUNAR_DECLARE_METHOD(Class, GetAOIID),\
 LUNAR_DECLARE_METHOD(Class, GetPos),\
-LUNAR_DECLARE_METHOD(Class, GetSessionID)
+LUNAR_DECLARE_METHOD(Class, SetPos),\
+LUNAR_DECLARE_METHOD(Class, GetServerID),\
+LUNAR_DECLARE_METHOD(Class, GetSessionID),\
+LUNAR_DECLARE_METHOD(Class, GetFace),\
+LUNAR_DECLARE_METHOD(Class, GetLine),\
+LUNAR_DECLARE_METHOD(Class, SetLine)
 
 
 //注册到LUA

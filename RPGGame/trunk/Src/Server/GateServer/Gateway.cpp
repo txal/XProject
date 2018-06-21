@@ -86,6 +86,7 @@ bool Gateway::Start()
 		ProcessNetEvent(10);
 		int64_t nNowMSTime = XTime::MSTime();
 		ProcessTimer(nNowMSTime);
+		m_oClientMgr.Update(nNowMSTime);
 	}
 	return true;
 }
@@ -170,12 +171,14 @@ void Gateway::OnExterNetAccept(int nSessionID, uint32_t uRemoteIP)
 
 void Gateway::OnExterNetClose(int nSessionID)
 {
-	CLIENT* poClient = m_oClientMgr.GetClient(nSessionID);
+	Client* poClient = m_oClientMgr.GetClientBySession(nSessionID);
 	if (poClient == NULL)
 	{
-		XLog(LEVEL_ERROR, "%s: Client:%d not found\n", GetServiceName(), nSessionID);
+		XLog(LEVEL_ERROR, "%s: client:%d not exist\n", GetServiceName(), nSessionID);
 		return;
 	}
+	m_oClientMgr.OnClientClose(nSessionID);
+
 	NetAdapter::SERVICE_NAVI oNavi;
 	oNavi.uSrcServer = g_poContext->GetServerID();
 	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
@@ -183,7 +186,6 @@ void Gateway::OnExterNetClose(int nSessionID)
 	oNavi.nTarService = (int8_t)g_poContext->GetServerConfig().oLoginList[0].uID;
 	oNavi.nTarSession = nSessionID;
 
-	m_oClientMgr.RemoveClient(nSessionID);
 	Packet* poPacket = Packet::Create();
 	if (poPacket == NULL)
 	{
@@ -214,11 +216,11 @@ void Gateway::DecodeMask(Packet* poPacket)
 void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 {
 	m_uInPackets++;
-	CLIENT* poClient = m_oClientMgr.GetClient(nSessionID);
+	Client* poClient = m_oClientMgr.GetClientBySession(nSessionID);
 	if (poClient == NULL)
 	{
 		poPacket->Release();
-		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: client:%d not found\n", GetServiceName(), nSessionID);
+		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: client:%d not exist\n", GetServiceName(), nSessionID);
 		return;
 	}
 	//Websocket masking decode
@@ -237,14 +239,18 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	}
 
 	//重放攻击检测
-	if (oExterHeader.uPacketIdx <= poClient->uCmdIndex)
+	if (oExterHeader.uPacketIdx <= poClient->m_uCmdIndex)
 	{
 		poPacket->Release();
 		GetExterNet()->Close(nSessionID);
-		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet cmd index error(%d,%d)\n", GetServiceName(), oExterHeader.uPacketIdx, poClient->uCmdIndex);
+		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet cmd index error(%d,%d)\n", GetServiceName(), oExterHeader.uPacketIdx, poClient->m_uCmdIndex);
 		return;
 	}
-	poClient->uCmdIndex = oExterHeader.uPacketIdx;
+	poClient->m_uCmdIndex = oExterHeader.uPacketIdx;
+	if (oExterHeader.uCmd != NSCltSrvCmd::ppKeepAlive)
+	{
+		poClient->m_nPacketTime = (int)time(0);
+	}
 
 	// Short connection
 	if (oExterHeader.nSrcService == -1)

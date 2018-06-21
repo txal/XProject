@@ -72,6 +72,9 @@
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp">
       <Filter>Src\Common\TimerMgr</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Server\GateServer\ClientMgr\Client.cpp">
+      <Filter>Src\ClientMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Server\Base\Service.h">

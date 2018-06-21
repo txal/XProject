@@ -54,7 +54,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
 	{
-		XLog(LEVEL_ERROR, "%s role not in scene\n", m_sName);
+		XLog(LEVEL_ERROR, "RoleStartRunHandler: %s role not in scene\n", m_sName);
 		return;
 	}
 
@@ -67,10 +67,13 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 
 	int64_t nClientMSTime = 0;
 	double dClientMSTime = 0;
+
+	uint8_t uFace = 0;
+
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nRoleID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime;
+	goPKReader >> nRoleID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uFace;
 	nClientMSTime = (int64_t)dClientMSTime;
-	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, nClientMSTime-m_nClientRunStartMSTime);
+	//XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, nClientMSTime-m_nClientRunStartMSTime);
 
 	//客户端提供的时间值必须大于起始时间值
 	if (nClientMSTime < m_nClientRunStartMSTime)
@@ -105,14 +108,14 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	
 	m_nClientRunStartMSTime = nClientMSTime;
-	Actor::StartRun(nSpeedX, nSpeedY);
+	Actor::StartRun(nSpeedX, nSpeedY, (int8_t)uFace);
 }
 
 void Role::RoleStopRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
 	{
-		XLog(LEVEL_ERROR, "%s role not in scene\n", m_sName);
+		XLog(LEVEL_ERROR, "RoleStopRunHandler: %s role not in scene\n", m_sName);
 		return;
 	}
 
@@ -126,7 +129,7 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	goPKReader >> nRoleID >> uPosX >> uPosY >> dClientMSTime;
 	nClientMSTime = (int64_t)dClientMSTime;
 
-	XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
+	//XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 	if (m_nRunStartMSTime == 0)
 	{
 		//XLog(LEVEL_INFO, "%s server already stop\n", m_sName);

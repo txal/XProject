@@ -6,6 +6,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/LuaCommon src_luacommon)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Server/Base      src_base)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport 	src_luasupport)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc		src_packetproc)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/WordFilter 	src_wordfilter)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_LocalServer)
 add_executable(LoginServer
@@ -15,6 +16,7 @@ add_executable(LoginServer
 	${src_luacommon}
 	${src_luasupport}
 	${src_packetproc}
+	${src_wordfilter}
 )
 
 target_link_libraries(LoginServer logger network dbdriver luawrapper)
