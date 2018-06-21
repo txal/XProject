@@ -1,0 +1,1 @@
+select *, from_unixtime(time) from (select * from log_2016_07_12 union select * from log_2016_07_11) as A where A.event = 10;

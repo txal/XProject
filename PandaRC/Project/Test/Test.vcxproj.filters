@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\Src\Test\Main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp">
+      <Filter>Src\Common\HttpRequest</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{50e535ba-ab8c-4876-8ecd-f516bc1645db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common">
+      <UniqueIdentifier>{165f147c-1cf5-496c-b32b-b144e0f4646a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\LuaSupport">
+      <UniqueIdentifier>{5b485405-0c44-410e-b55f-c35a8d76cc82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\PacketParser">
+      <UniqueIdentifier>{545508c9-e530-4817-a125-875cd447930f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Common\HttpRequest">
+      <UniqueIdentifier>{4fa6ae21-8b72-4f64-90bb-3f6fed8ad67c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h">
+      <Filter>Src\Common\HttpRequest</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
