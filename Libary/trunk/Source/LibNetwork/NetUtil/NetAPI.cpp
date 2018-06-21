@@ -1,5 +1,6 @@
 ﻿#include "Include/Network/NetAPI.h"
 #include "Include/Logger/Logger.h"
+#include "Include/Network/Packet.h"
 
 void NetAPI::StartupNetwork()
 {
@@ -123,11 +124,11 @@ bool NetAPI::Linger(HSOCKET hSock)
 
 bool NetAPI::Bind(HSOCKET hSock, uint32_t uIP, uint16_t nPort)
 {
-	struct sockaddr_in Addr;
-	Addr.sin_family = AF_INET;
-	Addr.sin_addr.s_addr = uIP;
-	Addr.sin_port = htons(nPort);
-	int nRet = ::bind(hSock, (struct sockaddr*)&Addr, sizeof(Addr));
+	struct sockaddr_in oAddr;
+	oAddr.sin_family = AF_INET;
+	oAddr.sin_addr.s_addr = uIP;
+	oAddr.sin_port = htons(nPort);
+	int nRet = ::bind(hSock, (struct sockaddr*)&oAddr, sizeof(oAddr));
 	if (nRet == SOCKET_ERROR)
 	{
 #ifdef __linux
@@ -161,26 +162,26 @@ bool NetAPI::Listen(HSOCKET hSock)
 
 HSOCKET NetAPI::Accept(HSOCKET nServerSock, uint32_t* pClientIP, uint16_t* pClientPort)
 {
-	struct sockaddr_in Addr;
-	memset(&Addr, 0, sizeof(Addr));
+	struct sockaddr_in oAddr;
+	memset(&oAddr, 0, sizeof(oAddr));
 #ifdef __linux
-	socklen_t nAddrLen = sizeof(Addr);
+	socklen_t nAddrLen = sizeof(oAddr);
 #else
-	int nAddrLen = sizeof(Addr);
+	int nAddrLen = sizeof(oAddr);
 #endif
-	HSOCKET nClientSock = ::accept(nServerSock, (struct sockaddr*)&Addr, &nAddrLen);
+	HSOCKET nClientSock = ::accept(nServerSock, (struct sockaddr*)&oAddr, &nAddrLen);
 	if (nClientSock == SOCKET_ERROR)
 	{
 		return nClientSock;
 	}
 	if (pClientIP != NULL)
 	{
-		*pClientIP = Addr.sin_addr.s_addr;
-		//*pClientIP = ntohl(Addr.sin_addr.s_addr);
+		*pClientIP = oAddr.sin_addr.s_addr;
+		//*pClientIP = ntohl(oAddr.sin_addr.s_addr);
 	}
 	if (pClientPort != NULL)
 	{
-		*pClientPort = ntohs(Addr.sin_port);
+		*pClientPort = ntohs(oAddr.sin_port);
 	}
 	return nClientSock;
 }
@@ -322,19 +323,19 @@ uint32_t NetAPI::P2N(const char* pszIP)
 #endif
 		return 0;
 	}
-	//Addr.s_addr为网络字节顺序
+	//oAddr.s_addr为网络字节顺序
 	return oAddr.s_addr;
 }
 
 bool NetAPI::GetPeerName(HSOCKET hSock, uint32_t* puPeerIP, uint16_t* puPeerPort)
 {
-	struct sockaddr_in Addr;
+	struct sockaddr_in oAddr;
 #ifdef __linux
-	socklen_t nAddrLen = sizeof(Addr);
+	socklen_t nAddrLen = sizeof(oAddr);
 #else
-	int nAddrLen = sizeof(Addr);
+	int nAddrLen = sizeof(oAddr);
 #endif
-	int nRet = getpeername(hSock, (sockaddr*)&Addr, &nAddrLen);
+	int nRet = getpeername(hSock, (sockaddr*)&oAddr, &nAddrLen);
 	if (nRet == -1)
 	{
 #ifdef __linux
@@ -347,11 +348,11 @@ bool NetAPI::GetPeerName(HSOCKET hSock, uint32_t* puPeerIP, uint16_t* puPeerPort
 	}
 	if (puPeerIP != NULL)
 	{
-		*puPeerIP = Addr.sin_addr.s_addr;	//网络字节顺序
+		*puPeerIP = oAddr.sin_addr.s_addr;	//网络字节顺序
 	}
 	if (puPeerPort != NULL)
 	{
-		*puPeerPort = ntohs(Addr.sin_port);	//转成主机字节顺序
+		*puPeerPort = ntohs(oAddr.sin_port);	//转成主机字节顺序
 	}
 	return true;
 }
@@ -386,4 +387,74 @@ unsigned long long NetAPI::H2Nll(unsigned long long val)
 #else
 	return htonll(val);
 #endif
+}
+
+int NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, const char* pIP, uint16_t uPort)
+{
+	struct sockaddr_in oAddr;
+	oAddr.sin_family = AF_INET;
+	oAddr.sin_addr.s_addr = P2N(pIP);
+	oAddr.sin_port = htons(uPort);
+
+	int nRet = sendto(nSock, (char*)pPacket->GetData(), pPacket->GetDataSize(), 0, (struct sockaddr*)&oAddr, sizeof(oAddr));
+	if (nRet == SOCKET_ERROR)
+	{
+#ifdef __linux
+		const char* psErr = strerror(errno);
+		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s\n", pIP, uPort, psErr);
+#else
+		const char* psErr = Platform::LastErrorStr(GetLastError());
+		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s", pIP, uPort, psErr);
+#endif
+		return nRet;
+	}
+	return nRet;
+
+}
+
+int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint16_t uPort)
+{
+	struct sockaddr_in oAddr;
+	memset(&oAddr, 0, sizeof(oAddr));
+	#ifdef __linux
+		socklen_t nAddrLen = sizeof(oAddr);
+	#else
+		int nAddrLen = sizeof(oAddr);
+	#endif
+
+	//Wait for other Client, Recv his's info from Srv.  
+	int nDataSize = recvfrom(nSock, NULL, 0, MSG_PEEK, NULL, NULL);
+	if (nDataSize <= 0)
+	{
+		if (nDataSize == SOCKET_ERROR)
+		{
+#ifdef __linux
+			const char* psErr = strerror(errno);
+			XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s\n", psErr);
+#else
+			const char* psErr = Platform::LastErrorStr(GetLastError());
+			XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s", psErr);
+#endif
+			return SOCKET_ERROR;
+		}
+		return 0;
+	}
+	if (!pPacket->Reserve(nDataSize))
+	{
+		return 0;
+	}
+	int nRet = recvfrom(nSock, (char *)pPacket->GetData(), nDataSize, 0, (struct sockaddr*)&oAddr, &nAddrLen);
+	if (nRet == SOCKET_ERROR)
+	{
+#ifdef __linux
+		const char* psErr = strerror(errno);
+		XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s\n", psErr);
+#else
+		const char* psErr = Platform::LastErrorStr(GetLastError());
+		XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s", psErr);
+#endif
+		return nRet;
+	}
+	XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom successful: ip:%s port:%d\n", oAddr.sin_addr.s_addr, ntohs(oAddr.sin_port));
+	return nRet;
 }

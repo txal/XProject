@@ -26,9 +26,9 @@ struct INNER_HEADER
 {
 	uint16_t uCmd;	
 	uint16_t uSrcServer;	//源服务器ID
-	int8_t nSrcService;		//源服务ID
 	uint16_t uTarServer;	//目的服务器ID
 	int8_t nTarService;		//目的服务ID
+	int8_t nSrcService;		//源服务ID
 	uint16_t uSessionNum;	//目的服务数量
 	INNER_HEADER(uint16_t _uCmd = 0, uint16_t _uSrcServer = 0, int8_t _nSrcService = 0, uint16_t _uTarServer = 0, int8_t _nTarService = 0, uint16_t _uSessionNum = 0)
 	{
@@ -81,6 +81,7 @@ public:
 	void RemoveInnerHeader();
 
 public:
+	bool Reserve(int nSize);
     bool CheckAndExpand(int nAppendSize);
 
 private:
@@ -93,10 +94,10 @@ private:
     int m_nDataSize;
 	int m_nSentSize;
 	int8_t m_nOffsetSize;
-	int8_t m_nWebSocketMark;
 	volatile short m_nRef;
 
 	int8_t m_nMasking;
+	int8_t m_nWebSocketMark;
 	uint8_t m_tMaskingKey[4]; //Websocket mask 长度在切包的时候解码,真正数据放到网关解码;
 	DISALLOW_COPY_AND_ASSIGN(Packet);
 };

@@ -58,6 +58,15 @@ void Packet::Reset()
 	*(int*)m_pData = 0;
 }
 
+bool Packet::Reserve(int nSize)
+{
+	if (m_nCapacity >= nSize)
+	{
+		return true;
+	}
+	return CheckAndExpand(nSize - m_nCapacity);
+}
+
 bool Packet::CheckAndExpand(int nAppendSize)
 {
 	int nCapacity = m_nCapacity;

@@ -3,13 +3,16 @@
 
 #include "Common/Platform.h"
 
+class Packet;
 namespace NetAPI
 {
 	void StartupNetwork();
 	HSOCKET CreateTcpSocket();
+	HSOCKET CreateUdpSocket();
+
 	void CloseSocket(HSOCKET nSock);
-	bool NonBlock(HSOCKET nSock);
 	bool ReuseAddr(HSOCKET nSock);
+	bool NonBlock(HSOCKET nSock);
 	bool NoDelay(HSOCKET nSock);
 	bool Linger(HSOCKET nSock);
 
@@ -18,8 +21,8 @@ namespace NetAPI
 	HSOCKET Accept(HSOCKET nServerSock, uint32_t* pClientIP, uint16_t* nClientPort);
 	bool Connect(HSOCKET nClientSock, const char* pServerIP, uint16_t nServerPort);
 
-	int SendBufSize(HSOCKET nSock);
 	int ReceiveBufSize(HSOCKET nSock);
+	int SendBufSize(HSOCKET nSock);
 	bool KeepAlive(HSOCKET nSock);
 
 	uint32_t P2N(const char* pIP);
@@ -28,6 +31,9 @@ namespace NetAPI
 
 	unsigned long long N2Hll(unsigned long long val);
 	unsigned long long H2Nll(unsigned long long val);
+
+	int SendTo(HSOCKET nSock, Packet* pPacket, const char* pIP, uint16_t uPort);
+	int RecvFrom(HSOCKET nSock, Packet* pPacket, uint16_t uPort);
 };
 
 #endif
