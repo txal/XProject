@@ -81,6 +81,7 @@ public:
 	void RemoveInnerHeader();
 
 public:
+	bool Reserve(int nSize);
     bool CheckAndExpand(int nAppendSize);
 
 private:
@@ -93,10 +94,10 @@ private:
     int m_nDataSize;
 	int m_nSentSize;
 	int8_t m_nOffsetSize;
-	int8_t m_nWebSocketMark;
 	volatile short m_nRef;
 
 	int8_t m_nMasking;
+	int8_t m_nWebSocketMark;
 	uint8_t m_tMaskingKey[4]; //Websocket mask 长度在切包的时候解码,真正数据放到网关解码;
 	DISALLOW_COPY_AND_ASSIGN(Packet);
 };

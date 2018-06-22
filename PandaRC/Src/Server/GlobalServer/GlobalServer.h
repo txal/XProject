@@ -14,6 +14,7 @@ public:
 	bool Start();
 	void ProcessNetEvent(int64_t nWaitMSTime);
 	void ProcessTimer(int64_t nNowMSTime);
+	void ProcessUdpRecv(int64_t nNowMSTime);
 
 public:
 	virtual INet* GetInnerNet() { return m_poInnerNet;  }
@@ -40,6 +41,8 @@ private:
 	INet* m_poExterNet;
 	INet* m_poInnerNet;
 	NetEventHandler m_oNetEventHandler;
+
+	HSOCKET m_nUDPSocket;
 
 	DISALLOW_COPY_AND_ASSIGN(GlobalServer);
 };

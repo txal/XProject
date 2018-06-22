@@ -26,6 +26,20 @@ HSOCKET NetAPI::CreateTcpSocket()
 	return hSock;
 }
 
+HSOCKET NetAPI::CreateUdpSocket()
+{
+	HSOCKET hSock = socket(AF_INET, SOCK_DGRAM, 0);
+	if (hSock == INVALID_SOCKET)
+	{
+#ifdef __linux
+		XLog(LEVEL_ERROR, LOG_ADDR"%s\n", strerror(errno));
+#else
+		XLog(LEVEL_ERROR, LOG_ADDR"%s", Platform::LastErrorStr(GetLastError()));
+#endif
+	}
+	return hSock;
+}
+
 void NetAPI::CloseSocket(HSOCKET nSock)
 {
 #ifdef __linux
@@ -389,22 +403,26 @@ unsigned long long NetAPI::H2Nll(unsigned long long val)
 #endif
 }
 
-int NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, const char* pIP, uint16_t uPort)
+int NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort)
 {
 	struct sockaddr_in oAddr;
 	oAddr.sin_family = AF_INET;
-	oAddr.sin_addr.s_addr = P2N(pIP);
+	oAddr.sin_addr.s_addr = uIP;
 	oAddr.sin_port = htons(uPort);
 
 	int nRet = sendto(nSock, (char*)pPacket->GetData(), pPacket->GetDataSize(), 0, (struct sockaddr*)&oAddr, sizeof(oAddr));
 	if (nRet == SOCKET_ERROR)
 	{
+
+		char pStrIP[128] = { 0 };
+		NetAPI::N2P(uIP, pStrIP, 128);
+
 #ifdef __linux
 		const char* psErr = strerror(errno);
-		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s\n", pIP, uPort, psErr);
+		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s\n", pStrIP, uPort, psErr);
 #else
 		const char* psErr = Platform::LastErrorStr(GetLastError());
-		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s", pIP, uPort, psErr);
+		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s", pStrIP, uPort, psErr);
 #endif
 		return nRet;
 	}
@@ -412,7 +430,7 @@ int NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, const char* pIP, uint16_t uPo
 
 }
 
-int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint16_t uPort)
+int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uPort)
 {
 	struct sockaddr_in oAddr;
 	memset(&oAddr, 0, sizeof(oAddr));
@@ -455,6 +473,10 @@ int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint16_t uPort)
 #endif
 		return nRet;
 	}
-	XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom successful: ip:%s port:%d\n", oAddr.sin_addr.s_addr, ntohs(oAddr.sin_port));
+
+
+	uIP = oAddr.sin_addr.s_addr;
+	uPort = ntohs(oAddr.sin_port);
+
 	return nRet;
 }

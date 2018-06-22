@@ -94,7 +94,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>lua530.lib;LibLogger.lib;LibNetwork.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;lua_cjson.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug\3rd;..\..\Libs\Win64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>

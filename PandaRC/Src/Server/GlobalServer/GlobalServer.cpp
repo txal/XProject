@@ -16,6 +16,7 @@ GlobalServer::GlobalServer()
 	m_poExterNet = NULL;
 	m_poInnerNet = NULL;
 	memset(m_sListenIP, 0, sizeof(m_sListenIP));
+	m_nUDPSocket = -1;
 }
 
 GlobalServer::~GlobalServer()
@@ -32,10 +33,12 @@ bool GlobalServer::Init(int8_t nServiceID, const char* psListenIP, uint16_t uLis
 	{
 		return false;
 	}
+
 	if (psListenIP != NULL)
 	{
 		strcpy(m_sListenIP, psListenIP);
 	}
+
 	m_uListenPort = uListenPort;
 	m_poExterNet = INet::CreateNet(NET_TYPE_EXTERNAL, nServiceID, 1024, &m_oNetEventHandler);
 	if (m_poExterNet == NULL)
@@ -43,12 +46,10 @@ bool GlobalServer::Init(int8_t nServiceID, const char* psListenIP, uint16_t uLis
 		return false;
 	}
 
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
-	if (m_poInnerNet == NULL)
-	{
-		return false;
-	}
+	 m_nUDPSocket = NetAPI::CreateUdpSocket();
+	 NetAPI::Bind(m_nUDPSocket, INADDR_ANY, 10086);
 	return true;
+
 }
 
 bool GlobalServer::RegToRouter(int nRouterServiceID)
@@ -71,16 +72,15 @@ bool GlobalServer::RegToRouter(int nRouterServiceID)
 
 bool GlobalServer::Start()
 {
-	if (!m_poExterNet->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort))
-	{
-		return false;
-	}
+	//if (!m_poExterNet->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort))
+	//	return false;
 
 	for (;;)
 	{
-		ProcessNetEvent(10);
+		ProcessNetEvent(33);
 		int64_t nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
+		ProcessUdpRecv(nNowMS);
 	}
 	return true;
 }
@@ -145,6 +145,21 @@ void GlobalServer::ProcessNetEvent(int64_t nWaitMSTime)
 			break;
 		}
 	}
+}
+
+void GlobalServer::ProcessUdpRecv(int64_t nNowMSTime)
+{
+	uint32_t uIP = 0;
+	uint16_t uPort = 0;
+	Packet* pPacket = Packet::Create();
+	int nRet = NetAPI::RecvFrom(m_nUDPSocket, pPacket, uIP, uPort);
+	pPacket->Release();
+
+	char pStrIP[128] = { 0 };
+	NetAPI::N2P(uIP, pStrIP, 128);
+
+	XLog(LEVEL_INFO, LOG_ADDR"RecvFrom ret:%d ip:%s port:%d\n", nRet, pStrIP, uPort);
+
 }
 
 void GlobalServer::ProcessTimer(int64_t nNowMSTime)

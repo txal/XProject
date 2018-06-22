@@ -1,4 +1,5 @@
 ﻿#include "Include/Logger/Logger.h"
+#include "Include/Network/Network.hpp"
 #include "Common/HttpRequest/HttpRequest.h"
 #include <iostream>
 using namespace std;
@@ -6,14 +7,17 @@ using namespace std;
 int main()
 {
 	Logger::Instance()->Init();
-	const char* psCurl = "https://sandbox.itunes.apple.com/verifyReceipt";
-	//const char* psCurl = "http://sgadmin.df.baoyugame.com/yinghun/test.php";
+	NetAPI::StartupNetwork();
 
-	HttpRequest oHttp;
-	oHttp.Init(8);
-	for (int i = 0; i < 100; i++) {
-		oHttp.Post(psCurl);
-	}
+	HSOCKET nUDPSocket = NetAPI::CreateUdpSocket();
+	const char* pStrIP = "127.0.0.1";
+	uint32_t uIP = NetAPI::P2N(pStrIP);
+
+	Packet* pPacket = Packet::Create();
+	pPacket->WriteBuf("hello udp", 10);
+	int nRet = NetAPI::SendTo(nUDPSocket, pPacket, uIP, 10086);
+	XLog(LEVEL_INFO, LOG_ADDR"SendTo ret:%d ip:%s port:%d\n", nRet, pStrIP, 10086);
+
 	getchar();
 	return 0;
 }
