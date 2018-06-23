@@ -78,6 +78,9 @@
     <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp">
       <Filter>Src\Common\HttpRequest</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Server\GlobalServer\UDPNet.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h">
       <Filter>Src\Common\HttpRequest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\GlobalServer\UDPNet.h">
+      <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

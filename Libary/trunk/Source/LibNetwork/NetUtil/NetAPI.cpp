@@ -403,7 +403,7 @@ unsigned long long NetAPI::H2Nll(unsigned long long val)
 #endif
 }
 
-int NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort)
+bool NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort)
 {
 	struct sockaddr_in oAddr;
 	oAddr.sin_family = AF_INET;
@@ -424,13 +424,13 @@ int NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort)
 		const char* psErr = Platform::LastErrorStr(GetLastError());
 		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s", pStrIP, uPort, psErr);
 #endif
-		return nRet;
+		return false;
 	}
-	return nRet;
+	return true;
 
 }
 
-int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uPort)
+bool NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uPort)
 {
 	struct sockaddr_in oAddr;
 	memset(&oAddr, 0, sizeof(oAddr));
@@ -441,8 +441,9 @@ int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uP
 	#endif
 
 	//Wait for other Client, Recv his's info from Srv.  
-	int nDataSize = recvfrom(nSock, NULL, 0, MSG_PEEK, NULL, NULL);
-	if (nDataSize <= 0)
+	char BuffTmp[0xFFFF];
+	int nDataSize = recvfrom(nSock, BuffTmp, sizeof(BuffTmp), MSG_PEEK, NULL, NULL);
+	if (nDataSize < 4)
 	{
 		if (nDataSize == SOCKET_ERROR)
 		{
@@ -453,13 +454,14 @@ int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uP
 			const char* psErr = Platform::LastErrorStr(GetLastError());
 			XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s", psErr);
 #endif
-			return SOCKET_ERROR;
 		}
-		return 0;
+		return false;
 	}
+
+	nDataSize = *(int*)BuffTmp + 4;
 	if (!pPacket->Reserve(nDataSize))
 	{
-		return 0;
+		return false;
 	}
 	int nRet = recvfrom(nSock, (char *)pPacket->GetData(), nDataSize, 0, (struct sockaddr*)&oAddr, &nAddrLen);
 	if (nRet == SOCKET_ERROR)
@@ -471,12 +473,13 @@ int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uP
 		const char* psErr = Platform::LastErrorStr(GetLastError());
 		XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s", psErr);
 #endif
-		return nRet;
+		return false;
 	}
+	pPacket->SetDataSize(nDataSize);
 
 
 	uIP = oAddr.sin_addr.s_addr;
 	uPort = ntohs(oAddr.sin_port);
 
-	return nRet;
+	return true;
 }

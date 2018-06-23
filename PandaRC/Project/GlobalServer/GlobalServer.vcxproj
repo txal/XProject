@@ -149,6 +149,7 @@
     <ClCompile Include="..\..\Src\Server\GlobalServer\LuaSupport\LuaExport.cpp" />
     <ClCompile Include="..\..\Src\Server\GlobalServer\Main.cpp" />
     <ClCompile Include="..\..\Src\Server\GlobalServer\PacketProc\PacketProc.cpp" />
+    <ClCompile Include="..\..\Src\Server\GlobalServer\UDPNet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="..\..\Src\Server\GlobalServer\GlobalServer.h" />
     <ClInclude Include="..\..\Src\Server\GlobalServer\LuaSupport\LuaExport.h" />
     <ClInclude Include="..\..\Src\Server\GlobalServer\PacketProc\PacketProc.h" />
+    <ClInclude Include="..\..\Src\Server\GlobalServer\UDPNet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

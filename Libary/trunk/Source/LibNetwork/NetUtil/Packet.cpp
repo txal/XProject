@@ -64,7 +64,7 @@ bool Packet::Reserve(int nSize)
 	{
 		return true;
 	}
-	return CheckAndExpand(nSize - m_nCapacity);
+	return CheckAndExpand(nSize - m_nDataSize);
 }
 
 bool Packet::CheckAndExpand(int nAppendSize)
