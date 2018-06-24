@@ -198,3 +198,9 @@ int Actor::BindSession(lua_State* pState)
 	poLogic->GetRoleMgr()->BindSession(m_nObjID, nSession);
 	return 0;
 }
+
+int Actor::StopRun(lua_State* pState)
+{
+	StopRun();
+	return 0;
+}

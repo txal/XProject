@@ -62,12 +62,14 @@ protected:
 public:
 	int GetRunSpeed(lua_State* pState);
 	int BindSession(lua_State* pState);
+	int StopRun(lua_State* pState);
 	
 };
 
 #define DECLEAR_ACTOR_METHOD(Class) \
 	LUNAR_DECLARE_METHOD(Class, GetRunSpeed),\
-	LUNAR_DECLARE_METHOD(Class, BindSession)
+	LUNAR_DECLARE_METHOD(Class, BindSession),\
+	LUNAR_DECLARE_METHOD(Class, StopRun)
 
 
 
