@@ -16,7 +16,6 @@ GlobalServer::GlobalServer()
 	m_poExterNet = NULL;
 	m_poInnerNet = NULL;
 	memset(m_sListenIP, 0, sizeof(m_sListenIP));
-	m_nUDPSocket = -1;
 }
 
 GlobalServer::~GlobalServer()
@@ -45,6 +44,8 @@ bool GlobalServer::Init(int8_t nServiceID, const char* psListenIP, uint16_t uLis
 	{
 		return false;
 	}
+
+	m_oUDPNet.Init(1, 10086);
 	return true;
 
 }
@@ -74,10 +75,10 @@ bool GlobalServer::Start()
 
 	for (;;)
 	{
-		ProcessNetEvent(33);
+		ProcessNetEvent(1);
 		int64_t nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
-		ProcessUdpRecv(nNowMS);
+		ProcessUdp(nNowMS);
 	}
 	return true;
 }
@@ -212,28 +213,7 @@ void GlobalServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }
 
-void GlobalServer::ProcessUdpRecv(int64_t nNowMSTime)
+void GlobalServer::ProcessUdp(int64_t nNowMSTime)
 {
-	static uint32_t uLastIndex = 0;
-
-	uint32_t uIP = 0;
-	uint16_t uPort = 0;
-	Packet* pPacket = Packet::Create();
-	bool bRes = NetAPI::RecvFrom(m_nUDPSocket, pPacket, uIP, uPort);
-
-	char pStrIP[128] = { 0 };
-	NetAPI::N2P(uIP, pStrIP, 128);
-
-	EXTER_HEADER oHeader;
-	if (bRes)
-		pPacket->GetExterHeader(oHeader, false);
-	
-
-	XLog(LEVEL_INFO, "RecvFrom res:%d ip:%s port:%d size:%d index:%u\n", bRes, pStrIP, uPort, pPacket->GetRealDataSize(), oHeader.uPacketIdx);
-	if (oHeader.uPacketIdx != uLastIndex + 1)
-		XLog(LEVEL_ERROR, "RecvFrom packet lost last:%u now:%u\n", uLastIndex, oHeader.uPacketIdx);
-	uLastIndex = oHeader.uPacketIdx;
-
-	pPacket->Release();
-
+	m_oUDPNet.Update(nNowMSTime);
 }

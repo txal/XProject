@@ -4,6 +4,7 @@
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/Array.h"
 #include "Server/Base/Service.h"
+#include "UDPNet.h"
 
 class GlobalServer: public Service
 {
@@ -14,7 +15,10 @@ public:
 	bool Start();
 	void ProcessNetEvent(int64_t nWaitMSTime);
 	void ProcessTimer(int64_t nNowMSTime);
-	void ProcessUdpRecv(int64_t nNowMSTime);
+	void ProcessUdp(int64_t nNowMSTime);
+
+	Packet* ApplyPacket();
+	void ReturnPacket(Packet* pPacket);
 
 public:
 	virtual INet* GetInnerNet() { return m_poInnerNet;  }
@@ -42,7 +46,7 @@ private:
 	INet* m_poInnerNet;
 	NetEventHandler m_oNetEventHandler;
 
-	HSOCKET m_nUDPSocket;
+	UDPNet m_oUDPNet;
 
 	DISALLOW_COPY_AND_ASSIGN(GlobalServer);
 };

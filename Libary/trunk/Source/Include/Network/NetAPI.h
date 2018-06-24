@@ -32,8 +32,8 @@ namespace NetAPI
 	unsigned long long N2Hll(unsigned long long val);
 	unsigned long long H2Nll(unsigned long long val);
 
-	bool SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort);
-	bool RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uPort);
+	int SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort);
+	int RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uPort);
 };
 
 #endif

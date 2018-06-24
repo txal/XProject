@@ -403,7 +403,7 @@ unsigned long long NetAPI::H2Nll(unsigned long long val)
 #endif
 }
 
-bool NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort)
+int NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort)
 {
 	struct sockaddr_in oAddr;
 	oAddr.sin_family = AF_INET;
@@ -418,22 +418,30 @@ bool NetAPI::SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort
 		NetAPI::N2P(uIP, pStrIP, 128);
 
 #ifdef __linux
+		if (errno == EAGAIN)
+		{
+			return 0;
+		}
 		const char* psErr = strerror(errno);
-		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s\n", pStrIP, uPort, psErr);
+		XLog(LEVEL_ERROR, LOG_ADDR"SendTo fail: %s\n", psErr);
+		return -1;
 #else
+		if (GetLastError() == WSAEWOULDBLOCK)
+		{
+			return 0;
+		}
 		const char* psErr = Platform::LastErrorStr(GetLastError());
-		XLog(LEVEL_ERROR, LOG_ADDR"SendTo %s %d fail: %s", pStrIP, uPort, psErr);
+		XLog(LEVEL_ERROR, LOG_ADDR"SendTo fail: %s", psErr);
+		return -1;
 #endif
-		return false;
 	}
-	return true;
+	return 1;
 
 }
 
-bool NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uPort)
+int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uPort)
 {
 	struct sockaddr_in oAddr;
-	memset(&oAddr, 0, sizeof(oAddr));
 	#ifdef __linux
 		socklen_t nAddrLen = sizeof(oAddr);
 	#else
@@ -448,20 +456,30 @@ bool NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& u
 		if (nDataSize == SOCKET_ERROR)
 		{
 #ifdef __linux
+			if (errno == EAGAIN)
+			{
+				return 0;
+			}
 			const char* psErr = strerror(errno);
 			XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s\n", psErr);
+			return -1;
 #else
+			if (GetLastError() == WSAEWOULDBLOCK)
+			{
+				return 0;
+			}
 			const char* psErr = Platform::LastErrorStr(GetLastError());
 			XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s", psErr);
+			return -1;
 #endif
 		}
-		return false;
+		return 0;
 	}
 
 	nDataSize = *(int*)BuffTmp + 4;
 	if (!pPacket->Reserve(nDataSize))
 	{
-		return false;
+		return -1;
 	}
 	int nRet = recvfrom(nSock, (char *)pPacket->GetData(), nDataSize, 0, (struct sockaddr*)&oAddr, &nAddrLen);
 	if (nRet == SOCKET_ERROR)
@@ -473,7 +491,7 @@ bool NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& u
 		const char* psErr = Platform::LastErrorStr(GetLastError());
 		XLog(LEVEL_ERROR, LOG_ADDR"RecvFrom fail: %s", psErr);
 #endif
-		return false;
+		return -1;
 	}
 	pPacket->SetDataSize(nDataSize);
 
@@ -481,5 +499,5 @@ bool NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& u
 	uIP = oAddr.sin_addr.s_addr;
 	uPort = ntohs(oAddr.sin_port);
 
-	return true;
+	return 1;
 }
