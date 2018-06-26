@@ -1,5 +1,7 @@
 ﻿#include "Include/Network/NetAPI.h"
+#ifdef _WIN32
 #include <Mswsock.h>
+#endif
 #include "Include/Logger/Logger.h"
 #include "Include/Network/Packet.h"
 
