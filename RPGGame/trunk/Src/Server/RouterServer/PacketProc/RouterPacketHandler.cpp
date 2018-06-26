@@ -54,12 +54,12 @@ void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEA
 	if (poTarService == NULL)
 	{
 		poPacket->Release();
-		XLog(LEVEL_ERROR, "Target server:%d service:%d not found\n", oHeader.uTarServer, oHeader.nTarService);
+		XLog(LEVEL_ERROR, "Cmd:%d target server:%d service:%d not found\n", oHeader.uCmd, oHeader.uTarServer, oHeader.nTarService);
 		return;
 	}
 	if (!poTarService->GetInnerNet()->SendPacket(poTarService->GetSessionID(), poPacket))
 	{
 		poPacket->Release();
-		XLog(LEVEL_ERROR, "Send packet to server:%d service:%d fail\n", oHeader.uTarServer, oHeader.nTarService);
+		XLog(LEVEL_ERROR, "Send cmd:%d packet to server:%d service:%d fail\n", oHeader.uCmd, oHeader.uTarServer, oHeader.nTarService);
 	}
 }

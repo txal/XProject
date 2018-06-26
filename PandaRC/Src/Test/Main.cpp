@@ -15,7 +15,7 @@ int main(int nArg, char *pArgv[])
 
 	HSOCKET nUDPSocket = NetAPI::CreateUdpSocket();
 	NetAPI::NonBlock(nUDPSocket);
-	const char* pStrIP = "192.168.1.131";
+	const char* pStrIP = "192.168.32.231";
 	uint32_t uIP = NetAPI::P2N(pStrIP);
 	uint16_t uPort = 10086;
 

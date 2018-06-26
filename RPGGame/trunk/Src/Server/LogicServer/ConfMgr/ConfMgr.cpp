@@ -11,5 +11,5 @@ ConfMgr* ConfMgr::Instance()
 void ConfMgr::LoadConf()
 {
 	LOAD_CSV_CONF(m_oMapConfMgr, sCSVDir+"MapConf.csv");
-	LOAD_CSV_CONF(m_oAIConfMgr, sCSVDir+"AIConf.csv");
+	//LOAD_CSV_CONF(m_oAIConfMgr, sCSVDir+"AIConf.csv");
 }

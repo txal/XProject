@@ -24,6 +24,7 @@ bool UDPNet::Init(int nRoomID, uint16_t uServerPort)
 	 m_nServerSocket= NetAPI::CreateUdpSocket();
 	 NetAPI::Bind(m_nServerSocket, INADDR_ANY, m_uServerPort);
 	 NetAPI::NonBlock(m_nServerSocket);
+	 NetAPI::MyWSAIcotl(m_nServerSocket);
 	 XLog(LEVEL_INFO, "UDP room:%d bind at port:%d\n", m_nRoomID, m_uServerPort);
 	 return true;
 }
@@ -89,6 +90,7 @@ Packet* UDPNet::RecvData(uint32_t& uIP, uint16_t& uPort)
 	}
 	CLIENT& oClient = m_tPairClient[nSource - 1];
 
+	//XLog(LEVEL_ERROR, "RecvData source:%d packet ip:%s port:%d index:%u\n", nSource, oClient.sStrIP, uPort, oHeader.uPacketIdx);
 	if (nCmd == 1) //注册
 	{
 		if (oClient.uIP == 0)
@@ -97,12 +99,12 @@ Packet* UDPNet::RecvData(uint32_t& uIP, uint16_t& uPort)
 			oClient.uPort = uPort;
 			oClient.uPKIndex = oHeader.uPacketIdx;
 			NetAPI::N2P(uIP, oClient.sStrIP, sizeof(oClient.sStrIP));
-			XLog(LEVEL_INFO, "RecvData source:%d register successful ip:%s port:%d\n", nSource, oClient.sStrIP, uPort);
+			XLog(LEVEL_INFO, "RecvData source:%d register successful ip:%s port:%d index:%u\n", nSource, oClient.sStrIP, uPort, oHeader.uPacketIdx);
 
 		}
 		else
 		{
-			XLog(LEVEL_INFO, "RecvData source:%d already register ip:%s port:%d\n", nSource, oClient.sStrIP, uPort);
+			XLog(LEVEL_INFO, "RecvData source:%d already register ip:%s port:%d index:%u\n", nSource, oClient.sStrIP, uPort, oHeader.uPacketIdx);
 		}
 		ReturnPacket(pPacket);
 		return NULL;

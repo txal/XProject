@@ -34,6 +34,7 @@ namespace NetAPI
 
 	int SendTo(HSOCKET nSock, Packet* pPacket, uint32_t uIP, uint16_t uPort);
 	int RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uPort);
+	bool MyWSAIcotl(HSOCKET nSock);
 };
 
 #endif

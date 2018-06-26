@@ -1,4 +1,5 @@
 ﻿#include "Include/Network/NetAPI.h"
+#include <Mswsock.h>
 #include "Include/Logger/Logger.h"
 #include "Include/Network/Packet.h"
 
@@ -500,4 +501,28 @@ int NetAPI::RecvFrom(HSOCKET nSock, Packet* pPacket, uint32_t& uIP, uint16_t& uP
 	uPort = ntohs(oAddr.sin_port);
 
 	return 1;
+}
+
+bool NetAPI::MyWSAIcotl(HSOCKET nSock)
+{
+#ifdef _WIN32
+	DWORD dwBytesReturned = 0;
+	BOOL bNewBehavior = FALSE;
+	DWORD status;
+
+	// disable  new behavior using
+	// IOCTL: SIO_UDP_CONNRESET
+	status = WSAIoctl(nSock, SIO_UDP_CONNRESET, &bNewBehavior, sizeof(bNewBehavior), NULL, 0, &dwBytesReturned, NULL, NULL);
+	if (SOCKET_ERROR == status)
+	{
+		DWORD dwErr = WSAGetLastError();
+		if (WSAEWOULDBLOCK == dwErr)
+		{
+			return false;
+		}
+		XLog(LEVEL_ERROR, "WSAIoctl(SIO_UDP_CONNRESET) Error: %d/n", dwErr);
+		return false;
+	}
+#endif
+	return true;
 }
