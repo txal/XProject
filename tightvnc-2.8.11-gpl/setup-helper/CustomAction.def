@@ -1,8 +1,0 @@
-﻿LIBRARY "setup-helper"
-
-EXPORTS
-
-AllowSas
-SetRfbPassword
-SetControlPassword
-SetViewOnlyPassword

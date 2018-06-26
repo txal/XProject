@@ -1,8 +1,0 @@
-﻿  WinFilePath.cpp
-  OperationNotSupportedException.cpp
-  FTMessage.cpp
-  FolderListener.cpp
-  FileTransferException.cpp
-  FileInfo.cpp
-  正在生成代码...
-  ft-common.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\ft-common.lib
