@@ -1,0 +1,2 @@
+﻿  BuildTime.cpp
+LINK : fatal error LNK1168: 无法打开 E:\tightvnc-2.8.11-gpl\Debug\tvnserver.exe 进行写入

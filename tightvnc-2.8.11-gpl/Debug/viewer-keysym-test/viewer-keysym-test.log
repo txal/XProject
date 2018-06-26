@@ -1,0 +1,10 @@
+﻿  viewer-keysym-test.cpp
+  KeySymTest.cpp
+e:\tightvnc-2.8.11-gpl\viewer-keysym-test\keysymtest.cpp(43): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\corecrt_wstdio.h(129): note: 参见“_wfopen”的声明
+e:\tightvnc-2.8.11-gpl\viewer-keysym-test\keysymtest.cpp(49): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\corecrt_wstdio.h(129): note: 参见“_wfopen”的声明
+  正在生成代码...
+KeySymTest.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+  viewer-keysym-test.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\viewer-keysym-test.exe
+  viewer-keysym-test.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\viewer-keysym-test.pdb (Full PDB)

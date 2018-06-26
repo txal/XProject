@@ -1,0 +1,25 @@
+﻿  TcpServer.cpp
+  TcpClientThread.cpp
+  WindowsSocket.cpp
+  SocketStream.cpp
+  SocketIPv4.cpp
+  SocketException.cpp
+  SocketAddressIPv4.cpp
+e:\tightvnc-2.8.11-gpl\network\socket\socketaddressipv4.cpp(44): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: 参见“strncpy”的声明
+e:\tightvnc-2.8.11-gpl\network\socket\socketaddressipv4.cpp(48): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(2238): note: 参见“gethostbyname”的声明
+e:\tightvnc-2.8.11-gpl\network\socket\socketaddressipv4.cpp(50): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: 参见“strncpy”的声明
+e:\tightvnc-2.8.11-gpl\network\socket\socketaddressipv4.cpp(58): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+e:\tightvnc-2.8.11-gpl\network\socket\socketaddressipv4.cpp(59): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(255): note: 参见“strncat”的声明
+e:\tightvnc-2.8.11-gpl\network\socket\socketaddressipv4.cpp(63): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(255): note: 参见“strncat”的声明
+e:\tightvnc-2.8.11-gpl\network\socket\socketaddressipv4.cpp(152): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(2238): note: 参见“gethostbyname”的声明
+  RfbOutputGate.cpp
+  RfbInputGate.cpp
+  正在生成代码...
+  network.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\network.lib

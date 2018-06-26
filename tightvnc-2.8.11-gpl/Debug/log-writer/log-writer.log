@@ -1,0 +1,7 @@
+﻿  ProfileLogger.cpp
+  LogWriter.cpp
+  LogDump.cpp
+  FileLogger.cpp
+  FileAccount.cpp
+  正在生成代码...
+  log-writer.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\log-writer.lib

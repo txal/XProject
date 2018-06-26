@@ -1,0 +1,19 @@
+﻿  ZrleEncoder.cpp
+  TightPalette.cpp
+  TightEncoder.cpp
+  RreEncoder.cpp
+  RfbInitializer.cpp
+  RfbDispatcher.cpp
+  RfbCodeRegistrator.cpp
+  RfbClient.cpp
+  JpegEncoder.cpp
+  JpegCompressor.cpp
+  HextileEncoder.cpp
+  EncoderStore.cpp
+  Encoder.cpp
+  EncodeOptions.cpp
+  ClipboardExchange.cpp
+  ClientInputHandler.cpp
+  CapContainer.cpp
+  正在生成代码...
+  rfb-sconn.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\rfb-sconn.lib

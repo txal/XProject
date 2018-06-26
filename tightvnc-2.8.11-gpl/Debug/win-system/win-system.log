@@ -1,0 +1,58 @@
+﻿  WTS.cpp
+  WsaStartup.cpp
+  Workstation.cpp
+  WinTimeMillis.cpp
+  WinStaLibrary.cpp
+  WinProcessCommandLine.cpp
+  WinHooks.cpp
+  WinHandles.cpp
+  WindowsEvent.cpp
+  WindowsDisplays.cpp
+  WindowsApplication.cpp
+  WinCursor.cpp
+  WinCommandLineArgs.cpp
+  WinClipboard.cpp
+  VersionInfo.cpp
+  UipiControl.cpp
+  SystemInformation.cpp
+  SystemException.cpp
+  Shell.cpp
+  SharedMemory.cpp
+  正在生成代码...
+  正在编译...
+  Service.cpp
+  SecurityIdentifier.cpp
+  SecurityDescriptor.cpp
+  SecurityAttributes.cpp
+  Screen.cpp
+  SCMClient.cpp
+  RegistryKey.cpp
+  Registry.cpp
+  ProcessHandle.cpp
+  Process.cpp
+  PipeServer.cpp
+  PipeImpersonatedThread.cpp
+  PipeClient.cpp
+  Pipe.cpp
+  ParentProcess.cpp
+  NamedPipe.cpp
+  LocalWindowsApplication.cpp
+  Keyboard.cpp
+  InputInjector.cpp
+  Impersonator.cpp
+  正在生成代码...
+  正在编译...
+  Environment.cpp
+e:\tightvnc-2.8.11-gpl\win-system\environment.cpp(201): warning C4996: 'GetVersionExW': 被声明为已否决
+  c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442): note: 参见“GetVersionExW”的声明
+  DynamicLibrary.cpp
+  DibSection.cpp
+  CurrentConsoleProcess.cpp
+  CtrlAltDelSimulator.cpp
+  AutoImpersonator.cpp
+  AnonymousPipeFactory.cpp
+  AnonymousPipe.cpp
+  正在生成代码...
+psapi.lib(PSAPI.DLL) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 Wtsapi32.lib(WTSAPI32.dll) 中定义；已忽略第二个定义
+psapi.lib(PSAPI.DLL) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
+  win-system.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\win-system.lib

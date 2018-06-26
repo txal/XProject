@@ -1,0 +1,21 @@
+﻿  VideoRegionsConfigDialog.cpp
+  UIDataAccess.cpp
+  TvnLogFilename.cpp
+  ServerConfigDialog.cpp
+  PortMappingDialog.cpp
+  PasswordControl.cpp
+  IpAccessControlDialog.cpp
+e:\tightvnc-2.8.11-gpl\wsconfig-lib\ipaccesscontroldialog.cpp(391): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850): note: 参见“inet_addr”的声明
+  EditPortMappingDialog.cpp
+  EditIpAccessRuleDialog.cpp
+e:\tightvnc-2.8.11-gpl\wsconfig-lib\editipaccessruledialog.cpp(200): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850): note: 参见“inet_addr”的声明
+e:\tightvnc-2.8.11-gpl\wsconfig-lib\editipaccessruledialog.cpp(201): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850): note: 参见“inet_addr”的声明
+  ConfigDialog.cpp
+  CommonInputValidation.cpp
+  ChangePasswordDialog.cpp
+  AdministrationConfigDialog.cpp
+  正在生成代码...
+  wsconfig-lib.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\wsconfig-lib.lib

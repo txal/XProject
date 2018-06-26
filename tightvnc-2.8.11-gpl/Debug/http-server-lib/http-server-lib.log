@@ -1,0 +1,11 @@
+﻿  HttpServer.cpp
+  HttpRequestHandler.cpp
+  HttpRequest.cpp
+e:\tightvnc-2.8.11-gpl\http-server-lib\httprequest.cpp(97): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(2254): note: 参见“sscanf”的声明
+  HttpReply.cpp
+  HttpClient.cpp
+  ArgList.cpp
+  AppletParameter.cpp
+  正在生成代码...
+  http-server-lib.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\http-server-lib.lib

@@ -1,0 +1,10 @@
+﻿  SecurityPipeServer.cpp
+  SecurityPipeClient.cpp
+  LogServer.cpp
+  LogLevelSender.cpp
+  LogConn.cpp
+  ListenLogServer.cpp
+  ConnectionTimer.cpp
+  ClientLogger.cpp
+  正在生成代码...
+  log-server.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\log-server.lib

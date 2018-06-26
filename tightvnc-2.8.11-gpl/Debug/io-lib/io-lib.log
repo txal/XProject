@@ -1,0 +1,11 @@
+﻿  OutputStream.cpp
+  IOException.cpp
+  InputStream.cpp
+  DataOutputStream.cpp
+  DataInputStream.cpp
+  Channel.cpp
+  ByteArrayOutputStream.cpp
+  ByteArrayInputStream.cpp
+  BufferedOutputStream.cpp
+  正在生成代码...
+  io-lib.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\io-lib.lib

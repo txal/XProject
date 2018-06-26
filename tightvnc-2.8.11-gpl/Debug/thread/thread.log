@@ -1,0 +1,10 @@
+﻿  ZombieKiller.cpp
+  ThreadCollector.cpp
+  Thread.cpp
+  LocalMutex.cpp
+  GuiThread.cpp
+  GlobalMutex.cpp
+  DesktopSelector.cpp
+  AutoLock.cpp
+  正在生成代码...
+  thread.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\thread.lib

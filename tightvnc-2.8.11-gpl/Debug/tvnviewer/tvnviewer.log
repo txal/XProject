@@ -1,0 +1,37 @@
+﻿  ViewerWindow.cpp
+  ViewerVncAuthHandler.cpp
+  ViewerMenu.cpp
+  ViewerInstance.cpp
+  ViewerCollector.cpp
+  ViewerCmdLine.cpp
+  TvnViewer.cpp
+  ScaleManager.cpp
+  ResourceStrings.cpp
+  OptionsDialog.cpp
+  NewFolderDialog.cpp
+  NamingDefs.cpp
+  main.cpp
+  LoginDialog.cpp
+  HelpDialog.cpp
+  FsWarningDialog.cpp
+  FileTransferMainDialog.cpp
+  FileRenameDialog.cpp
+  FileInfoListView.cpp
+  FileExistDialog.cpp
+e:\tightvnc-2.8.11-gpl\tvnviewer\fileexistdialog.cpp(172): warning C4477: “swprintf_s”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 1 拥有了类型“UINT64”
+  e:\tightvnc-2.8.11-gpl\tvnviewer\fileexistdialog.cpp(172): note: 请考虑在格式字符串中使用“%lld”
+  e:\tightvnc-2.8.11-gpl\tvnviewer\fileexistdialog.cpp(172): note: 请考虑在格式字符串中使用“%I64d”
+  正在生成代码...
+  正在编译...
+  DesktopWindow.cpp
+  ControlTrayIcon.cpp
+  ConnectionListener.cpp
+  ConnectionData.cpp
+  ConfigurationDialog.cpp
+  BuildTime.cpp
+  AuthenticationDialog.cpp
+  AboutDialog.cpp
+  正在生成代码...
+AboutDialog.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+  tvnviewer.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\tvnviewer.exe
+  tvnviewer.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\tvnviewer.pdb (Full PDB)

@@ -1,0 +1,6 @@
+﻿  SettingsManager.cpp
+  RegistrySettingsManager.cpp
+  IniFileSettingsManager.cpp
+  ConnectionHistory.cpp
+  正在生成代码...
+  config-lib.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\config-lib.lib

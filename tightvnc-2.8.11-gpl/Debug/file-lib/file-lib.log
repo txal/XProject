@@ -1,0 +1,7 @@
+﻿  WinFileChannel.cpp
+  WinFile.cpp
+  FileNotFoundException.cpp
+  File.cpp
+  EOFException.cpp
+  正在生成代码...
+  file-lib.vcxproj -> E:\tightvnc-2.8.11-gpl\Debug\file-lib.lib
