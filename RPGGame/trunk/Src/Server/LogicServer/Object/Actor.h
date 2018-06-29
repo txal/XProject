@@ -41,7 +41,7 @@ protected:
 public:
 	void SyncPosition(const char* pWhere = NULL);
 	void BroadcastStartRun();
-	void BroadcastStopRun();
+	virtual void BroadcastStopRun();
 
 protected:
 	uint16_t m_uServer;					//所属服务器

@@ -151,19 +151,22 @@ void AOI::MoveObj(int nID, int nPosX, int nPosY)
 
 	nPosX = XMath::Max(0, XMath::Min(nPosX, m_nMapPixelWidth - 1));
 	nPosY = XMath::Max(0, XMath::Min(nPosY, m_nMapPixelHeight - 1));
+
 	int nOldPos[2] = {pObj->nPos[0], pObj->nPos[1]};
 	int nNewPos[2] = {nPosX, nPosY};
+
+	pObj->nPos[0] = (int16_t)nNewPos[0];
+	pObj->nPos[1] = (int16_t)nNewPos[1];
+	
 	int nUnitXOld = nOldPos[0] / gnUnitWidth;
 	int nUnitYOld = nOldPos[1] / gnUnitHeight;
 	int nUnitXNew = nNewPos[0] / gnUnitWidth;
 	int nUnitYNew = nNewPos[1] / gnUnitHeight;
+
 	if (nUnitXOld == nUnitXNew && nUnitYOld == nUnitYNew)
 	{
 		return;
 	}
-
-	pObj->nPos[0] = (int16_t)nNewPos[0];
-	pObj->nPos[1] = (int16_t)nNewPos[1];
 	if (pObj->nAOIMode & AOI_MODE_OBSERVER)
 	{
 		MoveObserver(pObj, nOldPos, nNewPos);

@@ -177,6 +177,7 @@ int Object::SetPos(lua_State* pState)
 	int nPosX = (int)luaL_checkinteger(pState, 1);
 	int nPosY = (int)luaL_checkinteger(pState, 2);
 	SetPos(Point(nPosX, nPosY));
+	BroadcastStopRun();
 	return 0;
 }
 

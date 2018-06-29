@@ -43,6 +43,7 @@ public:
 
 public:
 	void CacheActorNavi(uint16_t nTarServer=0, int nTarSession=0);	//如果传参表示也发给自己
+	virtual void BroadcastStopRun() {}
 
 protected:
 	int m_nObjID;
