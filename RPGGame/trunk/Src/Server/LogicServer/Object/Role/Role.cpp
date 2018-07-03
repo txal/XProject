@@ -35,6 +35,28 @@ void Role::Update(int64_t nNowMS)
 	Actor::Update(nNowMS);
 }
 
+void Role::UpdateFollow(int64_t nNowMS)
+{
+	if (m_poScene == NULL)
+		return;
+
+	LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
+	RoleMgr* poRoleMgr = poLogic->GetRoleMgr();
+
+	RoleMgr::FollowVec& oFollowVec = poRoleMgr->GetFollowVec();
+	if (oFollowVec.size() <= 0)
+		return;
+
+	const Point& oTarPos = GetPos();
+	for (int i = 0; i < oFollowVec.size(); i++)
+	{
+		Object* poFollowObj = poLogic->GetRoleMgr()->GetRoleByID(oFollowVec[i]);
+		if (poFollowObj == NULL || poFollowObj->GetScene() != m_poScene) continue;
+		if (oTarPos.Distance(poFollowObj->GetPos()) >= (gnUnitWidth*gnTowerWidth)*0.5)
+			poFollowObj->SetPos(oTarPos);
+	}
+}
+
 void Role::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
 {
 	Actor::OnEnterScene(poScene, nAOIID, oPos);
@@ -55,6 +77,12 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	if (GetScene() == NULL)
 	{
 		XLog(LEVEL_ERROR, "RoleStartRunHandler: %s role not in scene\n", m_sName);
+		return;
+	}
+	if (GetFollowTarget() > 0)
+	{
+		XLog(LEVEL_INFO, "RoleStartRunHandler: %s is following can not run manual.\n", m_sName);
+		Actor::SyncPosition();
 		return;
 	}
 
@@ -104,6 +132,8 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 		uPosX = (uint16_t)m_oPos.x;
 		uPosY = (uint16_t)m_oPos.y;
 		Actor::SyncPosition();
+		Actor::StopRun(true, true); //坐标不对就停下来 by panda 2018.6.29 mengzhu
+		return;
 	}
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	
@@ -116,6 +146,12 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	if (GetScene() == NULL)
 	{
 		XLog(LEVEL_ERROR, "RoleStopRunHandler: %s role not in scene\n", m_sName);
+		return;
+	}
+	if (GetFollowTarget() > 0)
+	{
+		XLog(LEVEL_INFO, "RoleStopRunHandler: %s is following can not stop manual.\n", m_sName);
+		Actor::SyncPosition();
 		return;
 	}
 

@@ -13,6 +13,9 @@ public:
 	typedef std::unordered_map<int, Role*> RoleMap;
 	typedef RoleMap::iterator RoleIter;
 
+	typedef std::vector<int> FollowVec;
+	typedef FollowVec::iterator FollowIter;
+
 public:
 	RoleMgr();
 
@@ -23,6 +26,7 @@ public:
 	Role* GetRoleBySS(uint16_t uServer, int nSession);
 
 	void BindSession(int nID, int nSession);
+	FollowVec& GetFollowVec() { return m_oFollowVec; }
 
 public:
 	void Update(int64_t nNowMS);
@@ -36,10 +40,13 @@ public:
 	int CreateRole(lua_State* pState);
 	int RemoveRole(lua_State* pState);
 	int GetRole(lua_State* pState);
+	int SetFollow(lua_State* pState);
 
 private:
 	RoleMap m_oRoleIDMap;
 	RoleMap m_oRoleSSMap;
+
+	FollowVec m_oFollowVec;		//跟随者角色ID列表
 };
 
 

@@ -99,6 +99,7 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 		{
 			StopRun();
 		}
+		UpdateFollow(nNowMS);
 		//XLog(LEVEL_DEBUG, "Pos(%d,%d) canmove:%d\n", nNewPosX, nNewPosY, bCanMove);
 	}
 	return bCanMove;
@@ -140,6 +141,28 @@ void Actor::SyncPosition(const char* pWhere)
 	oNavi.nTarService = GetSession() >> SERVICE_SHIFT;
 	oNavi.nTarSession = GetSession();
 	NetAdapter::SendExter(NSCltSrvCmd::sSyncActorPosRet, poPacket, oNavi);
+}
+
+void Actor::BroadcastPos(bool bSelf)
+{
+	int nSelfServer = 0;
+	int nSelfSession = 0;
+	if (bSelf)
+	{
+		nSelfServer = m_uServer;
+		nSelfSession = m_nSession;
+	}
+	CacheActorNavi(nSelfServer, nSelfSession);
+
+	if (goNaviCache.Size() <= 0)
+	{
+		return;
+	}
+
+	gpoPacketCache->Reset();
+	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y;
+	Packet* poPacket = gpoPacketCache->DeepCopy();
+	NetAdapter::BroadcastExter(NSCltSrvCmd::sSyncActorPosRet, poPacket, goNaviCache);
 }
 
 void Actor::BroadcastStartRun()

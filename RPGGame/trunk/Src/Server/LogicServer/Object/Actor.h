@@ -35,13 +35,15 @@ public:
 	bool CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY);	//计算角色位置
 
 protected:
-	bool UpdateRunState(int64_t nNowMS);	//处理跑步
+	bool UpdateRunState(int64_t nNowMS);			//处理跑步
+	virtual void UpdateFollow(int64_t nNowMS) {};	//处理跟随
 
 //网络函数
 public:
-	void SyncPosition(const char* pWhere = NULL);
 	void BroadcastStartRun();
-	virtual void BroadcastStopRun();
+	void BroadcastStopRun();
+	void SyncPosition(const char* pWhere = NULL);
+	void BroadcastPos(bool bSelf);
 
 protected:
 	uint16_t m_uServer;					//所属服务器
