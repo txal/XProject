@@ -25,6 +25,7 @@ Object::Object()
 	m_nLastUpdateTime = 0;
 	m_nFace = 0;
 	m_nLine = 0;
+	m_nFollowTarget = 0;
 }
 
 Object::~Object()
@@ -177,6 +178,8 @@ int Object::SetPos(lua_State* pState)
 	int nPosX = (int)luaL_checkinteger(pState, 1);
 	int nPosY = (int)luaL_checkinteger(pState, 2);
 	SetPos(Point(nPosX, nPosY));
+
+	BroadcastPos(true);
 	return 0;
 }
 

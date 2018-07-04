@@ -14,6 +14,9 @@ class Object
 public:
 	LUNAR_DECLARE_CLASS(Object);
 
+	typedef std::vector<int> FollowVec;
+	typedef FollowVec::iterator FollowIter;
+
 public:
 	Object();
 	virtual ~Object();
@@ -34,15 +37,20 @@ public:
 	bool IsTime2Collect(int64_t nNowMS);
 	int64_t GetLastUpdateTime() { return m_nLastUpdateTime; }
 
+
 public:
 	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int8_t nLine=0);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
-	virtual int GetSession() { return 0; }
 	virtual uint16_t GetServer() { return 0; }
+	virtual int GetSession() { return 0; }
 
 public:
 	void CacheActorNavi(uint16_t nTarServer=0, int nTarSession=0);	//如果传参表示也发给自己
+	virtual void BroadcastPos(bool bSelf) {}
+	void SetFollowTarget(int nTarObjID) { m_nFollowTarget = nTarObjID; }
+	int GetFollowTarget() { return m_nFollowTarget; }
+
 
 protected:
 	int m_nObjID;
@@ -59,6 +67,7 @@ protected:
 	int64_t m_nLeaveSceneTime;
 	int64_t m_nLastUpdateTime;
 
+	int m_nFollowTarget; //跟随的目标角色ID
 
 	DISALLOW_COPY_AND_ASSIGN(Object);
 
@@ -69,11 +78,11 @@ public:
 	int GetConfID(lua_State* pState);
 	int GetObjType(lua_State* pState);
 	int GetDupMixID(lua_State* pState);
+	int GetServerID(lua_State* pState);
+	int GetSessionID(lua_State* pState);
 	int GetAOIID(lua_State* pState);
 	int GetPos(lua_State* pState);
 	int SetPos(lua_State* pState);
-	int GetServerID(lua_State* pState);
-	int GetSessionID(lua_State* pState);
 	int GetFace(lua_State* pState);
 	int GetLine(lua_State* pState);
 	int SetLine(lua_State* pState);
@@ -86,11 +95,11 @@ LUNAR_DECLARE_METHOD(Class, GetObjID),\
 LUNAR_DECLARE_METHOD(Class, GetConfID),\
 LUNAR_DECLARE_METHOD(Class, GetObjType),\
 LUNAR_DECLARE_METHOD(Class, GetDupMixID),\
+LUNAR_DECLARE_METHOD(Class, GetServerID),\
+LUNAR_DECLARE_METHOD(Class, GetSessionID),\
 LUNAR_DECLARE_METHOD(Class, GetAOIID),\
 LUNAR_DECLARE_METHOD(Class, GetPos),\
 LUNAR_DECLARE_METHOD(Class, SetPos),\
-LUNAR_DECLARE_METHOD(Class, GetServerID),\
-LUNAR_DECLARE_METHOD(Class, GetSessionID),\
 LUNAR_DECLARE_METHOD(Class, GetFace),\
 LUNAR_DECLARE_METHOD(Class, GetLine),\
 LUNAR_DECLARE_METHOD(Class, SetLine)
