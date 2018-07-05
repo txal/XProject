@@ -1,6 +1,8 @@
 ﻿#ifndef __POINT_H__
 #define __POINT_H__
 
+#include "Common\DataStruct\XMath.h"
+
 class Point
 {
 public:	
@@ -16,6 +18,10 @@ public:
 	{
 		x = -1;
 		y = -1;
+	}
+	bool IsValid()
+	{
+		return (x >= 0 && y >= 0);
 	}
 	bool operator==(const Point& oPos)
 	{

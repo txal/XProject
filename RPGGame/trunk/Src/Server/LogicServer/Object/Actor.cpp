@@ -71,6 +71,7 @@ void Actor::StartRun(int nSpeedX, int nSpeedY, int8_t nFace)
 
 void Actor::StopRun(bool bBroadcast, bool bClientStop)
 {
+	m_oTargetPos.Reset();
 	if (m_nRunStartMSTime > 0)
 	{
 		m_nRunStartMSTime = 0;
@@ -99,10 +100,47 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 		{
 			StopRun();
 		}
+		if (m_oTargetPos.IsValid() && m_oTargetPos.CheckDistance(m_oPos, Point(16,16)))
+		{
+			StopRun();
+			LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjReachPos", 0, "ii", m_nObjID, m_nObjType);
+		}
 		UpdateFollow(nNowMS);
 		//XLog(LEVEL_DEBUG, "Pos(%d,%d) canmove:%d\n", nNewPosX, nNewPosY, bCanMove);
 	}
 	return bCanMove;
+}
+
+void Actor::UpdateFollow(int64_t nNowMS)
+{
+	if (m_poScene == NULL)
+		return;
+
+	LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
+	SceneMgr* poSceneMgr = poLogic->GetSceneMgr();
+
+	RoleMgr* poRoleMgr = poLogic->GetRoleMgr();
+	MonsterMgr* poMonsterMgr = poLogic->GetMonsterMgr();
+
+	Follow::FollowVec* poFollowVec = (poSceneMgr->GetFollow()).GetFollowList(m_nObjType, m_nObjID);
+	if (poFollowVec == NULL || poFollowVec->size() <= 0)
+		return;
+
+	const Point& oTarPos = GetPos();
+	for (int i = 0; i < poFollowVec->size(); i++)
+	{
+		FOLLOW oFollow((*poFollowVec)[i]);
+
+		Object* poFollowObj = NULL;
+		if (oFollow.nObjType == eOT_Role)
+			poFollowObj = poRoleMgr->GetRoleByID(oFollow.nObjID);
+		else
+			poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
+
+		if (poFollowObj == NULL || poFollowObj->GetScene() != m_poScene) continue;
+		if (oTarPos.Distance(poFollowObj->GetPos()) >= (gnUnitWidth*gnTowerWidth)*0.5)
+			poFollowObj->SetPos(oTarPos);
+	}
 }
 
 bool Actor::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
@@ -126,6 +164,38 @@ bool Actor::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
 	nNewPosX = nNewX;
 	nNewPosY = nNewY;
 	return bRes;
+}
+
+void Actor::RunTo(const Point& oTarPos, int nMoveSpeed)
+{
+	if (m_poScene == NULL)
+	{
+		return;
+	}
+	if (m_oPos == oTarPos)
+	{
+		return;
+	}
+	if (nMoveSpeed <= 0)
+	{
+		return;
+	}
+
+	float fMoveTime = BattleUtil::CalcMoveTime1(nMoveSpeed, m_oPos, oTarPos);
+	int nSpeedX = (int)((oTarPos.x - m_oPos.x) / fMoveTime);
+	int nSpeedY = (int)((oTarPos.y - m_oPos.y) / fMoveTime);
+	if (nSpeedX == 0 && nSpeedY == 0)
+	{
+		StopRun();
+	}
+
+	int nOldSpeedX = GetSpeedX();
+	int nOldSpeedY = GetSpeedY();
+	if (!IsRunning() || nSpeedX != nOldSpeedX || nSpeedY != nOldSpeedY)
+	{
+		m_oTargetPos = oTarPos;
+		StartRun(nSpeedX, nSpeedY, m_nFace);
+	}
 }
 
 void Actor::SyncPosition(const char* pWhere)
@@ -225,5 +295,14 @@ int Actor::BindSession(lua_State* pState)
 int Actor::StopRun(lua_State* pState)
 {
 	StopRun();
+	return 0;
+}
+
+int Actor::RunTo(lua_State* pState)
+{
+	int nPosX = (int)luaL_checkinteger(pState, 1);
+	int nPosY = (int)luaL_checkinteger(pState, 2);
+	int nSpeed = (int)luaL_checkinteger(pState, 3);
+	RunTo(Point(nPosX, nPosY), nSpeed);
 	return 0;
 }

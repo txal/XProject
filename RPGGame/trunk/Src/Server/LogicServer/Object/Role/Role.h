@@ -17,7 +17,6 @@ public:
 
 public:
 	virtual void Update(int64_t nNowMS);
-	virtual void UpdateFollow(int64_t nNowMS);	//处理跟随
 	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();

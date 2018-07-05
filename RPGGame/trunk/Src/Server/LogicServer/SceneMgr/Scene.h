@@ -87,7 +87,7 @@ public:
 	int SetAutoCollected(lua_State* pState);
 
 	int GetObj(lua_State* pState);
-	int MoveObj(lua_State* pState);
+	//int MoveObj(lua_State* pState);
 	int GetObjList(lua_State* pState);
 
 	int AddObserver(lua_State* pState);

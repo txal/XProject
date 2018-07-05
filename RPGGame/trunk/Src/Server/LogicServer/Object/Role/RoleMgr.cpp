@@ -5,7 +5,6 @@ LUNAR_IMPLEMENT_CLASS(RoleMgr)
 	LUNAR_DECLARE_METHOD(RoleMgr, CreateRole),
 	LUNAR_DECLARE_METHOD(RoleMgr, RemoveRole),
 	LUNAR_DECLARE_METHOD(RoleMgr, GetRole),
-	LUNAR_DECLARE_METHOD(RoleMgr, SetFollow),
 	{0, 0}
 };
 
@@ -180,65 +179,3 @@ int RoleMgr::GetRole(lua_State* pState)
 	return 0;
 }
 
-int RoleMgr::SetFollow(lua_State* pState)
-{
-	int nTarObjID = (int)luaL_checkinteger(pState, 1);
-	if (!lua_istable(pState, 2))
-		return LuaWrapper::luaM_error(pState, "跟随参数2必须是表");
-
-	RoleMgr* poRoleMgr = this;
-	Object* poTarObj = poRoleMgr->GetRoleByID(nTarObjID);
-	if (poTarObj == NULL)
-		XLog(LEVEL_INFO, "跟随目标角色不存在 %d\n", nTarObjID);
-
-	std::unordered_map<int, int> oClearFollowMap;
-
-	//清理旧的跟随者
-	for (int i = 0; i < m_oFollowVec.size(); i++)
-	{
-		int nObjID = m_oFollowVec[i];
-		Object* poFollowObj = poRoleMgr->GetRoleByID(nObjID);
-		if (poFollowObj == NULL) continue;
-		poFollowObj->SetFollowTarget(0);
-		oClearFollowMap[nObjID] = 1;
-	}
-
-	m_oFollowVec.clear();
-	if (poTarObj != NULL)
-		poTarObj->SetFollowTarget(0);
-
-	//设置新的跟随者
-	int nTableLen = (int)lua_rawlen(pState, 2);
-	if (nTableLen > 0)
-	{
-		for (int i = 0; i < nTableLen; i++)
-		{
-			lua_rawgeti(pState, 2, i+1);
-			int nObjID = (int)lua_tointeger(pState, -1);
-			if (nObjID != nTarObjID)
-			{
-				Object* poFollowObj = poRoleMgr->GetRoleByID(nObjID);
-				if (poFollowObj == NULL) continue;
-
-				m_oFollowVec.push_back(nObjID);
-				poFollowObj->SetFollowTarget(nTarObjID);
-				oClearFollowMap.erase(nObjID);
-			}
-			else
-			{
-				XLog(LEVEL_ERROR, "自己不能跟随自己 %d\n", nTarObjID);
-			}
-		}
-	}
-
-	//脱离跟随的角色同步坐标
-	while (oClearFollowMap.size() > 0)
-	{
-		std::unordered_map<int, int>::iterator iter = oClearFollowMap.begin();
-		Object* poFollowObj = poRoleMgr->GetRoleByID(iter->second);
-		oClearFollowMap.erase(iter);
-		if (poFollowObj == NULL) continue;
-		poFollowObj->BroadcastPos(true);
-	}
-	return 0;
-}

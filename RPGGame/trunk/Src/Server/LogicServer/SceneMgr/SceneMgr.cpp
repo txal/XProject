@@ -3,6 +3,9 @@
 #include "Common/DataStruct/ObjID.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
+#include "Server/LogicServer/Object/Role/RoleMgr.h"
+#include "Server/LogicServer/Object/Monster/MonsterMgr.h"
+#include "Server/LogicServer/LogicServer.h"
 
 
 LUNAR_IMPLEMENT_CLASS(SceneMgr)
@@ -10,6 +13,7 @@ LUNAR_IMPLEMENT_CLASS(SceneMgr)
 	LUNAR_DECLARE_METHOD(SceneMgr, CreateDup),
 	LUNAR_DECLARE_METHOD(SceneMgr, RemoveDup),
 	LUNAR_DECLARE_METHOD(SceneMgr, GetDup),
+	LUNAR_DECLARE_METHOD(SceneMgr, SetFollow),
 	{0, 0}
 };
 
@@ -157,4 +161,109 @@ int SceneMgr::GetDup(lua_State* pState)
 		lua_pushnil(pState);
 	}
 	return 1;
+}
+
+int SceneMgr::SetFollow(lua_State* pState)
+{
+	int64_t nObjMixID = luaL_checkinteger(pState, 1);
+	if (!lua_istable(pState, 2))
+		return LuaWrapper::luaM_error(pState, "param2 must be table");
+
+	//目前只支持怪物和人物
+	FOLLOW oFollowTarget(nObjMixID);
+	if (!(oFollowTarget.nObjType == eOT_Role || oFollowTarget.nObjType == eOT_Monster))
+	{
+		return LuaWrapper::luaM_error(pState, "object type error");
+	}
+
+	LogicServer* poLogicServer = (LogicServer*)g_poContext->GetService();
+	RoleMgr* poRoleMgr = poLogicServer->GetRoleMgr();
+	MonsterMgr* poMonsterMgr = poLogicServer->GetMonsterMgr();
+
+	Object* poTarObj = NULL;
+	if (oFollowTarget.nObjType == eOT_Role)
+		poTarObj = poRoleMgr->GetRoleByID(oFollowTarget.nObjID);
+	else
+		poTarObj = poMonsterMgr->GetMonsterByID(oFollowTarget.nObjID);
+
+	if (poTarObj != NULL)
+		poTarObj->SetFollowTarget(0);
+	else
+		XLog(LEVEL_INFO, "follow target object not exist type:%d id:%d\n", oFollowTarget.nObjType, oFollowTarget.nObjID);
+
+	//清理旧的跟随者
+	std::unordered_map<int64_t, bool> oClearFollowMap;
+	Follow::FollowVec* poFollowVec = m_oFollow.GetFollowList(oFollowTarget.nObjType, oFollowTarget.nObjID);
+	if (poFollowVec != NULL)
+	{
+		for (int i = 0; i < poFollowVec->size(); i++)
+		{
+			FOLLOW& oFollow = (*poFollowVec)[i];
+
+			Object* poFollowObj = NULL;
+			if (oFollow.nObjType == eOT_Role)
+				poFollowObj = poRoleMgr->GetRoleByID(oFollow.nObjID);
+			else
+				poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
+			if (poFollowObj == NULL) continue;
+
+			poFollowObj->SetFollowTarget(0);
+			oClearFollowMap[oFollow.ToInt64()] = 1;
+		}
+		poFollowVec->clear();
+	}
+
+	//设置新的跟随者
+	int nTableLen = (int)lua_rawlen(pState, 2);
+	if (nTableLen > 0)
+	{
+		if (poFollowVec == NULL)
+			poFollowVec = m_oFollow.CreateFollowList(oFollowTarget.nObjType, oFollowTarget.nObjID);
+
+		for (int i = 0; i < nTableLen; i++)
+		{
+			lua_rawgeti(pState, 2, i + 1);
+			int64_t nTmpObjID = lua_tointeger(pState, -1);
+			if (nTmpObjID == nObjMixID)
+			{
+				XLog(LEVEL_ERROR, "can not follow oneself type:%d id:%d\n", oFollowTarget.nObjType, oFollowTarget.nObjID);
+				continue;
+			}
+
+			FOLLOW oFollow(nTmpObjID);
+			Object* poFollowObj = NULL;
+			if (oFollow.nObjType == eOT_Role)
+				poFollowObj = poRoleMgr->GetRoleByID(oFollow.nObjID);
+			else
+				poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
+			if (poFollowObj == NULL) continue;
+
+			poFollowVec->push_back(oFollow);
+			poFollowObj->SetFollowTarget(oFollow.ToInt64());
+			oClearFollowMap.erase(oFollow.ToInt64());
+		}
+	} 
+	else
+	{
+		m_oFollow.RemoveateFollowList(oFollowTarget.nObjType, oFollowTarget.nObjID);
+	}
+
+	//脱离跟随的角色同步坐标
+	while (oClearFollowMap.size() > 0)
+	{
+		std::unordered_map<int64_t, bool>::iterator iter = oClearFollowMap.begin();
+
+		FOLLOW oFollow(iter->first);
+		oClearFollowMap.erase(iter);
+
+		Object* poFollowObj = NULL;
+		if (oFollow.nObjType == eOT_Role)
+			poFollowObj = poRoleMgr->GetRoleByID(oFollow.nObjID);
+		else
+			poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
+
+		if (poFollowObj == NULL) continue;
+		poFollowObj->BroadcastPos(true);
+	}
+	return 0;
 }

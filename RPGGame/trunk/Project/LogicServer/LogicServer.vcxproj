@@ -184,6 +184,7 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Detector\DetectorMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\DropItem\DropItem.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\DropItem\DropItemMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\Object\Follow.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Monster\Monster.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Monster\MonsterMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Object.cpp" />
@@ -241,6 +242,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Detector\DetectorMgr.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\DropItem\DropItem.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\DropItem\DropItemMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Object\Follow.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Monster\Monster.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Monster\MonsterMgr.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Object.h" />

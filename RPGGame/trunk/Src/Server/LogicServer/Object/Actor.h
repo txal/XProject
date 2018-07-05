@@ -33,10 +33,11 @@ public:
 	void StartRun(int nSpeedX, int nSpeedY, int8_t nFace);					//开始跑动
 	void StopRun(bool bBroadcast=true, bool bClientStop=false);				//停止跑动
 	bool CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY);	//计算角色位置
+	void RunTo(const Point& oTarPos, int nMoveSpeed);						//跑到目标位置
 
 protected:
-	bool UpdateRunState(int64_t nNowMS);			//处理跑步
-	virtual void UpdateFollow(int64_t nNowMS) {};	//处理跟随
+	bool UpdateRunState(int64_t nNowMS);	//处理跑步
+	void UpdateFollow(int64_t nNowMS);		//处理跟随
 
 //网络函数
 public:
@@ -57,6 +58,8 @@ protected:
 	int64_t m_nRunStartMSTime;			//服务器开跑时间(毫秒)
 	int64_t m_nClientRunStartMSTime;	//客户端开跑时间(毫秒)
 
+	Point m_oTargetPos;					//目标点
+
 	DISALLOW_COPY_AND_ASSIGN(Actor);
 
 
@@ -65,13 +68,15 @@ public:
 	int GetRunSpeed(lua_State* pState);
 	int BindSession(lua_State* pState);
 	int StopRun(lua_State* pState);
+	int RunTo(lua_State* pState);
 	
 };
 
 #define DECLEAR_ACTOR_METHOD(Class) \
 	LUNAR_DECLARE_METHOD(Class, GetRunSpeed),\
 	LUNAR_DECLARE_METHOD(Class, BindSession),\
-	LUNAR_DECLARE_METHOD(Class, StopRun)
+	LUNAR_DECLARE_METHOD(Class, StopRun),\
+	LUNAR_DECLARE_METHOD(Class, RunTo)
 
 
 

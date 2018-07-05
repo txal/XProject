@@ -13,8 +13,6 @@ int main()
 	//oHttp.Init(8);
 	//for (int i = 0; i < 100; i++) {
 	//	oHttp.Post(psCurl);
-	//}
-	cout<<sizeof(0.1)<<endl;
 	getchar();
 	return 0;
 }

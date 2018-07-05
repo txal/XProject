@@ -48,8 +48,8 @@ public:
 public:
 	void CacheActorNavi(uint16_t nTarServer=0, int nTarSession=0);	//如果传参表示也发给自己
 	virtual void BroadcastPos(bool bSelf) {}
-	void SetFollowTarget(int nTarObjID) { m_nFollowTarget = nTarObjID; }
-	int GetFollowTarget() { return m_nFollowTarget; }
+	void SetFollowTarget(int64_t nTarObjID) { m_nFollowTarget = nTarObjID; }
+	int64_t GetFollowTarget() { return m_nFollowTarget; }
 
 
 protected:
@@ -67,7 +67,7 @@ protected:
 	int64_t m_nLeaveSceneTime;
 	int64_t m_nLastUpdateTime;
 
-	int m_nFollowTarget; //跟随的目标角色ID
+	int64_t m_nFollowTarget; //跟随的目标类型>>32|ID
 
 	DISALLOW_COPY_AND_ASSIGN(Object);
 

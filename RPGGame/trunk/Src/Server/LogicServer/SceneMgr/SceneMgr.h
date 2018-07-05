@@ -1,7 +1,8 @@
 ﻿#ifndef __SCENEMANAGER_H__
 #define __SCENEMANAGER_H__
 
-#include "Scene.h"
+#include "Server/LogicServer/SceneMgr/Scene.h"
+#include "Server/LogicServer/Object/Follow.h"
 
 class SceneMgr
 {
@@ -19,6 +20,7 @@ public:
 
 public:
 	void Update(int64_t nNowMS);
+	Follow& GetFollow() { return m_oFollow; }
 
 private:
 	uint32_t GenSceneMixID(uint16_t uConfID);
@@ -31,11 +33,17 @@ public:
 	int CreateDup(lua_State* pState);
 	int RemoveDup(lua_State* pState);
 	int GetDup(lua_State* pState);
+	int SetFollow(lua_State* pState);
 
 private:
 
-	// [mixid, scene*]
+	//[mixid, scene*]
 	SceneMap m_oSceneMap;
+
+	//跟随管理
+	Follow m_oFollow;
+
+
 	DISALLOW_COPY_AND_ASSIGN(SceneMgr);
 };
 

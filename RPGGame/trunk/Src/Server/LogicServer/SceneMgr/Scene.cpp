@@ -21,7 +21,7 @@ LUNAR_IMPLEMENT_CLASS(Scene)
 	LUNAR_DECLARE_METHOD(Scene, LeaveDup),
 	LUNAR_DECLARE_METHOD(Scene, SetAutoCollected),
 	LUNAR_DECLARE_METHOD(Scene, GetObj),
-	LUNAR_DECLARE_METHOD(Scene, MoveObj),
+	//LUNAR_DECLARE_METHOD(Scene, MoveObj),
 	LUNAR_DECLARE_METHOD(Scene, GetObjList),
 	LUNAR_DECLARE_METHOD(Scene, AddObserver),
 	LUNAR_DECLARE_METHOD(Scene, AddObserved),
@@ -361,14 +361,14 @@ int Scene::SetAutoCollected(lua_State* pState)
 	return 0;
 }
 
-int Scene::MoveObj(lua_State* pState)
-{
-	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	int nPosX = (int)luaL_checkinteger(pState, 2);
-	int nPosY = (int)luaL_checkinteger(pState, 3);
-	MoveObj(nAOIID, nPosX, nPosY);
-	return 0;
-}
+//int Scene::MoveObj(lua_State* pState)
+//{
+//	int nAOIID = (int)luaL_checkinteger(pState, 1);
+//	int nPosX = (int)luaL_checkinteger(pState, 2);
+//	int nPosY = (int)luaL_checkinteger(pState, 3);
+//	MoveObj(nAOIID, nPosX, nPosY);
+//	return 0;
+//}
 
 int Scene::RemoveObserver(lua_State* pState)
 {

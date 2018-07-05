@@ -35,28 +35,6 @@ void Role::Update(int64_t nNowMS)
 	Actor::Update(nNowMS);
 }
 
-void Role::UpdateFollow(int64_t nNowMS)
-{
-	if (m_poScene == NULL)
-		return;
-
-	LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
-	RoleMgr* poRoleMgr = poLogic->GetRoleMgr();
-
-	RoleMgr::FollowVec& oFollowVec = poRoleMgr->GetFollowVec();
-	if (oFollowVec.size() <= 0)
-		return;
-
-	const Point& oTarPos = GetPos();
-	for (int i = 0; i < oFollowVec.size(); i++)
-	{
-		Object* poFollowObj = poLogic->GetRoleMgr()->GetRoleByID(oFollowVec[i]);
-		if (poFollowObj == NULL || poFollowObj->GetScene() != m_poScene) continue;
-		if (oTarPos.Distance(poFollowObj->GetPos()) >= (gnUnitWidth*gnTowerWidth)*0.5)
-			poFollowObj->SetPos(oTarPos);
-	}
-}
-
 void Role::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
 {
 	Actor::OnEnterScene(poScene, nAOIID, oPos);
@@ -86,7 +64,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 		return;
 	}
 
-	int nRoleID = 0;
+	int nAOIID = 0;
 	uint16_t uPosX = 0;
 	uint16_t uPosY = 0;
 
@@ -99,9 +77,9 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	uint8_t uFace = 0;
 
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nRoleID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uFace;
+	goPKReader >> nAOIID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uFace;
 	nClientMSTime = (int64_t)dClientMSTime;
-	//XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, nClientMSTime-m_nClientRunStartMSTime);
+	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, nClientMSTime-m_nClientRunStartMSTime);
 
 	//客户端提供的时间值必须大于起始时间值
 	if (nClientMSTime < m_nClientRunStartMSTime)
@@ -155,17 +133,17 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 		return;
 	}
 
-	int nRoleID = 0;
+	int nAOIID = 0;
 	uint16_t uPosX = 0;
 	uint16_t uPosY = 0;
 	int64_t nClientMSTime = 0;
 	double dClientMSTime = 0;
 
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nRoleID >> uPosX >> uPosY >> dClientMSTime;
+	goPKReader >> nAOIID >> uPosX >> uPosY >> dClientMSTime;
 	nClientMSTime = (int64_t)dClientMSTime;
 
-	//XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
+	XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 	if (m_nRunStartMSTime == 0)
 	{
 		//XLog(LEVEL_INFO, "%s server already stop\n", m_sName);

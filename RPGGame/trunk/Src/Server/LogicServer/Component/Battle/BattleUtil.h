@@ -10,12 +10,19 @@ static int gtDir[8][2] = { { 0, 1 }, { 0, -1 }, { -1, 0 }, { 1, 0 }, { -1, 1 }, 
 
 namespace BattleUtil
 {
-	//计算角度(x1,y1原点)
-	inline float CalcDegree(int nX1, int nY1, int nX2, int nY2)
+	//计算弧度(x1,y1原点)
+	inline float CalcRadian(int nX1, int nY1, int nX2, int nY2)
 	{
 		int nWidth = nX2 - nX1;
 		int nHeight = nY2 - nY1;
 		double dRadian = atan2(nHeight, nWidth);
+		return (float)dRadian;
+	}
+
+	//计算角度(x1,y1原点)
+	inline float CalcDegree(int nX1, int nY1, int nX2, int nY2)
+	{
+		double dRadian = BattleUtil::CalcRadian(nX1, nY1, nX2, nY2);
 		double dDegree = dRadian * (180.0 / PI);
 		dDegree = dDegree < 0 ? (360 + dDegree) : dDegree;
 		return (float)dDegree;
@@ -256,6 +263,37 @@ namespace BattleUtil
 		}
 	}
 
+	//计算移动速度(勾股定理)
+	inline void CalcMoveSpeed1(int nMoveSpeed, const Point& oSrcPos, const Point& oTarPos, int& nSpeedX, int& nSpeedY)
+	{
+		assert(nMoveSpeed >= 0);
+		int nDistX = oTarPos.x - oSrcPos.x;
+		int nDistY = oTarPos.y - oSrcPos.y;
+		if (nDistX == 0 && nDistY == 0)
+		{
+			nSpeedX = 0;
+			nSpeedY = 0;
+			return;
+		}
+		if (nDistY == 0)
+		{
+			nSpeedX = (int)(nMoveSpeed*0.7f);
+			nSpeedY = 0;
+			return;
+		}
+		if (nDistX == 0)
+		{
+			nSpeedX = 0;
+			nSpeedY = nMoveSpeed;
+			return;
+		}
+		float fAngle = BattleUtil::CalcRadian(oSrcPos.x, oSrcPos.y, oTarPos.x, oTarPos.y);
+		float fCos = cos(fAngle);
+		float fSin = sin(fAngle);
+		nSpeedX = (int)(fCos * nMoveSpeed);
+		nSpeedY = (int)(fSin * nMoveSpeed);
+	}
+
 	//计算移动时间(秒)
 	inline float CalcMoveTime(int nMoveSpeed, const Point& oSrcPos, const Point& oTarPos)
 	{
@@ -277,6 +315,28 @@ namespace BattleUtil
 		{
 			nSpeedY = nMinMoveSpeed;
 		}
+
+		float fTimeX = (nSpeedX != 0) ? fabs((oTarPos.x - oSrcPos.x) / (float)nSpeedX) : 0.0f;
+		float fTimeY = (nSpeedY != 0) ? fabs((oTarPos.y - oSrcPos.y) / (float)nSpeedY) : 0.0f;
+		float fMaxTime = (fTimeX > fTimeY) ? fTimeX : fTimeY;
+		fMaxTime = XMath::Max(0.1f, fMaxTime);
+		return fMaxTime;
+	}
+
+
+	//计算移动时间1(秒,勾股定理)
+	inline float CalcMoveTime1(int nMoveSpeed, const Point& oSrcPos, const Point& oTarPos)
+	{
+		if (nMoveSpeed <= 0)
+		{
+			return 0.1f;
+		}
+
+		int nSpeedX = 0;
+		int nSpeedY = 0;
+		CalcMoveSpeed1(nMoveSpeed, oSrcPos, oTarPos, nSpeedX, nSpeedY);
+		nSpeedX = nSpeedX == 0 ? 1 : nSpeedX;
+		nSpeedY = nSpeedY == 0 ? 1 : nSpeedY;
 
 		float fTimeX = (nSpeedX != 0) ? fabs((oTarPos.x - oSrcPos.x) / (float)nSpeedX) : 0.0f;
 		float fTimeY = (nSpeedY != 0) ? fabs((oTarPos.y - oSrcPos.y) / (float)nSpeedY) : 0.0f;
