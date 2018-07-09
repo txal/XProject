@@ -1,7 +1,7 @@
 ﻿#ifndef __POINT_H__
 #define __POINT_H__
 
-#include "Common\DataStruct\XMath.h"
+#include "Common/DataStruct/XMath.h"
 
 class Point
 {
