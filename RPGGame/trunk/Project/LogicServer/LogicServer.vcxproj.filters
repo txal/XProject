@@ -383,5 +383,11 @@
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Follow.h">
       <Filter>Src\Object</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Point.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\XMath.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
