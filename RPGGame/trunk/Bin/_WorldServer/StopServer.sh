@@ -35,6 +35,7 @@ function closewait()
 }
 
 closewait "WGlobalServer" "close"
+closewait "WGlobalServer2" "close"
 ping 127.0.0.1 -c 4
 closewait "LogicServer" "close"
 

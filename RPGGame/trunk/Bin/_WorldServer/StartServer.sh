@@ -13,9 +13,11 @@ rm debug.txt -f
 
 echo 重启世界SSDB
 ${path}/SSDBServer -d ./DB/global/ssdb.conf -s restart
+${path}/SSDBServer -d ./DB/global2/ssdb.conf -s restart
 
 
 echo 启动世界服务器
-${path}/WGlobalServer 110 &
+${path}/WGlobalServer 110 WGlobalServer &
+${path}/WGlobalServer 111 WGlobalServer2 &
 ping 127.0.0.1 -c 1
 ${path}/LogicServer 100 &

@@ -24,20 +24,18 @@ Client::~Client()
 void Client::Update(int64_t nNowMS)
 {
 	int nTimeNow = time(0);
-
-	//每分钟通知一次
-	if (nTimeNow - m_nLastNotifyTime < 60)
-		return;
-	m_nLastNotifyTime = nTimeNow;
-
-	//发呆>=10分钟才发送
-	if (nTimeNow - m_nPacketTime >= 600)
+	//发呆>=30秒才发送
+	if (nTimeNow - m_nPacketTime >= 30)
 	{
+		//每30秒通知一次
+		if (nTimeNow - m_nLastNotifyTime < 30)
+			return;
+		m_nLastNotifyTime = nTimeNow;
+
 		Packet* poPacket = Packet::Create(32);
 		if (poPacket == NULL)
-		{
 			return;
-		}
+
 		PacketWriter oWriter(poPacket);
 		oWriter << m_nRoleID << m_nPacketTime;
 		uint16_t uSrcServer = g_poContext->GetServerID();

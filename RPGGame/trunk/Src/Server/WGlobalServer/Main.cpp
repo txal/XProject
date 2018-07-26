@@ -6,6 +6,7 @@
 #include "Server/LogServer/LuaSupport/LuaExport.h"
 
 ServerContext* g_poContext;
+std::string goScriptRoot;
 
 bool InitNetwork(int8_t nServiceID)
 {
@@ -46,7 +47,7 @@ void StartScriptEngine()
 
 	OpenLuaExport();
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	bool bRes = poLuaWrapper->DoFile("WGlobalServer/Main");
+	bool bRes = poLuaWrapper->DoFile(goScriptRoot.c_str());
 	assert(bRes);
 	bRes = poLuaWrapper->CallLuaFunc(NULL, "Main");
 	assert(bRes);
@@ -68,7 +69,7 @@ void StartScriptEngine()
 
 int main(int nArg, char *pArgv[])
 {
-	assert(nArg >= 2);
+	assert(nArg >= 3);
 
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
@@ -77,6 +78,9 @@ int main(int nArg, char *pArgv[])
 	NetAPI::StartupNetwork();
 
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
+	goScriptRoot = pArgv[2];
+	goScriptRoot = goScriptRoot + "/Main";
+
 	g_poContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
