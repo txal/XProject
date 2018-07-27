@@ -9,10 +9,10 @@ int main()
 	const char* psCurl = "https://sandbox.itunes.apple.com/verifyReceipt";
 	//const char* psCurl = "http://sgadmin.df.baoyugame.com/yinghun/test.php";
 
-	HttpRequest oHttp;
-	oHttp.Init(8);
+	//HttpRequest oHttp;
+	//oHttp.Init(8);
 	for (int i = 0; i < 100; i++) {
-		oHttp.Post(psCurl);
+		//oHttp.Post(psCurl);
 	}
 	getchar();
 	return 0;
