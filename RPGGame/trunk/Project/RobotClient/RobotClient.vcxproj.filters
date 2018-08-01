@@ -34,6 +34,9 @@
     <Filter Include="Src\Common\WordFilter">
       <UniqueIdentifier>{1997457d-9557-4810-baa0-e7427571868f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Util">
+      <UniqueIdentifier>{37df5a6e-f663-47ac-ad41-7fcc71c51097}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
@@ -81,12 +84,6 @@
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
       <Filter>Src\Common\PacketParser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\RobotClient\ConfMgr\ConfMgr.cpp">
-      <Filter>Src\ConfMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\RobotClient\ConfMgr\MapConf.cpp">
-      <Filter>Src\ConfMgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Common\CSVDocument\CSVDocument.cpp">
       <Filter>Src\Common\CSVDocument</Filter>
     </ClCompile>
@@ -101,6 +98,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp">
       <Filter>Src\Common\WordFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.cpp">
+      <Filter>Src\ConfMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.cpp">
+      <Filter>Src\ConfMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,12 +149,6 @@
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
       <Filter>Src\Common\PacketParser</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\RobotClient\ConfMgr\ConfMgr.h">
-      <Filter>Src\ConfMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\RobotClient\ConfMgr\MapConf.h">
-      <Filter>Src\ConfMgr</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Common\CSVDocument\CSVDocument.h">
       <Filter>Src\Common\CSVDocument</Filter>
     </ClInclude>
@@ -172,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h">
       <Filter>Src\Common\WordFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.h">
+      <Filter>Src\ConfMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.h">
+      <Filter>Src\ConfMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\BattleUtil.h">
+      <Filter>Src\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

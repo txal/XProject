@@ -59,6 +59,7 @@ protected:
 	int64_t m_nClientRunStartMSTime;	//客户端开跑时间(毫秒)
 
 	Point m_oTargetPos;					//目标点
+	bool m_bRunCallback;				//移动到目标点回调
 
 	DISALLOW_COPY_AND_ASSIGN(Actor);
 

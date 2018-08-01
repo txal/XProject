@@ -8,6 +8,7 @@
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
+#include "Server/LogicServer/Component/Battle/BattleUtil.h"
 
 char Robot::className[] = "Robot";
 Lunar<Robot>::RegType Robot::methods[] =
@@ -19,6 +20,7 @@ Lunar<Robot>::RegType Robot::methods[] =
 	LUNAR_DECLARE_METHOD(Robot, StopRun),
 	LUNAR_DECLARE_METHOD(Robot, SetMapID),
 	LUNAR_DECLARE_METHOD(Robot, PacketID),
+	LUNAR_DECLARE_METHOD(Robot, CalcMoveSpeed),
 	{0, 0}
 };
 
@@ -43,6 +45,8 @@ Robot::Robot(RobotMgr* poRobotMgr)
 	m_nStartRunX = 0;
 	m_nStartRunY = 0;
 	m_nRunStartTime = 0;
+
+	m_nAOIID = 0;
 }
 
 Robot::~Robot()
@@ -56,31 +60,55 @@ void Robot::Update(int64_t nNowMS)
 	ProcessRun(nNowMS);
 }
 
+void Robot::SetPos(int nPosX, int nPosY)
+{
+	m_oPos.x = nPosX;
+	m_oPos.y = nPosY;
+}
+
 void Robot::ProcessRun(int64_t nNowMS)
 {
+	bool bCanMove = false;
 	if (m_nRunStartTime > 0)
 	{
-		int nTimeElapased = (int)(nNowMS - m_nRunStartTime);
-		int nNewX = m_nStartRunX;
-		int nNewY = m_nStartRunY;
-		//匀速移动过程
-		nNewX += (int)(m_nSpeedX * nTimeElapased * 0.001f);
-		nNewY += (int)(m_nSpeedY * nTimeElapased * 0.001f);
-
-		int nTmpX = nNewX, nTmpY = nNewY;
-		bool bResult = FixMovePoint(m_poMapConf, m_oPos.x, m_oPos.y, nNewX, nNewY);
-		//if (bResult && nNewX == m_oPos.x && nNewY == m_oPos.y) nTimeElapased 很短时可能会相等
-		//{
-		//	bResult = false;
-		//}
-		m_oPos.x = nNewX;
-		m_oPos.y = nNewY;
-		//XLog(LEVEL_INFO, "update start:(%d,%d), tmp:(%d,%d) pos:(%d,%d) res:%d elap:%d\n", m_nStartRunX, m_nStartRunY, nTmpX, nTmpY, nNewX, nNewY, bRes, nTimeElapased);
-		if (!bResult || (m_nSpeedX == 0 && m_nSpeedY == 0))
+		int nNewPosX = 0;
+		int nNewPosY = 0;
+		bCanMove = CalcPositionAtTime(nNowMS, nNewPosX, nNewPosY);
+		SetPos(nNewPosX, nNewPosY);
+		if (!bCanMove || (m_nSpeedX == 0 && m_nSpeedY == 0))
 		{
 			StopRun();
 		}
+		if (m_oTarPos.IsValid() && m_oTarPos.CheckDistance(m_oPos, Point(16, 16)))
+		{
+			XLog(LEVEL_DEBUG, "%s reach target pos(%d,%d)\n", m_sName, m_oTarPos.x, m_oTarPos.y);
+			StopRun();
+		}
+		//XLog(LEVEL_DEBUG, "Pos(%d,%d) canmove:%d\n", nNewPosX, nNewPosY, bCanMove);
 	}
+}
+
+bool Robot::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
+{
+	int nNewX = m_nStartRunX;
+	int nNewY = m_nStartRunY;
+	int nTimeElapased = (int)(nNowMS - m_nRunStartTime);
+
+	if (nTimeElapased > 0)
+	{
+		//常规移动计算
+		nNewX += (int)((m_nSpeedX * nTimeElapased) * 0.001);
+		nNewY += (int)((m_nSpeedY * nTimeElapased) * 0.001);
+	}
+
+	bool bRes = true;
+	if (nNewX != m_oPos.x || nNewY != m_oPos.y)
+	{
+		bRes = BattleUtil::FixLineMovePoint(m_poMapConf, m_oPos.x, m_oPos.y, nNewX, nNewY, NULL);
+	}
+	nNewPosX = nNewX;
+	nNewPosY = nNewY;
+	return bRes;
 }
 
 void Robot::OnConnect(int nSessionID)
@@ -94,7 +122,7 @@ void Robot::OnDisconnect()
 	LuaWrapper::Instance()->FastCallLuaRef<void>("OnRobotDisconnected", 0, "i", m_nSessionID);
 }
 
-void Robot::StartRun(int nSpeedX, int nSpeedY)
+void Robot::StartRun(int nSpeedX, int nSpeedY, int nDir)
 {
 	if (m_nRunStartTime == 0 || m_nSpeedX != nSpeedX || m_nSpeedY != nSpeedY)
 	{
@@ -105,13 +133,13 @@ void Robot::StartRun(int nSpeedX, int nSpeedY)
 		m_nStartRunY = m_oPos.y;
 
 		m_poPacketCache->Reset();
-		uint32_t uClientTick = (uint32_t)(((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0);
-		oPKWriter << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nSpeedX << (int16_t)m_nSpeedY << uClientTick;
+		double dClientTick = ((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0;
+		oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nSpeedX << (int16_t)m_nSpeedY << dClientTick << (uint8_t)nDir << (uint16_t)m_oTarPos.x << (uint16_t)m_oTarPos.y;
+
 		Packet* poPacket = m_poPacketCache->DeepCopy();
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.nTarSession = m_nSessionID;
 		NetAdapter::SendExter(NSCltSrvCmd::cRoleStartRunReq, poPacket, oNavi, ++m_uPacketID);
-		//XLog(LEVEL_INFO, "%s start run pos:(%d,%d) speed:(%d,%d) tick:%u\n", m_sName, m_oPos.x, m_oPos.y, m_nSpeedX, m_nSpeedY, uClientTick);
 	}
 }
 
@@ -124,11 +152,12 @@ void Robot::StopRun()
 		m_nSpeedY = 0;
 		m_nStartRunX = 0;
 		m_nStartRunY = 0;
-
+		m_oTarPos.Reset();
 
 		m_poPacketCache->Reset();
-		uint32_t uClientTick = (uint32_t)(((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0);
-		oPKWriter << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << uClientTick;
+		double dClientTick = ((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0;
+		oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << dClientTick;
+
 		Packet* poPacket = m_poPacketCache->DeepCopy();
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.nTarSession = m_nSessionID;
@@ -149,185 +178,6 @@ void Robot::OnSyncActorPosHandler(Packet* poPacket)
 	StopRun();
 	//XLog(LEVEL_INFO, "%s sync pos pos:(%u,%u)\n", m_sName, uPosX, uPosY);
 }
-
-void Robot::CalcMoveSpeed(int nMoveSpeed, int nDir8, int& nSpeedX, int& nSpeedY)
-{
-	assert(nMoveSpeed >= 0);
-	switch (nDir8)
-	{
-		case 0:
-			nSpeedX = 0;
-			nSpeedY = -nMoveSpeed;
-			break;
-		case 1:
-			nSpeedX = nMoveSpeed;
-			nSpeedY = -nMoveSpeed;
-			break;
-		case 2:
-			nSpeedX = nMoveSpeed;
-			nSpeedY = 0;
-			break;
-		case 3:
-			nSpeedX = nMoveSpeed;
-			nSpeedY = nMoveSpeed;
-			break;
-		case 4:
-			nSpeedX = 0;
-			nSpeedY = nMoveSpeed;
-			break;
-		case 5:
-			nSpeedX = -nMoveSpeed;
-			nSpeedY = nMoveSpeed;
-			break;
-		case 6:
-			nSpeedX = -nMoveSpeed;
-			nSpeedY = 0;
-			break;
-		case 7:
-			nSpeedX = -nMoveSpeed;
-			nSpeedY = -nMoveSpeed;
-			break;
-		default:
-			nSpeedX = 0;
-			nSpeedY = 0;
-			break;
-	}
-
-	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-	//以下速度调整系数是目前最优体验与数值平衡值，请勿随意更改！
-	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-	if (nSpeedX == 0)
-	{
-		nSpeedY *= 0.7f;
-	}
-	else if (nSpeedY != 0)
-	{
-		nSpeedY *= 0.4f;//0.3f;miros：2014-02-10 调整默认移动比例值，优化操作体验
-		nSpeedX *= 0.9f;//0.7f;miros：2014-02-10 调整默认移动比例值，优化操作体验
-	}
-}
-
-bool Robot::FixMovePoint(MapConf* poMapConf, int nStartPosX, int nStartPosY, int& nTarPosX, int& nTarPosY)
-{
-	if (poMapConf == NULL)
-	{
-		return false;
-	}
-	bool bResult = true;
-	int nMapWidthPixel = poMapConf->nPixelWidth;
-	int nMapHeightPixel = poMapConf->nPixelHeight;
-	if (nStartPosX < 0)
-	{
-		nStartPosX = 0;
-		bResult = false;
-	}
-	else if (nStartPosX >= nMapWidthPixel)
-	{
-		nStartPosX = nMapWidthPixel - 1;
-		bResult = false;
-	}
-	if (nStartPosY < 0)
-	{
-		nStartPosY = 0;
-		bResult = false;
-	}
-	else if (nStartPosY >= nMapHeightPixel)
-	{
-		nStartPosY = nMapHeightPixel - 1;
-		bResult = false;
-	}
-
-	bool bXOut = false;
-	bool bYOut = false;
-	if (nTarPosX < 0)
-	{
-		nTarPosX = 0;
-		bXOut = true;
-	}
-	else if (nTarPosX >= nMapWidthPixel)
-	{
-		nTarPosX = nMapWidthPixel - 1;
-		bXOut = true;
-	}
-	if (nTarPosY < 0)
-	{
-		nTarPosY = 0;
-		bYOut = true;
-	}
-	else if (nTarPosY >= nMapHeightPixel)
-	{
-		nTarPosY = nMapHeightPixel - 1;
-		bYOut = true;
-	}
-	if (bXOut && bYOut)
-	{
-		bResult = false;
-	}
-
-	double fUnitX = (double)nStartPosX / gnUnitWidth;
-	double fUnitY = (double)nStartPosY / gnUnitHeight;
-	double fUnitTarX = (double)nTarPosX / gnUnitWidth;
-	double fUnitTarY = (double)nTarPosY / gnUnitHeight;
-	if ((int)fUnitX == (int)fUnitTarX && (int)fUnitY == (int)fUnitTarY)
-	{
-		return bResult;
-	}
-	bool bInBlockUnit = poMapConf->IsBlockUnit((int)fUnitX, (int)fUnitY);
-	double fDistUnitX = fUnitTarX - fUnitX;
-	double fDistUnitY = fUnitTarY - fUnitY;
-	int nDistUnitMax = XMath::Max(1, XMath::Max((int)ceil(abs(fDistUnitX)), (int)ceil(abs(fDistUnitY))));
-	fDistUnitX = fDistUnitX / nDistUnitMax;
-	fDistUnitY = fDistUnitY / nDistUnitMax;
-
-	double fOrgUnitX = fUnitX, fOrgUnitY = fUnitY;
-	for (int i = nDistUnitMax - 1; i > -1; --i)
-	{
-		double fNewUnitX = fUnitX + fDistUnitX;
-		double fNewUnitY = fUnitY + fDistUnitY;
-
-		int8_t nMasks = 0;
-		if (fNewUnitX >= 0 && fNewUnitX < poMapConf->nUnitNumX && fNewUnitY >= 0 && fNewUnitY < poMapConf->nUnitNumY)
-		{
-			nMasks = 1;
-		}
-		if (nMasks == 0)
-		{
-			bResult = false;
-		}
-		else if (!bInBlockUnit)
-		{
-			bool bBlockUnit = poMapConf->IsBlockUnit((int)fNewUnitX, (int)fNewUnitY);
-			if (bBlockUnit)
-			{
-				bResult = false;
-			}
-		}
-		if (bResult)
-		{
-			fUnitX = fNewUnitX;
-			fUnitY = fNewUnitY;
-		}
-		else
-		{
-			if (fUnitX != fOrgUnitX || fUnitY != fOrgUnitY)
-			{
-				nTarPosX = (int)(fUnitX * gnUnitWidth);
-				nTarPosY = (int)(fUnitY * gnUnitHeight);
-			}
-			else
-			{
-				nTarPosX = nStartPosX;
-				nTarPosY = nStartPosY;
-			}
-			break;
-		}
-	}
-	return bResult;
-}
-
-
 
 //////////////lua export////////////
 int Robot::GetPos(lua_State* pState)
@@ -361,18 +211,13 @@ int Robot::SetMoveSpeed(lua_State* pState)
 
 int Robot::StartRun(lua_State* pState)
 {
-	int nSpeedX, nSpeedY;
-	if (lua_gettop(pState) == 2)
-	{
-		nSpeedX = (int)luaL_checkinteger(pState, 1);
-		nSpeedY = (int)luaL_checkinteger(pState, 2);
-	}
-	else
-	{
-		int nDir = (int)luaL_checkinteger(pState, 1);
-		CalcMoveSpeed(m_nMoveSpeed, nDir, nSpeedX, nSpeedY);
-	}
-	StartRun(nSpeedX, nSpeedY);
+	int nSpeedX = (int)luaL_checkinteger(pState, 1);
+	int nSpeedY = (int)luaL_checkinteger(pState, 2);
+	int nTarPosX = (int)luaL_checkinteger(pState, 3);
+	int nTarPosY = (int)luaL_checkinteger(pState, 4);
+	int nDir = (int)luaL_checkinteger(pState, 5);
+	m_oTarPos = Point(nTarPosX, nTarPosY);
+	StartRun(nSpeedX, nSpeedY, nDir);
 	return 0;
 }
 
@@ -385,6 +230,7 @@ int Robot::StopRun(lua_State* pState)
 int Robot::SetMapID(lua_State* pState)
 {
 	m_nMapID = (int)luaL_checkinteger(pState, 1);
+	m_nAOIID = (int)luaL_checkinteger(pState, 2);
 	m_poMapConf = ConfMgr::Instance()->GetMapMgr()->GetConf(m_nMapID);
 	return 0;
 }
@@ -393,4 +239,18 @@ int Robot::PacketID(lua_State* pState)
 {
 	lua_pushinteger(pState, ++m_uPacketID);
 	return 1;
+}
+
+int Robot::CalcMoveSpeed(lua_State* pState)
+{
+	int nMoveSpeed = (int)luaL_checkinteger(pState, 1);
+	int nTarPosX = (int)luaL_checkinteger(pState, 2);
+	int nTarPosY = (int)luaL_checkinteger(pState, 3);
+	Point oTarPos(nTarPosX, nTarPosY);
+	int nSpeedX = 0;
+	int nSpeedY = 0;
+	BattleUtil::CalcMoveSpeed1(nMoveSpeed, m_oPos, oTarPos, nSpeedX, nSpeedY);
+	lua_pushinteger(pState, nSpeedX);
+	lua_pushinteger(pState, nSpeedY);
+	return 2;
 }

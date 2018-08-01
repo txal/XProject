@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\Bin\_RobotClient\</OutDir>
+    <OutDir>..\..\..\..\..\mengzhu\Runtime\trunk\Server\_RobotClient\</OutDir>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,7 +137,7 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f RobotClient* E:\mengzhu\Runtime\trunk\Server\_RobotClient\
+rem xcopy /y/f RobotClient* E:\mengzhu\Runtime\trunk\Server\_RobotClient\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -174,8 +174,6 @@ popd</Command>
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
     <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp" />
-    <ClCompile Include="..\..\Src\RobotClient\ConfMgr\ConfMgr.cpp" />
-    <ClCompile Include="..\..\Src\RobotClient\ConfMgr\MapConf.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\LuaSupport\LuaExport.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\Main.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\PacketProc\RobotPacketProc.cpp" />
@@ -187,6 +185,8 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\Service.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\CSVDocument\CSVDocument.h" />
@@ -200,8 +200,6 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h" />
-    <ClInclude Include="..\..\Src\RobotClient\ConfMgr\ConfMgr.h" />
-    <ClInclude Include="..\..\Src\RobotClient\ConfMgr\MapConf.h" />
     <ClInclude Include="..\..\Src\RobotClient\LuaSupport\LuaExport.h" />
     <ClInclude Include="..\..\Src\RobotClient\PacketProc\RobotPacketProc.h" />
     <ClInclude Include="..\..\Src\RobotClient\Robot.h" />
@@ -212,6 +210,9 @@ popd</Command>
     <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\ServerContext.h" />
     <ClInclude Include="..\..\Src\Server\Base\Service.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\BattleUtil.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

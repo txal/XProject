@@ -29,6 +29,9 @@ public:
 	double ToDouble(const char* pColumn);
 	const char* ToString(const char* pColumn);
 
+public:
+	static int EscapeString(char* pToStr, const char* pFromStr, int nFromLength) { return mysql_escape_string(pToStr, pFromStr, nFromLength); }
+
 private:
 	MYSQL* m_pMysql;
 	MYSQL_RES* m_pMysqlRes; //只保存最后的结果集

@@ -90,7 +90,7 @@ int main()
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
-	//ConfMgr::Instance()->LoadConf();
+	ConfMgr::Instance()->LoadConf();
 
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();

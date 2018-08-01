@@ -68,6 +68,9 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	uint16_t uPosX = 0;
 	uint16_t uPosY = 0;
 
+	uint16_t uTarPosX = 0;
+	uint16_t uTarPosY = 0;
+
 	int16_t nSpeedX = 0;
 	int16_t nSpeedY = 0;
 
@@ -77,9 +80,10 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	uint8_t uFace = 0;
 
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nAOIID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uFace;
+	goPKReader >> nAOIID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uFace >> uTarPosX >> uTarPosY;
 	nClientMSTime = (int64_t)dClientMSTime;
-	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, nClientMSTime-m_nClientRunStartMSTime);
+	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) tar(%d,%d) time:%lld\n"
+		, m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, uTarPosX, uTarPosY, nClientMSTime-m_nClientRunStartMSTime);
 
 	//客户端提供的时间值必须大于起始时间值
 	if (nClientMSTime < m_nClientRunStartMSTime)
@@ -116,6 +120,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	
 	m_nClientRunStartMSTime = nClientMSTime;
+	m_oTargetPos = Point(uTarPosX, uTarPosY);
 	Actor::StartRun(nSpeedX, nSpeedY, (int8_t)uFace);
 }
 

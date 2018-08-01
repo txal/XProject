@@ -29,6 +29,8 @@ Actor::Actor()
 	m_nRunStartMSTime = 0;
 	m_nClientRunStartMSTime = 0;
 
+	m_bRunCallback = false;
+
 }
 
 Actor::~Actor()
@@ -102,8 +104,13 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 		}
 		if (m_oTargetPos.IsValid() && m_oTargetPos.CheckDistance(m_oPos, Point(16,16)))
 		{
+			XLog(LEVEL_DEBUG, "%s reach target pos(%d,%d)\n", m_sName, m_oTargetPos.x, m_oTargetPos.y);
 			StopRun();
-			LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjReachPos", 0, "ii", m_nObjID, m_nObjType);
+			if (m_bRunCallback)
+			{
+				m_bRunCallback = false;
+				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjReachPos", 0, "ii", m_nObjID, m_nObjType);
+			}
 		}
 		UpdateFollow(nNowMS);
 		//XLog(LEVEL_DEBUG, "Pos(%d,%d) canmove:%d\n", nNewPosX, nNewPosY, bCanMove);
@@ -194,6 +201,7 @@ void Actor::RunTo(const Point& oTarPos, int nMoveSpeed)
 	if (!IsRunning() || nSpeedX != nOldSpeedX || nSpeedY != nOldSpeedY)
 	{
 		m_oTargetPos = oTarPos;
+		m_bRunCallback = true;
 		StartRun(nSpeedX, nSpeedY, m_nFace);
 	}
 }
@@ -243,7 +251,9 @@ void Actor::BroadcastStartRun()
 		return;
 	}
 	gpoPacketCache->Reset();
-	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY << (uint8_t)m_nFace;
+	uint16_t uTarPosX = (uint16_t)m_oTargetPos.x;
+	uint16_t uTarPosY = (uint16_t)m_oTargetPos.y;
+	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY << (uint8_t)m_nFace << uTarPosX << uTarPosY;
 	Packet* poPacket = gpoPacketCache->DeepCopy();
 	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStartRunRet, poPacket, goNaviCache);
 }

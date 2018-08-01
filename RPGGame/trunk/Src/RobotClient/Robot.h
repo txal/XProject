@@ -7,7 +7,7 @@
 #include "Common/PacketParser/PacketReader.h"
 #include "Common/PacketParser/PacketWriter.h"
 #include "Common/Platform.h"
-#include "RobotClient/ConfMgr/ConfMgr.h"
+#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 
 class RobotMgr;
 class Robot
@@ -27,12 +27,12 @@ public:
 
 public:
 	void ProcessRun(int64_t nNowMS);
-	void StartRun(int nSpeedX, int nSpeedY);
+	void StartRun(int nSpeedX, int nSpeedY, int nDir);
 	void StopRun();
 
 private:
-	void CalcMoveSpeed(int nMoveSpeed, int nDir8, int& nSpeedX , int& nSpeedY);
-	bool FixMovePoint(MapConf* poMapConf, int nStartPosX, int nStartPosY, int& nTarPosX, int& nTarPosY);
+	void SetPos(int nPosX, int nPosY);
+	bool CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY);
 
 public:
 	void OnSyncActorPosHandler(Packet* poPacket);
@@ -51,6 +51,7 @@ private:
 
 	int m_nMapID;
 	MapConf* m_poMapConf;
+	int m_nAOIID;
 
 	//位置同步相关
 	Point m_oPos;
@@ -60,6 +61,7 @@ private:
 	int m_nStartRunY;
 	int m_nMoveSpeed;
 	int64_t m_nRunStartTime;
+	Point m_oTarPos;
 	DISALLOW_COPY_AND_ASSIGN(Robot);
 
 
@@ -75,6 +77,7 @@ public:
 	int StopRun(lua_State* pState);
 	int SetMapID(lua_State* pState);
 	int PacketID(lua_State* pState);
+	int CalcMoveSpeed(lua_State* pState);
 
 };
 

@@ -22,7 +22,7 @@ xcopy /y/f .\_RouterServer\*Server Game\_RouterServer
 xcopy /y/f .\_RouterServer\*sh Game\_RouterServer
 
 mkdir Game\_WorldServer
-xcopy /y/f .\_WorldServer\*Server Game\_WorldServer
+xcopy /y/f .\_WorldServer\*Server* Game\_WorldServer
 xcopy /y/f .\_WorldServer\*sh Game\_WorldServer
 
 mkdir Game\_CenterDB
