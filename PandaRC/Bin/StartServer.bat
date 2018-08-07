@@ -1,2 +1,0 @@
-start GlobalServer 1
-

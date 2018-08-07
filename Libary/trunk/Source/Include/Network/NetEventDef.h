@@ -19,6 +19,7 @@ namespace NSNetEvent
 		eEVT_ON_LISTEN = 5,
 		eEVT_ADD_DATASOCK = 6,
 		eEVT_HANDSHAKE = 7,
+		eEVT_REMAINPACKETS = 8,
 	};
 
 	struct EVENT_LISTEN
@@ -64,6 +65,10 @@ namespace NSNetEvent
 		int nSessionID;
 	};
 
+	struct EVENT_REMAINPACKETS
+	{
+	};
+
 	struct EVENT
 	{
 		INet* pNet;
@@ -77,6 +82,7 @@ namespace NSNetEvent
 			EVENT_CONNECT oConnect;
 			EVENT_DATASOCK oDataSock;
 			EVENT_HANDSHAKE_RET oHandShake;
+			EVENT_REMAINPACKETS oRemainPackets;
 		} U;
 
 		EVENT()

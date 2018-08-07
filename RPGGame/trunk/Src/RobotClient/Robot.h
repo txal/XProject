@@ -75,6 +75,7 @@ public:
 	int SetMoveSpeed(lua_State* pState);
 	int StartRun(lua_State* pState);
 	int StopRun(lua_State* pState);
+	int IsRunning(lua_State* pState);
 	int SetMapID(lua_State* pState);
 	int PacketID(lua_State* pState);
 	int CalcMoveSpeed(lua_State* pState);

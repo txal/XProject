@@ -18,6 +18,7 @@ Lunar<Robot>::RegType Robot::methods[] =
 	LUNAR_DECLARE_METHOD(Robot, SetName),
 	LUNAR_DECLARE_METHOD(Robot, StartRun),
 	LUNAR_DECLARE_METHOD(Robot, StopRun),
+	LUNAR_DECLARE_METHOD(Robot, IsRunning),
 	LUNAR_DECLARE_METHOD(Robot, SetMapID),
 	LUNAR_DECLARE_METHOD(Robot, PacketID),
 	LUNAR_DECLARE_METHOD(Robot, CalcMoveSpeed),
@@ -133,7 +134,7 @@ void Robot::StartRun(int nSpeedX, int nSpeedY, int nDir)
 		m_nStartRunY = m_oPos.y;
 
 		m_poPacketCache->Reset();
-		double dClientTick = ((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0;
+		double dClientTick = (double)XTime::MSTime();
 		oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nSpeedX << (int16_t)m_nSpeedY << dClientTick << (uint8_t)nDir << (uint16_t)m_oTarPos.x << (uint16_t)m_oTarPos.y;
 
 		Packet* poPacket = m_poPacketCache->DeepCopy();
@@ -155,7 +156,7 @@ void Robot::StopRun()
 		m_oTarPos.Reset();
 
 		m_poPacketCache->Reset();
-		double dClientTick = ((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0;
+		double dClientTick = (double)XTime::MSTime();
 		oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << dClientTick;
 
 		Packet* poPacket = m_poPacketCache->DeepCopy();
@@ -226,6 +227,14 @@ int Robot::StopRun(lua_State* pState)
 	StopRun();
 	return 0;
 }
+
+int Robot::IsRunning(lua_State* pState)
+{
+	bool bRunning = m_nRunStartTime > 0;
+	lua_pushboolean(pState, bRunning);
+	return 1;
+}
+
 
 int Robot::SetMapID(lua_State* pState)
 {

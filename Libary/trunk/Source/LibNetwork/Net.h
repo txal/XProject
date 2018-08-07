@@ -38,9 +38,11 @@ public:
 	virtual bool SendPacket(int nSessionID, Packet* poPacket) = 0;
 	virtual bool AddDataSock(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemotePort);
 	virtual bool ClientHandShakeReq(int nSessionID) { return false; }
+	virtual int RemainPackets();
 
 protected:
 	// Event call back
+	virtual void OnRemainPackets();
 	virtual void OnListen(uint16_t uListenPort, int nSessionID);
 	virtual void OnAccept(HSOCKET hSock, int nSessionID, uint32_t uRemoteIP, uint16_t uRemotePort);
 	virtual void OnConnect(int nSessionID, uint32_t uRemoteIP, uint16_t uRemotePort);
@@ -91,6 +93,7 @@ private:
 	void DoSend(REQUEST_SEND* pRequest);
 	void DoSentClose(REQUEST_SENTCLOSE* pRequest);
 	void DoAddDataSock(REQUEST_ADD_DATASOCK* pRequest);
+	void DoRemainPackets(REQUEST_REMAINPACKETS* pRequest);
 
 private:
 	char m_sNetName[32];

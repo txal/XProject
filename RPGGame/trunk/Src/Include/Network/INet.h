@@ -32,6 +32,9 @@ public:
 	DLL_API virtual bool AddDataSock(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemotePort) = 0;
 	DLL_API virtual bool ClientHandShakeReq(int nSessionID) = 0;
 
+	//网络层剩余包数量
+	DLL_API virtual int RemainPackets() = 0;
+
 protected:
 	virtual ~INet() {}
 

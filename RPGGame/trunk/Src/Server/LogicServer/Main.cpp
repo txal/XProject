@@ -1,4 +1,10 @@
-﻿#include "Server/LogicServer/LogicServer.h"
+﻿#ifdef _WIN32
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif
+
+#include "Server/LogicServer/LogicServer.h"
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
@@ -106,5 +112,9 @@ int main(int nArg, char *pArgv[])
 
 	printf("LogicServer start successful\n");
 	poService->Start();
+
+#ifdef _WIN32
+	_CrtDumpMemoryLeaks();
+#endif // _WIN32
 	return 0;
 }

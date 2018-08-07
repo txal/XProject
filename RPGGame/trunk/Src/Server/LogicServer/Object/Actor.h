@@ -42,7 +42,7 @@ protected:
 //网络函数
 public:
 	void BroadcastStartRun();
-	void BroadcastStopRun();
+	void BroadcastStopRun(bool bSelf);
 	void SyncPosition(const char* pWhere = NULL);
 	void BroadcastPos(bool bSelf);
 

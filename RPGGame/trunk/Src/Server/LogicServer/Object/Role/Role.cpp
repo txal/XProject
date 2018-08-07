@@ -151,11 +151,15 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 	if (m_nRunStartMSTime == 0)
 	{
-		//XLog(LEVEL_INFO, "%s server already stop\n", m_sName);
-		if (uPosX != m_oPos.x || uPosY != m_oPos.y)
+		//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
+		if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 		{
-			//XLog(LEVEL_ERROR, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY);
+			XLog(LEVEL_ERROR, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) - 01\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY);
 			Actor::SyncPosition();
+		}
+		else
+		{
+			Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 		}
 		return;
 	}
@@ -168,7 +172,7 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 		Actor::UpdateRunState(nNowMS);
 		Actor::SyncPosition();
 		Actor::StopRun(true, true);
-		XLog(LEVEL_ERROR, "%s sync pos: stop run pos:(%d,%d) or time:(%d) error\n", m_sName, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
+		XLog(LEVEL_ERROR, "%s sync pos for stop run pos:(%d,%d) or time:(%d) error - 02\n", m_sName, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 		return;
 	}
 	//正在移动则先更新移动后的新位置
@@ -179,13 +183,14 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 	{
-		XLog(LEVEL_ERROR, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY);
-		uPosX = (uint16_t)m_oPos.x;
-		uPosY = (uint16_t)m_oPos.y;
+		XLog(LEVEL_ERROR, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) - 03\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY);
 		Actor::SyncPosition();
 	}
+	else
+	{
+		Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
+	}
 	m_nClientRunStartMSTime = 0;
-	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	Actor::StopRun(true, true);
 }
 

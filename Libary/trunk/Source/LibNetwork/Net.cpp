@@ -403,6 +403,11 @@ void Net::CtrlProc(SESSION* pSession)
 				DoAddDataSock(&Request.U.oDataSock);
 				break;
 			}
+			case eCTRL_REMAINPACKETS:
+			{
+				DoRemainPackets(&Request.U.oRemainPackets);
+				break;
+			}
 			default:
 			{
 				XLog(LEVEL_ERROR, "%s: Unknown ctrl type:%d\n", m_sNetName, uCtrlType);
@@ -410,6 +415,20 @@ void Net::CtrlProc(SESSION* pSession)
 			}
 		}	
 	}
+}
+
+void Net::DoRemainPackets(REQUEST_REMAINPACKETS* pRequest)
+{
+	int nPackets = 0;
+	for (int i = 0; i < m_nMaxSessions; i++)
+	{
+		SESSION *pSession = m_poSessionArray[i];
+		if (pSession != NULL && pSession->nSessionType == SESSION_TYPE_DATA)
+		{
+			nPackets += pSession->oPacketList.Size();
+		}
+	}
+	nPackets += m_oMailBox.Size();
 }
 
 void Net::DoListen(REQUEST_LISTEN* pRequest)
@@ -565,7 +584,28 @@ bool Net::AddDataSock(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemotePort)
     return bRet;
 }
 
+int Net::RemainPackets()
+{
+	REQUEST_PACKET oRequest;
+	oRequest.uCtrlType = eCTRL_REMAINPACKETS;
+	bool bRet = m_oMailBox.Send(oRequest);
+	return bRet;
+}
+
 // Msg handler
+void Net::OnRemainPackets()
+{
+	if (m_poNetEventHandler == NULL)
+	{
+		XLog(LEVEL_ERROR, "%s: Msg handler not init\n", m_sNetName);
+		return;
+	}
+	NSNetEvent::EVENT oEvent;
+	oEvent.pNet = this;
+	oEvent.uEventType = NSNetEvent::eEVT_REMAINPACKETS;
+	m_poNetEventHandler->SendEvent(oEvent);
+}
+
 void Net::OnListen(uint16_t uListenPort, int nSessionID)
 {
 	if (m_poNetEventHandler == NULL)

@@ -83,7 +83,7 @@ void Actor::StopRun(bool bBroadcast, bool bClientStop)
 		m_nRunStartY = 0;
 		if (bBroadcast)
 		{
-			BroadcastStopRun();
+			BroadcastStopRun(!bClientStop);
 		}
 		//XLog(LEVEL_INFO, "%s Stop run pos:(%d, %d) from_client:%d time:%d\n", m_sName, m_oPos.x, m_oPos.y, bClientStop, m_nClientRunStartMSTime);
 	}
@@ -258,9 +258,16 @@ void Actor::BroadcastStartRun()
 	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStartRunRet, poPacket, goNaviCache);
 }
 
-void Actor::BroadcastStopRun()
+void Actor::BroadcastStopRun(bool bSelf)
 {
-	CacheActorNavi();
+	int nSelfServer = 0;
+	int nSelfSession = 0;
+	if (bSelf)
+	{
+		nSelfServer = m_uServer;
+		nSelfSession = m_nSession;
+	}
+	CacheActorNavi(nSelfServer, nSelfSession);
 	if (goNaviCache.Size() <= 0)
 	{
 		return;

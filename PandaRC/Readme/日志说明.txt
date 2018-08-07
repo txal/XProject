@@ -1,2 +1,0 @@
-游戏中的物品(装备,道具,货币)的增删改用 AwardLog(CLogger.lua)
-对于一些上线后找BUG或记录流水用的操作用 EventLog(CLogger.lua)

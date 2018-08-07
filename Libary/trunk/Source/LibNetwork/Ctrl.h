@@ -15,6 +15,7 @@ enum
 	eCTRL_CONNECT = 4,
 	eCTRL_SENTCLOSE = 5,
 	eCTRL_ADD_DATASOCK = 6,
+	eCTRL_REMAINPACKETS = 7,
 };
 
 struct REQUEST_SEND 
@@ -53,6 +54,10 @@ struct REQUEST_SENTCLOSE
 	int nSessionID;
 };
 
+struct REQUEST_REMAINPACKETS
+{
+};
+
 struct REQUEST_PACKET
 {
 	uint8_t uCtrlType;
@@ -64,6 +69,7 @@ struct REQUEST_PACKET
 		REQUEST_CONNECT oConnect;
 		REQUEST_SENTCLOSE oSentClose;
 		REQUEST_ADD_DATASOCK oDataSock;
+		REQUEST_REMAINPACKETS oRemainPackets;
 	} U;
 	REQUEST_PACKET()
 	{
