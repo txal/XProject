@@ -28,6 +28,20 @@ namespace Platform
 		return false;
 	}
 
+	//取CPU核心数
+	inline int GetCpuCoreNum()
+	{
+#if defined(WIN32)
+		SYSTEM_INFO info;
+		GetSystemInfo(&info);
+		return info.dwNumberOfProcessors;
+#elif defined(LINUX) || defined(SOLARIS) || defined(AIX)
+		return get_nprocs();   //GNU fuction
+#else
+#error  不支持的操作系统
+#endif
+	}
+
 #ifdef _WIN32
 	inline const char* LastErrorStr(int nLastErrCode)
 	{

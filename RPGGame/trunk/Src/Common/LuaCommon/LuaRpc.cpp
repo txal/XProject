@@ -27,7 +27,7 @@
 #define MAX_DEPTH 32                                                                                                                                                   
 
 //Pack
-static void _PackInteger(Packet* poPacket, lua_Integer nVal)
+static inline void _PackInteger(Packet* poPacket, lua_Integer nVal)
 {
     if (nVal == 0)
     {
@@ -71,14 +71,14 @@ static void _PackInteger(Packet* poPacket, lua_Integer nVal)
     }
 }
 
-static void _PackNumber(Packet* poPacket, double fVal)
+static inline void _PackNumber(Packet* poPacket, double fVal)
 {
     uint8_t nCT = COMBINE_TYPE(TYPE_NUMBER, TYPE_NUMBER_REAL);
     poPacket->WriteBuf((void*)&nCT, sizeof(nCT));
     poPacket->WriteBuf((void*)&fVal, sizeof(fVal));
 }
 
-static void _PackString(Packet* poPacket, const char* pStr, int nLen)
+static inline void _PackString(Packet* poPacket, const char* pStr, int nLen)
 {
     if (nLen < MAX_COOKIE)
     {
@@ -111,7 +111,7 @@ static void _PackString(Packet* poPacket, const char* pStr, int nLen)
 }
 
 static void _PackTable(lua_State* L, Packet* poPacket, int nIndex, int nDepth);
-static void _PackOne(lua_State* L, Packet* poPacket, int nIndex, int nDepth)
+static inline void _PackOne(lua_State* L, Packet* poPacket, int nIndex, int nDepth)
 {
     if (nDepth > MAX_DEPTH)
     {
@@ -170,7 +170,7 @@ static void _PackOne(lua_State* L, Packet* poPacket, int nIndex, int nDepth)
     }
 }
 
-static void _PackTable(lua_State* L, Packet* poPacket, int nIndex, int nDepth)
+static inline void _PackTable(lua_State* L, Packet* poPacket, int nIndex, int nDepth)
 {
     if (nIndex < 0)
     {
@@ -219,7 +219,7 @@ static void _PackTable(lua_State* L, Packet* poPacket, int nIndex, int nDepth)
 	poPacket->WriteBuf((void*)&nByte, sizeof(nByte));
 }
 
-static int LuaRpcPack(lua_State* L)
+static inline int LuaRpcPack(lua_State* L)
 {
     Packet* poPacket = Packet::Create();
 	if (poPacket == NULL) {
@@ -235,13 +235,13 @@ static int LuaRpcPack(lua_State* L)
 }
 
 // Unpack
-static void _InvalidPacket(lua_State* L, int nLine)
+static inline void _InvalidPacket(lua_State* L, int nLine)
 {
     LuaWrapper::luaM_error(L, "Invalid packet:%d\n", nLine);
 }
 
 template<typename T>
-static void _ReadNumber(lua_State* L, uint8_t*& pBuf, int& nSize, T& tVal, int nRead)
+static inline void _ReadNumber(lua_State* L, uint8_t*& pBuf, int& nSize, T& tVal, int nRead)
 {
     if (nSize < nRead)
     {
@@ -253,7 +253,7 @@ static void _ReadNumber(lua_State* L, uint8_t*& pBuf, int& nSize, T& tVal, int n
     nSize -= nRead;
 }
 
-static void _ReadBuf(lua_State* L, uint8_t*& pBuf, int& nSize, int nRead)
+static inline void _ReadBuf(lua_State* L, uint8_t*& pBuf, int& nSize, int nRead)
 {
     if (nSize < nRead)
     {
@@ -265,7 +265,7 @@ static void _ReadBuf(lua_State* L, uint8_t*& pBuf, int& nSize, int nRead)
     nSize -= nRead;
 }
 
-static lua_Integer _UnpackInteger(lua_State* L, uint8_t*& pBuf, int& nSize, int nCookie)
+static inline lua_Integer _UnpackInteger(lua_State* L, uint8_t*& pBuf, int& nSize, int nCookie)
 {
     lua_Integer nValTar = 0;
     switch (nCookie)
@@ -312,14 +312,14 @@ static lua_Integer _UnpackInteger(lua_State* L, uint8_t*& pBuf, int& nSize, int 
     return nValTar;
 }
 
-static double _UnpackNumber(lua_State* L, uint8_t*& pBuf, int& nSize, int nCookie)
+static inline double _UnpackNumber(lua_State* L, uint8_t*& pBuf, int& nSize, int nCookie)
 {
     double fVal = 0.0;
     _ReadNumber(L, pBuf, nSize, fVal, sizeof(fVal));
     return fVal;
 }
 
-static void _UnpackString(lua_State* L, uint8_t*& pBuf, int& nSize, int nType, int nCookie)
+static inline void _UnpackString(lua_State* L, uint8_t*& pBuf, int& nSize, int nType, int nCookie)
 {
     if (nType == TYPE_SHORT_STRING)
     {
@@ -348,7 +348,7 @@ static void _UnpackString(lua_State* L, uint8_t*& pBuf, int& nSize, int nType, i
 }
 
 static void _UnpackValue(lua_State* L, uint8_t*& pBuf, int& nSize, int nType, int nCookie);
-static void _UnpackOne(lua_State* L, uint8_t*& pBuf, int& nSize)
+static inline void _UnpackOne(lua_State* L, uint8_t*& pBuf, int& nSize)
 {
     uint8_t nCT = 0;
     _ReadNumber(L, pBuf, nSize, nCT, (int)sizeof(nCT));
@@ -390,7 +390,7 @@ static void _UnpackTable(lua_State* L, uint8_t*& pBuf, int& nSize, int nCookie)
     }
 }
 
-static void _UnpackValue(lua_State* L, uint8_t*& pBuf, int& nSize, int nType, int nCookie)
+static inline void _UnpackValue(lua_State* L, uint8_t*& pBuf, int& nSize, int nType, int nCookie)
 {
     switch (nType)
     {
@@ -437,7 +437,7 @@ static void _UnpackValue(lua_State* L, uint8_t*& pBuf, int& nSize, int nType, in
     }
 }
 
-static int LuaRpcUnpack(lua_State* L)
+static inline int LuaRpcUnpack(lua_State* L)
 {
     Packet* poPacket = (Packet*)lua_touserdata(L, -1);
     int nDataSize = poPacket->GetRealDataSize();

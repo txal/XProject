@@ -84,6 +84,9 @@
     <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp">
       <Filter>Src\Common\WordFilter</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp">
+      <Filter>Src\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.h">
@@ -142,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h">
       <Filter>Src\Common\WordFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h">
+      <Filter>Src\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

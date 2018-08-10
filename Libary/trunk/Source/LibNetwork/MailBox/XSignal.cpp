@@ -74,7 +74,7 @@ bool XSignal::Wait(int nMs)
     if (nMs > 0) 
 	{
 		oTimeout.tv_sec = nMs / 1000;
-		oTimeout.tv_usec = nMs % 1000 * 1000;
+		oTimeout.tv_usec = (nMs % 1000) * 1000;
     }
 	int nRet = ::select(0, &oSet, NULL, NULL, nMs >= 0 ? &oTimeout : NULL);
 	if (nRet == SOCKET_ERROR || nRet == 0)

@@ -177,7 +177,14 @@ int Object::SetPos(lua_State* pState)
 {
 	int nPosX = (int)luaL_checkinteger(pState, 1);
 	int nPosY = (int)luaL_checkinteger(pState, 2);
+
+	int8_t nFace = -1;
+	if (!lua_isnoneornil(pState,3))
+		nFace = (int8_t)luaL_checkinteger(pState, 3);
+
 	SetPos(Point(nPosX, nPosY));
+	nFace = nFace == -1 ? m_nFace : nFace;
+	SetFace(nFace);
 
 	BroadcastPos(true);
 	return 0;

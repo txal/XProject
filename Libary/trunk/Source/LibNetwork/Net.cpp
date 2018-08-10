@@ -22,6 +22,8 @@ Net::Net()
 
 	m_uInPackets = 0;
 	m_uOutPackets = 0;
+
+	m_nNetType = NET_TYPE_NONE;
 }
 
 
@@ -429,6 +431,7 @@ void Net::DoRemainPackets(REQUEST_REMAINPACKETS* pRequest)
 		}
 	}
 	nPackets += m_oMailBox.Size();
+	OnRemainPackets(nPackets);
 }
 
 void Net::DoListen(REQUEST_LISTEN* pRequest)
@@ -593,7 +596,7 @@ int Net::RemainPackets()
 }
 
 // Msg handler
-void Net::OnRemainPackets()
+void Net::OnRemainPackets(int nPackets)
 {
 	if (m_poNetEventHandler == NULL)
 	{
@@ -603,6 +606,7 @@ void Net::OnRemainPackets()
 	NSNetEvent::EVENT oEvent;
 	oEvent.pNet = this;
 	oEvent.uEventType = NSNetEvent::eEVT_REMAINPACKETS;
+	oEvent.U.oRemainPackets.nPackets = nPackets;
 	m_poNetEventHandler->SendEvent(oEvent);
 }
 

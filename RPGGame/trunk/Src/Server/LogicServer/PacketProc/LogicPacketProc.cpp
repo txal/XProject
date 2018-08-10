@@ -63,8 +63,8 @@ void NSPacketProc::OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER
 void NSPacketProc::OnClientClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
-	poLogic->OnClientClose(oHeader.uSrcServer, oHeader.uSessionNum > 0 ? pSessionArray[0] : 0);
-	OnLuaCmdMsg(nSrcSessionID, poPacket, oHeader, pSessionArray);
+	poLogic->OnClientClose(oHeader.uSrcServer, oHeader.nSrcService, oHeader.uSessionNum > 0 ? pSessionArray[0] : 0);
+	//OnLuaCmdMsg(nSrcSessionID, poPacket, oHeader, pSessionArray);
 }
 
 void NSPacketProc::OnRoleStartRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)

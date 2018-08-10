@@ -5,6 +5,7 @@
 
 enum
 {
+	NET_TYPE_NONE = 0,
 	NET_TYPE_INTERNAL = 1,
 	NET_TYPE_EXTERNAL = 2,
 	NET_TYPE_WEBSOCKET = 3,
@@ -21,6 +22,7 @@ public:
 		, int nSecureCPM = 0, int nSecureQPM = 0, int nSecureBlock = 0, int nDeadLinkTime = 180, bool bClient = false);
 
 public:
+	DLL_API virtual int NetType() = 0;
 	DLL_API virtual void Release() = 0;
 	// @bNotCreateSession: only listen and accept connection, but not create data session for connection
 	DLL_API virtual bool Listen(const char* psIP, uint16_t uPort, bool bNotCreateSession = false) = 0;
@@ -31,6 +33,8 @@ public:
 	DLL_API virtual bool SendPacket(int nSessionID, Packet *poPacket) = 0;
 	DLL_API virtual bool AddDataSock(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemotePort) = 0;
 	DLL_API virtual bool ClientHandShakeReq(int nSessionID) = 0;
+
+	DLL_API virtual int RemainPackets() = 0;
 
 protected:
 	virtual ~INet() {}

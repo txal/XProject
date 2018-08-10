@@ -5,6 +5,7 @@
 InnerNet::InnerNet()
 {
 	m_nLastPrintTime = 0;
+	m_nNetType = NET_TYPE_INTERNAL;
 }
 
 bool InnerNet::Init(int nServiceID, int nMaxConns)

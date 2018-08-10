@@ -3,6 +3,7 @@
 #include "Common/DataStruct/XMath.h"
 #include <sys/stat.h>
 
+extern int snapshot(lua_State *L);
 
 //自定义函数
 luaL_Reg CustomFuncList[] =
@@ -12,6 +13,7 @@ luaL_Reg CustomFuncList[] =
 	{ "CustomDebug", LuaWrapper::CustomDebug },
 	{ "ReloadScript", LuaWrapper::ReloadScript },
 	{ "LuaTrace", LuaWrapper::LuaTrace},
+	{ "Snapshot", snapshot},
 	{ NULL, NULL },
 };
 
@@ -31,6 +33,7 @@ LuaWrapper::LuaWrapper()
 	m_poDebugger = NULL;
 	m_nErrFuncRef = -1;
 	m_bDebug = true;
+	m_bBreaking = false;
 
 }
 

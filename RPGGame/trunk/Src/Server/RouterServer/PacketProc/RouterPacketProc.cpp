@@ -36,7 +36,8 @@ void NSPacketProc::OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_
 		//注意路由本身不属于任何服,所以源服务器赋值为目标服务器
 		INNER_HEADER oHeaderRet(NSSysCmd::ssRegServiceRet, oHeader.uSrcServer, poRouter->GetServiceID(), oHeader.uSrcServer, oHeader.nSrcService, 0);
 		poPacketRet->AppendInnerHeader(oHeaderRet, NULL, 0);
-		if (!poTarService->GetInnerNet()->SendPacket(poTarService->GetSessionID(), poPacketRet))
+		INet* pNet = poRouter->GetNetPool()->GetNet(poTarService->GetNetIndex());
+		if (!pNet->SendPacket(poTarService->GetSessionID(), poPacketRet))
 		{
 			poPacketRet->Release();
 			XLog(LEVEL_ERROR, "Send packet fail\n");

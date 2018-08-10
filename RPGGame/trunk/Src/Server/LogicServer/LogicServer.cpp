@@ -13,6 +13,7 @@ Packet* gpoPacketCache;
 Array<NetAdapter::SERVICE_NAVI> goNaviCache;
 
 bool gbPrintBattle = false;
+
 LogicServer::LogicServer()
 {
 	m_uInPackets = 0;
@@ -77,14 +78,15 @@ bool LogicServer::Start()
 	int64_t nNowMS = 0;
 	for (;;)
 	{
-		ProcessNetEvent(1);
+		ProcessNetEvent(10);
 		nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
+		ProcessLoopCount(nNowMS);
 	    m_oSceneMgr.Update(nNowMS);
 	    m_oRoleMgr.Update(nNowMS);
 	    m_oMonsterMgr.Update(nNowMS);
-		m_oRobotMgr.Update(nNowMS);
-		m_oDropItemMgr.Update(nNowMS);
+		//m_oRobotMgr.Update(nNowMS);
+		//m_oDropItemMgr.Update(nNowMS);
 	}
 	return true;
 }
@@ -133,6 +135,16 @@ void LogicServer::ProcessTimer(int64_t nNowMSTime)
 	TimerMgr::Instance()->ExecuteTimer(nNowMSTime);
 }
 
+void LogicServer::ProcessLoopCount(int64_t nNowMSTime)
+{
+	static int64_t nLastMSTime = nNowMSTime;
+	if (nNowMSTime - nLastMSTime >= 1000)
+	{
+		nLastMSTime = nNowMSTime;
+		m_uMainLoopCount++;
+	}
+}
+
 void LogicServer::OnConnected(int nSessionID, int nRemoteIP, uint16_t nRemotePort)
 {
 	char sIPBuf[128] = { 0 };
@@ -146,7 +158,7 @@ void LogicServer::OnDisconnect(int nSessionID)
 {
 	XLog(LEVEL_INFO, "%s: On disconnect session:%d\n", GetServiceName(), nSessionID);
 	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
-	m_oMsgBalancer.RemoveConn(0, nSessionID);
+	m_oMsgBalancer.RemoveConn(0, 0, nSessionID);
 }
 
 void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket) 
@@ -171,7 +183,7 @@ void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket)
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }
 
-void LogicServer::OnClientClose(uint16_t uServer, int nSession)
+void LogicServer::OnClientClose(uint16_t uServer, int8_t nService, int nSession)
 {
-	m_oMsgBalancer.RemoveConn(uServer, nSession);
+	m_oMsgBalancer.RemoveConn(uServer, nService, nSession);
 }

@@ -481,5 +481,10 @@ struct lua_Debug {
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ******************************************************************************/
 
+// add by panda 2018.8.8
+extern int gnEndlessLoopFlag;
+LUA_API void (lua_checkendlessloop_)(lua_State* pState);
+#define lua_checkendlessloop(pState) if (gnEndlessLoopFlag != 0) { lua_checkendlessloop_(pState); }
+
 
 #endif

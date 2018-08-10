@@ -5,7 +5,7 @@
 
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/Service.h"
-#include "Server/LogicServer/MsgBalancer.h"
+#include "Server/Base/MsgBalancer.h"
 #include "Server/LogicServer/Object/DropItem/DropItemMgr.h"
 #include "Server/LogicServer/Object/Monster/MonsterMgr.h"
 #include "Server/LogicServer/Object/Role/RoleMgr.h"
@@ -31,7 +31,7 @@ public:
 	DropItemMgr* GetDropItemMgr()			{ return &m_oDropItemMgr; }
 
 public:
-	void OnClientClose(uint16_t uServer, int nSession);
+	void OnClientClose(uint16_t uServer, int8_t nService, int nSession);
 
 private:
 	// Connect and reg to router
@@ -39,6 +39,7 @@ private:
 
 	void ProcessTimer(int64_t nNowMSTime);
 	void ProcessNetEvent(int64_t nWaitMSTime);
+	void ProcessLoopCount(int64_t nWaitMSTime);
 
 	void OnConnected(int nSessionID, int nRemoteIP, uint16_t nRemotePort);
 	void OnDisconnect(int nSessionID);

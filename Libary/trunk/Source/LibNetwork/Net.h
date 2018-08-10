@@ -29,6 +29,8 @@ public:
 
 public:
 	// Interface
+	virtual int NetType() { return m_nNetType; }
+
 	virtual void Release();
 	virtual bool Listen(const char* psIP, uint16_t uListenPort, bool bNotCreateSession);
 	virtual bool Connect(const char* psRemoteIP, uint16_t uRemotePort);
@@ -42,7 +44,7 @@ public:
 
 protected:
 	// Event call back
-	virtual void OnRemainPackets();
+	virtual void OnRemainPackets(int nPackets);
 	virtual void OnListen(uint16_t uListenPort, int nSessionID);
 	virtual void OnAccept(HSOCKET hSock, int nSessionID, uint32_t uRemoteIP, uint16_t uRemotePort);
 	virtual void OnConnect(int nSessionID, uint32_t uRemoteIP, uint16_t uRemotePort);

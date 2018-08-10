@@ -38,6 +38,11 @@ bool Router::Init(int nServiceID, const char* psListenIP, uint16_t uListenPort)
 	{
 		strcpy(m_sListenIP, psListenIP);
 	}
+	int nCpuCores = Platform::GetCpuCoreNum();
+	if (!m_oNetPool.Init(nCpuCores*2+2, &m_oNetEventHandler))
+	{
+		return false;
+	}
 	m_uListenPort = uListenPort;
 	m_poListener = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
 	if (m_poListener == NULL)
@@ -56,7 +61,7 @@ bool Router::Start()
 
 	for (;;)
 	{
-        ProcessNetEvent(1);
+        ProcessNetEvent(10);
 	}
 	return true;
 }
@@ -112,15 +117,9 @@ void Router::OnRouterAccept(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemoteP
 		XLog(LEVEL_ERROR, "OnRouterAccept: Socket:%d conflict\n", hSock);
 	}
 
-    ServiceNode* poService = XNEW(ServiceNode);
-	if (!poService->Init(GetServiceID(), &m_oNetEventHandler))
-	{
-		SAFE_DELETE(poService);
-		XLog(LEVEL_ERROR, "OnRouterAccept: Socket:%u init service node fail\n", hSock);
-		return;
-	}
-
-	poService->GetInnerNet()->AddDataSock(hSock, uRemoteIP, uRemotePort);
+    ServiceNode* poService = XNEW(ServiceNode(m_oNetPool.RandomNetIndex()));
+	INet* pNet = m_oNetPool.GetNet(poService->GetNetIndex());
+	pNet->AddDataSock(hSock, uRemoteIP, uRemotePort);
 	m_oSockMap[hSock] = poService;
 	XLog(LEVEL_INFO, "OnRouterAccept: OnRouterAccept socket:%u \n", hSock);
 }
@@ -211,7 +210,8 @@ void Router::BroadcastService(int nServerID, Packet* poPacket)
 			//注意路由本身不属于任何服,所以源服务器赋值为目标服务器
 			INNER_HEADER oHeader(NSSysCmd::ssServiceClose, nServerID, GetServiceID(), nTarServerID, poService->GetServiceID(), 0);
 			poNewPacket->AppendInnerHeader(oHeader, NULL, 0);
-			if (!poService->GetInnerNet()->SendPacket(poService->GetSessionID(), poNewPacket))
+			INet* pNet = m_oNetPool.GetNet(poService->GetNetIndex());
+			if (!pNet->SendPacket(poService->GetSessionID(), poNewPacket))
 			{
 				poNewPacket->Release();
 			}
@@ -233,7 +233,8 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID)
 	int nKey = ServiceNode::Key(nServerID, nServiceID);
 	if (m_oServiceMap.find(nKey) != m_oServiceMap.end())
 	{
-		poService->GetInnerNet()->Close(nSessionID);
+		INet* pNet = m_oNetPool.GetNet(poService->GetNetIndex());
+		pNet->Close(nSessionID);
 		XLog(LEVEL_ERROR, "RegService: server:%d service:%d already register!\n", nServerID, nServiceID);
 		return false;
 	}

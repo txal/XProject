@@ -16,14 +16,19 @@ public:
 	bool Init(int8_t nServiceID, const char* psServiceName);
 	int8_t GetServiceID() { return m_nServiceID; }
 	const char* GetServiceName() { return m_sServiceName; }
+	uint32_t GetMainLoopCount() { return m_uMainLoopCount; }
 
 	virtual bool Start() = 0;
 	virtual INet* GetInnerNet() { return NULL; }
 	virtual INet* GetExterNet() { return NULL; }
 
+protected:
+	uint32_t m_uMainLoopCount;
+
 private:
 	int8_t m_nServiceID;
 	char m_sServiceName[32];
+
 	DISALLOW_COPY_AND_ASSIGN(Service);
 };
 

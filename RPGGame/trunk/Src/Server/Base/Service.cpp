@@ -4,6 +4,7 @@ Service::Service()
 {
 	m_nServiceID = 0;
 	m_sServiceName[0] = '\0';
+	m_uMainLoopCount = 0;
 }
 
 bool Service::Init(int8_t nServiceID, const char* psServiceName)

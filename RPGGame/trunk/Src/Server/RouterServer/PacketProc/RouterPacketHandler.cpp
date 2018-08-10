@@ -1,4 +1,5 @@
 ﻿#include "Server/RouterServer/PacketProc/RouterPacketHanderl.h"
+#include "Common/DataStruct/XTime.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/RouterServer/Router.h"
@@ -49,15 +50,23 @@ void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEA
 		poPacket->AppendInnerHeader(oHeader, m_oSessionCache.Ptr(), m_oSessionCache.Size());
 	}
 
-	Router* poService = (Router*)g_poContext->GetService();
-	ServiceNode* poTarService = poService->GetService(oHeader.uTarServer, oHeader.nTarService);
+#ifdef _DEBUG
+	if (oHeader.uCmd == 40002)
+		XLog(LEVEL_INFO, "wglobal->router mstime:%lld\n", XTime::UnixMSTime());
+	else if (oHeader.uCmd == 40003)
+		XLog(LEVEL_INFO, "logic->router mstime:%lld\n", XTime::UnixMSTime());
+#endif // DEBUG
+
+	Router* poRouter = (Router*)g_poContext->GetService();
+	ServiceNode* poTarService = poRouter->GetService(oHeader.uTarServer, oHeader.nTarService);
 	if (poTarService == NULL)
 	{
 		poPacket->Release();
 		XLog(LEVEL_ERROR, "Cmd:%d target server:%d service:%d not found\n", oHeader.uCmd, oHeader.uTarServer, oHeader.nTarService);
 		return;
 	}
-	if (!poTarService->GetInnerNet()->SendPacket(poTarService->GetSessionID(), poPacket))
+	INet* pNet = poRouter->GetNetPool()->GetNet(poTarService->GetNetIndex());
+	if (!pNet->SendPacket(poTarService->GetSessionID(), poPacket))
 	{
 		poPacket->Release();
 		XLog(LEVEL_ERROR, "Send cmd:%d packet to server:%d service:%d fail\n", oHeader.uCmd, oHeader.uTarServer, oHeader.nTarService);

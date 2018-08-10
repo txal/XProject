@@ -157,11 +157,12 @@ static bool ShowLine( const char* psFilePathName, int line, bool bIsCurLine, boo
 
 int LuaErrorHandler( lua_State* pState )
 {
-    if( LuaWrapper::Instance()->IsDebugEnable() )
+    if( LuaWrapper::Instance()->IsDebugEnable() && !LuaWrapper::Instance()->IsBreaking())
     {
 		XLog(LEVEL_DEBUG,"%s\n", lua_tostring( pState, -1));
 	    lua_pop( pState, 1);
 
+		LuaWrapper::Instance()->SetBreaking(true);
 	    //重新创建一个调试器
 	    LuaWrapper::Instance()->NewDebugger()->Debug();
     }
@@ -171,15 +172,18 @@ int LuaErrorHandler( lua_State* pState )
 		lua_concat(pState, 2);
 		XLog(LEVEL_ERROR,"[LERR]:%s\n", lua_tostring( pState, -1));
 	}
+	LuaWrapper::Instance()->SetBreaking(false);
     return 0;
 }
 
 int LuaDebugBreak( lua_State* pState )
 {
-	if (LuaWrapper::Instance()->IsDebugEnable())
+	if (LuaWrapper::Instance()->IsDebugEnable() && !LuaWrapper::Instance()->IsBreaking())
 	{
+		LuaWrapper::Instance()->SetBreaking(true);
 	    LuaWrapper::Instance()->NewDebugger()->Debug();
 	}
+	LuaWrapper::Instance()->SetBreaking(false);
     return 0;
 }
 

@@ -162,6 +162,7 @@ popd</Command>
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
     <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
@@ -178,7 +179,6 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\LogicServer\LogicServer.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\LuaSupport\LuaExport.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Main.cpp" />
-    <ClCompile Include="..\..\Src\Server\LogicServer\MsgBalancer.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Actor.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Detector\Detector.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Detector\DetectorMgr.cpp" />
@@ -220,6 +220,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
+    <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />
     <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h" />
@@ -239,7 +240,6 @@ popd</Command>
     <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\LogicServer.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\LuaSupport\LuaExport.h" />
-    <ClInclude Include="..\..\Src\Server\LogicServer\MsgBalancer.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Actor.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Detector\Detector.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Detector\DetectorMgr.h" />

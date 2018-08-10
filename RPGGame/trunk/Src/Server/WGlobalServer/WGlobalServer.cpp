@@ -17,6 +17,7 @@ WGlobalServer::WGlobalServer()
 	m_poExterNet = NULL;
 	m_poInnerNet = NULL;
 	memset(m_sListenIP, 0, sizeof(m_sListenIP));
+	m_oMsgBalancer.SetEventHandler(&m_oNetEventHandler);
 }
 
 WGlobalServer::~WGlobalServer()
@@ -76,11 +77,11 @@ bool WGlobalServer::Start()
 	//{
 	//	return false;
 	//}
-
+	int64_t nNowMS = 0;
 	for (;;)
 	{
 		ProcessNetEvent(10);
-		int64_t nNowMS = XTime::MSTime();
+		nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
 	}
 	return true;
@@ -89,7 +90,7 @@ bool WGlobalServer::Start()
 void WGlobalServer::ProcessNetEvent(int64_t nWaitMSTime)
 {
 	NSNetEvent::EVENT oEvent;
-	if (!m_oNetEventHandler.RecvEvent(oEvent, (uint32_t)nWaitMSTime))
+	if (!m_oMsgBalancer.GetEvent(oEvent, (uint32_t)nWaitMSTime))
 	{
 		return;
 	}
@@ -167,6 +168,7 @@ void WGlobalServer::OnExterNetAccept(int nSessionID)
 void WGlobalServer::OnExterNetClose(int nSessionID)
 {
 	//XLog(LEVEL_INFO, "On externet close\n");
+	m_oMsgBalancer.RemoveConn(0, -1, nSessionID);
 }
 
 void WGlobalServer::OnExterNetMsg(int nSessionID, Packet* poPacket)
@@ -194,6 +196,7 @@ void WGlobalServer::OnInnerNetClose(int nSessionID)
 {
 	XLog(LEVEL_INFO, "On innernet disconnect\n");
 	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	m_oMsgBalancer.RemoveConn(0, 0, nSessionID);
 }
 
 void WGlobalServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)

@@ -44,6 +44,16 @@
 #define MAXTAGLOOP	2000
 
 
+// add by panda 2018.8.8
+int gnEndlessLoopFlag = 0;
+LUA_API void lua_checkendlessloop_(lua_State* pState) {
+	if (gnEndlessLoopFlag == 1) {
+		gnEndlessLoopFlag = 0;
+		lua_pushnil(pState);
+		lua_error(pState);
+	}
+}
+
 /*
 ** Similar to 'tonumber', but does not attempt to convert strings and
 ** ensure correct precision (no extra bits). Used in comparisons.
@@ -935,6 +945,7 @@ void luaV_execute (lua_State *L) {
         vmbreak;
       }
       vmcase(OP_JMP) {
+		lua_checkendlessloop_(L);
         dojump(ci, i, 0);
         vmbreak;
       }
@@ -987,6 +998,7 @@ void luaV_execute (lua_State *L) {
       vmcase(OP_CALL) {
         int b = GETARG_B(i);
         int nresults = GETARG_C(i) - 1;
+		lua_checkendlessloop_(L);
         if (b != 0) L->top = ra+b;  /* else previous instruction set top */
         if (luaD_precall(L, ra, nresults)) {  /* C function? */
           if (nresults >= 0) L->top = ci->top;  /* adjust results */
@@ -1001,6 +1013,7 @@ void luaV_execute (lua_State *L) {
       }
       vmcase(OP_TAILCALL) {
         int b = GETARG_B(i);
+		lua_checkendlessloop_(L);
         if (b != 0) L->top = ra+b;  /* else previous instruction set top */
         lua_assert(GETARG_C(i) - 1 == LUA_MULTRET);
         if (luaD_precall(L, ra, LUA_MULTRET))  /* C function? */
@@ -1110,7 +1123,8 @@ void luaV_execute (lua_State *L) {
         goto l_tforloop;
       }
       vmcase(OP_TFORLOOP) {
-        l_tforloop:
+		l_tforloop:
+		lua_checkendlessloop_(L);
         if (!ttisnil(ra + 1)) {  /* continue loop? */
           setobjs2s(L, ra, ra + 1);  /* save control variable */
            ci->u.l.savedpc += GETARG_sBx(i);  /* jump back */

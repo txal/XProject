@@ -37,7 +37,7 @@ struct SCRIPT
 	}
 };
 
-class LuaWrapper 
+class LuaWrapper
 {
 public:
 	typedef std::unordered_map<std::string, LUA_REF*> LuaRefMap;
@@ -66,13 +66,16 @@ public:
 	bool CallLuaRef(const char* psFunc, int nArgs = 0, int nResults = 0);
 	bool CallLuaFunc(const char* psTable, const char* psFunc, int nArgs = 0, int nResults = 0);	//直接调用不产生Ref
 	template<typename RT>
-	RT FastCallLuaRef(const char* psFunc, const char sReturnType=0, const char* psParamList=NULL, ...);
+	RT FastCallLuaRef(const char* psFunc, const char sReturnType = 0, const char* psParamList = NULL, ...);
 
 	///////debug///////
 	bool IsDebugEnable();
 	LuaDebugger* NewDebugger();
 	LuaDebugger* GetDebugger() { return m_poDebugger; }
 	SCRIPT* FindScript(const char* psScriptName);
+	void SetEndlessLoop(int nFlag) { gnEndlessLoopFlag = nFlag; }
+	void SetBreaking(bool bBreak) { m_bBreaking = bBreak; }
+	bool IsBreaking() { return m_bBreaking;}
 
 public:
 
@@ -122,6 +125,7 @@ private:
 	// Debug
 	LuaDebugger* m_poDebugger;
 	bool m_bDebug;
+	bool m_bBreaking;
 	
 	LuaWrapper();
 	DISALLOW_COPY_AND_ASSIGN(LuaWrapper);

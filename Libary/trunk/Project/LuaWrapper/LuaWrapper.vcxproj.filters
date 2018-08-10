@@ -12,5 +12,8 @@
     <ClCompile Include="..\..\Source\LuaWrapper\LuaWrapper.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\LuaWrapper\LuaLeakCheck.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

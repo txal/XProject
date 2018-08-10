@@ -1,6 +1,7 @@
 ﻿#include "Server/Base/NetworkExport.h"
 
 #include "Common/DataStruct/Array.h"
+#include "Common/DataStruct/XTime.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/Base/Service.h"
@@ -136,6 +137,19 @@ static int N2P(lua_State* pState)
 	return 1;
 }
 
+static int ClockMSTime(lua_State* pState)
+{
+	int64_t nMSTime = XTime::MSTime();
+	lua_pushinteger(pState, nMSTime);
+	return 1;
+}
+
+static int UnixMSTime(lua_State* pState)
+{
+	int64_t nMSTime = XTime::UnixMSTime();
+	lua_pushinteger(pState, nMSTime);
+	return 1;
+}
 
 static luaL_Reg _network_lua_func[] =
 {
@@ -144,6 +158,8 @@ static luaL_Reg _network_lua_func[] =
 	{ "BroadcastExter", BroadcastExter },
 	{ "BroadcastInner", BroadcastInner },
 	{ "N2P", N2P },
+	{ "ClockMSTime", ClockMSTime },
+	{ "UnixMSTime", UnixMSTime },
 	{ NULL, NULL },
 };
 

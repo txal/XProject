@@ -11,7 +11,7 @@ public:
 	typedef std::map<std::string, std::string> HEADER_MAP;
 
 public:
-	WebSocket() {};
+	WebSocket() { m_nNetType = NET_TYPE_WEBSOCKET; }
 	bool Init(int nServiceId, int nMaxConns, int nSecureCPM, int nSecureQPM, int nSecureBlock, int nDeadLinkTime, bool bLinger, bool bClient);
 
 public:

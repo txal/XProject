@@ -66,6 +66,7 @@ typedef HANDLE THREAD;
 #include <netinet/in.h> // INADDR_ANY
 #include <netinet/tcp.h> // TCP_NODELAY
 #include <iconv.h>
+#include <sys/sysinfo.h> 
 
 #define DLL_API
 #define DLL_IMPORT

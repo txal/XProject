@@ -147,6 +147,7 @@ popd</Command>
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
     <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
@@ -169,6 +170,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
+    <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />
     <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h" />

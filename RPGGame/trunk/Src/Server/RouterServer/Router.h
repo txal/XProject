@@ -3,6 +3,7 @@
 
 #include "Include/Network/Network.hpp"
 #include "Server/Base/Service.h"
+#include "Server/RouterServer/NetPool.h"
 #include "Server/RouterServer/ServiceNode.h"
 
 class Router : public Service
@@ -29,6 +30,7 @@ public:
 public:
 	bool RegService(int nServerID, int nServiceID, int nSessionID);
 	ServiceNode* GetService(int nServerID, int nServiceID);
+	NetPool* GetNetPool() {return &m_oNetPool;}
 
 private:
     void ProcessNetEvent(int nWaitMSTime);
@@ -52,6 +54,8 @@ private:
 	ServiceMap m_oServiceMap;
 	SessionMap m_oSessionMap;
 	SockMap m_oSockMap;
+
+	NetPool m_oNetPool;
 
 	DISALLOW_COPY_AND_ASSIGN(Router);
 };

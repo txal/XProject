@@ -17,6 +17,7 @@
 
 ServerContext* g_poContext;
 
+//网络初始化
 bool InitNetwork(int8_t nServiceID)
 {
 	g_poContext->LoadServerConfig();
@@ -41,6 +42,26 @@ bool InitNetwork(int8_t nServiceID)
 	return true;
 }
 
+//LUA死循环检测
+static Thread goMonitorThread;
+static void MonitorThreadFunc(void* pParam)
+{
+	uint32_t uLastMainLoops = 0;
+	uint32_t uNowMainLoops = 0;
+	for (;;)
+	{
+		uNowMainLoops = g_poContext->GetService()->GetMainLoopCount();
+		if (uNowMainLoops == uLastMainLoops && !LuaWrapper::Instance()->IsBreaking())
+		{
+			XLog(LEVEL_ERROR, "May endless loop!!!\n");
+			LuaWrapper::Instance()->SetEndlessLoop(1);
+		}
+		uLastMainLoops = uNowMainLoops;
+		XTime::MSSleep(10000);
+	}
+}
+
+//启动脚本虚拟机
 void StartScriptEngine()
 {
 	XLog(LEVEL_INFO, "Start script engine...\n");
@@ -69,6 +90,8 @@ void StartScriptEngine()
 #endif
 	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
 	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
+
+	goMonitorThread.Create(MonitorThreadFunc, NULL);
 }
 
 

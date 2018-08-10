@@ -3,6 +3,7 @@
 
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/Array.h"
+#include "Server/Base/MsgBalancer.h"
 #include "Server/Base/Service.h"
 
 class GlobalServer: public Service
@@ -39,6 +40,7 @@ private:
 
 	INet* m_poExterNet;
 	INet* m_poInnerNet;
+	MsgBalancer m_oMsgBalancer;
 	NetEventHandler m_oNetEventHandler;
 
 	DISALLOW_COPY_AND_ASSIGN(GlobalServer);

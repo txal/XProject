@@ -94,7 +94,6 @@ int MD5(lua_State* pState)
 	return 1;
 }
 
-
 luaL_Reg _global_lua_func[] =
 {
 	{ "GetServiceID", GetServiceID},

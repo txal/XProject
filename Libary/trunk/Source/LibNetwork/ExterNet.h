@@ -19,7 +19,7 @@ public:
 	typedef IPConnMap::iterator IPConnIter;
 
 public:
-	ExterNet() {};
+	ExterNet() { m_nNetType = NET_TYPE_EXTERNAL; }
 	bool Init(int nServiceID, int nMaxConns, int nSecureCPM, int nSecureQPM, int nSecureBlock, int nDeadLinkTime, bool bLinger);
 
 public:

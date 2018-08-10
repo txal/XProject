@@ -74,6 +74,29 @@ namespace XTime
 		Sleep(nMillisec);
 #endif
 	}
+
+	//标准时间,毫秒
+	inline int64_t UnixMSTime()
+	{
+		time_t clock;
+		struct tm tm;
+		SYSTEMTIME wtm;
+		::GetLocalTime(&wtm);
+		tm.tm_year = wtm.wYear - 1900;
+		tm.tm_mon = wtm.wMonth - 1;
+		tm.tm_mday = wtm.wDay;
+		tm.tm_hour = wtm.wHour;
+		tm.tm_min = wtm.wMinute;
+		tm.tm_sec = wtm.wSecond;
+		tm.tm_isdst = -1;
+		clock = mktime(&tm);
+
+		int64_t nMSTime = clock * 1000 + wtm.wMilliseconds;
+		return nMSTime;
+	}
 };
+
+
+
 
 #endif

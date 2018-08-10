@@ -16,6 +16,7 @@ GlobalServer::GlobalServer()
 	m_poExterNet = NULL;
 	m_poInnerNet = NULL;
 	memset(m_sListenIP, 0, sizeof(m_sListenIP));
+	m_oMsgBalancer.SetEventHandler(&m_oNetEventHandler);
 }
 
 GlobalServer::~GlobalServer()
@@ -88,7 +89,7 @@ bool GlobalServer::Start()
 void GlobalServer::ProcessNetEvent(int64_t nWaitMSTime)
 {
 	NSNetEvent::EVENT oEvent;
-	if (!m_oNetEventHandler.RecvEvent(oEvent, (uint32_t)nWaitMSTime))
+	if (!m_oMsgBalancer.GetEvent(oEvent, (uint32_t)nWaitMSTime))
 	{
 		return;
 	}
@@ -151,9 +152,7 @@ void GlobalServer::ProcessTimer(int64_t nNowMSTime)
 {
 	static int64_t nLastMSTime = XTime::MSTime();
 	if (nNowMSTime - nLastMSTime < 100)
-	{
 		return;
-	}
 	nLastMSTime = nNowMSTime;
 	TimerMgr::Instance()->ExecuteTimer(nNowMSTime);
 }
@@ -166,6 +165,7 @@ void GlobalServer::OnExterNetAccept(int nSessionID)
 void GlobalServer::OnExterNetClose(int nSessionID)
 {
 	//XLog(LEVEL_INFO, "On externet close\n");
+	m_oMsgBalancer.RemoveConn(0, -1, nSessionID);
 }
 
 void GlobalServer::OnExterNetMsg(int nSessionID, Packet* poPacket)
@@ -193,6 +193,7 @@ void GlobalServer::OnInnerNetClose(int nSessionID)
 {
 	XLog(LEVEL_INFO, "On innernet disconnect\n");
 	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	m_oMsgBalancer.RemoveConn(0, 0, nSessionID);
 }
 
 void GlobalServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)

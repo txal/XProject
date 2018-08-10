@@ -67,6 +67,7 @@ namespace NSNetEvent
 
 	struct EVENT_REMAINPACKETS
 	{
+		int nPackets;
 	};
 
 	struct EVENT

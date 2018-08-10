@@ -1,4 +1,5 @@
 ﻿#include "RoleMgr.h"
+#include "Server/LogicServer/LogicServer.h"
 
 LUNAR_IMPLEMENT_CLASS(RoleMgr)
 {
@@ -106,6 +107,9 @@ void RoleMgr::BindSession(int nID, int nSession)
 	{
 		int nOldSSKey = GenSSKey(poRole->GetServer(), nOldSession);
 		m_oRoleSSMap.erase(nOldSSKey);
+
+		LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
+		poLogic->OnClientClose(poRole->GetServer(), nOldSession>>SERVICE_SHIFT, nOldSession);
 	}
 
 	if (nSession > 0)
