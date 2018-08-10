@@ -49,6 +49,7 @@ public:
 
 protected:
 	CONNECTION* GetConn(int64_t nKey);
+	bool QueueEvent(NSNetEvent::EVENT& oEvent);
 
 private:
 	ConnMap m_oConnMap;
