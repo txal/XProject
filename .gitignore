@@ -14,3 +14,5 @@ x64/
 /Libary/trunk/Build/Source/Deps/lua-5.3.0/CMakeFiles
 /Libary/trunk/Build/Source/Deps/lpeg-1.0.0/CMakeFiles/lpeg.dir
 /Libary/trunk/Build/CMakeCache.txt
+*.exe
+*.exp

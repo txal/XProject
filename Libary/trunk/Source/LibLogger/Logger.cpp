@@ -36,14 +36,14 @@ Logger* Logger::Instance()
 
 Logger::Logger()
 {
-	m_bClose = false;
+	m_bTerminate = false;
     memset(m_sLogName, 0, sizeof(m_sLogName));
 	memset(m_nPipeFds, -1, sizeof(m_nPipeFds));
 }
 
-void Logger::SetAndWaitClose()
+void Logger::Terminate()
 {
-	m_bClose = true;
+	m_bTerminate = true;
 	uint8_t uNotify = 1;
 	write(m_nPipeFds[1], &uNotify, sizeof(uNotify));
 	m_oLogThread.Join();
@@ -87,7 +87,7 @@ void Logger::SetLogName(const char* psLogName)
 
 void Logger::Print(int nLevel, const char* pFmt, ...)
 {
-	if (m_bClose)
+	if (m_bTerminate)
 	{
 		printf("Logger is closed!\n");
 		return;
@@ -198,15 +198,13 @@ void Logger::LogThread(void* pParam)
 			fprintf(stdout, "%s", poStr->c_str());
 			SAFE_DELETE(poStr);
 		}
+
+		if (poLogger->m_bTerminate)
+			break;
+
 		uint8_t uNotify = 0;
 		int nReadByte = read(hReadHandle, &uNotify, sizeof(uNotify));
 		if (nReadByte != sizeof(uNotify))
-		{
 			fprintf(stderr, "%s\n", strerror(errno));
-		}
-		if (poLogger->m_bClose)
-		{
-			break;
-		}
     }
 }
