@@ -16,3 +16,4 @@ x64/
 /Libary/trunk/Build/CMakeCache.txt
 *.exe
 *.exp
+*.pdb
