@@ -85,7 +85,13 @@ void StartScriptEngine()
 
 }
 
-int main()
+//发送信号
+void SendSignal()
+{
+
+}
+
+int main(int nArg, char *pArgv[])
 {
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);

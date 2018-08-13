@@ -32,13 +32,16 @@ public:
 public:
 	bool RegService(int nServerID, int nServiceID, int nSessionID, int nServiceType);
 	ServiceNode* GetService(int nServerID, int nServiceID);
+	int GetServiceNum() { return (int)m_oServiceMap.size(); }
 	NetPool* GetNetPool() {return &m_oNetPool;}
-	int GetServiceListByServer(int nServerID, ServiceNode* tServiceList[], int nMaxNum, int nServiceType=0);
+
 	int GetServerList(int tServerList[], int nMaxNum);
+	int GetServiceListByServer(int nServerID, ServiceNode* tServiceList[], int nMaxNum, int nServiceType=0);
 	ServerCloseProgress& GetServerClose() { return m_oServerClose; }
 
 private:
     void ProcessNetEvent(int nWaitMSTime);
+	void ProcessServerClose(int nWaitMSTime);
 
 	void OnRouterAccept(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemotePort);
 	void OnRouterDisconnect(int nSessionID);

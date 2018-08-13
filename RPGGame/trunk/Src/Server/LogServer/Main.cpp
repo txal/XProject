@@ -55,9 +55,16 @@ void StartScriptEngine()
 	}
 }
 
+void OnSigTerm(int)
+{
+	XLog(LEVEL_INFO, "OnSigTerm------\n");
+}
+
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
+	//signal(SIGTERM, OnSigTerm);
+
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif

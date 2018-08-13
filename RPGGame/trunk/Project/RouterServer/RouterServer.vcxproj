@@ -176,6 +176,8 @@ popd</Command>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
+    <ClInclude Include="..\..\Src\Common\Platform.h" />
+    <ClInclude Include="..\..\Src\Common\PlatformHeader.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />

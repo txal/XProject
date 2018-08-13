@@ -128,5 +128,11 @@
     <ClInclude Include="..\..\Src\Server\RouterServer\ServerCloseProgress.h">
       <Filter>Src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Common\Platform.h">
+      <Filter>Src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PlatformHeader.h">
+      <Filter>Src\Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

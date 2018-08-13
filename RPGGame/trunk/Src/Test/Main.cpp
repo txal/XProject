@@ -8,8 +8,18 @@
 #include <iostream>
 using namespace std;
 
+void OnSigTerm(int sig)
+{
+	printf("on sig term!!!:%d\n", sig);
+}
+
 int main()
 {
+	int signum;
+	for (signum = 1; signum <= 64; signum++)
+	{
+		signal(SIGTERM, OnSigTerm);
+	}
 	//Logger::Instance()->Init();
 	//const char* psCurl = "https://sandbox.itunes.apple.com/verifyReceipt";
 	////const char* psCurl = "http://sgadmin.df.baoyugame.com/yinghun/test.php";

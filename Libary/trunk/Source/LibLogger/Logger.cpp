@@ -87,11 +87,6 @@ void Logger::SetLogName(const char* psLogName)
 
 void Logger::Print(int nLevel, const char* pFmt, ...)
 {
-	if (m_bTerminate)
-	{
-		printf("Logger is closed!\n");
-		return;
-	}
 	if (m_nPipeFds[0] == -1)
 	{
 		printf("Logger is not initial!\n");
@@ -129,14 +124,22 @@ void Logger::Print(int nLevel, const char* pFmt, ...)
 		*poStr = sHeader + *poStr;
 	}
 
+	if (m_bTerminate)
+	{
+		printf("Logger is closed!---%s\n", poStr->c_str());
+		SAFE_DELETE(poStr);
+		return;
+	}
+
     m_oPrintLock.Lock();
 
 	m_oLogList.PushBack(poStr);
 	if (m_oLogList.Size() % 8000 == 0)
 	{
-		std::string* poNotice = XNEW(std::string)("Too many log!\n");
+		std::string* poNotice = XNEW(std::string)("Too many logs!\n");
 		m_oLogList.PushFront(poNotice);
 	}
+
 	if (m_oLogList.Size() == 1)
 	{
 		uint8_t uNotify = 1;
@@ -166,10 +169,10 @@ void Logger::LogThread(void* pParam)
 				poLogger->m_oLogList.PopFront();
 			}
 			poLogger->m_oPrintLock.Unlock();
+
 			if (poStr == NULL)
-			{
 				break;
-			}
+
 			if (poLogger->m_sLogName[0] != 0)
 			{
 				struct tm oTm;
@@ -199,7 +202,7 @@ void Logger::LogThread(void* pParam)
 			SAFE_DELETE(poStr);
 		}
 
-		if (poLogger->m_bTerminate)
+		if (poLogger->m_bTerminate && poLogger->m_oLogList.Size() <= 0)
 			break;
 
 		uint8_t uNotify = 0;

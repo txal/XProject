@@ -1,5 +1,6 @@
 ﻿#include "Server/RouterServer/PacketProc/RouterPacketProc.h"
 #include "Common/PacketParser/PacketReader.h"
+#include "Common/PacketParser/PacketWriter.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/PacketHandler.h"
 #include "Server/Base/ServerContext.h"
@@ -11,7 +12,7 @@ void NSPacketProc::RegisterPacketProc()
 {
 	PacketHandler* poPacketHandler = g_poContext->GetPacketHandler();
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceReq, (void*)OnRegisterService);
-	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssCloseServer, (void*)OnCloseServer);
+	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssCloseServerReq, (void*)OnCloseServerReq);
 }
 
 
@@ -47,11 +48,35 @@ void NSPacketProc::OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_
 	}
 }
 
-void NSPacketProc::OnCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSesseionArray)
+void NSPacketProc::OnCloseServerReq(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSesseionArray)
 {
 	PacketReader oPR(poPacket);
 	int nServerID = 0;
 	oPR >> nServerID;
 	Router* poRouter = (Router*)(g_poContext->GetService());
 	poRouter->GetServerClose().CloseServer(nServerID);
+}
+
+//收到这个消息,表明服务准备好关服了
+void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+{
+	Router* poRouter = (Router*)(g_poContext->GetService());
+
+	ServiceNode* poTarService = poRouter->GetService(oHeader.uSrcServer, oHeader.nSrcService);
+	if (poTarService == NULL)
+		return;
+
+	PacketWriter oPW(poPacket);
+	oPW << oHeader.uSrcServer << oHeader.nSrcService;
+
+	Packet* poPacketRet = Packet::Create();
+	if (poPacketRet == NULL)
+		return;
+
+	INNER_HEADER oHeaderRet(NSSysCmd::ssImplCloseServer, g_poContext->GetWorldServerID(), poRouter->GetServiceID(), oHeader.uSrcServer, oHeader.nSrcService, 0);
+	poPacketRet->AppendInnerHeader(oHeaderRet, NULL, 0);
+
+	INet* pNet = poRouter->GetNetPool()->GetNet(poTarService->GetNetIndex());
+	if (!pNet->SendPacket(poTarService->GetSessionID(), poPacketRet))
+		poPacketRet->Release();
 }

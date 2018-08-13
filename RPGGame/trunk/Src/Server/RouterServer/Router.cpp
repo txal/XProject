@@ -60,6 +60,9 @@ bool Router::Start()
 	while (!IsTerminate())
 	{
         ProcessNetEvent(10);
+#ifdef _WIN32
+		ProcessServerClose();
+#endif
 	}
 	return true;
 }
@@ -274,4 +277,17 @@ int Router::GetServerList(int tServerList[], int nMaxNum)
 		tServerList[nNum++] = iter1->first;
 	}
 	return nNum;
+}
+
+void Router::ProcessServerClose(int nWaitMSTime)
+{
+	static int nLastTime = time(NULL);
+	int nNowTime = time(NULL);
+	if (nLastTime == nNowTime)
+		return;
+	nLastTime = nNowTime;
+	if (!Platform::FileExist("closeserver.txt"))
+		return;
+	remove("closeserver.txt");
+	m_oServerClose.CloseServer(g_poContext->GetWorldServerID());
 }

@@ -23,10 +23,11 @@ void NSPacketProc::RegisterPacketProc()
 	// 内部消息
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssKickClient, (void*)OnKickClient);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceRet, (void*)OnRegisterRouterCallback);
-	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssCloseServer, (void*)OnCloseServer);
 	poPacketHandler->RegsterInnerPacketProc(NSSrvSrvCmd::ssSyncLogicService, (void*)OnSyncRoleLogic);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssBroadcastGate, (void*)OnBroadcastGate);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssClientIPReq, (void*)OnClientIPReq);
+	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssPrepCloseServer, (void*)OnPrepCloseServer);
+	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssImplCloseServer, (void*)OnImplCloseServer);
 }
 
 ///////////////////////////////外部处理函数///////////////////////////////////
@@ -68,13 +69,6 @@ void NSPacketProc::OnKeepAlive(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
-
-}
-
-void NSPacketProc::OnCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
-{
-	XLog(LEVEL_INFO, "Closing server======\n");
-	g_poContext->GetService()->Terminate();
 
 }
 
@@ -189,16 +183,34 @@ void NSPacketProc::OnBroadcastGate(int nSrcSessionID, Packet* poPacket, INNER_HE
 		if (i == 0)
 		{
 			if (!pExterNet->SendPacket(iter->first, poPacket))
-			{
 				poPacket->Release();
-			}
 		}
 		else
 		{
 			if (!pExterNet->SendPacket(iter->first, poPacket))
-			{
 				poPacket->Release();
-			}
 		}
 	}
+}
+
+void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+{
+	Packet* poPacketRet = Packet::Create();
+	if (poPacketRet == NULL) return;
+
+	NetAdapter::SERVICE_NAVI oNavi;
+	oNavi.uSrcServer = g_poContext->GetServerID();
+	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uTarServer = oHeader.uSrcServer;
+	oNavi.nTarService = oHeader.nSrcService;
+
+	if (!NetAdapter::SendInner(oHeader.uCmd, poPacketRet, oNavi))
+		XLog(LEVEL_ERROR, "%s: send packet to router fail\n", g_poContext->GetService()->GetServiceName());
+}
+
+void NSPacketProc::OnImplCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+{
+	XLog(LEVEL_INFO, "closing server======\n");
+	g_poContext->GetService()->Terminate();
+
 }

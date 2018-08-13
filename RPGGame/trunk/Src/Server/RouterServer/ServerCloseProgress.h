@@ -25,7 +25,7 @@ private:
 	void CloseLog();
 
 private:
-	void BroadcastServerClose(ServiceNode** tServiceList, int nNum, int nTarServer=0, int nTarService=0);
+	void BroadcastPrepServerClose(ServiceNode** tServiceList, int nNum, int nTarServer=0, int nTarService=0);
 	void OnCloseServerFinish(int nServerID);
 
 private:
