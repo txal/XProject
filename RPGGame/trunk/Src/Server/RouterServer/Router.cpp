@@ -55,11 +55,9 @@ bool Router::Init(int nServiceID, const char* psListenIP, uint16_t uListenPort)
 bool Router::Start()
 {
 	if (!m_poListener->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort, true))
-	{
 		return false;
-	}
 
-	for (;;)
+	while (!IsTerminate())
 	{
         ProcessNetEvent(10);
 	}
@@ -145,13 +143,14 @@ void Router::OnRouterDisconnect(int nSessionID)
 	//通知本地全服服务断开
 	Packet* poPacket = Packet::Create();
 	if (poPacket == NULL)
-	{
 		return;
-	}
 	PacketWriter oPacketWriter(poPacket);
 	oPacketWriter<<nServerID<<nServiceID;
 	BroadcastService(nServerID, poPacket);
 	XLog(LEVEL_ERROR, "OnRouterDisconnect: server:%d service:%d disconnect\n", nServerID, nServiceID);
+
+	//是不是关服流程
+	m_oServerClose.OnServiceClose();
 }
 
 void Router::OnAddDataSock(HSOCKET hSock, int nSessionID)
@@ -221,7 +220,7 @@ void Router::BroadcastService(int nServerID, Packet* poPacket)
 
 }
 
-bool Router::RegService(int nServerID, int nServiceID, int nSessionID)
+bool Router::RegService(int nServerID, int nServiceID, int nSessionID, int nServiceType)
 {
 	SessionIter iter = m_oSessionMap.find(nSessionID);
 	if (iter == m_oSessionMap.end())
@@ -240,7 +239,39 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID)
 	}
 	poService->SetServerID(nServerID);
 	poService->SetServiceID(nServiceID);
+	poService->SetServiceType(nServiceType);
 	m_oServiceMap[nKey] = poService;
 	XLog(LEVEL_INFO, "RegService: server:%d service:%d register successful\n", nServerID, nServiceID);
 	return true;
+}
+
+int Router::GetServiceListByServer(int nServerID, ServiceNode* tServiceList[], int nMaxNum, int nServiceType)
+{
+	int nNum = 0;
+	ServiceIter iter = m_oServiceMap.begin();
+	for (iter; iter != m_oServiceMap.end(); iter++)
+	{
+		if (nNum >= nMaxNum)
+			break;
+		if (iter->second->GetServerID() == nServerID && (nServiceType == 0 || nServiceType == iter->second->GetServcieType()))
+			tServiceList[nNum++] = iter->second;
+	}
+	return nNum;
+}
+
+int Router::GetServerList(int tServerList[], int nMaxNum)
+{
+	int nNum = 0;
+	std::unordered_map<int, int> oServerMap;
+	ServiceIter iter = m_oServiceMap.begin();
+	for (iter; iter != m_oServiceMap.end(); iter++)
+		oServerMap[iter->second->GetServerID()] = 1;
+
+	std::unordered_map<int, int>::iterator iter1;
+	for (iter1 = oServerMap.begin(); iter1 != oServerMap.end(); iter1++)
+	{
+		if (nNum >= nMaxNum) break;
+		tServerList[nNum++] = iter1->first;
+	}
+	return nNum;
 }

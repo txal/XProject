@@ -170,6 +170,7 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\RouterServer\PacketProc\RouterPacketHandler.cpp" />
     <ClCompile Include="..\..\Src\Server\RouterServer\PacketProc\RouterPacketProc.cpp" />
     <ClCompile Include="..\..\Src\Server\RouterServer\Router.cpp" />
+    <ClCompile Include="..\..\Src\Server\RouterServer\ServerCloseProgress.cpp" />
     <ClCompile Include="..\..\Src\Server\RouterServer\ServiceNode.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +189,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Server\RouterServer\PacketProc\RouterPacketHanderl.h" />
     <ClInclude Include="..\..\Src\Server\RouterServer\PacketProc\RouterPacketProc.h" />
     <ClInclude Include="..\..\Src\Server\RouterServer\Router.h" />
+    <ClInclude Include="..\..\Src\Server\RouterServer\ServerCloseProgress.h" />
     <ClInclude Include="..\..\Src\Server\RouterServer\ServiceNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

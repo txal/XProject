@@ -3,8 +3,10 @@
 
 #include "Include/Network/Network.hpp"
 #include "Server/Base/Service.h"
+#include "Server/Base/ServerContext.h"
 #include "Server/RouterServer/NetPool.h"
 #include "Server/RouterServer/ServiceNode.h"
+#include "Server/RouterServer/ServerCloseProgress.h"
 
 class Router : public Service
 {
@@ -28,9 +30,12 @@ public:
 	bool Start();
 
 public:
-	bool RegService(int nServerID, int nServiceID, int nSessionID);
+	bool RegService(int nServerID, int nServiceID, int nSessionID, int nServiceType);
 	ServiceNode* GetService(int nServerID, int nServiceID);
 	NetPool* GetNetPool() {return &m_oNetPool;}
+	int GetServiceListByServer(int nServerID, ServiceNode* tServiceList[], int nMaxNum, int nServiceType=0);
+	int GetServerList(int tServerList[], int nMaxNum);
+	ServerCloseProgress& GetServerClose() { return m_oServerClose; }
 
 private:
     void ProcessNetEvent(int nWaitMSTime);
@@ -56,8 +61,10 @@ private:
 	SockMap m_oSockMap;
 
 	NetPool m_oNetPool;
-
+	ServerCloseProgress m_oServerClose;
 	DISALLOW_COPY_AND_ASSIGN(Router);
 };
+
+extern ServerContext* g_poContext;
 
 #endif

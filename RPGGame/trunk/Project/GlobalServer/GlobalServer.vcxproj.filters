@@ -28,6 +28,9 @@
     <Filter Include="Src\Common\WordFilter">
       <UniqueIdentifier>{31b5b59a-78f5-4d56-a804-592686ce0fd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\PacketParser">
+      <UniqueIdentifier>{c56f8dfb-d0c0-4f4a-a1e9-d927a1f84d75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.cpp">
@@ -86,6 +89,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp">
       <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h">
       <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
+      <Filter>Src\Common\PacketParser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

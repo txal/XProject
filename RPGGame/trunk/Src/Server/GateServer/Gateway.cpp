@@ -1,4 +1,5 @@
 ﻿#include "Server/GateServer/Gateway.h"
+#include "Common/PacketParser/PacketWriter.h"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
 #include "Common/TimerMgr/TimerMgr.h"
@@ -64,6 +65,10 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 	{
 		return false;
 	}
+
+	PacketWriter oPW(poPacket);
+	oPW << (int)Service::SERVICE_GATE;
+
 	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
@@ -77,11 +82,9 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 bool Gateway::Start()
 {
 	if (!m_poExterNet->Listen(NULL, m_uListenPort))
-	{
 		return false;
-	}
 
-	for (;;)
+	while(!IsTerminate())
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMSTime = XTime::MSTime();

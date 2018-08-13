@@ -151,6 +151,12 @@ static int UnixMSTime(lua_State* pState)
 	return 1;
 }
 
+static int Terminate(lua_State* pState)
+{
+	g_poContext->GetService()->Terminate();
+	return 0;
+}
+
 static luaL_Reg _network_lua_func[] =
 {
 	{ "SendInner", SendInner },
@@ -160,6 +166,7 @@ static luaL_Reg _network_lua_func[] =
 	{ "N2P", N2P },
 	{ "ClockMSTime", ClockMSTime },
 	{ "UnixMSTime", UnixMSTime },
+	{ "Terminate", Terminate},
 	{ NULL, NULL },
 };
 

@@ -6,11 +6,13 @@
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/Service.h"
 #include "Server/Base/MsgBalancer.h"
+#include "Server/LogicServer/BattleLog.h"
 #include "Server/LogicServer/Object/DropItem/DropItemMgr.h"
 #include "Server/LogicServer/Object/Monster/MonsterMgr.h"
 #include "Server/LogicServer/Object/Role/RoleMgr.h"
 #include "Server/LogicServer/Object/Robot/RobotMgr.h"
 #include "Server/LogicServer/SceneMgr/SceneMgr.h"
+
 
 class LogicServer : public Service
 {
@@ -69,6 +71,6 @@ extern PacketReader goPKReader;
 extern PacketWriter goPKWriter;
 extern Packet* gpoPacketCache;
 extern Array<NetAdapter::SERVICE_NAVI> goNaviCache;
-extern bool gbPrintBattle;
+extern BattleLog goBattleLog;
 
 #endif

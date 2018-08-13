@@ -33,6 +33,8 @@ namespace NSSysCmd
 		ssClientIPRet = 138,			//客户端IP返回
 		ssClientLastPacketTimeRet = 139,//客户端最后包时间返回
 
+		ssCloseServer = 140,	//关服
+
 		eCMD_END = 1025,
     };
 };

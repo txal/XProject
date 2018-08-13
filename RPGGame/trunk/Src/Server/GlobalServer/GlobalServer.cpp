@@ -1,5 +1,6 @@
 ﻿#include "Server/GlobalServer/GlobalServer.h"
 #include "Include/Network/Network.hpp"
+#include "Common/PacketParser/PacketWriter.h"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
 #include "Common/TimerMgr/TimerMgr.h"
@@ -60,6 +61,10 @@ bool GlobalServer::RegToRouter(int nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
+
+	PacketWriter oPW(poPacket);
+	oPW << (int)Service::SERVICE_GLOBAL;
+
 	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
@@ -73,11 +78,9 @@ bool GlobalServer::RegToRouter(int nRouterServiceID)
 bool GlobalServer::Start()
 {
 	if (!m_poExterNet->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort))
-	{
 		return false;
-	}
 
-	for (;;)
+	while (!IsTerminate())
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();

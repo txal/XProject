@@ -72,6 +72,9 @@
     <ClCompile Include="..\..\Src\Server\RouterServer\NetPool.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Server\RouterServer\ServerCloseProgress.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h">
@@ -120,6 +123,9 @@
       <Filter>Src\Common\TimerMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\RouterServer\NetPool.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Server\RouterServer\ServerCloseProgress.h">
       <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>

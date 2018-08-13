@@ -15,6 +15,8 @@ namespace NSPacketProc
 	/********************************内部处理函数***********************************/
 	//注册到Router返回
 	void OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
+	//关服指令
+	void OnCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 	//角色逻辑服同步
 	void OnSyncRoleLogic(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 	//踢玩家下线

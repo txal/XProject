@@ -94,6 +94,17 @@ int MD5(lua_State* pState)
 	return 1;
 }
 
+int AddBattleLog(lua_State* pState)
+{
+	const char* pFile = luaL_checkstring(pState, 1);
+	const char* pCont = luaL_checkstring(pState, 2);
+	BATTLELOG* pLog = XNEW(BATTLELOG)();
+	pLog->oFile = pFile;
+	pLog->oCont = pCont;
+	goBattleLog.AddLog(pLog);
+	return 0;
+}
+
 luaL_Reg _global_lua_func[] =
 {
 	{ "GetServiceID", GetServiceID},
@@ -104,6 +115,7 @@ luaL_Reg _global_lua_func[] =
 	{ "GetRobotMgr", GetRobotMgr},
 	{ "IsBlockUnit", IsBlockUnit},
 	{ "MD5", MD5},
+	{ "AddBattleLog", AddBattleLog},
 	{ NULL, NULL },
 };
 

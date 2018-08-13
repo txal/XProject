@@ -141,6 +141,8 @@ popd</Command>
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
@@ -161,6 +163,8 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />

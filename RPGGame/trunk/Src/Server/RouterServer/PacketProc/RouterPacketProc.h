@@ -8,6 +8,7 @@ namespace NSPacketProc
 	void RegisterPacketProc();
 	////////////////RouterServer 只有内部消息 //////////////////
 	void OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
+	void OnCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 }
 
 #endif

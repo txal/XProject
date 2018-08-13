@@ -3,6 +3,7 @@
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
+#include "Common/PacketParser/PacketWriter.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
@@ -61,6 +62,10 @@ bool WGlobalServer::RegToRouter(int nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
+
+	PacketWriter oPW(poPacket);
+	oPW << (int)Service::SERVICE_GLOBAL;
+
 	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
@@ -78,7 +83,7 @@ bool WGlobalServer::Start()
 	//	return false;
 	//}
 	int64_t nNowMS = 0;
-	for (;;)
+	while(!IsTerminate())
 	{
 		ProcessNetEvent(10);
 		nNowMS = XTime::MSTime();

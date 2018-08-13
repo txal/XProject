@@ -25,6 +25,9 @@
     <Filter Include="Src\Common\DataStruct">
       <UniqueIdentifier>{9a4c509c-5573-4a12-8926-c45a33535688}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\PacketParser">
+      <UniqueIdentifier>{c5c1350e-7397-4364-8113-75fbce2f7248}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
@@ -74,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp">
       <Filter>Src\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h">
       <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
+      <Filter>Src\Common\PacketParser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

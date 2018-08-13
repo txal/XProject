@@ -104,5 +104,9 @@ int main(int nArg, char *pArgv[])
 	printf("GlobalServer start successful\n");
 	bRes = g_poContext->GetService()->Start();
 	assert(bRes);
+
+	g_poContext->GetService()->GetInnerNet()->Release();
+	g_poContext->GetService()->GetExterNet()->Release();
+	Logger::Instance()->Terminate();
 	return 0;
 }

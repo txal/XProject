@@ -80,6 +80,9 @@ int main(int nArg, char* pArgv[])
 	printf("RouterServer start successful\n");
 	bRes = poService->Start();
 	assert(bRes);
+
+	g_poContext->GetService()->GetInnerNet()->Release();
+	Logger::Instance()->Terminate();
 	return 0;
 }
 

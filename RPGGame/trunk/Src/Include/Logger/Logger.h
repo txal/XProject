@@ -32,18 +32,18 @@ class Logger
 {
 public:
 	static Logger* Instance();
-	void Init();
 
-	void SetAndWaitClose();
+	void Init();
 	void SetLogName(const char* pLogName);
 	void Print(int nLevel, const char* pFmt, ...);
+	void Terminate();
 
 private:
 	Logger();
     static void LogThread(void* pParam);
 
 private:
-	bool m_bClose;
+	bool m_bTerminate;
 	char m_sLogName[256]; //log name
 	int m_nPipeFds[2];
 	PureList<std::string*> m_oLogList;

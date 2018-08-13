@@ -12,7 +12,7 @@ PacketWriter goPKWriter;
 Packet* gpoPacketCache;
 Array<NetAdapter::SERVICE_NAVI> goNaviCache;
 
-bool gbPrintBattle = false;
+BattleLog goBattleLog;
 
 LogicServer::LogicServer()
 {
@@ -62,6 +62,10 @@ bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
+
+	PacketWriter oPW(poPacket);
+	oPW << (int)Service::SERVICE_LOGIC;
+
 	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, poRouter->nService, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_pInnerNet->SendPacket(poRouter->nSession, poPacket))
@@ -76,7 +80,7 @@ bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 bool LogicServer::Start()
 {
 	int64_t nNowMS = 0;
-	for (;;)
+	while (!IsTerminate())
 	{
 		ProcessNetEvent(10);
 		nNowMS = XTime::MSTime();

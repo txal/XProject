@@ -240,10 +240,10 @@ bool Robot::SwitchWeapon()
 	}
 	Gun& oGun = m_oHotWeaponList.tGunList[m_nGunIndex];
 	LuaWrapper::Instance()->FastCallLuaRef<void>("RobotSwitchWeapon", 0, "ii", Actor::GetID(), oGun.uID);
-	if (gbPrintBattle)
-	{
-		XLog(LEVEL_INFO, "%s Switch weapon successful old:%d new:%d\n", m_sName, poOldGun->uID, oGun.uID);
-	}
+	//if (gbPrintBattle)
+	//{
+	//	XLog(LEVEL_INFO, "%s Switch weapon successful old:%d new:%d\n", m_sName, poOldGun->uID, oGun.uID);
+	//}
 	return true;
 }
 

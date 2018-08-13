@@ -41,8 +41,11 @@ void MsgBalancer::RemoveConn(uint16_t uServer, int8_t nService, int nSession)
 	}
 }
 
-bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
+bool MsgBalancer::QueueEvent(NSNetEvent::EVENT& oEvent)
 {
+	if (m_oConnQueue.Size() <= 0)
+		return false;
+
 	uint16_t uServer = 0;
 	int8_t nService = 0;
 	int nSession = 0;
@@ -56,7 +59,7 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 		{
 			if (poConn->oEventList.Size() > 0)
 			{
-				uServer = nService = nSession =0;
+				uServer = nService = nSession = 0;
 				DecKey(nKey, uServer, nService, nSession);
 				XLog(LEVEL_ERROR, "Connection server:%d service:%d session:%d is released!\n", uServer, nService, nSession);
 			}
@@ -84,14 +87,25 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 		}
 
 	}
+	return false;
+}
+
+bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
+{
+	uint16_t uServer = 0;
+	int8_t nService = 0;
+	int nSession = 0;
 
 	INNER_HEADER oInnHeader;
 	EXTER_HEADER oExtHeader;
 	int* pSessionArray = NULL;
 
+	if (m_poEventHandler->GetMailBox().Size() <= 0 && QueueEvent(oEvent))
+		return true;
+
 	while (m_poEventHandler->RecvEvent(oEvent, uWaitMS))
 	{
-		uWaitMS = 0;	//注意: 这里要把等待时间置为, 否则下一循环没消息的情况下, 会阻塞等待
+		uWaitMS = 0;	//注意: 这里要把等待时间置为0, 否则下一循环没消息的情况下, 会阻塞等待
 		uServer = 0;
 		nService = 0;
 		nSession = 0;
@@ -170,5 +184,6 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 		if (poConn->oEventList.Size() == 1)
 			m_oConnQueue.Push(nKey);
 	}
-	return false;
+
+	return QueueEvent(oEvent);
 }

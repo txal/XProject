@@ -2,6 +2,7 @@
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
+#include "Common/PacketParser/PacketWriter.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
@@ -42,6 +43,10 @@ bool LogServer::RegToRouter(int nRouterServiceID)
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
+
+	PacketWriter oPW(poPacket);
+	oPW << (int)Service::SERVICE_LOG;
+
 	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
@@ -54,7 +59,7 @@ bool LogServer::RegToRouter(int nRouterServiceID)
 
 bool LogServer::Start()
 {
-	for (;;)
+	while(!IsTerminate())
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();

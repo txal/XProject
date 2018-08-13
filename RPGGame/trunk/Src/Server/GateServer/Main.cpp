@@ -86,5 +86,8 @@ int main(int nArg, char *pArgv[])
 	bRes = g_poContext->GetService()->Start();
 	assert(bRes);
 
+	g_poContext->GetService()->GetExterNet()->Release();
+	g_poContext->GetService()->GetInnerNet()->Release();
+	Logger::Instance()->Terminate();
 	return 0;
 }

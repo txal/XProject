@@ -169,6 +169,7 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\Service.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\BattleLog.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Component\AI\Action.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Component\AI\AI.cpp" />
     <ClCompile Include="..\..\Src\Server\LogicServer\Component\AStar\AStarPathFind.cpp" />
@@ -227,6 +228,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\ServerContext.h" />
     <ClInclude Include="..\..\Src\Server\Base\Service.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\BattleLog.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Component\AI\Action.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Component\AI\AI.h" />
     <ClInclude Include="..\..\Src\Server\LogicServer\Component\AStar\AStarPathFind.h" />

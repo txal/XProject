@@ -12,15 +12,29 @@
 class Service
 {
 public:
+	enum
+	{
+		SERVICE_NONE,
+		SERVICE_GATE,
+		SERVICE_LOGIN,
+		SERVICE_LOG,
+		SERVICE_LOGIC,
+		SERVICE_GLOBAL,
+	};
+
+public:
 	Service();
 	bool Init(int8_t nServiceID, const char* psServiceName);
 	int8_t GetServiceID() { return m_nServiceID; }
 	const char* GetServiceName() { return m_sServiceName; }
 	uint32_t GetMainLoopCount() { return m_uMainLoopCount; }
+	bool IsTerminate() { return m_bTerminate; }
 
+public:
 	virtual bool Start() = 0;
 	virtual INet* GetInnerNet() { return NULL; }
 	virtual INet* GetExterNet() { return NULL; }
+	virtual void Terminate() { m_bTerminate = true; }
 
 protected:
 	uint32_t m_uMainLoopCount;
@@ -28,6 +42,7 @@ protected:
 private:
 	int8_t m_nServiceID;
 	char m_sServiceName[32];
+	bool m_bTerminate;
 
 	DISALLOW_COPY_AND_ASSIGN(Service);
 };

@@ -55,36 +55,9 @@ void StartScriptEngine()
 	}
 }
 
-//关服定时器
-void OnSigTerm(int);
-void OnShutdownTimer(uint32_t uTimerID, void*)
-{
-	TimerMgr::Instance()->RemoveTimer(uTimerID);
-	OnSigTerm(SIGTERM);
-}
-
-//关服事件
-void OnSigTerm(int)
-{
-	XLog(LEVEL_INFO, "OnSigTerm------\n");
-	LogServer* poLogServer = (LogServer*)g_poContext->GetService();
-	if (poLogServer->GetMsgCount() <= 0)
-	{
-		Logger::Instance()->SetAndWaitClose();
-		exit(0);
-	}
-	TimerMgr::Instance()->RegisterTimer(1000, OnShutdownTimer, NULL);
-}
-
-void OnExit(void)
-{
-	printf("Exit function called\n");
-}
-
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
-	signal(SIGTERM, OnSigTerm);
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
@@ -120,8 +93,10 @@ int main(int nArg, char *pArgv[])
 	WorkerMgr::Instance()->Init(g_poContext->GetServerConfig().oLogList[0].uWorkers);
 	printf("LogServer start successful\n");
 
-	atexit(OnExit);
 	bRes = g_poContext->GetService()->Start();
 	assert(bRes);
+
+	g_poContext->GetService()->GetInnerNet()->Release();
+	Logger::Instance()->Terminate();
 	return 0;
 }

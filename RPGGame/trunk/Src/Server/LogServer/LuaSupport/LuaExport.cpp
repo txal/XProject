@@ -3,6 +3,8 @@
 #include "Include/Pbc/Pbc.hpp"
 #include "Include/Script/Script.hpp"
 
+#include "Common/LuaCommon/LuaCmd.h"
+#include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Common/DataStruct/XMath.h"
@@ -45,8 +47,11 @@ void OpenLuaExport()
 	RegTimerMgr("GlobalExport");
 	poWrapper->RegFnList(_global_lua_func, "GlobalExport");
 
-    RegLuaRpc("NetworkExport");
+	RegLuaCmd("NetworkExport");
+	RegLuaRpc("NetworkExport");
+	RegLuaPBPack("NetworkExport");
 	RegLuaNetwork("NetworkExport");
+
 
 	RegClassMysqlDriver();
 	RegWorkerMgr("WorkerMgr");

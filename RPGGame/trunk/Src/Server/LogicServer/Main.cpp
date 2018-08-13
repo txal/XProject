@@ -82,7 +82,6 @@ void StartScriptEngine()
 		sprintf(sLogName, "logicserver%d", g_poContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogName(sLogName);
 	}
-	gbPrintBattle = Platform::FileExist("./battle.txt");
 
 	bool bDebug = false;
 #ifdef _DEBUG
@@ -134,7 +133,11 @@ int main(int nArg, char *pArgv[])
 	assert(bRes);
 
 	printf("LogicServer start successful\n");
-	poService->Start();
+	bRes = poService->Start();
+	assert(bRes);
+
+	g_poContext->GetService()->GetInnerNet()->Release();
+	Logger::Instance()->Terminate();
 
 #ifdef _WIN32
 	_CrtDumpMemoryLeaks();

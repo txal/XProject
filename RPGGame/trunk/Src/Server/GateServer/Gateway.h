@@ -17,6 +17,8 @@ public:
 public:
 	virtual INet* GetInnerNet() { return m_poInnerNet;  }
 	virtual INet* GetExterNet() { return m_poExterNet;  }
+
+public:
 	ClientMgr* GetClientMgr() { return &m_oClientMgr;  }
 
 private:

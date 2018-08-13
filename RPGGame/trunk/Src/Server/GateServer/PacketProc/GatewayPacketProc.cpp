@@ -23,6 +23,7 @@ void NSPacketProc::RegisterPacketProc()
 	// 内部消息
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssKickClient, (void*)OnKickClient);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceRet, (void*)OnRegisterRouterCallback);
+	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssCloseServer, (void*)OnCloseServer);
 	poPacketHandler->RegsterInnerPacketProc(NSSrvSrvCmd::ssSyncLogicService, (void*)OnSyncRoleLogic);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssBroadcastGate, (void*)OnBroadcastGate);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssClientIPReq, (void*)OnClientIPReq);
@@ -67,6 +68,13 @@ void NSPacketProc::OnKeepAlive(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
+
+}
+
+void NSPacketProc::OnCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+{
+	XLog(LEVEL_INFO, "Closing server======\n");
+	g_poContext->GetService()->Terminate();
 
 }
 
