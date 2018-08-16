@@ -12,7 +12,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasuppo
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc         src_packetproc)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Server/LogicServer/ConfMgr  src_confmgr)
 
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_RobotClient)
+#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_RobotClient)
 add_executable(RobotClt
     ${src_base}
     ${src_filter}

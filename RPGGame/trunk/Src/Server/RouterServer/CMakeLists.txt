@@ -8,7 +8,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser  src_packetpa
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr      src_timermgr)
 
 
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_RouterServer)
+#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_RouterServer)
 add_executable (RouterServer
 	${src_base}
 	${src_routerserver}
