@@ -31,9 +31,12 @@ bool InitNetwork(int8_t nServiceID)
 	return poRouter->Init(nServiceID, poNode->sIP, poNode->uPort);
 }
 
-void StartScriptEngine()
-{
+void StartScriptEngine() {}
 
+void OnSigTerm(int)
+{	
+	Router* poRouter = (Router*)(g_poContext->GetService());
+	poRouter->GetServerClose().CloseServer(g_poContext->GetWorldServerID());
 }
 
 int main(int nArg, char* pArgv[])
@@ -44,6 +47,7 @@ int main(int nArg, char* pArgv[])
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
+	signal(SIGTERM, OnSigTerm);
 
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
