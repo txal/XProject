@@ -38,7 +38,7 @@ namespace Platform
 #elif defined(LINUX) || defined(SOLARIS) || defined(AIX)
 		return get_nprocs();   //GNU fuction
 #else
-#error  不支持的操作系统
+		return 1;
 #endif
 	}
 
