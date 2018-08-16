@@ -12,7 +12,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasuppo
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc 		src_packetproc)
 
 
-#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_WorldServer)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_WorldServer/${CMAKE_BUILD_TYPE}/)
 add_executable(WGlobalServer
     ${src_base}
     ${src_timermgr}

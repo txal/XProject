@@ -3,6 +3,7 @@
 path=$PWD
 
 mkdir -m 755 -p DB/global
+mkdir -m 755 -p DB/global2
 mkdir -m 755 -p Log
 
 ulimit -n 102400

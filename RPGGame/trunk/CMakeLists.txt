@@ -14,8 +14,6 @@ link_directories(/usr/lib64/)
 
 include_directories(${PROJECT_SOURCE_DIR}/Src)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/Bin/Debug)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/Bin/Release) 
 #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin)
 
 add_subdirectory(Src)

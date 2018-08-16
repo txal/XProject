@@ -7,7 +7,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/ClientMgr          src_clientmg
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser src_packetparser)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr      src_timermgr)
 
-#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_LocalServer)
+#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_LocalServer/${CMAKE_BUILD_TYPE}/)
 add_executable(GateServer
 	${src_base}
 	${src_gateserver}
