@@ -78,6 +78,7 @@ namespace XTime
 	//标准时间,毫秒
 	inline int64_t UnixMSTime()
 	{
+#ifdef _WIN32
 		time_t clock;
 		struct tm tm;
 		SYSTEMTIME wtm;
@@ -93,6 +94,12 @@ namespace XTime
 
 		int64_t nMSTime = clock * 1000 + wtm.wMilliseconds;
 		return nMSTime;
+#else
+		struct timeval tv;
+		gettimeofday(&tv, NULL);
+		int64_t nMSTime = (int64_t)tv.tv_sec * 1000 + tv.tv_usec / 1000;
+		return nMSTime;
+#endif
 	}
 };
 
