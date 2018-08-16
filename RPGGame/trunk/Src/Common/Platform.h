@@ -35,7 +35,7 @@ namespace Platform
 		SYSTEM_INFO info;
 		GetSystemInfo(&info);
 		return info.dwNumberOfProcessors;
-#elif defined(LINUX) || defined(SOLARIS) || defined(AIX)
+#elif defined(__linux)
 		return get_nprocs();   //GNU fuction
 #else
 		return 1;
