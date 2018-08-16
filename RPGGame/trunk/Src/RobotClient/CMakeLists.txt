@@ -10,7 +10,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/WordFilter    src_wordfilt
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}                    src_robotclient)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasupport)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc         src_packetproc)
-aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/ConfMgr         	src_confmgr)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Server/LogicServer/ConfMgr  src_confmgr)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_RobotClient)
 add_executable(RobotClt
