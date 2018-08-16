@@ -23,3 +23,4 @@ add_executable(LogServer
 
 target_link_libraries(LogServer logger network dbdriver luawrapper)
 target_link_libraries(LogServer lua530 mysqlclient readline lpeg pbc jemalloc pthread rt cjson)
+target_link_libraries(LogServer curl cjson z ssl crypto)
