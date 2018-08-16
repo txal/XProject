@@ -6,6 +6,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/WordFilter    src_wordfilt
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/LuaCommon     src_luacommon)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/HttpRequest   src_httprequest)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/WordFilter 	src_wordfilter)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser src_packetparser)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}                    src_globalserver)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasupport)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc 		src_packetproc)
@@ -21,6 +22,7 @@ add_executable(GlobalServer
 	${src_luasupport}
 	${src_packetproc}
     ${src_httprequest}
+    ${src_packetparser}
 )
 
 target_link_libraries(GlobalServer logger network dbdriver luawrapper)
