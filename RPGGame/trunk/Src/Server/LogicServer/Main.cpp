@@ -50,6 +50,8 @@ static void MonitorThreadFunc(void* pParam)
 	uint32_t uNowMainLoops = 0;
 	for (;;)
 	{
+		XTime::MSSleep(10000);
+
 		uNowMainLoops = g_poContext->GetService()->GetMainLoopCount();
 		if (uNowMainLoops == uLastMainLoops && !LuaWrapper::Instance()->IsBreaking())
 		{
@@ -57,7 +59,6 @@ static void MonitorThreadFunc(void* pParam)
 			LuaWrapper::Instance()->SetEndlessLoop(1);
 		}
 		uLastMainLoops = uNowMainLoops;
-		XTime::MSSleep(10000);
 	}
 }
 

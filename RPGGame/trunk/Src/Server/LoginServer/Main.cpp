@@ -48,7 +48,7 @@ void StartScriptEngine()
 	if (!Platform::FileExist("./debug.txt"))
 	{
 		char sLogName[256] = "";
-		sprintf(sLogName, "logserver%d", g_poContext->GetService()->GetServiceID());
+		sprintf(sLogName, "loginserver%d", g_poContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogName(sLogName);
 	}
 }
