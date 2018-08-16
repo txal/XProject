@@ -373,7 +373,8 @@ int Scene::SetAutoCollected(lua_State* pState)
 int Scene::RemoveObserver(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	m_oAOI.RemoveObserver(nAOIID, true);
+	int bLeaveScene = (bool)lua_toboolean(pState, 2);
+	m_oAOI.RemoveObserver(nAOIID, bLeaveScene);
 	return 0;
 }
 

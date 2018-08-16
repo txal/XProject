@@ -20,7 +20,6 @@ Iocp::~Iocp()
 	{
 		::CloseHandle(m_hObjects[i]);
 	}
-
 	SockEventIter iter = m_oSockEventMap.begin();
 	SockEventIter iter_end = m_oSockEventMap.end();
 	for (; iter != iter_end; iter++)
@@ -239,7 +238,7 @@ void Iocp::EventLoop()
 			break;
 		}
 		
-        int nIndex = WSAWaitForMultipleEvents(WAIT_OBJS, m_hObjects, FALSE, 100, FALSE );
+        int nIndex = WSAWaitForMultipleEvents(WAIT_OBJS, m_hObjects, FALSE, nMSTickTimeOut, FALSE );
 		int64_t nNowMSTime = XTime::MSTime();
 		if (nNowMSTime - nLastTickMSTime >= nMSTickTimeOut)
 		{

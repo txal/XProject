@@ -3,6 +3,7 @@
 
 #include "Include/Network/Network.hpp"
 #include "Server/Base/Service.h"
+#include "Common/HttpRequest/HttpRequest.h"
 
 class LogServer: public Service
 {
@@ -34,5 +35,7 @@ private:
 	NetEventHandler m_oNetEventHandler;
 	DISALLOW_COPY_AND_ASSIGN(LogServer);
 };
+
+extern HttpRequest goHttpRequest;
 
 #endif

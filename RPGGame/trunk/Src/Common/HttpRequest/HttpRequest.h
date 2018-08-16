@@ -9,17 +9,19 @@
 struct MCURL
 {
 	CURL* curl;
+
 	char buffer[1024];
 	uint16_t offset;
 	uint32_t index;
-	char url[256];
-	MCURL(CURL* _curl, uint32_t _index, const char* _url) 
+
+	std::string url;
+
+	MCURL(CURL* _curl, uint32_t _index, const char* _url)
 	{
 		offset = 0;
 		curl = _curl;
 		index = _index;
-		strncpy(url, _url, sizeof(url)-1);
-		url[sizeof(url) - 1] = '\0';
+		url = _url;
 	}
 };
 

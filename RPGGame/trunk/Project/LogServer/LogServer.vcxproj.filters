@@ -28,6 +28,9 @@
     <Filter Include="Src\Common\PacketParser">
       <UniqueIdentifier>{c5c1350e-7397-4364-8113-75fbce2f7248}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\HttpRequest">
+      <UniqueIdentifier>{d587ee76-3be9-49a4-b4ac-206712c633e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
@@ -83,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
       <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp">
+      <Filter>Src\Common\HttpRequest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
       <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h">
+      <Filter>Src\Common\HttpRequest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

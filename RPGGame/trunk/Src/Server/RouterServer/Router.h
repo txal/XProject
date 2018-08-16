@@ -39,9 +39,12 @@ public:
 	int GetServiceListByServer(int nServerID, ServiceNode* tServiceList[], int nMaxNum, int nServiceType=0);
 	ServerCloseProgress& GetServerClose() { return m_oServerClose; }
 
+public:
+	virtual INet* GetInnerNet() { return m_poListener; }
+
 private:
     void ProcessNetEvent(int nWaitMSTime);
-	void ProcessServerClose(int nWaitMSTime);
+	void ProcessServerClose();
 
 	void OnRouterAccept(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemotePort);
 	void OnRouterDisconnect(int nSessionID);

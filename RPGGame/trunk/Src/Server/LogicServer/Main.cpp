@@ -140,7 +140,7 @@ int main(int nArg, char *pArgv[])
 	Logger::Instance()->Terminate();
 
 #ifdef _WIN32
-	_CrtDumpMemoryLeaks();
+	//_CrtDumpMemoryLeaks();
 #endif // _WIN32
 	return 0;
 }

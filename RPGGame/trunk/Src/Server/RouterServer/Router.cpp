@@ -279,7 +279,7 @@ int Router::GetServerList(int tServerList[], int nMaxNum)
 	return nNum;
 }
 
-void Router::ProcessServerClose(int nWaitMSTime)
+void Router::ProcessServerClose()
 {
 	static int nLastTime = time(NULL);
 	int nNowTime = time(NULL);

@@ -170,7 +170,7 @@ int LuaErrorHandler( lua_State* pState )
 	{
 		luaL_traceback(pState, pState, "", 1);
 		lua_concat(pState, 2);
-		XLog(LEVEL_ERROR,"[LERR]:%s\n", lua_tostring( pState, -1));
+		XLog(LEVEL_ERROR,"[LUA ERROR]:%s\n", lua_tostring( pState, -1));
 	}
 	LuaWrapper::Instance()->SetBreaking(false);
     return 0;

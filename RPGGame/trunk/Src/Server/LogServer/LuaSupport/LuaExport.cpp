@@ -6,11 +6,12 @@
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaRpc.h"
-#include "Common/TimerMgr/TimerMgr.h"
 #include "Common/DataStruct/XMath.h"
+#include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogServer/WorkerMgr.h"
+#include "Server/LogServer/LogServer.h"
 
 //////////////////////////Global funcitons/////////////////////////////
 int GetServiceID(lua_State* pState)
@@ -32,10 +33,23 @@ int EscapeString(lua_State* pState)
 	return 1;
 }
 
+int HttpRequest(lua_State* pState)
+{
+	const char* psType = luaL_checkstring(pState, 1);
+	const char* psUrl= luaL_checkstring(pState, 2);
+	const char* psParam = lua_tostring(pState, 3);
+	if (strcmp(psType, "post") == 0)
+		goHttpRequest.Post(psUrl, psParam);
+	else
+		goHttpRequest.Get(psUrl);
+	return 0;
+}
+
 luaL_Reg _global_lua_func[] =
 {
 	{ "GetServiceID", GetServiceID},
-	{ "EscapeString", EscapeString },
+	{ "EscapeString", EscapeString},
+	{ "HttpRequest", HttpRequest},
 	{ NULL, NULL },
 };
 

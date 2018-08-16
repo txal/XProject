@@ -127,6 +127,8 @@ int main(int nArg, char *pArgv[])
 	Thread oCmdThread;
 	oCmdThread.Create(CmdProc, poRobotMgr);
 	poRobotMgr->Start();
+	INet* pExterNet = g_poContext->GetService()->GetExterNet();
+	pExterNet->Release();
 
 	return 0;
 }

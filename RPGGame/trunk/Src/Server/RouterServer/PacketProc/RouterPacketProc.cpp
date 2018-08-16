@@ -13,6 +13,7 @@ void NSPacketProc::RegisterPacketProc()
 	PacketHandler* poPacketHandler = g_poContext->GetPacketHandler();
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceReq, (void*)OnRegisterService);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssCloseServerReq, (void*)OnCloseServerReq);
+	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssPrepCloseServer, (void*)OnPrepCloseServer);
 }
 
 
@@ -66,12 +67,12 @@ void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_
 	if (poTarService == NULL)
 		return;
 
-	PacketWriter oPW(poPacket);
-	oPW << oHeader.uSrcServer << oHeader.nSrcService;
-
 	Packet* poPacketRet = Packet::Create();
 	if (poPacketRet == NULL)
 		return;
+
+	PacketWriter oPW(poPacketRet);
+	oPW << (int)oHeader.uSrcServer << (int)oHeader.nSrcService;
 
 	INNER_HEADER oHeaderRet(NSSysCmd::ssImplCloseServer, g_poContext->GetWorldServerID(), poRouter->GetServiceID(), oHeader.uSrcServer, oHeader.nSrcService, 0);
 	poPacketRet->AppendInnerHeader(oHeaderRet, NULL, 0);

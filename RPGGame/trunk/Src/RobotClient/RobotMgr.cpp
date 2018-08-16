@@ -51,7 +51,7 @@ bool RobotMgr::Init(int8_t nServiceID, int nMaxRobot)
 bool RobotMgr::Start()
 {
 	int64_t nNowMSTime = 0;
-	for (;;)
+	while (!IsTerminate())
 	{
         ProcessNetEvent(1);
 		nNowMSTime = XTime::MSTime();

@@ -83,7 +83,7 @@ MCURL* HttpRequest::GenCurl(int nType, const char* pURL, const char* pParam)
 	CURL* curl = curl_easy_init();
 	MCURL* poMCURL = new MCURL(curl, ++m_nReqIndex, pURL);
 
-	curl_easy_setopt(curl, CURLOPT_URL, poMCURL->url); //设置访问的URL
+	curl_easy_setopt(curl, CURLOPT_URL, poMCURL->url.c_str()); //设置访问的URL
 
 	if (nType == 2) //Post
 	{
@@ -140,13 +140,13 @@ void HttpRequest::WorkThread(void* pParam)
 		if (res != CURLE_OK)
 		{
 			const char* pErr = curl_easy_strerror(res);
-			XLog(LEVEL_ERROR, "[%d](%s) Curl request fail: %s\n", poMCURL->index, poMCURL->url, pErr);
+			XLog(LEVEL_ERROR, "[%d][%s]: Curl request fail: %s\n", poMCURL->index, poMCURL->url.c_str(), pErr);
 		}
 		else
 		{
 			int end = XMath::Min((int)(poMCURL->offset), (int)(sizeof(poMCURL->buffer) - 1));
 			poMCURL->buffer[end] = '\0';
-			printf("\n[%d]: [[--- %s ---]]\n", poMCURL->index, poMCURL->buffer);
+			XLog(LEVEL_INFO, "\n[%d]: [--- %s ---]\n", poMCURL->index, poMCURL->buffer);
 		}
 		//fix pd callback
 

@@ -148,9 +148,13 @@ void ServerCloseProgress::OnCloseServerFinish(int nServerID)
 
 	m_oServerList.pop_front();
 	if (m_oServerList.size() <= 0)
+	{
 		if (poRouter->GetServiceNum() <= 0)
+		{
 			poRouter->Terminate();
 			return;
+		}
+	}
 
 	StartRoutine();
 }

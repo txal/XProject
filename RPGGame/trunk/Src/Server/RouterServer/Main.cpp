@@ -81,7 +81,9 @@ int main(int nArg, char* pArgv[])
 	bRes = poService->Start();
 	assert(bRes);
 
-	g_poContext->GetService()->GetInnerNet()->Release();
+	INet* pInnerNet = g_poContext->GetService()->GetInnerNet();
+	pInnerNet->Release();
+
 	Logger::Instance()->Terminate();
 	return 0;
 }

@@ -86,6 +86,9 @@ private:
 	int m_nMapHeightUnit;	// 地图高(格子)
 	int m_nXTowerNum;		// X轴灯塔数量
 	int m_nYTowerNum;		// Y轴灯塔数量
+	int m_nTowerWidthPixel;
+	int m_nTowerHeightPixel;
+
 
 	AOIObjMap m_oObjMap;	//游戏对象映射
 	Tower** m_pTowerArray;	//灯塔数组
