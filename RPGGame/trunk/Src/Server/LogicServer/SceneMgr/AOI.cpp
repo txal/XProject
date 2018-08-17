@@ -246,8 +246,8 @@ void AOI::MoveObserver(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 						continue;
 					if (iter->second->nLine != 0 && pObj->nLine != 0 && iter->second->nLine != pObj->nLine)
 						continue;
-					if (iter->second->nSeenObjID != 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
-						continue;
+					//if (iter->second->nSeenObjID != 0 && iter->second->nSeenObjID != pObj->poGameObj->GetID())
+					//	continue;
 					m_oObjCache.PushBack(iter->second);
 				}
 				if (!pTower->RemoveObserver(pObj))

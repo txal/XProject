@@ -30,6 +30,8 @@ LUNAR_IMPLEMENT_CLASS(Scene)
 	LUNAR_DECLARE_METHOD(Scene, GetAreaObservers),
 	LUNAR_DECLARE_METHOD(Scene, GetAreaObserveds),
 	LUNAR_DECLARE_METHOD(Scene, DumpSceneObjInfo),
+	LUNAR_DECLARE_METHOD(Scene, DumpSceneObjInfo),
+	LUNAR_DECLARE_METHOD(Scene, KickAllRole),
 	{0, 0}
 };
 
@@ -373,7 +375,7 @@ int Scene::SetAutoCollected(lua_State* pState)
 int Scene::RemoveObserver(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	int bLeaveScene = lua_toboolean(pState, 2) != 0;
+	bool bLeaveScene = lua_toboolean(pState, 2) != 0;
 	m_oAOI.RemoveObserver(nAOIID, bLeaveScene);
 	return 0;
 }
