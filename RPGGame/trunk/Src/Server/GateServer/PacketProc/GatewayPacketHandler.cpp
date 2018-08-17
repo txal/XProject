@@ -84,6 +84,10 @@ void GatewayPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket
 
 void GatewayPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
+	if (poPacket->GetDataSize() >= 16 * 1024)
+	{
+		XLog(LEVEL_WARNING, "Large parcket cmd:%d size:%d\n", oHeader.uCmd, poPacket->GetDataSize());
+	}
 	super::CacheSessionArray(pSessionArray, oHeader.uSessionNum);
 	Service* poService = g_poContext->GetService();
 	INet* pExterNet = poService->GetExterNet();

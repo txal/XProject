@@ -115,26 +115,28 @@ int SceneMgr::CreateDup(lua_State* pState)
 	lua_assert(nDupID > 0 && nDupID <= 0xFFFF);
 	int nMapID = (int)luaL_checkinteger(pState, 3);
 	bool bCanCollected = lua_toboolean(pState, 4) != 0;
+
+	int nLineObjs = (int)lua_tointeger(pState, 5);
+	nLineObjs = nLineObjs == 0 ? MAX_OBJ_PERLINE : nLineObjs;
+
 	MapConf* poMapConf = ConfMgr::Instance()->GetMapMgr()->GetConf(nMapID);
 	if (poMapConf == NULL)
-	{
 		return LuaWrapper::luaM_error(pState, "Dup:%d map:%d not found!\n", nDupID, nMapID);
-	}
+
 	uint32_t uSceneMixID = nDupID;
 	if (nDupType == 2) //1:城镇; 2副本
-	{
 		uSceneMixID = GenSceneMixID(nDupID);
-	}
+
 	if (GetScene(uSceneMixID) != NULL)
-	{
 		return LuaWrapper::luaM_error(pState, "Dup:%d id:%d conflict!!!\n", nDupID, uSceneMixID);
-	}
+
 	Scene* poScene = XNEW(Scene)(this, uSceneMixID, poMapConf, bCanCollected);
-	if (!poScene->InitAOI(poMapConf->nPixelWidth, poMapConf->nPixelHeight))
+	if (!poScene->InitAOI(poMapConf->nPixelWidth, poMapConf->nPixelHeight, nLineObjs))
 	{
 		SAFE_DELETE(poScene);  
 		return LuaWrapper::luaM_error(pState, "Dup:%d init AOI error\n", nDupID);
 	}
+
 	m_oSceneMap[uSceneMixID] = poScene;
 	lua_pushinteger(pState, uSceneMixID);
 	Lunar<Scene>::push(pState, poScene);

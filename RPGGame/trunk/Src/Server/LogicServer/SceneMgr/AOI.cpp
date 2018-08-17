@@ -20,6 +20,8 @@ AOI::AOI()
 
 	m_nTowerWidthPixel = gnUnitWidth * gnTowerWidth;
 	m_nTowerHeightPixel = gnUnitHeight * gnTowerHeight;
+
+	m_nLineObjNum = 0;
 }
 
 AOI::~AOI()
@@ -40,13 +42,15 @@ AOI::~AOI()
 	}
 }
 
-bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight)
+bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight, int nLineObjNum)
 {
 	assert(nMapWidth > 0 && nMapWidth <= 0x7FFF && nMapHeight > 0 && nMapHeight <= 0x7FFF);
 	if (pScene == NULL)
 		return false;
 	
 	m_poScene = pScene;
+	m_nLineObjNum = (int16_t)XMath::Max(50, XMath::Min(nLineObjNum, MAX_OBJ_PERLINE));
+
 	m_nMapPixelWidth = nMapWidth;
 	m_nMapPixelHeight = nMapHeight;
 
@@ -837,7 +841,7 @@ int8_t AOI::AddLineObj(int8_t nLine)
 	if (nLine == 0)
 	{
 		m_tLineObj[nLine]++;
-		XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", 0, m_tLineObj[nLine]);
+		XLog(LEVEL_INFO, "Addtoline:%d Scene:%d objs:%d\n", 0, m_poScene->GetSceneMixID(), m_tLineObj[nLine]);
 		return 0;
 	}
 
@@ -851,7 +855,7 @@ int8_t AOI::AddLineObj(int8_t nLine)
 			if (m_tLineObj[i] < MAX_OBJ_PERLINE)
 			{
 				m_tLineObj[i]++;
-				XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", i, m_tLineObj[i]);
+				XLog(LEVEL_INFO, "AddToLine:%d scene:%d objs:%d\n", i, m_poScene->GetSceneMixID(), m_tLineObj[i]);
 				return i;
 			}
 			else
@@ -864,7 +868,7 @@ int8_t AOI::AddLineObj(int8_t nLine)
 			}
 		}
 		m_tLineObj[nMinLine]++;
-		XLog(LEVEL_INFO, "AddToLine:%d objs:%d\n", nMinLine, m_tLineObj[nMinLine]);
+		XLog(LEVEL_INFO, "AddToLine:%d scene:%d objs:%d\n", nMinLine, m_poScene->GetSceneMixID(), m_tLineObj[nMinLine]);
 		return nMinLine;
 	} 
 	else

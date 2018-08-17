@@ -12,8 +12,8 @@
 #define AOI_TYPE_RECT 1
 #define AOI_TYPE_CIRCLE 2
 
-#define MAX_LINE 11	//分线上限
-#define MAX_OBJ_PERLINE 500 //每条线对象上限
+#define MAX_LINE 21	//分线上限
+#define MAX_OBJ_PERLINE 300 //每条线对象上限
 
 class Object;
 struct AOIOBJ
@@ -41,7 +41,7 @@ public:
 	AOI();
 	~AOI();
 
-	bool Init(Scene *pScene, int nMapWidth, int nMapHeight);
+	bool Init(Scene *pScene, int nMapWidth, int nMapHeight, int nLineObjNum=MAX_OBJ_PERLINE);
 
 	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType = AOI_TYPE_RECT, int8_t nLine = -1);
 	void MoveObj(int nID, int nPosX, int nPosY);
@@ -64,6 +64,8 @@ public:
 public:
 	void PrintTower();
 	void ClearDropObj(int64_t nNowMS);
+	int16_t* GetLineArray() { return m_tLineObj; }
+	int16_t GetLineObjNum() { return m_nLineObjNum; }
 
 private:
 	int GenAOIID();
@@ -94,6 +96,7 @@ private:
 	Tower** m_pTowerArray;	//灯塔数组
 	int64_t m_nLastClearMSTime;		//上次清理时间(毫秒)
 
+	int16_t m_nLineObjNum;			//每条线人数
 	int16_t m_tLineObj[MAX_LINE];	//分线(0表示公共线)
 
 	Array<AOIOBJ*> m_oObjCache; //AOI对象缓存

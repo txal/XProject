@@ -53,7 +53,7 @@ bool RobotMgr::Start()
 	int64_t nNowMSTime = 0;
 	while (!IsTerminate())
 	{
-        ProcessNetEvent(1);
+        ProcessNetEvent(10);
 		nNowMSTime = XTime::MSTime();
         ProcessTimer(nNowMSTime);
         ProcessRobotUpdate(nNowMSTime);

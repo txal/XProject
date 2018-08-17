@@ -110,7 +110,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 	{
-		XLog(LEVEL_ERROR, "%s sync pos for start run faultbit srv:(%d,%d) clt:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY);
+		XLog(LEVEL_ERROR, "%s sync pos for start run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, uTarPosX, uTarPosY);
 		uPosX = (uint16_t)m_oPos.x;
 		uPosY = (uint16_t)m_oPos.y;
 		Actor::SyncPosition();

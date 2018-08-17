@@ -29,7 +29,7 @@ public:
 	Scene(SceneMgr* poSceneMgr, uint32_t uSceneMixID, MapConf* poMapConf, bool bCanCollected=true);
 	~Scene();
 
-	bool InitAOI(int nMapWidth, int nMapHeight)	{ return m_oAOI.Init(this, nMapWidth, nMapHeight); }
+	bool InitAOI(int nMapWidth, int nMapHeight, int nLineObjNum) { return m_oAOI.Init(this, nMapWidth, nMapHeight, nLineObjNum); }
 
 	void Update(int64_t nNowMS);
 	bool IsTime2Collect(int64_t nNowMS);
@@ -99,6 +99,7 @@ public:
 	int GetAreaObserveds(lua_State* pState);
 
 	int KickAllRole(lua_State* pState);
+	int DumpSceneObjInfo(lua_State* pState);
 };
 
 

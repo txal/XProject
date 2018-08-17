@@ -29,7 +29,7 @@ LUNAR_IMPLEMENT_CLASS(Scene)
 	LUNAR_DECLARE_METHOD(Scene, RemoveObserved),
 	LUNAR_DECLARE_METHOD(Scene, GetAreaObservers),
 	LUNAR_DECLARE_METHOD(Scene, GetAreaObserveds),
-	LUNAR_DECLARE_METHOD(Scene, KickAllRole),
+	LUNAR_DECLARE_METHOD(Scene, DumpSceneObjInfo),
 	{0, 0}
 };
 
@@ -356,7 +356,7 @@ int Scene::LeaveDup(lua_State* pState)
 
 int Scene::SetAutoCollected(lua_State* pState)
 {
-	bool bAuto = (bool)lua_toboolean(pState, 1);
+	bool bAuto = lua_toboolean(pState, 1) != 0;
 	m_bCanCollected = bAuto;
 	return 0;
 }
@@ -373,7 +373,7 @@ int Scene::SetAutoCollected(lua_State* pState)
 int Scene::RemoveObserver(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	int bLeaveScene = (bool)lua_toboolean(pState, 2);
+	int bLeaveScene = lua_toboolean(pState, 2) != 0;
 	m_oAOI.RemoveObserver(nAOIID, bLeaveScene);
 	return 0;
 }
@@ -459,3 +459,17 @@ int Scene::KickAllRole(lua_State* pState)
 	KickAllRole();
 	return 0;
 }
+
+int Scene::DumpSceneObjInfo(lua_State* pState)
+{
+	int16_t *pLineArray = m_oAOI.GetLineArray();
+	int16_t nLineObjNum = m_oAOI.GetLineObjNum();
+	XLog(LEVEL_INFO, "DumpSceneObjInfo-------\n");
+	XLog(LEVEL_INFO, "objcount:%d rolecount:%d lineobjnum:%d\n", m_oObjMap.size(), m_nRoleCount, nLineObjNum);
+	for (int i = 0; i < MAX_LINE; i++)
+	{
+		XLog(LEVEL_INFO, "line:%d objnum:%d\n", i, pLineArray[i]);
+	}
+	return 0;
+}
+

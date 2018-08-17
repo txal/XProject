@@ -1,4 +1,5 @@
 ﻿#include "BattleLog.h"
+#include "Include/Logger/Logger.hpp"
 #include "Common/DataStruct/XTime.h"
 
 BattleLog::BattleLog()
@@ -50,6 +51,11 @@ void BattleLog::LogThread(void* param)
 				fwrite(pLog->oCont.c_str(), 1, pLog->oCont.size(), file);
 				fclose(file);
 			}
+			else
+			{
+				XLog(LEVEL_ERROR, "Open file %s error!\n", pLog->oFile.c_str());
+			}
+
 			SAFE_DELETE(pLog);
 		}
 		else
