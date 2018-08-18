@@ -26,7 +26,6 @@ struct AOIOBJ
 	int16_t nArea[2];	//矩形(像素):(宽,高); 圆形(像素):(半径,0)
 	Object* poGameObj;	//游戏对象
 	int8_t nLine;		//所在分线
-	int32_t nSeenObjID;	//该AOI对象只会被nSeenObjID看见
 };
 
 class Scene;
@@ -86,14 +85,14 @@ private:
 	int m_nMapPixelHeight;	// 地图高(像素)
 	int m_nMapWidthUnit;	// 地图宽(格子)
 	int m_nMapHeightUnit;	// 地图高(格子)
-	int m_nXTowerNum;		// X轴灯塔数量
-	int m_nYTowerNum;		// Y轴灯塔数量
+	int m_nXTowerNum;		// X轴塔数量
+	int m_nYTowerNum;		// Y轴塔数量
 	int m_nTowerWidthPixel;
 	int m_nTowerHeightPixel;
 
 
-	AOIObjMap m_oObjMap;	//游戏对象映射
-	Tower** m_pTowerArray;	//灯塔数组
+	AOIObjMap m_oObjMap;			//游戏对象映射
+	Tower** m_pTowerArray;			//灯塔数组
 	int64_t m_nLastClearMSTime;		//上次清理时间(毫秒)
 
 	int16_t m_nLineObjNum;			//每条线人数

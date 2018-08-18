@@ -122,7 +122,6 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* p
 	pObj->nArea[0] = (int16_t)nAOIArea[0];
 	pObj->nArea[1] = (int16_t)nAOIArea[1];
 	pObj->poGameObj = poGameObj;
-	pObj->nSeenObjID = 0;
 
 	int8_t nTarLine = AddLineObj(nLine);
 	assert(nTarLine >= 0 && nTarLine < MAX_LINE);
