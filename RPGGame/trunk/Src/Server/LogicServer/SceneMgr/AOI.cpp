@@ -904,4 +904,5 @@ void AOI::ChangeLine(int nID, int8_t nNewLine)
 	pObj->nLine = nNewLine;
 	AddObserver(nID);
 	AddObserved(nID);
+	AddLineObj(pObj->nLine);
 }
