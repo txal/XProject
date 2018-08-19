@@ -848,7 +848,7 @@ inline int8_t AOI::AddLineObj(int8_t nLine)
 	if (nLine == -1)
 	{
 		int nMinLine = 1;
-		int nMinObj = 0;
+		int nMinObjs = 0;
 		for (int i = 1; i < MAX_LINE; i++)
 		{
 			if (m_tLineObj[i] < m_nLineObjNum)
@@ -859,9 +859,9 @@ inline int8_t AOI::AddLineObj(int8_t nLine)
 			}
 			else
 			{
-				if (nMinObj == 0 || m_tLineObj[i] < nMinObj)
+				if (nMinObjs == 0 || m_tLineObj[i] < nMinObjs)
 				{
-					nMinObj = m_tLineObj[i];
+					nMinObjs = m_tLineObj[i];
 					nMinLine = i;
 				}
 			}
@@ -897,8 +897,9 @@ void AOI::ChangeLine(int nID, int8_t nNewLine)
 	if (pObj->nLine == nNewLine)
 		return;
 
-	RemoveObserver(nID, true);
+	RemoveObserver(nID);
 	RemoveObserved(nID);
+	SubLineObj(pObj->nLine);
 
 	pObj->nLine = nNewLine;
 	AddObserver(nID);
