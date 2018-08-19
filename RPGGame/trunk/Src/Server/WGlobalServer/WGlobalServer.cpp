@@ -14,7 +14,7 @@ extern ServerContext* g_poContext;
 
 WGlobalServer::WGlobalServer()
 {
-	m_uListenPort = NULL;
+	m_uListenPort = 0;
 	m_poExterNet = NULL;
 	m_poInnerNet = NULL;
 	memset(m_sListenIP, 0, sizeof(m_sListenIP));
