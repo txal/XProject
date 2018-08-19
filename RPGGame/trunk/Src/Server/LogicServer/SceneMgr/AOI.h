@@ -12,8 +12,9 @@
 #define AOI_TYPE_RECT 1
 #define AOI_TYPE_CIRCLE 2
 
-#define MAX_LINE 21	//分线上限
-#define MAX_OBJ_PERLINE 300 //每条线对象上限
+#define MAX_LINE 101		//分线上限
+#define MIN_OBJ_PERLINE 10  //每条线最低数对象
+#define MAX_OBJ_PERLINE 100 //每条线默认对象上限
 
 class Object;
 struct AOIOBJ
@@ -63,6 +64,7 @@ public:
 public:
 	void PrintTower();
 	void ClearDropObj(int64_t nNowMS);
+
 	int16_t* GetLineArray() { return m_tLineObj; }
 	int16_t GetLineObjNum() { return m_nLineObjNum; }
 

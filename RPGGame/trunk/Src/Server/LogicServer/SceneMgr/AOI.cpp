@@ -49,7 +49,7 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight, int nLineObjNum)
 		return false;
 	
 	m_poScene = pScene;
-	m_nLineObjNum = (int16_t)XMath::Max(50, XMath::Min(nLineObjNum, MAX_OBJ_PERLINE));
+	m_nLineObjNum = (int16_t)XMath::Max(MIN_OBJ_PERLINE, XMath::Min(nLineObjNum, MAX_OBJ_PERLINE));
 
 	m_nMapPixelWidth = nMapWidth;
 	m_nMapPixelHeight = nMapHeight;
@@ -717,7 +717,7 @@ void AOI::ClearDropObj(int64_t nNowMS)
 	}
 }
 
-void AOI::CalcTowerPos(int nPosX, int nPosY, int& nTowerX, int& nTowerY)
+inline void AOI::CalcTowerPos(int nPosX, int nPosY, int& nTowerX, int& nTowerY)
 {
 	nPosX = XMath::Max(0, XMath::Min(nPosX, m_nMapPixelWidth - 1));
 	nPosY = XMath::Max(0, XMath::Min(nPosY, m_nMapPixelHeight - 1));
@@ -725,7 +725,7 @@ void AOI::CalcTowerPos(int nPosX, int nPosY, int& nTowerX, int& nTowerY)
 	nTowerY = nPosY / m_nTowerHeightPixel;
 }
 
-void AOI::CalcCircleTowerArea(int nPosX, int nPosY, int nRadius, int nLTTower[], int nRBTower[])
+inline void AOI::CalcCircleTowerArea(int nPosX, int nPosY, int nRadius, int nLTTower[], int nRBTower[])
 {
 	assert(false); //屏蔽
 
@@ -761,7 +761,7 @@ void AOI::CalcCircleTowerArea(int nPosX, int nPosY, int nRadius, int nLTTower[],
 	nRBTower[1] = nRBTowerY;
 }
 
-void AOI::CalcRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int nLTTower[], int nRBTower[])
+inline void AOI::CalcRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int nLTTower[], int nRBTower[])
 {
 	if (nWidth == 0 && nHeight == 0)
 	{
@@ -832,7 +832,7 @@ void AOI::CalcRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight, int n
 	nRBTower[1] = nRBTowerY;
 }
 
-int8_t AOI::AddLineObj(int8_t nLine)
+inline int8_t AOI::AddLineObj(int8_t nLine)
 {
 	assert(nLine >= -1 && nLine < MAX_LINE);
 
@@ -851,7 +851,7 @@ int8_t AOI::AddLineObj(int8_t nLine)
 		int nMinObj = 0;
 		for (int i = 1; i < MAX_LINE; i++)
 		{
-			if (m_tLineObj[i] < MAX_OBJ_PERLINE)
+			if (m_tLineObj[i] < m_nLineObjNum)
 			{
 				m_tLineObj[i]++;
 				XLog(LEVEL_INFO, "AddToLine:%d scene:%d objs:%d\n", i, m_poScene->GetSceneMixID(), m_tLineObj[i]);
@@ -879,7 +879,7 @@ int8_t AOI::AddLineObj(int8_t nLine)
 	return -1;
 }
 
-int16_t AOI::SubLineObj(int8_t nLine)
+inline int16_t AOI::SubLineObj(int8_t nLine)
 {
 	assert(nLine >= 0 && nLine < MAX_LINE);
 	m_tLineObj[nLine]--;
