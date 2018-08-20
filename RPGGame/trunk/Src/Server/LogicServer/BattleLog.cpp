@@ -60,7 +60,7 @@ void BattleLog::LogThread(void* param)
 		}
 		else
 		{
-			XTime::MSSleep(1);
+			XTime::MSSleep(10);
 		}
 
 	}

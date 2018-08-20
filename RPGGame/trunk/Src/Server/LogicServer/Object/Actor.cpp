@@ -73,6 +73,7 @@ void Actor::StartRun(int nSpeedX, int nSpeedY, int8_t nFace)
 
 void Actor::StopRun(bool bBroadcast, bool bClientStop)
 {
+	m_oLastTargetPos = m_oTargetPos;
 	m_oTargetPos.Reset();
 	if (m_nRunStartMSTime > 0)
 	{

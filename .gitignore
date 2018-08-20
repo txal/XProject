@@ -18,3 +18,11 @@ x64/
 *.exp
 *.pdb
 *.ilk
+/RPGGame/trunk/Bin/_LocalServer/MZ-GateServer.lib
+/RPGGame/trunk/Bin/_LocalServer/MZ-GlobalServer.lib
+/RPGGame/trunk/Bin/_LocalServer/MZ-LogServer.lib
+/RPGGame/trunk/Bin/_LocalServer/MZ-LogicServer.lib
+/RPGGame/trunk/Bin/_LocalServer/MZ-LoginServer.lib
+/RPGGame/trunk/Bin/_RouterServer/MZ-RouterServer.lib
+/RPGGame/trunk/Bin/_WorldServer/MZ-LogicServer.lib
+/RPGGame/trunk/Bin/_WorldServer/MZ-WGlobalServer.lib

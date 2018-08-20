@@ -13,17 +13,21 @@ void OnSigTerm(int sig)
 	printf("on sig term!!!:%d\n", sig);
 }
 
+typedef unordered_map<int, PureList<int>*> UMap;
+
 int main()
 {
-	Logger::Instance()->Init();
-	//const char* psCurl = "https://sandbox.itunes.apple.com/verifyReceipt";
-	const char* psCurl = "http://sgadmin.df.baoyugame.com/yinghun/login.php";
-
-	HttpRequest oHttp;
-	oHttp.Init(2);
-	for (int i = 0; i < 100; i++) {
-		oHttp.Post(psCurl);
-	}
+//	Logger::Instance()->Init();
+//	//const char* psCurl = "https://sandbox.itunes.apple.com/verifyReceipt";
+//	const char* psCurl = "http://sgadmin.df.baoyugame.com/yinghun/login.php";
+//
+//	HttpRequest oHttp;
+//	oHttp.Init(2);
+//	for (int i = 0; i < 100; i++) {
+//		oHttp.Post(psCurl);
+//	}
+	UMap t[100];
+	cout << sizeof(t) << endl;
 	getchar();
 
 	return 0;
