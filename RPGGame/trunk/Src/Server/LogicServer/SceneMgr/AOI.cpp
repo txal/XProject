@@ -152,6 +152,8 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* p
 
 void AOI::MoveObj(int nID, int nPosX, int nPosY)
 {
+	return; 
+
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP))
 	{
