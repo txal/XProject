@@ -7,8 +7,8 @@
 
 static const int gnUnitWidth = 40;	//格子宽(像素)
 static const int gnUnitHeight = 40;	//格子高(像素)
-static const int gnTowerWidth = 8;	//灯塔宽(格子)
-static const int gnTowerHeight = 8;	//灯塔高(格子)
+static const int gnTowerWidth = 9;	//灯塔宽(格子)
+static const int gnTowerHeight = 9;	//灯塔高(格子)
 
 struct MapConf
 {

@@ -121,7 +121,7 @@ void RoleMgr::BindSession(int nID, int nSession)
 
 void RoleMgr::Update(int64_t nNowMS)
 {
-	static float nFRAME_MSTIME = 1000.0f / 30.0f;
+	static float nFRAME_MSTIME = 1000.0f / 20.0f;
 	RoleIter iter = m_oRoleIDMap.begin();
 	RoleIter iter_end = m_oRoleIDMap.end();
 	for (; iter != iter_end; iter++)

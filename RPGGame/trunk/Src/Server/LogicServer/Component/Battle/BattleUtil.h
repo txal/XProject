@@ -85,87 +85,88 @@ namespace BattleUtil
 		{
 			bResult = false;
 		}
-
-		double fUnitX = (double)nStartPosX / gnUnitWidth;
-		double fUnitY = (double)nStartPosY / gnUnitHeight;
-		double fUnitTarX = (double)nTarPosX / gnUnitWidth;
-		double fUnitTarY = (double)nTarPosY / gnUnitHeight;
-		if ((int)fUnitX == (int)fUnitTarX && (int)fUnitY == (int)fUnitTarY)
-		{
-			return bResult;
-		}
-		bool bInBlockUnit = poMapConf->IsBlockUnit((int)fUnitX, (int)fUnitY);
-		double fDistUnitX = fUnitTarX - fUnitX;
-		double fDistUnitY = fUnitTarY - fUnitY;
-		int nDistUnitMax = XMath::Max(1, XMath::Max((int)ceil(abs(fDistUnitX)), (int)ceil(abs(fDistUnitY))));
-		fDistUnitX = fDistUnitX / nDistUnitMax;
-		fDistUnitY = fDistUnitY / nDistUnitMax;
-
-		double fOrgUnitX = fUnitX, fOrgUnitY = fUnitY;
-		for (int i = nDistUnitMax - 1; i > -1; --i)
-		{
-			double fNewUnitX = fUnitX + fDistUnitX;
-			double fNewUnitY = fUnitY + fDistUnitY;
-
-			int8_t nMasks = 0;
-			if (fNewUnitX >= 0 && fNewUnitX < poMapConf->nUnitNumX && fNewUnitY >= 0 && fNewUnitY < poMapConf->nUnitNumY)
-			{
-				nMasks = 1;
-			}
-			if (nMasks == 0)
-			{
-				bResult = false;
-			}
-			else if (!bInBlockUnit)
-			{
-				bool bBlockUnit = poMapConf->IsBlockUnit((int)fNewUnitX, (int)fNewUnitY);
-				if (bBlockUnit)
-				{
-					bResult = false;
-				}
-				//else
-				//{//对角线判断
-				//	int nDistX = abs((int)fUnitX - (int)fNewUnitX);
-				//	int nDistY = abs((int)fUnitY - (int)fNewUnitY);
-				//	if (nDistX == 1 && nDistY == 1)
-				//	{
-				//		if (poMapConf->IsBlockUnit((int)fUnitX, (int)fNewUnitY)
-				//			|| poMapConf->IsBlockUnit((int)fNewUnitX, (int)fUnitY))
-				//		{
-				//			bResult = false;
-				//		}
-				//	}
-				//}
-				//if (poActor == NULL || poActor->GetType() == eOT_Robot)
-				//{
-				//	XDebug("####0.5 %s %s %f %f %f %f %f %f %d %d\n", bBlockUnit ? "true" : "false", bResult ? "true" : "false", fUnitX, fUnitY, fNewUnitX, fNewUnitY, fUnitTarX, fUnitTarY, nTarPosX, nTarPosY);
-				//}
-			}
-			if (bResult)
-			{
-				fUnitX = fNewUnitX;
-				fUnitY = fNewUnitY;
-			}
-			else
-			{
-				if (fUnitX != fOrgUnitX ||  fUnitY != fOrgUnitY)
-				{
-					nTarPosX = (int)(fUnitX * gnUnitWidth);
-					nTarPosY = (int)(fUnitY * gnUnitHeight);
-				}
-				else
-				{
-					nTarPosX = nStartPosX;
-					nTarPosY = nStartPosY;
-				}
-				break;
-			}
-		}
-		//if (poActor == NULL || poActor->GetType() == eOT_Robot)
-		//{
-		//	XDebug("####1 %s %d %d %d %d %f %f\n", bResult ? "true" : "false", nStartPosX, nStartPosY, nTarPosX, nTarPosY, fDistUnitX, fDistUnitY);
-		//}
 		return bResult;
+
+		//double fUnitX = (double)nStartPosX / gnUnitWidth;
+		//double fUnitY = (double)nStartPosY / gnUnitHeight;
+		//double fUnitTarX = (double)nTarPosX / gnUnitWidth;
+		//double fUnitTarY = (double)nTarPosY / gnUnitHeight;
+		//if ((int)fUnitX == (int)fUnitTarX && (int)fUnitY == (int)fUnitTarY)
+		//{
+		//	return bResult;
+		//}
+		//bool bInBlockUnit = poMapConf->IsBlockUnit((int)fUnitX, (int)fUnitY);
+		//double fDistUnitX = fUnitTarX - fUnitX;
+		//double fDistUnitY = fUnitTarY - fUnitY;
+		//int nDistUnitMax = XMath::Max(1, XMath::Max((int)ceil(abs(fDistUnitX)), (int)ceil(abs(fDistUnitY))));
+		//fDistUnitX = fDistUnitX / nDistUnitMax;
+		//fDistUnitY = fDistUnitY / nDistUnitMax;
+
+		//double fOrgUnitX = fUnitX, fOrgUnitY = fUnitY;
+		//for (int i = nDistUnitMax - 1; i > -1; --i)
+		//{
+		//	double fNewUnitX = fUnitX + fDistUnitX;
+		//	double fNewUnitY = fUnitY + fDistUnitY;
+
+		//	int8_t nMasks = 0;
+		//	if (fNewUnitX >= 0 && fNewUnitX < poMapConf->nUnitNumX && fNewUnitY >= 0 && fNewUnitY < poMapConf->nUnitNumY)
+		//	{
+		//		nMasks = 1;
+		//	}
+		//	if (nMasks == 0)
+		//	{
+		//		bResult = false;
+		//	}
+		//	else if (!bInBlockUnit)
+		//	{
+		//		bool bBlockUnit = poMapConf->IsBlockUnit((int)fNewUnitX, (int)fNewUnitY);
+		//		if (bBlockUnit)
+		//		{
+		//			bResult = false;
+		//		}
+		//		//else
+		//		//{//对角线判断
+		//		//	int nDistX = abs((int)fUnitX - (int)fNewUnitX);
+		//		//	int nDistY = abs((int)fUnitY - (int)fNewUnitY);
+		//		//	if (nDistX == 1 && nDistY == 1)
+		//		//	{
+		//		//		if (poMapConf->IsBlockUnit((int)fUnitX, (int)fNewUnitY)
+		//		//			|| poMapConf->IsBlockUnit((int)fNewUnitX, (int)fUnitY))
+		//		//		{
+		//		//			bResult = false;
+		//		//		}
+		//		//	}
+		//		//}
+		//		//if (poActor == NULL || poActor->GetType() == eOT_Robot)
+		//		//{
+		//		//	XDebug("####0.5 %s %s %f %f %f %f %f %f %d %d\n", bBlockUnit ? "true" : "false", bResult ? "true" : "false", fUnitX, fUnitY, fNewUnitX, fNewUnitY, fUnitTarX, fUnitTarY, nTarPosX, nTarPosY);
+		//		//}
+		//	}
+		//	if (bResult)
+		//	{
+		//		fUnitX = fNewUnitX;
+		//		fUnitY = fNewUnitY;
+		//	}
+		//	else
+		//	{
+		//		if (fUnitX != fOrgUnitX ||  fUnitY != fOrgUnitY)
+		//		{
+		//			nTarPosX = (int)(fUnitX * gnUnitWidth);
+		//			nTarPosY = (int)(fUnitY * gnUnitHeight);
+		//		}
+		//		else
+		//		{
+		//			nTarPosX = nStartPosX;
+		//			nTarPosY = nStartPosY;
+		//		}
+		//		break;
+		//	}
+		//}
+		////if (poActor == NULL || poActor->GetType() == eOT_Robot)
+		////{
+		////	XDebug("####1 %s %d %d %d %d %f %f\n", bResult ? "true" : "false", nStartPosX, nStartPosY, nTarPosX, nTarPosY, fDistUnitX, fDistUnitY);
+		////}
+		//return bResult;
 	}
 
 	//计算方向

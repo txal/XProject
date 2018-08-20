@@ -145,7 +145,8 @@ void Actor::UpdateFollow(int64_t nNowMS)
 		else
 			poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
 
-		if (poFollowObj == NULL || poFollowObj->GetScene() != m_poScene) continue;
+		if (poFollowObj == NULL || poFollowObj->GetScene() != m_poScene)
+			continue;
 		if (oTarPos.Distance(poFollowObj->GetPos()) >= (gnUnitWidth*gnTowerWidth)*0.5)
 			poFollowObj->SetPos(oTarPos);
 	}
