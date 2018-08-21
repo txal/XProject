@@ -68,7 +68,7 @@ void Object::Update(int64_t nNowMS)
 		UpdateRunState(nNowMS);
 	}
 	//更新玩家视野
-	if (nNowMS - m_nLastViewListTime >= 300)
+	if (nNowMS - m_nLastViewListTime >= 330)
 	{
 		m_nLastViewListTime = nNowMS;
 		UpdateViewList(nNowMS);

@@ -130,17 +130,21 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 void Actor::UpdateFollow(int64_t nNowMS)
 {
 	if (m_poScene == NULL)
+	{
 		return;
+	}
 
 	LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
 	SceneMgr* poSceneMgr = poLogic->GetSceneMgr();
 
-	RoleMgr* poRoleMgr = poLogic->GetRoleMgr();
-	MonsterMgr* poMonsterMgr = poLogic->GetMonsterMgr();
-
 	Follow::FollowVec* poFollowVec = (poSceneMgr->GetFollow()).GetFollowList(m_nObjType, m_nObjID);
 	if (poFollowVec == NULL || poFollowVec->size() <= 0)
+	{
 		return;
+	}
+
+	RoleMgr* poRoleMgr = poLogic->GetRoleMgr();
+	MonsterMgr* poMonsterMgr = poLogic->GetMonsterMgr();
 
 	const Point& oTarPos = GetPos();
 	for (int i = 0; i < poFollowVec->size(); i++)
@@ -149,14 +153,22 @@ void Actor::UpdateFollow(int64_t nNowMS)
 
 		Object* poFollowObj = NULL;
 		if (oFollow.nObjType == eOT_Role)
+		{
 			poFollowObj = poRoleMgr->GetRoleByID(oFollow.nObjID);
+		}
 		else
+		{
 			poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
+		}
 
 		if (poFollowObj == NULL || poFollowObj->GetScene() != m_poScene)
+		{
 			continue;
+		}
 		if (oTarPos.Distance(poFollowObj->GetPos()) >= (gnUnitWidth*gnTowerWidth)*0.5)
+		{
 			poFollowObj->SetPos(oTarPos);
+		}
 	}
 }
 

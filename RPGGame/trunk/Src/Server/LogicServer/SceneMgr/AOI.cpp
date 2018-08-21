@@ -164,6 +164,11 @@ void AOI::MoveObj(int nID, int nPosX, int nPosY)
 	int nOldPos[2] = {pObj->nPos[0], pObj->nPos[1]};
 	int nNewPos[2] = {nPosX, nPosY};
 
+	if (nOldPos[0] == nNewPos[0] && nOldPos[1] == nNewPos[1])
+	{
+		return;
+	}
+
 	int nOldTowerX = 0;
 	int nOldTowerY = 0;
 	int nNewTowerX = 0;
