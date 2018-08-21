@@ -57,7 +57,7 @@ Monster* MonsterMgr::GetMonsterByID(int nID)
 
 void MonsterMgr::Update(int64_t nNowMS)
 {
-	static float nFRAME_MSTIME = 1000.0f / 30.0f;
+	static float nFRAME_MSTIME = 1000.0f / 20.0f;
 	MonsterIter iter = m_oMonsterIDMap.begin();
 	MonsterIter iter_end = m_oMonsterIDMap.end();
 	for (; iter != iter_end;)

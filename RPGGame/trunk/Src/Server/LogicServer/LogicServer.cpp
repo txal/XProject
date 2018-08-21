@@ -87,8 +87,9 @@ bool LogicServer::Start()
 		ProcessTimer(nNowMS);
 		ProcessLoopCount(nNowMS);
 	    m_oSceneMgr.Update(nNowMS);
-	    m_oRoleMgr.Update(nNowMS);
-	    m_oMonsterMgr.Update(nNowMS);
+	    //m_oRoleMgr.Update(nNowMS);
+	    //m_oMonsterMgr.Update(nNowMS);
+		
 		//m_oRobotMgr.Update(nNowMS);
 		//m_oDropItemMgr.Update(nNowMS);
 	}
@@ -99,6 +100,7 @@ void LogicServer::ProcessNetEvent(int64_t nWaitMSTime)
 {
 	NSNetEvent::EVENT oEvent;
 	if (!m_oMsgBalancer.GetEvent(oEvent, (uint32_t)nWaitMSTime))
+	//if (!m_oNetEventHandler.RecvEvent(oEvent, nWaitMSTime))
 	{
 		return;
 	}

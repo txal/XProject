@@ -12,7 +12,7 @@
 //场景回收时间
 const int nSCENE_COLLECT_MSTIME = 15*60*1000;
 //AOI 废弃对象回收时间
-const int nAOIDROP_COLLECT_MSTIME = 5*60*1000;
+const int nAOIDROP_COLLECT_MSTIME = 3*60*1000;
 
 LUNAR_IMPLEMENT_CLASS(Scene)
 {
