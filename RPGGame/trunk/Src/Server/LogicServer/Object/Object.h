@@ -20,7 +20,6 @@ public:
 public:
 	Object();
 	virtual ~Object();
-	virtual void Update(int64_t nNowMS);
 	
 public:
 	int GetID()  { return m_nObjID; }
@@ -39,6 +38,10 @@ public:
 
 
 public:
+	virtual void Update(int64_t nNowMS);
+	virtual bool UpdateRunState(int64_t nNowMS) { return true; }
+	virtual void UpdateViewList(int64_t nNowMS) {}
+
 	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int8_t nLine=0);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
@@ -66,6 +69,7 @@ protected:
 
 	int64_t m_nLeaveSceneTime;
 	int64_t m_nLastUpdateTime;
+	int64_t m_nLastViewListTime;
 
 	int64_t m_nFollowTarget; //跟随的目标类型>>32|ID
 

@@ -121,18 +121,21 @@ void RoleMgr::BindSession(int nID, int nSession)
 
 void RoleMgr::Update(int64_t nNowMS)
 {
-	static float nFRAME_MSTIME = 1000.0f / 20.0f;
+	static int64_t nLastMSTime = 0;
+	if (nNowMS - nLastMSTime < 10)
+	{
+		return;
+	}
+	nLastMSTime = nNowMS;
+
 	RoleIter iter = m_oRoleIDMap.begin();
 	RoleIter iter_end = m_oRoleIDMap.end();
 	for (; iter != iter_end; iter++)
 	{
 		Role* poRole = iter->second;
-		if (nNowMS - poRole->GetLastUpdateTime() >= nFRAME_MSTIME)
+		if (poRole->GetScene() != NULL)
 		{
-			if (poRole->GetScene() != NULL)
-			{
-				poRole->Update(nNowMS);
-			}
+			poRole->Update(nNowMS);
 		}
 	}	
 }

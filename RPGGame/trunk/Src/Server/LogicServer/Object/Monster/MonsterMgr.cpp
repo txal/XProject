@@ -57,25 +57,28 @@ Monster* MonsterMgr::GetMonsterByID(int nID)
 
 void MonsterMgr::Update(int64_t nNowMS)
 {
-	static float nFRAME_MSTIME = 1000.0f / 20.0f;
+	static int64_t nLastMSTime = 0;
+	if (nNowMS - nLastMSTime < 10)
+	{
+		return;
+	}
+	nLastMSTime = nNowMS;
+
 	MonsterIter iter = m_oMonsterIDMap.begin();
 	MonsterIter iter_end = m_oMonsterIDMap.end();
 	for (; iter != iter_end;)
 	{
 		Monster* poMonster = iter->second;
-		if (nNowMS - poMonster->GetLastUpdateTime() >= nFRAME_MSTIME)
+		if (poMonster->IsTime2Collect(nNowMS))
 		{
-			if (poMonster->IsTime2Collect(nNowMS))
-			{
-				iter = m_oMonsterIDMap.erase(iter);
-				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poMonster->GetID(), poMonster->GetType());
-				SAFE_DELETE(poMonster);
-				continue;
-			}
-			if (poMonster->GetScene() != NULL)
-			{
-				poMonster->Update(nNowMS);
-			}
+			iter = m_oMonsterIDMap.erase(iter);
+			LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poMonster->GetID(), poMonster->GetType());
+			SAFE_DELETE(poMonster);
+			continue;
+		}
+		if (poMonster->GetScene() != NULL)
+		{
+			poMonster->Update(nNowMS);
 		}
 		iter++;
 	}	

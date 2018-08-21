@@ -120,7 +120,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	
 	m_nClientRunStartMSTime = nClientMSTime;
-	m_oTargetPos = Point(uTarPosX, uTarPosY);
+	Actor::SetTargetPos(Point(uTarPosX, uTarPosY));
 	Actor::StartRun(nSpeedX, nSpeedY, (int8_t)uFace);
 }
 

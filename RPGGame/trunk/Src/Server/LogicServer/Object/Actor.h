@@ -34,10 +34,12 @@ public:
 	void StopRun(bool bBroadcast=true, bool bClientStop=false);				//停止跑动
 	bool CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY);	//计算角色位置
 	void RunTo(const Point& oTarPos, int nMoveSpeed);						//跑到目标位置
+	void SetTargetPos(const Point& oTargetPos) { m_oTargetPos = oTargetPos; }
 
 protected:
-	bool UpdateRunState(int64_t nNowMS);	//处理跑步
-	void UpdateFollow(int64_t nNowMS);		//处理跟随
+	virtual bool UpdateRunState(int64_t nNowMS);	//处理跑步
+	virtual void UpdateFollow(int64_t nNowMS);		//处理跟随
+	virtual void UpdateViewList(int64_t nNowMS);	//处理视野
 
 //网络函数
 public:
@@ -60,6 +62,7 @@ protected:
 
 	Point m_oTargetPos;					//目标点
 	Point m_oLastTargetPos;				//上次目标点
+
 	bool m_bRunCallback;				//移动到目标点回调
 
 	DISALLOW_COPY_AND_ASSIGN(Actor);

@@ -67,6 +67,7 @@ Scene::~Scene()
 
 void Scene::Update(int64_t nNowMS)
 {
+	//清理AOI
 	if (nNowMS - m_oAOI.m_nLastClearMSTime >= nAOIDROP_COLLECT_MSTIME)
 	{
 		m_oAOI.ClearDropObj(nNowMS);

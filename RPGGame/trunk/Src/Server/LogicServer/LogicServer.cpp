@@ -82,13 +82,13 @@ bool LogicServer::Start()
 	int64_t nNowMS = 0;
 	while (!IsTerminate())
 	{
-		ProcessNetEvent(10);
+		ProcessNetEvent(1);
 		nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
 		ProcessLoopCount(nNowMS);
 	    m_oSceneMgr.Update(nNowMS);
-	    //m_oRoleMgr.Update(nNowMS);
-	    //m_oMonsterMgr.Update(nNowMS);
+	    m_oRoleMgr.Update(nNowMS);
+	    m_oMonsterMgr.Update(nNowMS);
 		
 		//m_oRobotMgr.Update(nNowMS);
 		//m_oDropItemMgr.Update(nNowMS);

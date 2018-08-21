@@ -56,11 +56,15 @@ void Actor::OnLeaveScene()
 void Actor::Update(int64_t nNowMS)
 {
 	Object::Update(nNowMS);
-	UpdateRunState(nNowMS);
 }
 
 void Actor::StartRun(int nSpeedX, int nSpeedY, int8_t nFace)
 {
+	if (!m_oTargetPos.IsValid())
+	{
+		XLog(LEVEL_ERROR, "Actor::StartRun target pos error!\n");
+		return;
+	}
 	m_nRunStartMSTime = XTime::MSTime();
 	m_nRunSpeedX = nSpeedX;
 	m_nRunSpeedY = nSpeedY;
@@ -103,14 +107,18 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 		{
 			StopRun();
 		}
-		if (m_oTargetPos.IsValid() && m_oTargetPos.CheckDistance(m_oPos, Point(16,16)))
+		else if (m_oTargetPos.IsValid())
 		{
-			XLog(LEVEL_DEBUG, "%s reach target pos(%d,%d)\n", m_sName, m_oTargetPos.x, m_oTargetPos.y);
-			StopRun();
-			if (m_bRunCallback)
+			Point oStartPos(m_nRunStartX, m_nRunStartY);
+			if (m_oPos.Distance(oStartPos) >= m_oTargetPos.Distance(oStartPos))
 			{
-				m_bRunCallback = false;
-				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjReachPos", 0, "ii", m_nObjID, m_nObjType);
+				XLog(LEVEL_DEBUG, "%s reach target pos(%d,%d)\n", m_sName, m_oTargetPos.x, m_oTargetPos.y);
+				StopRun();
+				if (m_bRunCallback)
+				{
+					m_bRunCallback = false;
+					LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjReachPos", 0, "ii", m_nObjID, m_nObjType);
+				}
 			}
 		}
 		UpdateFollow(nNowMS);
@@ -150,6 +158,16 @@ void Actor::UpdateFollow(int64_t nNowMS)
 		if (oTarPos.Distance(poFollowObj->GetPos()) >= (gnUnitWidth*gnTowerWidth)*0.5)
 			poFollowObj->SetPos(oTarPos);
 	}
+}
+
+void Actor::UpdateViewList(int64_t nNowMS)
+{
+	Scene* poScene = GetScene();
+	if (poScene == NULL)
+	{
+		return;
+	}
+	poScene->MoveObj(GetAOIID(), m_oPos.x, m_oPos.y);
 }
 
 bool Actor::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)

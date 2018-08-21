@@ -21,11 +21,12 @@ Object::Object()
 	m_nObjType = eOT_None;
 	m_poScene = NULL;
 	m_nAOIID = 0;
-	m_nLeaveSceneTime = 0;
-	m_nLastUpdateTime = 0;
 	m_nFace = 0;
 	m_nLine = 0;
 	m_nFollowTarget = 0;
+	m_nLeaveSceneTime = 0;
+	m_nLastUpdateTime = 0;
+	m_nLastViewListTime = 0;
 }
 
 Object::~Object()
@@ -40,7 +41,7 @@ void Object::SetPos(const Point& oPos, const char* pFile, int nLine)
 	}
 
 	m_oPos = oPos;
-	m_poScene->MoveObj(m_nAOIID, m_oPos.x, m_oPos.y);
+	//m_poScene->MoveObj(m_nAOIID, m_oPos.x, m_oPos.y);
 }
 
 bool Object::IsTime2Collect(int64_t nNowMS)
@@ -60,7 +61,18 @@ bool Object::IsTime2Collect(int64_t nNowMS)
 
 void Object::Update(int64_t nNowMS)
 {
-	m_nLastUpdateTime = nNowMS;
+	//更新玩家跑步
+	if (nNowMS - m_nLastUpdateTime >= 50)
+	{
+		m_nLastUpdateTime = nNowMS;
+		UpdateRunState(nNowMS);
+	}
+	//更新玩家视野
+	if (nNowMS - m_nLastViewListTime >= 300)
+	{
+		m_nLastViewListTime = nNowMS;
+		UpdateViewList(nNowMS);
+	}
 }
 
 void Object::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int8_t nLine)

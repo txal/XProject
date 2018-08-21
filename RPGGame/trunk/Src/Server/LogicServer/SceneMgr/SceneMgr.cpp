@@ -57,12 +57,12 @@ void SceneMgr::RemoveScene(uint32_t uSceneIndex)
 
 void SceneMgr::Update(int64_t nNowMS)
 {
-	static int nLastUpdateTime = 0;
-	if (nLastUpdateTime == (int)time(0))
+	static int64_t nLastMSTime = 0;
+	if (nLastMSTime-nNowMS < 1000)
 	{
 		return;
 	}
-	nLastUpdateTime = (int)time(0);
+	nLastMSTime = nNowMS;
 
 	SceneIter iter = m_oSceneMap.begin();
 	SceneIter iter_end = m_oSceneMap.end();
@@ -204,10 +204,15 @@ int SceneMgr::SetFollow(lua_State* pState)
 
 			Object* poFollowObj = NULL;
 			if (oFollow.nObjType == eOT_Role)
+			{
 				poFollowObj = poRoleMgr->GetRoleByID(oFollow.nObjID);
+			}
 			else
+			{
 				poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
-			if (poFollowObj == NULL) continue;
+			}
+			if (poFollowObj == NULL)
+				continue;
 
 			poFollowObj->SetFollowTarget(0);
 			oClearFollowMap[oFollow.ToInt64()] = 1;
@@ -220,7 +225,9 @@ int SceneMgr::SetFollow(lua_State* pState)
 	if (nTableLen > 0)
 	{
 		if (poFollowVec == NULL)
+		{
 			poFollowVec = m_oFollow.CreateFollowList(oFollowTarget.nObjType, oFollowTarget.nObjID);
+		}
 
 		for (int i = 0; i < nTableLen; i++)
 		{
@@ -235,10 +242,17 @@ int SceneMgr::SetFollow(lua_State* pState)
 			FOLLOW oFollow(nTmpObjID);
 			Object* poFollowObj = NULL;
 			if (oFollow.nObjType == eOT_Role)
+			{
 				poFollowObj = poRoleMgr->GetRoleByID(oFollow.nObjID);
+			}
 			else
+			{
 				poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
-			if (poFollowObj == NULL) continue;
+			}
+			if (poFollowObj == NULL)
+			{
+				continue;
+			}
 
 			poFollowVec->push_back(oFollow);
 			poFollowObj->SetFollowTarget(oFollow.ToInt64());
@@ -260,11 +274,18 @@ int SceneMgr::SetFollow(lua_State* pState)
 
 		Object* poFollowObj = NULL;
 		if (oFollow.nObjType == eOT_Role)
+		{
 			poFollowObj = poRoleMgr->GetRoleByID(oFollow.nObjID);
+		}
 		else
+		{
 			poFollowObj = poMonsterMgr->GetMonsterByID(oFollow.nObjID);
+		}
 
-		if (poFollowObj == NULL) continue;
+		if (poFollowObj == NULL)
+		{
+			continue;
+		}
 		poFollowObj->BroadcastPos(true);
 	}
 	return 0;
