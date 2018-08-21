@@ -27,6 +27,12 @@ struct AOIOBJ
 	int16_t nArea[2];	//矩形(像素):(宽,高); 圆形(像素):(半径,0)
 	Object* poGameObj;	//游戏对象
 	int8_t nLine;		//所在分线
+
+	bool IsDrop() { return (nAOIMode&AOI_MODE_DROP) != 0; }
+	bool HasObserver() { return (nAOIMode&AOI_MODE_OBSERVER) != 0; }
+	bool HasObserved() { return (nAOIMode&AOI_MODE_OBSERVED) != 0; }
+	bool bIsRectAOI() { return nAOIType == AOI_TYPE_RECT; }
+	bool bIsCircleAOI() { return nAOIType == AOI_TYPE_CIRCLE; }
 };
 
 class Scene;

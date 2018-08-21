@@ -5,6 +5,44 @@
 #include "Common/DataStruct/Array.h"
 #include "Common/Platform.h"
 
+#define DEF_AMSIZE 8;
+//Array map
+template<class T>
+struct AM
+{
+	T* TArray;
+	uint16_t* AFreeSlot;
+	uint16_t nCap;
+
+	AM()
+	{
+		nCap = DEF_AMSIZE;
+		TArray = (T*)XALLOC(NULL, sizeof(T)*nCap);
+		AFreeSlot = (uint16_t*)XALLOC(NULL, sizeof(uint16_t)*nCap);
+		for (int i = 0; i < nCap; i++)
+		{
+			AFreeSlot[i] = i;
+		}
+	}
+
+	bool Expand()
+	{
+		uint16_t nCapNew = nCap * 2;
+		T* TArrayNew = XALLOC(TArray, sizoef(T)*nCapNew)
+	}
+
+	bool AddObj()
+	{
+		if (freeslot[0] == 0)
+		{
+			if (!Expand())
+			{
+				return false;
+			}
+		}
+	}
+};
+
 struct AOIOBJ;
 class Tower
 {
