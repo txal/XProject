@@ -57,6 +57,8 @@ Robot::~Robot()
 
 void Robot::Update(int64_t nNowMS)
 {
+	if (nNowMS - m_nLastUpdateTime < 50)
+		return;
 	m_nLastUpdateTime = nNowMS;
 	ProcessRun(nNowMS);
 }

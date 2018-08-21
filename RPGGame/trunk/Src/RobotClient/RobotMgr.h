@@ -54,6 +54,8 @@ private:
 	INet* m_pExterNet;
 	NetEventHandler m_oNetEventHandler;
 
+	int64_t m_nLastUpdateTime;
+
 
 	std::list<std::string> m_oTaskList;
 	DISALLOW_COPY_AND_ASSIGN(RobotMgr);

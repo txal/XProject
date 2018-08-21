@@ -22,6 +22,7 @@ RobotMgr::RobotMgr()
 	m_nMaxRobot = 0;
 	m_nStartTick = 0;
 	m_uClientTick = 0;
+	m_nLastUpdateTime = 0;
 }
 
 RobotMgr::~RobotMgr()
@@ -53,7 +54,7 @@ bool RobotMgr::Start()
 	int64_t nNowMSTime = 0;
 	while (!IsTerminate())
 	{
-        ProcessNetEvent(10);
+        ProcessNetEvent(1);
 		nNowMSTime = XTime::MSTime();
         ProcessTimer(nNowMSTime);
         ProcessRobotUpdate(nNowMSTime);
@@ -121,15 +122,17 @@ void RobotMgr::ProcessTimer(int64_t nNowMS)
 
 void RobotMgr::ProcessRobotUpdate(int64_t nNowMS)
 {
-	static float nFRAME_MSTIME = 1000.0f / 30.0f;
+	if (nNowMS - m_nLastUpdateTime < 10)
+	{
+		return;
+	}
+	m_nLastUpdateTime = nNowMS;
+
 	RobotIter iter = m_oRobotMap.begin();
 	RobotIter iter_end = m_oRobotMap.end();
 	for (; iter != iter_end; iter++)
 	{
-		if (nNowMS - iter->second->GetLastUpdateTime() >= nFRAME_MSTIME)
-		{
-			iter->second->Update(nNowMS);
-		}
+		iter->second->Update(nNowMS);
 	}
 }
 
