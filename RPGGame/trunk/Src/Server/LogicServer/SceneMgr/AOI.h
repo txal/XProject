@@ -4,37 +4,6 @@
 #include "Common/DataStruct/Array.h"
 #include "Server/LogicServer/SceneMgr/Tower.h"
 
-#define AOI_MODE_NONE 0
-#define AOI_MODE_OBSERVER 1
-#define AOI_MODE_OBSERVED 2
-#define AOI_MODE_DROP 4
-
-#define AOI_TYPE_RECT 1
-#define AOI_TYPE_CIRCLE 2
-
-#define MAX_LINE 101		//分线上限
-#define MIN_OBJ_PERLINE 10  //每条线最低数对象
-#define MAX_OBJ_PERLINE 100 //每条线默认对象上限
-
-class Object;
-struct AOIOBJ
-{
-	uint8_t nRef;
-	int nAOIID;
-	int8_t nAOIMode;
-	int8_t nAOIType;	//矩形或者圆形
-	int16_t nPos[2];	//坐标(像素)
-	int16_t nArea[2];	//矩形(像素):(宽,高); 圆形(像素):(半径,0)
-	Object* poGameObj;	//游戏对象
-	int8_t nLine;		//所在分线
-
-	bool IsDrop() { return (nAOIMode&AOI_MODE_DROP) != 0; }
-	bool HasObserver() { return (nAOIMode&AOI_MODE_OBSERVER) != 0; }
-	bool HasObserved() { return (nAOIMode&AOI_MODE_OBSERVED) != 0; }
-	bool bIsRectAOI() { return nAOIType == AOI_TYPE_RECT; }
-	bool bIsCircleAOI() { return nAOIType == AOI_TYPE_CIRCLE; }
-};
-
 class Scene;
 class AOI
 {
