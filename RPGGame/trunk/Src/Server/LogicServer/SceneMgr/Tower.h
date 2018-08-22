@@ -19,7 +19,7 @@
 #define MAX_OBJ_PERLINE 100 //每条线默认对象上限
 
 #define DEF_AMSIZE 2
-#define MAX_AMSIZE 0xFFFF
+#define MAX_AMSIZE 0x7FFF
 
 class Object;
 struct AOIOBJ
@@ -32,19 +32,15 @@ struct AOIOBJ
 	int16_t nArea[2];	//矩形(像素):(宽,高); 圆形(像素):(半径,0)
 	Object* poGameObj;	//游戏对象
 	int8_t nLine;		//所在分线
-	uint16_t nObserverIndex ;	//位置
-	uint16_t nObservedIndex ;	//位置
-
-	AOIOBJ() :nObserverIndex(-1), nObservedIndex(-1){}
 };
 
 
 //Array map
 struct AM
 {
-	uint16_t nCap;
+	int16_t nCap;
 	AOIOBJ** pTArray;
-	uint16_t nFreeIndex;
+	int16_t nFreeIndex;
 
 	AM()
 	{
@@ -57,10 +53,15 @@ struct AM
 		SAFE_FREE(pTArray);
 	}
 
+	int Size()
+	{
+		return nFreeIndex;
+	}
+
 	bool Expand()
 	{
-		uint16_t nOldCap = nCap;
-		uint16_t nNewCap = XMath::Min(nCap*2, MAX_AMSIZE);
+		int16_t nOldCap = nCap;
+		int16_t nNewCap = XMath::Min(nCap*2, MAX_AMSIZE);
 		if (nCap == nNewCap)
 		{
 			return false;
@@ -77,7 +78,7 @@ struct AM
 		return true;
 	}
 
-	bool AddObj(AOIOBJ* pObj, uint16_t& nIndex)
+	bool AddObj(AOIOBJ* pObj, int16_t& nIndex)
 	{
 		if (nIndex != -1)
 		{
@@ -96,7 +97,7 @@ struct AM
 		pTArray[nFreeIndex++] = pObj;
 		return true;
 	}
-	bool RemoveObj(AOIOBJ* pObj, uint16_t& nIndex)
+	bool RemoveObj(AOIOBJ* pObj, int16_t& nIndex)
 	{
 		if (nIndex == -1)
 		{
@@ -110,22 +111,22 @@ struct AM
 		return true;
 	}
 
-	bool AddObserver(AOIOBJ* pObj)
-	{
-		return AddObj(pObj, pObj->nObserverIndex);
-	}
-	bool RemoveObserver(AOIOBJ* pObj)
-	{
-		return RemoveObj(pObj, pObj->nObserverIndex);
-	}
-	bool AddObserved(AOIOBJ* pObj)
-	{
-		return AddObj(pObj, pObj->nObservedIndex);
-	}
-	bool RemoveObserved(AOIOBJ* pObj)
-	{
-		return RemoveObj(pObj, pObj->nObservedIndex);
-	}
+	//bool AddObserver(AOIOBJ* pObj)
+	//{
+	//	return AddObj(pObj, pObj->nObserverIndex);
+	//}
+	//bool RemoveObserver(AOIOBJ* pObj)
+	//{
+	//	return RemoveObj(pObj, pObj->nObserverIndex);
+	//}
+	//bool AddObserved(AOIOBJ* pObj)
+	//{
+	//	return AddObj(pObj, pObj->nObservedIndex);
+	//}
+	//bool RemoveObserved(AOIOBJ* pObj)
+	//{
+	//	return RemoveObj(pObj, pObj->nObservedIndex);
+	//}
 
 };
 
@@ -134,21 +135,31 @@ class Tower
 public:
 	typedef std::unordered_map<int, AOIOBJ*> AOIObjMap;
 	typedef AOIObjMap::iterator AOIObjIter;
+	typedef std::unordered_map<int, AOIObjMap*> LineMap;
+	typedef LineMap::iterator LineIter;
 
 public:
 	Tower(int nUnitX, int nUnitY, uint16_t nTowerWidth, uint16_t nTowerHeight);
+	~Tower();
+
+public:
 	void AddObserver(AOIOBJ* pObj);
 	void AddObserved(AOIOBJ* pObj);
 	bool RemoveObserver(AOIOBJ* pObj);
 	bool RemoveObserved(AOIOBJ* pObj);
-	Array<AOIOBJ*>& GetObserverList(int nLine);
-	Array<AOIOBJ*>& GetObservedList(int nLine);
+	void GetObserverList(AOIOBJ* pObj, Array<AOIOBJ*>& oObjCache, int nObjType=0);
+	void GetObservedList(AOIOBJ* pObj, Array<AOIOBJ*>& oObjCache, int nObjType=0);
+
+protected:
+	AOIObjMap* GetLineObserverMap(int nLine);
+	void RemoveLineObserverMap(int nLine);
+	AOIObjMap* GetLineObservedMap(int nLine);
+	void RemoveLineObservedMap(int nLine);
+	void CacheAOIObj(AOIObjMap* pObjMap, AOIOBJ* pObj, Array<AOIOBJ*>& oObjCache, int nObjType);
 
 private:
-	//AOIObjMap m_oObserverMap;
-	//AOIObjMap m_oObservedMap;
-	AM m_tObserverAM[MAX_LINE];
-	AM m_tObservedAM[MAX_LINE];
+	LineMap m_oObserverLine;
+	LineMap m_oObservedLine;
 
 	int16_t m_nLeftTop[2];		//灯塔坐标(格子)
 	uint16_t m_nTowerWidth;		//灯塔高(格子)

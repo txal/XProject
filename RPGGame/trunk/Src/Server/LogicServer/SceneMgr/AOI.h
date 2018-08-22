@@ -76,6 +76,7 @@ private:
 	int16_t m_tLineObj[MAX_LINE];	//分线(0表示公共线)
 
 	Array<AOIOBJ*> m_oObjCache; //AOI对象缓存
+	Array<AOIOBJ*> m_oObjCache2; //AOI对象缓存2
 	DISALLOW_COPY_AND_ASSIGN(AOI);
 };
 

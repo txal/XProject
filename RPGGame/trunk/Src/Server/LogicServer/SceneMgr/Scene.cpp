@@ -120,6 +120,11 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%d\n", nObjID, nObjType, m_uSceneMixID);
 		return -1;
 	}
+	if (m_oObjMap.size() >= 10000)
+	{
+		XLog(LEVEL_ERROR, "AddObj too many secene scene:%u obj:%d\n", m_uSceneMixID, m_oObjMap.size());
+		return -1;
+	}
 
 	poObj->SetFace(nFace);
 	int nAOIID = m_oAOI.AddObj(nPosX, nPosY, nAOIMode, nAOIArea, poObj, nAOIType, nLine);

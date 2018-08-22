@@ -18,7 +18,7 @@ public:
 	T& operator[](int nIndex);
 
 	void Clear();
-	void Reserve(int nCap);
+	bool Reserve(int nCap);
 
 	T* Ptr()	{ return m_pData; }
 	int Size()	{ return m_nSize;  }
@@ -49,27 +49,30 @@ Array<T>::~Array()
 }
 
 template<class T>
-void Array<T>::Reserve(int nCap)
+bool Array<T>::Reserve(int nCap)
 {
 	while (m_nCap < nCap)
 	{
 		if (!Expand())
 		{
-			return;
+			return false;
 		}
 	}
+	return true;
 }
 
 template<class T>
 bool Array<T>::Expand()
 {
-	m_nCap *= 2;
-	m_pData = (T*)XALLOC(m_pData, sizeof(T) * m_nCap);
-	if (m_pData == NULL)
+	int nNewCap = m_nCap * 2;
+	T* pNewData = (T*)XALLOC(m_pData, sizeof(T) * nNewCap);
+	if (pNewData == NULL)
 	{
 		XLog(LEVEL_ERROR, "Memory out!\n");
 		return false;
 	}
+	m_nCap = nNewCap;
+	m_pData = pNewData;
 	return true;
 }
 
