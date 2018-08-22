@@ -135,7 +135,6 @@ void Tower::CacheAOIObj(AOIObjMap* pObjMap, AOIOBJ* pObj, Array<AOIOBJ*>& oObjCa
 
 void Tower::GetObserverList(AOIOBJ* pObj, Array<AOIOBJ*>& oObjCache, int nObjType)
 {
-	oObjCache.Clear();
 	if (pObj->nLine == 0)
 	{
 		LineIter iter = m_oObserverLine.begin();
@@ -173,7 +172,6 @@ void Tower::GetObserverList(AOIOBJ* pObj, Array<AOIOBJ*>& oObjCache, int nObjTyp
 
 void Tower::GetObservedList(AOIOBJ* pObj, Array<AOIOBJ*>& oObjCache, int nObjType)
 {
-	oObjCache.Clear();
 	if (pObj->nLine == 0)
 	{
 		LineIter iter = m_oObservedLine.begin();

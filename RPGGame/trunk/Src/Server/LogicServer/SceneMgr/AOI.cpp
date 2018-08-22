@@ -298,6 +298,7 @@ void AOI::MoveObserved(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 	}
 
 	m_oObjCache.Clear();
+	m_oObjCache2.Clear();
 	Tower* pOldTower = m_pTowerArray[nOldTowerY * m_nXTowerNum + nOldTowerX];
 	pOldTower->GetObserverList(pObj, m_oObjCache2);
 	for (int i = 0; i < m_oObjCache2.Size(); i++) 
@@ -331,6 +332,7 @@ void AOI::MoveObserved(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 	}
 
 	m_oObjCache.Clear();
+	m_oObjCache2.Clear();
 	Tower* pNewTower = m_pTowerArray[nNewTowerY * m_nXTowerNum + nNewTowerX];
 	pNewTower->GetObserverList(pObj, m_oObjCache2);
 	for (int i = 0; i < m_oObjCache2.Size(); i++)
