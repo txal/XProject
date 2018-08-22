@@ -82,10 +82,14 @@ void Robot::ProcessRun(int64_t nNowMS)
 		{
 			StopRun();
 		}
-		if (m_oTarPos.IsValid() && m_oTarPos.CheckDistance(m_oPos, Point(10, 10)))
+		if (m_oTarPos.IsValid())
 		{
-			XLog(LEVEL_DEBUG, "%s reach target pos(%d,%d)\n", m_sName, m_oTarPos.x, m_oTarPos.y);
-			StopRun();
+			Point oStartPos(m_nStartRunX, m_nStartRunY);
+			if (oStartPos.Distance(m_oPos) >= oStartPos.Distance(m_oTarPos))
+			{
+				XLog(LEVEL_DEBUG, "%s reach target pos(%d,%d)\n", m_sName, m_oTarPos.x, m_oTarPos.y);
+				StopRun();
+			}
 		}
 		//XLog(LEVEL_DEBUG, "Pos(%d,%d) canmove:%d\n", nNewPosX, nNewPosY, bCanMove);
 	}
