@@ -124,7 +124,7 @@ void OpenLuaExport()
 	LuaWrapper* poWrapper = LuaWrapper::Instance();
 	RegLuaDebugger(NULL);
 	RegTimerMgr("GlobalExport");
-	RegWordFilter("GlobalExport");
+	//RegWordFilter("GlobalExport");
 	poWrapper->RegFnList(_global_lua_func, "GlobalExport");
 
     RegLuaCmd("NetworkExport");
