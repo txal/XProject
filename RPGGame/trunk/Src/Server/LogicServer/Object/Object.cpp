@@ -62,7 +62,7 @@ bool Object::IsTime2Collect(int64_t nNowMS)
 void Object::Update(int64_t nNowMS)
 {
 	//更新玩家跑步
-	if (nNowMS - m_nLastUpdateTime >= 60)
+	if (nNowMS - m_nLastUpdateTime >= 200)
 	{
 		m_nLastUpdateTime = nNowMS;
 		UpdateRunState(nNowMS);

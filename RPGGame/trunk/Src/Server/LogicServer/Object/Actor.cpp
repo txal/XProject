@@ -107,7 +107,7 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 		{
 			StopRun();
 		}
-		else if (m_oTargetPos.IsValid())
+		if (m_oTargetPos.IsValid())
 		{
 			Point oStartPos(m_nRunStartX, m_nRunStartY);
 			if (m_oPos.Distance(oStartPos) >= m_oTargetPos.Distance(oStartPos))

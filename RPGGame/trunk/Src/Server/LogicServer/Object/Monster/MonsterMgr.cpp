@@ -58,7 +58,7 @@ Monster* MonsterMgr::GetMonsterByID(int nID)
 void MonsterMgr::Update(int64_t nNowMS)
 {
 	static int64_t nLastMSTime = 0;
-	if (nNowMS - nLastMSTime < 10)
+	if (nNowMS - nLastMSTime < 30)
 	{
 		return;
 	}
