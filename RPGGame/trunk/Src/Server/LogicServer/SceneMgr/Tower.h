@@ -60,7 +60,6 @@ struct AM
 
 	bool Expand()
 	{
-		int16_t nOldCap = nCap;
 		int16_t nNewCap = XMath::Min(nCap*2, MAX_AMSIZE);
 		if (nCap == nNewCap)
 		{
