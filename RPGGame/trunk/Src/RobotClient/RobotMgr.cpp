@@ -23,6 +23,7 @@ RobotMgr::RobotMgr()
 	m_nStartTick = 0;
 	m_uClientTick = 0;
 	m_nLastUpdateTime = 0;
+	m_oMsgBalancer.SetEventHandler(&m_oNetEventHandler);
 }
 
 RobotMgr::~RobotMgr()
@@ -66,7 +67,7 @@ bool RobotMgr::Start()
 void RobotMgr::ProcessNetEvent(int64_t nWaitMSTime)
 {
 	NSNetEvent::EVENT oEvent;
-	if (!m_oNetEventHandler.RecvEvent(oEvent, (uint32_t)nWaitMSTime))
+	if (!m_oMsgBalancer.GetEvent(oEvent, (uint32_t)nWaitMSTime))
 	{
 		return;
 	}
@@ -122,7 +123,7 @@ void RobotMgr::ProcessTimer(int64_t nNowMS)
 
 void RobotMgr::ProcessRobotUpdate(int64_t nNowMS)
 {
-	if (nNowMS - m_nLastUpdateTime < 10)
+	if (nNowMS - m_nLastUpdateTime < 30)
 	{
 		return;
 	}

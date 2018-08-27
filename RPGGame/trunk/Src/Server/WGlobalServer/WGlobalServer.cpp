@@ -40,11 +40,11 @@ bool WGlobalServer::Init(int8_t nServiceID, const char* psListenIP, uint16_t uLi
 		strcpy(m_sListenIP, psListenIP);
 	}
 	m_uListenPort = uListenPort;
-	//m_poExterNet = INet::CreateNet(NET_TYPE_EXTERNAL, nServiceID, 1024, &m_oNetEventHandler);
-	//if (m_poExterNet == NULL)
-	//{
-	//	return false;
-	//}
+	m_poExterNet = INet::CreateNet(NET_TYPE_EXTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	if (m_poExterNet == NULL)
+	{
+		return false;
+	}
 
 	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
 	if (m_poInnerNet == NULL)
@@ -78,10 +78,10 @@ bool WGlobalServer::RegToRouter(int nRouterServiceID)
 
 bool WGlobalServer::Start()
 {
-	//if (!m_poExterNet->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort))
-	//{
-	//	return false;
-	//}
+	if (!m_poExterNet->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort))
+	{
+		return false;
+	}
 	int64_t nNowMS = 0;
 	while(!IsTerminate())
 	{

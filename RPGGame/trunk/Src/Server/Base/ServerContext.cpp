@@ -128,6 +128,7 @@ bool ServerContext::LoadServerConfig()
 			oGlobal.uID = (uint16_t)lua_tointeger(pState, -1);
 			lua_getfield(pState, -2, "nServer");
 			oGlobal.uServer = (uint16_t)lua_tointeger(pState, -1);
+			oGlobal.sIP[0] = 0;
 			lua_getfield(pState, -3, "sIP");
 			if (!lua_isnil(pState, -1))
 			{

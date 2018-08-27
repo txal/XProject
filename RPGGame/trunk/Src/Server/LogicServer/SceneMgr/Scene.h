@@ -26,7 +26,7 @@ public:
 	friend class SceneMgr;
 
 public:
-	Scene(SceneMgr* poSceneMgr, uint32_t uSceneMixID, MapConf* poMapConf, bool bCanCollected=true);
+	Scene(SceneMgr* poSceneMgr, int64_t nSceneMixID, MapConf* poMapConf, bool bCanCollected=true);
 	~Scene();
 
 	bool InitAOI(int nMapWidth, int nMapHeight, int nLineObjNum) { return m_oAOI.Init(this, nMapWidth, nMapHeight, nLineObjNum); }
@@ -40,7 +40,7 @@ public:
 
 	MapConf* GetMapConf() { return m_poMapConf; }
 	SceneMgr* GetSceneMgr() { return m_poSceneMgr;  }
-	uint32_t GetSceneMixID() { return m_uSceneMixID; }
+	int64_t GetSceneMixID() { return m_nSceneMixID; }
 
 public:
 	int EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1, int8_t nFace=0);
@@ -65,7 +65,7 @@ private:
 	Array<AOIOBJ*> m_oObjCache;		//AOI对象缓存
 
 	SceneMgr* m_poSceneMgr;
-	uint32_t m_uSceneMixID;			//自增ID|配置ID
+	int64_t m_nSceneMixID;			//自增ID|配置ID
 	bool m_bCanCollected;			//是否可以被收集
 	
 	ObjMap m_oObjMap;				//游戏对象列表

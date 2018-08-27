@@ -35,10 +35,10 @@ LUNAR_IMPLEMENT_CLASS(Scene)
 	{0, 0}
 };
 
-Scene::Scene(SceneMgr* poSceneMgr, uint32_t uSceneMixID, MapConf* poMapConf, bool bCanCollected)
+Scene::Scene(SceneMgr* poSceneMgr, int64_t nSceneMixID, MapConf* poMapConf, bool bCanCollected)
 {
 	m_poSceneMgr = poSceneMgr;
-	m_uSceneMixID = uSceneMixID;
+	m_nSceneMixID = nSceneMixID;
 	m_bCanCollected = bCanCollected;
 
 	int64_t nNowMS = XTime::MSTime();
@@ -62,7 +62,7 @@ Scene::~Scene()
 		LeaveScene(poGameObj->GetAOIID());
 	}
 	m_oObjMap.clear();
-	XLog(LEVEL_INFO, "Scene:%d destructed!\n", m_uSceneMixID);
+	XLog(LEVEL_INFO, "Scene:%lld destructed!\n", m_nSceneMixID);
 }
 
 void Scene::Update(int64_t nNowMS)
@@ -117,12 +117,12 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 
 	if (m_oObjMap.find(nObjID) != m_oObjMap.end())
 	{
-		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%d\n", nObjID, nObjType, m_uSceneMixID);
+		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%lld\n", nObjID, nObjType, m_nSceneMixID);
 		return -1;
 	}
 	if (m_oObjMap.size() >= 10000)
 	{
-		XLog(LEVEL_ERROR, "AddObj too many secene scene:%u obj:%d\n", m_uSceneMixID, m_oObjMap.size());
+		XLog(LEVEL_ERROR, "AddObj too many secene scene:%lld obj:%d\n", m_nSceneMixID, m_oObjMap.size());
 		return -1;
 	}
 
@@ -167,7 +167,7 @@ void Scene::OnObjEnterScene(AOIOBJ* pObj)
 
 	LuaWrapper* pEngine = LuaWrapper::Instance();
 	lua_State* pState = pEngine->GetLuaState();
-	lua_pushinteger(pState, m_uSceneMixID);
+	lua_pushinteger(pState, m_nSceneMixID);
 
 	Lunar<Object>::push(pState, pObj->poGameObj);
 	pEngine->CallLuaRef("OnObjEnterScene", 2, 0);
@@ -178,7 +178,7 @@ void Scene::AfterObjEnterScene(AOIOBJ* pObj)
 {
 	LuaWrapper* pEngine = LuaWrapper::Instance();
 	lua_State* pState = pEngine->GetLuaState();
-	lua_pushinteger(pState, m_uSceneMixID);
+	lua_pushinteger(pState, m_nSceneMixID);
 
 	Lunar<Object>::push(pState, pObj->poGameObj);
 	pEngine->CallLuaRef("AfterObjEnterScene", 2, 0);
@@ -191,7 +191,7 @@ void Scene::OnObjLeaveScene(AOIOBJ* pObj)
 {
 	LuaWrapper* pEngine = LuaWrapper::Instance();
 	lua_State* pState = pEngine->GetLuaState();
-	lua_pushinteger(pState, m_uSceneMixID);
+	lua_pushinteger(pState, m_nSceneMixID);
 
 	Lunar<Object>::push(pState, pObj->poGameObj);
 	pEngine->CallLuaRef("OnObjLeaveScene", 2, 0);
@@ -211,7 +211,7 @@ void Scene::OnObjEnterObj(Array<AOIOBJ*>& oObserverCache, AOIOBJ* pObserved)
 {
 	LuaWrapper* pEngine = LuaWrapper::Instance();
 	lua_State* pState = pEngine->GetLuaState();
-	lua_pushinteger(pState, m_uSceneMixID);
+	lua_pushinteger(pState, m_nSceneMixID);
 
 	lua_newtable(pState);
 	for (int i = 0; i < oObserverCache.Size(); i++)
@@ -230,7 +230,7 @@ void Scene::OnObjEnterObj(AOIOBJ* pObserver, Array<AOIOBJ*>& oObservedCache)
 {
 	LuaWrapper* pEngine = LuaWrapper::Instance();
 	lua_State* pState = pEngine->GetLuaState();
-	lua_pushinteger(pState, m_uSceneMixID);
+	lua_pushinteger(pState, m_nSceneMixID);
 
 	lua_newtable(pState);
 	Lunar<Object>::push(pState, pObserver->poGameObj);
@@ -249,7 +249,7 @@ void Scene::OnObjLeaveObj(Array<AOIOBJ*>& oObserverCache, AOIOBJ* pObserved)
 {
 	LuaWrapper* pEngine = LuaWrapper::Instance();
 	lua_State* pState = pEngine->GetLuaState();
-	lua_pushinteger(pState, m_uSceneMixID);
+	lua_pushinteger(pState, m_nSceneMixID);
 
 	lua_newtable(pState);
 	for (int i = 0; i < oObserverCache.Size(); i++)
@@ -268,7 +268,7 @@ void Scene::OnObjLeaveObj(AOIOBJ* pObserver, Array<AOIOBJ*>& oObservedCache)
 {
 	LuaWrapper* pEngine = LuaWrapper::Instance();
 	lua_State* pState = pEngine->GetLuaState();
-	lua_pushinteger(pState, m_uSceneMixID);
+	lua_pushinteger(pState, m_nSceneMixID);
 
 	lua_newtable(pState);
 	Lunar<Object>::push(pState, pObserver->poGameObj);
@@ -289,7 +289,7 @@ void Scene::OnObjLeaveObj(AOIOBJ* pObserver, Array<AOIOBJ*>& oObservedCache)
 ///////////////////lua export///////////////
 int Scene::GetMixID(lua_State* pState)
 {
-	lua_pushinteger(pState, m_uSceneMixID);
+	lua_pushinteger(pState, m_nSceneMixID);
 	return 1;
 }
 

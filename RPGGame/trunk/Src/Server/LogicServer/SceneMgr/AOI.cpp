@@ -753,7 +753,7 @@ inline int8_t AOI::AddLineObj(int8_t nLine)
 	if (nLine == 0)
 	{
 		m_tLineObj[nLine]++;
-		XLog(LEVEL_INFO, "Addtoline:%d Scene:%d objs:%d\n", 0, m_poScene->GetSceneMixID(), m_tLineObj[nLine]);
+		XLog(LEVEL_INFO, "Addtoline:%d Scene:%lld objs:%d\n", 0, m_poScene->GetSceneMixID(), m_tLineObj[nLine]);
 		return 0;
 	}
 
@@ -767,7 +767,7 @@ inline int8_t AOI::AddLineObj(int8_t nLine)
 			if (m_tLineObj[i] < m_nLineObjNum)
 			{
 				m_tLineObj[i]++;
-				XLog(LEVEL_INFO, "AddToLine:%d scene:%d objs:%d\n", i, m_poScene->GetSceneMixID(), m_tLineObj[i]);
+				XLog(LEVEL_INFO, "AddToLine:%d scene:%lld objs:%d\n", i, m_poScene->GetSceneMixID(), m_tLineObj[i]);
 				return i;
 			}
 			else
@@ -780,7 +780,7 @@ inline int8_t AOI::AddLineObj(int8_t nLine)
 			}
 		}
 		m_tLineObj[nMinLine]++;
-		XLog(LEVEL_INFO, "AddToLine:%d scene:%d objs:%d\n", nMinLine, m_poScene->GetSceneMixID(), m_tLineObj[nMinLine]);
+		XLog(LEVEL_INFO, "AddToLine:%d scene:%lld objs:%d\n", nMinLine, m_poScene->GetSceneMixID(), m_tLineObj[nMinLine]);
 		return nMinLine;
 	} 
 	else

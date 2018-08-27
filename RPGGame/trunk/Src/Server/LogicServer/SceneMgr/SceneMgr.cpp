@@ -27,17 +27,17 @@ SceneMgr::~SceneMgr()
 }
 
 
-uint32_t SceneMgr::GenSceneMixID(uint16_t uConfID)
+int64_t SceneMgr::GenSceneMixID(uint16_t uConfID)
 {
-	static uint16_t uIndex = 0;
-	uIndex = uIndex % 0xFFFF + 1;
-	uint32_t nSceneIndex = (uint32_t)uIndex << 16 | uConfID;
+	static uint32_t uIndex = 0;
+	uIndex = uIndex % 0xFFFFFF + 1;
+	int64_t nSceneIndex = (int64_t)uIndex << 16 | uConfID;
 	return nSceneIndex;
 }
 
-Scene* SceneMgr::GetScene(uint32_t uSceneIndex)
+Scene* SceneMgr::GetScene(int64_t nSceneIndex)
 {
-	SceneIter iter = m_oSceneMap.find(uSceneIndex);
+	SceneIter iter = m_oSceneMap.find(nSceneIndex);
 	if (iter != m_oSceneMap.end())
 	{
 		return iter->second;
@@ -45,9 +45,9 @@ Scene* SceneMgr::GetScene(uint32_t uSceneIndex)
 	return NULL;
 }
 
-void SceneMgr::RemoveScene(uint32_t uSceneIndex)
+void SceneMgr::RemoveScene(int64_t nSceneIndex)
 {
-	SceneIter iter = m_oSceneMap.find(uSceneIndex);
+	SceneIter iter = m_oSceneMap.find(nSceneIndex);
 	if (iter != m_oSceneMap.end())
 	{
 		SAFE_DELETE(iter->second);
@@ -72,8 +72,8 @@ void SceneMgr::Update(int64_t nNowMS)
 		if (poScene->IsTime2Collect(nNowMS))
 		{
 			iter = m_oSceneMap.erase(iter);
-			uint32_t uSceneIndex = poScene->GetSceneMixID();
-			LuaWrapper::Instance()->FastCallLuaRef<void>("OnDupCollected", 0, "I", uSceneIndex);
+			int64_t uSceneIndex = poScene->GetSceneMixID();
+			LuaWrapper::Instance()->FastCallLuaRef<void>("OnDupCollected", 0, "q", uSceneIndex);
 			SAFE_DELETE(poScene);
 			continue;
 		}
@@ -123,37 +123,37 @@ int SceneMgr::CreateDup(lua_State* pState)
 	if (poMapConf == NULL)
 		return LuaWrapper::luaM_error(pState, "Dup:%d map:%d not found!\n", nDupID, nMapID);
 
-	uint32_t uSceneMixID = nDupID;
+	int64_t nSceneMixID = nDupID;
 	if (nDupType == 2) //1:城镇; 2副本
-		uSceneMixID = GenSceneMixID(nDupID);
+		nSceneMixID = GenSceneMixID(nDupID);
 
-	if (GetScene(uSceneMixID) != NULL)
-		return LuaWrapper::luaM_error(pState, "Dup:%d id:%d conflict!!!\n", nDupID, uSceneMixID);
+	if (GetScene(nSceneMixID) != NULL)
+		return LuaWrapper::luaM_error(pState, "Dup:%d id:%lld conflict!!!\n", nDupID, nSceneMixID);
 
-	Scene* poScene = XNEW(Scene)(this, uSceneMixID, poMapConf, bCanCollected);
+	Scene* poScene = XNEW(Scene)(this, nSceneMixID, poMapConf, bCanCollected);
 	if (!poScene->InitAOI(poMapConf->nPixelWidth, poMapConf->nPixelHeight, nLineObjs))
 	{
 		SAFE_DELETE(poScene);  
 		return LuaWrapper::luaM_error(pState, "Dup:%d init AOI error\n", nDupID);
 	}
 
-	m_oSceneMap[uSceneMixID] = poScene;
-	lua_pushinteger(pState, uSceneMixID);
+	m_oSceneMap[nSceneMixID] = poScene;
+	lua_pushinteger(pState, nSceneMixID);
 	Lunar<Scene>::push(pState, poScene);
 	return 2;
 }
 
 int SceneMgr::RemoveDup(lua_State* pState)
 {
-	uint32_t uSceneIndex = (uint32_t)luaL_checkinteger(pState, 1);
-	RemoveScene(uSceneIndex);
+	int64_t nSceneIndex = (int64_t)luaL_checkinteger(pState, 1);
+	RemoveScene(nSceneIndex);
 	return 0;
 }
 
 int SceneMgr::GetDup(lua_State* pState)
 {
-	uint32_t uSceneMixID = (uint32_t)luaL_checkinteger(pState, 1);
-	Scene* poScene = GetScene(uSceneMixID);
+	int64_t nSceneMixID = (int64_t)luaL_checkinteger(pState, 1);
+	Scene* poScene = GetScene(nSceneMixID);
 	if (poScene != NULL)
 	{
 		Lunar<Scene>::push(pState, poScene);

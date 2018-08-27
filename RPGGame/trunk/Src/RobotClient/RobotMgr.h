@@ -2,6 +2,7 @@
 #define __ROBOTMGR_H__
 
 #include "Include/Network/Network.hpp"
+#include "Server/Base/MsgBalancer.h"
 #include "Server/Base/Service.h"
 #include "RobotClient/Robot.h"
 
@@ -53,6 +54,7 @@ private:
 
 	INet* m_pExterNet;
 	NetEventHandler m_oNetEventHandler;
+	MsgBalancer m_oMsgBalancer;
 
 	int64_t m_nLastUpdateTime;
 

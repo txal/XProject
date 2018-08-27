@@ -179,6 +179,7 @@ popd</Command>
     <ClCompile Include="..\..\Src\RobotClient\PacketProc\RobotPacketProc.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\Robot.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\RobotMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
@@ -204,6 +205,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\RobotClient\PacketProc\RobotPacketProc.h" />
     <ClInclude Include="..\..\Src\RobotClient\Robot.h" />
     <ClInclude Include="..\..\Src\RobotClient\RobotMgr.h" />
+    <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />
     <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h" />
