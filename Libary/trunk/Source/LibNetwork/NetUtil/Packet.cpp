@@ -89,6 +89,10 @@ bool Packet::CheckAndExpand(int nAppendSize)
 #ifdef _DEBUG
 	XLog(LEVEL_INFO, "Packet expand:%d->%d\n", m_nCapacity, nCapacity);
 #endif
+	if (nCapacity == m_nCapacity)
+	{
+		return false;
+	}
     m_nCapacity = nCapacity;
     m_pData = (uint8_t*)XALLOC(m_pData, m_nCapacity);
 	assert(m_pData != NULL);

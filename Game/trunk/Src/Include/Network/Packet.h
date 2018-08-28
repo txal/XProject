@@ -5,7 +5,7 @@
 
 const int nPACKET_OFFSET_SIZE = 4;			//packet len(4)
 const int nPACKET_DEFAULT_SIZE = 128;		//packet default size
-const int nPACKET_MAX_SIZE = 0xFFFF + 1;	//pack max size
+const int nPACKET_MAX_SIZE = 0x800000 + 1;	//pack max size
 
 struct EXTER_HEADER 
 {
