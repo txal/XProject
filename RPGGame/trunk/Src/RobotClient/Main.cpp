@@ -63,11 +63,12 @@ bool SplitCmd(std::string& sCmd, std::list<std::string>& oParamList)
 	return true;
 }
 
+bool gbStopCmd = false;
 void CmdProc(void* pParam)
 {
 	RobotMgr* poRobotMgr = (RobotMgr*)pParam;
 	char sCmdBuf[1024];
-	for (;;)
+	while (!gbStopCmd)
 	{
 		std::cout << "CMD:";
 		std::cin.getline(sCmdBuf, sizeof(sCmdBuf));

@@ -12,6 +12,7 @@ Lunar<RobotMgr>::RegType RobotMgr::methods[] =
 	LUNAR_DECLARE_METHOD(RobotMgr, GetRobot),
 	LUNAR_DECLARE_METHOD(RobotMgr, CreateRobot),
 	LUNAR_DECLARE_METHOD(RobotMgr, LogoutRobot),
+	LUNAR_DECLARE_METHOD(RobotMgr, StopCmd),
 	{ 0, 0 }
 };
 
@@ -247,4 +248,10 @@ int RobotMgr::LogoutRobot(lua_State* pState)
 		m_pExterNet->Close(iter->first);
 	}
 	return 0;
+}
+
+extern bool gbStopCmd;
+int RobotMgr::StopCmd(lua_State* pState)
+{
+	gbStopCmd = true;
 }
