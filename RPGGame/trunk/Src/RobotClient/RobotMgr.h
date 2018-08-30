@@ -68,6 +68,7 @@ public:
 	int GetRobot(lua_State* pState);
 	int CreateRobot(lua_State* pState);
 	int LogoutRobot(lua_State* pState);
+	int StopCmd(lua_State* pState);
 };
 
 
