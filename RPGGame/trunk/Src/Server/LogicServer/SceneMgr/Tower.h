@@ -16,7 +16,7 @@
 
 #define MAX_LINE 101		//分线上限
 #define MIN_OBJ_PERLINE 10  //每条线最低数对象
-#define MAX_OBJ_PERLINE 100 //每条线默认对象上限
+#define MAX_OBJ_PERLINE 300 //每条线默认对象上限
 
 #define DEF_AMSIZE 2
 #define MAX_AMSIZE 0x7FFF
