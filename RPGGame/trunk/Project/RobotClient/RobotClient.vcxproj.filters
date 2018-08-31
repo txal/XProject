@@ -108,6 +108,9 @@
     <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp">
       <Filter>Src\Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\RobotClient\MsgPack.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Server\Base\Service.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h">
       <Filter>Src\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\RobotClient\MsgPack.h">
+      <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

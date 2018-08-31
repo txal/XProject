@@ -176,6 +176,7 @@ popd</Command>
     <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\LuaSupport\LuaExport.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\Main.cpp" />
+    <ClCompile Include="..\..\Src\RobotClient\MsgPack.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\PacketProc\RobotPacketProc.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\Robot.cpp" />
     <ClCompile Include="..\..\Src\RobotClient\RobotMgr.cpp" />
@@ -202,6 +203,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h" />
     <ClInclude Include="..\..\Src\RobotClient\LuaSupport\LuaExport.h" />
+    <ClInclude Include="..\..\Src\RobotClient\MsgPack.h" />
     <ClInclude Include="..\..\Src\RobotClient\PacketProc\RobotPacketProc.h" />
     <ClInclude Include="..\..\Src\RobotClient\Robot.h" />
     <ClInclude Include="..\..\Src\RobotClient\RobotMgr.h" />

@@ -193,9 +193,6 @@ void Scene::OnObjLeaveScene(AOIOBJ* pObj)
 	lua_State* pState = pEngine->GetLuaState();
 	lua_pushinteger(pState, m_nSceneMixID);
 
-	Lunar<Object>::push(pState, pObj->poGameObj);
-	pEngine->CallLuaRef("OnObjLeaveScene", 2, 0);
-
 	Object* poGameObj = pObj->poGameObj;
 	m_oObjMap.erase(poGameObj->GetID());
 	poGameObj->OnLeaveScene();
@@ -205,6 +202,9 @@ void Scene::OnObjLeaveScene(AOIOBJ* pObj)
 		m_nLastRoleLeaveTime = XTime::MSTime();
 		m_nRoleCount--;
 	}
+
+	Lunar<Object>::push(pState, pObj->poGameObj);
+	pEngine->CallLuaRef("OnObjLeaveScene", 2, 0);
 }
 
 void Scene::OnObjEnterObj(Array<AOIOBJ*>& oObserverCache, AOIOBJ* pObserved)

@@ -34,5 +34,5 @@ function closewait()
 	fi
 }
 
-closewait "RouterServer" "wait"
+closewait "RouterServer" "close"
 

@@ -31,3 +31,5 @@ ping 127.0.0.1 -c 1
 ${path}/LoginServer 40 &
 ping 127.0.0.1 -c 1
 ${path}/GateServer 10 &
+ping 127.0.0.1 -c 1
+${path}/GateServer 11 &

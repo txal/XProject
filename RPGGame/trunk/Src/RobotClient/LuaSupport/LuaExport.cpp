@@ -13,6 +13,7 @@
 #include "Common/WordFilter/WordFilter.h"
 
 #include "RobotClient/RobotMgr.h"
+#include "RobotClient/MsgPack.h"
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
 
@@ -51,6 +52,8 @@ void OpenLuaExport()
 
 	RegClassRobot();
 	RegClassSSDBDriver();
+	luaopen_cmsgpack(poWrapper->GetLuaState());
+
 
 	luaopen_lpeg(poWrapper->GetLuaState());
 	luaopen_protobuf_c(poWrapper->GetLuaState());
