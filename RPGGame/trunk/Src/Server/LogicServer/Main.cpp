@@ -77,7 +77,7 @@ void StartScriptEngine()
 	bRes = poLuaWrapper->CallLuaFunc(NULL, "Main");
 	assert(bRes);
 
-	if (!Platform::FileExist("./debug.txt"))
+	if (!Platform::FileExist("./adb.txt"))
 	{
 		char sLogName[256] = "";
 		sprintf(sLogName, "logicserver%d", g_poContext->GetService()->GetServiceID());

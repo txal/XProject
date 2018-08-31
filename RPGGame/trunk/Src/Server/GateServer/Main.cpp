@@ -54,7 +54,7 @@ int main(int nArg, char *pArgv[])
 	g_poContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
+	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
 	char szWorkDir[256] = {0};
 	char szScriptPath[512] = {0};
 	Platform::GetWorkDir(szWorkDir, sizeof(szWorkDir)-1);

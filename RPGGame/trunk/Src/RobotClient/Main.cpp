@@ -108,7 +108,7 @@ int main(int nArg, char *pArgv[])
 	poRobotMgr->Init(0, 30000);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
+	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
 
 	char szWorkDir[256] = {0};
 	char szScriptPath[512] = {0};

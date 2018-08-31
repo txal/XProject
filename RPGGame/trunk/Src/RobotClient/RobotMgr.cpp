@@ -254,4 +254,5 @@ extern bool gbStopCmd;
 int RobotMgr::StopCmd(lua_State* pState)
 {
 	gbStopCmd = true;
+	return 0;
 }
