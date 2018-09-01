@@ -87,6 +87,9 @@
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
       <Filter>Src\Common\PacketParser</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
       <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h">
+      <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

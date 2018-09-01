@@ -6,6 +6,7 @@
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaRpc.h"
+#include "Common/LuaCommon/LuaSerialize.h"
 #include "Common/DataStruct/XMath.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/NetworkExport.h"
@@ -58,6 +59,9 @@ void OpenLuaExport()
 {
 	LuaWrapper* poWrapper = LuaWrapper::Instance();
 	RegLuaDebugger(NULL);
+	luaopen_lpeg(poWrapper->GetLuaState());
+	luaopen_protobuf_c(poWrapper->GetLuaState());
+
 	RegTimerMgr("GlobalExport");
 	poWrapper->RegFnList(_global_lua_func, "GlobalExport");
 
@@ -65,13 +69,10 @@ void OpenLuaExport()
 	RegLuaRpc("NetworkExport");
 	RegLuaPBPack("NetworkExport");
 	RegLuaNetwork("NetworkExport");
-
+	RegLuaSerialize("cseri");
 
 	RegClassMysqlDriver();
 	RegWorkerMgr("WorkerMgr");
-
-	luaopen_lpeg(poWrapper->GetLuaState());
-	luaopen_protobuf_c(poWrapper->GetLuaState());
 }
 
 

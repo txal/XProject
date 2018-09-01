@@ -9,7 +9,7 @@
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaRpc.h"
-#include "Common/LuaCommon/LuaTableSeri.h"
+#include "Common/LuaCommon/LuaSerialize.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Common/WordFilter/WordFilter.h"
 
@@ -123,6 +123,12 @@ void OpenLuaExport()
 {
 	LuaWrapper* poWrapper = LuaWrapper::Instance();
 	RegLuaDebugger(NULL);
+
+	luaopen_protobuf_c(poWrapper->GetLuaState());
+	luaopen_lpeg(poWrapper->GetLuaState());
+	luaopen_cjson(poWrapper->GetLuaState());
+	luaopen_cjson_raw(poWrapper->GetLuaState());
+
 	RegTimerMgr("GlobalExport");
 	//RegWordFilter("GlobalExport");
 	poWrapper->RegFnList(_global_lua_func, "GlobalExport");
@@ -131,6 +137,7 @@ void OpenLuaExport()
     RegLuaRpc("NetworkExport");
 	RegLuaPBPack("NetworkExport");
 	RegLuaNetwork("NetworkExport");
+	RegLuaSerialize("cseri");
 
 	RegClassSSDBDriver();
 	RegClassMysqlDriver();
@@ -142,10 +149,6 @@ void OpenLuaExport()
 	RegClassRobot();
 	RegClassDropItem();
 
-	luaopen_lpeg(poWrapper->GetLuaState());
-	luaopen_protobuf_c(poWrapper->GetLuaState());
-	luaopen_cjson(poWrapper->GetLuaState());
-	luaopen_cjson_raw(poWrapper->GetLuaState());
 }
 
 

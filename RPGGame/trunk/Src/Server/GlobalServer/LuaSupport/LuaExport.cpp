@@ -8,6 +8,7 @@
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/LuaCommon/LuaPB.h"
+#include "Common/LuaCommon/LuaSerialize.h"
 #include "Common/WordFilter/WordFilter.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/NetworkExport.h"
@@ -33,23 +34,23 @@ luaL_Reg _global_lua_func[] =
 void OpenLuaExport()
 {
 	LuaWrapper* poWrapper = LuaWrapper::Instance();
-
 	RegLuaDebugger(NULL);
-	RegTimerMgr("GlobalExport");
-	//RegWordFilter("GlobalExport");
-	poWrapper->RegFnList(_global_lua_func, "GlobalExport");
-
-
-    RegLuaCmd("NetworkExport");
-    RegLuaRpc("NetworkExport");
-	RegLuaPBPack("NetworkExport");
-	RegLuaNetwork("NetworkExport");
-
-	RegClassSSDBDriver();
-	RegClassMysqlDriver();
 
 	luaopen_lpeg(poWrapper->GetLuaState());
 	luaopen_protobuf_c(poWrapper->GetLuaState());
 	luaopen_cjson(poWrapper->GetLuaState());
 	luaopen_cjson_raw(poWrapper->GetLuaState());
+
+	RegTimerMgr("GlobalExport");
+	//RegWordFilter("GlobalExport");
+	poWrapper->RegFnList(_global_lua_func, "GlobalExport");
+
+    RegLuaCmd("NetworkExport");
+    RegLuaRpc("NetworkExport");
+	RegLuaPBPack("NetworkExport");
+	RegLuaNetwork("NetworkExport");
+	RegLuaSerialize("cseri");
+
+	RegClassSSDBDriver();
+	RegClassMysqlDriver();
 }

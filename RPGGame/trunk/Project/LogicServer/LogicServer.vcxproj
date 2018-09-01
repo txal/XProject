@@ -68,7 +68,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Bin\_LocalServer\</OutDir>
+    <OutDir>..\..\..\..\..\mengzhu\Runtime\trunk\Server\_LocalServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,7 +129,7 @@
     <PostBuildEvent>
       <Command>pushd $(OutDir)
 xcopy /y/f MZ-LogicServer* ..\_WorldServer\
-xcopy /y/f MZ-LogicServer* E:\mengzhu\Runtime\trunk\Server\_LocalServer
+rem xcopy /y/f MZ-LogicServer* E:\mengzhu\Runtime\trunk\Server\_LocalServer
 xcopy /y/f MZ-LogicServer* E:\mengzhu\Runtime\trunk\Server\_WorldServer
 popd</Command>
     </PostBuildEvent>
@@ -156,6 +156,7 @@ popd</Command>
     <ClCompile Include="..\..\Src\Common\CSVDocument\CSVDocument.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
@@ -214,6 +215,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />

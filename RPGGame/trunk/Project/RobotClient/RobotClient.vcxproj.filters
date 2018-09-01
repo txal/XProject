@@ -111,6 +111,9 @@
     <ClCompile Include="..\..\Src\RobotClient\MsgPack.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Server\Base\Service.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\RobotClient\MsgPack.h">
       <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h">
+      <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
