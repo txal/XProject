@@ -471,7 +471,7 @@ static inline int LuaDecode(lua_State* L)
 			break;
 		}
 		uint8_t nCT = 0;
-		_ReadNumber(L, pBuf, (int)nSize, nCT, (int)sizeof(nCT));
+		_ReadNumber(L, pBuf, nSize, nCT, (int)sizeof(nCT));
 		int nType = nCT & 0x7;
 		int nCookie = nCT >> 3;
 		_UnpackValue(L, pBuf, nSize, nType, nCookie);
