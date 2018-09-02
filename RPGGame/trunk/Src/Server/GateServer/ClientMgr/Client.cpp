@@ -23,24 +23,28 @@ Client::~Client()
 
 void Client::Update(int64_t nNowMS)
 {
-	int nTimeNow = time(0);
+	int nTimeNow = (int)time(0);
 	//发呆>=30秒才发送
 	if (nTimeNow - m_nPacketTime >= 30)
 	{
 		//每30秒通知一次
 		if (nTimeNow - m_nLastNotifyTime < 30)
+		{
 			return;
+		}
 		m_nLastNotifyTime = nTimeNow;
 
 		Packet* poPacket = Packet::Create(32);
 		if (poPacket == NULL)
+		{
 			return;
+		}
 
 		PacketWriter oWriter(poPacket);
 		oWriter << m_nRoleID << m_nPacketTime;
 		uint16_t uSrcServer = g_poContext->GetServerID();
 		int8_t nSrcService = g_poContext->GetService()->GetServiceID();
-		int8_t nTarService = g_poContext->GetServerConfig().oWGlobalList[0].uID;
+		int8_t nTarService = (int8_t)g_poContext->GetServerConfig().oWGlobalList[0].uID;
 		NetAdapter::SERVICE_NAVI oNavi(uSrcServer, nSrcService, g_poContext->GetWorldServerID(), nTarService, m_nSession);
 		NetAdapter::SendInner(NSSysCmd::ssClientLastPacketTimeRet, poPacket, oNavi);
 	}

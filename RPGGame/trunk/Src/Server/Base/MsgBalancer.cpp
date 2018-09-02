@@ -1,5 +1,6 @@
 ﻿
 #include "MsgBalancer.h"
+#include "Service.h"
 
 static const int nMAX_ELEM = 102400;
 
@@ -92,6 +93,9 @@ bool MsgBalancer::QueueEvent(NSNetEvent::EVENT& oEvent)
 
 bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 {
+	if (m_poEventHandler->GetMailBox().Size() <= 0 && QueueEvent(oEvent))
+		return true;
+
 	uint16_t uServer = 0;
 	int8_t nService = 0;
 	int nSession = 0;
@@ -100,76 +104,50 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 	EXTER_HEADER oExtHeader;
 	int* pSessionArray = NULL;
 
-	if (m_poEventHandler->GetMailBox().Size() <= 0 && QueueEvent(oEvent))
-		return true;
-
 	while (m_poEventHandler->RecvEvent(oEvent, uWaitMS))
 	{
-		uWaitMS = 0;	//注意: 这里要把等待时间置为0, 否则下一循环没消息的情况下, 会阻塞等待
+		uWaitMS = 0; //注意: 这里要把等待时间置为0, 否则下一循环没消息的情况下, 会阻塞等待
 		uServer = 0;
 		nService = 0;
 		nSession = 0;
 
-		bool bInvalid = false;
 		switch (oEvent.uEventType)
 		{
 			case NSNetEvent::eEVT_ON_RECV:
 			{
 				if (oEvent.pNet->NetType() == NET_TYPE_INTERNAL)
 				{
-					if (oEvent.U.oRecv.poPacket->GetInnerHeader(oInnHeader, &pSessionArray, false))
+					oEvent.U.oRecv.poPacket->GetInnerHeader(oInnHeader, &pSessionArray, false);
+					uServer = oInnHeader.uSrcServer;
+					nService = oInnHeader.nSrcService;
+					nSession = oInnHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
+					if (uServer == 0 || nService == 0)
 					{
-						uServer = oInnHeader.uSrcServer;
-						nService = oInnHeader.nSrcService;
-						assert(uServer > 0 && nService > 0);
-						nSession = oInnHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
+						XLog(LEVEL_ERROR, "Source server or service error cmd:%d server:%d service:%d\n", oInnHeader.uCmd, oInnHeader.uSrcServer, oInnHeader.nSrcService);
 					}
-					else
-						bInvalid = true;
+					int nSessionService = nSession >> SERVICE_SHIFT;
+					if (nSessionService != nService) //是否网关发过来的玩家消息
+					{
+						return true;
+					}
 				}
 				else
 				{
-					if (oEvent.U.oRecv.poPacket->GetExterHeader(oExtHeader, false))
-					{
-						nService = oExtHeader.nSrcService;
-						nSession = oEvent.U.oRecv.nSessionID;
-					}
-					else
-						bInvalid = true;
+					oEvent.U.oRecv.poPacket->GetExterHeader(oExtHeader, false);
+					nService = oExtHeader.nSrcService;
+					nSession = oEvent.U.oRecv.nSessionID;
 				}
 				break;
 			}
 			case NSNetEvent::eEVT_ON_CONNECT:
-			{
-				nService = oEvent.pNet->NetType() == NET_TYPE_INTERNAL ? 0 : -1;
-				nSession = oEvent.U.oConnect.nSessionID;
-				break;
-			}
-			case NSNetEvent::eEVT_ON_CLOSE:
-			{
-				nService = oEvent.pNet->NetType() == NET_TYPE_INTERNAL ? 0 : -1;
-				nSession = oEvent.U.oClose.nSessionID;
-				break;
-			}
-			case NSNetEvent::eEVT_ON_ACCEPT:
-			{
-				nService = oEvent.pNet->NetType() == NET_TYPE_INTERNAL ? 0 : -1;
-				nSession = oEvent.U.oAccept.nSessionID;
-				break;
-			}
-			case NSNetEvent::eEVT_ADD_DATASOCK:
-			{
-				nSession = oEvent.U.oDataSock.nSessionID;
-				break;
-			}
 			case NSNetEvent::eEVT_HANDSHAKE:
-			{
-				nSession = oEvent.U.oHandShake.nSessionID;
-				break;
-			}
+			case NSNetEvent::eEVT_ON_LISTEN:
+			case NSNetEvent::eEVT_ON_ACCEPT:
+			case NSNetEvent::eEVT_ON_CLOSE:
+			case NSNetEvent::eEVT_ADD_DATASOCK:
 			case NSNetEvent::eEVT_REMAINPACKETS:
 			{
-				break;
+				return true;
 			}
 			default:
 			{
@@ -182,7 +160,9 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 		CONNECTION* poConn = GetConn(nKey);
 		poConn->oEventList.PushBack(oEvent);
 		if (poConn->oEventList.Size() == 1)
+		{
 			m_oConnQueue.Push(nKey);
+		}
 	}
 
 	return QueueEvent(oEvent);

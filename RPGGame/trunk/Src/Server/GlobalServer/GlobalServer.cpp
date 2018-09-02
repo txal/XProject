@@ -77,8 +77,10 @@ bool GlobalServer::RegToRouter(int nRouterServiceID)
 
 bool GlobalServer::Start()
 {
-	if (!m_poExterNet->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort))
+	if (!m_poExterNet->Listen(m_sListenIP[0] ? m_sListenIP : NULL, m_uListenPort))
+	{
 		return false;
+	}
 
 	while (!IsTerminate())
 	{
@@ -168,7 +170,7 @@ void GlobalServer::OnExterNetAccept(int nSessionID)
 void GlobalServer::OnExterNetClose(int nSessionID)
 {
 	//XLog(LEVEL_INFO, "On externet close\n");
-	m_oMsgBalancer.RemoveConn(0, -1, nSessionID);
+	m_oMsgBalancer.RemoveConn(0, GetServiceID(), nSessionID);
 }
 
 void GlobalServer::OnExterNetMsg(int nSessionID, Packet* poPacket)

@@ -82,7 +82,9 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 bool Gateway::Start()
 {
 	if (!m_poExterNet->Listen(NULL, m_uListenPort))
+	{
 		return false;
+	}
 
 	while(!IsTerminate())
 	{

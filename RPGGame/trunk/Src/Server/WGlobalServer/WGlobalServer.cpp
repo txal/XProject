@@ -173,7 +173,7 @@ void WGlobalServer::OnExterNetAccept(int nSessionID)
 void WGlobalServer::OnExterNetClose(int nSessionID)
 {
 	//XLog(LEVEL_INFO, "On externet close\n");
-	m_oMsgBalancer.RemoveConn(0, -1, nSessionID);
+	m_oMsgBalancer.RemoveConn(0, GetServiceID(), nSessionID);
 }
 
 void WGlobalServer::OnExterNetMsg(int nSessionID, Packet* poPacket)

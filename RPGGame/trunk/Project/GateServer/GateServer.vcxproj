@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
+    <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
     <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h" />
     <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h" />
