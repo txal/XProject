@@ -82,7 +82,7 @@ bool LogicServer::Start()
 	int64_t nNowMS = 0;
 	while (!IsTerminate())
 	{
-		ProcessNetEvent(1);
+		ProcessNetEvent(10);
 		nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
 		ProcessLoopCount(nNowMS);
