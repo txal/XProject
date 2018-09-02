@@ -61,7 +61,7 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
-	if (poPacket == NULL) 
+	if (poPacket == NULL)
 	{
 		return false;
 	}
@@ -86,7 +86,7 @@ bool Gateway::Start()
 		return false;
 	}
 
-	while(!IsTerminate())
+	while (!IsTerminate())
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMSTime = XTime::MSTime();
@@ -105,56 +105,56 @@ void Gateway::ProcessNetEvent(int64_t nWaitMSTime)
 	}
 	switch (oEvent.uEventType)
 	{
-		case NSNetEvent::eEVT_ON_RECV:
+	case NSNetEvent::eEVT_ON_RECV:
+	{
+		NSNetEvent::EVENT_RECV& oRecv = oEvent.U.oRecv;
+		if (oEvent.pNet == m_poExterNet)
 		{
-										 NSNetEvent::EVENT_RECV& oRecv = oEvent.U.oRecv;
-										 if (oEvent.pNet == m_poExterNet)
-										 {
-											 OnExterNetMsg(oRecv.nSessionID, oRecv.poPacket);
-										 }
-										 else if (oEvent.pNet == m_poInnerNet)
-										 {
-											 OnInnerNetMsg(oRecv.nSessionID, oRecv.poPacket);
-										 }
-										 break;
+			OnExterNetMsg(oRecv.nSessionID, oRecv.poPacket);
 		}
-		case NSNetEvent::eEVT_ON_ACCEPT:
+		else if (oEvent.pNet == m_poInnerNet)
 		{
-										   if (oEvent.pNet == m_poExterNet)
-										   {
-											   OnExterNetAccept(oEvent.U.oAccept.nSessionID, oEvent.U.oAccept.uRemoteIP);
-										   }
-										   break;
+			OnInnerNetMsg(oRecv.nSessionID, oRecv.poPacket);
 		}
-		case NSNetEvent::eEVT_ON_CLOSE:
+		break;
+	}
+	case NSNetEvent::eEVT_ON_ACCEPT:
+	{
+		if (oEvent.pNet == m_poExterNet)
 		{
-										  if (oEvent.pNet == m_poExterNet)
-										  {
-											  OnExterNetClose(oEvent.U.oClose.nSessionID);
-										  }
-										  else if (oEvent.pNet == m_poInnerNet)
-										  {
-											  OnInnerNetClose(oEvent.U.oClose.nSessionID);
-										  }
-										  break;
+			OnExterNetAccept(oEvent.U.oAccept.nSessionID, oEvent.U.oAccept.uRemoteIP);
 		}
-		case NSNetEvent::eEVT_ON_LISTEN:
+		break;
+	}
+	case NSNetEvent::eEVT_ON_CLOSE:
+	{
+		if (oEvent.pNet == m_poExterNet)
 		{
-										   break;
+			OnExterNetClose(oEvent.U.oClose.nSessionID);
 		}
-		case NSNetEvent::eEVT_ON_CONNECT:
+		else if (oEvent.pNet == m_poInnerNet)
 		{
-											if (oEvent.pNet == m_poInnerNet)
-											{
-												OnInnerNetConnect(oEvent.U.oConnect.nSessionID, oEvent.U.oConnect.uRemoteIP, oEvent.U.oConnect.uRemotePort);
-											}
-											break;
+			OnInnerNetClose(oEvent.U.oClose.nSessionID);
 		}
-		default:
+		break;
+	}
+	case NSNetEvent::eEVT_ON_LISTEN:
+	{
+		break;
+	}
+	case NSNetEvent::eEVT_ON_CONNECT:
+	{
+		if (oEvent.pNet == m_poInnerNet)
 		{
-				   XLog(LEVEL_ERROR, "Msg type error:%d\n", oEvent.uEventType);
-				   break;
+			OnInnerNetConnect(oEvent.U.oConnect.nSessionID, oEvent.U.oConnect.uRemoteIP, oEvent.U.oConnect.uRemotePort);
 		}
+		break;
+	}
+	default:
+	{
+		XLog(LEVEL_ERROR, "Msg type error:%d\n", oEvent.uEventType);
+		break;
+	}
 	}
 }
 
@@ -273,9 +273,9 @@ void Gateway::OnInnerNetAccept(int nListenPort, int nSessionID)
 
 void Gateway::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRemotePort)
 {
-    ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
-    assert(poRouter != NULL);
-    RegToRouter(poRouter->nService);
+	ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
+	assert(poRouter != NULL);
+	RegToRouter(poRouter->nService);
 }
 
 void Gateway::OnInnerNetClose(int nSessionID)
