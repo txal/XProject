@@ -37,6 +37,25 @@ bool InitNetwork(int8_t nServiceID)
 	return true;
 }
 
+//LUA死循环检测
+static Thread goMonitorThread;
+static void MonitorThreadFunc(void* pParam)
+{
+	uint32_t uLastMainLoops = 0;
+	uint32_t uNowMainLoops = 0;
+	for (;;)
+	{
+		XTime::MSSleep(10000);
+
+		uNowMainLoops = g_poContext->GetService()->GetMainLoopCount();
+		if (uNowMainLoops == uLastMainLoops && !LuaWrapper::Instance()->IsBreaking())
+		{
+			XLog(LEVEL_ERROR, "May endless loop!!!\n");
+			LuaWrapper::Instance()->SetEndlessLoop(1);
+		}
+		uLastMainLoops = uNowMainLoops;
+	}
+}
 
 void StartScriptEngine()
 {
@@ -64,6 +83,8 @@ void StartScriptEngine()
 #endif
 	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
 	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
+
+	goMonitorThread.Create(MonitorThreadFunc, NULL);
 }
 
 int main(int nArg, char *pArgv[])

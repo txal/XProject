@@ -87,6 +87,7 @@ bool GlobalServer::Start()
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
+		ProcessLoopCount(nNowMS);
 	}
 	return true;
 }
@@ -160,6 +161,16 @@ void GlobalServer::ProcessTimer(int64_t nNowMSTime)
 		return;
 	nLastMSTime = nNowMSTime;
 	TimerMgr::Instance()->ExecuteTimer(nNowMSTime);
+}
+
+void GlobalServer::ProcessLoopCount(int64_t nNowMSTime)
+{
+	static int64_t nLastMSTime = nNowMSTime;
+	if (nNowMSTime - nLastMSTime >= 1000)
+	{
+		nLastMSTime = nNowMSTime;
+		m_uMainLoopCount++;
+	}
 }
 
 void GlobalServer::OnExterNetAccept(int nSessionID)
