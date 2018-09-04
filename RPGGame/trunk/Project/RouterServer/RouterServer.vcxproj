@@ -123,7 +123,7 @@
     </ProjectReference>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-RouterServer* E:\mengzhu\Runtime\trunk\Server\_RouterServer\
+xcopy /y/f MZ-RouterServer*  E:\svnmengzhu\trunk\Server\_RouterServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

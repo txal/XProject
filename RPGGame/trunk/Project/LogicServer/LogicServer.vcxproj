@@ -68,7 +68,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\..\..\..\mengzhu\Runtime\trunk\Server\_LocalServer\</OutDir>
+    <OutDir>..\..\Bin\_LocalServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,8 +129,8 @@
     <PostBuildEvent>
       <Command>pushd $(OutDir)
 xcopy /y/f MZ-LogicServer* ..\_WorldServer\
-rem xcopy /y/f MZ-LogicServer* E:\mengzhu\Runtime\trunk\Server\_LocalServer
-xcopy /y/f MZ-LogicServer* E:\mengzhu\Runtime\trunk\Server\_WorldServer
+rem xcopy /y/f MZ-LogicServer* E:\svnmengzhu\trunk\Server\_LocalServer
+xcopy /y/f MZ-LogicServer* E:\svnmengzhu\trunk\Server\_WorldServer
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

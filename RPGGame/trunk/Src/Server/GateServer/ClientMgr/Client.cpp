@@ -27,8 +27,8 @@ void Client::Update(int64_t nNowMS)
 	//发呆>=30秒才发送
 	if (nTimeNow - m_nPacketTime >= 30)
 	{
-		//每30秒通知一次
-		if (nTimeNow - m_nLastNotifyTime < 30)
+		//每60秒通知一次
+		if (nTimeNow - m_nLastNotifyTime < 60)
 		{
 			return;
 		}
@@ -47,5 +47,9 @@ void Client::Update(int64_t nNowMS)
 		int8_t nTarService = (int8_t)g_poContext->GetServerConfig().oWGlobalList[0].uID;
 		NetAdapter::SERVICE_NAVI oNavi(uSrcServer, nSrcService, g_poContext->GetWorldServerID(), nTarService, m_nSession);
 		NetAdapter::SendInner(NSSysCmd::ssClientLastPacketTimeRet, poPacket, oNavi);
+	}
+	else if (m_nLastNotifyTime > 0)
+	{
+		m_nLastNotifyTime = 0;
 	}
 }

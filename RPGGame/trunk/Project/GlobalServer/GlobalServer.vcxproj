@@ -100,7 +100,7 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-GlobalServer* E:\mengzhu\Runtime\trunk\Server\_LocalServer\
+xcopy /y/f MZ-GlobalServer* E:\svnmengzhu\trunk\Server\_LocalServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
