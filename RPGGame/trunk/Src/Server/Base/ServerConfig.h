@@ -16,6 +16,7 @@ struct GlobalNode
 	uint16_t uServer;
 	char sIP[256];
 	uint16_t uPort;
+	char sHttpAddr[256];
 };
 
 struct RouterNode

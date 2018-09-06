@@ -1,10 +1,12 @@
 ﻿#include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XTime.h"
+#include "Common/HttpServer/HttpServer.h"
 #include "Server/GlobalServer/GlobalServer.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogServer/PacketProc/PacketProc.h"
 #include "Server/LogServer/LuaSupport/LuaExport.h"
 
+HttpServer goHttpServer;
 ServerContext* g_poContext;
 
 bool InitNetwork(int8_t nServiceID)
@@ -121,6 +123,16 @@ int main(int nArg, char *pArgv[])
 
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
+
+	for (int i = 0; i < g_poContext->GetServerConfig().oGlobalList.size(); i++)
+	{
+		GlobalNode& oNode = g_poContext->GetServerConfig().oGlobalList[i];
+		if (oNode.uID == poGlobalServer->GetServiceID() && oNode.sHttpAddr[0] != '\0')
+		{
+			goHttpServer.Init(oNode.sHttpAddr);
+			break;
+		}
+	}
 
 	printf("GlobalServer start successful\n");
 	bRes = g_poContext->GetService()->Start();

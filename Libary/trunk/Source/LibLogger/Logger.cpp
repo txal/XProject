@@ -27,6 +27,22 @@ char* psErrLv[LEVEL_COUNT] =
 // Max log length
 const int nMaxLogLen = 1040;
 
+//日志
+struct LOGTITLE 
+{
+	int8_t level;
+	std::string* log;
+	LOGTITLE(int8_t _level, const char* _log)
+	{
+		level = _level;
+		log = XNEW(std::string)(_log);
+	}
+	~LOGTITLE()
+	{
+		SAFE_DELETE(log);
+	}
+};
+
 Logger* Logger::Instance()
 {
     static Logger oSingleton;
@@ -99,8 +115,8 @@ void Logger::Print(int nLevel, const char* pFmt, ...)
 		return;
 #endif
 	}
-
     char sMsg[nMaxLogLen] = { 0 };
+
     va_list Ap;
     va_start(Ap, pFmt);
     // Will add '\0' auto in linux but not in windows, the same with sprintf
@@ -114,30 +130,22 @@ void Logger::Print(int nLevel, const char* pFmt, ...)
 	psTarMsg = sGBKMsg;
 #endif
 
-	std::string* poStr = XNEW(std::string)(psTarMsg);
-	if (nLevel != LEVEL_DEBUG)
-	{
-	    time_t nNowSec = time(0);
-	    tm* ptm = localtime(&nNowSec);
-		char sHeader[256] = { 0 };
-		snprintf(sHeader, sizeof(sHeader)-1, "[%s %04d-%02d-%02d %02d:%02d:%02d]: ", psErrLv[nLevel], ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
-		*poStr = sHeader + *poStr;
-	}
+	LOGTITLE* poLog = XNEW(LOGTITLE)((int8_t)nLevel, psTarMsg);
 
 	if (m_bTerminate)
 	{
-		printf("Logger is closed!---%s\n", poStr->c_str());
-		SAFE_DELETE(poStr);
+		fprintf(stdout, "Logger is closed!---%s\n", poLog->log->c_str());
+		SAFE_DELETE(poLog);
 		return;
 	}
 
     m_oPrintLock.Lock();
 
-	m_oLogList.PushBack(poStr);
-	if (m_oLogList.Size() % 8000 == 0)
+	m_oLogList.PushBack(poLog);
+	if (m_oLogList.Size() % 1024 == 0)
 	{
-		std::string* poNotice = XNEW(std::string)("Too many logs!\n");
-		m_oLogList.PushFront(poNotice);
+		LOGTITLE* poLog = XNEW(LOGTITLE)((int8_t)LEVEL_WARNING, "Too many logs!\n");
+		m_oLogList.PushFront(poLog);
 	}
 
 	if (m_oLogList.Size() == 1)
@@ -161,20 +169,18 @@ void Logger::LogThread(void* pParam)
 	{
 		for (;;)
 		{
-			std::string* poStr = NULL;
+			LOGTITLE* poLog = NULL;
 			poLogger->m_oPrintLock.Lock();
 			if (poLogger->m_oLogList.Size() > 0)
 			{
-				poStr = poLogger->m_oLogList.Front();
+				poLog = poLogger->m_oLogList.Front();
 				poLogger->m_oLogList.PopFront();
 			}
 			poLogger->m_oPrintLock.Unlock();
 
-			if (poStr == NULL)
+			if (poLog == NULL)
 				break;
 
-			if (poLogger->m_sLogName[0] != 0)
-			{
 				struct tm oTm;
 				time_t nTime = time(NULL);
 #ifdef __linux
@@ -182,8 +188,18 @@ void Logger::LogThread(void* pParam)
 #else
 				localtime_s(&oTm, &nTime);
 #endif
+
+			if (poLog->level != LEVEL_DEBUG)
+			{
+				char sHeader[256] = { 0 };
+				snprintf(sHeader, sizeof(sHeader)-1, "[%s %04d-%02d-%02d %02d:%02d:%02d]: ", psErrLv[poLog->level], oTm.tm_year + 1900, oTm.tm_mon + 1,oTm.tm_mday, oTm.tm_hour, oTm.tm_min, oTm.tm_sec);
+				*poLog->log  = sHeader + *poLog->log;
+			}
+
+			if (poLogger->m_sLogName[0] != 0)
+			{
 				char sDateLogFile[256] = { 0 };
-				sprintf(sDateLogFile, "Log/%s_%d%02d%02d", poLogger->m_sLogName, oTm.tm_year + 1900, oTm.tm_mon + 1, oTm.tm_mday);
+				sprintf(sDateLogFile, "Log/%s_%d%02d%02d.log", poLogger->m_sLogName, oTm.tm_year + 1900, oTm.tm_mon + 1, oTm.tm_mday);
 
 				FILE* poFile = fopen(sDateLogFile, "a+");
 				if (poFile == NULL)
@@ -192,14 +208,14 @@ void Logger::LogThread(void* pParam)
 				}
 				else
 				{
-					fwrite(poStr->c_str(), 1, poStr->size(), poFile);
+					fwrite(poLog->log->c_str(), 1, poLog->log->size(), poFile);
 					fclose(poFile);
 				}
-				SAFE_DELETE(poStr);
+				SAFE_DELETE(poLog);
 				continue;
 			}
-			fprintf(stdout, "%s", poStr->c_str());
-			SAFE_DELETE(poStr);
+			fprintf(stdout, "%s", poLog->log->c_str());
+			SAFE_DELETE(poLog);
 		}
 
 		if (poLogger->m_bTerminate && poLogger->m_oLogList.Size() <= 0)

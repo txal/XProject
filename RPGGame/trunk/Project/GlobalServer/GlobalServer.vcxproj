@@ -68,7 +68,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Bin\_LocalServer\</OutDir>
+    <OutDir>..\..\..\..\..\svnmengzhu\trunk\Server\_LocalServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -100,7 +100,7 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-GlobalServer* E:\svnmengzhu\trunk\Server\_LocalServer\
+rem xcopy /y/f MZ-GlobalServer* E:\svnmengzhu\trunk\Server\_LocalServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -139,6 +139,8 @@ popd</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp" />
+    <ClCompile Include="..\..\Src\Common\HttpServer\HttpServer.cpp" />
+    <ClCompile Include="..\..\Src\Common\HttpServer\mongoose.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
@@ -163,6 +165,8 @@ popd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h" />
+    <ClInclude Include="..\..\Src\Common\HttpServer\HttpServer.h" />
+    <ClInclude Include="..\..\Src\Common\HttpServer\mongoose.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />

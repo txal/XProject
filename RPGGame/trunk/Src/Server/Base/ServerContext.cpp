@@ -137,8 +137,16 @@ bool ServerContext::LoadServerConfig()
 			}
 			lua_getfield(pState, -4, "nPort");
 			oGlobal.uPort = (uint16_t)lua_tointeger(pState, -1);
+
+			oGlobal.sHttpAddr[0] = 0;
+			lua_getfield(pState, -5, "sHttpAddr");
+			if (!lua_isnil(pState, -1))
+			{
+				const char* psAddr = lua_tostring(pState, -1);
+				strcpy(oGlobal.sHttpAddr, psAddr);
+			}
 			m_oServerConf.oGlobalList.push_back(oGlobal);
-			lua_pop(pState, 5);
+			lua_pop(pState, 6);
 		}
 	}
 

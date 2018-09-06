@@ -28,6 +28,7 @@ enum
 	LEVEL_COUNT,
 };
 
+struct LOGTITLE;
 class Logger 
 {
 public:
@@ -47,7 +48,7 @@ private:
 	char m_sLogName[256]; //log name
 	int m_nPipeFds[2];
 
-	PureList<std::string*> m_oLogList;
+	PureList<LOGTITLE*> m_oLogList;
 
 	Thread m_oLogThread;
     MutexLock m_oPrintLock;

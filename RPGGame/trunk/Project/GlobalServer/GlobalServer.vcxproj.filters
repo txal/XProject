@@ -31,6 +31,9 @@
     <Filter Include="Src\Common\PacketParser">
       <UniqueIdentifier>{c56f8dfb-d0c0-4f4a-a1e9-d927a1f84d75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\HttpServer">
+      <UniqueIdentifier>{17e494a4-aabc-4a9b-820e-77a5ecbda885}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.cpp">
@@ -98,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp">
       <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\HttpServer\HttpServer.cpp">
+      <Filter>Src\Common\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\HttpServer\mongoose.cpp">
+      <Filter>Src\Common\HttpServer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +178,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h">
       <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\HttpServer\HttpServer.h">
+      <Filter>Src\Common\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\HttpServer\mongoose.h">
+      <Filter>Src\Common\HttpServer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

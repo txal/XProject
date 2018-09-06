@@ -9,11 +9,14 @@
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaSerialize.h"
+#include "Common/HttpServer/HttpServer.h"
 #include "Common/WordFilter/WordFilter.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/GlobalServer/GlobalServer.h"
+
+extern HttpServer goHttpServer;
 
 //////////////////////////Global funcitons/////////////////////////////
 //服务ID
@@ -24,9 +27,25 @@ int GetServiceID(lua_State* pState)
 	return 1;
 }
 
+//Http响应
+int HttpResponse(lua_State* pState)
+{
+	if (!lua_islightuserdata(pState, 1))
+	{
+		return LuaWrapper::luaM_error(pState, "参数1错误");
+	}
+	struct mg_connection* c = (struct mg_connection*)lua_topointer(pState, 1);
+	const char* d = luaL_checkstring(pState, 2);
+	std::string data(d);
+	HTTPMSG* pMsg = XNEW(HTTPMSG)(c, data, 0);
+	goHttpServer.Response(pMsg);
+	return 0;
+}
+
 luaL_Reg _global_lua_func[] =
 {
 	{ "GetServiceID", GetServiceID},
+	{ "HttpResponse", HttpResponse},
 	{ NULL, NULL },
 };
 

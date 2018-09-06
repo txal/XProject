@@ -154,12 +154,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp" />
+    <ClCompile Include="..\..\Src\Common\HttpServer\HttpServer.cpp" />
+    <ClCompile Include="..\..\Src\Common\HttpServer\mongoose.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Test\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h" />
+    <ClInclude Include="..\..\Src\Common\HttpServer\HttpServer.h" />
+    <ClInclude Include="..\..\Src\Common\HttpServer\mongoose.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
   </ItemGroup>

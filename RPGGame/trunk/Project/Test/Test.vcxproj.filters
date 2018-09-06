@@ -13,6 +13,12 @@
     <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp">
       <Filter>Src\Common\HttpRequest</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Common\HttpServer\HttpServer.cpp">
+      <Filter>Src\Common\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\HttpServer\mongoose.cpp">
+      <Filter>Src\Common\HttpServer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Src">
@@ -30,6 +36,9 @@
     <Filter Include="Src\Common\HttpRequest">
       <UniqueIdentifier>{4fa6ae21-8b72-4f64-90bb-3f6fed8ad67c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\HttpServer">
+      <UniqueIdentifier>{ab6ca1de-5980-487e-a056-44fa00c1dc9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
@@ -40,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h">
       <Filter>Src\Common\HttpRequest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\HttpServer\HttpServer.h">
+      <Filter>Src\Common\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\HttpServer\mongoose.h">
+      <Filter>Src\Common\HttpServer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

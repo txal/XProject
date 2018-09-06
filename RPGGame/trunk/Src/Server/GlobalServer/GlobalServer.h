@@ -16,6 +16,7 @@ public:
 	void ProcessNetEvent(int64_t nWaitMSTime);
 	void ProcessTimer(int64_t nNowMSTime);
 	void ProcessLoopCount(int64_t nNowMSTime);
+	void ProcessHttpRequest(int64_t nNowMSTime);
 
 public:
 	virtual INet* GetInnerNet() { return m_poInnerNet;  }
