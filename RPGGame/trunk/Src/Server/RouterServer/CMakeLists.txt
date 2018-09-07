@@ -23,4 +23,4 @@ add_executable (RouterServer
 )	
 
 target_link_libraries(RouterServer logger network luawrapper)
-target_link_libraries(RouterServer lua530 readline jemalloc pthread rt cjson)
+target_link_libraries(RouterServer lua530 readline jemalloc pthread rt cjson lpeg pbc)
