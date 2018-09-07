@@ -76,7 +76,8 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 		oNavi.nTarService = oNavi.nTarSession >> SERVICE_SHIFT;
 
 		int nKey = (int)oNavi.uTarServer << 16 | oNavi.nTarService;
-		BROADCAST_HEADER& oBCHeader = oBCHeaderMap[nKey]; //没有会自动生成一个
+		oBCHeaderMap[nKey];//没有会自动生成一个
+		BROADCAST_HEADER& oBCHeader = oBCHeaderMap[nKey];
 		if (oBCHeader.oSessionList.Size() == 0)
 		{
 			oBCHeader.oInnerHeader.uCmd = uCmd;
