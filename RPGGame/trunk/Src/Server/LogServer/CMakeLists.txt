@@ -18,7 +18,7 @@ add_executable(LogServer
 	${src_luasupport}
 	${src_packetproc}
 	${src_packetparser}
-	${src_httprequest}
+	${src_mghttp}
 )
 
 target_link_libraries(LogServer logger network dbdriver luawrapper)
