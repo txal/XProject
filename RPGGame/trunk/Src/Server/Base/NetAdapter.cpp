@@ -11,7 +11,7 @@ struct BROADCAST_HEADER
 	Array<int> oSessionList;
 };
 
-typedef std::unordered_map<int, BROADCAST_HEADER> BCHeaderMap;
+typedef std::unordered_map<int, BROADCAST_HEADER*> BCHeaderMap;
 typedef BCHeaderMap::iterator BCHeaderIter;
 static BCHeaderMap oBCHeaderMap;
 
@@ -76,18 +76,28 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 		oNavi.nTarService = oNavi.nTarSession >> SERVICE_SHIFT;
 
 		int nKey = (int)oNavi.uTarServer << 16 | oNavi.nTarService;
-		oBCHeaderMap[nKey];//没有会自动生成一个
-		BROADCAST_HEADER& oBCHeader = oBCHeaderMap[nKey];
-		if (oBCHeader.oSessionList.Size() == 0)
+
+		BROADCAST_HEADER* poBCHeader = NULL;
+		BCHeaderIter iter = oBCHeaderMap.find(nKey);
+		if (iter == oBCHeaderMap.end())
 		{
-			oBCHeader.oInnerHeader.uCmd = uCmd;
-			oBCHeader.oInnerHeader.uSrcServer = oNavi.uSrcServer;
-			oBCHeader.oInnerHeader.nSrcService = oNavi.nSrcService;
-			oBCHeader.oInnerHeader.uTarServer = oNavi.uTarServer;
-			oBCHeader.oInnerHeader.nTarService = oNavi.nTarService;
-			oBCHeader.oInnerHeader.uSessionNum = 0;
+			poBCHeader = XNEW(BROADCAST_HEADER)();
+			oBCHeaderMap[nKey] = poBCHeader;
 		}
-		oBCHeader.oSessionList.PushBack(oNavi.nTarSession);
+		else
+		{
+			poBCHeader = iter->second;
+		}
+		if (poBCHeader->oSessionList.Size() == 0)
+		{
+			poBCHeader->oInnerHeader.uCmd = uCmd;
+			poBCHeader->oInnerHeader.uSrcServer = oNavi.uSrcServer;
+			poBCHeader->oInnerHeader.nSrcService = oNavi.nSrcService;
+			poBCHeader->oInnerHeader.uTarServer = oNavi.uTarServer;
+			poBCHeader->oInnerHeader.nTarService = oNavi.nTarService;
+			poBCHeader->oInnerHeader.uSessionNum = 0;
+		}
+		poBCHeader->oSessionList.PushBack(oNavi.nTarSession);
 	}
 
 	if (oBCHeaderMap.size() == 0) 
@@ -100,25 +110,25 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 	BCHeaderIter iterend = oBCHeaderMap.end();
 	for (; iter != iterend; )
 	{
-		BROADCAST_HEADER& oBCHeader = iter->second;
-		if (oBCHeader.oSessionList.Size() == 0)
+		BROADCAST_HEADER* poBCHeader = iter->second;
+		if (poBCHeader->oSessionList.Size() == 0)
 		{
 			++iter;
 			continue;
 		}
 
 		Packet* poNewPacket = NULL;
-		oBCHeader.oInnerHeader.uSessionNum = oBCHeader.oSessionList.Size();
+		poBCHeader->oInnerHeader.uSessionNum = poBCHeader->oSessionList.Size();
 		if (++iter == iterend)
 			poNewPacket = poPacket;
 		else
 			poNewPacket = poPacket->DeepCopy();
-		poNewPacket->AppendInnerHeader(oBCHeader.oInnerHeader, oBCHeader.oSessionList.Ptr(), oBCHeader.oSessionList.Size());
+		poNewPacket->AppendInnerHeader(poBCHeader->oInnerHeader, poBCHeader->oSessionList.Ptr(), poBCHeader->oSessionList.Size());
 
 		if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poNewPacket))
 			poNewPacket->Release();
 
-		oBCHeader.oSessionList.Clear();
+		poBCHeader->oSessionList.Clear();
 	}
 	return true;
 }
