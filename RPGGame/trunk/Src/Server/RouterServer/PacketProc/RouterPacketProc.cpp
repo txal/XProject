@@ -14,6 +14,7 @@ void NSPacketProc::RegisterPacketProc()
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceReq, (void*)OnRegisterService);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssCloseServerReq, (void*)OnCloseServerReq);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssPrepCloseServer, (void*)OnPrepCloseServer);
+	poPacketHandler->RegsterInnerPacketProc(NSMsgType::eLuaRpcMsg, (void*)OnLuaRpcMsg);
 }
 
 
@@ -80,4 +81,15 @@ void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_
 	INet* pNet = poRouter->GetNetPool()->GetNet(poTarService->GetNetIndex());
 	if (!pNet->SendPacket(poTarService->GetSessionID(), poPacketRet))
 		poPacketRet->Release();
+}
+
+void NSPacketProc::OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
+{
+	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+	lua_State* pState = poLuaWrapper->GetLuaState();
+	lua_pushinteger(pState, oHeader.uSrcServer);
+	lua_pushinteger(pState, oHeader.nSrcService);
+	lua_pushinteger(pState, oHeader.uSessionNum > 0 ? pSessionArray[0] : 0);
+	lua_pushlightuserdata(pState, poPacket);
+	poLuaWrapper->CallLuaRef("RpcMessageCenter", 4, 0);
 }

@@ -8,6 +8,7 @@ struct LogNode
 	uint16_t uID;
 	uint16_t uServer;
 	uint16_t uWorkers;
+	char sHttpAddr[256];
 };
 
 struct GlobalNode

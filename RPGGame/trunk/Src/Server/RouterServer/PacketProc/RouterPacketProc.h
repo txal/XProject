@@ -10,6 +10,7 @@ namespace NSPacketProc
 	void OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 	void OnCloseServerReq(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 	void OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
+	void OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray);
 }
 
 #endif

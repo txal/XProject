@@ -24,6 +24,28 @@
 #define CS_MONGOOSE_SRC_COMMON_H_
 
 #include "Common/Platform.h"
+#include "Include/Script/Script.hpp"
+
+struct HTTPMSG
+{
+	struct mg_connection *c;
+	std::string data;
+	std::string url;
+	int8_t type; //0NONE; 1GET; 2POST
+	int luaref;
+
+	HTTPMSG() :c(NULL), type(0), luaref(LUA_NOREF) {}
+	~HTTPMSG() {
+		if (luaref != LUA_NOREF)
+		{
+			LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+			luaL_unref(poLuaWrapper->GetLuaState(), LUA_REGISTRYINDEX, luaref);
+			luaref = LUA_NOREF;
+		}
+	}
+};
+
+
 
 #define MG_VERSION "6.12"
 

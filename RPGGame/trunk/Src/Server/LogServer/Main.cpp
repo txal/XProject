@@ -1,7 +1,7 @@
 ﻿#include "Server/LogServer/LogServer.h"
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XTime.h"
-#include "Common/HttpRequest/HttpRequest.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogServer/PacketProc/PacketProc.h"
@@ -9,7 +9,6 @@
 #include "Server/LogServer/WorkerMgr.h"
 
 ServerContext* g_poContext;
-HttpRequest goHttpRequest;
 
 bool InitNetwork(int8_t nServiceID)
 {
@@ -100,8 +99,13 @@ int main(int nArg, char *pArgv[])
 
 	//Mysql工作线程
 	WorkerMgr::Instance()->Init(g_poContext->GetServerConfig().oLogList[0].uWorkers);
+
 	//Http初始化
-	goHttpRequest.Init(2);
+	goHttpClient.Init();
+	if (g_poContext->GetServerConfig().oLogList[0].sHttpAddr[0] != '\0')
+	{
+		goHttpServer.Init(g_poContext->GetServerConfig().oLogList[0].sHttpAddr);
+	}
 	printf("LogServer start successful\n");
 
 	bRes = g_poContext->GetService()->Start();

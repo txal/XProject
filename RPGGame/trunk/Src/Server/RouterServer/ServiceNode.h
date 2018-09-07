@@ -26,6 +26,9 @@ public:
 	int GetNetIndex() { return m_nNetIndex; }
 	int GetServcieType() { return m_nServiceType; }
 
+public:
+	void Update(int nNowMS);
+
 private:
 	int m_nServerID;
 	int m_nServiceID;
@@ -33,6 +36,8 @@ private:
 	HSOCKET m_hSocket;
 	int m_nNetIndex;
 	int m_nServiceType;
+
+	int m_nLastReportTime;
 
 	DISALLOW_COPY_AND_ASSIGN(ServiceNode);
 };

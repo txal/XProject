@@ -74,10 +74,12 @@ void HttpServer::ev_handler(struct mg_connection *c, int ev, void *p, void* user
 			int ret = mg_get_http_var(&hm->query_string, "data", buff, sizeof(buff));
 			if (ret > 0 && buff[0] != '\0')
 			{
-				std::string str = buff;
-				std::string url(hm->uri.p, hm->uri.len);
-				HTTPMSG* poReq = XNEW(HTTPMSG)(c, str, 1);
-				poReq->url = url;
+				HTTPMSG* poReq = XNEW(HTTPMSG)();
+				poReq->c = c;
+				poReq->type = 1;
+				poReq->data = std::string(buff);
+				poReq->url = std::string(hm->uri.p, hm->uri.len);
+
 				pServer->m_oReqLock.Lock();
 				pServer->m_oReqList.push(poReq);
 				pServer->m_oReqLock.Unlock();
@@ -87,10 +89,12 @@ void HttpServer::ev_handler(struct mg_connection *c, int ev, void *p, void* user
 		{
 			if (hm->body.len > 0)
 			{
-				std::string str(hm->body.p, hm->body.len);
-				std::string url(hm->uri.p, hm->uri.len);
-				HTTPMSG* poReq = XNEW(HTTPMSG)(c, str, 2);
-				poReq->url = url;
+				HTTPMSG* poReq = XNEW(HTTPMSG)();
+				poReq->c = c;
+				poReq->type = 2;
+				poReq->data = std::string(hm->body.p, hm->body.len);
+				poReq->url = std::string(hm->uri.p, hm->uri.len);
+
 				pServer->m_oReqLock.Lock();
 				pServer->m_oReqList.push(poReq);
 				pServer->m_oReqLock.Unlock();
@@ -112,6 +116,7 @@ void HttpServer::ProcessResponse()
 		m_oResList.pop();
 		mg_send_head(pMsg->c, 200, pMsg->data.size(), "Content-Type: text/plain");
 		mg_printf(pMsg->c, "%.*s", (int)pMsg->data.size(), pMsg->data.c_str());
+		SAFE_DELETE(pMsg);
 	}
 	m_oResLock.Unlock();
 }

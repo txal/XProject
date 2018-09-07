@@ -1,35 +1,41 @@
-﻿//#include "Include/Logger/Logger.h"
-//#include "Common/HttpRequest/HttpRequest.h"
-//#include "Common/DataStruct/PureList.h"
-//#include "Common/DataStruct/CircleQueue.h"
-//#include "Common/DataStruct/TimeMonitor.h"
-//#include "Common/DataStruct/Thread.h"
-//#include "Include/Network/Network.hpp"
-
-#include "Common/HttpServer/HttpServer.h"
-
+﻿#include "Common/MGHttp/HttpClient.h"
+#include "Common/DataStruct/Thread.h"
 #include <iostream>
 using namespace std;
 
-HttpServer server;
-void fnThread(void* param)
+
+static const char *url = "http://127.0.0.1:130/test.php";
+
+Thread thread;
+HttpClient client;
+
+
+void worker(void* param)
 {
-	for (;;)
+	while (true)
 	{
-		HTTPMSG* pMsg = server.GetRequest();
-		if (pMsg == NULL)
+		HTTPMSG* pMsg = client.GetResponse();
+		if (pMsg != NULL)
 		{
-			Sleep(10);
-			continue;
+			cout << pMsg->data.c_str() << endl;
+			SAFE_DELETE(pMsg);
 		}
-		server.Response(pMsg);
+		Sleep(1000);
 	}
 }
 
 int main(void) {
-	server.Init("127.0.0.1:8000");
-	Thread oThread;
-	oThread.Create(fnThread, NULL);
+	thread.Create(worker, NULL);
+	client.Init();
+	while (true)
+	{
+		HTTPMSG* pMsg = XNEW(HTTPMSG);
+		pMsg->url = url;
+		pMsg->data = "{\"a\":\"1\",\"b\":\"2\"}";
+		client.HttpPost(pMsg);
+		Sleep(1000);
+		break;
+	}
 	getchar();
 	return 0;
 }

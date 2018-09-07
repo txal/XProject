@@ -167,8 +167,15 @@ bool ServerContext::LoadServerConfig()
 			oLog.uServer = (int16_t)lua_tointeger(pState, -1);
 			lua_getfield(pState, -3, "nWorkers");
 			oLog.uWorkers = (uint16_t)lua_tointeger(pState, -1);
+			lua_getfield(pState, -4, "sHttpAddr");
+			oLog.sHttpAddr[0] = 0;
+			if (!lua_isnil(pState, -1))
+			{
+				const char* psAddr = lua_tostring(pState, -1);
+				strcpy(oLog.sHttpAddr, psAddr);
+			}
 			m_oServerConf.oLogList.push_back(oLog);
-			lua_pop(pState, 4);
+			lua_pop(pState, 5);
 		}
 	}
 

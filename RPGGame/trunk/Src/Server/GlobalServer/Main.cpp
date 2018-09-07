@@ -1,12 +1,11 @@
 ﻿#include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XTime.h"
-#include "Common/HttpServer/HttpServer.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Server/GlobalServer/GlobalServer.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogServer/PacketProc/PacketProc.h"
 #include "Server/LogServer/LuaSupport/LuaExport.h"
 
-HttpServer goHttpServer;
 ServerContext* g_poContext;
 
 bool InitNetwork(int8_t nServiceID)
@@ -47,7 +46,7 @@ static void MonitorThreadFunc(void* pParam)
 	uint32_t uNowMainLoops = 0;
 	for (;;)
 	{
-		XTime::MSSleep(10000);
+		XTime::MSSleep(30000);
 
 		uNowMainLoops = g_poContext->GetService()->GetMainLoopCount();
 		if (uNowMainLoops == uLastMainLoops && !LuaWrapper::Instance()->IsBreaking())
@@ -129,6 +128,7 @@ int main(int nArg, char *pArgv[])
 		GlobalNode& oNode = g_poContext->GetServerConfig().oGlobalList[i];
 		if (oNode.uID == poGlobalServer->GetServiceID() && oNode.sHttpAddr[0] != '\0')
 		{
+			goHttpClient.Init();
 			goHttpServer.Init(oNode.sHttpAddr);
 			break;
 		}

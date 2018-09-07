@@ -22,16 +22,13 @@
     <Filter Include="Src\Common\TimerMgr">
       <UniqueIdentifier>{3cae9730-1e07-44ec-9809-0adf41f9bb52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Common\HttpRequest">
-      <UniqueIdentifier>{fa5f6b11-d983-4386-8e3e-817c9ea5e363}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Common\WordFilter">
       <UniqueIdentifier>{31b5b59a-78f5-4d56-a804-592686ce0fd3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Common\PacketParser">
       <UniqueIdentifier>{c56f8dfb-d0c0-4f4a-a1e9-d927a1f84d75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Common\HttpServer">
+    <Filter Include="Src\Common\MGHttp">
       <UniqueIdentifier>{17e494a4-aabc-4a9b-820e-77a5ecbda885}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -84,9 +81,6 @@
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp">
       <Filter>Src\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp">
-      <Filter>Src\Common\HttpRequest</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp">
       <Filter>Src\Common\WordFilter</Filter>
     </ClCompile>
@@ -102,11 +96,17 @@
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp">
       <Filter>Src\Common\LuaCommon</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\HttpServer\HttpServer.cpp">
-      <Filter>Src\Common\HttpServer</Filter>
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpClient.cpp">
+      <Filter>Src\Common\MGHttp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\HttpServer\mongoose.cpp">
-      <Filter>Src\Common\HttpServer</Filter>
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpServer.cpp">
+      <Filter>Src\Common\MGHttp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\MGHttp\mongoose.cpp">
+      <Filter>Src\Common\MGHttp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpLua.cpp">
+      <Filter>Src\Common\MGHttp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,9 +161,6 @@
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h">
       <Filter>Src\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h">
-      <Filter>Src\Common\HttpRequest</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h">
       <Filter>Src\Common\WordFilter</Filter>
     </ClInclude>
@@ -179,11 +176,17 @@
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h">
       <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\HttpServer\HttpServer.h">
-      <Filter>Src\Common\HttpServer</Filter>
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpClient.h">
+      <Filter>Src\Common\MGHttp</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\HttpServer\mongoose.h">
-      <Filter>Src\Common\HttpServer</Filter>
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpServer.h">
+      <Filter>Src\Common\MGHttp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\MGHttp\mongoose.h">
+      <Filter>Src\Common\MGHttp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpLua.hpp">
+      <Filter>Src\Common\MGHttp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

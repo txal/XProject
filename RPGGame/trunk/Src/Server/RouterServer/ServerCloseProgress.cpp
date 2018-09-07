@@ -1,4 +1,6 @@
 ﻿#include "Server/RouterServer/ServerCloseProgress.h"
+
+#include "Include/Script/Script.hpp"
 #include "Common/PacketParser/PacketWriter.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
@@ -159,7 +161,19 @@ void ServerCloseProgress::OnCloseServerFinish(int nServerID)
 	StartRoutine();
 }
 
-void ServerCloseProgress::OnServiceClose()
+void ServerCloseProgress::OnServiceClose(int nServerID, int nServiceID, int nServiceType)
 {
+	bool bNormalClose = false;
+	for (std::list<int>::iterator iter = m_oServerList.begin(); iter != m_oServerList.end(); iter++)
+	{
+		if (*iter == nServerID)
+		{
+			bNormalClose = true;
+			break;
+		}
+	}
+	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+	poLuaWrapper->FastCallLuaRef<void>("OnServiceClose", 0, "iiib", nServerID, nServiceID, nServiceType, bNormalClose);
+
 	StartRoutine();
 }

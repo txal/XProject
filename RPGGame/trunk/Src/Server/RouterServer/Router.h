@@ -45,6 +45,7 @@ public:
 private:
     void ProcessNetEvent(int nWaitMSTime);
 	void ProcessServerClose();
+	void ProcessUpdate();
 
 	void OnRouterAccept(HSOCKET hSock, uint32_t uRemoteIP, uint16_t uRemotePort);
 	void OnRouterDisconnect(int nSessionID);

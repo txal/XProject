@@ -2,13 +2,17 @@
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
+#include "Common/MGHttp/HttpServer.h";
 #include "Common/PacketParser/PacketWriter.h"
 #include "Common/TimerMgr/TimerMgr.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/RouterMgr.h"
 #include "Server/Base/ServerContext.h"
 
+extern HttpServer goHttpServer;
+extern HttpClient goHttpClient;
 extern ServerContext* g_poContext;
 
 LogServer::LogServer()
@@ -64,6 +68,7 @@ bool LogServer::Start()
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
+		ProcessHttpMessage();
 	}
 	return true;
 }

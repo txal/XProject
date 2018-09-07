@@ -1,9 +1,12 @@
 ﻿#include "Server/RouterServer/Router.h"
 #include "Common/PacketParser/PacketWriter.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/PacketHandler.h"
 #include "Server/Base/ServerContext.h"
+
+extern HttpClient goHttpClient;
 
 Router::Router()
 {
@@ -60,6 +63,8 @@ bool Router::Start()
 	while (!IsTerminate())
 	{
         ProcessNetEvent(10);
+		ProcessUpdate();
+		ProcessHttpMessage();
 #ifdef _WIN32
 		ProcessServerClose();
 #endif
@@ -138,6 +143,7 @@ void Router::OnRouterDisconnect(int nSessionID)
 
     int nServerID = poService->GetServerID();
 	int nServiceID = poService->GetServiceID();
+	int nServiceType = poService->GetServcieType();
 
 	int nKey = ServiceNode::Key(nServerID, nServiceID);
 	m_oServiceMap.erase(nKey);
@@ -153,7 +159,7 @@ void Router::OnRouterDisconnect(int nSessionID)
 	XLog(LEVEL_ERROR, "OnRouterDisconnect: server:%d service:%d disconnect\n", nServerID, nServiceID);
 
 	//是不是关服流程
-	m_oServerClose.OnServiceClose();
+	m_oServerClose.OnServiceClose(nServerID, nServiceID, nServiceType);
 }
 
 void Router::OnAddDataSock(HSOCKET hSock, int nSessionID)
@@ -245,6 +251,9 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID, int nServ
 	poService->SetServiceType(nServiceType);
 	m_oServiceMap[nKey] = poService;
 	XLog(LEVEL_INFO, "RegService: server:%d service:%d register successful\n", nServerID, nServiceID);
+
+	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+	poLuaWrapper->FastCallLuaRef<void>("OnServiceReg", 0, "iii", nServerID, nServiceID, nServiceType);
 	return true;
 }
 
@@ -279,15 +288,37 @@ int Router::GetServerList(int tServerList[], int nMaxNum)
 	return nNum;
 }
 
+//这里只对window有效
 void Router::ProcessServerClose()
 {
 	static int nLastTime = time(NULL);
 	int nNowTime = time(NULL);
 	if (nLastTime == nNowTime)
+	{
 		return;
+	}
 	nLastTime = nNowTime;
 	if (!Platform::FileExist("closeserver.txt"))
+	{
 		return;
+	}
 	remove("closeserver.txt");
 	m_oServerClose.CloseServer(g_poContext->GetWorldServerID());
+}
+
+void Router::ProcessUpdate()
+{
+	static int nLastTime = time(NULL);
+	int nNowTime = time(NULL);
+	if (nNowTime - nLastTime < 60)
+	{
+		return;
+	}
+	nLastTime = nNowTime;
+
+	ServiceIter iter = m_oServiceMap.begin();
+	for (iter; iter != m_oServiceMap.end(); iter++)
+	{
+		iter->second->Update(nNowTime);
+	}
 }

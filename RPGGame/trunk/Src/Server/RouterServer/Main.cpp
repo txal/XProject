@@ -1,12 +1,14 @@
 ﻿#include "Server/RouterServer/Router.h"
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XTime.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Server/Base/ServerContext.h"
 #include "Server/RouterServer/LuaSupport/LuaExport.h"
 #include "Server/RouterServer/PacketProc/RouterPacketHanderl.h"
 #include "Server/RouterServer/PacketProc/RouterPacketProc.h"
 
 ServerContext* g_poContext;
+
 bool InitNetwork(int8_t nServiceID)
 {
 	g_poContext->LoadServerConfig();
@@ -31,7 +33,26 @@ bool InitNetwork(int8_t nServiceID)
 	return poRouter->Init(nServiceID, poNode->sIP, poNode->uPort);
 }
 
-void StartScriptEngine() {}
+void StartScriptEngine() 
+{
+	static bool bStarted = false;
+	if (bStarted) return;
+	bStarted = true;
+
+	OpenLuaExport();
+	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+	bool bRes = poLuaWrapper->DoFile("RouterServer/Main");
+	assert(bRes);
+	bRes = poLuaWrapper->CallLuaFunc(NULL, "Main");
+	assert(bRes);
+
+	if (!Platform::FileExist("./debug.txt"))
+	{
+		char sLogName[256] = "";
+		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
+		Logger::Instance()->SetLogName(sLogName);
+	}
+}
 
 void OnSigTerm(int)
 {	
@@ -69,7 +90,7 @@ int main(int nArg, char* pArgv[])
 
 	NSPacketProc::RegisterPacketProc();
 
-	OpenLuaExport();
+	StartScriptEngine();
 
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
@@ -80,6 +101,7 @@ int main(int nArg, char* pArgv[])
 		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogName(sLogName);
 	}
+	goHttpClient.Init();
 
 	printf("RouterServer start successful\n");
 	bRes = poService->Start();

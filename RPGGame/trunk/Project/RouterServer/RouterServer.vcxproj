@@ -74,7 +74,7 @@
     <OutDir>..\..\Bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Bin\_RouterServer\</OutDir>
+    <OutDir>..\..\..\..\..\svnmengzhu\trunk\Server\_RouterServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -116,14 +116,14 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua530.lib;LibNetwork.lib;LibLogger.lib;LuaWrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua530.lib;LibNetwork.lib;LibLogger.lib;LuaWrapper.lib;lua_cjson.lib;lpeg.lib;pbc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-RouterServer*  E:\svnmengzhu\trunk\Server\_RouterServer\
+rem xcopy /y/f MZ-RouterServer*  E:\svnmengzhu\trunk\Server\_RouterServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -155,11 +155,21 @@ popd</Command>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpClient.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpLua.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpServer.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\mongoose.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp" />
@@ -174,6 +184,16 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\RouterServer\ServiceNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpClient.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpLua.hpp" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpServer.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\mongoose.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
     <ClInclude Include="..\..\Src\Common\Platform.h" />
@@ -182,6 +202,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
+    <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />
     <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h" />
     <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\ServerContext.h" />

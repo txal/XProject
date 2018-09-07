@@ -1,24 +1,9 @@
 ﻿#ifndef __HTTP_SERVER_H__
 #define __HTTP_SERVER_H__
 
-#include "Common/HttpServer/mongoose.h"
+#include "mongoose.h"
 #include "Common/DataStruct/MutexLock.h"
 #include "Common/DataStruct/Thread.h"
-
-struct HTTPMSG
-{
-	struct mg_connection *c;
-	std::string data;
-	std::string url;
-	int8_t type;
-
-	HTTPMSG(mg_connection* _c, std::string& _data, int8_t _type)
-	{
-		c = _c;
-		data = _data;
-		type = _type;
-	}
-};
 
 class HttpServer
 {

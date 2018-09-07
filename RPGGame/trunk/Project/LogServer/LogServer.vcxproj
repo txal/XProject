@@ -109,12 +109,12 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua530.lib;LibLogger.lib;LibNetwork.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;libcurl.lib;Wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua530.lib;LibLogger.lib;LibNetwork.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;Wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-rem xcopy /y/f MZ-LogServer*  E:\svnmengzhu\trunk\Server\_LocalServer\
+xcopy /y/f MZ-LogServer*  E:\svnmengzhu\trunk\Server\_LocalServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -138,11 +138,14 @@ popd</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpClient.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpLua.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpServer.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\mongoose.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
@@ -161,12 +164,15 @@ popd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Common\DataStruct\HashFunc.h" />
-    <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpClient.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpLua.hpp" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpServer.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\mongoose.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />

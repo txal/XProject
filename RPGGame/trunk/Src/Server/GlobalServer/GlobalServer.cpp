@@ -3,14 +3,13 @@
 #include "Common/PacketParser/PacketWriter.h"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
-#include "Common/HttpServer/HttpServer.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/RouterMgr.h"
 #include "Server/Base/ServerContext.h"
 
-extern HttpServer goHttpServer;
 extern ServerContext* g_poContext;
 
 GlobalServer::GlobalServer()
@@ -90,7 +89,7 @@ bool GlobalServer::Start()
 		int64_t nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
 		ProcessLoopCount(nNowMS);
-		ProcessHttpRequest(nNowMS);
+		ProcessHttpMessage();
 	}
 	return true;
 }
@@ -176,24 +175,6 @@ void GlobalServer::ProcessLoopCount(int64_t nNowMSTime)
 		nLastMSTime = nNowMSTime;
 		m_uMainLoopCount++;
 	}
-}
-
-void GlobalServer::ProcessHttpRequest(int64_t nNowMSTime)
-{
-	HTTPMSG* poMsg = goHttpServer.GetRequest();
-	if (poMsg == NULL)
-	{
-		return;
-	}
-
-	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	lua_State* pState = poLuaWrapper->GetLuaState();
-
-	lua_pushlightuserdata(pState, poMsg->c);
-	lua_pushstring(pState, poMsg->data.c_str());
-	lua_pushinteger(pState, poMsg->type);
-	lua_pushstring(pState, poMsg->url.c_str());
-	poLuaWrapper->CallLuaRef("HttpServerMessage", 4, 0);
 }
 
 void GlobalServer::OnExterNetAccept(int nSessionID)

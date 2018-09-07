@@ -14,7 +14,7 @@ public:
 public:
 	bool IsClosingServer() { return m_oServerList.size() > 0; }
 	void CloseServer(int nServerID);
-	void OnServiceClose();
+	void OnServiceClose(int nServerID, int nServiceID, int nServiceType);
 
 private:
 	void StartRoutine();

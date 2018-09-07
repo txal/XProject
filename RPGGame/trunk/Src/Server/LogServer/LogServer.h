@@ -29,7 +29,6 @@ private:
 	void ProcessNetEvent(int64_t nWaitMSTime);
 	void ProcessTimer(int64_t nNowMSTime);
 
-
 private:
 	INet* m_poInnerNet;
 	NetEventHandler m_oNetEventHandler;

@@ -6,6 +6,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc	        src_packetpr
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport         src_luasupport)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser  src_packetparser)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr      src_timermgr)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/MGHttp 		src_mghttp)
 
 
 #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_RouterServer/${CMAKE_BUILD_TYPE}/)
@@ -16,6 +17,7 @@ add_executable (RouterServer
     ${src_luasupport}
     ${src_packetparser}
     ${src_timermgr}
+    ${src_mghttp}
 )	
 
 target_link_libraries(RouterServer logger network luawrapper)
