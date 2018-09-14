@@ -26,3 +26,4 @@ x64/
 /RPGGame/trunk/Bin/_RouterServer/MZ-RouterServer.lib
 /RPGGame/trunk/Bin/_WorldServer/MZ-LogicServer.lib
 /RPGGame/trunk/Bin/_WorldServer/MZ-WGlobalServer.lib
+/Game/trunk/Bin/*.exe

@@ -78,9 +78,12 @@ bool WGlobalServer::RegToRouter(int nRouterServiceID)
 
 bool WGlobalServer::Start()
 {
-	if (!m_poExterNet->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort))
+	if (m_uListenPort > 0)
 	{
-		return false;
+		if (!m_poExterNet->Listen(m_sListenIP[0] ? m_sListenIP : NULL, m_uListenPort))
+		{
+			return false;
+		}
 	}
 	int64_t nNowMS = 0;
 	while(!IsTerminate())

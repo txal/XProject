@@ -1,8 +1,6 @@
 ﻿#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Include/Logger/Logger.hpp"
 
-std::string gsMapDir = "../../Data/ServerMap/";
-
 MapConf* MapConfMgr::GetConf(int nID)
 {
 	ConfIter iter = m_oConfMap.find(nID);
@@ -25,7 +23,7 @@ bool MapConfMgr::Init(CSVDocument* poCSVDoc)
 		int nID = (int)poCSVDoc->getValue(i, "nID");
 		std::string sFile = (const char*)poCSVDoc->getValue(i, "sFile");
 		assert(sFile != "");
-		sFile = gsMapDir + sFile;
+		sFile = ConfMgr::Instance()->GetDataPath() + "/Data/ServerMap/" + sFile;
 		int nErrRow = 0, nErrCol = 0;
 		oDoc.load(sFile, false, &nErrRow, &nErrCol);
 		if (nErrRow != 0 || nErrCol != 0)

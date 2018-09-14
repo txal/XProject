@@ -26,5 +26,5 @@ void ServiceNode::Update(int nNowMS)
 	m_nLastReportTime = nNowMS;
 	
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	poLuaWrapper->FastCallLuaRef<void>("OnServiceReport", 0, "iii", m_nServerID, m_nServiceID, m_nServiceType);
+	//poLuaWrapper->FastCallLuaRef<void>("OnServiceReport", 0, "iii", m_nServerID, m_nServiceID, m_nServiceType);
 }

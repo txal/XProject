@@ -40,6 +40,6 @@ void OpenLuaExport()
     RegLuaRpc("NetworkExport");
 	RegLuaPBPack("NetworkExport");
 	RegLuaNetwork("NetworkExport");
-	RegHttpLua("http");
+	//RegHttpLua("http");
 }
 

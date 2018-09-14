@@ -145,6 +145,10 @@ popd</Command>
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpClient.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpLua.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\HttpServer.cpp" />
+    <ClCompile Include="..\..\Src\Common\MGHttp\mongoose.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
@@ -169,6 +173,10 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpClient.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpLua.hpp" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\HttpServer.h" />
+    <ClInclude Include="..\..\Src\Common\MGHttp\mongoose.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />

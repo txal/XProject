@@ -64,7 +64,7 @@ bool Router::Start()
 	{
         ProcessNetEvent(10);
 		ProcessUpdate();
-		ProcessHttpMessage();
+		//ProcessHttpMessage();
 #ifdef _WIN32
 		ProcessServerClose();
 #endif
@@ -252,8 +252,8 @@ bool Router::RegService(int nServerID, int nServiceID, int nSessionID, int nServ
 	m_oServiceMap[nKey] = poService;
 	XLog(LEVEL_INFO, "RegService: server:%d service:%d register successful\n", nServerID, nServiceID);
 
-	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	poLuaWrapper->FastCallLuaRef<void>("OnServiceReg", 0, "iii", nServerID, nServiceID, nServiceType);
+	//LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+	//poLuaWrapper->FastCallLuaRef<void>("OnServiceReg", 0, "iii", nServerID, nServiceID, nServiceType);
 	return true;
 }
 

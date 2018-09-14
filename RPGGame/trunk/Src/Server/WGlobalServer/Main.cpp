@@ -10,8 +10,6 @@ std::string goScriptRoot;
 
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
-
 	GlobalNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGlobalList.size(); i++)
@@ -71,17 +69,14 @@ int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 3);
 
+	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
+	goScriptRoot = pArgv[2];
+	goScriptRoot = goScriptRoot + "/Main";
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
-
-	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
-	goScriptRoot = pArgv[2];
-	goScriptRoot = goScriptRoot + "/Main";
-
-	g_poContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -90,6 +85,10 @@ int main(int nArg, char *pArgv[])
 	Platform::GetWorkDir(szWorkDir, sizeof(szWorkDir)-1);
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
+
+
+	g_poContext = XNEW(ServerContext);
+	g_poContext->LoadServerConfig();
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
 	g_poContext->SetRouterMgr(poRouterMgr);

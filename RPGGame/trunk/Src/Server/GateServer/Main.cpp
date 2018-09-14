@@ -9,8 +9,6 @@ ServerContext* g_poContext;
 
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
-
 	GateNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGateList.size(); i++)
@@ -51,7 +49,6 @@ int main(int nArg, char *pArgv[])
 
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
-	g_poContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -60,6 +57,9 @@ int main(int nArg, char *pArgv[])
 	Platform::GetWorkDir(szWorkDir, sizeof(szWorkDir)-1);
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
+
+	g_poContext = XNEW(ServerContext);
+	g_poContext->LoadServerConfig();
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
     g_poContext->SetRouterMgr(poRouterMgr);

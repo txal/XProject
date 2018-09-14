@@ -22,11 +22,12 @@ class ConfMgr
 public:
 	static ConfMgr* Instance();
 	CSVDocument* GetDocument()	{ return &m_oCSVDoc;  }
-	void LoadConf();
+	void LoadConf(std::string dataPath);
 
 public:
 	MapConfMgr* GetMapMgr()		{ return &m_oMapConfMgr;  }
 	AIConfMgr* GetAIMgr()		{ return &m_oAIConfMgr;  }
+	std::string& GetDataPath()	{ return m_oDataPath;  }
 
 private:
 	MapConfMgr m_oMapConfMgr;	//地图配置
@@ -36,6 +37,7 @@ private:
 private:
 	ConfMgr() {};
 	CSVDocument m_oCSVDoc;
+	std::string m_oDataPath;
 	DISALLOW_COPY_AND_ASSIGN(ConfMgr);
 };
 

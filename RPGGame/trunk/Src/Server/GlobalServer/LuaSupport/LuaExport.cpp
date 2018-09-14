@@ -16,9 +16,6 @@
 #include "Server/Base/ServerContext.h"
 #include "Server/GlobalServer/GlobalServer.h"
 
-extern HttpServer goHttpServer;
-extern HttpClient goHttpClient;
-
 //////////////////////////Global funcitons/////////////////////////////
 //服务ID
 int GetServiceID(lua_State* pState)

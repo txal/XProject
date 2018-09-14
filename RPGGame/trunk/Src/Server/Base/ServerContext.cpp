@@ -28,8 +28,14 @@ bool ServerContext::LoadServerConfig()
 		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig fail!\n");
 		return false;
 	}
-
 	lua_State* pState = poLuaWrapper->GetLuaState();
+	m_oServerConf.sDataPath[0] = '\0';
+	lua_getglobal(pState, "gsDataPath");
+	if (!lua_isnoneornil(pState, -1))
+	{
+		strcpy(m_oServerConf.sDataPath, lua_tostring(pState, -1));
+	}
+
 	lua_getglobal(pState, "gnServerID");
 	m_oServerConf.uServerID = (uint16_t)lua_tointeger(pState, -1);
 

@@ -98,24 +98,22 @@ int main(int nArg, char *pArgv[])
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
-	ConfMgr::Instance()->LoadConf();
-
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
-	g_poContext = XNEW(ServerContext);
-	
-	RobotMgr* poRobotMgr = XNEW(RobotMgr);
-	g_poContext->SetService(poRobotMgr);
-	poRobotMgr->Init(0, 30000);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
-
 	char szWorkDir[256] = {0};
 	char szScriptPath[512] = {0};
 	Platform::GetWorkDir(szWorkDir, sizeof(szWorkDir)-1);
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
+
+	g_poContext = XNEW(ServerContext);
+	
+	RobotMgr* poRobotMgr = XNEW(RobotMgr);
+	g_poContext->SetService(poRobotMgr);
+	poRobotMgr->Init(0, 30000);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
 	g_poContext->SetPacketHandler(poPacketHandler);
@@ -124,6 +122,12 @@ int main(int nArg, char *pArgv[])
 
 	OpenLuaExport();
 	poLuaWrapper->DoFile("RobotClt/Main");
+
+	lua_State* pState = poLuaWrapper->GetLuaState();
+	lua_getglobal(pState, "gsDataPath");
+	const char* pDataPath = lua_tostring(pState, -1);
+	ConfMgr::Instance()->LoadConf(pDataPath?pDataPath:"");
+
 	poLuaWrapper->CallLuaFunc(NULL, "Main");
 
 	Thread oCmdThread;

@@ -404,5 +404,8 @@
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h">
       <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\MutexLock.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

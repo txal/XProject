@@ -69,6 +69,8 @@ struct ServerConfig
 	GlobalVector oGlobalList;
 	LoginVector oLoginList;
 	GlobalVector oWGlobalList;
+
+	char sDataPath[256];
 };
 
 

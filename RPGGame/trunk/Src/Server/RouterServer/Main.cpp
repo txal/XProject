@@ -11,8 +11,6 @@ ServerContext* g_poContext;
 
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
-
 	RouterNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
@@ -45,13 +43,6 @@ void StartScriptEngine()
 	assert(bRes);
 	bRes = poLuaWrapper->CallLuaFunc(NULL, "Main");
 	assert(bRes);
-
-	if (!Platform::FileExist("./debug.txt"))
-	{
-		char sLogName[256] = "";
-		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
-		Logger::Instance()->SetLogName(sLogName);
-	}
 }
 
 void OnSigTerm(int)
@@ -64,7 +55,6 @@ int main(int nArg, char* pArgv[])
 {
 	assert(nArg >= 2);
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
-
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
@@ -72,7 +62,6 @@ int main(int nArg, char* pArgv[])
 
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
-	g_poContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -82,6 +71,9 @@ int main(int nArg, char* pArgv[])
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
+	g_poContext = XNEW(ServerContext);
+	g_poContext->LoadServerConfig();
+
 	Router* poService = XNEW(Router);
 	g_poContext->SetService(poService);
 
@@ -90,7 +82,8 @@ int main(int nArg, char* pArgv[])
 
 	NSPacketProc::RegisterPacketProc();
 
-	StartScriptEngine();
+	//StartScriptEngine();
+	//goHttpClient.Init();
 
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
@@ -101,7 +94,6 @@ int main(int nArg, char* pArgv[])
 		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogName(sLogName);
 	}
-	goHttpClient.Init();
 
 	printf("RouterServer start successful\n");
 	bRes = poService->Start();

@@ -8,6 +8,7 @@
 #include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/LuaCommon/LuaSerialize.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
@@ -48,6 +49,7 @@ void OpenLuaExport()
 	RegWordFilter("GlobalExport");
 	RegLuaNetwork("NetworkExport");
 	RegLuaSerialize("cseri");
+	RegLuaSerialize("http");
 
 	RegClassSSDBDriver();
 	RegClassMysqlDriver();

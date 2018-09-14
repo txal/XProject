@@ -20,8 +20,6 @@ ServerContext* g_poContext;
 //网络初始化
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
-
 	LogicNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLogicList.size(); i++)
@@ -98,19 +96,13 @@ void StartScriptEngine()
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
+	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
 	XMath::RandomSeed((uint32_t)XTime::MSTime());
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
-	ConfMgr::Instance()->LoadConf();
-
-	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
-	g_poContext = XNEW(ServerContext);
-
-	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-	g_poContext->SetRouterMgr(poRouterMgr);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
@@ -119,6 +111,14 @@ int main(int nArg, char *pArgv[])
 	Platform::GetWorkDir(szWorkDir, sizeof(szWorkDir)-1);
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
     poLuaWrapper->AddSearchPath(szScriptPath);
+
+	g_poContext = XNEW(ServerContext);
+	g_poContext->LoadServerConfig();
+	ConfMgr::Instance()->LoadConf(g_poContext->GetServerConfig().sDataPath);
+
+
+	RouterMgr* poRouterMgr = XNEW(RouterMgr);
+	g_poContext->SetRouterMgr(poRouterMgr);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
 	g_poContext->SetPacketHandler(poPacketHandler);

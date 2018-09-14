@@ -53,7 +53,7 @@ void BattleLog::LogThread(void* param)
 			}
 			else
 			{
-				XLog(LEVEL_ERROR, "Open file %s error!\n", pLog->oFile.c_str());
+				//XLog(LEVEL_ERROR, "Open file %s error!\n", pLog->oFile.c_str());
 			}
 
 			SAFE_DELETE(pLog);

@@ -207,6 +207,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\DataStruct\Md5.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Memory.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\MinHeap.h" />
+    <ClInclude Include="..\..\Src\Common\DataStruct\MutexLock.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\ObjID.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Point.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Ranking.h" />

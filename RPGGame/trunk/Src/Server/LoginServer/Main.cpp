@@ -1,6 +1,7 @@
 ﻿#include "Server/LoginServer/LoginServer.h"
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XTime.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LoginServer/PacketProc/PacketProc.h"
@@ -9,8 +10,6 @@
 ServerContext* g_poContext;
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
-
 	LoginNode* poLogin = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLoginList.size(); i++)
@@ -56,13 +55,12 @@ void StartScriptEngine()
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
+	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
-	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
-	g_poContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
@@ -71,6 +69,9 @@ int main(int nArg, char *pArgv[])
 	Platform::GetWorkDir(szWorkDir, sizeof(szWorkDir)-1);
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
+
+	g_poContext = XNEW(ServerContext);
+	g_poContext->LoadServerConfig();
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
 	g_poContext->SetRouterMgr(poRouterMgr);
@@ -83,6 +84,8 @@ int main(int nArg, char *pArgv[])
 	LoginServer* poLoginServer = XNEW(LoginServer);
 	poLoginServer->Init(nServiceID);
 	g_poContext->SetService(poLoginServer);
+
+	goHttpClient.Init();
 
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);

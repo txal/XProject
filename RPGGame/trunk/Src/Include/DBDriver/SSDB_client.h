@@ -37,6 +37,9 @@ public:
 	bool error(){
 		return code_ != "ok";
 	}
+	bool disconnected(){
+		return code_ == "disconnected";
+	}
 	/**
 	 * The response code.
 	 */
@@ -49,6 +52,10 @@ public:
 		code_ = code;
 	}
 	Status(const std::vector<std::string> *resp){
+		if(resp == NULL){
+			code_ = "disconnected";
+			return;
+		}
 		if(resp && resp->size() > 0){
 			code_ = resp->at(0);
 		}else{
@@ -96,7 +103,6 @@ public:
 	 * Set the value of the key, with a time to live.
 	 */
 	virtual Status setx(const std::string &key, const std::string &val, int ttl) = 0;
-	virtual Status setnx(const std::string &key, const std::string &val, std::string *ret) = 0; //by pd
 	virtual Status del(const std::string &key) = 0;
 	virtual Status incr(const std::string &key, int64_t incrby, int64_t *ret) = 0;
 	/**
@@ -239,11 +245,22 @@ public:
 
 	virtual Status qpush(const std::string &name, const std::string &item, int64_t *ret_size=NULL) = 0;
 	virtual Status qpush(const std::string &name, const std::vector<std::string> &items, int64_t *ret_size=NULL) = 0;
+	virtual Status qpush_front(const std::string &name, const std::string &item, int64_t *ret_size=NULL) = 0;
+	virtual Status qpush_front(const std::string &name, const std::vector<std::string> &items, int64_t *ret_size=NULL) = 0;
 	virtual Status qpop(const std::string &name, std::string *ret) = 0;
 	virtual Status qpop(const std::string &name, int64_t limit, std::vector<std::string> *ret) = 0;
+	virtual Status qpop_back(const std::string &name, std::string *ret) = 0;
+	virtual Status qpop_back(const std::string &name, int64_t limit, std::vector<std::string> *ret) = 0;
 	virtual Status qslice(const std::string &name, int64_t begin, int64_t end, std::vector<std::string> *ret) = 0;
 	virtual Status qrange(const std::string &name, int64_t begin, int64_t limit, std::vector<std::string> *ret) = 0;
 	virtual Status qclear(const std::string &name, int64_t *ret=NULL) = 0;
+	virtual Status qsize(const std::string &name, int64_t *ret) = 0;
+	virtual Status qtrim_front(const std::string &name, int64_t limit, int64_t *ret=NULL) = 0;
+	virtual Status qtrim_back(const std::string &name, int64_t limit, int64_t *ret=NULL) = 0;
+	virtual Status qfront(const std::string &name, std::string *ret) = 0;
+	virtual Status qback(const std::string &name, std::string *ret) = 0;
+	virtual Status qset(const std::string &name, int64_t index, const std::string &val) = 0;
+	virtual Status qget(const std::string &name, int64_t index, std::string *val) = 0;
 private:
 	// No copying allowed
 	Client(const Client&);

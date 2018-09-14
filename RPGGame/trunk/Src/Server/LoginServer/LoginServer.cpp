@@ -5,6 +5,7 @@
 #include "Common/DataStruct/XTime.h"
 #include "Common/PacketParser/PacketWriter.h"
 #include "Common/DataStruct/XMath.h"
+#include "Common/MGHttp/HttpLua.hpp"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
@@ -66,6 +67,7 @@ bool LoginServer::Start()
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();
 		ProcessTimer(nNowMS);
+		ProcessHttpMessage();
 	}
 	return true;
 }

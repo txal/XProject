@@ -225,30 +225,31 @@ int SSDBDriver::HIncr(lua_State* pState)
 
 int SSDBDriver::Setnx(lua_State* pState)
 {
-	size_t nSize = 0;
-	const char* psKey = luaL_checklstring(pState, 1, &nSize);
-	std::string oStrKey(psKey, nSize);
-	if (oStrKey == "")
-	{
-		return LuaWrapper::luaM_error(pState, "Setnx key empty");
-	}
-	nSize = 0;
-	const char* psVal = luaL_checklstring(pState, 2, &nSize);
-	std::string oStrVal(psVal, nSize);
-
-	std::string oRet;
-#ifdef __linux
-	ssdb::Status oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
-#else
-	Status oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
-#endif
-	if (!oStatus.ok())
-	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
-	}
-	lua_pushstring(pState, oRet.c_str());
-	return 1;
+	return LuaWrapper::luaM_error(pState, "not support");
+//	size_t nSize = 0;
+//	const char* psKey = luaL_checklstring(pState, 1, &nSize);
+//	std::string oStrKey(psKey, nSize);
+//	if (oStrKey == "")
+//	{
+//		return LuaWrapper::luaM_error(pState, "Setnx key empty");
+//	}
+//	nSize = 0;
+//	const char* psVal = luaL_checklstring(pState, 2, &nSize);
+//	std::string oStrVal(psVal, nSize);
+//
+//	std::string oRet;
+//#ifdef __linux
+//	ssdb::Status oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
+//#else
+//	Status oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
+//#endif
+//	if (!oStatus.ok())
+//	{
+//		Reconnect();
+//		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+//	}
+//	lua_pushstring(pState, oRet.c_str());
+//	return 1;
 }
 
 int SSDBDriver::Del(lua_State* pState)

@@ -1,15 +1,19 @@
 ﻿#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 
-std::string sCSVDir = "../../Data/Config/CSV/";
-
 ConfMgr* ConfMgr::Instance()
 {
 	static ConfMgr oSingleton;
 	return &oSingleton;
 }
 
-void ConfMgr::LoadConf()
+void ConfMgr::LoadConf(std::string dataPath)
 {
-	LOAD_CSV_CONF(m_oMapConfMgr, sCSVDir+"MapConf.csv");
+	if (dataPath == "")
+	{
+		dataPath = "../../";
+	}
+	m_oDataPath = dataPath;
+	dataPath = dataPath + "/Data/Config/CSV/";
+	LOAD_CSV_CONF(m_oMapConfMgr, dataPath+"MapConf.csv");
 	//LOAD_CSV_CONF(m_oAIConfMgr, sCSVDir+"AIConf.csv");
 }
