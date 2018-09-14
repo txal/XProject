@@ -70,7 +70,7 @@ void OnSigTerm(int)
 	LogServer* poLogServer = (LogServer*)g_poContext->GetService();
 	if (poLogServer->GetMsgCount() <= 0)
 	{
-		Logger::Instance()->SetAndWaitClose();
+		Logger::Instance()->Terminate();
 		exit(0);
 	}
 	TimerMgr::Instance()->RegisterTimer(1000, OnShutdownTimer, NULL);
