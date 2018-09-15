@@ -72,7 +72,11 @@ int main(int nArg, char* pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	g_poContext = XNEW(ServerContext);
-	g_poContext->LoadServerConfig();
+	if (!g_poContext->LoadServerConfig())
+	{
+		XLog(LEVEL_ERROR, "load server conf fail!\n");
+		exit(0);
+	}
 
 	Router* poService = XNEW(Router);
 	g_poContext->SetService(poService);

@@ -13,7 +13,7 @@ bool InitNetwork(int8_t nServiceID)
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGateList.size(); i++)
 	{
-		if (oSrvConf.oGateList[i].uID == nServiceID)
+		if (oSrvConf.oGateList[i].uServer == oSrvConf.uServerID && oSrvConf.oGateList[i].uID == nServiceID)
 		{
 			poNode = &oSrvConf.oGateList[i];
 			break;
@@ -59,7 +59,11 @@ int main(int nArg, char *pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	g_poContext = XNEW(ServerContext);
-	g_poContext->LoadServerConfig();
+	if (!g_poContext->LoadServerConfig())
+	{
+		XLog(LEVEL_ERROR, "load server conf fail!\n");
+		exit(0);
+	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
     g_poContext->SetRouterMgr(poRouterMgr);

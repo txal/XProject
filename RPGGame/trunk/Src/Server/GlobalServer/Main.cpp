@@ -14,7 +14,7 @@ bool InitNetwork(int8_t nServiceID)
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGlobalList.size(); i++)
 	{
-		if (oSrvConf.oGlobalList[i].uID == nServiceID)
+		if (oSrvConf.oGlobalList[i].uServer == oSrvConf.uServerID && oSrvConf.oGlobalList[i].uID == nServiceID)
 		{
 			poNode = &oSrvConf.oGlobalList[i];
 			break;
@@ -113,7 +113,11 @@ int main(int nArg, char *pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	g_poContext = XNEW(ServerContext);
-	g_poContext->LoadServerConfig();
+	if (!g_poContext->LoadServerConfig())
+	{
+		XLog(LEVEL_ERROR, "load server conf fail!\n");
+		exit(0);
+	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
 	g_poContext->SetRouterMgr(poRouterMgr);
@@ -129,12 +133,13 @@ int main(int nArg, char *pArgv[])
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
 
-	for (int i = 0; i < g_poContext->GetServerConfig().oGlobalList.size(); i++)
+	goHttpClient.Init();
+	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	for (int i = 0; i < oSrvConf.oGlobalList.size(); i++)
 	{
-		GlobalNode& oNode = g_poContext->GetServerConfig().oGlobalList[i];
-		if (oNode.uID == poGlobalServer->GetServiceID() && oNode.sHttpAddr[0] != '\0')
+		GlobalNode& oNode = oSrvConf.oGlobalList[i];
+		if (oNode.uServer == oSrvConf.uServerID && oNode.uID == poGlobalServer->GetServiceID() && oNode.sHttpAddr[0] != '\0')
 		{
-			goHttpClient.Init();
 			goHttpServer.Init(oNode.sHttpAddr);
 			break;
 		}

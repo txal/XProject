@@ -74,7 +74,7 @@
     <OutDir>..\..\Bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\..\..\..\svnmengzhu\trunk\Server\_RouterServer\</OutDir>
+    <OutDir>..\..\Bin\_RouterServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -116,14 +116,14 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua530.lib;LibNetwork.lib;LibLogger.lib;LuaWrapper.lib;lua_cjson.lib;lpeg.lib;pbc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua530.lib;LibNetwork.lib;LibLogger.lib;LuaWrapper.lib;lua_cjson.lib;lpeg.lib;pbc.lib;LibDBDriver.lib;mysqlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-rem xcopy /y/f MZ-RouterServer*  E:\svnmengzhu\trunk\Server\_RouterServer\
+xcopy /y/f MZ-RouterServer*  E:\svnmengzhu\trunk\Server\_RouterServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

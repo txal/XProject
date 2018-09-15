@@ -58,7 +58,7 @@ void SceneMgr::RemoveScene(int64_t nSceneIndex)
 void SceneMgr::Update(int64_t nNowMS)
 {
 	static int64_t nLastMSTime = 0;
-	if (nLastMSTime-nNowMS < 1000)
+	if (nNowMS - nLastMSTime < 1000)
 	{
 		return;
 	}

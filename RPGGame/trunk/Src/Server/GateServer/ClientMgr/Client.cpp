@@ -44,7 +44,7 @@ void Client::Update(int64_t nNowMS)
 		oWriter << m_nRoleID << m_nPacketTime;
 		uint16_t uSrcServer = g_poContext->GetServerID();
 		int8_t nSrcService = g_poContext->GetService()->GetServiceID();
-		int8_t nTarService = (int8_t)g_poContext->GetServerConfig().oWGlobalList[0].uID;
+		int8_t nTarService = 110;
 		NetAdapter::SERVICE_NAVI oNavi(uSrcServer, nSrcService, g_poContext->GetWorldServerID(), nTarService, m_nSession);
 		NetAdapter::SendInner(NSSysCmd::ssClientLastPacketTimeRet, poPacket, oNavi);
 	}

@@ -29,6 +29,7 @@ public:
 	int SelectLogic(int nSession);
 
 	bool LoadServerConfig();
+	bool LoadServerConfigByFile();
 	ServerConfig& GetServerConfig() { return m_oServerConf; }
 
 private:

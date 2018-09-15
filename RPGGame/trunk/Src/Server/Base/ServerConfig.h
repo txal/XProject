@@ -41,12 +41,14 @@ struct GateNode
 
 struct LogicNode
 {
+	uint16_t uServer;
 	uint16_t uID;
 };
 
 
 struct LoginNode
 {
+	uint16_t uServer;
 	uint16_t uID;
 };
 

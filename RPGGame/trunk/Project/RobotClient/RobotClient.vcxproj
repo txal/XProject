@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\..\..\..\svnmengzhu\trunk\Server\_RobotClient\</OutDir>
+    <OutDir>..\..\Bin\_RobotClient\</OutDir>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,12 +132,12 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>LibLogger.lib;LibNetwork.lib;Lua530.lib;LuaWrapper.lib;pbc.lib;LibDBDriver.lib;lpeg.lib;lua_cjson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibLogger.lib;LibNetwork.lib;Lua530.lib;LuaWrapper.lib;pbc.lib;LibDBDriver.lib;lpeg.lib;lua_cjson.lib;mysqlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-rem xcopy /y/f RobotClient*  E:\svnmengzhu\trunk\Server\_RobotClient\
+xcopy /y/f RobotClient*  E:\svnmengzhu\trunk\Server\_RobotClient\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

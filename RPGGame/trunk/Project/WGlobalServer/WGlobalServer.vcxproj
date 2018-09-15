@@ -100,9 +100,7 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-WGlobalServer*  E:\svnmengzhu\trunk\Server\_WorldServer\
-echo f | xcopy /y/f MZ-WGlobalServer.exe  E:\svnmengzhu\trunk\Server\_WorldServer\MZ-WGlobalServer2.exe
-popd</Command>
+xcopy /y/f MZ-WGlobalServer*  E:\svnmengzhu\trunk\Server\_WorldServer\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

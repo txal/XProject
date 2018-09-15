@@ -1,4 +1,6 @@
 ﻿#include "Server/Base/ServerContext.h"
+#include "Include/DBDriver/MysqlDriver.h"
+
 #include "Common/DataStruct/HashFunc.h"
 #include "Common/DataStruct/XMath.h"
 
@@ -11,16 +13,175 @@ ServerContext::ServerContext()
 
 int ServerContext::SelectLogic(int nSession)
 {
-	uint32_t uCount = (uint32_t)m_oServerConf.oLogicList.size();
-	if (uCount <= 0)
+	for (int i = 0; i < m_oServerConf.oLogicList.size(); i++)
 	{
-		return 0;
+		if (m_oServerConf.oLogicList[i].uServer == m_oServerConf.uServerID)
+		{
+			return m_oServerConf.oLogicList[i].uID;
+		}
 	}
-	int nIndex = jhash_1word(nSession, 0) % uCount;
-	return m_oServerConf.oLogicList[nIndex].uID;
+	return 0;
 }
 
 bool ServerContext::LoadServerConfig()
+{
+	if (Platform::FileExist("local.txt"))
+	{
+		return LoadServerConfigByFile();
+	}
+	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+	if (!poLuaWrapper->RawDoFile("ServerConf.lua"))
+	{
+		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig ServerConf.lua not found!\n");
+		return false;
+	}
+	lua_State* pState = poLuaWrapper->GetLuaState();
+
+	lua_getglobal(pState, "serverID");
+	m_oServerConf.uServerID = (uint16_t)lua_tointeger(pState, -1);
+	m_oServerConf.uWorldServerID = 10000;
+
+	m_oServerConf.sDataPath[0] = '\0';
+	lua_getglobal(pState, "dataPath");
+	if (!lua_isnoneornil(pState, -1))
+	{
+		strcpy(m_oServerConf.sDataPath, lua_tostring(pState, -1));
+	}
+
+	lua_getglobal(pState, "groupID");
+	int nGroupID = lua_tointeger(pState, -1);
+	if (nGroupID <= 0)
+	{
+		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig groupid error!\n");
+		return false;
+	}
+
+	lua_getglobal(pState, "backIP");
+	const char* pBackIP = lua_tostring(pState, -1);
+	lua_getglobal(pState, "backPort");
+	int nBackPort = (int)lua_tointeger(pState, -1);
+	lua_getglobal(pState, "backDB");
+	const char* pBackDB = lua_tostring(pState, -1);
+	lua_getglobal(pState, "backUsr");
+	const char* pBackUsr = lua_tostring(pState, -1);
+	lua_getglobal(pState, "backPwd");
+	const char* pBackPwd = lua_tostring(pState, -1);
+	if (pBackIP == NULL || nBackPort <= 0 || pBackDB == NULL || pBackUsr == NULL || pBackPwd == NULL)
+	{
+		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig backstage conf error!\n");
+		return false;
+	}
+
+	MysqlDriver* pMysql = XNEW(MysqlDriver);
+	if (!pMysql->Connect(pBackIP, nBackPort, pBackDB, pBackUsr, pBackPwd, "utf8"))
+	{
+		SAFE_DELETE(pMysql);
+		return false;
+	}
+
+	char sSQLBuff[1024] = {0};
+	sprintf(sSQLBuff, "select * from appinfo where groupid=%d;", nGroupID);
+	if (!pMysql->Query(sSQLBuff))
+	{
+		SAFE_DELETE(pMysql);
+		return false;
+	}
+	if (pMysql->NumRows() <= 0)
+	{
+		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig group empty!\n");
+		SAFE_DELETE(pMysql);
+		return false;
+	}
+
+	m_oServerConf.oGateList.clear();
+	m_oServerConf.oGlobalList.clear();
+	m_oServerConf.oLogicList.clear();
+	m_oServerConf.oLoginList.clear();
+	m_oServerConf.oRouterList.clear();
+	m_oServerConf.oWGlobalList.clear();
+
+	while (pMysql->FetchRow())
+	{
+		int nServerID = pMysql->ToInt32("serverid");
+		int nServiceID = pMysql->ToInt32("serviceid");
+		int nServicePort = pMysql->ToInt32("serviceport");
+
+		const char* pServiceName = pMysql->ToString("servicename");
+		pServiceName = pServiceName ? pServiceName : "";
+
+		if (strcmp("GATE", pServiceName) == 0)
+		{
+			GateNode oGate;
+			oGate.uID = nServiceID;
+			oGate.uServer = nServerID;
+			oGate.uPort = nServicePort;
+			oGate.uPort = 20000;
+			oGate.uSecureCPM = 0;
+			oGate.uSecureQPM = 300;
+			oGate.uDeadLinkTime = 120;
+			m_oServerConf.oGateList.push_back(oGate);
+		}
+		else if (strcmp("ROUTER", pServiceName) == 0)
+		{
+
+			const char* pServiceIP = pMysql->ToString("serviceip");
+			pServiceIP = pServiceIP ? pServiceIP : "";
+
+			RouterNode oRouter;
+			oRouter.uID = nServiceID;
+			oRouter.sIP[0] = '\0';
+			strcpy(oRouter.sIP, pServiceIP);
+			oRouter.uPort = nServicePort;
+			m_oServerConf.oRouterList.push_back(oRouter);
+		}
+		else if (strcmp("LOGIC", pServiceName) == 0 || strcmp("WLOGIC", pServiceName) == 0)
+		{
+			LogicNode oLogic;
+			oLogic.uID = nServiceID;
+			oLogic.uServer = nServerID;
+			m_oServerConf.oLogicList.push_back(oLogic);
+		}
+		else if (strcmp("GLOBAL", pServiceName) == 0)
+		{
+			GlobalNode oGlobal;
+			oGlobal.uID = nServiceID;
+			oGlobal.uServer = nServerID;
+			oGlobal.sIP[0] = '\0';
+			oGlobal.uPort = nServicePort;
+			oGlobal.sHttpAddr[0] = '\0';
+			m_oServerConf.oGlobalList.push_back(oGlobal);
+		}
+		else if (strcmp("LOG", pServiceName) == 0)
+		{
+			LogNode oLog;
+			oLog.uID = nServiceID;
+			oLog.uServer = nServerID;
+			oLog.uWorkers = 2;
+			oLog.sHttpAddr[0] = '\0';
+			m_oServerConf.oLogList.push_back(oLog);
+		}
+		else if (strcmp("LOGIN", pServiceName) == 0)
+		{
+			LoginNode oLogin;
+			oLogin.uID = nServiceID;
+			oLogin.uServer = nServerID;
+			m_oServerConf.oLoginList.push_back(oLogin);
+		}
+		else if (strcmp("WGLOBAL", pServiceName) == 0)
+		{
+			GlobalNode oGlobal;
+			oGlobal.uID = nServiceID;
+			oGlobal.uServer = nServerID;
+			oGlobal.sIP[0] = '\0';
+			oGlobal.uPort = nServicePort;
+			m_oServerConf.oWGlobalList.push_back(oGlobal);
+		}
+	}
+	SAFE_DELETE(pMysql);
+	return true;
+}
+
+bool ServerContext::LoadServerConfigByFile()
 {
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	if (!poLuaWrapper->RawDoFile("ServerConf.lua"))
@@ -114,8 +275,10 @@ bool ServerContext::LoadServerConfig()
 			lua_rawgeti(pState, -1, i);
 			lua_getfield(pState, -1, "nID");
 			oLogic.uID = (uint16_t)lua_tointeger(pState, -1);
+			lua_getfield(pState, -2, "nServer");
+			oLogic.uServer = (uint16_t)lua_tointeger(pState, -1);
 			m_oServerConf.oLogicList.push_back(oLogic);
-			lua_pop(pState, 2);
+			lua_pop(pState, 3);
 		}
 	}
 
@@ -198,8 +361,10 @@ bool ServerContext::LoadServerConfig()
 			lua_rawgeti(pState, -1, i);
 			lua_getfield(pState, -1, "nID");
 			oLogin.uID = (uint16_t)lua_tointeger(pState, -1);
+			lua_getfield(pState, -2, "nServer");
+			oLogin.uServer = (uint16_t)lua_tointeger(pState, -1);
 			m_oServerConf.oLoginList.push_back(oLogin);
-			lua_pop(pState, 2);
+			lua_pop(pState, 3);
 		}
 	}
 

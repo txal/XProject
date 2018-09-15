@@ -16,7 +16,7 @@ bool InitNetwork(int8_t nServiceID)
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLogList.size(); i++)
 	{
-		if (oSrvConf.oLogList[i].uID == nServiceID)
+		if (oSrvConf.oLogList[i].uServer == oSrvConf.uServerID && oSrvConf.oLogList[i].uID == nServiceID)
 		{
 			poLog = &oSrvConf.oLogList[i];
 			break;
@@ -79,7 +79,11 @@ int main(int nArg, char *pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	g_poContext = XNEW(ServerContext);
-	g_poContext->LoadServerConfig();
+	if (!g_poContext->LoadServerConfig())
+	{
+		XLog(LEVEL_ERROR, "load server conf fail!\n");
+		exit(0);
+	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
 	g_poContext->SetRouterMgr(poRouterMgr);
@@ -96,14 +100,18 @@ int main(int nArg, char *pArgv[])
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
 
-	//Mysql工作线程
-	WorkerMgr::Instance()->Init(g_poContext->GetServerConfig().oLogList[0].uWorkers);
-
-	//Http初始化
 	goHttpClient.Init();
-	if (g_poContext->GetServerConfig().oLogList[0].sHttpAddr[0] != '\0')
+	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	for (int i = 0; i < oSrvConf.oLogList.size(); i++)
 	{
-		goHttpServer.Init(g_poContext->GetServerConfig().oLogList[0].sHttpAddr);
+		LogNode& oNode = oSrvConf.oLogList[i];
+		if (oNode.uServer == oSrvConf.uServerID && oNode.uID == poLogServer->GetServiceID())
+		{
+			if (oNode.sHttpAddr[0] != '\0')
+				goHttpServer.Init(oNode.sHttpAddr);
+			WorkerMgr::Instance()->Init(oNode.uWorkers);
+			break;
+		}
 	}
 	printf("LogServer start successful\n");
 

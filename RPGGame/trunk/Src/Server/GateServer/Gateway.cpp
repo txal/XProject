@@ -188,7 +188,18 @@ void Gateway::OnExterNetClose(int nSessionID)
 	oNavi.uSrcServer = g_poContext->GetServerID();
 	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
 	oNavi.uTarServer = g_poContext->GetServerID();
-	oNavi.nTarService = (int8_t)g_poContext->GetServerConfig().oLoginList[0].uID;
+
+	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	for (int i = 0; i < oSrvConf.oLoginList.size(); i++)
+	{
+		LoginNode& oNode = oSrvConf.oLoginList[i];
+		if (oNode.uServer == oSrvConf.uServerID)
+		{
+			oNavi.nTarService = (int8_t)oNode.uID;
+			break;
+		}
+	}
+
 	oNavi.nTarSession = nSessionID;
 
 	Packet* poPacket = Packet::Create();
