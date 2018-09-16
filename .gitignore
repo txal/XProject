@@ -27,3 +27,6 @@ x64/
 /RPGGame/trunk/Bin/_WorldServer/MZ-LogicServer.lib
 /RPGGame/trunk/Bin/_WorldServer/MZ-WGlobalServer.lib
 /Game/trunk/Bin/*.exe
+/RPGGame/trunk/Bin/*.lib
+/RPGGame/trunk/Bin/_RobotClient/*.exe
+/RPGGame/trunk/Bin/_RobotClient/*.lib
