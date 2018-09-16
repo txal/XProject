@@ -39,6 +39,11 @@ void StartScriptEngine()
 
 }
 
+void ExitFunc(void)
+{
+	XTime::MSSleep(1000);
+}
+
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
@@ -46,9 +51,16 @@ int main(int nArg, char *pArgv[])
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
-
+	atexit(ExitFunc);
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
+
+	if (!Platform::FileExist("./debug.txt"))
+	{
+		char sLogName[256] = "";
+		sprintf(sLogName, "gateserver%d", nServiceID);
+		Logger::Instance()->SetLogName(sLogName);
+	}
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -59,10 +71,12 @@ int main(int nArg, char *pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	g_poContext = XNEW(ServerContext);
-	if (!g_poContext->LoadServerConfig())
+	bool bRes = g_poContext->LoadServerConfig();
+	assert(bRes);
+	if (!bRes)
 	{
 		XLog(LEVEL_ERROR, "load server conf fail!\n");
-		exit(0);
+		exit(-1);
 	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
@@ -76,19 +90,22 @@ int main(int nArg, char *pArgv[])
 	Gateway* poGateway = XNEW(Gateway);
 	g_poContext->SetService(poGateway);
 
-	bool bRes = InitNetwork(nServiceID);
+	bRes = InitNetwork(nServiceID);
 	assert(bRes);
-
-	if (!Platform::FileExist("./debug.txt"))
+	if (!bRes)
 	{
-		char sLogName[256] = "";
-		sprintf(sLogName, "gateserver%d", nServiceID);
-		Logger::Instance()->SetLogName(sLogName);
+		XLog(LEVEL_ERROR, "init network fail!\n");
+		exit(-1);
 	}
 
-	printf("GateServer start successful\n");
+	XLog(LEVEL_INFO, "GateServer start successful\n");
 	bRes = g_poContext->GetService()->Start();
 	assert(bRes);
+	if (!bRes)
+	{
+		XLog(LEVEL_ERROR, "start server fail!\n");
+		exit(-1);
+	}
 
 	g_poContext->GetService()->GetExterNet()->Release();
 	g_poContext->GetService()->GetInnerNet()->Release();

@@ -65,21 +65,23 @@ void StartScriptEngine()
 {
 	XLog(LEVEL_INFO, "Start script engine...\n");
 	static bool bStarted = false;
-	if (bStarted) return;
+	if (bStarted)
+		return;
 	bStarted = true;
 
 	OpenLuaExport();
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	bool bRes = poLuaWrapper->DoFile("LogicServer/Main");
 	assert(bRes);
+	if (!bRes)
+	{
+		exit(-1);
+	}
 	bRes = poLuaWrapper->CallLuaFunc(NULL, "Main");
 	assert(bRes);
-
-	if (!Platform::FileExist("./adb.txt"))
+	if (!bRes)
 	{
-		char sLogName[256] = "";
-		sprintf(sLogName, "logicserver%d", g_poContext->GetService()->GetServiceID());
-		Logger::Instance()->SetLogName(sLogName);
+		exit(-1);
 	}
 
 	bool bDebug = false;
@@ -92,6 +94,10 @@ void StartScriptEngine()
 	goMonitorThread.Create(MonitorThreadFunc, NULL);
 }
 
+void ExitFunc(void)
+{
+	XTime::MSSleep(1000);
+}
 
 int main(int nArg, char *pArgv[])
 {
@@ -101,11 +107,19 @@ int main(int nArg, char *pArgv[])
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
 	XMath::RandomSeed((uint32_t)XTime::MSTime());
+	atexit(ExitFunc);
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
 
+	if (!Platform::FileExist("./debug.txt"))
+	{
+		char sLogName[256] = "";
+		sprintf(sLogName, "logicserver%d", g_poContext->GetService()->GetServiceID());
+		Logger::Instance()->SetLogName(sLogName);
+	}
+
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
+	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
 	char szWorkDir[256] = {0};
 	char szScriptPath[512] = {0};
 	Platform::GetWorkDir(szWorkDir, sizeof(szWorkDir)-1);
@@ -113,10 +127,12 @@ int main(int nArg, char *pArgv[])
     poLuaWrapper->AddSearchPath(szScriptPath);
 
 	g_poContext = XNEW(ServerContext);
-	if (!g_poContext->LoadServerConfig())
+	bool bRes = g_poContext->LoadServerConfig();
+	assert(bRes);
+	if (!bRes)
 	{
 		XLog(LEVEL_ERROR, "load server conf fail!\n");
-		exit(0);
+		exit(-1);
 	}
 	ConfMgr::Instance()->LoadConf(g_poContext->GetServerConfig().sDataPath);
 
@@ -130,16 +146,31 @@ int main(int nArg, char *pArgv[])
 	NSPacketProc::RegisterPacketProc();
 
 	LogicServer* poService = XNEW(LogicServer);
-	bool bRes = poService->Init(nServiceID);
+	bRes = poService->Init(nServiceID);
 	assert(bRes);
+	if (!bRes)
+	{
+		XLog(LEVEL_ERROR, "init service fail!\n");
+		exit(-1);
+	}
 	g_poContext->SetService(poService);
 
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
+	if (!bRes)
+	{
+		XLog(LEVEL_ERROR, "init network fail!\n");
+		exit(-1);
+	}
 
-	printf("LogicServer start successful\n");
-	bRes = poService->Start();
+	XLog(LEVEL_INFO, "LogicServer start successful\n");
 	assert(bRes);
+	bRes = poService->Start();
+	if (!bRes)
+	{
+		XLog(LEVEL_ERROR, "start server fail!\n");
+		exit(-1);
+	}
 
 	g_poContext->GetService()->GetInnerNet()->Release();
 	Logger::Instance()->Terminate();

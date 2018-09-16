@@ -34,21 +34,35 @@ bool InitNetwork(int8_t nServiceID)
 void StartScriptEngine() 
 {
 	static bool bStarted = false;
-	if (bStarted) return;
+	if (bStarted)
+		return;
 	bStarted = true;
 
 	OpenLuaExport();
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	bool bRes = poLuaWrapper->DoFile("RouterServer/Main");
 	assert(bRes);
+	if (!bRes)
+	{
+		exit(-1);
+	}
 	bRes = poLuaWrapper->CallLuaFunc(NULL, "Main");
 	assert(bRes);
+	if (!bRes)
+	{
+		exit(-1);
+	}
 }
 
 void OnSigTerm(int)
 {	
 	Router* poRouter = (Router*)(g_poContext->GetService());
 	poRouter->GetServerClose().CloseServer(g_poContext->GetWorldServerID());
+}
+
+void ExitFunc(void)
+{
+	XTime::MSSleep(1000);
 }
 
 int main(int nArg, char* pArgv[])
@@ -59,9 +73,16 @@ int main(int nArg, char* pArgv[])
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
 	signal(SIGTERM, OnSigTerm);
-
+	atexit(ExitFunc);
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
+
+	if (!Platform::FileExist("./debug.txt"))
+	{
+		char sLogName[256] = "";
+		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
+		Logger::Instance()->SetLogName(sLogName);
+	}
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -72,10 +93,12 @@ int main(int nArg, char* pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	g_poContext = XNEW(ServerContext);
-	if (!g_poContext->LoadServerConfig())
+	bool bRes = g_poContext->LoadServerConfig();
+	assert(bRes);
+	if (!bRes)
 	{
 		XLog(LEVEL_ERROR, "load server conf fail!\n");
-		exit(0);
+		exit(-1);
 	}
 
 	Router* poService = XNEW(Router);
@@ -89,19 +112,22 @@ int main(int nArg, char* pArgv[])
 	//StartScriptEngine();
 	//goHttpClient.Init();
 
-	bool bRes = InitNetwork(nServiceID);
+	bRes = InitNetwork(nServiceID);
 	assert(bRes);
-
-	if (!Platform::FileExist("./debug.txt"))
+	if (!bRes)
 	{
-		char sLogName[256] = "";
-		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
-		Logger::Instance()->SetLogName(sLogName);
+		XLog(LEVEL_ERROR, "init network fail!\n");
+		exit(-1);
 	}
 
-	printf("RouterServer start successful\n");
+	XLog(LEVEL_INFO, "RouterServer start successful\n");
 	bRes = poService->Start();
 	assert(bRes);
+	if (!bRes)
+	{
+		XLog(LEVEL_ERROR, "start server fail!\n");
+		exit(-1);
+	}
 
 	INet* pInnerNet = g_poContext->GetService()->GetInnerNet();
 	pInnerNet->Release();

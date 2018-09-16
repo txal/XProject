@@ -47,14 +47,15 @@ void StartScriptEngine()
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	bool bRes = poLuaWrapper->DoFile(goScriptRoot.c_str());
 	assert(bRes);
+	if (!bRes)
+	{
+		exit(-1);
+	}
 	bRes = poLuaWrapper->CallLuaFunc(NULL, "Main");
 	assert(bRes);
-
-	if (!Platform::FileExist("./debug.txt"))
+	if (!bRes)
 	{
-		char sLogName[256] = "";
-		sprintf(sLogName, "globalserver%d", g_poContext->GetService()->GetServiceID());
-		Logger::Instance()->SetLogName(sLogName);
+		exit(-1);
 	}
 
 	bool bDebug = false;
@@ -63,6 +64,11 @@ void StartScriptEngine()
 #endif
 	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
 	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
+}
+
+void ExitFunc(void)
+{
+	XTime::MSSleep(1000);
 }
 
 int main(int nArg, char *pArgv[])
@@ -75,8 +81,16 @@ int main(int nArg, char *pArgv[])
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
+	atexit(ExitFunc);
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
+
+	if (!Platform::FileExist("./debug.txt"))
+	{
+		char sLogName[256] = "";
+		sprintf(sLogName, "globalserver%d", g_poContext->GetService()->GetServiceID());
+		Logger::Instance()->SetLogName(sLogName);
+	}
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -88,10 +102,12 @@ int main(int nArg, char *pArgv[])
 
 
 	g_poContext = XNEW(ServerContext);
-	if (!g_poContext->LoadServerConfig())
+	bool bRes = g_poContext->LoadServerConfig();
+	assert(bRes);
+	if (!bRes)
 	{
 		XLog(LEVEL_ERROR, "load server conf fail!\n");
-		exit(0);
+		exit(-1);
 	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
@@ -105,12 +121,22 @@ int main(int nArg, char *pArgv[])
 	WGlobalServer* poGlobalServer = XNEW(WGlobalServer);
 	g_poContext->SetService(poGlobalServer);
 
-	bool bRes = InitNetwork(nServiceID);
+	bRes = InitNetwork(nServiceID);
 	assert(bRes);
+	if (!bRes)
+	{
+		XLog(LEVEL_ERROR, "init network fail!\n");
+		exit(-1);
+	}
 
-	printf("WGlobalServer start successful\n");
+	XLog(LEVEL_INFO, "WGlobalServer start successful\n");
 	bRes = g_poContext->GetService()->Start();
 	assert(bRes);
+	if (!bRes)
+	{
+		XLog(LEVEL_ERROR, "start server fail!\n");
+		exit(-1);
+	}
 
 	INet* pInnerNet = g_poContext->GetService()->GetInnerNet();
 	pInnerNet->Release();
