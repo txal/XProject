@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}				src_logserver)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/DataStruct/Crypt src_crypt)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr  src_timermgr)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/LuaCommon src_luacommon)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser src_packetparser)
@@ -19,7 +20,8 @@ add_executable(LogServer
 	${src_packetproc}
 	${src_packetparser}
 	${src_mghttp}
+	${src_crypt}
 )
 
 target_link_libraries(LogServer logger network dbdriver luawrapper)
-target_link_libraries(LogServer lua530 mysqlclient readline lpeg pbc jemalloc pthread rt)
+target_link_libraries(LogServer lua530 mysqlclient readline lpeg pbc cjson jemalloc pthread rt)

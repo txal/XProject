@@ -109,7 +109,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>lua530.lib;LibLogger.lib;LibNetwork.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;Wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua530.lib;LibLogger.lib;LibNetwork.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;Wldap32.lib;lua_cjson.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
@@ -138,6 +138,9 @@ popd</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\Base64.cpp" />
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\LuaCrypt.cpp" />
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\MSha1.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
     <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp" />
@@ -163,6 +166,11 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\LogServer\WorkerMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\Base64.h" />
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\LuaCrypt.hpp" />
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\Md5.h" />
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\RC4.h" />
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\MSha1.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\HashFunc.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />

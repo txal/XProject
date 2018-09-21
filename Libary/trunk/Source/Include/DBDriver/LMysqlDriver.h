@@ -12,6 +12,7 @@ public:
 
 public:
 	LMysqlDriver(lua_State* pState);
+	virtual ~LMysqlDriver();
 
 	int Connect(lua_State* pState);
 

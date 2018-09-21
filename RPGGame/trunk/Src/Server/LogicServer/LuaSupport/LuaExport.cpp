@@ -5,7 +5,6 @@
 #include "Include/Script/Script.hpp"
 #include "Include/Script/Script.hpp"
 
-#include "Common/DataStruct/Md5.h"
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaRpc.h"
@@ -85,15 +84,6 @@ int IsBlockUnit(lua_State* pState)
 	return 1;
 }
 
-int MD5(lua_State* pState)
-{
-	char sOutput[64] = {0};
-	const char* psCont = luaL_checkstring(pState, 1);
-	MD5String(sOutput, psCont);
-	lua_pushstring(pState, sOutput);
-	return 1;
-}
-
 int AddBattleLog(lua_State* pState)
 {
 	const char* pFile = luaL_checkstring(pState, 1);
@@ -114,7 +104,6 @@ luaL_Reg _global_lua_func[] =
 	{ "GetDropItemMgr", GetDropItemMgr},
 	{ "GetRobotMgr", GetRobotMgr},
 	{ "IsBlockUnit", IsBlockUnit},
-	{ "MD5", MD5},
 	{ "AddBattleLog", AddBattleLog},
 	{ NULL, NULL },
 };

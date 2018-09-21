@@ -13,7 +13,7 @@ MysqlDriver::MysqlDriver()
 
 MysqlDriver::~MysqlDriver()
 {
-	XLog(LEVEL_INFO, "MysqlDriver destruct!\n");
+	//XLog(LEVEL_INFO, "MysqlDriver destruct!\n");
     if (m_pMysql != NULL)
     {
         mysql_close(m_pMysql);

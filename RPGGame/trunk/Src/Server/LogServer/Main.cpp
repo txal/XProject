@@ -81,7 +81,7 @@ int main(int nArg, char *pArgv[])
 	if (!Platform::FileExist("./debug.txt"))
 	{
 		char sLogName[256] = "";
-		sprintf(sLogName, "logserver%d", g_poContext->GetService()->GetServiceID());
+		sprintf(sLogName, "logserver%d", nServiceID);
 		Logger::Instance()->SetLogName(sLogName);
 	}
 

@@ -81,6 +81,11 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 
 bool Gateway::Start()
 {
+	if (m_uListenPort <= 0)
+	{
+		XLog(LEVEL_ERROR, "Gate:%d listen port error: %d\n", GetServiceID(), m_uListenPort);
+		return false;
+	}
 	if (!m_poExterNet->Listen(NULL, m_uListenPort))
 	{
 		return false;

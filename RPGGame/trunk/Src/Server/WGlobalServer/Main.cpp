@@ -12,11 +12,11 @@ bool InitNetwork(int8_t nServiceID)
 {
 	GlobalNode* poNode = NULL;
 	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
-	for (int i = 0; i < oSrvConf.oGlobalList.size(); i++)
+	for (int i = 0; i < oSrvConf.oWGlobalList.size(); i++)
 	{
-		if (oSrvConf.oGlobalList[i].uServer == oSrvConf.uServerID && oSrvConf.oGlobalList[i].uID == nServiceID)
+		if (oSrvConf.oWGlobalList[i].uServer == oSrvConf.uServerID && oSrvConf.oWGlobalList[i].uID == nServiceID)
 		{
-			poNode = &oSrvConf.oGlobalList[i];
+			poNode = &oSrvConf.oWGlobalList[i];
 			break;
 		}
 	}
@@ -88,7 +88,7 @@ int main(int nArg, char *pArgv[])
 	if (!Platform::FileExist("./debug.txt"))
 	{
 		char sLogName[256] = "";
-		sprintf(sLogName, "globalserver%d", g_poContext->GetService()->GetServiceID());
+		sprintf(sLogName, "globalserver%d", nServiceID);
 		Logger::Instance()->SetLogName(sLogName);
 	}
 

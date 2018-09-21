@@ -15,7 +15,7 @@ NetPool::~NetPool()
 bool NetPool::Init(int nNum, NetEventHandler* poHandler)
 {
 	assert(nNum > 0 && poHandler != NULL);
-	XLog(LEVEL_INFO, "Worker thread num:%d\n", nNum);
+	XLog(LEVEL_INFO, "NetPool thread num:%d\n", nNum);
 
 	m_nNetNum = nNum;
 	for (int i = 0; i < nNum; i++)

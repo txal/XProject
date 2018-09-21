@@ -49,7 +49,7 @@ void OpenLuaExport()
 	RegWordFilter("GlobalExport");
 	RegLuaNetwork("NetworkExport");
 	RegLuaSerialize("cseri");
-	RegLuaSerialize("http");
+	RegHttpLua("http");
 
 	RegClassSSDBDriver();
 	RegClassMysqlDriver();

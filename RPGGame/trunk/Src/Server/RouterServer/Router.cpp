@@ -57,7 +57,12 @@ bool Router::Init(int nServiceID, const char* psListenIP, uint16_t uListenPort)
 
 bool Router::Start()
 {
-	if (!m_poListener->Listen(m_sListenIP[0]?m_sListenIP:NULL, m_uListenPort, true))
+	if (m_uListenPort <= 0)
+	{
+		XLog(LEVEL_ERROR, "Router:%d listen port error: %d\n", GetServiceID(), m_uListenPort);
+		return false;
+	}
+	if (!m_poListener->Listen(NULL, m_uListenPort, true))
 		return false;
 
 	while (!IsTerminate())

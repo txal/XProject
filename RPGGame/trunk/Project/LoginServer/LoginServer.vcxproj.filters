@@ -34,6 +34,9 @@
     <Filter Include="Src\Common\MGHttp">
       <UniqueIdentifier>{6b4c6e87-cd4b-45ed-b637-0bed58ab3a5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\DataStruct\Crypt">
+      <UniqueIdentifier>{ec03b546-0dbf-46b8-96e5-5d7d8a53c86a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
@@ -104,6 +107,21 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Common\MGHttp\mongoose.cpp">
       <Filter>Src\Common\MGHttp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\Base64.cpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\Base64Test.cpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\LuaCrypt.cpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\MSha1.cpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\Sha1Test.cpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +202,21 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\MGHttp\mongoose.h">
       <Filter>Src\Common\MGHttp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\Base64.h">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\LuaCrypt.hpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\Md5.h">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\MSha1.h">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\RC4.h">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

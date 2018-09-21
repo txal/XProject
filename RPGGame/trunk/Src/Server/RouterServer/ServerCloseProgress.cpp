@@ -173,7 +173,7 @@ void ServerCloseProgress::OnServiceClose(int nServerID, int nServiceID, int nSer
 		}
 	}
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	poLuaWrapper->FastCallLuaRef<void>("OnServiceClose", 0, "iiib", nServerID, nServiceID, nServiceType, bNormalClose);
+	//poLuaWrapper->FastCallLuaRef<void>("OnServiceClose", 0, "iiib", nServerID, nServiceID, nServiceType, bNormalClose);
 
 	StartRoutine();
 }

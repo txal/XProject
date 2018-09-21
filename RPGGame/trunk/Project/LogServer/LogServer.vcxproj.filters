@@ -31,6 +31,9 @@
     <Filter Include="Src\Common\MGHttp">
       <UniqueIdentifier>{77e22057-9e97-49c7-bcd1-9cfd3cff54a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\DataStruct\Crypt">
+      <UniqueIdentifier>{33b75a6b-0083-47d4-b971-a1f47e759e8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
@@ -101,6 +104,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Common\MGHttp\HttpLua.cpp">
       <Filter>Src\Common\MGHttp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\Base64.cpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\LuaCrypt.cpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\MSha1.cpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +190,21 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\MGHttp\HttpLua.hpp">
       <Filter>Src\Common\MGHttp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\Base64.h">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\RC4.h">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\LuaCrypt.hpp">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\MSha1.h">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\Md5.h">
+      <Filter>Src\Common\DataStruct\Crypt</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

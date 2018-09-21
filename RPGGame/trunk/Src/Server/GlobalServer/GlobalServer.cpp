@@ -80,7 +80,7 @@ bool GlobalServer::Start()
 {
 	if (m_uListenPort > 0)
 	{
-		if (!m_poExterNet->Listen(m_sListenIP[0] ? m_sListenIP : NULL, m_uListenPort))
+		if (!m_poExterNet->Listen(NULL, m_uListenPort))
 		{
 			return false;
 		}

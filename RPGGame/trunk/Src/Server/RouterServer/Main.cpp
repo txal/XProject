@@ -80,7 +80,7 @@ int main(int nArg, char* pArgv[])
 	if (!Platform::FileExist("./debug.txt"))
 	{
 		char sLogName[256] = "";
-		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
+		sprintf(sLogName, "routerserver%d", nServiceID);
 		Logger::Instance()->SetLogName(sLogName);
 	}
 

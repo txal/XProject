@@ -74,7 +74,7 @@
     <OutDir>..\..\Bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Bin\_RouterServer\</OutDir>
+    <OutDir>..\..\Bin\_WorldServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -123,7 +123,7 @@
     </ProjectReference>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-RouterServer*  E:\svnmengzhu\trunk\Server\_RouterServer\
+xcopy /y/f MZ-RouterServer*  E:\svnmengzhu\trunk\Server\_WorldServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

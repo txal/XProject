@@ -3,6 +3,7 @@
 
 #include "Common/DataStruct/HashFunc.h"
 #include "Common/DataStruct/XMath.h"
+#include "Common/DataStruct/TimeMonitor.h"
 
 ServerContext::ServerContext()
 {
@@ -25,50 +26,45 @@ int ServerContext::SelectLogic(int nSession)
 
 bool ServerContext::LoadServerConfig()
 {
-	if (Platform::FileExist("local.txt"))
-	{
-		return LoadServerConfigByFile();
-	}
+	TimeMonitor oMnt;
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	if (!poLuaWrapper->RawDoFile("ServerConf.lua"))
 	{
-		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig ServerConf.lua not found!\n");
+		XLog(LEVEL_ERROR, "ServerConf.lua not found!\n");
 		return false;
 	}
 	lua_State* pState = poLuaWrapper->GetLuaState();
 
-	lua_getglobal(pState, "serverID");
-	m_oServerConf.uServerID = (uint16_t)lua_tointeger(pState, -1);
-	m_oServerConf.uWorldServerID = 10000;
-
 	m_oServerConf.sDataPath[0] = '\0';
-	lua_getglobal(pState, "dataPath");
+	lua_getglobal(pState, "gsDataPath");
 	if (!lua_isnoneornil(pState, -1))
 	{
 		strcpy(m_oServerConf.sDataPath, lua_tostring(pState, -1));
 	}
 
-	lua_getglobal(pState, "groupID");
-	int nGroupID = lua_tointeger(pState, -1);
-	if (nGroupID <= 0)
-	{
-		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig groupid error!\n");
-		return false;
-	}
+	lua_getglobal(pState, "gnServerID");
+	m_oServerConf.uServerID = (uint16_t)lua_tointeger(pState, -1);
 
-	lua_getglobal(pState, "backIP");
+	lua_getglobal(pState, "gnWorldServerID");
+	m_oServerConf.uWorldServerID = (uint16_t)lua_tointeger(pState, -1);
+
+	lua_getglobal(pState, "gnGroupID");
+	int nGroupID = (int)lua_tointeger(pState, -1);
+
+	lua_getglobal(pState, "gtMgrSQL");
+	lua_getfield(pState, -1, "ip");
 	const char* pBackIP = lua_tostring(pState, -1);
-	lua_getglobal(pState, "backPort");
+	lua_getfield(pState, -2, "port");
 	int nBackPort = (int)lua_tointeger(pState, -1);
-	lua_getglobal(pState, "backDB");
+	lua_getfield(pState, -3, "db");
 	const char* pBackDB = lua_tostring(pState, -1);
-	lua_getglobal(pState, "backUsr");
+	lua_getfield(pState, -4, "usr");
 	const char* pBackUsr = lua_tostring(pState, -1);
-	lua_getglobal(pState, "backPwd");
+	lua_getfield(pState, -5, "pwd");
 	const char* pBackPwd = lua_tostring(pState, -1);
 	if (pBackIP == NULL || nBackPort <= 0 || pBackDB == NULL || pBackUsr == NULL || pBackPwd == NULL)
 	{
-		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig backstage conf error!\n");
+		XLog(LEVEL_ERROR, "backstage conf error!\n");
 		return false;
 	}
 
@@ -80,6 +76,29 @@ bool ServerContext::LoadServerConfig()
 	}
 
 	char sSQLBuff[1024] = {0};
+	if (nGroupID <= 0 || m_oServerConf.uServerID != m_oServerConf.uWorldServerID)
+	{
+		if (nGroupID <= 0 && m_oServerConf.uServerID == m_oServerConf.uWorldServerID)
+		{
+			XLog(LEVEL_ERROR, "load serverconf worldserver groupid not exist: %d!\n", m_oServerConf.uServerID);
+			SAFE_DELETE(pMysql);
+			return false;
+		}
+		sprintf(sSQLBuff, "select groupid from serverlist where serverid=%d;", m_oServerConf.uServerID);
+		if (!pMysql->Query(sSQLBuff))
+		{
+			SAFE_DELETE(pMysql);
+			return false;
+		}
+		if (!pMysql->FetchRow())
+		{
+			XLog(LEVEL_ERROR, "load serverconf server id: %d not exist!\n", m_oServerConf.uServerID);
+			SAFE_DELETE(pMysql);
+			return false;
+		}
+		nGroupID = pMysql->ToInt32("groupid");
+	}
+
 	sprintf(sSQLBuff, "select * from appinfo where groupid=%d;", nGroupID);
 	if (!pMysql->Query(sSQLBuff))
 	{
@@ -88,7 +107,7 @@ bool ServerContext::LoadServerConfig()
 	}
 	if (pMysql->NumRows() <= 0)
 	{
-		XLog(LEVEL_ERROR, "ServerContext::LoadServerConfig group empty!\n");
+		XLog(LEVEL_ERROR, "load serverconf app of groupid: %d not exist!\n");
 		SAFE_DELETE(pMysql);
 		return false;
 	}
@@ -115,7 +134,7 @@ bool ServerContext::LoadServerConfig()
 			oGate.uID = nServiceID;
 			oGate.uServer = nServerID;
 			oGate.uPort = nServicePort;
-			oGate.uPort = 20000;
+			oGate.uMaxConns = 20000;
 			oGate.uSecureCPM = 0;
 			oGate.uSecureQPM = 300;
 			oGate.uDeadLinkTime = 120;
@@ -178,6 +197,11 @@ bool ServerContext::LoadServerConfig()
 		}
 	}
 	SAFE_DELETE(pMysql);
+	double fCostMSTime = oMnt.End();
+	if (fCostMSTime >= 30)
+	{
+		XLog(LEVEL_ERROR, "load server conf is too slow: %fms\n", fCostMSTime);
+	}
 	return true;
 }
 

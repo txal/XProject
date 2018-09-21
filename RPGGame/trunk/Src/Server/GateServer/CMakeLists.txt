@@ -17,5 +17,5 @@ add_executable(GateServer
 	${src_timermgr}
 )
 
-target_link_libraries(GateServer logger network luawrapper)
-target_link_libraries(GateServer lua530 readline jemalloc pthread rt)
+target_link_libraries(GateServer logger network luawrapper dbdriver)
+target_link_libraries(GateServer lua530 mysqlclient readline jemalloc pthread rt)

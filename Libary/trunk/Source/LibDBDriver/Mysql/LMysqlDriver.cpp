@@ -4,6 +4,11 @@ LMysqlDriver::LMysqlDriver(lua_State* pState)
 {
 }
 
+LMysqlDriver::~LMysqlDriver()
+{
+	XLog(LEVEL_INFO, "LMysqlDriver destruct!\n");
+}
+
 int LMysqlDriver::Connect(lua_State* pState)
 {
 	const char* xVal0 = luaL_checkstring(pState, 1);

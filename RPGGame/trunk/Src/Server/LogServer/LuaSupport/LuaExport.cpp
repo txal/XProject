@@ -1,13 +1,15 @@
 ﻿#include "Include/DBDriver/DBDriver.hpp"
 #include "Include/Lpeg/Lpeg.hpp"
+#include "Include/Luacjson/Luacjson.hpp"
 #include "Include/Pbc/Pbc.hpp"
 #include "Include/Script/Script.hpp"
 
+#include "Common/DataStruct/XMath.h"
+#include "Common/DataStruct/Crypt/LuaCrypt.hpp"
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/LuaCommon/LuaSerialize.h"
-#include "Common/DataStruct/XMath.h"
 #include "Common/MGHttp/HttpLua.hpp"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/NetworkExport.h"
@@ -32,7 +34,7 @@ int EscapeString(lua_State* pState)
 	size_t nLen = 0;
 	const char* pStr = luaL_checklstring(pState, 1, &nLen);
 	nLen = XMath::Min(nLen, sizeof(sBuff) / 2 - 1);
-	int nRetLen = MysqlDriver::EscapeString(sBuff, pStr, nLen);
+	int nRetLen = MysqlDriver::EscapeString(sBuff, pStr, (int)nLen);
 	sBuff[nRetLen] = '\0';
 	lua_pushstring(pState, sBuff);
 	return 1;
@@ -51,6 +53,8 @@ void OpenLuaExport()
 	RegLuaDebugger(NULL);
 	luaopen_lpeg(poWrapper->GetLuaState());
 	luaopen_protobuf_c(poWrapper->GetLuaState());
+	luaopen_cjson(poWrapper->GetLuaState());
+	luaopen_cjson_raw(poWrapper->GetLuaState());
 
 	RegTimerMgr("GlobalExport");
 	poWrapper->RegFnList(_global_lua_func, "GlobalExport");
@@ -60,6 +64,7 @@ void OpenLuaExport()
 	RegLuaPBPack("NetworkExport");
 	RegLuaNetwork("NetworkExport");
 	RegLuaSerialize("cseri");
+	RegLuaCrypt("crypt");
 	RegHttpLua("http");
 
 	RegClassMysqlDriver();

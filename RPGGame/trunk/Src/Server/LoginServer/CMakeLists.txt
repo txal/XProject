@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.6)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}				src_loginserver)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr  src_timermgr)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/LuaCommon src_luacommon)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/MGHttp    src_mghttp)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser src_packetparser)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Server/Base      src_base)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/LuaSupport 	src_luasupport)
@@ -13,6 +14,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/WordFilter 	src_wordfilter
 add_executable(LoginServer
 	${src_loginserver}
 	${src_base}
+    ${src_mghttp}
     ${src_timermgr}
 	${src_luacommon}
 	${src_luasupport}
