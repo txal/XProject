@@ -42,6 +42,13 @@ bool ServerContext::LoadServerConfig()
 		strcpy(m_oServerConf.sDataPath, lua_tostring(pState, -1));
 	}
 
+	m_oServerConf.sLogPath[0] = '\0';
+	lua_getglobal(pState, "gsLogPath");
+	if (!lua_isnoneornil(pState, -1))
+	{
+		strcpy(m_oServerConf.sLogPath, lua_tostring(pState, -1));
+	}
+
 	lua_getglobal(pState, "gnServerID");
 	m_oServerConf.uServerID = (uint16_t)lua_tointeger(pState, -1);
 
@@ -107,7 +114,7 @@ bool ServerContext::LoadServerConfig()
 	}
 	if (pMysql->NumRows() <= 0)
 	{
-		XLog(LEVEL_ERROR, "load serverconf app of groupid: %d not exist!\n");
+		XLog(LEVEL_ERROR, "load serverconf app of groupid: %d not exist!\n", nGroupID);
 		SAFE_DELETE(pMysql);
 		return false;
 	}

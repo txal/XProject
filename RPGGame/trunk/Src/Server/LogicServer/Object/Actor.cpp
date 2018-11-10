@@ -112,7 +112,8 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 			Point oStartPos(m_nRunStartX, m_nRunStartY);
 			if (m_oPos.Distance(oStartPos) >= m_oTargetPos.Distance(oStartPos))
 			{
-				XLog(LEVEL_DEBUG, "%s reach target pos(%d,%d)\n", m_sName, m_oTargetPos.x, m_oTargetPos.y);
+				XLog(LEVEL_DEBUG, "%d %s reach target pos(%d,%d) tarpos(%d,%d)\n", time(NULL), m_sName, m_oPos.x, m_oPos.y, m_oTargetPos.x, m_oTargetPos.y);
+				SetPos(m_oTargetPos);
 				StopRun();
 				if (m_bRunCallback)
 				{
@@ -220,9 +221,9 @@ void Actor::RunTo(const Point& oTarPos, int nMoveSpeed)
 		return;
 	}
 
-	float fMoveTime = BattleUtil::CalcMoveTime1(nMoveSpeed, m_oPos, oTarPos);
-	int nSpeedX = (int)((oTarPos.x - m_oPos.x) / fMoveTime);
-	int nSpeedY = (int)((oTarPos.y - m_oPos.y) / fMoveTime);
+	int nSpeedX = 0;
+	int nSpeedY = 0;
+	BattleUtil::CalcMoveSpeed1(nMoveSpeed, m_oPos, oTarPos, nSpeedX, nSpeedY);
 	if (nSpeedX == 0 && nSpeedY == 0)
 	{
 		StopRun();
@@ -236,6 +237,10 @@ void Actor::RunTo(const Point& oTarPos, int nMoveSpeed)
 		m_bRunCallback = true;
 		StartRun(nSpeedX, nSpeedY, m_nFace);
 	}
+#ifdef _DEBUG
+	XLog(LEVEL_DEBUG, "%d %s run to speed(%d,%d), pos(%d,%d), tarpos(%d,%d)\n", time(NULL), m_sName, nSpeedX, nSpeedY, m_oPos.x, m_oPos.y, oTarPos.x, oTarPos.y);
+#endif // _DEBUG
+
 }
 
 void Actor::SyncPosition(const char* pWhere)
@@ -354,4 +359,11 @@ int Actor::RunTo(lua_State* pState)
 	int nSpeed = (int)luaL_checkinteger(pState, 3);
 	RunTo(Point(nPosX, nPosY), nSpeed);
 	return 0;
+}
+
+int Actor::GetTarPos(lua_State* pState)
+{
+	lua_pushinteger(pState, m_oTargetPos.x);
+	lua_pushinteger(pState, m_oTargetPos.y);
+	return 2;
 }

@@ -73,6 +73,7 @@ struct ServerConfig
 	GlobalVector oWGlobalList;
 
 	char sDataPath[256];
+	char sLogPath[256];
 };
 
 

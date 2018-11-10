@@ -35,7 +35,9 @@ public:
 	static Logger* Instance();
 
 	void Init();
-	void SetLogName(const char* pLogName);
+	void SetSync(bool bSync) { m_bSync = bSync; } //是否同步输出(不开线程)
+	void SetLogFile(const char* pPath, const char* pName);
+
 	void Print(int nLevel, const char* pFmt, ...);
 	void Terminate();
 
@@ -45,9 +47,11 @@ private:
 
 private:
 	bool m_bTerminate;
+	char m_sLogPath[256]; //log path
 	char m_sLogName[256]; //log name
-	int m_nPipeFds[2];
+	bool m_bSync;
 
+	int m_nPipeFds[2];
 	PureList<LOGTITLE*> m_oLogList;
 
 	Thread m_oLogThread;

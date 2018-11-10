@@ -40,6 +40,35 @@ int SSDBDriver::Connect(lua_State* pState)
 	return 1;
 }
 
+int SSDBDriver::Auth(lua_State* pState)
+{
+	const char* pwd = luaL_checkstring(pState, 1);
+	if (!Auth(pwd))
+	{
+		return LuaWrapper::luaM_error(pState, "ssdb auth fail");
+	}
+	lua_pushboolean(pState, 1);
+	return 1;
+}
+
+bool SSDBDriver::Auth(const std::string& pwd)
+{
+#ifdef __linux
+	const std::vector<std::string> *resp;
+	resp = m_poSSDBClient->request("auth", pwd);
+	ssdb::Status oStatus(resp);
+#else
+	Status oStatus = m_poSSDBClient->auth(pwd);
+#endif
+	if (!oStatus.ok())
+	{
+		XLog(LEVEL_ERROR, "ssdb 认证失败\n");
+		return false;
+	}
+	strcpy(m_sPwd, pwd.c_str());
+	return true;
+}
+
 int SSDBDriver::HSet(lua_State* pState)
 {
 	const char* psDB = luaL_checkstring(pState, 1);
@@ -62,10 +91,16 @@ int SSDBDriver::HSet(lua_State* pState)
 #else
 	Status oStatus = m_poSSDBClient->hset(psDB, oStrKey, oStrVal);
 #endif
-	if (!oStatus.ok())
+	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->hset(psDB, oStrKey, oStrVal);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	return 0;
 }
@@ -84,8 +119,14 @@ int SSDBDriver::HGet(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->hget(psDB, oStrKey, &oStrVal);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	lua_pushlstring(pState, oStrVal.c_str(), oStrVal.size());
 	return 1;
@@ -100,10 +141,16 @@ int SSDBDriver::HSize(lua_State* pState)
 #else
 	Status oStatus = m_poSSDBClient->hsize(psDB, &nSize);
 #endif
-	if (!oStatus.ok())
+	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->hsize(psDB, &nSize);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	lua_pushinteger(pState, nSize);
 	return 1;
@@ -118,10 +165,16 @@ int SSDBDriver::HKeys(lua_State* pState)
 #else
 	Status oStatus = m_poSSDBClient->hkeys(psDB, "", "", -1, &oVecKeys);
 #endif
-	if (!oStatus.ok())
+	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->hkeys(psDB, "", "", -1, &oVecKeys);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	lua_newtable(pState);
 	for (int i = 0; i < (int)oVecKeys.size(); i++)
@@ -142,10 +195,16 @@ int SSDBDriver::HScan(lua_State* pState)
 #else
 	Status oStatus = m_poSSDBClient->hscan(psDB, "", "", -1, &oVecResult);
 #endif
-	if (!oStatus.ok())
+	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->hscan(psDB, "", "", -1, &oVecResult);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	lua_newtable(pState);
 	for(int i = 0; i < (int)oVecResult.size(); i++)
@@ -176,10 +235,16 @@ int SSDBDriver::HDel(lua_State* pState)
 #else
 	Status oStatus = m_poSSDBClient->hdel(psDB, oStrKey);
 #endif
-	if (!oStatus.ok())
+	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->hdel(psDB, oStrKey);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	lua_pushboolean(pState, 1);
 	return 1;
@@ -194,10 +259,16 @@ int SSDBDriver::HClear(lua_State* pState)
 #else
 	Status oStatus = m_poSSDBClient->hclear(psDB, &nRet);
 #endif
-	if (!oStatus.ok())
+	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->hclear(psDB, &nRet);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	lua_pushboolean(pState, 1);
 	return 1;
@@ -214,10 +285,16 @@ int SSDBDriver::HIncr(lua_State* pState)
 #else
 	Status oStatus = m_poSSDBClient->hincr(psDB, oStrKey, 1, &nRet);
 #endif
-	if (!oStatus.ok())
+	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->hincr(psDB, oStrKey, 1, &nRet);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	lua_pushinteger(pState, nRet);
 	return 1;
@@ -245,8 +322,14 @@ int SSDBDriver::Setnx(lua_State* pState)
 //#endif
 //	if (!oStatus.ok())
 //	{
-//		Reconnect();
-//		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+//		if (Reconnect())
+		//{
+		//	oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
+		//}
+		//if (!oStatus.ok())
+		//{
+		//	return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		//}
 //	}
 //	lua_pushstring(pState, oRet.c_str());
 //	return 1;
@@ -263,17 +346,39 @@ int SSDBDriver::Del(lua_State* pState)
 #else
 	Status oStatus = m_poSSDBClient->del(oStrKey);
 #endif
-	if (!oStatus.ok())
+	if (!oStatus.ok() && !oStatus.not_found())
 	{
-		Reconnect();
-		return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->del(oStrKey);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
 	}
 	lua_pushboolean(pState, 1);
 	return 1;
 }
 
-bool SSDBDriver::Reconnect()
+#ifdef __linux
+bool SSDBDriver::CheckReconnect(ssdb::Status& oStatus)
+#else
+bool SSDBDriver::CheckReconnect(Status& oStatus)
+#endif
 {
+#ifdef __linux
+	if (!oStatus.disconnected())
+	{
+		return false;
+	}
+#else
+	if (m_poSSDBClient->isConnect())
+	{
+		return false;
+	}
+#endif
+
 #ifdef __linux
 	ssdb::Client* poSSDBClient = ssdb::Client::connect(m_sIP, m_uPort);
 #else
@@ -292,6 +397,10 @@ bool SSDBDriver::Reconnect()
 	SAFE_DELETE(m_poSSDBClient);
 	m_poSSDBClient = poSSDBClient;
 	XLog(LEVEL_ERROR, "Reconnect ssdb success ip:%s port:%d successful!\n", m_sIP, m_uPort);
+	if (m_sPwd[0] != '\0')
+	{
+		Auth(m_sPwd);
+	}
 	return true;
 }
 
@@ -301,6 +410,7 @@ char SSDBDriver::className[] = "SSDBDriver";
 Lunar<SSDBDriver>::RegType SSDBDriver::methods[] =
 {
 	LUNAR_DECLARE_METHOD(SSDBDriver, Connect),
+	LUNAR_DECLARE_METHOD(SSDBDriver, Auth),
 	LUNAR_DECLARE_METHOD(SSDBDriver, HGet),
 	LUNAR_DECLARE_METHOD(SSDBDriver, HSet),
 	LUNAR_DECLARE_METHOD(SSDBDriver, HSize),

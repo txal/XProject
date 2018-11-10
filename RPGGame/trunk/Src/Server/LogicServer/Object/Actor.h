@@ -74,6 +74,7 @@ public:
 	int BindSession(lua_State* pState);
 	int StopRun(lua_State* pState);
 	int RunTo(lua_State* pState);
+	int GetTarPos(lua_State* pState);
 	
 };
 
@@ -81,7 +82,8 @@ public:
 	LUNAR_DECLARE_METHOD(Class, GetRunSpeed),\
 	LUNAR_DECLARE_METHOD(Class, BindSession),\
 	LUNAR_DECLARE_METHOD(Class, StopRun),\
-	LUNAR_DECLARE_METHOD(Class, RunTo)
+	LUNAR_DECLARE_METHOD(Class, RunTo),\
+	LUNAR_DECLARE_METHOD(Class, GetTarPos)
 
 
 

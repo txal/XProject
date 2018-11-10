@@ -12,6 +12,7 @@ struct ROUTER
     int8_t nService;
     char szIP[256];
     uint16_t uPort;
+	bool bRegisted;
 
 	void Reset()
 	{
@@ -20,6 +21,7 @@ struct ROUTER
 	    nService = 0;
 	    szIP[0] = '\0';
 	    uPort = 0;
+		bRegisted = false;
 	}
 };
 
@@ -29,17 +31,18 @@ public:
     RouterMgr();
 	void InitRouters();
 
-    bool AddRouter(int8_t nRouterService, const char* pszIP, uint16_t uPort);
+	ROUTER* GetRouterByServiceID(int8_t nRouterService);
     ROUTER* OnConnectRouterSuccess(uint16_t uPort, int nSession);
     void OnRegisterRouterSuccess(int8_t nRouterService);
     void OnRouterDisconnected(int nSession);
-    bool IsRegisterFinish();
-
-	ROUTER* GetRouter(int8_t nRouterService);
     ROUTER* ChooseRouter(int8_t nTarService);
+
+protected:
+    bool AddRouter(int8_t nRouterService, const char* pszIP, uint16_t uPort);
+	ROUTER* GetRouterByServicePort(uint16_t uRouterPort);
+    bool IsRegisterFinish();
 	void ClearDeadRouter();
 
-public:
 	static void UpdateConfig(uint32_t uTimerID, void* pParam);
 
 private:

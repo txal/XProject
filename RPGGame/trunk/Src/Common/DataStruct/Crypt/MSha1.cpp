@@ -17,7 +17,7 @@
         -- Eugene Hopkinson <slowriot at voxelstorm dot com>
 */
 
-#include "MSHA1.h"
+#include "MSha1.h"
 #include <sstream>
 #include <iomanip>
 #include <fstream>

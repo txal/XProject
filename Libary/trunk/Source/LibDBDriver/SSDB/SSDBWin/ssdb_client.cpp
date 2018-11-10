@@ -493,6 +493,16 @@ void SSDBClient::execute(const char* str, int len)
     request(str, len);
 }
 
+Status  SSDBClient::auth(const std::string& pwd)
+{
+    m_request->appendStr("auth");
+    m_request->appendStr(pwd);
+    m_request->endl();
+
+    request(m_request->getResult(), m_request->getResultLen());
+    return m_reponse->getStatus();
+}
+
 Status SSDBClient::set(const std::string& key, const std::string& val)
 {
     m_request->appendStr("set");

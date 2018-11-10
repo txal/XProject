@@ -173,7 +173,11 @@ void LuaWrapper::RegFnList(luaL_Reg* pFnList, const char* pTable)
 
 bool LuaWrapper::DoFile(const char* pFileName)
 {
-	lua_getglobal(m_pState, "require");
+	lua_getglobal(m_pState, "gfRawRequire");
+	if (lua_isnoneornil(m_pState, -1))
+	{
+		lua_getglobal(m_pState, "require");
+	}
 	lua_pushstring(m_pState, pFileName);
 	return PCall(1, 0);
 }

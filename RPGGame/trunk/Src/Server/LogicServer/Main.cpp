@@ -91,6 +91,7 @@ void StartScriptEngine()
 	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
 	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
 
+	Logger::Instance()->SetSync(false);
 	goMonitorThread.Create(MonitorThreadFunc, NULL);
 }
 
@@ -99,9 +100,15 @@ void ExitFunc(void)
 	XTime::MSSleep(1000);
 }
 
+void OnSigTerm(int)
+{
+	XLog(LEVEL_INFO, "receive sigterm signal!\n");
+}
+
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
+	signal(SIGTERM, OnSigTerm);
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
@@ -109,14 +116,7 @@ int main(int nArg, char *pArgv[])
 	XMath::RandomSeed((uint32_t)XTime::MSTime());
 	atexit(ExitFunc);
 	Logger::Instance()->Init();
-	NetAPI::StartupNetwork();
-
-	if (!Platform::FileExist("./debug.txt"))
-	{
-		char sLogName[256] = "";
-		sprintf(sLogName, "logicserver%d", nServiceID);
-		Logger::Instance()->SetLogName(sLogName);
-	}
+	Logger::Instance()->SetSync(true);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -136,6 +136,13 @@ int main(int nArg, char *pArgv[])
 	}
 	ConfMgr::Instance()->LoadConf(g_poContext->GetServerConfig().sDataPath);
 
+	NetAPI::StartupNetwork();
+	if (!Platform::FileExist("./debug.txt"))
+	{
+		char szLogName[128] = "";
+		sprintf(szLogName, "logicserver%d", nServiceID);
+		Logger::Instance()->SetLogFile(g_poContext->GetServerConfig().sLogPath, szLogName);
+	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
 	g_poContext->SetRouterMgr(poRouterMgr);

@@ -24,13 +24,12 @@ void RouterMgr::InitRouters()
 	}
 	if (m_nUpdateTimer == 0)
 	{
-		m_nUpdateTimer = TimerMgr::Instance()->RegisterTimer(60 * 1000, RouterMgr::UpdateConfig, this);
+		m_nUpdateTimer = TimerMgr::Instance()->RegisterTimer(60*1000, RouterMgr::UpdateConfig, this);
 	}
 }
 
 void RouterMgr::UpdateConfig(uint32_t uTimerID, void* pParam)
 {
-	//XLog(LEVEL_INFO, "RouterMgr::UpdateConfig***\n");
 	RouterMgr* poRouterMgr = (RouterMgr*)pParam;
 	g_poContext->LoadServerConfig();
 	poRouterMgr->ClearDeadRouter();
@@ -44,8 +43,8 @@ bool RouterMgr::IsRegisterFinish()
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
 	{
 		int nService = oSrvConf.oRouterList[i].uID;
-		ROUTER* poRouter = GetRouter(nService);
-		if (poRouter == NULL || poRouter->nSession == 0)
+		ROUTER* poRouter = GetRouterByServiceID(nService);
+		if (poRouter == NULL || !poRouter->bRegisted)
 		{
 			return false;
 		}
@@ -59,7 +58,7 @@ bool RouterMgr::AddRouter(int8_t nRouterService, const char* pszIP, uint16_t uPo
     {
         return false;
     }
-	if (GetRouter(nRouterService) != NULL)
+	if (GetRouterByServiceID(nRouterService) != NULL)
 	{
 		return true;
 	}
@@ -74,15 +73,7 @@ bool RouterMgr::AddRouter(int8_t nRouterService, const char* pszIP, uint16_t uPo
 
 ROUTER* RouterMgr::OnConnectRouterSuccess(uint16_t uPort, int nSession)
 {
-    ROUTER* poRouter = NULL;
-    for (int i = 0; i < m_nRouterNum; i++)
-    {
-        if (m_RouterList[i].uPort == uPort)
-        {
-            poRouter = &m_RouterList[i];
-            break;
-        }
-    }
+	ROUTER* poRouter = GetRouterByServicePort(uPort);
     if (poRouter != NULL)
     {
         poRouter->nSession = nSession;
@@ -93,16 +84,10 @@ ROUTER* RouterMgr::OnConnectRouterSuccess(uint16_t uPort, int nSession)
 void RouterMgr::OnRegisterRouterSuccess(int8_t nRouterService)
 {
 	XLog(LEVEL_INFO, "%s: Register to router:%d successful\n", g_poContext->GetService()->GetServiceName(), nRouterService);
-    ROUTER* pRouter = NULL;
-    for (int i = 0; i < m_nRouterNum; i++)
-    {
-        if (m_RouterList[i].nService == nRouterService)
-        {
-            pRouter = &m_RouterList[i];
-            break;
-        }
-    }
-    assert(pRouter != NULL && pRouter->nSession > 0);
+	ROUTER* poRouter = GetRouterByServiceID(nRouterService);
+    assert(poRouter != NULL && poRouter->nSession > 0);
+	poRouter->bRegisted = true;
+
 	if (IsRegisterFinish())
 	{
 		StartScriptEngine();
@@ -121,16 +106,32 @@ void RouterMgr::OnRouterDisconnected(int nSession)
     }
 }
 
-ROUTER* RouterMgr::GetRouter(int8_t nRouterService)
+ROUTER* RouterMgr::GetRouterByServiceID(int8_t nRouterService)
 {
+	ROUTER* poRouter = NULL;
     for (int i = 0; i < m_nRouterNum; i++)
     {
         if (m_RouterList[i].nService == nRouterService)
         {
-			return &m_RouterList[i];
+			poRouter = &m_RouterList[i];
+			break;
         }
     }
-	return NULL;
+	return poRouter;
+}
+
+ROUTER* RouterMgr::GetRouterByServicePort(uint16_t uRouterPort)
+{
+	ROUTER* poRouter = NULL;
+	for (int i = 0; i < m_nRouterNum; i++)
+	{
+		if (m_RouterList[i].uPort == uRouterPort)
+		{
+			poRouter = &m_RouterList[i];
+			break;
+		}
+	}
+	return poRouter;
 }
 
 

@@ -123,7 +123,7 @@ int IOWrite(HSOCKET nSock, MsgList* poMsgList, uint32_t nMaxWritePerEvent, uint3
 			}
 			if (errno == EAGAIN)
 			{
-				XLog(LEVEL_ERROR, " Sock:%d write EAGAIN:%d\n", nSock, nDataSize - nSentSize);
+				XLog(LEVEL_INFO, " Sock:%d write EAGAIN:%d\n", nSock, nDataSize - nSentSize);
 				return 0;
 			}
 			XLog(LEVEL_ERROR, "Sock:%d write error:%s\n", nSock, strerror(errno));

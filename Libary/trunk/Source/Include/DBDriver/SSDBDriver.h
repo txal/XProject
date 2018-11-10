@@ -22,6 +22,7 @@ public:
 
 public:
 	int Connect(lua_State* pState);
+	int Auth(lua_State* pState);
 	int HSet(lua_State* pState);
 	int HGet(lua_State* pState);
 	int HSize(lua_State* pState);
@@ -34,12 +35,17 @@ public:
 	int Del(lua_State* pState);
 
 private:
-	bool Reconnect();
+#ifdef __linux
+	bool CheckReconnect(ssdb::Status& oStatus);
+#else
+	bool CheckReconnect(Status& oStatus);
+#endif
+	bool Auth(const std::string& pwd);
 
 private:
 	char m_sIP[128];
 	uint16_t m_uPort;
-	char m_sPwd[32];
+	char m_sPwd[64];
 
 #ifdef __linux
 	ssdb::Client* m_poSSDBClient;

@@ -7,3 +7,7 @@ xcopy Source\Include ..\..\RPGGame\trunk\Src\Include /e /y
 echo ¿½±´µ½Game
 xcopy Libs ..\..\Game\trunk\Libs /e /y
 xcopy Source\Include ..\..\Game\trunk\Src\Include /e /y
+
+echo ¿½±´µ½PandaRC
+xcopy Libs\Win32\* ..\..\..\PandaRC\Libs /e /y
+xcopy Source\Include ..\..\..\PandaRC\Include /e /y

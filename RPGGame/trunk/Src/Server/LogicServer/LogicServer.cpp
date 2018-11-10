@@ -53,7 +53,7 @@ bool LogicServer::Init(int8_t nServiceID)
 
 bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
+	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	if (poRouter == NULL)
 	{
 		return false;

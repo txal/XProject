@@ -48,7 +48,7 @@ public:
 	void RemoveConn(uint16_t uServer, int8_t nService, int nSession);
 
 protected:
-	CONNECTION* GetConn(int64_t nKey);
+	CONNECTION* GetConn(int64_t nKey, bool bNoCreate=false);
 	bool QueueEvent(NSNetEvent::EVENT& oEvent);
 
 private:

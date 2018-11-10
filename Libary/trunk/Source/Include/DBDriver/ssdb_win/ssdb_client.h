@@ -58,6 +58,7 @@ public:
 
     void                    execute(const char* str, int len);
 
+	Status                  auth(const std::string& pwd);
     Status                  set(const std::string& key, const std::string& val);
     Status                  setnx(const std::string& key, const std::string& val, std::string *ret);
 

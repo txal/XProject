@@ -336,8 +336,6 @@ namespace BattleUtil
 		int nSpeedX = 0;
 		int nSpeedY = 0;
 		CalcMoveSpeed1(nMoveSpeed, oSrcPos, oTarPos, nSpeedX, nSpeedY);
-		nSpeedX = nSpeedX == 0 ? 1 : nSpeedX;
-		nSpeedY = nSpeedY == 0 ? 1 : nSpeedY;
 
 		float fTimeX = (nSpeedX != 0) ? fabs((oTarPos.x - oSrcPos.x) / (float)nSpeedX) : 0.0f;
 		float fTimeY = (nSpeedY != 0) ? fabs((oTarPos.y - oSrcPos.y) / (float)nSpeedY) : 0.0f;

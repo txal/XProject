@@ -73,13 +73,13 @@ void NSPacketProc::OnRoleStartRun(int nSrcSessionID, Packet* poPacket, INNER_HEA
 	Role* poRole = ((LogicServer*)g_poContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
 	if (poRole == NULL)
 	{
-		XLog(LEVEL_ERROR, "OnRoleStartRun: role not exist server:%d session:%d\n", oHeader.uSrcServer, nSession);
+		XLog(LEVEL_INFO, "OnRoleStartRun: role not exist server:%d session:%d\n", oHeader.uSrcServer, nSession);
 		return;
 	}
 	Scene* poScene = poRole->GetScene();
 	if (poScene == NULL)
 	{
-		XLog(LEVEL_ERROR, "OnRoleStartRun: %s role not in scene\n", poRole->GetName());
+		XLog(LEVEL_INFO, "OnRoleStartRun: %s role not in scene\n", poRole->GetName());
 		return;
 	}
 
@@ -89,7 +89,7 @@ void NSPacketProc::OnRoleStartRun(int nSrcSessionID, Packet* poPacket, INNER_HEA
 	Role* poTarRole = (Role*)poScene->GetGameObj(nTarAOIID);
 	if (poTarRole == NULL || poTarRole->GetType() != eOT_Role)
 	{
-		XLog(LEVEL_ERROR, "OnRoleStartRun: target role not exist aoiid:%d\n", nTarAOIID);
+		XLog(LEVEL_INFO, "OnRoleStartRun: target role not exist aoiid:%d\n", nTarAOIID);
 		return;
 	}
 
@@ -102,14 +102,14 @@ void NSPacketProc::OnRoleStopRun(int nSrcSessionID, Packet* poPacket, INNER_HEAD
 	Role* poRole = ((LogicServer*)g_poContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
 	if (poRole == NULL)
 	{
-		XLog(LEVEL_ERROR, "OnRoleStopRun: role not exist server:%d session:%d\n", oHeader.uSrcServer, nSession);
+		XLog(LEVEL_INFO, "OnRoleStopRun: role not exist server:%d session:%d\n", oHeader.uSrcServer, nSession);
 		return;
 	}
 
 	Scene* poScene = poRole->GetScene();
 	if (poScene == NULL)
 	{
-		XLog(LEVEL_ERROR, "OnRoleStopRun: %s role not in scene\n", poRole->GetName());
+		XLog(LEVEL_INFO, "OnRoleStopRun: %s role not in scene\n", poRole->GetName());
 		return;
 	}
 
@@ -119,7 +119,7 @@ void NSPacketProc::OnRoleStopRun(int nSrcSessionID, Packet* poPacket, INNER_HEAD
 	Role* poTarRole = (Role*)poScene->GetGameObj(nTarAOIID);
 	if (poTarRole == NULL || poTarRole->GetType() != eOT_Role)
 	{
-		XLog(LEVEL_ERROR, "OnRoleStopRun: target role not exist aoiid:%d\n", nTarAOIID);
+		XLog(LEVEL_INFO, "OnRoleStopRun: target role not exist aoiid:%d\n", nTarAOIID);
 		return;
 	}
 

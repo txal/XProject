@@ -19,12 +19,16 @@ MsgBalancer::~MsgBalancer()
 	}
 }
 
-CONNECTION* MsgBalancer::GetConn(int64_t nKey)
+CONNECTION* MsgBalancer::GetConn(int64_t nKey, bool bNoCreate/*=false*/)
 {
 	ConnIter iter = m_oConnMap.find(nKey);
 	if (iter != m_oConnMap.end())
 	{
 		return iter->second;
+	}
+	if (bNoCreate)
+	{
+		return NULL;
 	}
 	CONNECTION* poConn = XNEW(CONNECTION);
 	m_oConnMap[nKey] = poConn;
@@ -54,7 +58,11 @@ bool MsgBalancer::QueueEvent(NSNetEvent::EVENT& oEvent)
 	while (m_oConnQueue.Size() > 0)
 	{
 		int64_t nKey = m_oConnQueue.Pop();
-		CONNECTION* poConn = GetConn(nKey);
+		CONNECTION* poConn = GetConn(nKey, true);
+		if (poConn == NULL)
+		{
+			continue;
+		}
 
 		if (poConn->bRelease)
 		{
@@ -62,30 +70,30 @@ bool MsgBalancer::QueueEvent(NSNetEvent::EVENT& oEvent)
 			{
 				uServer = nService = nSession = 0;
 				DecKey(nKey, uServer, nService, nSession);
-				XLog(LEVEL_ERROR, "Connection server:%d service:%d session:%d is released!\n", uServer, nService, nSession);
+				XLog(LEVEL_INFO, "Connection server:%d service:%d session:%d is released!\n", uServer, nService, nSession);
 			}
 
 			SAFE_DELETE(poConn);
 			m_oConnMap.erase(nKey);
 			continue;
 		}
-		else
+
+		if (poConn->oEventList.Size() == 0)
 		{
-			if (poConn->oEventList.Size() == 0)
-			{
-				uServer = nService = nSession = 0;
-				DecKey(nKey, uServer, nService, nSession);
-				XLog(LEVEL_ERROR, "Connection server:%d service:%d session:%d released before!\n", uServer, nService, nSession);
-				continue;
-			}
-
-			oEvent = poConn->oEventList.Front();
-			poConn->oEventList.PopFront();
-
-			if (poConn->oEventList.Size() > 0)
-				m_oConnQueue.Push(nKey);
-			return true;
+			uServer = nService = nSession = 0;
+			DecKey(nKey, uServer, nService, nSession);
+			XLog(LEVEL_ERROR, "Connection server:%d service:%d session:%d released before!\n", uServer, nService, nSession);
+			continue;
 		}
+
+		oEvent = poConn->oEventList.Front();
+		poConn->oEventList.PopFront();
+
+		if (poConn->oEventList.Size() > 0)
+		{
+			m_oConnQueue.Push(nKey);
+		}
+		return true;
 
 	}
 	return false;

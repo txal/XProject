@@ -41,6 +41,10 @@ _tTaskProc["test"] = function(tParam, sTask)
 	if not oRobot then return end
 	CmdNet.PBClt2Srv(oRobot:GenPacketIdx(), oRobot:GetSession(), "GMCmdReq", {sCmd=sTask})
 end
+_tTaskProc["ltest"] = function(tParam, sTask)
+	oSSDB:Auth("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	LuaTrace(oSSDB:HIncr("CharIDDB", "IDIncr"))
+end
 
 _tTaskProc["client"] = function(tParam, sTask)
 	local oRobot = goRobotMgr:GetRndRobot()

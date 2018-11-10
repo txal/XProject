@@ -54,7 +54,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
 	{
-		XLog(LEVEL_DEBUG, "RoleStartRunHandler: %s role not in scene\n", m_sName);
+		XLog(LEVEL_INFO, "RoleStartRunHandler: %s role not in scene\n", m_sName);
 		return;
 	}
 	if (GetFollowTarget() > 0)
@@ -88,7 +88,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	//客户端提供的时间值必须大于起始时间值
 	if (nClientMSTime < m_nClientRunStartMSTime)
 	{
-		XLog(LEVEL_DEBUG,  "%s sync pos for start run client time invalid\n", m_sName);
+		XLog(LEVEL_INFO,  "%s sync pos for start run client time invalid\n", m_sName);
 		Actor::SyncPosition();
 		return;
 	}
@@ -96,7 +96,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	MapConf* poMapConf = m_poScene->GetMapConf();
 	if (uPosX >= poMapConf->nPixelWidth || uPosY >= poMapConf->nPixelHeight || poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight))
 	{
-		XLog(LEVEL_DEBUG, "%s sync pos for start run pos invalid pos:(%u,%u),block:%d\n", m_sName, uPosX, uPosY, poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight));
+		XLog(LEVEL_INFO, "%s sync pos for start run pos invalid pos:(%u,%u),block:%d\n", m_sName, uPosX, uPosY, poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight));
 		Actor::SyncPosition();
 		return;
 	}
@@ -110,7 +110,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 	{
-		XLog(LEVEL_DEBUG, "%s sync pos for start run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, uTarPosX, uTarPosY);
+		XLog(LEVEL_INFO, "%s sync pos for start run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, uTarPosX, uTarPosY);
 		uPosX = (uint16_t)m_oPos.x;
 		uPosY = (uint16_t)m_oPos.y;
 		Actor::SyncPosition();
@@ -128,12 +128,12 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
 	{
-		XLog(LEVEL_DEBUG, "RoleStopRunHandler: %s role not in scene\n", m_sName);
+		XLog(LEVEL_INFO, "RoleStopRunHandler: %s role not in scene\n", m_sName);
 		return;
 	}
 	if (GetFollowTarget() > 0)
 	{
-		XLog(LEVEL_DEBUG, "RoleStopRunHandler: %s is following can not stop manual.\n", m_sName);
+		XLog(LEVEL_INFO, "RoleStopRunHandler: %s is following can not stop manual.\n", m_sName);
 		Actor::SyncPosition();
 		return;
 	}
@@ -154,7 +154,7 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 		//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 		if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 		{
-			XLog(LEVEL_DEBUG, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -01\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
+			XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -01\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
 			Actor::SyncPosition();
 		}
 		else
@@ -172,7 +172,7 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 		Actor::UpdateRunState(nNowMS);
 		Actor::SyncPosition();
 		Actor::StopRun(true, true);
-		XLog(LEVEL_DEBUG, "%s sync pos for stop run pos:(%d,%d) or time:(%d) error -02\n", m_sName, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
+		XLog(LEVEL_INFO, "%s sync pos for stop run pos:(%d,%d) or time:(%d) error -02\n", m_sName, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 		return;
 	}
 	//正在移动则先更新移动后的新位置
@@ -183,7 +183,7 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 	{
-		XLog(LEVEL_DEBUG, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -03\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
+		XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -03\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
 		Actor::SyncPosition();
 	}
 	else

@@ -43,7 +43,7 @@ bool LoginServer::Init(int8_t nServiceID)
 
 bool LoginServer::RegToRouter(int nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
+	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
 

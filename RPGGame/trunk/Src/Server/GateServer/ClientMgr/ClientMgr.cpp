@@ -92,7 +92,7 @@ void ClientMgr::AddRoleIDMap(int nRoleID, Client* poClient)
 		}
 		else
 		{
-			XLog(LEVEL_ERROR, "AddRoleIDMap------session:%d\n", iter->second->m_nSession);
+			XLog(LEVEL_INFO, "AddRoleIDMap------session:%d\n", iter->second->m_nSession);
 		}
 		m_oClientRoleIDMap.erase(iter);
 	}
@@ -110,7 +110,7 @@ void ClientMgr::OnRoleRelease(int nRoleID)
 		}
 		else
 		{
-			XLog(LEVEL_ERROR, "OnRoleRelease------session:%d\n", iter->second->m_nSession);
+			XLog(LEVEL_INFO, "OnRoleRelease------session:%d\n", iter->second->m_nSession);
 		}
 		m_oClientRoleIDMap.erase(iter);
 	}

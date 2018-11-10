@@ -122,7 +122,7 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 	}
 	if (m_oObjMap.size() >= 10000)
 	{
-		XLog(LEVEL_ERROR, "AddObj too many secene scene:%lld obj:%d\n", m_nSceneMixID, m_oObjMap.size());
+		XLog(LEVEL_ERROR, "AddObj too many secene obj:%lld obj:%d\n", m_nSceneMixID, m_oObjMap.size());
 		return -1;
 	}
 

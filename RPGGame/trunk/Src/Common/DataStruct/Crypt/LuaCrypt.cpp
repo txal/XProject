@@ -1,7 +1,7 @@
 #include "LuaCrypt.hpp"
 #include "Include/Script/Script.hpp"
 #include "Base64.h"
-#include "MD5.h"
+#include "Md5.h"
 #include "MSha1.h"
 
 static int Base64Encode(lua_State* pState)

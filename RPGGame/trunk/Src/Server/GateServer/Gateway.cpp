@@ -58,7 +58,7 @@ bool Gateway::Init(GateNode* poConf)
 
 bool Gateway::RegToRouter(int nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
+	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
 	if (poPacket == NULL)

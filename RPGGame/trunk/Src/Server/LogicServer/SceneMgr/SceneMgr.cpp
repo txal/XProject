@@ -128,7 +128,11 @@ int SceneMgr::CreateDup(lua_State* pState)
 		nSceneMixID = GenSceneMixID(nDupID);
 
 	if (GetScene(nSceneMixID) != NULL)
-		return LuaWrapper::luaM_error(pState, "Dup:%d id:%lld conflict!!!\n", nDupID, nSceneMixID);
+	{
+		char sBuff[1024] = "";
+		snprintf(sBuff, sizeof(sBuff)-1, "Dup:%d id:%lld conflict!!!\n", nDupID, nSceneMixID);
+		return LuaWrapper::luaM_error(pState, sBuff);
+	}
 
 	Scene* poScene = XNEW(Scene)(this, nSceneMixID, poMapConf, bCanCollected);
 	if (!poScene->InitAOI(poMapConf->nPixelWidth, poMapConf->nPixelHeight, nLineObjs))

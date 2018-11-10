@@ -52,7 +52,9 @@ Logger* Logger::Instance()
 
 Logger::Logger()
 {
+	m_bSync = false;
 	m_bTerminate = false;
+    memset(m_sLogPath, 0, sizeof(m_sLogPath));
     memset(m_sLogName, 0, sizeof(m_sLogName));
 	memset(m_nPipeFds, -1, sizeof(m_nPipeFds));
 }
@@ -96,9 +98,16 @@ void Logger::Init()
     m_oLogThread.Create(Logger::LogThread, this);
 }
 
-void Logger::SetLogName(const char* psLogName)
+void Logger::SetLogFile(const char* psPath, const char* psName)
 {
-    strcpy(m_sLogName, psLogName);
+	if (psPath != NULL)
+	{
+		strcpy(m_sLogPath, psPath);
+	}
+	if (psName != NULL)
+	{
+		strcpy(m_sLogName, psName);
+	}
 }
 
 void Logger::Print(int nLevel, const char* pFmt, ...)
@@ -130,8 +139,26 @@ void Logger::Print(int nLevel, const char* pFmt, ...)
 	psTarMsg = sGBKMsg;
 #endif
 
-	LOGTITLE* poLog = XNEW(LOGTITLE)((int8_t)nLevel, psTarMsg);
+	// 同步打印
+	if (m_bSync)
+	{
+		char sHeader[256] = { 0 };
+		if (nLevel != LEVEL_DEBUG)
+		{
+			struct tm oTm;
+			time_t nTime = time(NULL);
+#ifdef __linux
+			localtime_r(&nTime, &oTm);
+#else
+			localtime_s(&oTm, &nTime);
+#endif
+			snprintf(sHeader, sizeof(sHeader) - 1, "(sync)[%s %04d-%02d-%02d %02d:%02d:%02d]: ", psErrLv[nLevel], oTm.tm_year + 1900, oTm.tm_mon + 1, oTm.tm_mday, oTm.tm_hour, oTm.tm_min, oTm.tm_sec);
+		}
+		fprintf(stdout, "%s%s", sHeader, psTarMsg);
+		return;
+	}
 
+	LOGTITLE* poLog = XNEW(LOGTITLE)((int8_t)nLevel, psTarMsg);
 	if (m_bTerminate)
 	{
 		fprintf(stdout, "Logger is closed!---%s\n", poLog->log->c_str());
@@ -179,14 +206,16 @@ void Logger::LogThread(void* pParam)
 			poLogger->m_oPrintLock.Unlock();
 
 			if (poLog == NULL)
+			{
 				break;
+			}
 
-				struct tm oTm;
-				time_t nTime = time(NULL);
+			struct tm oTm;
+			time_t nTime = time(NULL);
 #ifdef __linux
-				localtime_r(&nTime, &oTm);
+			localtime_r(&nTime, &oTm);
 #else
-				localtime_s(&oTm, &nTime);
+			localtime_s(&oTm, &nTime);
 #endif
 
 			if (poLog->level != LEVEL_DEBUG)
@@ -199,7 +228,7 @@ void Logger::LogThread(void* pParam)
 			if (poLogger->m_sLogName[0] != 0)
 			{
 				char sDateLogFile[256] = { 0 };
-				sprintf(sDateLogFile, "Log/%s_%d%02d%02d.log", poLogger->m_sLogName, oTm.tm_year + 1900, oTm.tm_mon + 1, oTm.tm_mday);
+				sprintf(sDateLogFile, "%s/%s_%d%02d%02d.log", poLogger->m_sLogPath, poLogger->m_sLogName, oTm.tm_year + 1900, oTm.tm_mon + 1, oTm.tm_mday);
 
 				FILE* poFile = fopen(sDateLogFile, "a+");
 				if (poFile == NULL)
@@ -219,11 +248,15 @@ void Logger::LogThread(void* pParam)
 		}
 
 		if (poLogger->m_bTerminate && poLogger->m_oLogList.Size() <= 0)
+		{
 			break;
+		}
 
 		uint8_t uNotify = 0;
 		int nReadByte = read(hReadHandle, &uNotify, sizeof(uNotify));
 		if (nReadByte != sizeof(uNotify))
+		{
 			fprintf(stderr, "%s\n", strerror(errno));
+		}
     }
 }

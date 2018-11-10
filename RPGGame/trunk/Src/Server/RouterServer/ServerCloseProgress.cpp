@@ -18,6 +18,11 @@ ServerCloseProgress::~ServerCloseProgress()
 
 void ServerCloseProgress::CloseServer(int nServerID)
 {
+	if (m_oServerList.size() > 0)
+	{
+		XLog(LEVEL_ERROR, "Close server routine is working server:%d!\n", m_oServerList.back());
+		return;
+	}
 	XLog(LEVEL_INFO, "Closing server:%d\n", nServerID);
 
 	Router* poRouter = (Router*)g_poContext->GetService();

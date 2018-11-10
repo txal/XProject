@@ -56,7 +56,7 @@ bool GlobalServer::Init(int8_t nServiceID, const char* psListenIP, uint16_t uLis
 
 bool GlobalServer::RegToRouter(int nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
+	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
 	if (poPacket == NULL) {

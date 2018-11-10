@@ -2,7 +2,7 @@
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
-#include "Common/MGHttp/HttpServer.h";
+#include "Common/MGHttp/HttpServer.h"
 #include "Common/PacketParser/PacketWriter.h"
 #include "Common/TimerMgr/TimerMgr.h"
 #include "Common/MGHttp/HttpLua.hpp"
@@ -44,7 +44,7 @@ bool LogServer::Init(int8_t nServiceID)
 
 bool LogServer::RegToRouter(int nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
+	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
 

@@ -54,35 +54,28 @@ void StartScriptEngine()
 	}
 }
 
+void ExitFunc(void)
+{
+	XTime::MSSleep(1000);
+}
+
 void OnSigTerm(int)
 {	
 	Router* poRouter = (Router*)(g_poContext->GetService());
 	poRouter->GetServerClose().CloseServer(g_poContext->GetWorldServerID());
 }
 
-void ExitFunc(void)
-{
-	XTime::MSSleep(1000);
-}
-
 int main(int nArg, char* pArgv[])
 {
 	assert(nArg >= 2);
+	signal(SIGTERM, OnSigTerm);
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 #ifdef _WIN32
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
-	signal(SIGTERM, OnSigTerm);
 	atexit(ExitFunc);
 	Logger::Instance()->Init();
-	NetAPI::StartupNetwork();
-
-	if (!Platform::FileExist("./debug.txt"))
-	{
-		char sLogName[256] = "";
-		sprintf(sLogName, "routerserver%d", nServiceID);
-		Logger::Instance()->SetLogName(sLogName);
-	}
+	Logger::Instance()->SetSync(true);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -99,6 +92,14 @@ int main(int nArg, char* pArgv[])
 	{
 		XLog(LEVEL_ERROR, "load server conf fail!\n");
 		exit(-1);
+	}
+
+	NetAPI::StartupNetwork();
+	if (!Platform::FileExist("./debug.txt"))
+	{
+		char szLogName[128] = "";
+		sprintf(szLogName, "routerserver%d", nServiceID);
+		Logger::Instance()->SetLogFile(g_poContext->GetServerConfig().sLogPath, szLogName);
 	}
 
 	Router* poService = XNEW(Router);
@@ -121,6 +122,8 @@ int main(int nArg, char* pArgv[])
 	}
 
 	XLog(LEVEL_INFO, "RouterServer start successful\n");
+	Logger::Instance()->SetSync(false);
+
 	bRes = poService->Start();
 	assert(bRes);
 	if (!bRes)

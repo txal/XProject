@@ -31,7 +31,6 @@
     <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ltablib.c" />
     <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\ltm.c" />
     <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lua.c" />
-    <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\luac.c" />
     <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lundump.c" />
     <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lutf8lib.c" />
     <ClCompile Include="..\..\Source\Deps\lua-5.3.0\src\lvm.c" />

@@ -20,12 +20,13 @@ require("Robot/RobotInc")
 
 function Main()
 	CmdNet.bServer = false
-    print("启动机器人成功")
+    LuaTrace("启动机器人成功")
     Test()
 end
 
+oSSDB = SSDBDriver:new()
 function Test()
-	local oSSDB = SSDBDriver:new()
 	oSSDB:Connect("127.0.0.1", 10001)
-	print(oSSDB:HIncr("CharIDDB", "IDIncr"))
+	oSSDB:Auth("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+	LuaTrace(oSSDB:HIncr("CharIDDB", "IDIncr"))
 end
