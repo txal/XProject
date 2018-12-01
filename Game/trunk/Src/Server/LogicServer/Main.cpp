@@ -53,7 +53,7 @@ void StartScriptEngine()
 	{
 		char sLogName[256] = "";
 		sprintf(sLogName, "logicserver%d", g_poContext->GetService()->GetServiceID());
-		Logger::Instance()->SetLogName(sLogName);
+		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
 	g_bPrintBattle = Platform::FileExist("./battle.txt");
 
@@ -63,6 +63,7 @@ void StartScriptEngine()
 #endif
 	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
 	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
+	Logger::Instance()->SetSync(false);
 }
 
 
@@ -74,6 +75,8 @@ int main(int nArg, char *pArgv[])
 #endif
 	XMath::RandomSeed((uint32_t)XTime::MSTime());
 	Logger::Instance()->Init();
+	Logger::Instance()->SetSync(true);
+
 	NetAPI::StartupNetwork();
 	//ConfMgr::Instance()->LoadConf();
 
@@ -104,7 +107,7 @@ int main(int nArg, char *pArgv[])
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
 
-	printf("LogicServer start successful\n");
+	XLog(LEVEL_INFO, "LogicServer start successful\n");
 	poService->Start();
 	return 0;
 }

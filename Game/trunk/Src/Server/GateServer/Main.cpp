@@ -50,6 +50,8 @@ int main(int nArg, char *pArgv[])
 #endif
 
 	Logger::Instance()->Init();
+	Logger::Instance()->SetSync(true);
+
 	NetAPI::StartupNetwork();
 	g_poContext = XNEW(ServerContext);
 
@@ -79,10 +81,12 @@ int main(int nArg, char *pArgv[])
 	{
 		char sLogName[256] = "";
 		sprintf(sLogName, "gateserver%d", nServiceID);
-		Logger::Instance()->SetLogName(sLogName);
+		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
 
-	printf("GateServer start successful\n");
+	XLog(LEVEL_INFO, "GateServer start successful\n");
+	Logger::Instance()->SetSync(false);
+
 	bRes = g_poContext->GetService()->Start();
 	assert(bRes);
 

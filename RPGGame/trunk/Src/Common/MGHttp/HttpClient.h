@@ -3,7 +3,7 @@
 
 #include "Common/MGHttp/mongoose.h"
 #include "Common/DataStruct/MutexLock.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 
 class HttpClient
 {
@@ -32,7 +32,7 @@ private:
 	MutexLock m_oResLock;
 	std::queue<HTTPMSG*> m_oReqList;
 	std::queue<HTTPMSG*> m_oResList;
-	Thread m_oThread;
+	XThread m_oThread;
 
 	struct mg_mgr m_oMGMgr;
 };

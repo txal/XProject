@@ -1,5 +1,5 @@
 #!/bin/sh
 make clean
-#rm *Make* *make* Source -rf
+rm *Make* *make* Source -rf
 cmake -DCMAKE_BUILD_TYPE=Release ../
 make

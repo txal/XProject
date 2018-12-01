@@ -210,6 +210,12 @@ Status ClientImpl::setx(const std::string &key, const std::string &val, int ttl)
 	return s;
 }
 
+Status ClientImpl::setnx(const std::string &key, const std::string &val, std::string *ret) {
+	const std::vector<std::string> *resp;
+	resp = this->request("setnx", key, val);
+	return _read_str(resp, ret);
+}
+
 Status ClientImpl::del(const std::string &key){
 	const std::vector<std::string> *resp;
 	resp = this->request("del", key);

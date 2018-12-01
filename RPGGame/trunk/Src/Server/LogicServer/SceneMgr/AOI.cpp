@@ -390,7 +390,7 @@ void AOI::AddObserver(int nID)
 	AOIOBJ* pObj = GetObj(nID);
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
-		XLog(LEVEL_ERROR, "AddObserver: id:%d 0x%u aoi obj not exist or mode error!\n", nID, (void*)pObj);
+		XLog(LEVEL_ERROR, "AddObserver: id:%d 0x%x aoi obj not exist or mode error!\n", nID, (void*)pObj);
 		return;
 	}
 	pObj->nAOIMode |= AOI_MODE_OBSERVER;

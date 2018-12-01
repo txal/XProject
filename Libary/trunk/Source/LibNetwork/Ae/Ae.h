@@ -1,7 +1,7 @@
 ﻿#ifndef __AE_H__
 #define __AE_H__
 
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 
 #define AE_NONE 0
 #define AE_READABLE 1
@@ -44,7 +44,7 @@ protected:
 	}
 
 protected:
-	Thread m_EventThread;
+	XThread m_EventThread;
 	EventProc_T m_fnEventProc;
 	void* m_pEventParam;
 	bool m_bShutDown;

@@ -28,7 +28,7 @@ bool HttpRequest::Init(int nWorker)
 
 	for (int i = 0; i < m_nWorker; i++)
 	{
-		Thread* poThread = new Thread();
+		XThread* poThread = new XThread();
 		if (!poThread->Create(HttpRequest::WorkThread, this, false))
 		{
 			XLog(LEVEL_ERROR, "Create thread fail\n");

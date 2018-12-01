@@ -99,6 +99,7 @@ public:
 	/// @{
 	virtual Status get(const std::string &key, std::string *val) = 0;
 	virtual Status set(const std::string &key, const std::string &val) = 0;
+	virtual Status setnx(const std::string &key, const std::string &val, std::string *ret) = 0;
 	/**
 	 * Set the value of the key, with a time to live.
 	 */

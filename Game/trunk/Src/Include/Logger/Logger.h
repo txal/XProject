@@ -4,7 +4,7 @@
 #include "Common/Platform.h"
 #include "Common/DataStruct/MutexLock.h"
 #include "Common/DataStruct/PureList.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 
 // stdin
 // stdout
@@ -54,7 +54,7 @@ private:
 	int m_nPipeFds[2];
 	PureList<LOGTITLE*> m_oLogList;
 
-	Thread m_oLogThread;
+	XThread m_oLogThread;
     MutexLock m_oPrintLock;
 	DISALLOW_COPY_AND_ASSIGN(Logger);
 };

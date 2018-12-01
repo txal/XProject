@@ -3,7 +3,7 @@
 #include "Common/DataStruct/MutexLock.h"
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 #include "Common/DataStruct/TimeMonitor.h"
 
 #ifdef __linux
@@ -54,7 +54,7 @@ Logger::Logger()
 {
 	m_bSync = false;
 	m_bTerminate = false;
-    memset(m_sLogPath, 0, sizeof(m_sLogPath));
+	strcpy(m_sLogPath, "./Log");
     memset(m_sLogName, 0, sizeof(m_sLogName));
 	memset(m_nPipeFds, -1, sizeof(m_nPipeFds));
 }
@@ -69,12 +69,6 @@ void Logger::Terminate()
 
 void Logger::Init()
 {
-#ifdef _WIN32
-	mkdir("Log");
-#else
-	mkdir("Log", 0777);
-#endif
-
 #ifdef __linux
     if (_pipe(m_nPipeFds, O_CLOEXEC) == -1)
     {
@@ -108,6 +102,16 @@ void Logger::SetLogFile(const char* psPath, const char* psName)
 	{
 		strcpy(m_sLogName, psName);
 	}
+
+	if (m_sLogPath[0] != '\0')
+	{
+#ifdef _WIN32
+		mkdir(m_sLogPath);
+#else
+		mkdir(m_sLogPath, 0777);
+#endif
+	}
+
 }
 
 void Logger::Print(int nLevel, const char* pFmt, ...)

@@ -1,5 +1,5 @@
 ﻿#include "Common/MGHttp/HttpLua.hpp"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 #include "Common/DataStruct/XTime.h"
 #include <iostream>
 using namespace std;
@@ -7,7 +7,7 @@ using namespace std;
 
 static const char *url = "http://127.0.0.1:130/test.php";
 
-Thread thread;
+XThread thread;
 
 void worker(void* param)
 {

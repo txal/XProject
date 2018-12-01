@@ -39,9 +39,16 @@ void StartScriptEngine()
 	if (bStarted)
 		return;
 	bStarted = true;
+	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+
+	bool bDebug = false;
+#ifdef _DEBUG
+	bDebug = true;
+#endif
+	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
+	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
 
 	OpenLuaExport();
-	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	bool bRes = poLuaWrapper->DoFile("LogServer/Main");
 	assert(bRes);
 	if (!bRes)

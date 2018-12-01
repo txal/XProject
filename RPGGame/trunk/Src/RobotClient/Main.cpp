@@ -130,7 +130,7 @@ int main(int nArg, char *pArgv[])
 
 	poLuaWrapper->CallLuaFunc(NULL, "Main");
 
-	Thread oCmdThread;
+	XThread oCmdThread;
 	oCmdThread.Create(CmdProc, poRobotMgr);
 	poRobotMgr->Start();
 	INet* pExterNet = g_poContext->GetService()->GetExterNet();

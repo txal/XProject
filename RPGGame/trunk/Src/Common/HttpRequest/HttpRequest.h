@@ -3,7 +3,7 @@
 #include "Include/Curl/Curl.hpp"
 
 #include "Common/DataStruct/MutexLock.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 #include "Common/Platform.h"
 
 struct MCURL
@@ -51,7 +51,7 @@ private:
 
 	MutexLock m_oWorkLock;
 	std::queue<MCURL*> m_oQueRequest;
-	std::vector<Thread*> m_oVecThread;
+	std::vector<XThread*> m_oVecThread;
 };
 
 #endif

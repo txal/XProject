@@ -34,11 +34,19 @@ bool InitNetwork(int8_t nServiceID)
 void StartScriptEngine()
 {
 	static bool bStarted = false;
-	if (bStarted) return;
+	if (bStarted)
+		return;
 	bStarted = true;
+	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+
+	bool bDebug = false;
+#ifdef _DEBUG
+	bDebug = true;
+#endif
+	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
+	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
 
 	OpenLuaExport();
-	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	bool bRes = poLuaWrapper->DoFile("LoginServer/Main");
 	assert(bRes);
 	if (!bRes)

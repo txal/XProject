@@ -1,7 +1,7 @@
 ﻿#include "LibNetwork/Ae/Epoll.h"
 #include "Include/Logger/Logger.h"
 #include "Include/Network/NetAPI.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 #include "Common/DataStruct/XTime.h"
 
 #ifdef __linux

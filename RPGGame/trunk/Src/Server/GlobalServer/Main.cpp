@@ -37,7 +37,7 @@ bool InitNetwork(int8_t nServiceID)
 }
 
 //LUA死循环检测
-static Thread goMonitorThread;
+static XThread goMonitorThread;
 static void MonitorThreadFunc(void* pParam)
 {
 	uint32_t uLastMainLoops = 0;
@@ -63,9 +63,16 @@ void StartScriptEngine()
 	if (bStarted)
 		return;
 	bStarted = true;
+	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+
+	bool bDebug = false;
+#ifdef _DEBUG
+	bDebug = true;
+#endif
+	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
+	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
 
 	OpenLuaExport();
-	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	bool bRes = poLuaWrapper->DoFile("GlobalServer/Main");
 	assert(bRes);
 	if (!bRes)
@@ -79,13 +86,6 @@ void StartScriptEngine()
 	{
 		exit(-1);
 	}
-
-	bool bDebug = false;
-#ifdef _DEBUG
-	bDebug = true;
-#endif
-	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
-	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
 
 	Logger::Instance()->SetSync(false);
 	goMonitorThread.Create(MonitorThreadFunc, NULL);

@@ -47,6 +47,7 @@ int main(int nArg, char* pArgv[])
 #endif
 
 	Logger::Instance()->Init();
+	Logger::Instance()->SetSync(true);
 	NetAPI::StartupNetwork();
 	g_poContext = XNEW(ServerContext);
 
@@ -75,10 +76,11 @@ int main(int nArg, char* pArgv[])
 	{
 		char sLogName[256] = "";
 		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
-		Logger::Instance()->SetLogName(sLogName);
+		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
 
-	printf("RouterServer start successful\n");
+	XLog(LEVEL_INFO, "RouterServer start successful\n");
+	Logger::Instance()->SetSync(false);
 	bRes = poService->Start();
 	assert(bRes);
 	return 0;

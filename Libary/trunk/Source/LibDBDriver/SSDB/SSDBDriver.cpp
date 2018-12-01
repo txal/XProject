@@ -119,6 +119,7 @@ int SSDBDriver::HGet(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		XLog(LEVEL_ERROR, "HGet %s %s error: %s\n", psDB, oStrKey.c_str(), oStatus.code().c_str());
 		if (CheckReconnect(oStatus))
 		{
 			oStatus = m_poSSDBClient->hget(psDB, oStrKey, &oStrVal);
@@ -143,6 +144,7 @@ int SSDBDriver::HSize(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		XLog(LEVEL_ERROR, "HSize %s error: %s\n", psDB, oStatus.code().c_str());
 		if (CheckReconnect(oStatus))
 		{
 			oStatus = m_poSSDBClient->hsize(psDB, &nSize);
@@ -167,6 +169,7 @@ int SSDBDriver::HKeys(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		XLog(LEVEL_ERROR, "HKeys %s error: %s\n", psDB, oStatus.code().c_str());
 		if (CheckReconnect(oStatus))
 		{
 			oStatus = m_poSSDBClient->hkeys(psDB, "", "", -1, &oVecKeys);
@@ -197,6 +200,7 @@ int SSDBDriver::HScan(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		XLog(LEVEL_ERROR, "HScan %s error: %s\n", psDB, oStatus.code().c_str());
 		if (CheckReconnect(oStatus))
 		{
 			oStatus = m_poSSDBClient->hscan(psDB, "", "", -1, &oVecResult);
@@ -237,6 +241,7 @@ int SSDBDriver::HDel(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		XLog(LEVEL_ERROR, "HDel %s %s error: %s\n", psDB, oStrKey.c_str(), oStatus.code().c_str());
 		if (CheckReconnect(oStatus))
 		{
 			oStatus = m_poSSDBClient->hdel(psDB, oStrKey);
@@ -261,6 +266,7 @@ int SSDBDriver::HClear(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		XLog(LEVEL_ERROR, "HClear %s error: %s\n", psDB, oStatus.code().c_str());
 		if (CheckReconnect(oStatus))
 		{
 			oStatus = m_poSSDBClient->hclear(psDB, &nRet);
@@ -287,6 +293,7 @@ int SSDBDriver::HIncr(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		XLog(LEVEL_ERROR, "HIncr %s %s error: %s\n", psDB, oStrKey.c_str(), oStatus.code().c_str());
 		if (CheckReconnect(oStatus))
 		{
 			oStatus = m_poSSDBClient->hincr(psDB, oStrKey, 1, &nRet);
@@ -302,37 +309,36 @@ int SSDBDriver::HIncr(lua_State* pState)
 
 int SSDBDriver::Setnx(lua_State* pState)
 {
-	return LuaWrapper::luaM_error(pState, "not support");
-//	size_t nSize = 0;
-//	const char* psKey = luaL_checklstring(pState, 1, &nSize);
-//	std::string oStrKey(psKey, nSize);
-//	if (oStrKey == "")
-//	{
-//		return LuaWrapper::luaM_error(pState, "Setnx key empty");
-//	}
-//	nSize = 0;
-//	const char* psVal = luaL_checklstring(pState, 2, &nSize);
-//	std::string oStrVal(psVal, nSize);
-//
-//	std::string oRet;
-//#ifdef __linux
-//	ssdb::Status oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
-//#else
-//	Status oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
-//#endif
-//	if (!oStatus.ok())
-//	{
-//		if (Reconnect())
-		//{
-		//	oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
-		//}
-		//if (!oStatus.ok())
-		//{
-		//	return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
-		//}
-//	}
-//	lua_pushstring(pState, oRet.c_str());
-//	return 1;
+	size_t nSize = 0;
+	const char* psKey = luaL_checklstring(pState, 1, &nSize);
+	std::string oStrKey(psKey, nSize);
+	if (oStrKey == "")
+	{
+		return LuaWrapper::luaM_error(pState, "Setnx key empty");
+	}
+	nSize = 0;
+	const char* psVal = luaL_checklstring(pState, 2, &nSize);
+	std::string oStrVal(psVal, nSize);
+
+	std::string oRet;
+#ifdef __linux
+	ssdb::Status oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
+#else
+	Status oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
+#endif
+	if (!oStatus.ok() && !oStatus.not_found())
+	{
+		if (CheckReconnect(oStatus))
+		{
+			oStatus = m_poSSDBClient->setnx(oStrKey, oStrVal, &oRet);
+		}
+		if (!oStatus.ok() && !oStatus.not_found())
+		{
+			return LuaWrapper::luaM_error(pState, oStatus.code().c_str());
+		}
+	}
+	lua_pushstring(pState, oRet.c_str());
+	return 1;
 }
 
 int SSDBDriver::Del(lua_State* pState)
@@ -348,6 +354,7 @@ int SSDBDriver::Del(lua_State* pState)
 #endif
 	if (!oStatus.ok() && !oStatus.not_found())
 	{
+		XLog(LEVEL_ERROR, "Del %s error: %s\n", oStrKey.c_str(), oStatus.code().c_str());
 		if (CheckReconnect(oStatus))
 		{
 			oStatus = m_poSSDBClient->del(oStrKey);

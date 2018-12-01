@@ -74,7 +74,7 @@
     <OutDir>..\..\Bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\..\..\..\svnmengzhu\trunk\Server\_WorldServer</OutDir>
+    <OutDir>..\..\..\..\..\svnmengzhu\trunk\Server\_WorldServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

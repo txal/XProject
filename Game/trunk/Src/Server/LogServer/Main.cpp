@@ -51,8 +51,9 @@ void StartScriptEngine()
 	{
 		char sLogName[256] = "";
 		sprintf(sLogName, "logserver%d", g_poContext->GetService()->GetServiceID());
-		Logger::Instance()->SetLogName(sLogName);
+		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
+	Logger::Instance()->SetSync(false);
 }
 
 //关服定时器
@@ -89,6 +90,7 @@ int main(int nArg, char *pArgv[])
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
 	Logger::Instance()->Init();
+	Logger::Instance()->SetSync(true);
 	NetAPI::StartupNetwork();
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 	g_poContext = XNEW(ServerContext);
@@ -118,7 +120,7 @@ int main(int nArg, char *pArgv[])
 
 	//工作线程
 	WorkerMgr::Instance()->Init(g_poContext->GetServerConfig().oLogList[0].oLog.uWorkers);
-	printf("LogServer start successful\n");
+	XLog(LEVEL_INFO, "LogServer start successful\n");
 
 	atexit(OnExit);
 	bRes = g_poContext->GetService()->Start();

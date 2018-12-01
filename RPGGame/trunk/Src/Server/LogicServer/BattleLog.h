@@ -3,7 +3,7 @@
 
 #include "Common/Platform.h"
 #include "Common/DataStruct/MutexLock.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 
 struct BATTLELOG
 {
@@ -27,7 +27,7 @@ protected:
 private:
 	std::list<BATTLELOG*> m_oLogList;
 	MutexLock m_oLock;
-	Thread m_oThread;
+	XThread m_oThread;
 	bool m_bTerminate;
 
 	DISALLOW_COPY_AND_ASSIGN(BattleLog);

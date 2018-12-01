@@ -40,11 +40,19 @@ bool InitNetwork(int8_t nServiceID)
 void StartScriptEngine()
 {
 	static bool bStarted = false;
-	if (bStarted) return;
+	if (bStarted)
+		return;
 	bStarted = true;
 
-	OpenLuaExport();
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+	bool bDebug = false;
+#ifdef _DEBUG
+	bDebug = true;
+#endif
+	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
+	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
+
+	OpenLuaExport();
 	bool bRes = poLuaWrapper->DoFile(goScriptRoot.c_str());
 	assert(bRes);
 	if (!bRes)
@@ -57,14 +65,6 @@ void StartScriptEngine()
 	{
 		exit(-1);
 	}
-
-	bool bDebug = false;
-#ifdef _DEBUG
-	bDebug = true;
-#endif
-	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
-	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
-
 	Logger::Instance()->SetSync(false);
 }
 

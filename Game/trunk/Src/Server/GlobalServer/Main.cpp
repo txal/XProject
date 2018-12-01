@@ -55,7 +55,7 @@ void StartScriptEngine()
 	{
 		char sLogName[256] = "";
 		sprintf(sLogName, "globalserver%d", g_poContext->GetService()->GetServiceID());
-		Logger::Instance()->SetLogName(sLogName);
+		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
 
 	bool bDebug = false;
@@ -64,6 +64,7 @@ void StartScriptEngine()
 #endif
 	lua_pushboolean(poLuaWrapper->GetLuaState(), bDebug);
 	lua_setglobal(poLuaWrapper->GetLuaState(), "gbDebug");
+	Logger::Instance()->SetSync(false);
 }
 
 int main(int nArg, char *pArgv[])
@@ -74,6 +75,7 @@ int main(int nArg, char *pArgv[])
 	::SetUnhandledExceptionFilter(Platform::MyUnhandledFilter);
 #endif
 	Logger::Instance()->Init();
+	Logger::Instance()->SetSync(true);
 	NetAPI::StartupNetwork();
 
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
@@ -101,7 +103,7 @@ int main(int nArg, char *pArgv[])
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
 
-	printf("GlobalServer start successful\n");
+	XLog(LEVEL_INFO, "GlobalServer start successful\n");
 	bRes = g_poContext->GetService()->Start();
 	assert(bRes);
 	return 0;

@@ -4,7 +4,7 @@
 #include "Include/Logger/Logger.h"
 #include "Include/Script/lunar.h"
 #include "Include/Script/LuaDebugger.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 
 
 struct LUA_REF
