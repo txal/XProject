@@ -239,7 +239,8 @@ int SceneMgr::SetFollow(lua_State* pState)
 			int64_t nTmpObjID = lua_tointeger(pState, -1);
 			if (nTmpObjID == nObjMixID)
 			{
-				XLog(LEVEL_ERROR, "can not follow oneself type:%d id:%d\n", oFollowTarget.nObjType, oFollowTarget.nObjID);
+				XLog(LEVEL_ERROR, "Can not follow self type:%d id:%d\n", oFollowTarget.nObjType, oFollowTarget.nObjID);
+				Debug::TraceBack();
 				continue;
 			}
 

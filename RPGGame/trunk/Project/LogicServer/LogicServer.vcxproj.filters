@@ -407,5 +407,8 @@
     <ClInclude Include="..\..\Src\Common\DataStruct\MutexLock.h">
       <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Common\Debug.h">
+      <Filter>Src\Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

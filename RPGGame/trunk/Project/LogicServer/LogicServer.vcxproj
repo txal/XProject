@@ -213,6 +213,7 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\DataStruct\Ranking.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\XMath.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\XTime.h" />
+    <ClInclude Include="..\..\Src\Common\Debug.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />

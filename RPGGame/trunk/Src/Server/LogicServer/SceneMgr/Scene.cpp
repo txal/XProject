@@ -1,6 +1,8 @@
 ﻿#include "Server/LogicServer/SceneMgr/Scene.h"
+
 #include "Common/DataStruct/XTime.h"
 #include "Common/DataStruct/XMath.h"
+#include "Common/Debug.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
@@ -118,11 +120,13 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 	if (m_oObjMap.find(nObjID) != m_oObjMap.end())
 	{
 		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%lld\n", nObjID, nObjType, m_nSceneMixID);
+		Debug::TraceBack();
 		return -1;
 	}
 	if (m_oObjMap.size() >= 10000)
 	{
 		XLog(LEVEL_ERROR, "AddObj too many secene obj:%lld obj:%d\n", m_nSceneMixID, m_oObjMap.size());
+		Debug::TraceBack();
 		return -1;
 	}
 
@@ -132,6 +136,7 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 	{
 		poObj->SetFace(0);
 		XLog(LEVEL_ERROR, "AOI add obj error id:%lld type:%d\n", nObjID, nObjType);
+		Debug::TraceBack();
 		return -1;
 	}
 	return nAOIID;

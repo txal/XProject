@@ -2,6 +2,7 @@
 
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
+#include "Common/Debug.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Server/LogicServer/Object/Object.h"
 #include "Server/LogicServer/SceneMgr/Scene.h"
@@ -247,6 +248,7 @@ void AOI::MoveObserver(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 				if (!pTower->RemoveObserver(pObj))
 				{
 					XLog(LEVEL_ERROR, "MoveObserver: tower:[%d,%d] remove observer:%d fail\n", ox, oy, pObj->nAOIID);
+					Debug::TraceBack();
 				}
 			}
 		}
@@ -325,6 +327,7 @@ void AOI::MoveObserved(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 	if (!pOldTower->RemoveObserved(pObj))
 	{
 		XLog(LEVEL_ERROR, "MoveObserved: remove observed:%d fail\n", pObj->nAOIID);
+		Debug::TraceBack();
 	}
 	if (m_oObjCache.Size() > 0)
 	{
@@ -376,6 +379,7 @@ void AOI::RemoveObj(int nID, bool bLeaveScene)
 		if (pObj->nRef != 0)
 		{
 			XLog(LEVEL_ERROR, "RemoverObj: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
+			Debug::TraceBack();
 		}
 		pObj->nAOIMode = AOI_MODE_DROP;
 		SubLineObj(pObj->nLine);
@@ -391,6 +395,7 @@ void AOI::AddObserver(int nID)
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
 		XLog(LEVEL_ERROR, "AddObserver: id:%d 0x%x aoi obj not exist or mode error!\n", nID, (void*)pObj);
+		Debug::TraceBack();
 		return;
 	}
 	pObj->nAOIMode |= AOI_MODE_OBSERVER;
@@ -463,6 +468,7 @@ void AOI::RemoveObserver(int nID, bool bLeaveScene)
 	if (pObj->nAOIMode == 0 && pObj->nRef != 0)
 	{
 		XLog(LEVEL_ERROR, "RemoverObserver: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
+		Debug::TraceBack();
 	}
 }
 
@@ -472,6 +478,7 @@ void AOI::AddObserved(int nID)
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
 		XLog(LEVEL_ERROR, "AddObserved: id:%d 0x%u aoi obj not exist or mode error!\n", nID, (void*)pObj);
+		Debug::TraceBack();
 		return;
 	}
 	
@@ -519,6 +526,7 @@ void AOI::RemoveObserved(int nID)
 	if (pObj->nAOIMode == 0 && pObj->nRef != 0)
 	{
 		XLog(LEVEL_ERROR, "RemoveObserved: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
+		Debug::TraceBack();
 	}
 }
 
