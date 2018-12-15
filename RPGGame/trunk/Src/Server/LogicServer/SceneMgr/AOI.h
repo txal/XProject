@@ -22,10 +22,10 @@ public:
 	void MoveObj(int nID, int nPosX, int nPosY);
 	void RemoveObj(int nID, bool bLeaveScene=false);
 
-	void AddObserved(int nID);
-	void AddObserver(int nID);
-	void RemoveObserved(int nID);
-	void RemoveObserver(int nID, bool bLeaveScene = false);
+	bool AddObserved(int nID);
+	bool AddObserver(int nID);
+	bool RemoveObserved(int nID);
+	bool RemoveObserver(int nID, bool bLeaveScene = false);
 	void GetAreaObservers(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType); //nGameObjType:0表示所有
 	void GetAreaObserveds(int nID, Array<AOIOBJ*>& oObjCache, int nGameObjType);
 

@@ -20,7 +20,7 @@
 
 
 // Max read buf size 
-#define EXTERNET_MAX_RECVBUF (16*1024)
+#define EXTERNET_MAX_RECVBUF (32*1024)
 
 // Max write buf size 
 #define EXTERNET_MAX_SENDBUF (64*1024)

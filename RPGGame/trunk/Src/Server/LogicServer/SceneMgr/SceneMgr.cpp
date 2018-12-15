@@ -1,6 +1,7 @@
 ﻿#include "SceneMgr.h"
 #include "Common/DataStruct/XTime.h"
 #include "Common/DataStruct/ObjID.h"
+#include "Common/Debug.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Server/LogicServer/Object/Role/RoleMgr.h"
@@ -240,7 +241,7 @@ int SceneMgr::SetFollow(lua_State* pState)
 			if (nTmpObjID == nObjMixID)
 			{
 				XLog(LEVEL_ERROR, "Can not follow self type:%d id:%d\n", oFollowTarget.nObjType, oFollowTarget.nObjID);
-				Debug::TraceBack();
+				NSDebug::TraceBack();
 				continue;
 			}
 

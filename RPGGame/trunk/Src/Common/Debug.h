@@ -8,10 +8,10 @@
 #include<stdio.h>
 #endif
 
-namespace Debug
+namespace NSDebug
 {
 
-	void TraceBack()
+	static void TraceBack()
 	{
 #ifdef __linux
 		void* sBuffer[64];
@@ -21,15 +21,14 @@ namespace Debug
 		{
 			return;
 		}
+		XLog(LEVEL_ERROR, "traceback:\n");
 		for (int k = 0; k < nPtrs; k++)
 		{
 			XLog(LEVEL_ERROR, "%s\n", sStrings[k]);
 		}
 		free(sStrings);
-	}
-
 #endif
-
+	}
 }
 
 #endif

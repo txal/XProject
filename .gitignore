@@ -49,3 +49,13 @@ x64/
 /RPGGame/trunk/Bin/_RobotClient/RobotClient.lib
 /RPGGame/trunk/Bin/_WorldServer/MZ-RouterServer.lib
 /RPGGame/trunk/Bin/_RobotClient/RobotClient.exe
+/Libary/trunk/Project/ipch/LIBLOGGER-f77e4dcc/*.ipch
+/Libary/trunk/Project/LibLogger/Debug/*.log
+/Game/trunk/Libs/Win32/*.lib
+/RPGGame/trunk/Libs/Win32/*.lib
+/Libary/trunk/Libs/Win32/*.lib
+/Game/trunk/Bin/*.lib
+/Libary/trunk/Project/LibLogger/Debug/*.obj
+/Libary/trunk/Project/LibLogger/Debug/*.idb
+/RPGGame/trunk/Bin/*.lib
+/RPGGame/trunk/Bin/Release/Centos7/Test

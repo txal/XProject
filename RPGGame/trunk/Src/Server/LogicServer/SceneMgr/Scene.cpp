@@ -120,13 +120,13 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 	if (m_oObjMap.find(nObjID) != m_oObjMap.end())
 	{
 		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%lld\n", nObjID, nObjType, m_nSceneMixID);
-		Debug::TraceBack();
+		NSDebug::TraceBack();
 		return -1;
 	}
 	if (m_oObjMap.size() >= 10000)
 	{
 		XLog(LEVEL_ERROR, "AddObj too many secene obj:%lld obj:%d\n", m_nSceneMixID, m_oObjMap.size());
-		Debug::TraceBack();
+		NSDebug::TraceBack();
 		return -1;
 	}
 
@@ -136,7 +136,7 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 	{
 		poObj->SetFace(0);
 		XLog(LEVEL_ERROR, "AOI add obj error id:%lld type:%d\n", nObjID, nObjType);
-		Debug::TraceBack();
+		NSDebug::TraceBack();
 		return -1;
 	}
 	return nAOIID;
@@ -401,7 +401,11 @@ int Scene::RemoveObserved(lua_State* pState)
 int Scene::AddObserver(lua_State* pState)
 {
 	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	m_oAOI.AddObserver(nAOIID);
+	if (!m_oAOI.AddObserver(nAOIID))
+	{
+		luaL_where(pState, 1);
+		XLog(LEVEL_ERROR, "%s\n", lua_tostring(pState, -1));
+	}
 	lua_pushinteger(pState, nAOIID);
 	return 1;
 }
