@@ -27,7 +27,7 @@ public:
 	virtual bool ClientHandShakeReq(int nSessionID);
 
 	//Websocket mask decode
-	void DecodeMask(uint8_t* pData, int nLen);
+	bool DecodeMask(uint8_t* pInData, uint8_t* pOutData, int nLen);
 
 	//Websocket split packet function
 	static int SplitPacket(HSOCKET nSock, void* pUD, RECVBUF& oRecvBuf, Net* poNet);

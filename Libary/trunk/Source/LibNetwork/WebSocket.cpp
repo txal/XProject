@@ -228,16 +228,18 @@ bool WebSocket::ClientHandShakeReq(int nSessionID)
 	return false;
 }
 
-void WebSocket::DecodeMask(uint8_t* pData, int nLen)
+bool WebSocket::DecodeMask(uint8_t* pInData, uint8_t* pOutData, int nLen)
 {
 	if (oWSHeader.mask_ == 1)
 	{
 		for (int i = 0; i < nLen; i++)
 		{
 			int j = i % 4;
-			pData[i] = pData[i] ^ oWSHeader.masking_key_[j];
+			pOutData[i] = pInData[i] ^ oWSHeader.masking_key_[j];
 		}
+		return true;
 	}
+	return false;
 }
 
 int WebSocket::SplitPacket(HSOCKET nSock, void* pUD, RECVBUF& oRecvBuf, Net* poNet)
@@ -341,18 +343,27 @@ int WebSocket::SplitPacket(HSOCKET nSock, void* pUD, RECVBUF& oRecvBuf, Net* poN
 		{
 			break;
 		}
-		poWebSocket->DecodeMask(pPos, sizeof(int));
-		int nDataSize = *(int*)pPos;
+
+		int nDataSize = 0;
+		uint8_t tmpbuffer[4] = { 0 };
+		if (poWebSocket->DecodeMask(pPos, tmpbuffer, sizeof(int)))
+		{
+			nDataSize = *(int*)tmpbuffer;
+		}
+		else
+		{
+			nDataSize = *(int*)pPos;
+		}
+
 		if (nDataSize <= 0 || nDataSize > nMaxDataSize)
 		{
 			XLog(LEVEL_ERROR, "%s: sock:%d illegal packet size:%d max size:%d\n", poNet->GetName(), nSock, nDataSize, nMaxDataSize);
 			return -1;
 		}
 		pPos += sizeof(int);
-		// Wait for more data
 		if (pPos + nDataSize > pPosEnd)
 		{
-			break;
+			break; // Wait for more data
 		}
 		pPos += nDataSize;
 
@@ -360,6 +371,7 @@ int WebSocket::SplitPacket(HSOCKET nSock, void* pUD, RECVBUF& oRecvBuf, Net* poN
 		Packet* poPacket = Packet::Create(nPacketSize + sizeof(INNER_HEADER)* 2);
 		poPacket->SetMaskingKey(oWSHeader.mask_==1, oWSHeader.masking_key_);
 		poPacket->FillData(pTmpPos, nPacketSize);
+
 		poNet->OnRecvPacket(pUD, poPacket);
 
 		nPackets++;

@@ -125,10 +125,13 @@ void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 	for (int i = oAOIObjList.Size() - 1; i >= 0; --i)
 	{
 		Actor* poActor = (Actor*)(oAOIObjList[i]->poGameObj);
-		oNavi.uTarServer = poActor->GetServer();
-		oNavi.nTarService = poActor->GetSession() >> SERVICE_SHIFT;
-		oNavi.nTarSession = poActor->GetSession();
-		goNaviCache.PushBack(oNavi);
+		if (poActor->GetSession() > 0)
+		{
+			oNavi.uTarServer = poActor->GetServer();
+			oNavi.nTarService = poActor->GetSession() >> SERVICE_SHIFT;
+			oNavi.nTarSession = poActor->GetSession();
+			goNaviCache.PushBack(oNavi);
+		}
 	}
 }
 

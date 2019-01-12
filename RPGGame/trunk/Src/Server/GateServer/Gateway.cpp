@@ -225,12 +225,12 @@ void Gateway::DecodeMask(Packet* poPacket)
 		return;
 	}
 	uint8_t* tMaskingKey = poPacket->GetMaskingKey();
-	uint8_t* pRealData = poPacket->GetRealData();
-	int nSize = poPacket->GetRealDataSize();
+	uint8_t* pData = poPacket->GetData();
+	int nSize = poPacket->GetDataSize();
 	for (int i = 0; i < nSize; i++)
 	{
 		int j = i % 4;
-		pRealData[i] = pRealData[i] ^ tMaskingKey[j];
+		pData[i] = pData[i] ^ tMaskingKey[j];
 	}
 }
 

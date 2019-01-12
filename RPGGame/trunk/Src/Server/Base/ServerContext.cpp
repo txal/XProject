@@ -205,7 +205,7 @@ bool ServerContext::LoadServerConfig()
 	}
 	SAFE_DELETE(pMysql);
 	double fCostMSTime = oMnt.End();
-	if (fCostMSTime >= 30)
+	if (fCostMSTime >= 100)
 	{
 		XLog(LEVEL_ERROR, "load server conf is too slow: %fms\n", fCostMSTime);
 	}

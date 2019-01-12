@@ -46,7 +46,7 @@ void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEA
 		}
 		CacheSessionArray(pSessionArray, oHeader.uSessionNum);
 		oHeader.uTarServer = g_poContext->GetWorldServerID();
-		assert(oHeader.uTarServer >= 10000);
+		assert(oHeader.uTarServer >= 60000);
 		poPacket->AppendInnerHeader(oHeader, m_oSessionCache.Ptr(), m_oSessionCache.Size());
 	}
 
