@@ -14,9 +14,9 @@
 #define AOI_TYPE_RECT 1
 #define AOI_TYPE_CIRCLE 2
 
-#define MAX_LINE 101		//分线上限
-#define MIN_OBJ_PERLINE 10  //每条线最低数对象
-#define MAX_OBJ_PERLINE 300 //每条线默认对象上限
+#define MAX_LINE 1001		//分线上限
+#define MIN_OBJ_PERLINE 1   //每条线最低数对象
+#define MAX_OBJ_PERLINE 200 //每条线默认对象上限
 
 #define DEF_AMSIZE 2
 #define MAX_AMSIZE 0x7FFF
