@@ -247,7 +247,7 @@ void Actor::SyncPosition(const char* pWhere)
 {
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int8_t)m_nFace;
-	Packet* poPacket = gpoPacketCache->DeepCopy();
+	Packet* poPacket = gpoPacketCache->DeepCopy(__FILE__, __LINE__);
 
 	NetAdapter::SERVICE_NAVI oNavi;
 	oNavi.uSrcServer = g_poContext->GetServerID();
@@ -276,7 +276,7 @@ void Actor::BroadcastPos(bool bSelf)
 
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int8_t)m_nFace;
-	Packet* poPacket = gpoPacketCache->DeepCopy();
+	Packet* poPacket = gpoPacketCache->DeepCopy(__FILE__, __LINE__);
 	NetAdapter::BroadcastExter(NSCltSrvCmd::sSyncActorPosRet, poPacket, goNaviCache);
 }
 
@@ -291,7 +291,7 @@ void Actor::BroadcastStartRun()
 	uint16_t uTarPosX = (uint16_t)m_oTargetPos.x;
 	uint16_t uTarPosY = (uint16_t)m_oTargetPos.y;
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nRunSpeedX << (int16_t)m_nRunSpeedY << (uint8_t)m_nFace << uTarPosX << uTarPosY;
-	Packet* poPacket = gpoPacketCache->DeepCopy();
+	Packet* poPacket = gpoPacketCache->DeepCopy(__FILE__, __LINE__);
 	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStartRunRet, poPacket, goNaviCache);
 }
 
@@ -312,7 +312,7 @@ void Actor::BroadcastStopRun(bool bSelf)
 
 	gpoPacketCache->Reset();
 	goPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int8_t)m_nFace;
-	Packet* poPacket = gpoPacketCache->DeepCopy();
+	Packet* poPacket = gpoPacketCache->DeepCopy(__FILE__, __LINE__);
 	NetAdapter::BroadcastExter(NSCltSrvCmd::sActorStopRunRet, poPacket, goNaviCache);
 }
 

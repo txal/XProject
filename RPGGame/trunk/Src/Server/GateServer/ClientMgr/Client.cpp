@@ -11,10 +11,11 @@ Client::Client()
 	m_uCmdIndex = 0;
 	m_nSession = 0;
 
+	m_nRoleID = 0;
 	m_nPacketTime = 0;
 	m_nLogicService = 0;
+	m_nLastKeepAlive = 0;
 	m_nLastNotifyTime = 0;
-	m_nRoleID = 0;
 }
 
 Client::~Client()
@@ -34,7 +35,7 @@ void Client::Update(int64_t nNowMS)
 		}
 		m_nLastNotifyTime = nTimeNow;
 
-		Packet* poPacket = Packet::Create(32);
+		Packet* poPacket = Packet::Create(32, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 		if (poPacket == NULL)
 		{
 			return;

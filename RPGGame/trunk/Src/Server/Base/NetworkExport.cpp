@@ -22,7 +22,7 @@ static int SendExter(lua_State* pState)
 	uint32_t uCmdIdx = (uint32_t)luaL_checkinteger(pState, 6);
 	if (oNavi.nTarSession <= 0 || oNavi.nTarService < 0 || oNavi.nTarService > MAX_SERVICE_NUM)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return LuaWrapper::luaM_error(pState, "Send exter param error!");
 	}
 	if (!NetAdapter::SendExter(uCmd, poPacket, oNavi, uCmdIdx))
@@ -40,7 +40,7 @@ static int BroadcastExter(lua_State* pState)
 	int nTableLen = (int)lua_rawlen(pState, 3);
 	if (!lua_istable(pState, 3) || nTableLen <= 0 || nTableLen % 2 != 0)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		LuaWrapper::luaM_error(pState, "Session table format error!");
 	}
 
@@ -77,7 +77,7 @@ static int SendInner(lua_State* pState)
 	oNavi.nTarSession = (int)luaL_checkinteger(pState, 5);
 	if (oNavi.uTarServer <= 0 || oNavi.nTarService <= 0 || oNavi.nTarService > MAX_SERVICE_NUM)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return LuaWrapper::luaM_error(pState, "Target server or service error!");
 	}
 	if (!NetAdapter::SendInner(uCmd, poPacket, oNavi))
@@ -96,7 +96,7 @@ static int BroadcastInner(lua_State* pState)
 	int nTableLen = (int)lua_rawlen(pState, 4);
 	if (!lua_istable(pState, 4) || nTableLen <= 0 || nTableLen % 3 != 0)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		LuaWrapper::luaM_error(pState, "Service table format error!");
 	}
 
@@ -157,6 +157,12 @@ static int Terminate(lua_State* pState)
 	return 0;
 }
 
+static int DumpPacket(lua_State* pState)
+{
+	Packet::DumpLeak();
+	return 0;
+}
+
 static luaL_Reg _network_lua_func[] =
 {
 	{ "SendInner", SendInner },
@@ -167,6 +173,7 @@ static luaL_Reg _network_lua_func[] =
 	{ "ClockMSTime", ClockMSTime },
 	{ "UnixMSTime", UnixMSTime },
 	{ "Terminate", Terminate},
+	{ "DumpPacket", DumpPacket},
 	{ NULL, NULL },
 };
 

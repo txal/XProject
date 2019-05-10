@@ -15,6 +15,8 @@ public:
 
 public:
 	DetectorMgr();
+	~DetectorMgr();
+
 	Detector* CreateDetector(int nID, int nConfID, const char* psName);
 	Detector* GetDetectorByID(int nID);
 

@@ -13,14 +13,14 @@ Packet* gpoPacketCache;
 Array<NetAdapter::SERVICE_NAVI> goNaviCache;
 
 BattleLog goBattleLog;
-
 LogicServer::LogicServer()
 {
 	m_uInPackets = 0;
 	m_uOutPackets = 0;
 	m_oMsgBalancer.SetEventHandler(&m_oNetEventHandler);
-	gpoPacketCache = Packet::Create();
+	gpoPacketCache = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	goPKWriter.SetPacket(gpoPacketCache);
+	m_pInnerNet = NULL;
 }
 
 LogicServer::~LogicServer()
@@ -28,6 +28,10 @@ LogicServer::~LogicServer()
 	if (gpoPacketCache != NULL)
 	{
 		gpoPacketCache->Release();
+	}
+	if (m_pInnerNet != NULL)
+	{
+		m_pInnerNet->Release();
 	}
 }
 
@@ -43,7 +47,7 @@ bool LogicServer::Init(int8_t nServiceID)
 	}
 
 	// Init network
-	m_pInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_pInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 8, &m_oNetEventHandler);
 	if (m_pInnerNet == NULL)
 	{
 		return false;
@@ -58,7 +62,7 @@ bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 	{
 		return false;
 	}
-	Packet* poPacket = Packet::Create();
+	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacket == NULL) {
 		return false;
 	}
@@ -70,7 +74,7 @@ bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_pInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
 	XLog(LEVEL_INFO, "RegToRouter %d\n", nRouterServiceID);
@@ -84,6 +88,7 @@ bool LogicServer::Start()
 	{
 		ProcessNetEvent(10);
 		nNowMS = XTime::MSTime();
+		Service::Update(nNowMS);
 		ProcessTimer(nNowMS);
 		ProcessLoopCount(nNowMS);
 	    m_oSceneMgr.Update(nNowMS);
@@ -177,13 +182,13 @@ void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket)
 	if (!poPacket->GetInnerHeader(oHeader, &pSessionArray, true))
 	{
 		XLog(LEVEL_ERROR, "%s: Packet get fail\n", GetServiceName());
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);

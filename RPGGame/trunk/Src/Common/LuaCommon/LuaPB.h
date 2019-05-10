@@ -8,7 +8,7 @@ static int LuaPBPack(lua_State* pState)
 {
 	size_t uSize = 0;
 	uint8_t* pData = (uint8_t*)luaL_checklstring(pState, 1, &uSize);
-	Packet* poPacket = Packet::Create((int)uSize + 88); //sizeof(INNER_HEADER)+20*sizeof(int)
+	Packet* poPacket = Packet::Create((int)uSize + 88, nPACKET_OFFSET_SIZE, __FILE__, __LINE__); //sizeof(INNER_HEADER)+20*sizeof(int)
 	if (poPacket == NULL) {
 		return LuaWrapper::luaM_error(pState, "Create packet fail\n");
 	}

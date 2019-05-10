@@ -1,13 +1,16 @@
-﻿#include "Include/Network/Network.hpp"
+﻿//#include <vld.h>
+
+#include "Include/Network/Network.hpp"
+#include "Include/DBDriver/DBDriver.hpp"
 #include "Common/DataStruct/XTime.h"
 #include "Common/MGHttp/HttpLua.hpp"
+#include "Common/TimerMgr/TimerMgr.h"
 #include "Server/GlobalServer/GlobalServer.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogServer/PacketProc/PacketProc.h"
 #include "Server/LogServer/LuaSupport/LuaExport.h"
 
 ServerContext* g_poContext;
-
 bool InitNetwork(int8_t nServiceID)
 {
 	GlobalNode* poNode = NULL;
@@ -42,10 +45,19 @@ static void MonitorThreadFunc(void* pParam)
 {
 	uint32_t uLastMainLoops = 0;
 	uint32_t uNowMainLoops = 0;
-	for (;;)
+	uint32_t nTimeCount = 0;
+	while (g_poContext != NULL)
 	{
-		XTime::MSSleep(30000);
-
+		XTime::MSSleep(1000);
+		if (g_poContext == NULL)
+		{
+			break;
+		}
+		if (++nTimeCount < 30)
+		{
+			continue;
+		}
+		nTimeCount = 0;
 		uNowMainLoops = g_poContext->GetService()->GetMainLoopCount();
 		if (uNowMainLoops == uLastMainLoops && !LuaWrapper::Instance()->IsBreaking())
 		{
@@ -102,9 +114,18 @@ void OnSigTerm(int)
 	poLuaWrapper->CallLuaRef("CppCloseServerReq", 0);
 }
 
+void OnSigInt(int)
+{
+	if (g_poContext != NULL)
+	{
+		g_poContext->GetService()->Terminate();
+	}
+}
+
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
+	signal(SIGINT, OnSigInt);
 	signal(SIGTERM, OnSigTerm);
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 #ifdef _WIN32
@@ -113,6 +134,7 @@ int main(int nArg, char *pArgv[])
 	atexit(ExitFunc);
 	Logger::Instance()->Init();
 	Logger::Instance()->SetSync(true);
+	MysqlDriver::MysqlLibaryInit();
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -150,6 +172,9 @@ int main(int nArg, char *pArgv[])
 	GlobalServer* poGlobalServer = XNEW(GlobalServer);
 	g_poContext->SetService(poGlobalServer);
 
+	LuaSerialize* poSerialize = XNEW(LuaSerialize);
+	g_poContext->SetLuaSerialize(poSerialize);
+
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
 	if (!bRes)
@@ -179,8 +204,15 @@ int main(int nArg, char *pArgv[])
 		exit(-1);
 	}
 
-	g_poContext->GetService()->GetInnerNet()->Release();
-	g_poContext->GetService()->GetExterNet()->Release();
+	//wchar_t wcBuffer[256] = { L"" };
+	//wsprintfW(wcBuffer, L"global%d.leak", g_poContext->GetService()->GetServiceID());
+	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
+
+	SAFE_DELETE(g_poContext);
+	TimerMgr::Instance()->Release();
+	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();
+	goMonitorThread.Join();
+	MysqlDriver::MysqlLibaryEnd();
 	return 0;
 }

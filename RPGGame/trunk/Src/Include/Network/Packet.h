@@ -2,6 +2,7 @@
 #define __PACKET_H__
 
 #include "Common/Platform.h"
+#include "Common/DataStruct/MutexLock.h"
 
 const int nPACKET_OFFSET_SIZE = 4;			//packet len(4)
 const int nPACKET_DEFAULT_SIZE = 128;		//packet default size
@@ -29,7 +30,7 @@ struct INNER_HEADER
 	uint16_t uTarServer;	//目的服务器ID
 	int8_t nSrcService;		//源服务ID
 	int8_t nTarService;		//目的服务ID
-	uint16_t uSessionNum;	//目的服务数量
+	uint16_t uSessionNum;	//目的会话数量
 	INNER_HEADER(uint16_t _uCmd = 0, uint16_t _uSrcServer = 0, int8_t _nSrcService = 0, uint16_t _uTarServer = 0, int8_t _nTarService = 0, uint16_t _uSessionNum = 0)
 	{
 		uCmd = _uCmd;	
@@ -41,14 +42,30 @@ struct INNER_HEADER
 	}
 };
 
+struct PACK_LOG
+{
+	int nCreateTime;
+	INNER_HEADER oHeader;
+	std::string oFile;
+	std::string oDigest;
+	int16_t nLine;
+};
+
 class Packet
 {
 public:
-	static Packet* Create(int nSize = nPACKET_DEFAULT_SIZE, int nOffset = nPACKET_OFFSET_SIZE);
+	typedef std::unordered_map<uint32_t, PACK_LOG> PacketLogMap;
+	typedef PacketLogMap::iterator PacketLogIter;
+
+public:
+	static Packet* Create(int nSize = nPACKET_DEFAULT_SIZE, int nOffset = nPACKET_OFFSET_SIZE, const char* file = NULL, int line = 0);
+	static uint32_t GetTotalPackets() { return m_uTotalPacket; }
+	static void ClearLeak(uint32_t uExeptID);
+	static void DumpLeak();
 
 	void Reset();
 	void Retain();
-	void Release();
+	void Release(const char* file=NULL, int line=0);
 
 	int16_t  GetRef() { return m_nRef; }
 	uint8_t* GetData() { return m_pData; }
@@ -57,7 +74,7 @@ public:
 	int GetRealDataSize() { return m_nDataSize - m_nOffsetSize; }
 
 public:
-	Packet* DeepCopy();
+	Packet* DeepCopy(const char* file=NULL, int line=0);
 	void Move(int nLen);
 	void CutData(int nSize);
 	bool WriteBuf(const void* pBuf, int nSize);
@@ -85,8 +102,13 @@ public:
     bool CheckAndExpand(int nAppendSize);
 
 private:
-	Packet(int nSize, int nOffset);
-	~Packet() { SAFE_FREE(m_pData); }
+	Packet(int nSize, int nOffset, uint32_t uPacketIndex);
+	~Packet()
+	{
+		m_nDataSize = 0;
+		m_nCapacity = 0;
+		SAFE_FREE(m_pData); 
+	}
 
 private:
     uint8_t* m_pData;
@@ -99,6 +121,14 @@ private:
 	int8_t m_nMasking;
 	int8_t m_nWebSocketMark;
 	uint8_t m_tMaskingKey[4]; //Websocket mask 长度在切包的时候解码,真正数据放到网关解码;
+
+	uint32_t m_uPacketID;
+
+public:
+	static volatile uint32_t m_uTotalPacket;
+	static PacketLogMap m_oPacketLogMap;
+	static MutexLock m_oLock;
+
 	DISALLOW_COPY_AND_ASSIGN(Packet);
 };
 

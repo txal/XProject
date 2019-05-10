@@ -57,9 +57,9 @@ private:
 	uint32_t m_uInPackets;
 	uint32_t m_uOutPackets;
 
-	SceneMgr m_oSceneMgr;
-	RoleMgr m_oRoleMgr;
 	MonsterMgr m_oMonsterMgr;
+	RoleMgr m_oRoleMgr;
+	SceneMgr m_oSceneMgr;
 
 	RobotMgr m_oRobotMgr;
 	DropItemMgr m_oDropItemMgr;

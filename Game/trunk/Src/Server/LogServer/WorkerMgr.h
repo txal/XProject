@@ -3,7 +3,7 @@
 
 #include "Include/DBDriver/DBDriver.hpp"
 #include "Common/Platform.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 #include "Common/DataStruct/MutexLock.h"
 
 struct Query
@@ -19,7 +19,7 @@ struct Query
 
 struct Worker
 {
-	Thread oThread;
+	XThread oThread;
 	MutexLock oLock;
 	std::queue<Query> oMsgQueue;
 };

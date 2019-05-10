@@ -24,7 +24,7 @@ void RouterPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket,
 		{
 			XLog(LEVEL_ERROR, "CMD:%d proc not found\n", oHeader.uCmd);
 		}
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 	}
 	else
 	{
@@ -41,7 +41,7 @@ void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEA
 		if (!bRes)
 		{
 			XLog(LEVEL_ERROR, "GetInnerHeader fail\n");
-			poPacket->Release();
+			poPacket->Release(__FILE__, __LINE__);
 			return;
 		}
 		CacheSessionArray(pSessionArray, oHeader.uSessionNum);
@@ -61,14 +61,14 @@ void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEA
 	ServiceNode* poTarService = poRouter->GetService(oHeader.uTarServer, oHeader.nTarService);
 	if (poTarService == NULL)
 	{
-		poPacket->Release();
-		XLog(LEVEL_ERROR, "Cmd:%d target server:%d service:%d not found\n", oHeader.uCmd, oHeader.uTarServer, oHeader.nTarService);
+		poPacket->Release(__FILE__, __LINE__);
+		XLog(LEVEL_ERROR, "Cmd:%d target server:%d service:%d not found src-server=%d src-service=%d\n", oHeader.uCmd, oHeader.uTarServer, oHeader.nTarService, oHeader.uSrcServer, oHeader.nSrcService);
 		return;
 	}
 	INet* pNet = poRouter->GetNetPool()->GetNet(poTarService->GetNetIndex());
 	if (!pNet->SendPacket(poTarService->GetSessionID(), poPacket))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		XLog(LEVEL_ERROR, "Send cmd:%d packet to server:%d service:%d fail\n", oHeader.uCmd, oHeader.uTarServer, oHeader.nTarService);
 	}
 }

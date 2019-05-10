@@ -88,38 +88,72 @@ static bool PrintFrame( lua_State *pState, int32_t uLevel )
     return true;
 }
 
+//文件大小
+static int GetFileSize(FILE* poFile)
+{
+	fseek(poFile, 0, SEEK_END);
+	int nFileSize = ftell(poFile);
+	fseek(poFile, 0, SEEK_SET);
+	return nFileSize;
+}
+
 //-----------------------------------------------------
 // 显示脚本某一行
 //-----------------------------------------------------
 static bool ShowLine( const char* psFilePathName, int line, bool bIsCurLine, bool bIsBreakLine )
 {
-	SCRIPT* poScript = LuaWrapper::Instance()->FindScript(psFilePathName);
-    if( poScript == NULL || poScript->pCont == NULL)
+	std::string oFilePathName = psFilePathName;
+	oFilePathName += ".lua";
+	FILE* poFile = fopen(oFilePathName.c_str(), "rb");
+	if (poFile == NULL)
+	{
+		std::string oTmpPath = "../Script/" + oFilePathName;
+		poFile = fopen(oTmpPath.c_str(), "rb");
+		if (poFile == NULL)
+		{
+			oTmpPath = "./Script/" + oFilePathName;
+			poFile = fopen(oTmpPath.c_str(), "rb");
+			if (poFile == NULL)
+			{
+				XLog(LEVEL_DEBUG, "file open fail. file=%s\n", oFilePathName.c_str());
+				return false;
+			}
+		}
+	}
+	int nFileSize = GetFileSize(poFile);
+	char* pCont = (char*)XALLOC(NULL, nFileSize+1);
+	if (pCont == NULL)
+	{
+        XLog(LEVEL_DEBUG, "Memory out!\n");
+		return false;
+	}
+	pCont[nFileSize] = 0;
+	int nReadSize = (int)fread(pCont, 1, nFileSize, poFile);
+	fclose(poFile);
+
+    if(nReadSize <= 0)
     {
         XLog(LEVEL_DEBUG, "Source not available.\n" );
+		SAFE_FREE(pCont);
         return false;
     }
     else
     {
-		int c = poScript->pCont[0];
+		int c = pCont[0];
         if ( c == '#' || c == LUA_SIGNATURE[0] ) 
         {
 			XLog(LEVEL_DEBUG,"%s\t%d(can not support binary file)\n", psFilePathName, line);
         }
         else
         {
-			char* sBuf = (char*)XALLOC(NULL, sizeof(char) * (poScript->nSize + 1));
-			memcpy(sBuf, poScript->pCont, poScript->nSize);
-            sBuf[poScript->nSize] = 0;
-
-            char* pCur = sBuf;
+            char* pCur = pCont;
             for( int i = 0; i < line - 1; pCur++ )
             {
                 if( *pCur == 0 )
                 {
 					std::string sFileName = GetFileNameFromPathName(psFilePathName);
 					XLog(LEVEL_DEBUG,"Line number %d out of range; %s has %d lines.\n", i + 2, sFileName.c_str(), i + 1);
-					SAFE_FREE(sBuf);
+					SAFE_FREE(pCont);
                     return false;
                 }
                 if( *pCur == '\n' )
@@ -140,18 +174,22 @@ static bool ShowLine( const char* psFilePathName, int line, bool bIsCurLine, boo
 			XLog(LEVEL_DEBUG,"%d", line);
 			XLog(LEVEL_DEBUG," ");
 
-            if(bIsBreakLine)
-				XLog(LEVEL_DEBUG,"B");
-            else
-				XLog(LEVEL_DEBUG," ");
-            if(bIsCurLine)
-				XLog(LEVEL_DEBUG,">>");
-
+			if (bIsBreakLine)
+			{
+				XLog(LEVEL_DEBUG, "B");
+			}
+			else
+			{
+				XLog(LEVEL_DEBUG, " ");
+			}
+			if (bIsCurLine)
+			{
+				XLog(LEVEL_DEBUG, ">>");
+			}
 			XLog(LEVEL_DEBUG,"\t%s\n", pCur);
-
-			SAFE_FREE(sBuf);
         }
     }
+	SAFE_FREE(pCont);
     return true;
 }
 
@@ -612,8 +650,8 @@ bool LuaDebugger::Debug()
 void LuaDebugger::SetStepOut()
 {
     lua_sethook( m_pState, &LuaDebugger::HookProc, LUA_MASKCALL | LUA_MASKRET | (HaveBreakPoint()?LUA_MASKLINE:0), 0 );
-    m_nRunningStackLevel=GetRunStackDepth(m_pState);
-    m_nBreakStackLevel=m_nRunningStackLevel-1;	//堆栈级别必须比当前执行深度小1
+    m_nRunningStackLevel = GetRunStackDepth(m_pState);
+    m_nBreakStackLevel = m_nRunningStackLevel-1;	//堆栈级别必须比当前执行深度小1
 }
 
 bool LuaDebugger::PrintLine( lua_State *pState, uint32_t uLevel, int32_t nLine, bool bIsCurLine )
@@ -631,7 +669,7 @@ bool LuaDebugger::PrintLine( lua_State *pState, uint32_t uLevel, int32_t nLine, 
 
     bool bIsBreakLine=m_setBreakPoint.find( BreakPoint(ld.source,nLine) )!=m_setBreakPoint.end();		
 
-    return ShowLine( ld.source, nLine, bIsCurLine, bIsBreakLine );
+    return ShowLine(ld.source, nLine, bIsCurLine, bIsBreakLine );
 }
 
 bool LuaDebugger::HitBreakPoint( lua_State* pState,lua_Debug* pDebug ) const

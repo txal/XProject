@@ -18,6 +18,7 @@ public:
 
 public:
 	RoleMgr();
+	~RoleMgr();
 
 	Role* CreateRole(int nID, int nConfID, const char* psName, uint16_t uServer, int nSession);
 	void RemoveRole(int nID);

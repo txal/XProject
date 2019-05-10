@@ -5,7 +5,7 @@
 
 namespace HexStr
 {
-	int ByteToHexStr(const unsigned char* source, char* dest, int sourceLen)
+	static int ByteToHexStr(const unsigned char* source, char* dest, int sourceLen)
 	{
 		short i;
 		unsigned char highByte, lowByte;
@@ -31,7 +31,7 @@ namespace HexStr
 		return sourceLen * 2;
 	}
 
-	int HexStrToByte(const char* source, unsigned char* dest, int sourceLen)
+	static int HexStrToByte(const char* source, unsigned char* dest, int sourceLen)
 	{
 		short i;
 		unsigned char highByte, lowByte;

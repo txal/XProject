@@ -2,6 +2,7 @@
 #include "Include/Network/NetAPI.h"
 #include "Include/Network/NetEventDef.h"
 #include "Include/Network/NetEventHandler.h"
+#include "Include/Network/Packet.h"
 #include "LibNetwork/Session.h"
 
 Net::Net()
@@ -29,6 +30,18 @@ Net::Net()
 
 Net::~Net()
 {
+	REQUEST_PACKET oReq;
+	while (m_oMailBox.Recv(&oReq, 0))
+	{
+		if (oReq.uCtrlType == eCTRL_SEND)
+		{
+			if (oReq.U.oSend.pData != NULL)
+			{
+				((Packet*)(oReq.U.oSend.pData))->Release(__FILE__, __LINE__);
+			}
+		}
+	}
+
 	for (int i = 0; i < m_nMaxSessions; i++)
 	{
 		if (m_poSessionArray[i] != NULL)
@@ -42,6 +55,7 @@ Net::~Net()
 }
 void Net::Release()
 {
+	m_poNetEventHandler = NULL;
 	m_pNetAe->Stop();
 	m_pNetAe->Join();
 	delete(this);
@@ -449,8 +463,9 @@ void Net::DoListen(REQUEST_LISTEN* pRequest)
 	SESSION* pSession = CreateSession(nSock, uIP, nPort, SESSION_TYPE_LISTEN);
 	if (pSession == NULL)
 	{
-		XLog(LEVEL_ERROR, "%s: Listen port:%d fail\n", m_sNetName, nPort);
+		XLog(LEVEL_ERROR, "%s: Listen port:%d fail. exit\n", m_sNetName, nPort);
 		NetAPI::CloseSocket(nSock);
+		exit(1);
 		return;
 	}
 	XLog(LEVEL_INFO, "%s: Listen at port:%d\n", m_sNetName, nPort);
@@ -509,7 +524,7 @@ void Net::DoSend(REQUEST_SEND* pRequest)
 	SESSION* pSession = GetSession(nSessionID);
 	if (pSession == NULL)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	pSession->oPacketList.PushBack(poPacket);
@@ -692,7 +707,7 @@ void Net::OnRecvPacket(void* pUD, Packet* poPacket)
 	if (m_poNetEventHandler == NULL)
 	{
 		XLog(LEVEL_ERROR, "%s: Msg handler not init\n", m_sNetName);
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	SESSION* pSession = (SESSION*)pUD;

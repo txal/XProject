@@ -65,7 +65,7 @@ void PacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket, INNER
 	{
 		XLog(LEVEL_ERROR, "CMD:%d proc not found\n", oHeader.uCmd);
 	}
-	poPacket->Release();
+	poPacket->Release(__FILE__, __LINE__);
 }
 
 void PacketHandler::RegsterExterPacketProc(uint16_t uCmd, void* pPacketProc)
@@ -99,7 +99,7 @@ void PacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket, EXTER
 	{
 			XLog(LEVEL_ERROR, "CMD:%d proc not found\n", oHeader.uCmd);
 	}
-	poPacket->Release();
+	poPacket->Release(__FILE__, __LINE__);
 }
 
 void PacketHandler::CacheSessionArray(int* pnSessionOffset, int nCount)

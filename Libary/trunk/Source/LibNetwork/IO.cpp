@@ -29,7 +29,7 @@ int DefaultSplitPacket(HSOCKET nSock, void* pUD, RECVBUF& oRecvBuf, Net* poNet)
 		}
 		pPos += nDataSize;
 		int nPacketSize = sizeof(int) + nDataSize;
-		Packet* poPacket = Packet::Create(nPacketSize + sizeof(INNER_HEADER)*2);
+		Packet* poPacket = Packet::Create(nPacketSize + sizeof(INNER_HEADER)*2, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 		poPacket->FillData(pSpPos, nPacketSize);
         poNet->OnRecvPacket(pUD, poPacket);
 		pSpPos = pPos;
@@ -152,16 +152,16 @@ int IOWrite(HSOCKET nSock, MsgList* poMsgList, uint32_t nMaxWritePerEvent, uint3
 			{
 				poPacket->SetSentSize(0);
 			}
-			poPacket->Release();
+			poPacket->Release(__FILE__, __LINE__);
 			(*pSentPackets)++;
 		}
 		else if (poPacket->GetRef() > 1)
 		{
 			poMsgList->PopFront();
-			Packet* poNewPacket = poPacket->DeepCopy();
+			Packet* poNewPacket = poPacket->DeepCopy(__FILE__, __LINE__);
 			poMsgList->PushFront(poNewPacket);
 			poPacket->SetSentSize(0);
-			poPacket->Release();
+			poPacket->Release(__FILE__, __LINE__);
 		}
 		(*pTotalWrited) += nWrited;
 		if ((*pTotalWrited) >= nMaxWritePerEvent)

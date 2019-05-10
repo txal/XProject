@@ -1,6 +1,16 @@
 ﻿#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Include/Logger/Logger.hpp"
 
+
+MapConfMgr::~MapConfMgr()
+{
+	ConfIter iter = m_oConfMap.begin();
+	for (; iter != m_oConfMap.end(); iter++)
+	{
+		SAFE_FREE(iter->second.pMapGrid);
+	}
+}
+
 MapConf* MapConfMgr::GetConf(int nID)
 {
 	ConfIter iter = m_oConfMap.find(nID);
@@ -18,7 +28,7 @@ bool MapConfMgr::Init(CSVDocument* poCSVDoc)
 	assert(nCols >= 2);
 
 	CSVDocument oDoc;
-	for (int i = 2; i < nRows; i++)
+	for (int i = 3; i < nRows; i++)
 	{
 		int nID = (int)poCSVDoc->getValue(i, "nID");
 		std::string sFile = (const char*)poCSVDoc->getValue(i, "sFile");

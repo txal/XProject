@@ -25,6 +25,14 @@ Gateway::Gateway()
 
 Gateway::~Gateway()
 {
+	if (m_poExterNet != NULL)
+	{
+		m_poExterNet->Release();
+	}
+	if (m_poInnerNet != NULL)
+	{
+		m_poInnerNet->Release();
+	}
 }
 
 bool Gateway::Init(GateNode* poConf)
@@ -44,7 +52,7 @@ bool Gateway::Init(GateNode* poConf)
 	{
 		return false;
 	}
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, poConf->uID, 1024, &m_oNetEventHandler);
+	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, poConf->uID, 8, &m_oNetEventHandler);
 	if (m_poInnerNet == NULL)
 	{
 		return false;
@@ -60,7 +68,7 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 {
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
-	Packet* poPacket = Packet::Create();
+	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacket == NULL)
 	{
 		return false;
@@ -73,7 +81,7 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
 	return true;
@@ -95,6 +103,7 @@ bool Gateway::Start()
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMSTime = XTime::MSTime();
+		Service::Update(nNowMSTime);
 		ProcessTimer(nNowMSTime);
 		m_oClientMgr.Update(nNowMSTime);
 	}
@@ -207,7 +216,7 @@ void Gateway::OnExterNetClose(int nSessionID)
 
 	oNavi.nTarSession = nSessionID;
 
-	Packet* poPacket = Packet::Create();
+	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacket == NULL)
 	{
 		return;
@@ -240,7 +249,7 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	Client* poClient = m_oClientMgr.GetClientBySession(nSessionID);
 	if (poClient == NULL)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: client:%d not exist\n", GetServiceName(), nSessionID);
 		return;
 	}
@@ -249,7 +258,7 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	EXTER_HEADER oExterHeader;
 	if (!poPacket->GetExterHeader(oExterHeader, true))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		GetExterNet()->Close(nSessionID);
 		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet get exter header fail\n", GetServiceName());
 		return;
@@ -262,7 +271,7 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	//重放攻击检测
 	if (oExterHeader.uPacketIdx <= poClient->m_uCmdIndex)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		GetExterNet()->Close(nSessionID);
 		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet cmd index error(%d,%d)\n", GetServiceName(), oExterHeader.uPacketIdx, poClient->m_uCmdIndex);
 		return;
@@ -308,13 +317,13 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 	if (!poPacket->GetInnerHeader(oHeader, &pSessionArray, true))
 	{
 		XLog(LEVEL_INFO, "%s: Get inner header fail\n", GetServiceName());
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	if (m_bDebugNetwork) {

@@ -1,6 +1,5 @@
-﻿#include "Common/DataStruct/Array.h"
-#include "Common/LuaCommon/LuaSerialize.h"
-#include "Include/Script/Script.hpp"
+﻿#include "Common/LuaCommon/LuaSerialize.h"
+#include "Server/Base/ServerContext.h"
 
 #define TYPE_NIL 0
 #define TYPE_BOOLEAN 1
@@ -26,27 +25,8 @@
 #define BLOCK_SIZE 128
 #define MAX_DEPTH 32                                                                                                                                                   
 
-//buffer
-static Array<uint8_t> _array;
-
-template<typename T>
-static inline void TWriteData(T val)
-{
-	int nNewSize = _array.Size() + sizeof(val);
-	if (!_array.Reserve(nNewSize)) return;
-	*(T*)(_array.Ptr()+_array.Size()) = val;
-	_array.SetSize(nNewSize);
-}
-static inline void TWriteStr(const char* str, int len)
-{
-	int nNewSize = _array.Size() + len;
-	if (!_array.Reserve(nNewSize)) return;
-	memcpy(_array.Ptr() + _array.Size(), str, len);
-	_array.SetSize(nNewSize);
-}
-
 //Pack
-static inline void _PackInteger(lua_Integer nVal)
+void LuaSerialize::_PackInteger(lua_Integer nVal)
 {
 	if (nVal == 0)
 	{
@@ -85,14 +65,14 @@ static inline void _PackInteger(lua_Integer nVal)
 	}
 }
 
-static inline void _PackNumber(double fVal)
+void LuaSerialize::_PackNumber(double fVal)
 {
 	uint8_t nCT = COMBINE_TYPE(TYPE_NUMBER, TYPE_NUMBER_REAL);
 	TWriteData<uint8_t>(nCT);
 	TWriteData<double>((double)fVal);
 }
 
-static inline void _PackString(const char* pStr, int nLen)
+void LuaSerialize::_PackString(const char* pStr, int nLen)
 {
 	if (nLen < MAX_COOKIE)
 	{
@@ -122,8 +102,7 @@ static inline void _PackString(const char* pStr, int nLen)
 	}
 }
 
-static void _PackTable(lua_State* L, int nIndex, int nDepth);
-static inline void _PackOne(lua_State* L, int nIndex, int nDepth)
+void LuaSerialize::_PackOne(lua_State* L, int nIndex, int nDepth)
 {
 	if (nDepth > MAX_DEPTH)
 	{
@@ -180,7 +159,7 @@ static inline void _PackOne(lua_State* L, int nIndex, int nDepth)
 	}
 }
 
-static inline void _PackTable(lua_State* L, int nIndex, int nDepth)
+void LuaSerialize::_PackTable(lua_State* L, int nIndex, int nDepth)
 {
 	if (nIndex < 0)
 	{
@@ -229,53 +208,7 @@ static inline void _PackTable(lua_State* L, int nIndex, int nDepth)
 	TWriteData<uint8_t>(nByte);
 }
 
-static inline int LuaEncode(lua_State* L)
-{
-	_array.Clear();
-	_PackOne(L, 1, 0);
-	if (_array.Size() <= 0)
-	{
-		lua_pushstring(L, "");
-	}
-	else
-	{
-		lua_pushlstring(L, (const char*)_array.Ptr(), _array.Size());
-	}
-	return 1;
-}
-
-// Unpack
-static inline void _InvalidPacket(lua_State* L, int nLine)
-{
-	LuaWrapper::luaM_error(L, "Invalid packet:%d\n", nLine);
-}
-
-template<typename T>
-static inline void _ReadNumber(lua_State* L, const uint8_t*& pBuf, int& nSize, T& tVal, int nRead)
-{
-	if (nSize < nRead)
-	{
-		_InvalidPacket(L, __LINE__);
-		return;
-	}
-	tVal = *(T*)pBuf;
-	pBuf += nRead;
-	nSize -= nRead;
-}
-
-static inline void _ReadBuf(lua_State* L, const uint8_t*& pBuf, int& nSize, int nRead)
-{
-	if (nSize < nRead)
-	{
-		_InvalidPacket(L, __LINE__);
-		return;
-	}
-	lua_pushlstring(L, (char*)pBuf, nRead);
-	pBuf += nRead;
-	nSize -= nRead;
-}
-
-static inline lua_Integer _UnpackInteger(lua_State* L, const uint8_t*& pBuf, int& nSize, int nCookie)
+lua_Integer LuaSerialize::_UnpackInteger(lua_State* L, const uint8_t*& pBuf, int& nSize, int nCookie)
 {
 	lua_Integer nValTar = 0;
 	switch (nCookie)
@@ -322,14 +255,7 @@ static inline lua_Integer _UnpackInteger(lua_State* L, const uint8_t*& pBuf, int
 	return nValTar;
 }
 
-static inline double _UnpackNumber(lua_State* L, const uint8_t*& pBuf, int& nSize, int nCookie)
-{
-	double fVal = 0.0;
-	_ReadNumber(L, pBuf, nSize, fVal, sizeof(fVal));
-	return fVal;
-}
-
-static inline void _UnpackString(lua_State* L, const uint8_t*& pBuf, int& nSize, int nType, int nCookie)
+void LuaSerialize::_UnpackString(lua_State* L, const uint8_t*& pBuf, int& nSize, int nType, int nCookie)
 {
 	if (nType == TYPE_SHORT_STRING)
 	{
@@ -357,8 +283,7 @@ static inline void _UnpackString(lua_State* L, const uint8_t*& pBuf, int& nSize,
 	}
 }
 
-static void _UnpackValue(lua_State* L, const uint8_t*& pBuf, int& nSize, int nType, int nCookie);
-static inline void _UnpackOne(lua_State* L, const uint8_t*& pBuf, int& nSize)
+void LuaSerialize::_UnpackOne(lua_State* L, const uint8_t*& pBuf, int& nSize)
 {
 	uint8_t nCT = 0;
 	_ReadNumber(L, pBuf, nSize, nCT, (int)sizeof(nCT));
@@ -367,7 +292,7 @@ static inline void _UnpackOne(lua_State* L, const uint8_t*& pBuf, int& nSize)
 	_UnpackValue(L, pBuf, nSize, nType, nCookie);
 }
 
-static void _UnpackTable(lua_State* L, const uint8_t*& pBuf, int& nSize, int nCookie)
+void LuaSerialize::_UnpackTable(lua_State* L, const uint8_t*& pBuf, int& nSize, int nCookie)
 {
 	int nArraySize = nCookie;
 	if (nArraySize == MAX_COOKIE - 1)
@@ -400,7 +325,7 @@ static void _UnpackTable(lua_State* L, const uint8_t*& pBuf, int& nSize, int nCo
 	}
 }
 
-static inline void _UnpackValue(lua_State* L, const uint8_t*& pBuf, int& nSize, int nType, int nCookie)
+void LuaSerialize::_UnpackValue(lua_State* L, const uint8_t*& pBuf, int& nSize, int nType, int nCookie)
 {
 	switch (nType)
 	{
@@ -447,8 +372,37 @@ static inline void _UnpackValue(lua_State* L, const uint8_t*& pBuf, int& nSize, 
 	}
 }
 
+int LuaEncode(lua_State* L)
+{
+	LuaSerialize* pSerializer = g_poContext->GetLuaSerialize();
+	if (pSerializer == NULL)
+	{
+		return LuaWrapper::luaM_error(L, "LuaSerialize instance not exist");
+	}
+
+	pSerializer->GetByteArray()->Clear();
+	pSerializer->_PackOne(L, 1, 0);
+	if (pSerializer->GetByteArray()->Size() <= 0)
+	{
+		lua_pushstring(L, "");
+	}
+	else
+	{
+		lua_pushlstring(L, (const char*)pSerializer->GetByteArray()->Ptr(), pSerializer->GetByteArray()->Size());
+	}
+	return 1;
+}
+
+
+
 static inline int LuaDecode(lua_State* L)
 {
+	LuaSerialize* pSerializer = g_poContext->GetLuaSerialize();
+	if (pSerializer == NULL)
+	{
+		return LuaWrapper::luaM_error(L, "LuaSerialize instance not exist");
+	}
+
 	size_t nLen = 0;
 	const char* pStr = luaL_checklstring(L, 1, &nLen);
 	if (nLen <= 0)
@@ -471,10 +425,10 @@ static inline int LuaDecode(lua_State* L)
 			break;
 		}
 		uint8_t nCT = 0;
-		_ReadNumber(L, pBuf, nSize, nCT, (int)sizeof(nCT));
+		pSerializer->_ReadNumber(L, pBuf, nSize, nCT, (int)sizeof(nCT));
 		int nType = nCT & 0x7;
 		int nCookie = nCT >> 3;
-		_UnpackValue(L, pBuf, nSize, nType, nCookie);
+		pSerializer->_UnpackValue(L, pBuf, nSize, nType, nCookie);
 	}
 	return lua_gettop(L);
 }

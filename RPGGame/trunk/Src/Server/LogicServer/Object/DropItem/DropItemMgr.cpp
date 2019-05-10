@@ -12,6 +12,15 @@ DropItemMgr::DropItemMgr()
 {
 }
 
+DropItemMgr::~DropItemMgr()
+{
+	DropItemIter iter = m_oDropItemMap.begin();
+	for (iter; iter != m_oDropItemMap.end(); iter++)
+	{
+		SAFE_DELETE(iter->second);
+	}
+}
+
 DropItem* DropItemMgr::CreateDropItem(int nID, int nConfID, const char* psName, int nAliveTime, int nCamp)
 {
 	DropItem* poDropItem = GetDropItemByID(nID);

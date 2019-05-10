@@ -1,4 +1,6 @@
-﻿#include "Server/LogServer/LogServer.h"
+﻿//#include <vld.h>
+
+#include "Server/LogServer/LogServer.h"
 #include "Include/Network/Network.hpp"
 #include "Common/DataStruct/XTime.h"
 #include "Common/MGHttp/HttpLua.hpp"
@@ -74,9 +76,18 @@ void OnSigTerm(int)
 	XLog(LEVEL_INFO, "receive sigterm signal!\n");
 }
 
+void OnSigInt(int)
+{
+	if (g_poContext != NULL)
+	{
+		g_poContext->GetService()->Terminate();
+	}
+}
+
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
+	signal(SIGINT, OnSigInt);
 	signal(SIGTERM, OnSigTerm);
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 #ifdef _WIN32
@@ -85,6 +96,7 @@ int main(int nArg, char *pArgv[])
 	atexit(ExitFunc);
 	Logger::Instance()->Init();
 	Logger::Instance()->SetSync(true);
+	MysqlDriver::MysqlLibaryInit();
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -124,6 +136,9 @@ int main(int nArg, char *pArgv[])
 	poLogServer->Init(nServiceID);
 	g_poContext->SetService(poLogServer);
 
+	LuaSerialize* poSerialize = XNEW(LuaSerialize);
+	g_poContext->SetLuaSerialize(poSerialize);
+
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
 	if (!bRes)
@@ -140,7 +155,9 @@ int main(int nArg, char *pArgv[])
 		if (oNode.uServer == oSrvConf.uServerID && oNode.uID == poLogServer->GetServiceID())
 		{
 			if (oNode.sHttpAddr[0] != '\0')
+			{
 				goHttpServer.Init(oNode.sHttpAddr);
+			}
 			WorkerMgr::Instance()->Init(oNode.uWorkers);
 			break;
 		}
@@ -155,7 +172,15 @@ int main(int nArg, char *pArgv[])
 		exit(-1);
 	}
 
-	g_poContext->GetService()->GetInnerNet()->Release();
+	//wchar_t wcBuffer[256] = { L"" };
+	//wsprintfW(wcBuffer, L"log%d.leak", g_poContext->GetService()->GetServiceID());
+	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
+
+	SAFE_DELETE(g_poContext);
+	TimerMgr::Instance()->Release();
+	WorkerMgr::Instance()->Release();
+	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();
+	MysqlDriver::MysqlLibaryEnd();
 	return 0;
 }

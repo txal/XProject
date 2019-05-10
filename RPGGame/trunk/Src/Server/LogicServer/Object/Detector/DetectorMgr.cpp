@@ -12,6 +12,15 @@ DetectorMgr::DetectorMgr()
 {
 }
 
+DetectorMgr::~DetectorMgr()
+{
+	DetectorIter iter = m_oDetectorMap.begin();
+	for (iter; iter != m_oDetectorMap.end(); iter++)
+	{
+		SAFE_DELETE(iter->second);
+	}
+}
+
 Detector* DetectorMgr::CreateDetector(int nID, int nConfID, const char* psName)
 {
 	Detector* poDetector = GetDetectorByID(nID);

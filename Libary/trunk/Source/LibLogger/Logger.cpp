@@ -89,7 +89,7 @@ void Logger::Init()
 	setvbuf(stderr, NULL, _IONBF, 0);
 	FILE* poPipeWrite = _fdopen(m_nPipeFds[1], "w");
 	setvbuf(poPipeWrite, NULL, _IONBF, 0);
-    m_oLogThread.Create(Logger::LogThread, this);
+    m_oLogThread.Create(Logger::LogThread, this, false);
 }
 
 void Logger::SetLogFile(const char* psPath, const char* psName)

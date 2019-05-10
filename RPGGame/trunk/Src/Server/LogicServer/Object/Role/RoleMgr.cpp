@@ -14,6 +14,16 @@ RoleMgr::RoleMgr()
 {
 }
 
+RoleMgr::~RoleMgr()
+{
+	RoleIter iter = m_oRoleIDMap.begin();
+	for (iter; iter != m_oRoleIDMap.end(); iter++)
+	{
+		SAFE_DELETE(iter->second);
+	}
+	m_oRoleSSMap.clear();
+}
+
 Role* RoleMgr::CreateRole(int nID, int nConfID, const char* psName, uint16_t uServer, int nSession)
 {
 	Role* poRole = GetRoleByID(nID);
@@ -128,6 +138,7 @@ void RoleMgr::Update(int64_t nNowMS)
 	}
 	nLastMSTime = nNowMS;
 
+	int nRoleCount = 0;
 	RoleIter iter = m_oRoleIDMap.begin();
 	RoleIter iter_end = m_oRoleIDMap.end();
 	for (; iter != iter_end; iter++)
@@ -137,7 +148,15 @@ void RoleMgr::Update(int64_t nNowMS)
 		{
 			poRole->Update(nNowMS);
 		}
+		nRoleCount++;
 	}	
+
+	static int64_t nLastDumpTime = 0;
+	if (nNowMS-nLastDumpTime >= 60000)
+	{
+		nLastDumpTime = nNowMS;
+		XLog(LEVEL_INFO, "CPP current role count=%d\n", nRoleCount);
+	}
 }
 
 

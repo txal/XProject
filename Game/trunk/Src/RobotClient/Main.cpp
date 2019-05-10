@@ -118,7 +118,7 @@ int main()
 	poLuaWrapper->DoFile("RobotClt/Main");
 	poLuaWrapper->CallLuaFunc(NULL, "Main");
 
-	Thread oCmdThread;
+	XThread oCmdThread;
 	oCmdThread.Create(CmdProc, poRobotMgr);
 	poRobotMgr->Start();
 

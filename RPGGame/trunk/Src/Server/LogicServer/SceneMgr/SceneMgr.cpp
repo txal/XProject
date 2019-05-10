@@ -1,7 +1,7 @@
 ﻿#include "SceneMgr.h"
 #include "Common/DataStruct/XTime.h"
 #include "Common/DataStruct/ObjID.h"
-#include "Common/Debug.h"
+#include "Common/CDebug.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Server/LogicServer/Object/Role/RoleMgr.h"
@@ -15,6 +15,8 @@ LUNAR_IMPLEMENT_CLASS(SceneMgr)
 	LUNAR_DECLARE_METHOD(SceneMgr, RemoveDup),
 	LUNAR_DECLARE_METHOD(SceneMgr, GetDup),
 	LUNAR_DECLARE_METHOD(SceneMgr, SetFollow),
+	LUNAR_DECLARE_METHOD(SceneMgr, GetSceneList),
+	LUNAR_DECLARE_METHOD(SceneMgr, DumpSceneInfo),
 	{0, 0}
 };
 
@@ -25,6 +27,11 @@ SceneMgr::SceneMgr()
 
 SceneMgr::~SceneMgr()
 {
+	SceneIter iter = m_oSceneMap.begin();
+	for (iter; iter != m_oSceneMap.end(); iter++)
+	{
+		SAFE_DELETE(iter->second);
+	}
 }
 
 
@@ -65,6 +72,7 @@ void SceneMgr::Update(int64_t nNowMS)
 	}
 	nLastMSTime = nNowMS;
 
+	int nSceneCount = 0;
 	SceneIter iter = m_oSceneMap.begin();
 	SceneIter iter_end = m_oSceneMap.end();
 	for (; iter != iter_end; )
@@ -82,7 +90,15 @@ void SceneMgr::Update(int64_t nNowMS)
 		{
 			poScene->Update(nNowMS);
 		}
+		nSceneCount++;
 		iter++;
+	}
+
+	static int64_t nLastDumpTime = 0;
+	if (nNowMS-nLastDumpTime >= 60000)
+	{
+		nLastDumpTime = nNowMS;
+		XLog(LEVEL_INFO, "CPP current scene count=%d\n", nSceneCount);
 	}
 }
 
@@ -135,7 +151,7 @@ int SceneMgr::CreateDup(lua_State* pState)
 		return LuaWrapper::luaM_error(pState, sBuff);
 	}
 
-	Scene* poScene = XNEW(Scene)(this, nSceneMixID, poMapConf, bCanCollected);
+	Scene* poScene = XNEW(Scene)(this, nSceneMixID, poMapConf, bCanCollected, nDupType);
 	if (!poScene->InitAOI(poMapConf->nPixelWidth, poMapConf->nPixelHeight, nLineObjs))
 	{
 		SAFE_DELETE(poScene);  
@@ -241,7 +257,7 @@ int SceneMgr::SetFollow(lua_State* pState)
 			if (nTmpObjID == nObjMixID)
 			{
 				XLog(LEVEL_ERROR, "Can not follow self type:%d id:%d\n", oFollowTarget.nObjType, oFollowTarget.nObjID);
-				NSDebug::TraceBack();
+				NSCDebug::TraceBack();
 				continue;
 			}
 
@@ -295,4 +311,46 @@ int SceneMgr::SetFollow(lua_State* pState)
 		poFollowObj->BroadcastPos(true);
 	}
 	return 0;
+}
+
+int SceneMgr::DumpSceneInfo(lua_State* pState)
+{
+	int64_t nDupMixID = (int64_t)lua_tointeger(pState, -1);
+	if (nDupMixID == 0)
+	{
+		SceneIter iter = m_oSceneMap.begin();
+		SceneIter iter_end = m_oSceneMap.end();
+		for (; iter != iter_end; iter++)
+		{
+			Scene* poScene = iter->second;
+			if (poScene->GetSceneType() == 2)
+			{
+				poScene->DumpSceneInfo(pState);
+			}
+		}
+	}
+	else
+	{
+		Scene* poScene = GetScene(nDupMixID);
+		if (poScene == NULL)
+		{
+			XLog(LEVEL_INFO, "Scene not exist mixid=%d\n", nDupMixID);
+			return 0;
+		}
+		poScene->DumpSceneInfo(pState);
+	}
+	return 0;
+}
+
+int SceneMgr::GetSceneList(lua_State* pState)
+{
+	lua_newtable(pState);
+	SceneIter iter = m_oSceneMap.begin();
+	SceneIter iter_end = m_oSceneMap.end();
+	for (int n = 1; iter != iter_end; iter++)
+	{
+		lua_pushinteger(pState, iter->second->GetSceneMixID());
+		lua_rawseti(pState, -2, n++);
+	}
+	return 1;
 }

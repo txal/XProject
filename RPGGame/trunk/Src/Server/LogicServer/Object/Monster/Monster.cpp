@@ -44,8 +44,8 @@ void Monster::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
 void Monster::AfterEnterScene()
 {
 	Actor::AfterEnterScene();
-	Scene* poScene = Actor::GetScene();
-	m_oAStar.InitMapData(poScene->GetMapConf()->nMapID);
+	//Scene* poScene = Actor::GetScene();
+	//m_oAStar.InitMapData(poScene->GetMapConf()->nMapID);
 }
 
 void Monster::OnLeaveScene()

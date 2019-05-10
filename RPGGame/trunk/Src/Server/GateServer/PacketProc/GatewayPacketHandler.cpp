@@ -25,7 +25,7 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 		{
 			XLog(LEVEL_ERROR, "CMD:%d proc not found\n", oHeader.uCmd);
 		}
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 	} 
 	else
 	{
@@ -47,7 +47,7 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 			}
 			if (oNavi.nTarService <= 0)
 			{
-				poPacket->Release();
+				poPacket->Release(__FILE__, __LINE__);
 				XLog(LEVEL_ERROR, "%s: role logic service error\n", poGateway->GetServiceName());
 				return;
 			}
@@ -74,7 +74,7 @@ void GatewayPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket
 		{
 			XLog(LEVEL_ERROR, "CMD:%d proc not found\n", oHeader.uCmd);
 		}
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 	}
 	else
 	{
@@ -103,7 +103,7 @@ void GatewayPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HE
 		{
 			if (!pExterNet->SendPacket(m_oSessionCache[i], poPacket))
 			{
-				poPacket->Release();
+				poPacket->Release(__FILE__, __LINE__);
 			}
 		}
 		else
@@ -111,7 +111,7 @@ void GatewayPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HE
 			poPacket->Retain();
 			if (!pExterNet->SendPacket(m_oSessionCache[i], poPacket))
 			{
-				poPacket->Release();
+				poPacket->Release(__FILE__, __LINE__);
 			}
 		}
 	}

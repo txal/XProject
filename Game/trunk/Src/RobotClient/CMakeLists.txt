@@ -26,4 +26,4 @@ add_executable(RobotClt
 )
 
 target_link_libraries(RobotClt logger network dbdriver luawrapper)
-target_link_libraries(RobotClt ssdb-client lua530 readline lpeg pbc cjson jemalloc pthread rt) 
+target_link_libraries(RobotClt ssdb-client lua530 readline lpeg pbc cjson pthread rt) #jemalloc 

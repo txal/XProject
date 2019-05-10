@@ -8,13 +8,12 @@ ClientMgr::ClientMgr()
 
 ClientMgr::~ClientMgr()
 {
-	ClientIter iter = m_oClientRoleIDMap.begin();
-	ClientIter iter_end = m_oClientRoleIDMap.end();
+	ClientIter iter = m_oClientSessionMap.begin();
+	ClientIter iter_end = m_oClientSessionMap.end();
 	for (; iter != iter_end; iter++)
 	{
 		SAFE_DELETE(iter->second);
 	}
-	m_oClientRoleIDMap.clear();
 	m_oClientSessionMap.clear();
 }
 	
@@ -26,8 +25,8 @@ Client* ClientMgr::CreateClient(int nSessionID, uint32_t uRemoteIP)
 		return NULL;
 	}
 	Client* poClient = XNEW(Client);
-	poClient->m_uRemoteIP = uRemoteIP;
 	poClient->m_nSession = nSessionID;
+	poClient->m_uRemoteIP = uRemoteIP;
 	m_oClientSessionMap[nSessionID] = poClient;
 	return poClient;
 }
@@ -42,11 +41,7 @@ void ClientMgr::OnClientClose(int nSessionID)
 		poClient->m_uRemoteIP = 0;
 		poClient->m_uCmdIndex = 0;
 		m_oClientSessionMap.erase(iter);
-
-		if (m_oClientRoleIDMap.find(poClient->m_nRoleID) == m_oClientRoleIDMap.end())
-		{
-			SAFE_DELETE(poClient);
-		}
+		SAFE_DELETE(poClient);
 	}
 }
 
@@ -54,16 +49,6 @@ Client* ClientMgr::GetClientBySession(int nSessionID)
 {
 	ClientIter iter = m_oClientSessionMap.find(nSessionID);
 	if (iter != m_oClientSessionMap.end())
-	{
-		return iter->second;
-	}
-	return NULL;
-}
-
-Client* ClientMgr::GetClientByRoleID(int nRoleID)
-{
-	ClientIter iter = m_oClientRoleIDMap.find(nRoleID);
-	if (iter != m_oClientRoleIDMap.end())
 	{
 		return iter->second;
 	}
@@ -80,51 +65,17 @@ int ClientMgr::GetClientLogic(int nSessionID)
 	return poClient->m_nLogicService;
 }
 
-void ClientMgr::AddRoleIDMap(int nRoleID, Client* poClient)
-{
-	ClientIter iter = m_oClientRoleIDMap.find(nRoleID);
-	if (iter != m_oClientRoleIDMap.end())
-	{
-		assert(poClient != iter->second);
-		if (GetClientBySession(iter->second->m_nSession) == NULL)
-		{
-			SAFE_DELETE(iter->second);
-		}
-		else
-		{
-			XLog(LEVEL_INFO, "AddRoleIDMap------session:%d\n", iter->second->m_nSession);
-		}
-		m_oClientRoleIDMap.erase(iter);
-	}
-	m_oClientRoleIDMap[nRoleID] = poClient; 
-}
-
-void ClientMgr::OnRoleRelease(int nRoleID)
-{
-	ClientIter iter = m_oClientRoleIDMap.find(nRoleID);
-	if (iter != m_oClientRoleIDMap.end())
-	{
-		if (GetClientBySession(iter->second->m_nSession) == NULL)
-		{
-			SAFE_DELETE(iter->second);
-		}
-		else
-		{
-			XLog(LEVEL_INFO, "OnRoleRelease------session:%d\n", iter->second->m_nSession);
-		}
-		m_oClientRoleIDMap.erase(iter);
-	}
-}
-
 void ClientMgr::Update(int64_t nNowMS)
 {
 	int nTimeNow = (int)time(0);
 	if (m_nLastUpdateTime == nTimeNow)
+	{
 		return;
+	}
 	m_nLastUpdateTime = nTimeNow;
 
-	ClientIter iter = m_oClientRoleIDMap.begin();
-	for (iter; iter != m_oClientRoleIDMap.end(); iter++)
+	ClientIter iter = m_oClientSessionMap.begin();
+	for (iter; iter != m_oClientSessionMap.end(); iter++)
 	{
 		iter->second->Update(nNowMS);
 	}

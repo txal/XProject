@@ -115,7 +115,7 @@ static inline void _PackOne(lua_State* L, Packet* poPacket, int nIndex, int nDep
 {
     if (nDepth > MAX_DEPTH)
     {
-        poPacket->Release();
+        poPacket->Release(__FILE__, __LINE__);
         LuaWrapper::luaM_error(L, "Serialize can't pack too depth table");
         return;
     }
@@ -163,7 +163,7 @@ static inline void _PackOne(lua_State* L, Packet* poPacket, int nIndex, int nDep
 	    }
 	    default:
 	    {
-	        poPacket->Release();
+	        poPacket->Release(__FILE__, __LINE__);
 	        LuaWrapper::luaM_error(L, "Unsupport type %s to serialize", lua_typename(L, nType));
 	        break;
 	    }
@@ -221,7 +221,7 @@ static inline void _PackTable(lua_State* L, Packet* poPacket, int nIndex, int nD
 
 static inline int LuaRpcPack(lua_State* L)
 {
-    Packet* poPacket = Packet::Create();
+    Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacket == NULL) {
 		return LuaWrapper::luaM_error(L, "Create packet fail\n");
 	}

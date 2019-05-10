@@ -48,6 +48,7 @@ public:
 
 public:
 	static LuaWrapper* Instance();
+	static void Release();
 	~LuaWrapper();
 
 	bool Init(bool bDebug);

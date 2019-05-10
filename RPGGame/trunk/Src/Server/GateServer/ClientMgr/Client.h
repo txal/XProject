@@ -16,10 +16,11 @@ public:
 	uint32_t m_uRemoteIP;
 	uint32_t m_uCmdIndex;
 
+	int32_t m_nRoleID;
 	int32_t m_nPacketTime;
 	int8_t m_nLogicService;
 	int32_t m_nLastNotifyTime;
-	int32_t m_nRoleID;
+	int32_t m_nLastKeepAlive;
 };
 
 #endif

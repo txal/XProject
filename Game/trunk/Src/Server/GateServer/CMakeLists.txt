@@ -18,4 +18,4 @@ add_executable(GateServer
 )
 
 target_link_libraries(GateServer logger network luawrapper)
-target_link_libraries(GateServer lua530 readline jemalloc pthread rt)
+target_link_libraries(GateServer lua530 readline pthread rt) #jemalloc 

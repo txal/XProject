@@ -34,7 +34,7 @@ void NSPacketProc::OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_
 		if (poTarService == NULL)
 			return;
 	
-		Packet* poPacketRet = Packet::Create();
+		Packet* poPacketRet = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 		if (poPacketRet == NULL)
 			return;
 
@@ -68,7 +68,7 @@ void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_
 	if (poTarService == NULL)
 		return;
 
-	Packet* poPacketRet = Packet::Create();
+	Packet* poPacketRet = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacketRet == NULL)
 		return;
 

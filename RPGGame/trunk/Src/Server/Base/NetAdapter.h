@@ -8,8 +8,10 @@
 #include "Common/Platform.h"
 #include "Common/DataStruct/Array.h"
 
-namespace NetAdapter
+
+class NetAdapter
 {
+public:
 	//服务导航
 	struct SERVICE_NAVI
 	{
@@ -27,12 +29,28 @@ namespace NetAdapter
 		int8_t nTarService;
 		int nTarSession;
 	};
+	//按服务器和网关分组
+	struct BROADCAST_HEADER
+	{
+		INNER_HEADER oInnerHeader;
+		Array<int> oSessionList;
+	};
 
-	bool SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi, uint32_t uPacketIdx = 0);
-	bool SendInner(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi);
 
-	bool BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList);
-	bool BroadcastInner(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList);
+	typedef std::unordered_map<int, BROADCAST_HEADER*> BCHeaderMap;
+	typedef BCHeaderMap::iterator BCHeaderIter;
+
+public:
+	static void Release();
+	static bool SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi, uint32_t uPacketIdx = 0);
+	static bool SendInner(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi);
+
+	static bool BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList);
+	static bool BroadcastInner(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList);
+
+private:
+	static BCHeaderMap m_oBCHeaderMap;
+
 };
 
 #endif 

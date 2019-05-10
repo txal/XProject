@@ -22,7 +22,6 @@ const char cDouble = 'd';
 const char cString = 's';
 const char cTable = 't';
 
-
 //打包
 template<typename T>
 static bool _PackNumber(uint8_t* pBuf, int& nLen, T xVal)

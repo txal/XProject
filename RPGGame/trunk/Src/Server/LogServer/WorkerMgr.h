@@ -10,6 +10,7 @@ struct Query
 {
 	MysqlDriver* poDriver;
 	std::string* poQuery;
+
 	Query(MysqlDriver* _poDriver = NULL, std::string* _poQuery = NULL)
 	{
 		poDriver = _poDriver;
@@ -21,23 +22,32 @@ struct Worker
 {
 	XThread oThread;
 	MutexLock oLock;
+	bool bTerminate;
 	std::queue<Query> oMsgQueue;
+	Worker() :bTerminate(false) {}
 };
 
 class WorkerMgr
 {
 public:
 	typedef std::vector<Worker*> WorkerVector;
+	
+public:
+	static WorkerMgr* g_poWorkderMgr;
 	static WorkerMgr* Instance();
+	static void Release();
+
 	bool Init(int nWorkers);
 	void AddJob(MysqlDriver* poDriver, std::string* poQuery);
 
 private:
-	WorkerMgr() {};
+	WorkerMgr();
+	~WorkerMgr();
 	static void WorkerProc(void* pParam);
 
 private:
 	WorkerVector m_oWorkerList;
+	bool m_bTerminate;
 };
 
 // export to lua

@@ -1,10 +1,21 @@
 ﻿#include "Server/LogicServer/ConfMgr/ConfMgr.h"
 
+ConfMgr* ConfMgr::g_poConfMgr = NULL;
+
 ConfMgr* ConfMgr::Instance()
 {
-	static ConfMgr oSingleton;
-	return &oSingleton;
+	if (g_poConfMgr == NULL)
+	{
+		g_poConfMgr = XNEW(ConfMgr);
+	}
+	return g_poConfMgr;
 }
+
+void ConfMgr::Release()
+{
+	SAFE_DELETE(g_poConfMgr);
+}
+
 
 void ConfMgr::LoadConf(std::string dataPath)
 {

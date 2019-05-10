@@ -2,21 +2,43 @@
 #include "Include/Network/Packet.h"
 #include "Common/DataStruct/Atomic.h"
 
-Packet* Packet::Create(int nSize/*=nPACKET_DEFAULT_SIZE*/, int nOffset/*=nPACKET_OFFSET_SIZE*/)
+volatile uint32_t Packet::m_uTotalPacket = 0;
+Packet::PacketLogMap Packet::m_oPacketLogMap;
+MutexLock Packet::m_oLock;
+
+Packet* Packet::Create(int nSize/*=nPACKET_DEFAULT_SIZE*/, int nOffset/*=nPACKET_OFFSET_SIZE*/, const char* file /*= NULL*/, int line /*= 0*/)
 {
-	if (nSize < nOffset || nSize > nPACKET_MAX_SIZE) {
+	static uint32_t uPacketIndex = 0;
+	if (nSize < nOffset || nSize > nPACKET_MAX_SIZE) 
+	{
 		XLog(LEVEL_ERROR, "Packet size out of range:%d [%d,%d]\n", nSize, nOffset, nPACKET_MAX_SIZE);
 		return NULL;
 	}
-	Packet* poPacket = XNEW(Packet)(nSize, nOffset);
+
+	uint32_t uPacketID = atomic_inc(&uPacketIndex);
+
+	Packet* poPacket = XNEW(Packet)(nSize, nOffset, uPacketID);
 	if (poPacket == NULL)
 	{
 		XLog(LEVEL_ERROR, "Memory out!!\n");
+		return NULL;
 	}
+
+	atomic_inc(&m_uTotalPacket);
+
+	PACK_LOG log;
+	log.nCreateTime = (int)time(0);
+	log.nLine = line;
+	log.oFile = file;
+
+	m_oLock.Lock();
+	m_oPacketLogMap[uPacketID] = log;
+	m_oLock.Unlock();
+
 	return poPacket;
 }
 
-Packet::Packet(int nSize, int nOffset)
+Packet::Packet(int nSize, int nOffset, uint32_t uPacketIndex)
 {
 	m_nCapacity = nSize;
 	m_nOffsetSize = (int8_t)nOffset;
@@ -34,13 +56,39 @@ Packet::Packet(int nSize, int nOffset)
 
 	m_nMasking = 0;
 	memset(m_tMaskingKey, 0, sizeof(m_tMaskingKey));
+
+	m_uPacketID = uPacketIndex;
 }
 
-void Packet::Release() 
+void Packet::DumpLeak()
+{
+	int nTimeNow = time(0);
+	XLog(LEVEL_INFO, "packet current:\n");
+
+	m_oLock.Lock();
+	for (PacketLogIter iter = m_oPacketLogMap.begin(); iter != m_oPacketLogMap.end(); iter++)
+	{
+		if (nTimeNow - iter->second.nCreateTime >= 300)
+		{
+			XLog(LEVEL_INFO, "id=%u time=%d cmd=%d src-srv=%d src-sri=%d tar-srv=%d tar-sri=%d ssn=%d file=%s line=%d digest=%s\n"
+				, iter->first, iter->second.nCreateTime, iter->second.oHeader.uCmd,iter->second.oHeader.uSrcServer, iter->second.oHeader.nSrcService
+				, iter->second.oHeader.uTarServer, iter->second.oHeader.nTarService, iter->second.oHeader.uSessionNum
+				, iter->second.oFile.c_str(), iter->second.nLine, iter->second.oDigest.c_str());
+		}
+	}
+	m_oLock.Unlock();
+}
+
+void Packet::Release(const char* file/*=NULL*/, int line/*=0*/)
 {
 	int nRef = atomic_dec16(&m_nRef);
 	if (nRef <= 0)
 	{
+		atomic_dec(&m_uTotalPacket);
+
+		m_oLock.Lock();
+		m_oPacketLogMap.erase(m_uPacketID);
+		m_oLock.Unlock();
 		delete this;
 	}
 }
@@ -124,9 +172,9 @@ void Packet::Move(int nSize)
     m_nDataSize = nSize;
 }
 
-Packet* Packet::DeepCopy()
+Packet* Packet::DeepCopy(const char* file/*=NULL*/, int line/*=0*/)
 {
-    Packet* poPacket = XNEW(Packet)(m_nCapacity, m_nOffsetSize);
+    Packet* poPacket = Create(m_nCapacity, m_nOffsetSize, file, line);
     memcpy(poPacket->m_pData, m_pData, m_nDataSize);
     poPacket->m_nDataSize = m_nDataSize;
     poPacket->m_nSentSize = m_nSentSize;
@@ -217,6 +265,15 @@ bool Packet::GetInnerHeader(INNER_HEADER& oInnerHeader, int** ppnSessionOffset, 
 		m_nDataSize -= nTotalHeaderSize;
 		*(int*)m_pData -= nTotalHeaderSize;
 	}
+
+	m_oLock.Lock();
+	PacketLogIter iter = m_oPacketLogMap.find(m_uPacketID);
+	if (iter != m_oPacketLogMap.end())
+	{
+		iter->second.oHeader = oInnerHeader;
+		iter->second.oDigest = std::string((char*)GetRealData(), GetRealDataSize());
+	}
+	m_oLock.Unlock();
 	return true;
 }
 
@@ -240,6 +297,15 @@ void Packet::AppendInnerHeader(const INNER_HEADER& oInnerHeader, const int* pnSe
 	*(INNER_HEADER*)pHeaderPos = oInnerHeader;
 	m_nDataSize += nHeaderSize;
 	*(int*)m_pData += nTotalHeaderSize;
+
+	m_oLock.Lock();
+	PacketLogIter iter = m_oPacketLogMap.find(m_uPacketID);
+	if (iter != m_oPacketLogMap.end())
+	{
+		iter->second.oHeader = oInnerHeader;
+		iter->second.oDigest = std::string((char*)GetRealData(), GetRealDataSize());
+	}
+	m_oLock.Unlock();
 }
 
 void Packet::RemoveInnerHeader()
@@ -255,4 +321,13 @@ void Packet::RemoveInnerHeader()
 	int nTotalHeaderSize = nHeaderSize + oInnerHeader.uSessionNum * sizeof(int);
 	m_nDataSize -= nTotalHeaderSize;
 	*(int*)m_pData -= nTotalHeaderSize;
+
+	m_oLock.Lock();
+	PacketLogIter iter = m_oPacketLogMap.find(m_uPacketID);
+	if (iter != m_oPacketLogMap.end())
+	{
+		iter->second.oHeader = oInnerHeader;
+		iter->second.oDigest = std::string((char*)GetRealData(), GetRealDataSize());
+	}
+	m_oLock.Unlock();
 }

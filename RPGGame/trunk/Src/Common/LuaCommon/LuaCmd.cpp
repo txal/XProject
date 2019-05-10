@@ -62,7 +62,7 @@ static bool _PackTable(lua_State* pState, Packet* poPacket, const char*& psProto
 	}
 	if (nLeft != nRight)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		LuaWrapper::luaM_error(pState, "Protocal invalid table: %s", psProto);
 		return false;
 	}
@@ -183,7 +183,7 @@ static bool _PackOne(lua_State* pState, Packet* poPacket, const char*& psProto, 
 		default:
 		{
 			bRes = false;
-			poPacket->Release();
+			poPacket->Release(__FILE__, __LINE__);
 			LuaWrapper::luaM_error(pState, "Proto type: %c error\n", *psProto);
 			break;
 		}
@@ -194,7 +194,7 @@ static bool _PackOne(lua_State* pState, Packet* poPacket, const char*& psProto, 
 static int LuaCmdPack(lua_State* pState)
 {
 	const char* psProto = luaL_checkstring(pState, 1);
-   	Packet* poPacket = Packet::Create();
+	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacket == NULL) {
 		return LuaWrapper::luaM_error(pState, "Create packet fail proto:%s\n", psProto);
 	}
@@ -206,7 +206,7 @@ static int LuaCmdPack(lua_State* pState)
     }
 	if (*psProto != '\0')
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return LuaWrapper::luaM_error(pState, "Packet '%s' out of range\n", psProto);
 	}
     lua_pushlightuserdata(pState, poPacket);

@@ -5,6 +5,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}                    src_gateserv
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/PacketProc         src_packetproc)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/ClientMgr          src_clientmgr)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/PacketParser src_packetparser)
+aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/LuaCommon     src_luacommon)
 aux_source_directory(${PROJECT_SOURCE_DIR}/Src/Common/TimerMgr      src_timermgr)
 
 #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/_LocalServer/${CMAKE_BUILD_TYPE}/)
@@ -15,7 +16,8 @@ add_executable(GateServer
 	${src_clientmgr}
 	${src_packetparser}
 	${src_timermgr}
+	${src_luacommon}
 )
 
 target_link_libraries(GateServer logger network luawrapper dbdriver)
-target_link_libraries(GateServer lua530 mysqlclient readline jemalloc pthread rt)
+target_link_libraries(GateServer lua530 mysqlclient readline pthread rt) #jemalloc 

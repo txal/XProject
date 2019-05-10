@@ -2,7 +2,7 @@
 
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/XTime.h"
-#include "Common/Debug.h"
+#include "Common/CDebug.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
 #include "Server/LogicServer/Object/Object.h"
 #include "Server/LogicServer/SceneMgr/Scene.h"
@@ -248,7 +248,7 @@ void AOI::MoveObserver(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 				if (!pTower->RemoveObserver(pObj))
 				{
 					XLog(LEVEL_ERROR, "MoveObserver: tower:[%d,%d] remove observer:%d fail\n", ox, oy, pObj->nAOIID);
-					NSDebug::TraceBack();
+					NSCDebug::TraceBack();
 				}
 			}
 		}
@@ -327,7 +327,7 @@ void AOI::MoveObserved(AOIOBJ* pObj, int nOldPos[2], int nNewPos[2])
 	if (!pOldTower->RemoveObserved(pObj))
 	{
 		XLog(LEVEL_ERROR, "MoveObserved: remove observed:%d fail\n", pObj->nAOIID);
-		NSDebug::TraceBack();
+		NSCDebug::TraceBack();
 	}
 	if (m_oObjCache.Size() > 0)
 	{
@@ -379,7 +379,7 @@ void AOI::RemoveObj(int nID, bool bLeaveScene)
 		if (pObj->nRef != 0)
 		{
 			XLog(LEVEL_ERROR, "RemoverObj: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
-			NSDebug::TraceBack();
+			NSCDebug::TraceBack();
 		}
 		pObj->nAOIMode = AOI_MODE_DROP;
 		SubLineObj(pObj->nLine);
@@ -395,7 +395,7 @@ bool AOI::AddObserver(int nID)
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVER))
 	{
 		XLog(LEVEL_ERROR, "AddObserver: id:%d addr:0x%x mode:%d name:%s aoi obj not exist or mode error!\n", nID, (void*)pObj, (pObj?pObj->nAOIMode:0), (pObj?(pObj->poGameObj?pObj->poGameObj->GetName():""):""));
-		NSDebug::TraceBack();
+		NSCDebug::TraceBack();
 		return false;
 	}
 	pObj->nAOIMode |= AOI_MODE_OBSERVER;
@@ -469,7 +469,7 @@ bool AOI::RemoveObserver(int nID, bool bLeaveScene)
 	if (pObj->nAOIMode == 0 && pObj->nRef != 0)
 	{
 		XLog(LEVEL_ERROR, "RemoverObserver: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
-		NSDebug::TraceBack();
+		NSCDebug::TraceBack();
 	}
 	return true;
 }
@@ -480,7 +480,7 @@ bool AOI::AddObserved(int nID)
 	if (pObj == NULL || (pObj->nAOIMode & AOI_MODE_DROP) || (pObj->nAOIMode & AOI_MODE_OBSERVED))
 	{
 		XLog(LEVEL_ERROR, "AddObserved: id:%d addr:0x%x mode:%d name:%s aoi obj not exist or mode error!\n", nID, (void*)pObj, (pObj?pObj->nAOIMode:0), (pObj ? (pObj->poGameObj ? pObj->poGameObj->GetName() : "") : ""));
-		NSDebug::TraceBack();
+		NSCDebug::TraceBack();
 		return false;
 	}
 	
@@ -528,7 +528,7 @@ bool AOI::RemoveObserved(int nID)
 	if (pObj->nAOIMode == 0 && pObj->nRef != 0)
 	{
 		XLog(LEVEL_ERROR, "RemoveObserved: id:%d reference error mode:%d ref:%d\n", pObj->nAOIID, pObj->nAOIMode, pObj->nRef);
-		NSDebug::TraceBack();
+		NSCDebug::TraceBack();
 	}
 	return true;
 }

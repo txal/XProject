@@ -34,12 +34,13 @@ public:
 	int RemoveDup(lua_State* pState);
 	int GetDup(lua_State* pState);
 	int SetFollow(lua_State* pState);
+	int DumpSceneInfo(lua_State* pState);
+	int GetSceneList(lua_State* pState);
 
 private:
 
 	//[mixid, scene*]
 	SceneMap m_oSceneMap;
-
 	//跟随管理
 	Follow m_oFollow;
 

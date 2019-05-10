@@ -2,6 +2,7 @@
 #define __ACTOR_H__
 
 #include "Include/Script/Script.hpp"
+#include "Server/LogicServer/Component/AStar/AStarPathFind.h"
 #include "Server/LogicServer/Object/Object.h"
 
 class Actor : public Object
@@ -28,6 +29,7 @@ public:
 	virtual void OnLeaveScene();
 	virtual int GetSession() { return m_nSession; }
 	virtual uint16_t GetServer() { return m_uServer; }
+	virtual AStarPathFind* GetAStar() { return NULL; }
 
 public:
 	void StartRun(int nSpeedX, int nSpeedY, int8_t nFace);					//开始跑动

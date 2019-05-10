@@ -79,7 +79,6 @@ protected:
 
 private:
 	MapConf* m_poMapConf;
-
 	ASTAR_NODE* m_pMapData;
     MinHeap<ASTAR_NODE*> m_OpenedList;
     std::list<ASTAR_POINT> m_oTmpListPath;

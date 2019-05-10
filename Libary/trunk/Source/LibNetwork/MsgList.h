@@ -44,7 +44,7 @@ public:
 		{
 			Packet* poPacket = m_PacketList.Front();
 			m_PacketList.PopFront();
-			poPacket->Release();
+			poPacket->Release(__FILE__, __LINE__);
 		}
 	}
 

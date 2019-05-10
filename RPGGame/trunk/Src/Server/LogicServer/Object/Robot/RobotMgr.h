@@ -15,6 +15,8 @@ public:
 
 public:
 	RobotMgr();
+	~RobotMgr();
+
 	Robot* CreateRobot(int nID, int nRobotID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime);
 	Robot* GetRobotByID(int nID);
 

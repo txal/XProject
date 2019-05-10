@@ -19,7 +19,7 @@ struct CONNECTION
 		{
 			NSNetEvent::EVENT& oEvent = pPos->Value;
 			if (oEvent.uEventType == NSNetEvent::eEVT_ON_RECV)
-				oEvent.U.oRecv.poPacket->Release();
+				oEvent.U.oRecv.poPacket->Release(__FILE__, __LINE__);
 		}
 	}
 };

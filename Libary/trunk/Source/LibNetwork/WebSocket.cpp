@@ -179,11 +179,11 @@ int WebSocket::ServerHandShakeReq(void* pUD, RECVBUF& oRecvBuf)
 
 	SESSION* poSession = (SESSION*)pUD;
 	int nSendLen = (int)strlen(sResponse);
-	Packet* poPacket = Packet::Create(nSendLen, 0);
+	Packet* poPacket = Packet::Create(nSendLen, 0, __FILE__, __LINE__);
 	poPacket->FillData((uint8_t*)sResponse, nSendLen);
 	if (!ExterNet::SendPacket(poSession->nSessionID, poPacket))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return -1;
 	}
 	else
@@ -218,13 +218,13 @@ bool WebSocket::ClientHandShakeReq(int nSessionID)
 	}
 	const char* psRequest = "Sec-WebSocket-Key:uVLnN70S11/d8YnNckqzJQ==0\r\n";
 	int nSendLen = (int)strlen(psRequest);
-	Packet* poPacket = Packet::Create(nSendLen, 0);
+	Packet* poPacket = Packet::Create(nSendLen, 0, __FILE__, __LINE__);
 	poPacket->FillData((uint8_t*)psRequest, nSendLen);
 	if (ExterNet::SendPacket(nSessionID, poPacket))
 	{
 		return true;
 	}
-	poPacket->Release();
+	poPacket->Release(__FILE__, __LINE__);
 	return false;
 }
 
@@ -368,7 +368,7 @@ int WebSocket::SplitPacket(HSOCKET nSock, void* pUD, RECVBUF& oRecvBuf, Net* poN
 		pPos += nDataSize;
 
 		int nPacketSize = sizeof(int)+nDataSize;
-		Packet* poPacket = Packet::Create(nPacketSize + sizeof(INNER_HEADER)* 2);
+		Packet* poPacket = Packet::Create(nPacketSize + sizeof(INNER_HEADER)* 2, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 		poPacket->SetMaskingKey(oWSHeader.mask_==1, oWSHeader.masking_key_);
 		poPacket->FillData(pTmpPos, nPacketSize);
 

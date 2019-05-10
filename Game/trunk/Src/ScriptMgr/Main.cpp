@@ -6,7 +6,7 @@
 #include <iostream>
 #include <unordered_map>
 #include "Dirent.h"
-#include "Common/DataStruct/Thread.h"
+#include "Common/DataStruct/XThread.h"
 #include "Common/DataStruct/XTime.h"
 #include "Include/Network/Network.hpp"
 
@@ -307,7 +307,7 @@ int main(int nArg, char *pArgv[])
 	{
 		exit(2);
 	}
-	Thread oWorker;
+	XThread oWorker;
 	oWorker.Create(WorkerThread, NULL);
 
 	char sInput[1024];

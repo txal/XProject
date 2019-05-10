@@ -28,7 +28,7 @@ Lunar<Robot>::RegType Robot::methods[] =
 extern ServerContext* g_poContext;
 Robot::Robot(RobotMgr* poRobotMgr)
 {
-	m_poPacketCache = Packet::Create();
+	m_poPacketCache = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	oPKWriter.SetPacket(m_poPacketCache);
 
 	m_poRobotMgr = poRobotMgr;
@@ -143,7 +143,7 @@ void Robot::StartRun(int nSpeedX, int nSpeedY, int nDir)
 		double dClientTick = (double)XTime::MSTime();
 		oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << (int16_t)m_nSpeedX << (int16_t)m_nSpeedY << dClientTick << (uint8_t)nDir << (uint16_t)m_oTarPos.x << (uint16_t)m_oTarPos.y;
 
-		Packet* poPacket = m_poPacketCache->DeepCopy();
+		Packet* poPacket = m_poPacketCache->DeepCopy(__FILE__, __LINE__);
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.nTarSession = m_nSessionID;
 		NetAdapter::SendExter(NSCltSrvCmd::cRoleStartRunReq, poPacket, oNavi, ++m_uPacketID);
@@ -165,7 +165,7 @@ void Robot::StopRun()
 		double dClientTick = (double)XTime::MSTime();
 		oPKWriter << m_nAOIID << (uint16_t)m_oPos.x << (uint16_t)m_oPos.y << dClientTick;
 
-		Packet* poPacket = m_poPacketCache->DeepCopy();
+		Packet* poPacket = m_poPacketCache->DeepCopy(__FILE__, __LINE__);
 		NetAdapter::SERVICE_NAVI oNavi;
 		oNavi.nTarSession = m_nSessionID;
 		NetAdapter::SendExter(NSCltSrvCmd::cRoleStopRunReq, poPacket, oNavi, ++m_uPacketID);

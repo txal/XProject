@@ -10,6 +10,19 @@ ServerContext::ServerContext()
 	m_poService = NULL;
 	m_poRouterMgr = NULL;
 	m_poPacketHandler = NULL;
+	m_poLuaTableSeri = NULL;
+	m_poLuaSerialize = NULL;
+	m_pMgrMysql = NULL;
+}
+
+ServerContext::~ServerContext()
+{
+	SAFE_DELETE(m_poService);
+	SAFE_DELETE(m_poRouterMgr);
+	SAFE_DELETE(m_poPacketHandler);
+	SAFE_DELETE(m_poLuaTableSeri);
+	SAFE_DELETE(m_poLuaSerialize);
+	SAFE_DELETE(m_pMgrMysql);
 }
 
 int ServerContext::SelectLogic(int nSession)
@@ -34,6 +47,7 @@ bool ServerContext::LoadServerConfig()
 		return false;
 	}
 	lua_State* pState = poLuaWrapper->GetLuaState();
+	lua_settop(pState, 0);
 
 	m_oServerConf.sDataPath[0] = '\0';
 	lua_getglobal(pState, "gsDataPath");
@@ -75,11 +89,14 @@ bool ServerContext::LoadServerConfig()
 		return false;
 	}
 
-	MysqlDriver* pMysql = XNEW(MysqlDriver);
-	if (!pMysql->Connect(pBackIP, nBackPort, pBackDB, pBackUsr, pBackPwd, "utf8"))
+	if (m_pMgrMysql == NULL)
 	{
-		SAFE_DELETE(pMysql);
-		return false;
+		m_pMgrMysql = XNEW(MysqlDriver);
+		if (!m_pMgrMysql->Connect(pBackIP, nBackPort, pBackDB, pBackUsr, pBackPwd, "utf8"))
+		{
+			SAFE_DELETE(m_pMgrMysql);
+			return false;
+		}
 	}
 
 	char sSQLBuff[1024] = {0};
@@ -88,34 +105,29 @@ bool ServerContext::LoadServerConfig()
 		if (nGroupID <= 0 && m_oServerConf.uServerID == m_oServerConf.uWorldServerID)
 		{
 			XLog(LEVEL_ERROR, "load serverconf worldserver groupid not exist: %d!\n", m_oServerConf.uServerID);
-			SAFE_DELETE(pMysql);
 			return false;
 		}
 		sprintf(sSQLBuff, "select groupid from serverlist where serverid=%d;", m_oServerConf.uServerID);
-		if (!pMysql->Query(sSQLBuff))
+		if (!m_pMgrMysql->Query(sSQLBuff))
 		{
-			SAFE_DELETE(pMysql);
 			return false;
 		}
-		if (!pMysql->FetchRow())
+		if (!m_pMgrMysql->FetchRow())
 		{
 			XLog(LEVEL_ERROR, "load serverconf server id: %d not exist!\n", m_oServerConf.uServerID);
-			SAFE_DELETE(pMysql);
 			return false;
 		}
-		nGroupID = pMysql->ToInt32("groupid");
+		nGroupID = m_pMgrMysql->ToInt32("groupid");
 	}
 
 	sprintf(sSQLBuff, "select * from appinfo where groupid=%d;", nGroupID);
-	if (!pMysql->Query(sSQLBuff))
+	if (!m_pMgrMysql->Query(sSQLBuff))
 	{
-		SAFE_DELETE(pMysql);
 		return false;
 	}
-	if (pMysql->NumRows() <= 0)
+	if (m_pMgrMysql->NumRows() <= 0)
 	{
 		XLog(LEVEL_ERROR, "load serverconf app of groupid: %d not exist!\n", nGroupID);
-		SAFE_DELETE(pMysql);
 		return false;
 	}
 
@@ -123,16 +135,17 @@ bool ServerContext::LoadServerConfig()
 	m_oServerConf.oGlobalList.clear();
 	m_oServerConf.oLogicList.clear();
 	m_oServerConf.oLoginList.clear();
+	m_oServerConf.oLogList.clear();
 	m_oServerConf.oRouterList.clear();
 	m_oServerConf.oWGlobalList.clear();
 
-	while (pMysql->FetchRow())
+	while (m_pMgrMysql->FetchRow())
 	{
-		int nServerID = pMysql->ToInt32("serverid");
-		int nServiceID = pMysql->ToInt32("serviceid");
-		int nServicePort = pMysql->ToInt32("serviceport");
+		int nServerID = m_pMgrMysql->ToInt32("serverid");
+		int nServiceID = m_pMgrMysql->ToInt32("serviceid");
+		int nServicePort = m_pMgrMysql->ToInt32("serviceport");
 
-		const char* pServiceName = pMysql->ToString("servicename");
+		const char* pServiceName = m_pMgrMysql->ToString("servicename");
 		pServiceName = pServiceName ? pServiceName : "";
 
 		if (strcmp("GATE", pServiceName) == 0)
@@ -145,12 +158,19 @@ bool ServerContext::LoadServerConfig()
 			oGate.uSecureCPM = 0;
 			oGate.uSecureQPM = 300;
 			oGate.uDeadLinkTime = 120;
+
+			lua_settop(pState, 0); //注意这里要清下栈，不然服务器一多会溢出崩溃,或者lua_checkstack(pState, 1)确保栈至少留一个额外空位
+			lua_getglobal(pState, "gnDeadLinkTime");
+			if (!lua_isnoneornil(pState, -1))
+			{
+				oGate.uDeadLinkTime = (uint16_t)lua_tointeger(pState, -1);
+			}
 			m_oServerConf.oGateList.push_back(oGate);
 		}
 		else if (strcmp("ROUTER", pServiceName) == 0)
 		{
 
-			const char* pServiceIP = pMysql->ToString("serviceip");
+			const char* pServiceIP = m_pMgrMysql->ToString("serviceip");
 			pServiceIP = pServiceIP ? pServiceIP : "";
 
 			RouterNode oRouter;
@@ -203,12 +223,12 @@ bool ServerContext::LoadServerConfig()
 			m_oServerConf.oWGlobalList.push_back(oGlobal);
 		}
 	}
-	SAFE_DELETE(pMysql);
 	double fCostMSTime = oMnt.End();
 	if (fCostMSTime >= 100)
 	{
 		XLog(LEVEL_ERROR, "load server conf is too slow: %fms\n", fCostMSTime);
 	}
+	
 	return true;
 }
 

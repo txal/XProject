@@ -1,9 +1,9 @@
 ﻿#ifndef __MEMORY_H__
 #define __MEMORY_H__
 
-#ifdef __linux
-	#include "Include/Jemalloc/Jemalloc.hpp"
-#endif
+// #ifdef __linux
+// 	#include "Include/Jemalloc/Jemalloc.hpp"
+// #endif
 
 #define XNEW(class) new class
 #define XALLOC realloc

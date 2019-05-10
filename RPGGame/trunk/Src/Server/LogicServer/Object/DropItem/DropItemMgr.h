@@ -15,6 +15,8 @@ public:
 
 public:
 	DropItemMgr();
+	~DropItemMgr();
+
 	DropItem* CreateDropItem(int nID, int nConfID, const char* psName, int nAliveTime, int nCamp);
 	DropItem* GetDropItemByID(int nID);
 

@@ -3,13 +3,19 @@
 NetPool::NetPool()
 {
 	m_nNetNum = 0;
+	m_poHandler = NULL;;
 	memset(m_tInnerNet, 0, sizeof(m_tInnerNet));
 }
 
 NetPool::~NetPool()
 {
 	for (int i = 0; i < m_nNetNum; i++)
-		m_tInnerNet[i]->Release();
+	{
+		if (m_tInnerNet[i] != NULL)
+		{
+			m_tInnerNet[i]->Release();
+		}
+	}
 }
 
 bool NetPool::Init(int nNum, NetEventHandler* poHandler)
@@ -18,10 +24,17 @@ bool NetPool::Init(int nNum, NetEventHandler* poHandler)
 	XLog(LEVEL_INFO, "NetPool thread num:%d\n", nNum);
 
 	m_nNetNum = nNum;
-	for (int i = 0; i < nNum; i++)
-	{
-		m_tInnerNet[i] = INet::CreateNet(NET_TYPE_INTERNAL, i, 1024, poHandler);
-		assert(m_tInnerNet[i] != NULL);
-	}
+	m_poHandler = poHandler;
 	return true;
+}
+
+INet* NetPool::GetNet(int nIndex)
+{
+	assert(nIndex >= 0 && nIndex < m_nNetNum);
+	if (m_tInnerNet[nIndex] == NULL)
+	{
+		m_tInnerNet[nIndex] = INet::CreateNet(NET_TYPE_INTERNAL, nIndex, 512, m_poHandler);
+		assert(m_tInnerNet[nIndex] != NULL);
+	}
+	return m_tInnerNet[nIndex];
 }

@@ -1,12 +1,15 @@
-﻿#include "Server/GateServer/Gateway.h"
+﻿//#include <vld.h>
+
+#include "Server/GateServer/Gateway.h"
 #include "Include/Network/Network.hpp"
+#include "Include/DBDriver/DBDriver.hpp"
 #include "Common/DataStruct/XTime.h"
+#include "Common/TimerMgr/TimerMgr.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/GateServer/PacketProc/GatewayPacketProc.h"
 #include "Server/GateServer/PacketProc/GatewayPacketHandler.h"
 
 ServerContext* g_poContext;
-
 bool InitNetwork(int8_t nServiceID)
 {
 	GateNode* poNode = NULL;
@@ -49,9 +52,18 @@ void OnSigTerm(int)
 	XLog(LEVEL_INFO, "receive sigterm signal!\n");
 }
 
+void OnSigInt(int)
+{
+	if (g_poContext != NULL)
+	{
+		g_poContext->GetService()->Terminate();
+	}
+}
+
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 2);
+	signal(SIGINT, OnSigInt);
 	signal(SIGTERM, OnSigTerm);
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 #ifdef _WIN32
@@ -60,6 +72,7 @@ int main(int nArg, char *pArgv[])
 	atexit(ExitFunc);
 	Logger::Instance()->Init();
 	Logger::Instance()->SetSync(true);
+	MysqlDriver::MysqlLibaryInit();
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -116,8 +129,14 @@ int main(int nArg, char *pArgv[])
 		exit(-1);
 	}
 
-	g_poContext->GetService()->GetExterNet()->Release();
-	g_poContext->GetService()->GetInnerNet()->Release();
+	//wchar_t wcBuffer[256] = { L"" };
+	//wsprintfW(wcBuffer, L"gate%d.leak", g_poContext->GetService()->GetServiceID());
+	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
+
+	SAFE_DELETE(g_poContext);
+	TimerMgr::Instance()->Release();
+	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();
+	MysqlDriver::MysqlLibaryEnd();
 	return 0;
 }

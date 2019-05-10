@@ -29,6 +29,9 @@ struct MapConf
 		}
 		return (pMapGrid[nIndex] >= 0);
 	}
+	MapConf() : pMapGrid(NULL)
+	{
+	}
 };
 
 class MapConfMgr
@@ -38,6 +41,7 @@ public:
 	typedef ConfMap::iterator ConfIter;
 
 public:
+	~MapConfMgr();
 	MapConf* GetConf(int nID);
 	bool Init(CSVDocument* poCSVDoc);
 

@@ -1,19 +1,17 @@
 ﻿#include "Server/Base/NetAdapter.h"
-#include "Include/Network/Network.hpp"
 #include "Server/Base/RouterMgr.h"
 #include "Server/Base/Service.h"
 #include "Server/Base/ServerContext.h"
 
-//按服务器和网关分组
-struct BROADCAST_HEADER
+NetAdapter::BCHeaderMap NetAdapter::m_oBCHeaderMap;
+void NetAdapter::Release()
 {
-	INNER_HEADER oInnerHeader;
-	Array<int> oSessionList;
-};
-
-typedef std::unordered_map<int, BROADCAST_HEADER*> BCHeaderMap;
-typedef BCHeaderMap::iterator BCHeaderIter;
-static BCHeaderMap oBCHeaderMap;
+	BCHeaderIter iter = m_oBCHeaderMap.begin();
+	for (iter; iter != m_oBCHeaderMap.end(); iter++)
+	{
+		SAFE_DELETE(iter->second);
+	}
+}
 
 bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi, uint32_t uPacketIdx /*= 0*/)
 {
@@ -24,7 +22,7 @@ bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi,
 		poPacket->AppendExterHeader(EXTER_HEADER(uCmd, poService->GetServiceID(), oNavi.nTarService, uPacketIdx));
 		if (!poService->GetExterNet()->SendPacket(oNavi.nTarSession, poPacket))
 		{
-			poPacket->Release();
+			poPacket->Release(__FILE__, __LINE__);
 			return false;
 		}
 	}
@@ -40,20 +38,20 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi)
     assert(poPacket != NULL);
     if (oNavi.nTarService <= 0 || oNavi.nTarService > MAX_SERVICE_NUM)
     {
-    	poPacket->Release();
+    	poPacket->Release(__FILE__, __LINE__);
     	return false;
     }
 	Service* poService = g_poContext->GetService();
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poRouter == NULL)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
     poPacket->AppendInnerHeader(INNER_HEADER(uCmd, oNavi.uSrcServer, oNavi.nSrcService, oNavi.uTarServer, oNavi.nTarService, 1), &oNavi.nTarSession, 1);
     if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poPacket))
     {
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
     }
 	return true;
@@ -66,7 +64,7 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poService == NULL || poRouter == NULL)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
 
@@ -78,11 +76,11 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 		int nKey = (int)oNavi.uTarServer << 16 | oNavi.nTarService;
 
 		BROADCAST_HEADER* poBCHeader = NULL;
-		BCHeaderIter iter = oBCHeaderMap.find(nKey);
-		if (iter == oBCHeaderMap.end())
+		BCHeaderIter iter = m_oBCHeaderMap.find(nKey);
+		if (iter == m_oBCHeaderMap.end())
 		{
 			poBCHeader = XNEW(BROADCAST_HEADER)();
-			oBCHeaderMap[nKey] = poBCHeader;
+			m_oBCHeaderMap[nKey] = poBCHeader;
 		}
 		else
 		{
@@ -100,36 +98,34 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 		poBCHeader->oSessionList.PushBack(oNavi.nTarSession);
 	}
 
-	if (oBCHeaderMap.size() == 0) 
+	if (m_oBCHeaderMap.size() == 0) 
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
 
-	BCHeaderIter iter = oBCHeaderMap.begin();
-	BCHeaderIter iterend = oBCHeaderMap.end();
-	for (; iter != iterend; )
+	BCHeaderIter iter = m_oBCHeaderMap.begin();
+	BCHeaderIter iterend = m_oBCHeaderMap.end();
+	for (; iter != iterend; iter++)
 	{
 		BROADCAST_HEADER* poBCHeader = iter->second;
 		if (poBCHeader->oSessionList.Size() == 0)
 		{
-			++iter;
 			continue;
 		}
 
 		Packet* poNewPacket = NULL;
 		poBCHeader->oInnerHeader.uSessionNum = poBCHeader->oSessionList.Size();
-		if (++iter == iterend)
-			poNewPacket = poPacket;
-		else
-			poNewPacket = poPacket->DeepCopy();
+		poNewPacket = poPacket->DeepCopy(__FILE__, __LINE__);
 		poNewPacket->AppendInnerHeader(poBCHeader->oInnerHeader, poBCHeader->oSessionList.Ptr(), poBCHeader->oSessionList.Size());
 
 		if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poNewPacket))
-			poNewPacket->Release();
-
+		{
+			poNewPacket->Release(__FILE__, __LINE__);
+		}
 		poBCHeader->oSessionList.Clear();
 	}
+	poPacket->Release(__FILE__, __LINE__);
 	return true;
 }
 
@@ -140,21 +136,19 @@ bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poService == NULL || poRouter == NULL)
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
 	for (int i = oNaviList.Size() - 1; i >= 0; --i)
 	{
 		Packet* poNewPacket = NULL;
-		if (i == 0)
-			poNewPacket = poPacket;
-		else
-			poNewPacket = poPacket->DeepCopy();
+		poNewPacket = poPacket->DeepCopy(__FILE__, __LINE__);
 		poNewPacket->AppendInnerHeader(INNER_HEADER(uCmd, oNaviList[i].uSrcServer, oNaviList[i].nSrcService, oNaviList[i].uTarServer, oNaviList[i].nTarService, 1), &(oNaviList[i].nTarSession), 1);
 		if (!poService->GetInnerNet()->SendPacket(poRouter->nSession, poNewPacket))
 		{
-			poNewPacket->Release();
+			poNewPacket->Release(__FILE__, __LINE__);
 		}
 	}
+	poPacket->Release(__FILE__, __LINE__);
 	return true;
 }

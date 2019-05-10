@@ -90,6 +90,7 @@ namespace NSNetEvent
 		{ 
 			pNet = NULL;
 			uEventType = (uint8_t)eEVT_INVALID;
+			U.oRecv.poPacket = NULL;
 		}
 	};
 

@@ -30,7 +30,9 @@ AStarPathFind::AStarPathFind()
 
 AStarPathFind::~AStarPathFind()
 {
-	SAFE_DELETE(m_pMapData);
+	SAFE_FREE(m_pMapData);
+	m_poMapConf = NULL;
+    m_OpenedList.Clear();
 }
 
 void AStarPathFind::InitMapData(int nMapID)

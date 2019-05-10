@@ -60,7 +60,7 @@ protected:
 
 private:
 	int m_nLuaRef;
-	char m_sWhere[32];
+	//char m_sWhere[32];
 };
 
 #endif

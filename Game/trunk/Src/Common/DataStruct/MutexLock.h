@@ -15,10 +15,13 @@ public:
 		pthread_mutexattr_t Attr;
 		int nRet = pthread_mutexattr_init(&Attr);
 		assert(nRet == 0);
+		if (nRet != 0) exit(999);
 		nRet = pthread_mutexattr_settype(&Attr, PTHREAD_MUTEX_ERRORCHECK);
 		assert(nRet == 0);
+		if (nRet != 0) exit(999);
 		nRet = pthread_mutex_init(&m_Mutex, &Attr);
 		assert(nRet == 0);
+		if (nRet != 0) exit(999);
 #else
 		InitializeCriticalSection(&m_Mutex);
 #endif

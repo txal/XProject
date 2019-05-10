@@ -2,7 +2,7 @@
 
 #include "Common/DataStruct/XTime.h"
 #include "Common/DataStruct/XMath.h"
-#include "Common/Debug.h"
+#include "Common/CDebug.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
@@ -19,6 +19,7 @@ const int nAOIDROP_COLLECT_MSTIME = 3*60*1000;
 LUNAR_IMPLEMENT_CLASS(Scene)
 {
 	LUNAR_DECLARE_METHOD(Scene, GetMixID),
+	LUNAR_DECLARE_METHOD(Scene, GetConfID),
 	LUNAR_DECLARE_METHOD(Scene, EnterDup),
 	LUNAR_DECLARE_METHOD(Scene, LeaveDup),
 	LUNAR_DECLARE_METHOD(Scene, SetAutoCollected),
@@ -31,23 +32,30 @@ LUNAR_IMPLEMENT_CLASS(Scene)
 	LUNAR_DECLARE_METHOD(Scene, RemoveObserved),
 	LUNAR_DECLARE_METHOD(Scene, GetAreaObservers),
 	LUNAR_DECLARE_METHOD(Scene, GetAreaObserveds),
-	LUNAR_DECLARE_METHOD(Scene, DumpSceneObjInfo),
-	LUNAR_DECLARE_METHOD(Scene, DumpSceneObjInfo),
 	LUNAR_DECLARE_METHOD(Scene, KickAllRole),
+	LUNAR_DECLARE_METHOD(Scene, GetRoleCount),
+	LUNAR_DECLARE_METHOD(Scene, DumpSceneInfo),
+	LUNAR_DECLARE_METHOD(Scene, GetCreateTime),
+	LUNAR_DECLARE_METHOD(Scene, GetSceneType),
+	LUNAR_DECLARE_METHOD(Scene, IsAutoCollected),
+	LUNAR_DECLARE_METHOD(Scene, GetRoleLastLeaveTime),
 	{0, 0}
 };
 
-Scene::Scene(SceneMgr* poSceneMgr, int64_t nSceneMixID, MapConf* poMapConf, bool bCanCollected)
+Scene::Scene(SceneMgr* poSceneMgr, int64_t nSceneMixID, MapConf* poMapConf, bool bCanCollected, int8_t nSceneType)
 {
 	m_poSceneMgr = poSceneMgr;
 	m_nSceneMixID = nSceneMixID;
 	m_bCanCollected = bCanCollected;
+	m_nSceneType = nSceneType;
 
 	int64_t nNowMS = XTime::MSTime();
 	m_nLastUpdateTime = nNowMS;
 	m_nLastRoleLeaveTime = nNowMS;
 
 	m_poMapConf = poMapConf;
+	m_nCreateTime = (int)time(0);
+	m_nRoleCount = 0;
 }
 
 Scene::~Scene()
@@ -98,16 +106,10 @@ Object* Scene::GetGameObj(int nAOIID)
 
 bool Scene::IsTime2Collect(int64_t nNowMS)
 {
-	if (!m_bCanCollected)
-	{
-		return false;
-	}
-
-	if (m_nRoleCount <= 0 && nNowMS - m_nLastRoleLeaveTime >= nSCENE_COLLECT_MSTIME)
+	if (m_nRoleCount <= 0 && m_bCanCollected && nNowMS - m_nLastRoleLeaveTime >= nSCENE_COLLECT_MSTIME)
 	{
 		return true;
 	}
-
 	return false;
 }
 
@@ -120,13 +122,13 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 	if (m_oObjMap.find(nObjID) != m_oObjMap.end())
 	{
 		XLog(LEVEL_ERROR, "AddObj id:%ld type:%d already in scene:%lld\n", nObjID, nObjType, m_nSceneMixID);
-		NSDebug::TraceBack();
+		NSCDebug::TraceBack();
 		return -1;
 	}
 	if (m_oObjMap.size() >= 10000)
 	{
 		XLog(LEVEL_ERROR, "AddObj too many secene obj:%lld obj:%d\n", m_nSceneMixID, m_oObjMap.size());
-		NSDebug::TraceBack();
+		NSCDebug::TraceBack();
 		return -1;
 	}
 
@@ -136,7 +138,7 @@ int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int
 	{
 		poObj->SetFace(0);
 		XLog(LEVEL_ERROR, "AOI add obj error id:%lld type:%d\n", nObjID, nObjType);
-		NSDebug::TraceBack();
+		NSCDebug::TraceBack();
 		return -1;
 	}
 	return nAOIID;
@@ -187,9 +189,11 @@ void Scene::AfterObjEnterScene(AOIOBJ* pObj)
 
 	Lunar<Object>::push(pState, pObj->poGameObj);
 	pEngine->CallLuaRef("AfterObjEnterScene", 2, 0);
-
-	pObj->poGameObj->AfterEnterScene();
-
+	
+	//调用AfterObjEnterScene中可能又退出了场景
+	if (pObj->poGameObj != NULL) {
+		pObj->poGameObj->AfterEnterScene();
+	}
 }
 
 void Scene::OnObjLeaveScene(AOIOBJ* pObj)
@@ -295,6 +299,12 @@ void Scene::OnObjLeaveObj(AOIOBJ* pObserver, Array<AOIOBJ*>& oObservedCache)
 int Scene::GetMixID(lua_State* pState)
 {
 	lua_pushinteger(pState, m_nSceneMixID);
+	return 1;
+}
+
+int Scene::GetConfID(lua_State* pState)
+{
+	lua_pushinteger(pState, m_nSceneMixID&0xFFFF);
 	return 1;
 }
 
@@ -479,16 +489,48 @@ int Scene::KickAllRole(lua_State* pState)
 	return 0;
 }
 
-int Scene::DumpSceneObjInfo(lua_State* pState)
+int Scene::DumpSceneInfo(lua_State* pState)
 {
+	XLog(LEVEL_INFO, "dump scene Info-------\n");
+	XLog(LEVEL_INFO, "scenetype:%d scenemixid:%lld sceneid:%d rolecount:%d collectflag:%d lastleavemins:%f\n"
+		, m_nSceneType, m_nSceneMixID, m_nSceneMixID&0xFFFF, m_nRoleCount, m_bCanCollected, (XTime::MSTime()-m_nLastRoleLeaveTime)/60/1000.0);
 	int16_t *pLineArray = m_oAOI.GetLineArray();
-	int16_t nLineObjNum = m_oAOI.GetLineObjNum();
-	XLog(LEVEL_INFO, "DumpSceneObjInfo-------\n");
-	XLog(LEVEL_INFO, "objcount:%d rolecount:%d lineobjnum:%d\n", m_oObjMap.size(), m_nRoleCount, nLineObjNum);
 	for (int i = 0; i < MAX_LINE; i++)
 	{
-		XLog(LEVEL_INFO, "line:%d objnum:%d\n", i, pLineArray[i]);
+		if (pLineArray[i] > 0)
+		{
+			XLog(LEVEL_INFO, "line:%d objs:%d\n", i, pLineArray[i]);
+		}
 	}
 	return 0;
 }
 
+int Scene::GetSceneType(lua_State* pState)
+{
+	lua_pushinteger(pState, m_nSceneType);
+	return 1;
+}
+
+int Scene::GetCreateTime(lua_State* pState)
+{
+	lua_pushinteger(pState, m_nCreateTime);
+	return 1;
+}
+
+int Scene::GetRoleCount(lua_State* pState)
+{
+	lua_pushinteger(pState, m_nRoleCount);
+	return 1;
+}
+
+int Scene::IsAutoCollected(lua_State* pState)
+{
+	lua_pushboolean(pState, (int)m_bCanCollected);
+	return 1;
+}
+
+int Scene::GetRoleLastLeaveTime(lua_State* pState)
+{
+	lua_pushinteger(pState, m_nLastRoleLeaveTime);
+	return 1;
+}

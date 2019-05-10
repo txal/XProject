@@ -23,6 +23,14 @@ GlobalServer::GlobalServer()
 
 GlobalServer::~GlobalServer()
 {
+	if (m_poExterNet != NULL)
+	{
+		m_poExterNet->Release();
+	}
+	if (m_poInnerNet != NULL)
+	{
+		m_poInnerNet->Release();
+	}
 }
 
 bool GlobalServer::Init(int8_t nServiceID, const char* psListenIP, uint16_t uListenPort)
@@ -40,13 +48,13 @@ bool GlobalServer::Init(int8_t nServiceID, const char* psListenIP, uint16_t uLis
 		strcpy(m_sListenIP, psListenIP);
 	}
 	m_uListenPort = uListenPort;
-	m_poExterNet = INet::CreateNet(NET_TYPE_EXTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_poExterNet = INet::CreateNet(NET_TYPE_EXTERNAL, nServiceID, 32, &m_oNetEventHandler);
 	if (m_poExterNet == NULL)
 	{
 		return false;
 	}
 
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 8, &m_oNetEventHandler);
 	if (m_poInnerNet == NULL)
 	{
 		return false;
@@ -58,7 +66,7 @@ bool GlobalServer::RegToRouter(int nRouterServiceID)
 {
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
-	Packet* poPacket = Packet::Create();
+	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacket == NULL) {
 		return false;
 	}
@@ -70,7 +78,7 @@ bool GlobalServer::RegToRouter(int nRouterServiceID)
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
 	return true;
@@ -90,6 +98,7 @@ bool GlobalServer::Start()
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();
+		Service::Update(nNowMS);
 		ProcessTimer(nNowMS);
 		ProcessLoopCount(nNowMS);
 		ProcessHttpMessage();
@@ -196,7 +205,7 @@ void GlobalServer::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	EXTER_HEADER oExterHeader;
 	if (!poPacket->GetExterHeader(oExterHeader, true))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		XLog(LEVEL_ERROR, "%s: OnExterNetMsg: packet get exter header fail\n", GetServiceName());
 		return;
 	}
@@ -227,13 +236,13 @@ void GlobalServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 	if (!poPacket->GetInnerHeader(oHeader, &pSessionArray, true))
 	{
 		XLog(LEVEL_INFO, "%s: Get inner header fail\n", GetServiceName());
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);

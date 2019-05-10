@@ -13,6 +13,14 @@ RouterMgr::RouterMgr()
 	m_nUpdateTimer = 0;
 }
 
+RouterMgr::~RouterMgr()
+{
+	if (m_nUpdateTimer != 0)
+	{
+		TimerMgr::Instance()->RemoveTimer(m_nUpdateTimer);
+	}
+}
+
 void RouterMgr::InitRouters()
 {
 

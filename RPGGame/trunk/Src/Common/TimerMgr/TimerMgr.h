@@ -11,9 +11,12 @@ public:
 	typedef std::unordered_map<uint32_t, TimerBase*> TimerMap;
 	typedef TimerMap::iterator TimerIter;
 
+protected:
+	static TimerMgr* g_poTimerMgr;
+
 public:
 	static TimerMgr* Instance();
-	~TimerMgr();
+	static void Release();
 
 	uint32_t RegisterTimer(uint32_t uMSTime, int nLuaRef, const char* pWhere = NULL);
 	uint32_t RegisterTimer(uint32_t uMSTime, TimerCallback fnCallback, void* pParam);
@@ -26,6 +29,7 @@ protected:
 
 private:
 	TimerMgr();
+	~TimerMgr();
 	TimerMap m_oTimerMap;
 	MinHeap<TimerBase*> m_oTimerHeap;
 	Array<TimerBase*> m_oTimerCache;

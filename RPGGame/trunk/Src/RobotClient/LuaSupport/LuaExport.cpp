@@ -56,5 +56,6 @@ void OpenLuaExport()
 	RegLuaSerialize("cseri");
 
 	RegClassSSDBDriver();
+	RegClassMysqlDriver();
 	RegClassRobot();
 }

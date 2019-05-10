@@ -24,6 +24,8 @@ public:
 
 public:
 	Service();
+	virtual ~Service() {}
+
 	bool Init(int8_t nServiceID, const char* psServiceName);
 	int8_t GetServiceID() { return m_nServiceID; }
 	const char* GetServiceName() { return m_sServiceName; }
@@ -35,6 +37,7 @@ public:
 	virtual INet* GetInnerNet() { return NULL; }
 	virtual INet* GetExterNet() { return NULL; }
 	virtual void Terminate() { m_bTerminate = true; }
+	virtual void Update(int64_t nMSTime);
 
 protected:
 	uint32_t m_uMainLoopCount;

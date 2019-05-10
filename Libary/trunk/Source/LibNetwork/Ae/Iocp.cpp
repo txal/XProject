@@ -281,6 +281,12 @@ void Iocp::EventLoop()
 				IOCP_EVENT* poEvent = NULL;
 				BOOL bRet = GetQueuedCompletionStatus(m_hCompletionPort, &uTransByte, &uIocpKey, (OVERLAPPED**)&poEvent, 0);
 				int nLastError = WSAGetLastError();
+
+				if (m_bShutDown)
+				{
+					break;
+				}
+
 				if (!bRet)
 				{
 					if (poEvent != NULL)
@@ -298,6 +304,7 @@ void Iocp::EventLoop()
 					}
 					break;
 				}
+
 				if (poEvent == NULL)
 				{
 					XLog(LEVEL_ERROR, "Event is null, dangerous!\n");

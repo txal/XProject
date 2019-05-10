@@ -26,6 +26,8 @@ public:
 	typedef ColumnMap::const_iterator ColumnMapIter;
 
 public:
+	CSVDocument() {}
+	~CSVDocument();
 	//从数据流加载CSV文档
 	void load(const std::string& oFile, bool bWithHeader = true, int *errorRow = NULL, int *errorCol = NULL);
 	//返回CSV文档行数量

@@ -26,7 +26,8 @@ public:
 	friend class SceneMgr;
 
 public:
-	Scene(SceneMgr* poSceneMgr, int64_t nSceneMixID, MapConf* poMapConf, bool bCanCollected=true);
+	//nSceneType 1城镇; 2副本
+	Scene(SceneMgr* poSceneMgr, int64_t nSceneMixID, MapConf* poMapConf, bool bCanCollected=true, int8_t nSceneType=2);
 	~Scene();
 
 	bool InitAOI(int nMapWidth, int nMapHeight, int nLineObjNum) { return m_oAOI.Init(this, nMapWidth, nMapHeight, nLineObjNum); }
@@ -41,15 +42,13 @@ public:
 	MapConf* GetMapConf() { return m_poMapConf; }
 	SceneMgr* GetSceneMgr() { return m_poSceneMgr;  }
 	int64_t GetSceneMixID() { return m_nSceneMixID; }
+	int8_t GetSceneType() { return m_nSceneType; }
 
 public:
 	int EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1, int8_t nFace=0);
 	void LeaveScene(int nAOIID) { m_oAOI.RemoveObj(nAOIID, true); }
-	void KickAllRole();
-
 	void MoveObj(int nAOIID, int nTarX, int nTarY) { m_oAOI.MoveObj(nAOIID, nTarX, nTarY); }
 	void SetLine(int nAOIID, int8_t nLine) { m_oAOI.ChangeLine(nAOIID, nLine); }
-
 	void OnObjEnterScene(AOIOBJ* pObj);		//进入场景但是未同步视野
 	void AfterObjEnterScene(AOIOBJ* pObj);	//同步了视野后
 	void OnObjLeaveScene(AOIOBJ* pObj);
@@ -59,6 +58,7 @@ public:
 	void OnObjLeaveObj(AOIOBJ* pObserver, Array<AOIOBJ*>& oObservedCache);
 	Array<AOIOBJ*>& GetAreaObservers(int nAOIID, int nGameObjType);
 	Array<AOIOBJ*>& GetAreaObserveds(int nAOIID, int nGameObjType);
+	void KickAllRole();
 
 private:
 	AOI m_oAOI;						//AOI
@@ -67,6 +67,8 @@ private:
 	SceneMgr* m_poSceneMgr;
 	int64_t m_nSceneMixID;			//自增ID|配置ID
 	bool m_bCanCollected;			//是否可以被收集
+	int8_t m_nSceneType;			//场景类型
+	int m_nCreateTime;				//创建时间
 	
 	ObjMap m_oObjMap;				//游戏对象列表
 	uint16_t m_nRoleCount;			//角色数量
@@ -82,9 +84,15 @@ private:
 /////////////////export to lua///////////////////////
 public:
 	int GetMixID(lua_State* pState);
+	int GetConfID(lua_State* pState);
 	int EnterDup(lua_State* pState);
 	int LeaveDup(lua_State* pState);
 	int SetAutoCollected(lua_State* pState);
+	int GetRoleCount(lua_State* pState);
+	int GetSceneType(lua_State* pState);
+	int GetCreateTime(lua_State* pState);
+	int IsAutoCollected(lua_State* pState);
+	int GetRoleLastLeaveTime(lua_State* pState);
 
 	int GetObj(lua_State* pState);
 	//int MoveObj(lua_State* pState);
@@ -99,7 +107,7 @@ public:
 	int GetAreaObserveds(lua_State* pState);
 
 	int KickAllRole(lua_State* pState);
-	int DumpSceneObjInfo(lua_State* pState);
+	int DumpSceneInfo(lua_State* pState);
 };
 
 

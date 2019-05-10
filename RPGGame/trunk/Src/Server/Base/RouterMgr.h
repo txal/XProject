@@ -29,6 +29,7 @@ class RouterMgr
 {
 public:
     RouterMgr();
+	~RouterMgr();
 	void InitRouters();
 
 	ROUTER* GetRouterByServiceID(int8_t nRouterService);

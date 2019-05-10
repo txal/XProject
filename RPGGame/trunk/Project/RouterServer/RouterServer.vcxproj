@@ -74,8 +74,10 @@
     <OutDir>..\..\Bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\..\..\..\svnmengzhu\trunk\Server\_WorldServer\</OutDir>
+    <OutDir>..\..\..\..\..\M2BT\trunk\Server\_WorldServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
+    <IncludePath>D:\download\vld-master\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\download\vld-master\src\bin\x64\Release-v140;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>

@@ -19,10 +19,23 @@ int TimerCmpFunc(void* poObj1, void* poObj2)
 	return -1;
 }
 
+TimerMgr* TimerMgr::g_poTimerMgr = NULL;
+
 TimerMgr* TimerMgr::Instance()
 {
-	static TimerMgr oSingleton;
-	return &oSingleton;
+	if (g_poTimerMgr == NULL)
+	{
+		g_poTimerMgr = XNEW(TimerMgr);
+	}
+	return g_poTimerMgr;
+}
+
+void TimerMgr::Release()
+{
+	if (g_poTimerMgr != NULL)
+	{
+		SAFE_DELETE(g_poTimerMgr);
+	}
 }
 
 TimerMgr::TimerMgr() : m_oTimerHeap(TimerCmpFunc)
@@ -35,6 +48,11 @@ TimerMgr::~TimerMgr()
 	for (int i = 0; i < nCount; i++)
 	{
 		SAFE_DELETE(m_oTimerHeap[i]);
+	}
+	for (int i = m_oTimerCache.Size() - 1; i >= 0; --i)
+	{
+		TimerBase* poTimer = m_oTimerCache[i];
+		SAFE_DELETE(poTimer);
 	}
 }
 
@@ -109,6 +127,13 @@ void TimerMgr::ExecuteTimer(int64_t nNowMS)
 		}
 	}
 	m_oTimerCache.Clear();
+
+	static int64_t nLastDumpTime = 0;
+	if (nNowMS - nLastDumpTime >= 60000)
+	{
+		nLastDumpTime = nNowMS;
+		XLog(LEVEL_INFO, "CPP timer count=%d\n", m_oTimerHeap.Size());
+	}
 }
 
 void TimerMgr::RemoveTimer(uint32_t uTimerID)
@@ -141,9 +166,9 @@ static int RegisterTimer(lua_State* pState)
 	}
 	luaL_checktype(pState, 2, LUA_TFUNCTION);
 	int nLuaRef = luaL_ref(pState, LUA_REGISTRYINDEX);
-	luaL_where(pState, 1);
-	const char* pWhere = lua_tostring(pState, -1);
-	uint32_t uTimerID = TimerMgr::Instance()->RegisterTimer(nMSTime, nLuaRef, pWhere);
+	//luaL_where(pState, 1);
+	//const char* pWhere = lua_tostring(pState, -1);
+	uint32_t uTimerID = TimerMgr::Instance()->RegisterTimer(nMSTime, nLuaRef, NULL);
 	lua_pushinteger(pState, uTimerID);
 	return 1;
 }

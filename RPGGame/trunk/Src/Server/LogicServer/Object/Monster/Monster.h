@@ -1,7 +1,6 @@
 ﻿#ifndef __MONSTER_H__
 #define __MONSTER_H__
 
-#include "Server/LogicServer/Component/AStar/AStarPathFind.h"
 #include "Server/LogicServer/Object/Actor.h"
 
 class Monster : public Actor
@@ -21,10 +20,10 @@ public:
 	virtual void OnLeaveScene();
 
 public:
-	AStarPathFind* GetAStar() { return &m_oAStar; }
+	//virtual AStarPathFind* GetAStar() { return &m_oAStar; }
 
 private:
-	AStarPathFind m_oAStar;	
+	//AStarPathFind m_oAStar;	
 	DISALLOW_COPY_AND_ASSIGN(Monster);
 
 

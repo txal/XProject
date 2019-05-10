@@ -68,8 +68,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Bin\_WorldServer\</OutDir>
+    <OutDir>..\..\..\..\..\M2BT\trunk\Server\_WorldServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
+    <IncludePath>D:\download\vld-master\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\download\vld-master\src\bin\x64\Release-v140;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>
@@ -100,7 +102,8 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-WGlobalServer*  E:\svnmengzhu\trunk\Server\_WorldServer\</Command>
+rem xcopy /y/f MZ-WGlobalServer*  E:\svnmengzhu\trunk\Server\_WorldServer\
+popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

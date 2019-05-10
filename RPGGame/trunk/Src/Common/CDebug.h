@@ -8,7 +8,7 @@
 #include<stdio.h>
 #endif
 
-namespace NSDebug
+namespace NSCDebug
 {
 
 	static void TraceBack()

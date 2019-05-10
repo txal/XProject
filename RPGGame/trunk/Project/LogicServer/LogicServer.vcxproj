@@ -68,8 +68,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Bin\_LocalServer\</OutDir>
+    <OutDir>..\..\..\..\..\M2BT\trunk\Server\_LocalServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
+    <IncludePath>D:\download\vld-master\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\download\vld-master\src\bin\x64\Release-v140;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>
@@ -128,9 +130,9 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-LogicServer* ..\_WorldServer\
-xcopy /y/f MZ-LogicServer* E:\svnmengzhu\trunk\Server\_LocalServer\
-xcopy /y/f MZ-LogicServer* E:\svnmengzhu\trunk\Server\_WorldServer\
+rem xcopy /y/f MZ-LogicServer* ..\_WorldServer\
+rem xcopy /y/f MZ-LogicServer* E:\svnmengzhu\trunk\Server\_LocalServer\
+xcopy /y/f MZ-LogicServer* E:\M2BT\trunk\Server\_WorldServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -206,14 +208,16 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\DataStruct\HexStr.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Md5.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Memory.h" />
+    <ClInclude Include="..\..\Src\Common\DataStruct\MemPool.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\MinHeap.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\MutexLock.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\ObjID.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Point.h" />
+    <ClInclude Include="..\..\Src\Common\DataStruct\PureList.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\Ranking.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\XMath.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\XTime.h" />
-    <ClInclude Include="..\..\Src\Common\Debug.h" />
+    <ClInclude Include="..\..\Src\Common\CDebug.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
@@ -221,6 +225,8 @@ popd</Command>
     <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
+    <ClInclude Include="..\..\Src\Common\Platform.h" />
+    <ClInclude Include="..\..\Src\Common\PlatformHeader.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
     <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h" />

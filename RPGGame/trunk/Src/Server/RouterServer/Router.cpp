@@ -1,12 +1,11 @@
 ﻿#include "Server/RouterServer/Router.h"
+#include "Common/DataStruct/XTime.h"
 #include "Common/PacketParser/PacketWriter.h"
 #include "Common/MGHttp/HttpLua.hpp"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/PacketHandler.h"
 #include "Server/Base/ServerContext.h"
-
-extern HttpClient goHttpClient;
 
 Router::Router()
 {
@@ -19,11 +18,24 @@ Router::Router()
 Router::~Router()
 {
 	m_poListener->Release();
-	ServiceIter iter = m_oServiceMap.begin();
-	ServiceIter iter_end = m_oServiceMap.end();
-	for (; iter != iter_end; iter++)
+	ServiceIter sv_iter = m_oServiceMap.begin();
+	ServiceIter sv_iter_end = m_oServiceMap.end();
+	for (; sv_iter != sv_iter_end; sv_iter++)
 	{
-        SAFE_DELETE(iter->second);
+		m_oSessionMap.erase(sv_iter->second->GetSessionID());
+        SAFE_DELETE(sv_iter->second);
+	}
+	SessionIter ss_iter = m_oSessionMap.begin();
+	SessionIter ss_iter_end = m_oSessionMap.begin();
+	for (; ss_iter != ss_iter_end; ss_iter++)
+	{
+        SAFE_DELETE(ss_iter->second);
+	}
+	SockIter sock_iter = m_oSockMap.begin();
+	SockIter sock_iter_end = m_oSockMap.end();
+	for (; sock_iter != sock_iter_end; sock_iter++)
+	{
+        SAFE_DELETE(sock_iter->second);
 	}
 }
 
@@ -47,7 +59,7 @@ bool Router::Init(int nServiceID, const char* psListenIP, uint16_t uListenPort)
 		return false;
 	}
 	m_uListenPort = uListenPort;
-	m_poListener = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_poListener = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 8, &m_oNetEventHandler);
 	if (m_poListener == NULL)
 	{
 		return false;
@@ -68,6 +80,8 @@ bool Router::Start()
 	while (!IsTerminate())
 	{
         ProcessNetEvent(10);
+		int64_t nNowMS = XTime::MSTime();
+		Service::Update(nNowMS);
 		ProcessUpdate();
 		//ProcessHttpMessage();
 #ifdef _WIN32
@@ -155,9 +169,11 @@ void Router::OnRouterDisconnect(int nSessionID)
     SAFE_DELETE(poService);
 
 	//通知本地全服服务断开
-	Packet* poPacket = Packet::Create();
+	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacket == NULL)
+	{
 		return;
+	}
 	PacketWriter oPacketWriter(poPacket);
 	oPacketWriter<<nServerID<<nServiceID;
 	BroadcastService(nServerID, poPacket);
@@ -193,7 +209,7 @@ void Router::OnRouterMsg(int nSessionID, Packet* poPacket)
 	if (!poPacket->GetInnerHeader(oHeader, &pSessionArray, false))
 	{
 		XLog(LEVEL_ERROR, "OnRouterMsg: Packet header invalid\n");
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
@@ -219,18 +235,18 @@ void Router::BroadcastService(int nServerID, Packet* poPacket)
 		if (poService->GetServerID() == nServerID || poService->GetServerID() == nWorldServerID)
 		{
 			int nTarServerID = poService->GetServerID();
-			Packet* poNewPacket = poPacket->DeepCopy();
+			Packet* poNewPacket = poPacket->DeepCopy(__FILE__, __LINE__);
 			//注意路由本身不属于任何服,所以源服务器赋值为目标服务器
 			INNER_HEADER oHeader(NSSysCmd::ssServiceClose, nServerID, GetServiceID(), nTarServerID, poService->GetServiceID(), 0);
 			poNewPacket->AppendInnerHeader(oHeader, NULL, 0);
 			INet* pNet = m_oNetPool.GetNet(poService->GetNetIndex());
 			if (!pNet->SendPacket(poService->GetSessionID(), poNewPacket))
 			{
-				poNewPacket->Release();
+				poNewPacket->Release(__FILE__, __LINE__);
 			}
 		}
 	}
-	poPacket->Release();
+	poPacket->Release(__FILE__, __LINE__);
 
 }
 

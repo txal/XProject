@@ -47,7 +47,7 @@ void ServerCloseProgress::BroadcastPrepServerClose(ServiceNode** tServiceList, i
 	Router* poRouter = (Router*)g_poContext->GetService();
 	for (int i = 0; i < nNum; i++)
 	{
-		Packet* poPacket = Packet::Create();
+		Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 		if (poPacket == NULL)
 			return;
 
@@ -62,7 +62,7 @@ void ServerCloseProgress::BroadcastPrepServerClose(ServiceNode** tServiceList, i
 		poPacket->AppendInnerHeader(oHeader, NULL, 0);
 		INet* pNet = poRouter->GetNetPool()->GetNet(poService->GetNetIndex());
 		if (!pNet->SendPacket(poService->GetSessionID(), poPacket))
-			poPacket->Release();
+			poPacket->Release(__FILE__, __LINE__);
 	}
 }
 

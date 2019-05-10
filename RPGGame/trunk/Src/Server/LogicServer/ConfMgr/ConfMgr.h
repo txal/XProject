@@ -20,7 +20,10 @@
 class ConfMgr
 {
 public:
+	static ConfMgr* g_poConfMgr;
 	static ConfMgr* Instance();
+	static void Release();
+
 	CSVDocument* GetDocument()	{ return &m_oCSVDoc;  }
 	void LoadConf(std::string dataPath);
 
@@ -36,6 +39,7 @@ private:
 
 private:
 	ConfMgr() {};
+	~ConfMgr() {};
 	CSVDocument m_oCSVDoc;
 	std::string m_oDataPath;
 	DISALLOW_COPY_AND_ASSIGN(ConfMgr);

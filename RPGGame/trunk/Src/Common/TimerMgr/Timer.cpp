@@ -42,13 +42,13 @@ void CTimer::Cancel()
 LuaTimer::LuaTimer(uint32_t uTimerID, uint32_t nMSTime, int nLuaRef, const char* pWhere) : TimerBase(uTimerID, nMSTime)
 {
 	m_nLuaRef = nLuaRef;
-	memset(m_sWhere, 0, sizeof(m_sWhere));
-	if (pWhere != NULL)
-	{
-		int nLen = (int)strlen(pWhere);
-		const char* pPos = pWhere + XMath::Max(0, nLen - (int)sizeof(m_sWhere) + 1);
-		strncpy(m_sWhere, pPos, sizeof(m_sWhere)-1);
-	}
+	//memset(m_sWhere, 0, sizeof(m_sWhere));
+	//if (pWhere != NULL)
+	//{
+	//	int nLen = (int)strlen(pWhere);
+	//	const char* pPos = pWhere + XMath::Max(0, nLen - (int)sizeof(m_sWhere) + 1);
+	//	strncpy(m_sWhere, pPos, sizeof(m_sWhere)-1);
+	//}
 }
 
 LuaTimer::~LuaTimer()

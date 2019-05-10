@@ -19,8 +19,18 @@ luaL_Reg CustomFuncList[] =
 
 LuaWrapper* LuaWrapper::Instance()
 {
-	static LuaWrapper oSingleton;
-	return &oSingleton;
+	static LuaWrapper* poLuaWrapper = NULL;
+	if (poLuaWrapper == NULL)
+	{
+		poLuaWrapper = new LuaWrapper();
+	}
+	return poLuaWrapper;
+}
+
+void LuaWrapper::Release()
+{
+	LuaWrapper* poLuaWrapper = Instance();
+	SAFE_DELETE(poLuaWrapper);
 }
 
 LuaWrapper::LuaWrapper()
@@ -56,6 +66,8 @@ LuaWrapper::~LuaWrapper()
 		SAFE_DELETE(siter->second);
 	}	
 	lua_close(m_pState);
+
+	SAFE_DELETE(m_poDebugger);
 }
 
 bool LuaWrapper::Init(bool bDebug)
@@ -352,7 +364,7 @@ int LuaWrapper::CustomLoader(lua_State* pState)
 				poFile = fopen(sPath, "r");
 				if (poFile == NULL)
 				{
-					XLog(LEVEL_ERROR, "File not found:%s\n", sPath);
+					XLog(LEVEL_ERROR, "File not found. file=%s\n", sPath);
 					return 0;
 				}
 			}
@@ -395,24 +407,27 @@ int LuaWrapper::CustomLoader(lua_State* pState)
 			return 0;
 		}
 	}
-    LuaScriptIter iter = poWrapper->m_oScriptMap.find(sModuleName);
-	SCRIPT* poScript = iter != poWrapper->m_oScriptMap.end() ? iter->second : NULL;
-	if (poScript == NULL)
-	{
-		poScript = XNEW(SCRIPT)(sModuleName);
-		poWrapper->m_oScriptMap.insert(std::make_pair(sModuleName, poScript));
-	}
-	else if (poScript->pCont != NULL)
-	{
-		SAFE_FREE(poScript->pCont);
-	}
-	poScript->nSize = nFileSize;
-	poScript->pCont = pCont;
 
-	if (luaL_loadbuffer(pState, poScript->pCont, poScript->nSize, poScript->sModuleName))
+	//LuaScriptIter iter = poWrapper->m_oScriptMap.find(sModuleName);
+	//SCRIPT* poScript = iter != poWrapper->m_oScriptMap.end() ? iter->second : NULL;
+	//if (poScript == NULL)
+	//{
+	//	poScript = XNEW(SCRIPT)(sModuleName);
+	//	poWrapper->m_oScriptMap.insert(std::make_pair(sModuleName, poScript));
+	//}
+	//else if (poScript->pCont != NULL)
+	//{
+	//	SAFE_FREE(poScript->pCont);
+	//}
+	//poScript->nSize = nFileSize;
+	//poScript->pCont = pCont;
+
+	if (luaL_loadbuffer(pState, pCont, nFileSize, sModuleName))
 	{
+		SAFE_FREE(pCont);
 		return luaM_error(pState, lua_tostring(pState, -1));
 	}
+	SAFE_FREE(pCont);
 	return 1;  // Loaded successfully
 }
 
@@ -584,6 +599,8 @@ void LuaWrapper::ClearLoadedModule(const char* psScriptName)
 
 SCRIPT* LuaWrapper::FindScript(const char* psScriptName)
 {
+	return NULL;
+
 	if (psScriptName == NULL)
 	{
 		return NULL;

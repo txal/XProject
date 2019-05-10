@@ -16,7 +16,11 @@ public:
 	virtual ~MysqlDriver();
 
 public:
+	static void MysqlLibaryInit();
+	static void MysqlLibaryEnd();
+
 	bool Connect(const char* pHost, uint16_t nPort, const char* pDB, const char* pUsr, const char* pPwd, const char* pCharset);
+	void CloseConnect();
 	bool Query(const char* pCmd);
 	bool FetchRow();
 
@@ -35,6 +39,7 @@ public:
 private:
 	MYSQL* m_pMysql;
 	MYSQL_RES* m_pMysqlRes; //只保存最后的结果集
+	static bool m_bLibaryInit;
 
 	MYSQL_ROW m_pMysqlRow;
 	int m_nFieldCount;

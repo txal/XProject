@@ -19,7 +19,11 @@ public:
 
 public:
 	void AddLog(BATTLELOG* pLog);
-	void Terminate() { m_bTerminate = true; }
+	void Terminate()
+	{
+		m_bTerminate = true;
+		m_oThread.Join();
+	}
 
 protected:
 	static void LogThread(void* param);

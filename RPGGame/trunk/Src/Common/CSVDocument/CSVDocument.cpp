@@ -16,6 +16,14 @@ CSVColumn::~CSVColumn()
 	}
 }
 
+CSVDocument::~CSVDocument()
+{
+	for (int i = 0; i < m_ColumnList.size(); i++)
+	{
+		SAFE_DELETE(m_ColumnList[i]);
+	}
+}
+
 void CSVDocument::load(const std::string& oFile, bool bWithHeader /* = true */, int *errorRow /* = NULL */, int *errorCol /* = NULL */)
 {
 	std::ifstream oStream(oFile.c_str(), std::ios::in) ;
@@ -44,8 +52,8 @@ void CSVDocument::load(const std::string& oFile, bool bWithHeader /* = true */, 
 	if (stringList.size() <= 0)
 		return;
 
-	//从第0行分析列名称表，分隔符是","
-	parseColumns(stringList[0], ',');
+	//从第1行分析列名称表，分隔符是","
+	parseColumns(stringList[1], ',');
 
 	//循环读取数据并添加到每个列对象
 	const int rowCount = (int)stringList.size();

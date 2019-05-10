@@ -12,6 +12,15 @@ RobotMgr::RobotMgr()
 {
 }
 
+RobotMgr::~RobotMgr()
+{
+	RobotIDIter iter = m_oRobotIDMap.begin();
+	for (iter; iter != m_oRobotIDMap.end(); iter++)
+	{
+		SAFE_DELETE(iter->second);
+	}
+}
+
 Robot* RobotMgr::CreateRobot(int nID, int nRobotID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
 {
 	

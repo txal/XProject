@@ -22,6 +22,10 @@ LogServer::LogServer()
 
 LogServer::~LogServer()
 {
+	if (m_poInnerNet != NULL)
+	{
+		m_poInnerNet->Release();
+	}
 }
 
 bool LogServer::Init(int8_t nServiceID)
@@ -34,7 +38,7 @@ bool LogServer::Init(int8_t nServiceID)
 	{
 		return false;
 	}
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 8, &m_oNetEventHandler);
 	if (m_poInnerNet == NULL)
 	{
 		return false;
@@ -46,7 +50,7 @@ bool LogServer::RegToRouter(int nRouterServiceID)
 {
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
-	Packet* poPacket = Packet::Create();
+	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 
 	PacketWriter oPW(poPacket);
 	oPW << (int)Service::SERVICE_LOG;
@@ -55,7 +59,7 @@ bool LogServer::RegToRouter(int nRouterServiceID)
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
 	return true;
@@ -67,6 +71,7 @@ bool LogServer::Start()
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();
+		Service::Update(nNowMS);
 		ProcessTimer(nNowMS);
 		ProcessHttpMessage();
 	}
@@ -155,13 +160,13 @@ void LogServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 	if (!poPacket->GetInnerHeader(oHeader, &pSessionArray, true))
 	{
 		XLog(LEVEL_INFO, "%s: Get inner header fail\n", GetServiceName());
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);

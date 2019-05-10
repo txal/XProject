@@ -204,7 +204,7 @@ void ExterNet::OnRecvPacket(void* pUD, Packet* poPacket)
 	pSession->nLastInPacketTime	= (int)time(NULL);
 	if (!CheckQPM(pSession))
 	{
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		CloseSession(pSession->nSessionID);
 		return;
 	}

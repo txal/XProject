@@ -14,6 +14,15 @@ MonsterMgr::MonsterMgr()
 {
 }
 
+MonsterMgr::~MonsterMgr()
+{
+	MonsterIter iter = m_oMonsterIDMap.begin();
+	for (iter; iter != m_oMonsterIDMap.end(); iter++)
+	{
+		SAFE_DELETE(iter->second);
+	}
+}
+
 Monster* MonsterMgr::CreateMonster(int nID, int nConfID, const char* psName, int nAIID, int8_t nCamp)
 {
 	Monster* poMonster = GetMonsterByID(nID);
@@ -64,6 +73,7 @@ void MonsterMgr::Update(int64_t nNowMS)
 	}
 	nLastMSTime = nNowMS;
 
+	int nMonsterCount = 0;
 	MonsterIter iter = m_oMonsterIDMap.begin();
 	MonsterIter iter_end = m_oMonsterIDMap.end();
 	for (; iter != iter_end;)
@@ -80,8 +90,16 @@ void MonsterMgr::Update(int64_t nNowMS)
 		{
 			poMonster->Update(nNowMS);
 		}
+		nMonsterCount++;
 		iter++;
 	}	
+
+	static int64_t nLastDumpTime = 0;
+	if (nNowMS-nLastDumpTime >= 60000)
+	{
+		nLastDumpTime = nNowMS;
+		XLog(LEVEL_INFO, "CPP current monster count=%d\n", nMonsterCount);
+	}
 }
 
 

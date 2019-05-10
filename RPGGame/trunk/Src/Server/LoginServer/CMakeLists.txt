@@ -24,4 +24,4 @@ add_executable(LoginServer
 )
 
 target_link_libraries(LoginServer logger network dbdriver luawrapper)
-target_link_libraries(LoginServer lua530 ssdb-client mysqlclient readline lpeg pbc jemalloc pthread rt cjson)
+target_link_libraries(LoginServer lua530 ssdb-client mysqlclient readline lpeg pbc pthread rt cjson) #jemalloc 

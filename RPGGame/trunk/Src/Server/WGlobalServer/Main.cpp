@@ -1,13 +1,17 @@
-﻿#include "Include/Network/Network.hpp"
+﻿//#include <vld.h>
+
+#include "Include/Network/Network.hpp"
+#include "Include/DBDriver/DBDriver.hpp"
 #include "Common/DataStruct/XTime.h"
-#include "Server/WGlobalServer/WGlobalServer.h"
+#include "Common/TimerMgr/TimerMgr.h"
+#include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogServer/PacketProc/PacketProc.h"
 #include "Server/LogServer/LuaSupport/LuaExport.h"
+#include "Server/WGlobalServer/WGlobalServer.h"
 
-ServerContext* g_poContext;
 std::string goScriptRoot;
-
+ServerContext* g_poContext;
 bool InitNetwork(int8_t nServiceID)
 {
 	GlobalNode* poNode = NULL;
@@ -78,9 +82,18 @@ void OnSigTerm(int)
 	XLog(LEVEL_INFO, "receive sigterm signal!\n");
 }
 
+void OnSigInt(int)
+{
+	if (g_poContext != NULL)
+	{
+		g_poContext->GetService()->Terminate();
+	}
+}
+
 int main(int nArg, char *pArgv[])
 {
 	assert(nArg >= 3);
+	signal(SIGINT, OnSigInt);
 	signal(SIGTERM, OnSigTerm);
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
 	goScriptRoot = pArgv[2];
@@ -91,6 +104,7 @@ int main(int nArg, char *pArgv[])
 	atexit(ExitFunc);
 	Logger::Instance()->Init();
 	Logger::Instance()->SetSync(true);
+	MysqlDriver::MysqlLibaryInit();
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./adb.txt"));
@@ -129,6 +143,9 @@ int main(int nArg, char *pArgv[])
 	WGlobalServer* poGlobalServer = XNEW(WGlobalServer);
 	g_poContext->SetService(poGlobalServer);
 
+	LuaSerialize* poSerialize = XNEW(LuaSerialize);
+	g_poContext->SetLuaSerialize(poSerialize);
+
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
 	if (!bRes)
@@ -146,8 +163,15 @@ int main(int nArg, char *pArgv[])
 		exit(-1);
 	}
 
-	INet* pInnerNet = g_poContext->GetService()->GetInnerNet();
-	pInnerNet->Release();
+	//wchar_t wcBuffer[256] = { L"" };
+	//wsprintfW(wcBuffer, L"wglobal%d.leak", g_poContext->GetService()->GetServiceID());
+	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
+
+	SAFE_DELETE(g_poContext);
+	TimerMgr::Instance()->Release();
+	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();
+	NetAdapter::Release();
+	MysqlDriver::MysqlLibaryEnd();
 	return 0;
 }

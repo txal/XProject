@@ -46,4 +46,4 @@ add_executable(LogicServer
 )
 
 target_link_libraries(LogicServer logger network dbdriver luawrapper)
-target_link_libraries(LogicServer lua530 mysqlclient ssdb-client readline lpeg pbc jemalloc pthread rt cjson)
+target_link_libraries(LogicServer lua530 mysqlclient ssdb-client readline lpeg pbc pthread rt cjson) #jemalloc 

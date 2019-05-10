@@ -123,6 +123,9 @@ int main(int nArg, char *pArgv[])
 	OpenLuaExport();
 	poLuaWrapper->DoFile("RobotClt/Main");
 
+	LuaSerialize* poSerialize = XNEW(LuaSerialize);
+	g_poContext->SetLuaSerialize(poSerialize);
+
 	lua_State* pState = poLuaWrapper->GetLuaState();
 	lua_getglobal(pState, "gsDataPath");
 	const char* pDataPath = lua_tostring(pState, -1);

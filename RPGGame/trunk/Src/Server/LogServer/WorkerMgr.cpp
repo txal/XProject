@@ -4,10 +4,38 @@
 #include "Common/DataStruct/XMath.h"
 #include "Common/DataStruct/HashFunc.h"
 
+WorkerMgr* WorkerMgr::g_poWorkderMgr = NULL;
+
 WorkerMgr* WorkerMgr::Instance()
 {
-	static WorkerMgr oWorkerMgr;
-	return &oWorkerMgr;
+	if (g_poWorkderMgr == NULL)
+	{
+		g_poWorkderMgr = XNEW(WorkerMgr);
+	}
+	return g_poWorkderMgr;
+}
+
+void WorkerMgr::Release()
+{
+	if (g_poWorkderMgr != NULL)
+	{
+		SAFE_DELETE(g_poWorkderMgr);
+	}
+}
+
+WorkerMgr::WorkerMgr()
+{
+}
+
+WorkerMgr::~WorkerMgr()
+{
+	for (int i = 0; i < m_oWorkerList.size(); i++)
+	{
+		Worker* poWorker = m_oWorkerList[i];
+		poWorker->bTerminate = true;
+		poWorker->oThread.Join();
+		SAFE_DELETE(poWorker);
+	}
 }
 
 bool WorkerMgr::Init(int nWorkers)
@@ -37,7 +65,7 @@ void WorkerMgr::WorkerProc(void* pParam)
 	Worker* poWorker = (Worker*)pParam;
 	int nLastTime = (int)time(NULL);
 	Query oQuery;
-	for (;;)
+	while (!poWorker->bTerminate)
 	{
 		oQuery.poDriver = NULL;
 		oQuery.poQuery = NULL;

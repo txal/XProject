@@ -1,6 +1,8 @@
 ﻿#include "Include/DBDriver/MysqlDriver.h"
 #include "Include/Logger/Logger.h"
 
+bool MysqlDriver::m_bLibaryInit = false;
+
 MysqlDriver::MysqlDriver()
 {
 	m_pMysql = NULL;
@@ -14,27 +16,54 @@ MysqlDriver::MysqlDriver()
 MysqlDriver::~MysqlDriver()
 {
 	//XLog(LEVEL_INFO, "MysqlDriver destruct!\n");
-    if (m_pMysql != NULL)
-    {
-        mysql_close(m_pMysql);
-		mysql_thread_end();
-    }
     if (m_pMysqlRes != NULL)
     {
         mysql_free_result(m_pMysqlRes);
+		m_pMysqlRes = NULL;
     }
+	CloseConnect();
 }
 
-bool MysqlDriver::Connect(const char* pHost, uint16_t nPort, const char* pDB, const char* pUsr, const char* pPwd, const char* pCharset)
+void MysqlDriver::MysqlLibaryInit()
+{
+	if (m_bLibaryInit)
+	{
+		return;
+	}
+	mysql_library_init(0, NULL, NULL);
+	m_bLibaryInit = true;
+}
+
+void MysqlDriver::MysqlLibaryEnd()
+{
+	if (!m_bLibaryInit)
+	{
+		return;
+	}
+	mysql_library_end();
+	m_bLibaryInit = false;
+}
+
+void MysqlDriver::CloseConnect()
 {
 	if (m_pMysql != NULL)
 	{
 		mysql_close(m_pMysql);
+		m_pMysql = NULL;
 	}
+}
+
+bool MysqlDriver::Connect(const char* pHost, uint16_t nPort, const char* pDB, const char* pUsr, const char* pPwd, const char* pCharset)
+{
+	mysql_thread_init();
+
+	CloseConnect();
+
 	m_pMysql = mysql_init(NULL);
 	if (m_pMysql == NULL)
 	{
 		XLog(LEVEL_ERROR, "Mysql init fail\n");
+		mysql_thread_end();
 		return false;
 	}
 
@@ -46,19 +75,22 @@ bool MysqlDriver::Connect(const char* pHost, uint16_t nPort, const char* pDB, co
 	mysql_options(m_pMysql, MYSQL_OPT_READ_TIMEOUT, (char*)&nQueryTimeOut); 
 	mysql_options(m_pMysql, MYSQL_OPT_RECONNECT, (char*)&bReconnect); 
 
-	if (!mysql_real_connect(m_pMysql, pHost, pUsr, pPwd, pDB, nPort, NULL, CLIENT_COMPRESS | CLIENT_MULTI_RESULTS | CLIENT_MULTI_STATEMENTS))
+	if (mysql_real_connect(m_pMysql, pHost, pUsr, pPwd, pDB, nPort, NULL, CLIENT_COMPRESS | CLIENT_MULTI_RESULTS | CLIENT_MULTI_STATEMENTS) == NULL)
 	{
 		XLog(LEVEL_ERROR, "Mysql connect error: %s\n", mysql_error(m_pMysql));
-		return false;
-	}
-	if (mysql_set_character_set(m_pMysql, pCharset))
-	{
-		XLog(LEVEL_ERROR, "Mysql set charset error: %s\n", mysql_error(m_pMysql));
-		mysql_close(m_pMysql);
-		m_pMysql = NULL;
+		CloseConnect();
+		mysql_thread_end();
 		return false;
 	}
 
+	if (mysql_set_character_set(m_pMysql, pCharset))
+	{
+		XLog(LEVEL_ERROR, "Mysql set charset error: %s\n", mysql_error(m_pMysql));
+		CloseConnect();
+		mysql_thread_end();
+		return false;
+	}
+	mysql_thread_end();
 	return true;
 }
 
@@ -81,11 +113,10 @@ bool MysqlDriver::Query(const char* pCmd)
 	mysql_thread_init();
 	if (mysql_query(m_pMysql, pCmd))
 	{
-		mysql_thread_end();
 		XLog(LEVEL_ERROR, "%s(%s)\n", mysql_error(m_pMysql), pCmd);
+		mysql_thread_end();
 		return false;
 	}
-	mysql_thread_end();
 
 	int nStatus = 0;
 	bool bResult = true;
@@ -116,6 +147,8 @@ bool MysqlDriver::Query(const char* pCmd)
 			break;
 		}
 	} while (nStatus == 0);
+
+	mysql_thread_end();
 	return bResult;
 }
 
@@ -132,7 +165,10 @@ int MysqlDriver::AffectedRows()
 {
 	if (m_pMysqlRes != NULL)
 	{
-		return (int)mysql_affected_rows(m_pMysql);
+		mysql_thread_init();
+		int nRows = (int)mysql_affected_rows(m_pMysql);
+		mysql_thread_end();
+		return nRows;
 	}
 	return 0;
 }
@@ -151,7 +187,10 @@ int MysqlDriver::InsertID()
 {
 	if (m_pMysql != NULL)
 	{
-		return (int)mysql_insert_id(m_pMysql);
+		mysql_thread_init();
+		int nInsertID = (int)mysql_insert_id(m_pMysql);
+		mysql_thread_end();
+		return nInsertID;
 	}
 	return 0;
 }

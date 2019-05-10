@@ -15,6 +15,8 @@ public:
 
 public:
 	MonsterMgr();
+	~MonsterMgr();
+
 	Monster* CreateMonster(int nID, int nConfID, const char* psName, int nAIID, int8_t nCmap);
 	void RemoveMonster(int nID);
 	Monster* GetMonsterByID(int nID);

@@ -36,6 +36,7 @@ bool HttpClient::Init()
 void HttpClient::Stop()
 {
 	m_bStop = true;
+	m_oThread.Join();
 }
 
 HTTPMSG* HttpClient::GetResponse()

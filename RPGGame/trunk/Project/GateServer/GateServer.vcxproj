@@ -20,6 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Common\DataStruct\XString.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp" />
+    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
     <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
@@ -65,6 +70,12 @@
     <ClInclude Include="..\..\Src\Common\DataStruct\XMath.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\XString.h" />
     <ClInclude Include="..\..\Src\Common\DataStruct\XTime.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h" />
+    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
     <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
     <ClInclude Include="..\..\Src\Common\Platform.h" />
@@ -141,9 +152,11 @@
     <OutDir>..\..\Bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Bin\_LocalServer\</OutDir>
+    <OutDir>..\..\..\..\..\M2BT\trunk\Server\_LocalServer\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
+    <IncludePath>D:\download\vld-master\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\download\vld-master\src\bin\x64\Release-v140;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>
@@ -190,7 +203,7 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(OutDir)
-xcopy /y/f MZ-GateServer* E:\svnmengzhu\trunk\Server\_LocalServer\
+rem xcopy /y/f MZ-GateServer* E:\svnmengzhu\trunk\Server\_LocalServer\
 popd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

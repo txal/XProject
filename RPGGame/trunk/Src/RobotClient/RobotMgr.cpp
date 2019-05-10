@@ -204,7 +204,7 @@ void RobotMgr::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	if (!poPacket->GetExterHeader(oHeader, true))
 	{
 		XLog(LEVEL_ERROR, "Get header fail\n");
-		poPacket->Release();
+		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
 	g_poContext->GetPacketHandler()->OnRecvExterPacket(nSessionID, poPacket, oHeader);
