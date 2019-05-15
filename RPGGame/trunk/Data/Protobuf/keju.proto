@@ -1,0 +1,99 @@
+package keju;
+//分为两个日程答题,乡试,殿试
+
+message KejuQuestionData {
+	required int32 nQuestionID = 1;				//题目id
+	required string sTitle = 2;					//题目
+	repeated string tAnswer = 3;				//答案
+	required int32 nRightNo = 4;				//对的答案在答案列表中的排序
+}
+
+message AskHelpData {
+	required int32 nHaveAskHelp = 1;				//当前题目是否求助,0:未求助,1:求助
+	required int32 nAskHelpCnt = 2;					//已经求助的次数
+}
+
+//回答求助信息
+message AnswerHelpData {
+	required int32 nRoleID = 1;					//帮助者id
+	required string sRoleName = 2;					//帮助者的名字
+	required int32 nAnswerNo = 3;					//帮助者的选项
+}
+
+//奖励累积信息
+message RewardRecordData{
+	required int32 nCurrency = 1;				//货币类型
+	required int32 nAddCnt = 2;					//奖励的数目
+}
+
+message OpenKejuDataReq {
+	required int32 nKejuType = 1;					//打开科举界面类型
+}
+
+//科举界面信息
+message OpenKejuDataRet {
+	required int32 nKejuType = 1;					//科举答题类型,1:答题1,2:答题2,3:乡试,4:殿试
+	required int32 nLeftTime = 2;					//剩余时间
+	required int32 nAnswerCnt = 3;					//回答的题目
+	required int32 nAnswerRightCnt = 4;				//回答正确的题目数
+	required KejuQuestionData tQuestionData = 5;	//题目信息
+	required AskHelpData tHelpData = 6;				//求助信息
+	repeated RewardRecordData tReward = 7;			//奖励信息
+}
+
+//答题
+message AnswerKejuQuestionReq{
+	required int32 nQuestionID = 1;					//题目id
+	required int32 nAnswerNo = 2;					//答题选项顺序
+}
+
+//关闭科举答题界面
+message CloseKejuQuestion {
+	required int32 nKejuType = 1;					//科举答题类型
+}
+
+//点击求助
+message KejuAskHelpReq {
+	required int32 nQuestionID = 1;							//求助的题目id
+}
+
+//求助返回求助信息,刷新界面
+message KejuAskHelpRet {
+	required int32 nQuestionID = 1;
+	required AskHelpData tHelpData = 2;
+}
+
+//回答求助信息
+message KejuAnswerHelpQuestionReq {
+	required int32 nAskerID = 1;						//求助者id
+	required int32 nQuestionID = 2;						//题目id
+	required int32 nAnswerNo = 3;						//选择的答案
+}
+
+//求助者点击,获取得到的帮助信息
+message KejuAskHelpDataReq{
+	required int32 nQuestionID = 1;						//题目id
+}
+
+//返回信息
+message KejuHelpDataRet {
+	required int32 nQuestionID = 1;						//题目id
+	repeated AnswerHelpData tHelpData = 2;				//帮助信息
+}
+
+//找殿试npc
+message KejuFindNpcRet {
+}
+
+message KejuHelpQuestionDataReq {
+	required int32 nRoleID = 1;
+	required int32 nQuestionID = 2;
+}
+
+message KejuHelpQuestionDataRet {
+	required int32 nRoleID = 1;						//求助者ID
+	required string sName = 2;						//求助者姓名
+	required string sTitle = 3;						//题目
+	repeated string tAnswer = 4;					//答案
+	required int32 nAnswerNo = 5;					//选择了的答案
+}

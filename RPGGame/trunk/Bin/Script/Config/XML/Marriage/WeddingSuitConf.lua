@@ -1,0 +1,11 @@
+ctWeddingSuitConf={}
+ctWeddingSuitConf[1]={nRoleConfID=1,sWeddingSuitModel="hero_1011",}
+ctWeddingSuitConf[2]={nRoleConfID=2,sWeddingSuitModel="hero_2011",}
+ctWeddingSuitConf[3]={nRoleConfID=3,sWeddingSuitModel="hero_1011",}
+ctWeddingSuitConf[4]={nRoleConfID=4,sWeddingSuitModel="hero_2011",}
+ctWeddingSuitConf[5]={nRoleConfID=5,sWeddingSuitModel="hero_1011",}
+ctWeddingSuitConf[6]={nRoleConfID=6,sWeddingSuitModel="hero_2011",}
+ctWeddingSuitConf[7]={nRoleConfID=7,sWeddingSuitModel="hero_1011",}
+ctWeddingSuitConf[8]={nRoleConfID=8,sWeddingSuitModel="hero_2011",}
+ctWeddingSuitConf[9]={nRoleConfID=9,sWeddingSuitModel="hero_1011",}
+ctWeddingSuitConf[10]={nRoleConfID=10,sWeddingSuitModel="hero_2011",}

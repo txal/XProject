@@ -1,0 +1,17 @@
+ctSCConf={}
+ctSCConf[1]={nID=1,nMoney=6,tAward={{1,34001,1,},{1,28000,10,},{1,11001,1,},},nLimitCnt=5,nRounds=1,isEffect={{0,0,},},}
+ctSCConf[2]={nID=2,nMoney=30,tAward={{1,34001,2,},{1,28000,20,},{1,11001,2,},},nLimitCnt=5,nRounds=1,isEffect={{0,0,},},}
+ctSCConf[3]={nID=3,nMoney=50,tAward={{1,34001,3,},{1,28000,30,},{1,11001,3,},{1,28001,10,},},nLimitCnt=5,nRounds=1,isEffect={{0,0,},},}
+ctSCConf[4]={nID=4,nMoney=98,tAward={{1,34001,5,},{1,28000,50,},{1,11001,4,},{1,28001,15,},},nLimitCnt=5,nRounds=1,isEffect={{1,0,},},}
+ctSCConf[5]={nID=5,nMoney=198,tAward={{1,34001,10,},{1,28000,70,},{1,11001,5,},{1,28001,20,},{1,11003,5,},},nLimitCnt=5,nRounds=1,isEffect={{1,0,},},}
+ctSCConf[6]={nID=6,nMoney=298,tAward={{1,34001,15,},{1,28000,100,},{1,11001,6,},{1,28001,25,},{1,11003,7,},},nLimitCnt=5,nRounds=1,isEffect={{1,0,},},}
+ctSCConf[7]={nID=7,nMoney=488,tAward={{1,34001,20,},{1,28000,150,},{1,11001,7,},{1,28001,30,},{1,11003,10,},},nLimitCnt=5,nRounds=1,isEffect={{1,0,},},}
+ctSCConf[8]={nID=8,nMoney=648,tAward={{1,34001,30,},{1,28000,200,},{1,11001,8,},{1,28001,35,},{1,11003,15,},},nLimitCnt=5,nRounds=1,isEffect={{1,0,},},}
+ctSCConf[9]={nID=9,nMoney=6,tAward={{1,34001,1,},{1,28000,10,},{1,11001,1,},},nLimitCnt=5,nRounds=2,isEffect={{0,0,},},}
+ctSCConf[10]={nID=10,nMoney=30,tAward={{1,34001,2,},{1,28000,20,},{1,11001,2,},},nLimitCnt=5,nRounds=2,isEffect={{0,0,},},}
+ctSCConf[11]={nID=11,nMoney=50,tAward={{1,34001,3,},{1,28000,30,},{1,11001,3,},{1,28001,10,},},nLimitCnt=5,nRounds=2,isEffect={{0,0,},},}
+ctSCConf[12]={nID=12,nMoney=98,tAward={{1,34001,5,},{1,28000,50,},{1,11001,4,},{1,28001,15,},},nLimitCnt=5,nRounds=2,isEffect={{1,0,},},}
+ctSCConf[13]={nID=13,nMoney=198,tAward={{1,34001,10,},{1,28000,70,},{1,11001,5,},{1,28001,20,},{1,11003,5,},},nLimitCnt=5,nRounds=2,isEffect={{1,0,},},}
+ctSCConf[14]={nID=14,nMoney=298,tAward={{1,34001,15,},{1,28000,100,},{1,11001,6,},{1,28001,25,},{1,11003,7,},},nLimitCnt=5,nRounds=2,isEffect={{1,0,},},}
+ctSCConf[15]={nID=15,nMoney=488,tAward={{1,34001,20,},{1,28000,150,},{1,11001,7,},{1,28001,30,},{1,11003,10,},},nLimitCnt=5,nRounds=2,isEffect={{1,0,},},}
+ctSCConf[16]={nID=16,nMoney=648,tAward={{1,34001,30,},{1,28000,200,},{1,11001,8,},{1,28001,35,},{1,11003,15,},},nLimitCnt=5,nRounds=2,isEffect={{1,0,},},}

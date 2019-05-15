@@ -1,0 +1,1 @@
+已经移到配置表 Battle/AttrConf.xml中

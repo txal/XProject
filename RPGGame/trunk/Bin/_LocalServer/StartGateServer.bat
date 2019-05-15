@@ -1,2 +1,2 @@
-start GateServer 10
+start MZ-GateServer 10
 

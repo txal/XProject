@@ -8,21 +8,19 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
+  <LastAuthor>Administrator</LastAuthor>
   <Created>2016-08-24T07:17:58Z</Created>
-  <LastSaved>2017-06-20T09:57:33Z</LastSaved>
-  <Version>15.00</Version>
+  <LastSaved>2018-05-04T04:11:10Z</LastSaved>
+  <Version>12.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
-  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6554</KSOProductBuildVer>
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6929</KSOProductBuildVer>
  </CustomDocumentProperties>
- <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
-  <AllowPNG/>
- </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11280</WindowHeight>
-  <WindowWidth>21615</WindowWidth>
-  <WindowTopX>0</WindowTopX>
-  <WindowTopY>0</WindowTopY>
+  <WindowHeight>13050</WindowHeight>
+  <WindowWidth>28695</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>135</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -35,15 +33,23 @@
    <NumberFormat/>
    <Protection/>
   </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="ctUnionExchangeConf">
-  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="16" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="17" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:AutoFitWidth="0" ss:Width="66"/>
    <Column ss:AutoFitWidth="0" ss:Width="75.75"/>
    <Column ss:AutoFitWidth="0" ss:Width="116.25"/>
    <Column ss:AutoFitWidth="0" ss:Width="90"/>
    <Column ss:AutoFitWidth="0" ss:Width="102.75"/>
+   <Row ss:AutoFitHeight="0"/>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">nID</Data></Cell>
     <Cell><Data ss:Type="String">tItem</Data></Cell>
@@ -63,7 +69,7 @@
     <Cell><Data ss:Type="String">兑换道具</Data></Cell>
     <Cell><Data ss:Type="String">消耗贡献</Data></Cell>
     <Cell><Data ss:Type="String">每日最大可兑换</Data></Cell>
-    <Cell><Data ss:Type="String">联盟等级</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">帮派等级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1</Data></Cell>
@@ -168,8 +174,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>9</ActiveRow>
-     <ActiveCol>8</ActiveCol>
+     <ActiveRow>3</ActiveRow>
+     <ActiveCol>4</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

@@ -1,0 +1,649 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>AutoBVT</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2018-12-10T08:42:36Z</LastSaved>
+  <Version>12.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7311</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13050</WindowHeight>
+  <WindowWidth>28695</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>135</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Interior/>
+  </Style>
+  <Style ss:ID="s63">
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s65">
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s70">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#800080"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s73">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#FF9900"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s75">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#FF00FF"/>
+   <Interior/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctBaHuangHuoZhenComplex">
+  <Table ss:ExpandedColumnCount="16384" ss:ExpandedRowCount="33" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="183.75" ss:Span="1"/>
+   <Column ss:Index="4" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="183.75"
+    ss:Span="4"/>
+   <Column ss:Index="9" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="123.75"
+    ss:Span="1"/>
+   <Column ss:Index="11" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Span="16330"/>
+   <Column ss:Index="16342" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Span="42"/>
+   <Row ss:AutoFitHeight="0" ss:Height="54">
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:Index="4" ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">当修炼等级小于当前修炼上限等级-5时，所有途经获得的修炼经验增加30%</Data></Cell>
+    <Cell><Data ss:Type="String">当修炼等级小于当前修炼上限等级-5时，所有途经获得的修炼经验增加30%</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">若完成八荒火阵的玩家，等级≤服务器等级-10</Data></Cell>
+    <Cell><Data ss:Type="String">8个箱子完成领取奖励</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">每天可以帮助封箱的次数</Data></Cell>
+    <Cell><Data ss:Type="String">每日可求助次数</Data></Cell>
+    <Cell><Data ss:Type="String">帮助帮派内其他成员封装八荒火阵箱子，还能额外获得3点帮贡奖励</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">eFnSpecialMedicine</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">eFnCooking</Data></Cell>
+    <Cell><Data ss:Type="String">eFnStall</Data></Cell>
+    <Cell><Data ss:Type="String">nPracticeLevelDifferent</Data></Cell>
+    <Cell><Data ss:Type="String">nSuperfluityExp</Data></Cell>
+    <Cell><Data ss:Type="String">eFnRoleRewardExp</Data></Cell>
+    <Cell><Data ss:Type="String">tCompleteTaskReward</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">nHelpTiems</Data></Cell>
+    <Cell><Data ss:Type="String">nCanHelpTimes</Data></Cell>
+    <Cell><Data ss:Type="String">nUnionTimes</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="String">sNpcTalk</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">e</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"><Data ss:Type="String">编号</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">特效药物品价格计算</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">烹饪物品计算当前价格</Data></Cell>
+    <Cell><Data ss:Type="String">摆摊物品计算修炼经验</Data></Cell>
+    <Cell><Data ss:Type="String">当前修炼等级小于当前修炼等级上限的差值</Data></Cell>
+    <Cell><Data ss:Type="String">额外经验百分比</Data></Cell>
+    <Cell><Data ss:Type="String">人物奖励经验</Data></Cell>
+    <Cell><Data ss:Type="String">完成任务奖励</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">帮助次数</Data></Cell>
+    <Cell><Data ss:Type="String">求助次数</Data></Cell>
+    <Cell><Data ss:Type="String">帮贡奖励</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="String">完成对白</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">math.ceil(nServer/10)</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">math.ceil(nServerLv/10)</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">math.ceil(math.max(nPrice/2000)*1.5,10)</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">30</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">nLevel*40+100</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">10009,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="String">老夫明天需要以下几个东西，少侠可提前准备好</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s63"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="7" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s74"/>
+    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s75"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s74"/>
+    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s75"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s74"/>
+    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s75"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s72"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>1</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="2" ss:ExpandedRowCount="34" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="574.5"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">宋玉</Data></Cell>
+    <Cell><Data ss:Type="String">多想为你奉上最美的鲜花</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">潘安</Data></Cell>
+    <Cell><Data ss:Type="String">留不住的，始终是那刹那消逝的芳华</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">卫玠</Data></Cell>
+    <Cell><Data ss:Type="String">天涯海角，但求无他，只望君安，叔宝便已知足</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">赵云</Data></Cell>
+    <Cell><Data ss:Type="String">若为伊故，子龙再度七进七出又何妨！</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">司马相如</Data></Cell>
+    <Cell><Data ss:Type="String">能与娘娘相伴，真乃微臣之辛</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">孙策</Data></Cell>
+    <Cell ss:Formula="=R[-1]C"><Data ss:Type="String">能与娘娘相伴，真乃微臣之辛</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">韩子高</Data></Cell>
+    <Cell><Data ss:Type="String">伊人独舞，倾城之姿。舞中带忧，我见犹怜</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">高长恭</Data></Cell>
+    <Cell><Data ss:Type="String">不要动，再动的话，我可不敢保证会发生什么!</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">嵇康</Data></Cell>
+    <Cell><Data ss:Type="String">人生难免不如意，娘娘懂得排遣便好</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">慕容冲</Data></Cell>
+    <Cell><Data ss:Type="String">你是白痴吗？这种话还需要我当面跟你说清楚吗！</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">诸葛亮</Data></Cell>
+    <Cell><Data ss:Type="String">今日夜观星象，乌云盖顶，却奈何遮不住对你的思念</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">卫青</Data></Cell>
+    <Cell><Data ss:Type="String">有时候莫名其妙的笑了，只因为想到了你</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">荀彧</Data></Cell>
+    <Cell><Data ss:Type="String">大千世界，能遇上娘娘，真好</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">子画</Data></Cell>
+    <Cell><Data ss:Type="String">没有我，你要好好的，这是你唯一能为我做的</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">白玉堂</Data></Cell>
+    <Cell><Data ss:Type="String">不要怕什么路途遥远。走一步有一步的风景</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">曹操</Data></Cell>
+    <Cell><Data ss:Type="String">我从来不怕天下人看错我，却唯怕你看错我</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">李白</Data></Cell>
+    <Cell><Data ss:Type="String">陪你地老天荒，只为伊人独醉</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">杜甫</Data></Cell>
+    <Cell><Data ss:Type="String">你站在哪里 哪里就自成风景</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">展昭</Data></Cell>
+    <Cell><Data ss:Type="String">只要展某认为值得，纵管前方是刀山火海还是千军万马，我也会义无反顾！</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">周瑜</Data></Cell>
+    <Cell><Data ss:Type="String">聆听吧，这首献给您的醉赤壁</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">苏轼</Data></Cell>
+    <Cell><Data ss:Type="String">小楼一夜听风雨，深巷明朝卖杏花</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">元稹</Data></Cell>
+    <Cell><Data ss:Type="String">在你需要我时，我总会出现在你身边</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">阮籍</Data></Cell>
+    <Cell><Data ss:Type="String">世间纵有风雪寒寒，亦终有人万死不离</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">霍去病</Data></Cell>
+    <Cell><Data ss:Type="String">娘娘，和你在一起总会令我忘记时间的存在</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">邹忌</Data></Cell>
+    <Cell><Data ss:Type="String">我不思进取，因为只思你！</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">唐伯虎</Data></Cell>
+    <Cell><Data ss:Type="String">笔走龙蛇绘江山，却绘不出娘娘的惊鸿之姿</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">柳永</Data></Cell>
+    <Cell><Data ss:Type="String">云淡风轻，细水长流</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">魏无忌</Data></Cell>
+    <Cell><Data ss:Type="String">凤兮凤兮归故乡，遨游四海求其凰</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">扶苏</Data></Cell>
+    <Cell><Data ss:Type="String">此刻看着你，就好比我在晴朗的天气，眺望远处的青山</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">欧阳修</Data></Cell>
+    <Cell><Data ss:Type="String">娘娘，好风、好景，倒不如来一场春风得意马蹄疾。</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">郭嘉</Data></Cell>
+    <Cell><Data ss:Type="String">有的路，是脚去走。而有的路，确是用心去走</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">蒙恬</Data></Cell>
+    <Cell><Data ss:Type="String">你若需要，大可拿走我的心，可是别把你的微笑拿掉</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">白居易</Data></Cell>
+    <Cell><Data ss:Type="String">娘娘，樱树只有华美落尽，生命脉络才历历可见</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">刘彻</Data></Cell>
+    <Cell><Data ss:Type="String">一腔孤勇与余生，只愿能陪在你的身边</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>33</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+     <RangeSelection>R1C1:R34C2</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

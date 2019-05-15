@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>AutoBVT</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2019-01-23T14:53:22Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>6555</WindowHeight>
+  <WindowWidth>9210</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s27" ss:Name="差">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#800000"/>
+   <Interior ss:Color="#FFC7CE" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s26" ss:Name="好">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#008000"/>
+   <Interior ss:Color="#C6EFCE" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s65" ss:Parent="s27">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s67" ss:Parent="s26">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+  </Style>
+  <Style ss:ID="s68" ss:Parent="s27">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#800000"/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s70" ss:Parent="s27">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#800000"/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s71" ss:Parent="s27">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#800000"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctZeroYuanConf">
+  <Table ss:ExpandedColumnCount="7" ss:ExpandedRowCount="24" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="57.75"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="183.75"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="156.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="180.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="183.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="103.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="108"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="5" ss:StyleID="s67"/>
+    <Cell><Data ss:Type="String">1飞机 2车 </Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">tBuyCost</Data></Cell>
+    <Cell><Data ss:Type="String">sPower</Data></Cell>
+    <Cell><Data ss:Type="String">tAward</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">tAwardYuanBao</Data></Cell>
+    <Cell><Data ss:Type="String">boCarOrFly</Data></Cell>
+    <Cell><Data ss:Type="String">otherName</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">t{iiii}</Data><Comment
+      ss:Author="AutoBVT"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Face="Tahoma" x:CharSet="134" x:Family="Swiss" html:Size="9"
+         html:Color="#000000">t{iiii}&#10;1-</Font><Font html:Size="9"
+         html:Color="#000000">物品类型</Font><Font html:Face="Tahoma" x:CharSet="134"
+         x:Family="Swiss" html:Size="9" html:Color="#000000">(1</Font><Font
+         html:Size="9" html:Color="#000000">道具</Font><Font html:Face="Tahoma"
+         x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,2</Font><Font
+         html:Size="9" html:Color="#000000">货币</Font><Font html:Face="Tahoma"
+         x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,3</Font><Font
+         html:Size="9" html:Color="#000000">宠物</Font><Font html:Face="Tahoma"
+         x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,4</Font><Font
+         html:Size="9" html:Color="#000000">伙伴</Font><Font html:Face="Tahoma"
+         x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,5</Font><Font
+         html:Size="9" html:Color="#000000">法宝</Font><Font html:Face="Tahoma"
+         x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,6</Font><Font
+         html:Size="9" html:Color="#000000">称谓</Font><Font html:Face="Tahoma"
+         x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">)&#10;2,</Font><Font
+         html:Size="9" html:Color="#000000">物品</Font><Font html:Face="Tahoma"
+         x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">ID(</Font><Font
+         html:Size="9" html:Color="#000000">对应的道具表</Font><Font html:Face="Tahoma"
+         x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">)&#10;3-</Font><Font
+         html:Size="9" html:Color="#000000">物品数量</Font></B><Font html:Face="Tahoma"
+        x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">&#10;4</Font><Font
+        html:Size="9" html:Color="#000000">子物品</Font><Font html:Face="Tahoma"
+        x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">ID(</Font><Font
+        html:Size="9" html:Color="#000000">如果是消耗元宝的时候</Font><Font html:Face="Tahoma"
+        x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,2</Font><Font
+        html:Size="9" html:Color="#000000">为非绑定元宝</Font><Font html:Face="Tahoma"
+        x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,3</Font><Font
+        html:Size="9" html:Color="#000000">为绑定元宝</Font><Font html:Face="Tahoma"
+        x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,230</Font><Font
+        html:Size="9" html:Color="#000000">为结合类型</Font><Font html:Face="Tahoma"
+        x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">,</Font><Font
+        html:Size="9" html:Color="#000000">其他则就是对应的物品</Font><Font html:Face="Tahoma"
+        x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">ID</Font><Font
+        html:Size="9" html:Color="#000000">）&#10;</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">档次</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">购买消耗的道具(这里扣除元宝比较特殊)</Data></Cell>
+    <Cell><Data ss:Type="String">购买道具加成的战力</Data></Cell>
+    <Cell><Data ss:Type="String">奖励</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">元宝返还(1非绑定元宝,2绑定元宝)</Data></Cell>
+    <Cell><Data ss:Type="String">时装判断</Data></Cell>
+    <Cell><Data ss:Type="String">别名</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">2,1,18000,2</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">速度+5～9\n魔法+42～71</Data></Cell>
+    <Cell><Data ss:Type="String">1,13101,1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1,2,18000</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">翅膀：斗战之旗</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">2,1,80000,2</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">攻击+9～15\n灵力+2～4</Data></Cell>
+    <Cell><Data ss:Type="String">1,13002,1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1,2,80000</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">飞行器：吉祥鱼</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">2,1,400000,2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,3203,1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1,2,400000</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">圣兽：烈焰悟空·离</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+    <Cell ss:Index="5" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="2" ss:StyleID="Default"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>10</ActiveRow>
+     <ActiveCol>5</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

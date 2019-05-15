@@ -1,0 +1,45 @@
+//阵法
+package formation;
+
+//阵法列表请求
+message FmtListReq
+{
+}
+
+//阵法列表返回
+message FmtListRet
+{
+    message _FMT
+    {
+        required int32 nID = 1;         //阵法ID
+        required int32 nLevel = 2;      //等级
+        required int32 nExp = 3;        //当前经验
+        required int32 nNextExp = 4;    //升级经验
+    }
+    repeated _FMT tList = 1;            //阵法列表 
+    required int32 nUseFmt = 2;         //当前使用的阵法(0普通阵法)
+    required int32 nMaxFmt = 3;         //阵法格子上限
+}
+
+//购买上限请求
+message FmtBuyReq
+{
+}
+
+//启用阵法请求
+message FmtUseReq
+{
+    required int32 nID = 1;     //阵法ID
+}
+
+//提升阵法请求
+message FmtUpgradeReq
+{
+    message _PROP
+    {
+        required int32 nID = 1;     //道具ID
+        required int32 nNum = 3;    //道具数量
+    }
+    required int32 nID = 1;         //阵法ID 
+    repeated _PROP tList = 2;       //道具列表
+}

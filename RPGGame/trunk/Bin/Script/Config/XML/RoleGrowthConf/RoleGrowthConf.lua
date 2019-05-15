@@ -1,0 +1,11 @@
+ctRoleGrowthConf={}
+ctRoleGrowthConf[1]={nID=1,sName="时装-御器",tExpProp={{1,10200,1,},},nRatio=1,nParam=0,}
+ctRoleGrowthConf[2]={nID=2,sName="时装-仙羽",tExpProp={{1,10201,500,},},nRatio=1.5,nParam=0,}
+ctRoleGrowthConf[3]={nID=3,sName="时装-强化",tExpProp={{1,10202,500,},},nRatio=1,nParam=0.2,}
+ctRoleGrowthConf[4]={nID=4,sName="宠物-御兽",tExpProp={{1,10203,500,},},nRatio=1.5,nParam=0,}
+ctRoleGrowthConf[5]={nID=5,sName="仙侣-仙阵",tExpProp={{1,10204,500,},},nRatio=1.5,nParam=0,}
+ctRoleGrowthConf[6]={nID=6,sName="摄魂-炼魂",tExpProp={{1,10205,500,},},nRatio=1.5,nParam=0,}
+ctRoleGrowthConf[7]={nID=7,sName="摄魂-法阵",tExpProp={{1,10206,1,},},nRatio=0.25,nParam=0,}
+ctRoleGrowthConf[8]={nID=8,sName="缘分-情义",tExpProp={{1,10207,1,},},nRatio=0.25,nParam=0,}
+ctRoleGrowthConf[9]={nID=9,sName="仙侣-觉醒",tExpProp={{1,10208,500,},},nRatio=1,nParam=0.02,}
+ctRoleGrowthConf[10]={nID=10,sName="宠物-觉醒",tExpProp={{1,10209,500,},},nRatio=1,nParam=0.02,}

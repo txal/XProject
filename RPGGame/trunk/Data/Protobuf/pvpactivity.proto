@@ -1,0 +1,125 @@
+//PVP活动协议
+package pvpactivity;
+
+// 进入PVP活动请求信息
+message PVPActivityEnterReq
+{
+	required int32 nActivityID = 1;  // 活动ID	
+}
+
+// PVP活动信息请求
+message PVPActivityInfoReq
+{	
+	required int32 nActivityID = 1;  // 活动ID
+}
+
+message PVPUnionData {
+	required int32 nUnionID = 1;	//帮派id
+	required string sName = 2;		 //帮派名字
+	required int32 nOnlineCnt = 3;	 //场景内人数
+}
+
+// PVP活动信息响应
+message PVPActivityInfoRet
+{
+	required int32 nActivityID = 1;  // 活动ID
+	required int32 nState = 2;       // 当前状态  // 准备、开始、结束
+	required int32 nStateCountdown = 3;   // 状态结束倒计时
+	required bool bQuickMatchTeam = 4;   // 是否可快速匹配队伍
+	required bool bAutoMatchBattle = 5;        // 是否是自动匹配战斗模式(自动匹配模式下，无法手动点击选择玩家进行战斗)
+}
+
+// PVP活动角色信息请求
+message PVPActivityRoleDataReq
+{	
+	required int32 nActivityID = 1;
+}
+
+// PVP角色信息响应
+message PVPActivityRoleDataRet
+{
+	required int32 nActivityID = 1;
+	required int32 nScore = 2;    // 当前积分
+	required int32 nState = 3;    // 玩家当前状态
+	required int32 nStateCountdown = 4;  // 状态倒计时, 大于 0 时有效，主要显示战斗保护倒计时
+	required int32 nQuickTeamCountdown = 5; // 快捷组队倒计时，非组队状态或者是队长，并且可组队场景，才有效
+	required int32 nBattleCount = 6;  // 战斗次数
+	required int32 nWinCount = 7;     // 胜利次数
+	optional int32 nRank = 8;         // 排名
+}
+
+// PVP活动排行榜数据请求
+message PVPActivityRankDataReq
+{
+	required int32 nActivityID = 1;
+	required int32 nPageNum = 2;  // 排行榜页  索引从1开始
+}
+
+// PVP活动排行榜数据
+message PVPActivityRoleRankData
+{
+	required int32 nRoleID = 1;     // 角色ID
+	required string sRoleName = 2;  // 角色姓名
+	required int32 nLevel = 3;      // 角色等级
+	required int32 nSchool = 4;     // 角色门派
+	required int32 nScore = 5;      // 积分	
+	required int32 nRank = 6;       // 名次
+	optional int32 nUnionID = 7;    // 帮会ID
+	optional string sUnionName = 8; // 帮会名称
+}
+
+// PVP活动排行榜数据响应
+message PVPActivityRankDataRet    
+{
+	required int32 nActivityID = 1;  // 活动ID
+	required int32 nMaxPageNum = 2;  // 当前排行榜最大页表数量
+	required int32 nPageNum = 3;  // 排行榜页
+	repeated PVPActivityRoleRankData tRankPageData = 4;  // 排行榜数据
+	optional PVPActivityRoleRankData tRoleRank = 5; // 角色自己的排行榜数据
+}
+
+// 发起战斗请求
+message PVPActivityBattleReq
+{
+	required int32 nActivityID = 1;  // 活动ID
+	required int32 nEnemyID = 2;  // 敌对目标ID
+}
+
+// 玩家状态变化场景广播
+message PVPActivityRoleStateChangeViewRet
+{
+	required int32 nAOIID = 1;    // 角色场景ID
+	required int32 nState = 2;    // 当前状态
+}
+
+// 离开PVP活动场景请求
+message PVPActivityLeaveReq
+{	
+}
+
+// 快速匹配队伍请求
+message PVPActivityMatchTeamReq
+{
+	required int32 nActivityID = 1;
+}
+
+// 取消匹配
+message PVPActivityCancelMatchTeamReq
+{
+	required int32 nActivityID = 1;
+}
+
+//刷新场景内帮派人数信息
+message PVPUnionDataRet{
+	required int32 nActivityID = 1;  // 活动ID
+	repeated PVPUnionData tUnionData = 2;	//场景内帮派人数信息
+}
+
+//通知PVP活动NPC出现和销毁
+message PVPActivityNpcRet
+{
+	required int32 nType = 1;    // 1创建，2销毁
+	repeated int32 tNpcList = 2; // NPC列表
+}
+
+

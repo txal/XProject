@@ -1,3 +1,3 @@
 ctCardConf={}
-ctCardConf[7]={nID=7,sName="月卡",nDay=30,nSJAddTimes=1,nDayYB=100,}
-ctCardConf[8]={nID=8,sName="季卡",nDay=90,nSJAddTimes=1,nDayYB=150,}
+ctCardConf[9]={nID=9,sName="超值福利月卡",nDay=30,nSJAddTimes=1,nDayYB=6888,}
+ctCardConf[10]={nID=10,sName="双周福利",nDay=14,nSJAddTimes=1,nDayYB=6888,}

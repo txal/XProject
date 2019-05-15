@@ -1,0 +1,166 @@
+//好友系统
+package friend;
+
+//好友列表请求
+message FriendListReq
+{
+	
+}
+
+message _TALK
+{
+	message _HEAD
+	{
+		required int32 nID = 1;
+		required string sName = 2;
+		required string sHeader = 3;
+		required int32 nLevel = 4;
+		required int32 nGender = 5;
+		required int32 nSchool = 6;
+	}
+	optional _HEAD tHead = 1;
+	required string sCont = 2;
+	required int32 nTime = 3;
+}
+
+message _FRIEND
+{
+	required int32 nID = 1;	
+	required string sName = 2;
+	required string sHeader = 3;
+	required int32 nLevel = 4;
+	required int32 nSchool = 5;
+	required int32 nGender = 6;
+	optional _TALK tLastTalk = 7; 	//最后一次聊天信息
+	required int32 nAddTime = 8; 	//加为好友时间
+	required int32 nDegrees = 9; 	//友好度
+	optional bool bOnline = 10; 	//是否在线
+	optional bool bStranger = 11; 	//是否陌生人
+	optional int32 nOfflineTalk = 12;//离线聊天数量
+}
+
+//好友列表返回
+message FriendListRet
+{
+	repeated _FRIEND tList = 1;
+}
+
+
+//添加好友请求
+message AddFriendReq
+{
+	required int32 nTarRoleID = 1;	
+}
+
+//删除好友请求
+message DelFriendReq
+{
+	required int32 nTarRoleID = 1;	
+	required bool bStranger = 2; 	//是否陌生人
+}
+
+//查找好友请求
+message SearchFriendReq
+{
+	optional string sSearchKey = 1;	
+}
+
+//查找好友返回
+message SearchFriendRet
+{
+	message _ROLE		
+	{
+		required int32 nID = 1;
+		required string sName = 2;
+		required string sHeader = 3;
+		required int32 nLevel = 4;
+		required int32 nGender = 5;
+		required int32 nSchool = 6;
+		required int32 bOnline = 7;
+		optional bool bApplied = 8; 	//是否已申请好友
+	}
+	repeated _ROLE tList = 1;
+}
+
+//赠送物品请求
+message FriendSendPropReq
+{
+	required int32 nTarRoleID = 1;
+	required int32 nGridID = 2;
+	required int32 nNum = 3;
+}
+
+//友好度同步
+message FriendDegreesRet
+{
+	required int32 nRoleID = 1;
+	required int32 nDegrees = 2;
+}
+
+//发送聊天消息
+message FriendTalkReq
+{
+	required int32 nTarRoleID = 1;
+	required string sCont = 2;
+	optional bool bXMLMsg = 3;      //是否是结构化文本消息
+}
+
+//聊天消息返回
+message FriendTalkRet
+{
+	required _TALK tTalk = 1;
+}
+
+//申请好友请求
+message FriendApplyReq
+{
+	required int32 nTarRoleID = 1;  //目标角色ID
+	optional string sMessage = 2; 	//验证消息
+}
+
+//好友申请列表请求
+message FriendApplyListReq
+{
+}
+
+//好友申请列表返回
+message FriendApplyListRet
+{
+	message _APPLY
+	{
+		required int32 nID = 1;
+		required string sName = 2;
+		required string sHeader = 3;
+		required int32 nLevel = 4;
+		required int32 nGender = 5;
+		required int32 nSchool = 6;
+		required int32 nTime = 7;
+		optional string sMessage = 8;
+	}
+	repeated _APPLY tList = 1;
+}
+
+//拒绝好友申请请求
+message DenyFriendApplyReq
+{
+	required int32 nTarRoleID = 1;
+}
+
+//申请好友成功
+message FriendApplySuccessRet
+{
+	required int32 nTarRoleID = 1;	
+}
+
+//好友/陌生人历史聊天记录请求
+message FriendHistoryTalkReq
+{
+	required int32 nTarRoleID = 1;	
+}
+
+//好友/陌生人历史聊天记录返回
+message FriendHistoryTalkRet
+{
+	repeated _TALK tTalkList = 1;
+	required int32 nTarRoleID = 2;
+}

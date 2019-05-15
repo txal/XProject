@@ -1,0 +1,16 @@
+CMallMgr = CMallMgr or class()
+CShop = CShop or  class()
+CSpecial = CSpecial or class()
+CRecharge = CRecharge or class()
+CChamberCore = CChamberCore or class()
+CBuy = CBuy or class()
+
+require("SystemMall/SystemMallDef")
+require("SystemMall/Shop")
+require("SystemMall/Special")
+require("SystemMall/Recharge")
+require("SystemMall/ChamberCore")
+require("SystemMall/Buy")
+
+require("SystemMall/SystemMall")
+require("SystemMall/SystemMallRpc")

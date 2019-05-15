@@ -20,6 +20,7 @@ public:
 	virtual bool Start() = 0;
 	virtual INet* GetInnerNet() { return NULL; }
 	virtual INet* GetExterNet() { return NULL; }
+	virtual void Update(int64_t nMSTime);
 
 private:
 	int8_t m_nServiceID;

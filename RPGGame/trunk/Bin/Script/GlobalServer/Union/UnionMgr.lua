@@ -1,284 +1,344 @@
---联盟管理器
+--帮派管理器
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
+--战力比较
+local function _fnPowerCmp(t1, t2)
+	if t1[1] > t2[1] then
+		return 1
+	end
+	if t1[1] < t2[1] then
+		return -1
+	end
+	return 0
+end
+
+--积分比较
+local function _fnScoreCmp(t1, t2)
+	if t1[1] > t2[1] then
+		return 1
+	end
+	if t1[1] < t2[1] then
+		return -1
+	end
+	return 0
+end
+
 local nMaxUnionID = 9999
-local nServerID = gnServerID
-local nAutoSaveTime = 3*60
-
 function CUnionMgr:Ctor()
-	self.m_nAutoInc = 0
-	--{[nUnionID]=oUnion}
-	self.m_tUnionMap = {}
-	--{[sUnionName]=nUnionID}
-	self.m_tUnionNameMap = {}
-	--{[nCharID]=oUnionPlayer}
-	self.m_tUnionPlayerMap = {}
+	self.m_nAutoID = 0
+	self.m_nAutoShowID = 0
+	
+	self.m_tUnionMap = {} 		--{[nUnionID]=oUnion}
+	self.m_tUnionRoleMap = {} 	--{[nRoleID]=oUnionRole}
+	self.m_tCombindMap = {} 	--合并帮派
 
-	self.m_tUnionIDList = {} --用来随机
-	self.m_tDirtyUnionMap = {}
-	self.m_tDirtyUnionPlayerMap = {}
-	self.m_bUnionNameDirty = false
+	self.m_tDirtyUnionMap = {} 		--不保存
+	self.m_tDirtyUnionRoleMap = {} 	--不保存
+
+	self.m_oPowerRanking = CSkipList:new(_fnPowerCmp) 	--战力榜{power}
+	self.m_oScoreRanking = CSkipList:new(_fnScoreCmp) 	--积分榜{score}
+
+	self.m_tUnionIDList = {} 	--不保存
+	self.m_tUnionNameMap = {} 	--不保存{[sUnionName]=nUnionID}
+
+	self.m_nSaveTick = nil
+	self.m_nHourTimer = nil 	--每小时计时器
 end
 
 function CUnionMgr:AutoSave()
-	self.m_nSaveTick = goTimerMgr:Interval(nAutoSaveTime, function() self:SaveData() end)
+	self.m_nSaveTick = goTimerMgr:Interval(gnAutoSaveTime, function() self:SaveData() end)
+	local nNextHourTime = os.NextHourTime(os.time())
+	self.m_nHourTimer = goTimerMgr:Interval(nNextHourTime, function() self:OnHourTimer() end)
 end
 
 function CUnionMgr:OnRelease()
 	goTimerMgr:Clear(self.m_nSaveTick)
 	self.m_nSaveTick = nil
-	
+	goTimerMgr:Clear(self.m_nHourTimer)
+	self.m_nHourTimer = nil
+	self:ClearDupTick()
 	self:SaveData()
 end
 
---加载联盟数据
+--加载帮派数据
 function CUnionMgr:LoadData()
-	--联盟名字列表
-	local sData = goDBMgr:GetSSDB("Player"):HGet(gtDBDef.sUnionNameDB, "UniqueName")
-	if sData ~= "" then
-		self.m_tUnionNameMap = cjson.decode(sData)
-	end
-
 	--自动增长ID
-	local sData = goDBMgr:GetSSDB("Player"):HGet(gtDBDef.sUnionNameDB, "AutoInc")
-	if sData ~= "" then
-		self.m_nAutoInc = tonumber(sData)
+	local oDB = goDBMgr:GetSSDB(gnServerID, "global", GF.GetServiceID())
+	local sData = oDB:HGet(gtDBDef.sUnionEtcDB, "data")
+	local tData = sData == "" and {} or cjson.decode(sData)
+
+	self.m_nAutoID = tData.m_nAutoID or 0
+	self.m_nAutoShowID = tData.m_nAutoShowID or 0
+	self.m_tCombindMap = tData.m_tCombindMap or {}
+
+	--帮派玩家数据
+	local tKeys = oDB:HKeys(gtDBDef.sUnionRoleDB)
+	for _, sKey in ipairs(tKeys) do
+		local sData = oDB:HGet(gtDBDef.sUnionRoleDB, sKey)
+		local tData = cjson.decode(sData)
+		local oUnionRole = CUnionRole:new()
+		oUnionRole:LoadData(tData)
+		self.m_tUnionRoleMap[oUnionRole:GetRoleID()] = oUnionRole
 	end
 
-	--联盟玩家数据
-	local tKeys = goDBMgr:GetSSDB("Player"):HKeys(gtDBDef.sUnionPlayerDB)
+	--帮派数据
+	local tKeys = oDB:HKeys(gtDBDef.sUnionDB)
 	for _, sKey in ipairs(tKeys) do
-		local sData = goDBMgr:GetSSDB("Player"):HGet(gtDBDef.sUnionPlayerDB, sKey)
+		local sData = oDB:HGet(gtDBDef.sUnionDB, sKey)
 		local tData = cjson.decode(sData)
-		local oUnionPlayer = CUnionPlayer:new()
-		oUnionPlayer:LoadData(tData)
-		self.m_tUnionPlayerMap[oUnionPlayer:Get("m_nCharID")] = oUnionPlayer
-	end
-
-	--联盟数据
-	local tKeys = goDBMgr:GetSSDB("Player"):HKeys(gtDBDef.sUnionDB)
-	for _, sKey in ipairs(tKeys) do
-		local sData = goDBMgr:GetSSDB("Player"):HGet(gtDBDef.sUnionDB, sKey)
-		local tData = cjson.decode(sData)
-		if type(tData) == "table" then
-			local oUnion = CUnion:new()
-			if oUnion:LoadData(tData) then
-				self.m_tUnionMap[oUnion:Get("m_nID")] = oUnion
-			end
+		local oUnion = CUnion:new()
+		if oUnion:LoadData(tData) then
+			self.m_tUnionMap[oUnion:GetID()] = oUnion
+			self.m_tUnionNameMap[oUnion:GetName()] = oUnion:GetID()
+			table.insert(self.m_tUnionIDList, oUnion:GetID())
 		end
 	end
 
 	--检测玩家数据
-	for nCharID, oUnionPlayer in pairs(self.m_tUnionPlayerMap) do
-		local nUnionID = oUnionPlayer:Get("m_nUnionID")
+	for nRoleID, oUnionRole in pairs(self.m_tUnionRoleMap) do
+		local nUnionID = oUnionRole:GetUnionID()
 		if nUnionID > 0 then
 			if not self:GetUnion(nUnionID) then
-				oUnionPlayer:Set("m_nUnionID", 0)
-				oUnionPlayer:MarkDirty(true)
-				LuaTrace("成员联盟ID错误:", oUnionPlayer:GetName(), nUnionID)
+				oUnionRole:SetUionID(nUnionID)
+				LuaTrace("成员帮派ID错误:", oUnionRole:GetName(), nUnionID)
 			end
 		end
 	end
-	
-	--检测联盟名字
-	for sName, nUnionID in pairs(self.m_tUnionNameMap) do
-		local oUnion = self:GetUnion(nUnionID)
-		if not oUnion then
-			self.m_tUnionNameMap[sName] = nil
-			self:MarkNameDirty(true)
-			LuaTrace("联盟名字:", sName, "已不再使用")
-		else
-			table.insert(self.m_tUnionIDList, nUnionID)
+
+	--排行榜数据
+	for nUnionID, oUnion in pairs(self.m_tUnionMap) do
+		if oUnion:GetPower() > 0 then
+			self.m_oPowerRanking:Insert(nUnionID, {oUnion:GetPower()})
 		end
 	end
 
 	--定时保存
 	self:AutoSave()
+
+	--检查一下，兼容旧数据
+	for nUnionID,oUnion in pairs(self.m_tUnionMap) do
+		if oUnion:GetShowID() == 0 then
+			local nUnionShowID = self:MakeUnionShowID()
+			oUnion:SetShowID(nUnionShowID)
+		end
+	end
 end
 
---保存联盟数据
+--保存帮派数据
 function CUnionMgr:SaveData()
 	print("CUnionMgr:SaveData***")
-	--保存联盟
-	for nUnionID, v in pairs(self.m_tDirtyUnionMap) do
+	--保存帮派
+	local oDB = goDBMgr:GetSSDB(gnServerID, "global", GF.GetServiceID())
+	for nUnionID, _ in pairs(self.m_tDirtyUnionMap) do
 		local oUnion = self.m_tUnionMap[nUnionID]
 		if oUnion then
 			local tData = oUnion:SaveData()
-			goDBMgr:GetSSDB("Player"):HSet(gtDBDef.sUnionDB, nUnionID, cjson.encode(tData))
+			oDB:HSet(gtDBDef.sUnionDB, nUnionID, cjson.encode(tData))
 		end
 	end
 	self.m_tDirtyUnionMap = {}
 
 	--保存玩家
-	for nCharID , v in pairs(self.m_tDirtyUnionPlayerMap) do
-		local oUnionPlayer = self.m_tUnionPlayerMap[nCharID]
-		local tData = oUnionPlayer:SaveData()
-		goDBMgr:GetSSDB("Player"):HSet(gtDBDef.sUnionPlayerDB, nCharID, cjson.encode(tData))
+	for nRoleID, _ in pairs(self.m_tDirtyUnionRoleMap) do
+		local oUnionRole = self.m_tUnionRoleMap[nRoleID]
+		local tData = oUnionRole:SaveData()
+		oDB:HSet(gtDBDef.sUnionRoleDB, nRoleID, cjson.encode(tData))
 	end
-	self.m_tDirtyUnionPlayerMap = {}
-
-	--联盟名字
-	if self.m_bUnionNameDirty then
-		local sData = cjson.encode(self.m_tUnionNameMap)
-		goDBMgr:GetSSDB("Player"):HSet(gtDBDef.sUnionNameDB, "UniqueName", sData)
-		self:MarkNameDirty(false)
-	end
+	self.m_tDirtyUnionRoleMap = {}
 
 	--自动增长ID
-	goDBMgr:GetSSDB("Player"):HSet(gtDBDef.sUnionNameDB, "AutoInc", self.m_nAutoInc)
+	local tEtcData = {m_nAutoID=self.m_nAutoID,m_nAutoShowID=self.m_nAutoShowID,m_tCombindMap=self.m_tCombindMap}
+	oDB:HSet(gtDBDef.sUnionEtcDB, "data", cjson.encode(tEtcData))
 end
 
---名字脏
-function CUnionMgr:MarkNameDirty(bDirty)
-	self.m_bUnionNameDirty = bDirty
-end
-
---联盟脏
+--帮派脏
 function CUnionMgr:MarkUnionDirty(nUnionID, bDirty)
 	bDirty = bDirty or nil
 	self.m_tDirtyUnionMap[nUnionID] = bDirty
 end
 
 --玩家脏
-function CUnionMgr:MarkPlayerDirty(nCharID, bDirty)
+function CUnionMgr:MarkRoleDirty(nRoleID, bDirty)
 	bDirty = bDirty or nil
-	self.m_tDirtyUnionPlayerMap[nCharID] = bDirty
+	self.m_tDirtyUnionRoleMap[nRoleID] = bDirty
 end
 
---生成联盟ID
+--生成帮派ID
 function CUnionMgr:MakeUnionID()
-	self.m_nAutoInc = self.m_nAutoInc % nMaxUnionID + 1
-	local nUnionID = nServerID*10000 + self.m_nAutoInc
+	self.m_nAutoID = self.m_nAutoID or 1000
+	self.m_nAutoID = self.m_nAutoID % nMaxUnionID + 1
+	local nUnionID = gnServerID*10000 + self.m_nAutoID
 	return nUnionID
 end
 
---取联盟
+--生成帮派显示ID
+function CUnionMgr:MakeUnionShowID()
+	self.m_nAutoShowID = self.m_nAutoShowID % gnMaxInteger + 1
+	return self.m_nAutoShowID
+end
+
+--取帮派
 function CUnionMgr:GetUnion(nUnionID)
 	return self.m_tUnionMap[nUnionID]
 end
 
 --通过玩家ID取公会
-function CUnionMgr:GetUnionByCharID(nCharID)
-	local oUnionPlayer = self:GetUnionPlayer(nCharID)
-	if oUnionPlayer then
-		local nUnionID = oUnionPlayer:Get("m_nUnionID")	
-		if nUnionID > 0 then
-			return self:GetUnion(nUnionID)
-		end
+function CUnionMgr:GetUnionByRoleID(nRoleID)
+	local oUnionRole = self:GetUnionRole(nRoleID)
+	if oUnionRole then
+		local nUnionID = oUnionRole:GetUnionID()
+		return self:GetUnion(nUnionID)
 	end
 end
 
---取联盟玩家
-function CUnionMgr:GetUnionPlayer(nCharID)
-	return self.m_tUnionPlayerMap[nCharID]
+--取帮派玩家
+function CUnionMgr:GetUnionRole(nRoleID)
+	return self.m_tUnionRoleMap[nRoleID]
 end
 
---创建联盟玩家
-function CUnionMgr:CreateUnionPlayer(oPlayer)
-	local nCharID = oPlayer:GetCharID()
-	assert(not self:GetUnionPlayer(nCharID))
-	local oUnionPlayer = CUnionPlayer:new()
-	oUnionPlayer.m_nUnionID = 0 
-	oUnionPlayer.m_nCharID = nCharID
-	oUnionPlayer.m_sName = oPlayer:GetName()
-	oUnionPlayer.m_nLevel = oPlayer:GetLevel()
-	oUnionPlayer.m_nExitTime = 0
-	self.m_tUnionPlayerMap[nCharID] = oUnionPlayer
-	oUnionPlayer:MarkDirty(true)
-	
+--创建帮派玩家
+function CUnionMgr:CreateUnionRole(oRole)
+	local nRoleID = oRole:GetID()
+	assert(not self:GetUnionRole(nRoleID))
+	local oUnionRole = CUnionRole:new()
+	oUnionRole.m_nRoleID = nRoleID
+	self.m_tUnionRoleMap[nRoleID] = oUnionRole
+	oUnionRole:MarkDirty(true)
 	self:SaveData() --立即保存
-	return oUnionPlayer
+
+	--日志
+	goLogger:CreateUnionMemberLog(oRole)
+	return oUnionRole
 end
 
 --取冷却时间
-function CUnionMgr:GetJoinCD(oPlayer, bNotify)
-	local nCharID = oPlayer:GetCharID()
-	local oUnionPlayer = self:GetUnionPlayer(nCharID)
-	if not oUnionPlayer then
+function CUnionMgr:GetJoinCD(oRole, bNotify)
+	local nRoleID = oRole:GetID()
+	local oUnionRole = self:GetUnionRole(nRoleID)
+	if not oUnionRole then
 		return 0
 	end
 	local nHourCD = ctUnionEtcConf[1].nExitCD
-	local nRemainCD = math.max(0, oUnionPlayer:Get("m_nExitTime") + nHourCD * 3600 - os.time())
-	if nRemainCD > 0 then
-		if bNotify then
-			oPlayer:Tips(string.format("退出联盟不足%d小时，无法加入新的联盟", nHourCD))
-		end
+	local nRemainCD = math.max(0, oUnionRole:GetExitTime()+nHourCD*3600-os.time())
+	if nRemainCD > 0 and bNotify then
+		oRole:Tips(string.format("退出帮派不足%d小时，无法加入新的帮派", nHourCD))
 	end
 	return nRemainCD
 end
 
 --是否开放
-function CUnionMgr:IsOpen(oPlayer)
-	local nChapter = ctUnionEtcConf[1].nOpenChapter
-	local nPassChapter = oPlayer.m_oDup:MaxChapterPass()
-	if nPassChapter < nChapter then
-		return oPlayer:Tips(string.format("通关第%d章：%s开启", nChapter, CDup:ChapterName(nChapter)))
+function CUnionMgr:IsOpen(oRole)
+	if oRole:GetLevel() < ctSysOpenConf[22].nLevel then
+		return oRole:Tips("帮派系统未开启")
 	end
 	return true
 end
 
---创建新联盟
-function CUnionMgr:CreateUnion(oPlayer, sName, sNotice)
-	if not self:IsOpen(oPlayer) then
+--创建新帮派
+function CUnionMgr:CreateUnion(oRole, sName)
+	if not self:IsOpen(oRole) then
 		return
 	end
 	sName = string.Trim(sName)
-	assert(sName ~= "", "名字数据非法")
-	if string.len(sName) > CUnion.nMaxUnionNameLen then
-		return oPlayer:Tips("名字超长，不能超过6个汉字")
+	local sNameLen = string.len(sName)
+	if sNameLen <= 0 then
+		return oRole:Tips("请输入帮派名字")
 	end
-	if string.len(sNotice) > CUnion.nMaxUnionDeclLen then
-		return oPlayer:Tips("公告超长，不能超过60个汉字")
+	if sNameLen > CUnion.nMaxUnionNameLen then
+		return oRole:Tips("名字超长，不能超过6个汉字")
+	end
+	local nRoleID = oRole:GetID()
+	if self.m_tUnionNameMap[sName] then
+		return oRole:Tips("帮派名字已被占用")
+	end
+	local oUnionRole = self:GetUnionRole(nRoleID)
+	if oUnionRole and oUnionRole:GetUnionID() > 0 then
+		return oRole:Tips("你已经有帮派")
+	end
+	--冷却
+	if self:GetJoinCD(oRole, true) > 0 then
+		return
 	end
 
-	local nCharID = oPlayer:GetCharID()
-	if oPlayer:GetYuanBao() < ctUnionEtcConf[1].nCreateCost then
-		return oPlayer:YBDlg()
+
+	local function fnCallback(bRes)
+		bRes = bRes == nil and true or bRes
+		if bRes then
+			return oRole:Tips("名字含有非法字符")
+		end
+
+		--前后端创建费用显示不同意，策划要求服务器做一个弹窗提示
+		local _fnClientConfirmed = function()
+			--等待确认期间，可能帮派名称被占用
+			if self.m_tUnionNameMap[sName] then
+				return oRole:Tips("帮派名字已被占用")
+			end
+
+			local oUnionRole = self:GetUnionRole(nRoleID)  --再次检查下，防止重复发起
+			if oUnionRole and oUnionRole:GetUnionID() > 0 then
+				return oRole:Tips("你已经有帮派")
+			end
+			local nUnionID = self:MakeUnionID()
+			if self.m_tUnionMap[nUnionID] then
+				return oRole:Tips("帮派ID已经被占用")
+			end
+			local nUnionShowID = self:MakeUnionShowID()
+			if not oUnionRole then
+				oUnionRole = self:CreateUnionRole(oRole)
+			end
+
+			local tItemList = {{nType=gtItemType.eCurr, nID=gtCurrType.eYuanBao, nNum=ctUnionEtcConf[1].nCreateCost}}
+			oRole:SubItem(tItemList, "创建帮派", function(bRes)
+				if not bRes then
+					return oRole:YuanBaoTips()
+				end
+				if oUnionRole:GetUnionID() > 0 then
+					return oRole:Tips("已经有帮派了")
+				end
+
+				local oUnion = CUnion:new()
+				self.m_tUnionMap[nUnionID] = oUnion
+				if not oUnion:CreateInit(oRole, nUnionID, nUnionShowID, sName) then
+					self.m_tUnionMap[nUnionID] = nil
+					LuaTrace(oRole:GetID(), "创建帮派失败")
+					return
+				end
+				self.m_tUnionNameMap[sName] = nUnionID
+				table.insert(self.m_tUnionIDList, nUnionID)
+
+				self:SaveData() --立即保存
+				oUnion:SyncDetailInfo(oRole) --前端要详细信息
+
+				goRankingMgr:OnUnionCreate(nUnionID)
+				oUnion:CreateUnionScene()
+			end)
+		end
+		_fnClientConfirmed()
+
+		-- local tOption = {"取消", "确定"}
+		-- local nYuanbaoCost = ctUnionEtcConf[1].nCreateCost
+		-- local sCont = string.format("创建帮派需要消耗 %d 元宝, 是否继续？", nYuanbaoCost)
+		-- local tMsg = {sCont=sCont, tOption=tOption, nTimeOut=30}
+		-- goClientCall:CallWait("ConfirmRet", function(tData)
+		-- 	if not tData then 
+		-- 		return 
+		-- 	end
+		-- 	if tData.nSelIdx == 1 then
+		-- 		return
+		-- 	end
+		-- 	_fnClientConfirmed()
+		-- end, oRole, tMsg)
 	end
-	if string.len(sName) > CUnion.nMaxUnionNameLen then
-		return oPlayer:Tips("联盟名字超长")
-	end
-	if self.m_tUnionNameMap[sName] then
-		return oPlayer:Tips("联盟名字已被占用")
-	end
-	local oUnionPlayer = self:GetUnionPlayer(nCharID)
-	if oUnionPlayer and oUnionPlayer:Get("m_nUnionID") > 0 then
-		return oPlayer:Tips("您已经有联盟")
-	end
-	if not oUnionPlayer then
-		oUnionPlayer = self:CreateUnionPlayer(oPlayer)
-	end
-	if self:GetJoinCD(oPlayer, true) > 0 then
-		return
-	end
-	local nUnionID = self:MakeUnionID()
-	if self.m_tUnionMap[nUnionID] then
-		return oPlayer:Tips("联盟ID已经被占用")
-	end
-	local oUnion = CUnion:new()
-	self.m_tUnionMap[nUnionID] = oUnion
-	--local bRes, sErr = pcall(function()  end)
-	if not oUnion:CreateInit(oPlayer, nUnionID, sName, sNotice) then
-		self.m_tUnionMap[nUnionID] = nil
-		return
-	end
-	self.m_tUnionNameMap[sName] = nUnionID
-	table.insert(self.m_tUnionIDList, nUnionID)
-	oPlayer:SubItem(gtItemType.eCurr, gtCurrType.eYuanBao, ctUnionEtcConf[1].nCreateCost, "创建联盟")
-	self:MarkNameDirty(true)
-	self:SaveData() --立即保存
-	oUnion:SyncDetailInfo(oPlayer) --前端说想要详细信息
-	return oUnion
+	GF.HasBadWord(sName, fnCallback)
 end
 
---联盟解散
+--帮派解散
 function CUnionMgr:OnUnionDismiss(oUnion)
 	local nUnionID, sUnionName = oUnion:GetID(), oUnion:GetName()
 	self.m_tUnionMap[nUnionID] = nil
 	self.m_tUnionNameMap[sUnionName] = nil
-	self:MarkNameDirty(true)
 	self:MarkUnionDirty(nUnionID, false)
-	goDBMgr:GetSSDB("Player"):HDel(gtDBDef.sUnionDB, nUnionID)
+	goDBMgr:GetSSDB(gnServerID, "global", GF.GetServiceID()):HDel(gtDBDef.sUnionDB, nUnionID)
 
 	for nIndex, nTmpID in ipairs(self.m_tUnionIDList) do
 		if nTmpID == nUnionID then
@@ -287,83 +347,91 @@ function CUnionMgr:OnUnionDismiss(oUnion)
 		end
 	end
 
-	--清除聊天记录
-	goTalk:OnUnionDismiss(nUnionID)
+	goRankingMgr:OnUnionDismiss(nUnionID)
+	oUnion:RemoveDup()
+
+	local nServiceID = goServerMgr:GetGlobalService(gnWorldServerID, 110)
+	goRemoteCall:Call("OnUnionDismissReq", gnWorldServerID, nServiceID, 0, nUnionID)
+
+	--日志
+	goLogger:DelUnionLog(gnServerID, nUnionID)
 end
 
---同步公会基本信息
-function CUnionMgr:SyncUnionInfo(nCharID)
-	local oPlayer = goPlayerMgr:GetPlayerByCharID(nCharID)
-	if not oPlayer then return end
+--同步帮派基本信息
+function CUnionMgr:SyncUnionInfo(nRoleID)
+	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
+	if not oRole then return end
 
-	local nID, sName, nPos = 0, "", 0
-	local oUnion = self:GetUnionByCharID(nCharID)
+	local nID, sName, nPos, sPos,nShowID = 0, "", 0, "",0
+	local oUnion = self:GetUnionByRoleID(nRoleID)
 	if oUnion then
-		nID, sName, nPos = oUnion:GetID(), oUnion:GetName(), oUnion:GetPos(nCharID)
+		nID, sName, nPos, sPos,nShowID = oUnion:GetID(), oUnion:GetName(), oUnion:GetPos(nRoleID), oUnion:GetPosName(nRoleID),oUnion:GetShowID()
 	end
 
-	local tMsg = {nID=nID, sName=sName, nPos=nPos}
-	CmdNet.PBSrv2Clt(oPlayer:GetSession(), "UnionInfoRet", tMsg)
+	local tMsg = {nID=nID, sName=sName, nPos=nPos, sPos=sPos,nShowID=nShowID}
+	oRole:SendMsg("UnionInfoRet", tMsg)
+	print("CUnionMgr:SyncUnionInfo***", tMsg)
 end
 
---联盟列表请求
-function CUnionMgr:UnionListReq(oPlayer, sUnionKey, bNotFull)
-	print("CUnionMgr:UnionListReq***", sUnionKey, bNotFull)
-	local nPageSize = 4
-	local nCharID = oPlayer:GetCharID()
+--帮派列表请求
+--帮派编号，帮派名，帮派等级，人数（当前人数/人数上限），帮主名，每一页显示10个帮派的信息，可上下滚动翻页
+function CUnionMgr:UnionListReq(oRole, sUnionKey, nPageIndex)
+	print("CUnionMgr:UnionListReq***", sUnionKey)
+	local nPageSize = 15
+	local nRoleID = oRole:GetID()
+	local nPageBegin = (nPageIndex-1)*10+1
+	local nPageEnd = nPageBegin+nPageSize-1
+	local nPageCount = 0
 
 	local tUnionIDList = {}
 	if sUnionKey == "" then
 		local tTmpList = {}
 		for nUnionID, oUnion in pairs(self.m_tUnionMap) do
-			if bNotFull then
-				if not oUnion:IsFull() then
-					table.insert(tTmpList, nUnionID)
-				end
+			table.insert(tTmpList,{oUnion:GetShowID(),nUnionID})
+		end
+		local fnSort = function (tID1,tID2)
+			if tID1[1] ~= tID2[1] then
+				return tID1[1] > tID2[1]
 			else
-				table.insert(tTmpList, nUnionID)
+				return tID1[2] > tID2[2]
 			end
 		end
-		for k = 1, nPageSize do
-			if #tTmpList <= 0 then
-				break
-			end
-			local nRnd = math.random(1, #tTmpList)
-			table.insert(tUnionIDList, table.remove(tTmpList, nRnd))
+		table.sort(tTmpList, fnSort)
+		nPageCount = math.ceil(#tTmpList/nPageSize)
+ 
+		for k = nPageBegin, nPageEnd do
+			if not tTmpList[k] then break end
+			local tUnionID = tTmpList[k]
+			table.insert(tUnionIDList, tUnionID[2])
 		end
 	else
-		--筛选联盟
-		local nUnionID = tonumber(sUnionKey)
-		if self.m_tUnionMap[nUnionID] then
-			table.insert(tUnionIDList, nUnionID)
-		end
+		--筛选帮派
+		local tTmpList = {}
 		for sName, nUnionID in pairs(self.m_tUnionNameMap) do
-			if string.find(sName, sUnionKey) then
-				table.insert(tUnionIDList, nUnionID)
-			end
-			if #tUnionIDList >= nPageSize then
-				break
+			local oUnion = self:GetUnion(nUnionID)
+			local nShowID = oUnion:GetShowID()
+			if string.find(sName, sUnionKey) or string.find(tostring(nShowID), sUnionKey) then
+				table.insert(tTmpList, {nShowID,nUnionID})
 			end
 		end
+		local fnSort = function (tID1,tID2)
+			if tID1[1] ~= tID2[1] then
+				return tID1[1] > tID2[1]
+			else
+				return tID1[2] > tID2[2]
+			end
+		end
+		table.sort(tTmpList, fnSort)
+		nPageCount = math.ceil(#tTmpList/nPageSize)
 
-		-- --排序
-		-- local function _DescSort(id1, id2)
-		-- 	local nRank1 = goRankingMgr.m_oUGLRanking:GetUnionRank(id1)
-		-- 	local nRank2 = goRankingMgr.m_oUGLRanking:GetUnionRank(id2)
-		-- 	return nRank1 < nRank2
-		-- end
-		-- table.sort(tTmpIDList, _DescSort)
-		-- nPageCount = math.ceil(#tTmpIDList/ nPageSize)
-		-- nPageIndex = math.max(1, math.min(nPageIndex, nPageCount))
-		-- local nBeg = (nPageIndex-1)*nPageSize+1
-		-- local nEnd = math.min(#tTmpIDList, nBeg+nPageSize-1)
-		-- for k = nBeg, nEnd do
-		-- 	if tTmpIDList[k] then
-		-- 		table.insert(tUnionIDList, tTmpIDList[k])
-		-- 	end
-		-- end
+		for k = nPageBegin, nPageEnd do
+			if not tTmpList[k] then break end
+			local tUnionID = tTmpList[k]
+			table.insert(tUnionIDList, tUnionID[2])
+		end
 	end
 
+	--帮派编号，帮派名，帮派等级，人数（当前人数/人数上限），帮主名，每一页显示10个帮派的信息，可上下滚动翻页
 	local tUnionList = {}
 	for _, nUnionID in ipairs(tUnionIDList) do
 		local oUnion = self:GetUnion(nUnionID)
@@ -372,39 +440,37 @@ function CUnionMgr:UnionListReq(oPlayer, sUnionKey, bNotFull)
 			tItem.nID = nUnionID
 			tItem.sName = oUnion:GetName()
 			tItem.nLevel = oUnion:GetLevel()
-			tItem.nGuoLi = oUnion:GetGuoLi()
-			tItem.sMengZhu = oUnion:GetMengZhuName()
 			tItem.nMembers = oUnion:GetMembers()
 			tItem.nMaxMembers = oUnion:MaxMembers()
-			tItem.bApplied = oUnion:IsApplied(nCharID)
+			tItem.sMengZhu = oUnion:GetMengZhuName()
+			tItem.bApplied = oUnion:IsApplied(nRoleID)
+			tItem.nPower = oUnion:GetPower()
+			tItem.sPurpose = oUnion:GetPurpose()
+			tItem.nShowID = oUnion:GetShowID()
 			table.insert(tUnionList, tItem)
 		end
 	end
-	local tMsg = {tUnionList = tUnionList}
-	CmdNet.PBSrv2Clt(oPlayer:GetSession(), "UnionListRet", tMsg)
-	print("CUnionMgr:UnionListReq***", tMsg)
-
-	--1些通知
-	local oUnionPlayer = goUnionMgr:GetUnionPlayer(nCharID)
-	if oUnionPlayer then
-		oUnionPlayer:FirstKickNotify(oPlayer)
-		oUnionPlayer:FirstDismissNotify(oPlayer)
-	end
+	nPageIndex = math.min(nPageCount, nPageIndex)
+	local tMsg = {tUnionList=tUnionList, nPageIndex=nPageIndex, nPageCount=nPageCount}
+	oRole:SendMsg("UnionListRet", tMsg)
+	print("UnionListRet****", tMsg)
 end
 
---创建联盟请求
-function CUnionMgr:CreateUnionReq(oPlayer, sName, sNotice)
-	self:CreateUnion(oPlayer, sName, sNotice)
+--创建帮派请求
+function CUnionMgr:UnionCreateReq(oRole, sName)
+	self:CreateUnion(oRole, sName)
 end
 
---随机加入联盟请求
-function CUnionMgr:JoinRandUnionReq(oPlayer)
-	if not self:IsOpen(oPlayer) then
+--随机加入帮派请求
+function CUnionMgr:UnionJoinRandReq(oRole)
+	if not self:IsOpen(oRole) then
 		return
 	end
-	local nCharID = oPlayer:GetCharID()
-	local oUnion = self:GetUnion(nCharID)
-	if oUnion then
+	local nRoleID = oRole:GetID()
+	if self:GetUnion(nRoleID) then
+		return oRole:Tips("你已有帮派")
+	end
+	if self:GetJoinCD(oRole, true) > 0 then
 		return
 	end
 
@@ -416,34 +482,334 @@ function CUnionMgr:JoinRandUnionReq(oPlayer)
 		end
 	end
 	if #tUnionList <= 0 then
-		return oPlayer:Tips("没有可加入的联盟")
+		return oRole:Tips("没有可加入的帮派")
 	end
 
-	--冷却
 	local oUnion = tUnionList[math.random(#tUnionList)]
-	if self:GetJoinCD(oPlayer, true) > 0 then
-		return
+	local oUnionRole = goUnionMgr:GetUnionRole(nRoleID)
+	if not oUnionRole then
+		oUnionRole = self:CreateUnionRole(oRole)
 	end
-	local oUnionPlayer = goUnionMgr:GetUnionPlayer(nCharID)
-	if not oUnionPlayer then
-		oUnionPlayer = self:CreateUnionPlayer(oPlayer)
-	end
-	oUnion:JoinUnion(nil, nCharID)
+	oUnion:JoinUnion(nil, nRoleID)
 end
 
 --玩家上线
-function CUnionMgr:Online(oPlayer)
-	local nCharID = oPlayer:GetCharID()
-	local oUnion = self:GetUnionByCharID(nCharID)
-	if oUnion then
-		oUnion:Online(oPlayer)
+function CUnionMgr:Online(oRole)
+	local nRoleID = oRole:GetID()
+	self:SyncUnionInfo(nRoleID)
+	self:UpdateUnionAppellation(nRoleID) --每次上线，更新下最新的帮会称号
+	local oUnion = self:GetUnionByRoleID(nRoleID)
+	if oUnion then oUnion:Online(oRole) end
+end
+
+--帮派改名事件
+function CUnionMgr:OnSetUnionName(oUnion, sOldName)
+	self.m_tUnionNameMap[sOldName] = nil
+	self.m_tUnionNameMap[oUnion:GetName()] = oUnion:GetID()
+end
+
+--整点计时器
+function CUnionMgr:OnHourTimer()
+	goTimerMgr:Clear(self.m_nHourTimer)
+	self.m_nHourTimer = goTimerMgr:Interval(os.NextHourTime(os.time()), function() self:OnHourTimer() end)
+
+	for _, oUnion in pairs(self.m_tUnionMap) do
+		oUnion:OnHourTimer()
+	end
+
+	local nHour = os.Hour()
+	if nHour == 0 then
+		self:CombindUnion()
+	end
+end
+
+--合并帮派
+function CUnionMgr:CombindUnion()
+	local tCombindList = {}
+	for nUnionID, nTime in pairs(self.m_tCombindMap) do
+		if self:GetUnion(nUnionID) then
+			if os.time() - nTime >= 3*24*3600 then
+				table.insert(tCombindList, nUnionID)
+			end
+		else
+			self.m_tCombindMap[nUnionID] = nil
+		end
 	end
 	
-	local oUnionPlayer= goUnionMgr:GetUnionPlayer(nCharID)
-	if oUnionPlayer then
-		oUnionPlayer:Online()
+	if #tCombindList <= 0 then
+		LuaTrace("没有可合并帮派")
+		return -1
 	end
-	self:SyncUnionInfo(oPlayer:GetCharID())
+	LuaTrace("满足合并条件帮派:", tCombindList)
+
+	--首先筛选出所有人数符合要求的帮派，即待合并帮派+目标帮派人数≤目标帮派容纳上限
+	--优先选择合并到活跃度100000的5级帮派，其次选择活跃度100000的4级帮派
+	--若没有则选择活跃度75000以上的5级帮派，其次选择活跃度75000以上的4级帮派
+	--若没有则选择活跃度100000以上的3级帮派
+
+	local  tCondList = {}
+	for nUnionID, oUnion in pairs(self.m_tUnionMap) do
+		if not oUnion:IsFull() and not self.m_tCombindMap[nUnionID] then
+			if oUnion:GetActivity()==100000 and oUnion:GetLevel()==5 then
+				table.insert(tCondList, {oUnion,1, nUnionID})
+			elseif oUnion:GetActivity()==100000 and oUnion:GetLevel()==4 then
+				table.insert(tCondList, {oUnion,2, nUnionID})
+			elseif oUnion:GetActivity()>=75000 and oUnion:GetLevel()==5 then
+				table.insert(tCondList, {oUnion,3, nUnionID})
+			elseif oUnion:GetActivity()>=75000 and oUnion:GetLevel()==4 then
+				table.insert(tCondList, {oUnion,4, nUnionID})
+			elseif oUnion:GetActivity()>=100000 and oUnion:GetLevel()==3 then
+				table.insert(tCondList, {oUnion,5, nUnionID})
+			end
+		end
+	end
+	table.sort(tCondList, function(t1, t2) return t1[2]<t2[2] end)
+	if #tCondList <= 0 then
+		LuaTrace("没有满足条件的目标帮派")
+		return -2 
+	end
+
+	local nCombindCount = 0
+	for _, nCombindUnionID in ipairs(tCombindList) do
+		local oSrcUnion = self:GetUnion(nCombindUnionID)
+		for _, tUnion in ipairs(tCondList) do
+			local oTarUnion = tUnion[1]
+			if oSrcUnion:GetMembers()+oTarUnion:GetMembers() <= oTarUnion:MaxMembers() then
+				local tSrcMemberMap = oSrcUnion:GetMemberMap()
+				for nRoleID, v in pairs(tSrcMemberMap) do
+					local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
+					local oUnionRole = self:GetUnionRole(nRoleID)		
+					local nPos = oSrcUnion:GetPos(nRoleID)
+					if oRole:GetOfflineKeepTime() >= 5*24*3600 then
+						oUnionRole:OnExitUnion(CUnion.tExit.eCombind)
+						local sCont = string.format("我帮已与%s帮派成功合并。由于您离线时间大于5天，系统已将您请离帮派！您可以重新申请加入一个新帮派", oTarUnion:GetName())
+						GF.SendMail(oRole:GetServer(), "退帮通知", sCont, {}, nRoleID)
+					else
+						oUnionRole:OnExitUnion(CUnion.tExit.eCombind)
+						oTarUnion:JoinUnion(nil, nRoleID)
+						
+						local sCont = string.format("您的帮派已与%s帮派成功合并。给予以下补偿，请查收。", oTarUnion:GetName())
+						local tItemList = nPos==CUnion.tPosition.eMengZhu and {{gtItemType.eProp,4,1250000}} or {{{gtItemType.eProp,4,50000}}}
+						GF.SendMail(oRole:GetServer(), "合帮补偿通知", sCont, tItemList, nRoleID)
+					end
+				end
+				oTarUnion:BroadcastUnionTalk(string.format("%s帮派已成功合并到我帮，大家欢迎新来的朋友。", oSrcUnion:GetName()))
+				self.m_tCombindMap[nCombindUnionID] = nil
+				self:OnUnionDismiss(oSrcUnion)
+				nCombindCount = nCombindCount + 1
+				LuaTrace("帮派合并:%d:%s->%d:%s", oSrcUnion:GetID(), oSrcUnion:GetName(), oTarUnion:GetID(), oTarUnion:GetName())
+				goLogger:EventLog(gtEvent.eUnionCombind, nil, oSrcUnion:GetID(), oTarUnion:GetID())
+			end
+		end
+	end
+	return nCombindCount
+end
+
+--加入到待合并帮派
+function CUnionMgr:AddCombindUnion(nUnionID)
+	if self.m_tCombindMap[nUnionID] then
+		return
+	end
+	self.m_tCombindMap[nUnionID] = os.time()
+end
+
+--从待合并帮派移除
+function CUnionMgr:RemoveCombindUnion(nUnionID)
+	self.m_tCombindMap[nUnionID] = nil
+end
+
+--取联盟成员列表 
+function CUnionMgr:GetMemberList(nRoleID)
+	local oUnion = self:GetUnionByRoleID(nRoleID)
+	if not oUnion then
+		return {}
+	end
+	local tMemberList = {}
+	local tMemberMap = oUnion:GetMemberMap()
+	for nRoleID, v in pairs(tMemberMap) do
+		table.insert(tMemberList, nRoleID)
+	end
+	return tMemberList
+end
+
+--角色战力变化
+function CUnionMgr:OnRolePowerChange(oRole)
+	local oUnion = self:GetUnionByRoleID(oRole:GetID())
+	if not oUnion then
+		return
+	end
+	oUnion:UpdatePower()
+end
+
+--联盟总战力变化
+function CUnionMgr:OnUnionPowerChange(oUnion)
+	local nUnionID = oUnion:GetID()
+	local nPower = oUnion:GetPower()
+	if nPower <= 0 then return end
+
+	local tData = self.m_oPowerRanking:GetDataByKey(nUnionID)
+	if tData then
+		if tData[1]	== nPower then
+			return
+		end
+		self.m_oPowerRanking:Remove(nUnionID)
+		tData[1] = nPower
+	else
+		tData = {nPower}
+	end
+	self.m_oPowerRanking:Insert(nUnionID, tData)
+end
+
+--战力排行榜请求
+function CUnionMgr:UnionPowerRankingReq(oRole, nRankNum)
+	nRankNum = math.max(1, math.min(100, nRankNum))
+	local nRoleID = oRole:GetID()
+
+	--我的排名
+	local nMyRank, sMyName, nMyValue = 0, "", 0
+	local oMyUnion = self:GetUnionByRoleID(nRoleID)
+	if oMyUnion then
+		sMyName = oMyUnion:GetName()
+		local nUnionID = oMyUnion:GetID()
+		nMyRank = self.m_oPowerRanking:GetRankByKey(nUnionID)
+		local tData = self.m_oPowerRanking:GetDataByKey(nUnionID)
+		nMyValue = tData and tData[1] or 0
+	end
+
+	--前nRankNum名联盟
+	local tRanking = {}
+	local function _fnTraverse(nRank, nUnionID, tData)
+		local oUnion = self:GetUnion(nUnionID)
+		if oUnion then
+			local tRank = {nRank=nRank, sName=oUnion:GetName(), nValue=tData[1], nLevel=0, sMengZhu="", nMember=0, nMaxMember=0}
+			tRank.nLevel = oUnion:GetLevel()
+			tRank.sMengZhu = oUnion:GetMengZhuName()
+			tRank.nMember = oUnion:GetMembers()
+			tRank.nMaxMember = oUnion:MaxMembers()
+			table.insert(tRanking, tRank)
+		end
+	end
+	self.m_oPowerRanking:Traverse(1, nRankNum, _fnTraverse)
+	local tMsg = {
+		tRanking = tRanking,
+		nMyRank = nMyRank,
+		sMyName = sMyName,
+		nMyValue = nMyValue,
+	}
+	oRole:SendMsg("UnionPowerRankingRet", tMsg)
+end
+
+--打包帮战信息
+function CUnionMgr:PackUnionArenaData()
+	local tRet = {}
+	local tUnionData = {}
+	local nCount = 0
+	for nUnionID, oUnion in pairs(self.m_tUnionMap) do
+		if (oUnion:GetLevel() >= 2 and oUnion:GetActivity() >= 60) or gbInnerServer then 
+			tUnionData[nUnionID] = oUnion:PackUnionArenaData()
+			nCount = nCount + 1
+		end
+	end
+	if nCount > 1024 then 
+		LuaTrace(string.format("请注意，帮会数据过多，当前数量(%d)", nCount))
+	end
+	tRet.nServerID = gnServerID
+	tRet.tUnionData = tUnionData
+	return tRet
+end
+
+function CUnionMgr:SetMatchArenaData(tData)
+	tData = tData or {}
+	for nUnionID,nEnemyUnionID in pairs(tData) do
+		local oUnion = self:GetUnion(nUnionID)
+		if oUnion then
+			if nEnemyUnionID and nEnemyUnionID ~= 0 then
+				oUnion:AddMatchArean(nEnemyUnionID)
+			else
+				oUnion:ArenaLunKong()
+			end
+		end
+	end
+end
+
+function CUnionMgr:ClearDupTick()
+	self.m_tCreateDupTick = self.m_tCreateDupTick or {}
+	local tStep = table.Keys(self.m_tCreateDupTick)
+	for _,nStep in pairs(tStep) do
+		goTimerMgr:Clear(self.m_tCreateDupTick[nStep])
+	end
+	self.m_tCreateDupTick = {}
+end
+
+function CUnionMgr:_CreateUnionScene(tStepUnion,nStep)
+	goTimerMgr:Clear(self.m_tCreateDupTick[nStep])
+	self.m_tCreateDupTick[nStep] = nil
+	
+	local tUnionID = tStepUnion[nStep]
+	if not tUnionID then
+		return
+	end
+	for nUnionID,_ in pairs(tUnionID) do
+		local oUnion = self:GetUnion(nUnionID)
+		if oUnion and oUnion:GetDupMixID() == 0 then
+			oUnion:CreateUnionScene()
+		end
+	end
+end
+
+function CUnionMgr:CreateUnionScene()
+	local tUnionID = table.Keys(self.m_tUnionMap)
+	local tStepUnion = {}
+	for nNo,nUnionID in ipairs(tUnionID) do
+		local oUnion = self:GetUnion(nUnionID)
+		if oUnion and oUnion:GetDupMixID() == 0 then
+			local nStep = nNo // 100 + 1
+			if not tStepUnion[nStep] then
+				tStepUnion[nStep] = {}
+			end
+			tStepUnion[nStep][nUnionID] = 1
+		end
+	end
+	if table.Count(tStepUnion) <= 0 then
+		return
+	end
+	
+	self.m_tCreateDupTick = {}
+	for nStep,tUnionID in pairs(tStepUnion) do
+		local fnCallback = function ()
+			self:_CreateUnionScene(tStepUnion,nStep)
+		end
+		self.m_tCreateDupTick[nStep] = goTimerMgr:Interval(1,fnCallback)
+	end
+end
+
+--更新角色帮会称谓
+function CUnionMgr:UpdateUnionAppellation(nRoleID)
+	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
+	if not oRole:IsOnline() then --玩家不在线，不处理，玩家上线，会自动做一次更新同步
+		return 
+	end
+	local nAppeID = 0
+	local tAppeParam = {}
+	local nSubKey = 0
+
+	local oUnion = self:GetUnionByRoleID(nRoleID)
+	if oUnion then 
+		local nPosition = oUnion:GetPos(nRoleID)
+		nAppeID = oUnion:GetAppellationByPos(nPosition)
+		local sUnionName = oUnion:GetName()
+		local sPosName = oUnion:GetPosName(nRoleID)
+		assert(nAppeID > 0 and sUnionName and sPosName)
+		tAppeParam = {tNameParam={sUnionName, sPosName}, nUnionID = oUnion:GetID()}
+	else
+		nAppeID = 0
+	end
+
+	local nServer = oRole:GetStayServer()
+	local nService = oRole:GetLogic()
+	local nSession = oRole:GetSession()
+	local nRoleID = oRole:GetID()
+	goRemoteCall:Call("UpdateUnionAppellation", nServer, nService, nSession, nRoleID, nAppeID, tAppeParam, nSubKey)
 end
 
 goUnionMgr = goUnionMgr or CUnionMgr:new()

@@ -1,0 +1,123 @@
+//神器系统协议
+package artifact;
+
+//神器列表请求
+message ArtifactListReq
+{
+
+}
+
+message _Artifact
+{
+	message _Attr
+	{	
+		required int32 nAttrID = 1;			//属性ID；101->气血,102->魔法,103->怒气,104->攻击, 104->攻击,105->防御,106->灵力,107->速度
+		required int32  nAttrValue = 2;		//当前属性值
+		required int32 nMaxAttrValue = 3;	//属性上限
+	}
+	required int32 nID = 1;		//神器ID
+	required int32 nLevel = 2;	//等级
+	required int32 nStar = 3;	//星级
+	required int32 nCurAdvancedExp = 4;	//当前进阶经验
+	required int32 nCostAdvancedExp = 5;//当前进阶消耗经验
+	repeated _Attr tArtifactAttr = 6;	//属性列表
+	optional int32 nShape = 7;		//外形ID
+	
+}
+
+
+//神器列表返回
+message ArtifactListRet
+{
+	repeated _Artifact tArtifactList = 1;	//神器列表
+	required int32 nCurArtifactID = 2;	//当前使用神器ID，0为默认
+}
+
+//单个神器信息变化返回
+message ArtifactChangeRet
+{
+	required _Artifact tArtifact = 1;	//单个神器信息
+}
+
+//神器升级请求
+message ArtifactUpgradeReq
+{
+	required int32 nID = 1;	//神器ID
+	optional bool bFlag = 2; //是否使用元宝不足
+}
+
+//神器升级请求返回
+message ArtifactUpgradeRet
+{
+	required int32 nLevel = 1;	//当前神器等级
+	required int32 nArtifactID = 2;	 //神器ID
+}
+
+//神器升星请求
+message ArtifactAscendingStarReq
+{
+	required int32 nID = 1;	//神器ID
+}
+
+//神器升星返回
+message ArtifactAscendingStarRet
+{
+	required int32 nStar = 1;	//当前星级数
+	required int32 nArtifactID = 2;	 //神器ID
+}
+
+//添加进阶经验请求
+message  ArtifactAddExpReq
+{	
+	message _tItem
+	{
+		required int32 nPropID = 1;
+		required int32 nNum = 2;	
+	}
+	required int32 nArtifactID = 1;	//神器ID
+	repeated _tItem tItemList = 2;
+}
+
+//添加进阶经验请求返回
+message  ArtifactAddExpRet
+{
+	required int32 nCurAdvancedExp = 1;   //当前进阶经验
+	required int32 nArtifactID = 2;		//神器ID
+}
+
+//使用神器模型请求
+message  ArtifactUseShapeReq
+{
+	required int32 nArtifactID = 1;	//神器ID
+}
+
+//使用神器模型返回
+message  ArtifactUseShapeRet
+{
+	required int32 nArtifactID = 1;	//神器ID
+}
+
+//取消使用模型请求
+message  ArtifactCallUseShapeReq
+{
+	required int32 nArtifactID = 1;	//神器ID
+}
+
+//取消使用模型请求返回
+message  ArtifactCallUseShapeRet
+{
+	required int32 nArtifactID = 1;	//取消的神器ID
+	
+}
+
+message  ArtifactUseReq
+{
+	required int32 nArtifactID = 1;	//1神器ID, 碎片ID
+	required int32 nType = 2;		//1神器激活,2神器碎片激活(数量大于等于10)
+	
+}
+
+message  ArtifactUseRet
+{
+	required int32 nArtifactID = 1;	//神器ID
+}

@@ -68,7 +68,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\Bin\</OutDir>
+    <OutDir>..\..\..\..\..\Games\daqing\Runtime\branchs\biantai\Server\</OutDir>
+    <TargetName>DQ-$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>

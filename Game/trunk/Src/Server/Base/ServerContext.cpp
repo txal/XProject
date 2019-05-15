@@ -30,6 +30,7 @@ bool ServerContext::LoadServerConfig()
 	}
 
 	lua_State* pState = poLuaWrapper->GetLuaState();
+	lua_settop(pState, 0);
 	lua_getglobal(pState, "gnServerID");
 	m_oSrvConf.uServerID = (uint16_t)luaL_checkinteger(pState, -1);
 

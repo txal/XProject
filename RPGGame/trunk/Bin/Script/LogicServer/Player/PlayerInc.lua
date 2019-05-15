@@ -1,6 +1,10 @@
 CRole = CRole or class()
+CTempRole = CTempRole or class(CRole)
 CPlayerMgr = CPlayerMgr or class()
 
 require("Player/Role")
+require("Player/TempRole")
+require("Player/RoleItem")
+require("Player/RoleBattle")
 require("Player/PlayerMgr")
 require("Player/PlayerRpc")

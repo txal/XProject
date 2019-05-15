@@ -1,0 +1,7 @@
+package notice;
+
+//滚动公告
+message ScrollNoticeRet
+{
+	required string sCont = 1; 	//滚动公告
+}

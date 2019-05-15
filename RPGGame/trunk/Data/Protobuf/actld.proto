@@ -1,0 +1,44 @@
+package actld;
+
+//活动状态请求
+message ActLDStateReq
+{
+	
+}
+
+//活动状态返回
+message ActLDStateRet
+{
+	required int32 nID = 1;
+	required int32 nState = 2; 		//活动状态:0预告; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+	required int32 nRounds = 6; 	//开启轮次
+	required int32 nOpenTimes = 7; 	//开启次数
+	required bool bCanGetAward = 8; //是否可以领奖
+}
+
+//活动信息请求
+message ActLDInfoReq  
+{
+	
+}
+
+//活动信息返回
+message ActLDInfoRet
+{
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nState = 2; 		//状态:0未达成; 1可领取; 2已领取
+	}	
+	required int32 nLoginCount = 1; 	//累登次数
+	required int32 nRemainDays = 2;  	//剩余天数
+	repeated _Item tList = 3;  			//奖励表
+}
+
+//领取奖励请求
+message ActLDAwardReq   
+{
+	required int32 nID = 1; 	//奖励ID	
+}

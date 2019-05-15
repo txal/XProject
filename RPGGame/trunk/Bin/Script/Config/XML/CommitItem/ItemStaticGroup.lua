@@ -1,0 +1,11 @@
+ctItemStaticGroup={}
+ctItemStaticGroup[1]={nID=1,sExplain="师门收集烹饪",bGather=true,nJump=1,tItemConditionStr={{21000,1,},{21020,1,},{21040,1,},{21060,1,},{21080,1,},{21100,1,},{21120,1,},{21140,1,},},}
+ctItemStaticGroup[2]={nID=2,sExplain="师门收集药品",bGather=true,nJump=1,tItemConditionStr={{22020,1,},{22040,1,},{22060,1,},{22080,1,},{22100,1,},{22120,1,},{22140,1,},{22160,1,},{22180,1,},},}
+ctItemStaticGroup[3]={nID=3,sExplain="师门收集珍宝",bGather=false,nJump=1,tItemConditionStr={{12000,1,},{12001,1,},{12002,1,},{12003,1,},{12004,1,},{12005,1,},{12006,1,},{12007,1,},},}
+ctItemStaticGroup[11]={nID=11,sExplain="师门收集烹饪",bGather=true,nJump=1,tItemConditionStr={{21000,1,},{21020,1,},{21040,1,},{21060,1,},{21080,1,},{21100,1,},{21120,1,},{21140,1,},},}
+ctItemStaticGroup[12]={nID=12,sExplain="师门收集药品",bGather=true,nJump=1,tItemConditionStr={{22020,1,},{22040,1,},{22060,1,},{22080,1,},{22100,1,},{22120,1,},{22140,1,},{22160,1,},{22180,1,},},}
+ctItemStaticGroup[13]={nID=13,sExplain="试炼收集玫瑰",bGather=false,nJump=2,tItemConditionStr={{10001,1,},},}
+ctItemStaticGroup[14]={nID=14,sExplain="试炼收集珍宝",bGather=false,nJump=1,tItemConditionStr={{12000,1,},{12001,1,},{12002,1,},{12003,1,},{12004,1,},{12005,1,},{12006,1,},{12007,1,},},}
+ctItemStaticGroup[15]={nID=15,sExplain="试炼收集50级装备",bGather=false,nJump=1,tItemConditionStr={{1101105,1,},{1101205,1,},{1102105,1,},{1102205,1,},{1103105,1,},{1103205,1,},{1104105,1,},{1104205,1,},{1105105,1,},{1105205,1,},},}
+ctItemStaticGroup[16]={nID=16,sExplain="试炼收集60级装备",bGather=false,nJump=1,tItemConditionStr={{1101106,1,},{1101206,1,},{1102106,1,},{1102206,1,},{1103106,1,},{1103206,1,},{1104106,1,},{1104206,1,},{1105106,1,},{1105206,1,},},}
+ctItemStaticGroup[17]={nID=17,sExplain="试炼收集70级装备",bGather=false,nJump=1,tItemConditionStr={{1101107,1,},{1101207,1,},{1102107,1,},{1102207,1,},{1103107,1,},{1103207,1,},{1104107,1,},{1104207,1,},{1105107,1,},{1105207,1,},},}

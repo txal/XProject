@@ -1,2 +1,2 @@
-start LoginServer 40
+start MZ-LoginServer 40
 

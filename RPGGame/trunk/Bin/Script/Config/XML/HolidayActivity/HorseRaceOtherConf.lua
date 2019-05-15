@@ -1,0 +1,3 @@
+ctHorseRaceConf={}
+ctHorseRaceConf[1]={nSeq=1,nMinLimit=5,nMaxLimit=9,tRewardItem={{20002,1,},},tRandReward={{1000,1,},},fnRoleExp=function(nRoleLevel) return ((nRoleLevel*60+1000)*(1+0.25)) end,fnPetExp=function(nRoleLevel) return ((nRoleLevel*54+900)*(1+0.1)) end,fnYinBi=function(nRoleLevel) return (1000*(1+0.2)*0.5*(1+nRoleLevel/200)) end,}
+ctHorseRaceConf[2]={nSeq=2,nMinLimit=10,nMaxLimit=999,tRewardItem={{20002,1,},},tRandReward={{1000,1,},},fnRoleExp=function(nRoleLevel) return ((nRoleLevel*60+1000)*(1+0.25)) end,fnPetExp=function(nRoleLevel) return ((nRoleLevel*54+900)*(1+0.1)) end,fnYinBi=function(nRoleLevel) return (1000*(1+0.2)*0.5*(1+nRoleLevel/200)) end,}

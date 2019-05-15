@@ -1,0 +1,11 @@
+ctPetExtCostConf={}
+ctPetExtCostConf[1]={nCount=1,tIngots={{3,90,},},}
+ctPetExtCostConf[2]={nCount=2,tIngots={{41,20,},},}
+ctPetExtCostConf[3]={nCount=3,tIngots={{51,50,},},}
+ctPetExtCostConf[4]={nCount=4,tIngots={{61,80,},},}
+ctPetExtCostConf[5]={nCount=5,tIngots={{72,10,},},}
+ctPetExtCostConf[6]={nCount=6,tIngots={{82,40,},},}
+ctPetExtCostConf[7]={nCount=7,tIngots={{92,70,},},}
+ctPetExtCostConf[8]={nCount=8,tIngots={{10,300,},},}
+ctPetExtCostConf[9]={nCount=9,tIngots={{11,330,},},}
+ctPetExtCostConf[10]={nCount=10,tIngots={{12,360,},},}

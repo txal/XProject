@@ -1,0 +1,40 @@
+package fund;
+
+//基金界面请求
+message FundAwardProgressReq
+{
+}
+
+//基金界面返回
+message FundAwardProgressRet
+{
+	message _Fund
+	{
+		required int32 nID = 1;		//基金表ID	
+		required int32 nState = 2;	//状态
+	}
+	required int32 nType = 1; 		//基金类型
+	required int32 nProgress = 2; 	//进度
+	repeated _Fund tFund = 3; 		//状态
+	required bool bBuy = 4; 		//是否购买
+	required bool bFinish = 5; 		//基金领取完毕
+ }
+
+
+//基金奖励请求
+message FundAwardReq   
+{
+	required int32 nID = 1; 		//基金表ID
+}
+
+//基金奖励返回
+message FundAwardRet
+{                   
+	message _Award    //奖励结构
+	{
+		required int32 nType = 1;    //奖励类型
+		required int32 nID = 2;      //奖励ID
+		required int32 nNum = 3;     //奖励数量
+	}
+	repeated _Award tAward = 1;   //奖励数组 
+}

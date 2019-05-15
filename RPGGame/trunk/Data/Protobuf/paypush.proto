@@ -1,0 +1,19 @@
+//付费推送
+package paypush;
+
+message PayPushIDRet
+{
+	required int32 nID = 1; 		//推送的ID
+}
+
+//领取奖励请求
+message PayPushReceiveRewardReq
+{
+	required int32 nID = 1;	//推送的ID
+}
+
+//领取奖励请求返回
+message PayPushReceiveRewardRet
+{
+	required int32 nID = 1;
+}

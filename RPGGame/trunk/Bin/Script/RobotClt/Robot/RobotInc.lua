@@ -4,4 +4,5 @@ CRobotMgr = CRobotMgr or class()
 require("Robot/Robot")
 require("Robot/RobotMgr")
 require("Robot/RobotRpc")
+require("Module/ModuleInc")
 

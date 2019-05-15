@@ -11,12 +11,13 @@ CQianDao.tTriedState =
 CQianDao.tSignState =
 {
 	eInit = 0, 		--未签到
-	eSigned = 1, 	--已签到
-	eBuQian = 2, 	--已补签
+	eSigned = 1, 	--可签到
+	eFinish = 2, 	--已签
+	eBuQian = 3, 	--可补签
 }
 
-function CQianDao:Ctor(oPlayer)
-	self.m_oPlayer = oPlayer
+function CQianDao:Ctor(oRole)
+	self.m_oRole = oRole
 
 	--奖励类型，ID，数量，特定VIP等级
 	self.m_tSignDay = {}             --月签表{[1]=1,}
@@ -28,15 +29,13 @@ function CQianDao:Ctor(oPlayer)
 end
 
 function CQianDao:LoadData(tData)
-	if not tData then
-		return
+	if tData then
+		self.m_nDayCount = tData.m_nDayCount
+		self.m_nBuQianCount = tData.m_nBuQianCount or 0
+		self.m_nQDResetTime = tData.m_nQDResetTime
+		self.m_tSignDay = tData.m_tSignDay or {}
+		self.m_tTiredSign = tData.m_tTiredSign or {}
 	end
-	self.m_nDayCount = tData.m_nDayCount
-	self.m_nBuQianCount = tData.m_nBuQianCount or 0
-	self.m_nQDResetTime = tData.m_nQDResetTime
-
-	self.m_tSignDay = tData.m_tSignDay
-	self.m_tTiredSign = tData.m_tTiredSign
 end
 
 function CQianDao:SaveData()
@@ -58,9 +57,14 @@ function CQianDao:GetType()
 	return gtModuleDef.tQianDao.nID, gtModuleDef.tQianDao.sName
 end
 
---玩家上线
-function CQianDao:Online()
-	--self:CheckRedPoint()
+--上线后
+function CQianDao:AfterOnline()
+	self:CheckQianDao()
+	if not self:IsAlreadyQianDao() then
+		self:MonthSignReq()
+		self.m_oRole:Tips("自动签到成功")
+	end
+	self:InfoReq()
 end
 
 -- 检查是否已签到
@@ -74,11 +78,14 @@ end
 -- 重置签到
 function CQianDao:CheckQianDao()
 	if not os.IsSameMonth(os.time(), self.m_nQDResetTime, 0) then
+		self:CheckTriedMailAward()
+
 		self.m_nQDResetTime = os.time()
 		self.m_tTiredSign = {}
 		self.m_tSignDay = {}
 		self.m_nDayCount = 0
 		self.m_nBuQianCount = 0
+		self.m_nYuanBaoCount = 0
 		self:MarkDirty(true)
 	end
 end
@@ -86,97 +93,77 @@ end
 --签到事件
 function CQianDao:OnSigned()
 	for nID, tDays in ipairs(ctTiredSignConf) do
-		local nDay = tDays.nDays
-		if self.m_nDayCount >= nDay and not self.m_tTiredSign[nID] then
+		if self.m_nDayCount >= tDays.nDays and not self.m_tTiredSign[nID] then
 			self.m_tTiredSign[nID] = self.tTriedState.eFeed
 			self:MarkDirty(true)
 		end
 	end
 	self:InfoReq()
-	--任务
-	self.m_oPlayer.m_oMainTask:Progress(gtMainTaskType.eCond16, 1)
+end
+
+--计算开服时间那天0点时间戳
+function CQianDao:GetOpenServerTime()
+	local nOpenServerTime = goServerMgr:GetOpenTime(self.m_oRole:GetServer())
+	local tOpenServerDay = os.date("*t", nOpenServerTime)
+	tOpenServerDay.hour, tOpenServerDay.min, tOpenServerDay.sec = 0, 0, 0
+	nOpenServerTime = os.time(tOpenServerDay)
+	return nOpenServerTime
+end
+
+--取累计签到次数
+function CQianDao:GetLeiQianCount()
+	return self.m_nDayCount
+end
+
+--补签次数
+function CQianDao:GetBuQianTimes()
+	local nBuQianCount = 0
+	local nTotalYuanBao = self.m_oRole.m_oVIP:GetTotalYuanBao()
+	for k=#ctBuQianConf, 1, -1 do 
+		local tConf = ctBuQianConf[k]
+		if nTotalYuanBao > tConf.nYuanBao then 
+			nBuQianCount = tConf.nBuQianCount
+			break
+		end
+	end
+	nBuQianCount = nBuQianCount + 5 --每个月免费赠送5次补签次数
+	local nRemailTimes = math.max(0, nBuQianCount-self.m_nBuQianCount)
+	return nRemailTimes
 end
 
 -- 补签
-function CQianDao:RetroactiveReq(nTarDay)
+function CQianDao:RetroactiveReq(nID)
 	self:CheckQianDao()
+	local nTarDay = nID
+	if self:GetBuQianTimes() <= 0 then 
+		return self.m_oRole:Tips("该月补签次数不足")
+	end
 
 	--当前时间
 	local tDate = os.date("*t", os.time())
 	local nDay = tDate.day
 	local nMonth = tDate.month
-
-	if nTarDay < 1 or nTarDay >= nDay then
-		return self.m_oPlayer:Tips("参数错误")
+	local nOpenServerTime = self:GetOpenServerTime()		
+	if nDay <= nTarDay then
+		return self.m_oRole:Tips("无可补签日期")
 	end
-
 	if self.m_tSignDay[nTarDay] then
-		return self.m_oPlayer:Tips("该天已签到")
+		return self.m_oRole:Tips("今日已经签到")
 	end
 
-	--计算开服时间那天0点时间戳
-	local nOpenServerTime = goServerMgr:GetOpenTime()
-	local tOpenServerDay = os.date("*t", nOpenServerTime)
-	tOpenServerDay.hour, tOpenServerDay.min, tOpenServerDay.sec = 0, 0, 0
-	nOpenServerTime = os.time(tOpenServerDay)
-
-	--必须大于开服时间
-	tDate.day, tDate.hour, tDate.min, tDate.sec = nTarDay, 0, 0, 0
-	local nTimeStamp = os.time(tDate)
-	print(nTimeStamp, tOpenServerDay, "******")
-	if nTimeStamp < nOpenServerTime then
-		return self.m_oPlayer:Tips("参数错误")
-	end
 
 	--补签nTarDay这一天
-	local nYuanBaoCount = self.m_oPlayer:GetYuanBao()       --获取玩家元宝数
-	local nBuQianCount = self.m_nBuQianCount + 1
-	local nYuanBao = ctBuQianEtcConf[nBuQianCount].nYuanBao --补签需消耗的元宝数
-	if nYuanBaoCount < nYuanBao then 
-		return self.m_oPlayer:Tips("元宝不足请充值")
-	end
-
-	self.m_nBuQianCount = nBuQianCount
 	self.m_nDayCount = self.m_nDayCount + 1
-	self.m_oPlayer:SubItem(gtItemType.eCurr, gtCurrType.eYuanBao, nYuanBao, "补签消耗元宝数")
-	self.m_tSignDay[nTarDay] = self.tSignState.eBuQian
+	self.m_nBuQianCount = self.m_nBuQianCount + 1
+	self.m_tSignDay[nTarDay] = self.tSignState.eFinish
 	self:MarkDirty(true)
 
-	local nVIP = self.m_oPlayer:GetVIP()
 	local tConf = ctQianDaoAwardConf[nMonth].tDayAward
 	local tAward = tConf[nTarDay]
 	local nNum = tAward[3]
-	if tAward[4] > 0 then
-		if nVIP >= tAward[4] then
-			nNum = nNum*2
-		end
-	end
-	
 	local tList = {{nType=tAward[1], nID=tAward[2], nNum=nNum}}
-	self.m_oPlayer:AddItem(tAward[1], tAward[2], nNum, "补签奖励")
+	self.m_oRole:AddItem(tAward[1], tAward[2], nNum, "补签奖励")
 	self:OnSigned()
-	return tList
-end
-
---累签
-function CQianDao:TiredSign(nID)
-	self:CheckQianDao()
-	--达成条件领取
-	if self.m_tTiredSign[nID] ~= self.tTriedState.eFeed then
-		return  
-	end
-
-	self.m_tTiredSign[nID] = self.tTriedState.eClose
-	local tList = {}
-	local tAward = ctTiredSignConf[nID].tAward
-	for nID, tConf in ipairs(tAward) do 
-		local tItem = {nType=tConf[1], nID=tConf[2], nNum=tConf[3]}
-		table.insert(tList, tItem)
-		self.m_oPlayer:AddItem(tConf[1], tConf[2], tConf[3], "累签奖励")
-	end
-
-	self:MarkDirty(true)
-	self:InfoReq()
 	return tList
 end
 
@@ -185,7 +172,7 @@ function CQianDao:MonthSignReq()
 	self:CheckQianDao()
 
 	if self:IsAlreadyQianDao() then
-		return self.m_oPlayer:Tips("今天已签到过") 
+		return self.m_oRole:Tips("今天已签到过") 
 	end
 
 	local tDate = os.date("*t", os.time())
@@ -193,21 +180,15 @@ function CQianDao:MonthSignReq()
 	local nMonth = tDate.month
 
 	self.m_nDayCount = self.m_nDayCount + 1
-	self.m_tSignDay[nDay] = self.tSignState.eSigned
+	self.m_tSignDay[nDay] = self.tSignState.eFinish
+	CEventHandler:OnSignIn(self.m_oRole, {})	
 	self:MarkDirty(true)
 
 	local tConf = ctQianDaoAwardConf[nMonth].tDayAward       --奖励表
 	local tAward = tConf[nDay]
-	local nVIP = self.m_oPlayer:GetVIP()
 	local nNum = tAward[3]
-	if tAward[4] > 0 then
-		if nVIP >= tAward[4] then 
-			nNum = nNum*2
-		end
-	end
-
 	local tList = {{nType=tAward[1], nID=tAward[2], nNum=nNum}}
-	self.m_oPlayer:AddItem(tAward[1], tAward[2], nNum, "月签奖励")
+	self.m_oRole:AddItem(tAward[1], tAward[2], nNum, "月签奖励")
 	self:OnSigned()
 	return tList
 end
@@ -215,22 +196,34 @@ end
 -- 界面显示
 function CQianDao:InfoReq()
 	self:CheckQianDao() 
-	--self:CheckRedPoint() --检测小红点
+	local tList = {}                         	--月签表
+	local tTirt = {}                         	--累签表
 
 	local nMonthDays = os.MonthDays(os.time())  --这个月份的天数
 	local tDate = os.date("*t", os.time())
-	local nDay = tDate.day
+	local nDay = tDate.day 						--日
 	local nMonth = tDate.month                  --月份
-	local nBuQianCount = self.m_nBuQianCount    --补签次数
-	local nQianDaoState = self.m_tSignDay[nDay] and 0 or 1
 
-	local tList = {}                         	--月签表
-	local tTirt = {}                         	--累签表
-	local nTiredSignDays = self.m_nDayCount  	--累签天数
-	
-	for nID, nState in pairs(self.m_tSignDay) do 
-		local tInfo = {nID=nID, nState=nState}
+	local nBuQianCount = self:GetBuQianTimes()    --补签次数
+	local nQianDaoState = self.m_tSignDay[nDay] and 0 or 1
+	local nTiredSignDays = self:GetLeiQianCount()  	--累签天数
+	local nBuQianDays = 0
+	for k=1, nDay do 
+		tDate.day, tDate.hour, tDate.min, tDate.sec = k, 0, 0, 0 --0点时间
+		local nTimeStamp = os.time(tDate)
+		local nState = self.m_tSignDay[k] and self.m_tSignDay[k] or self.tSignState.eBuQian
+		if k == nDay then 
+			nState = self.m_tSignDay[k] or self.tSignState.eSigned
+		end
+		if nState == self.tSignState.eBuQian then
+			nBuQianDays = nBuQianDays + 1
+		end
+		local tInfo = {nID=k, nState=nState}
 		table.insert(tList, tInfo)
+	end
+
+	if nBuQianDays > 0 and nQianDaoState == 0 then 
+		nQianDaoState = self.tSignState.eBuQian
 	end
 
 	for nID, nState in pairs(self.m_tTiredSign) do 
@@ -238,37 +231,65 @@ function CQianDao:InfoReq()
 		table.insert(tTirt, tTmp)
 	end
 	local tMsg = {tList=tList, tTirt=tTirt, nTiredSignDays=nTiredSignDays, nMonthDays=nMonthDays, nMonth=nMonth, nDay=nDay, nBuQianCount=nBuQianCount, nQianDaoState=nQianDaoState}
-	CmdNet.PBSrv2Clt(self.m_oPlayer:GetSession(), "QDInfoRet", tMsg)
+	self.m_oRole:SendMsg("QDInfoRet", tMsg)
 end
 
 --签到奖励
-function CQianDao:QianDaoAwardReq(nSelect, nID)
+function CQianDao:QianDaoAwardReq(tID)
 	local tList = nil
-	if nSelect == 1 then               --月签
-		tList = self:MonthSignReq()	
-	elseif nSelect == 2 then           --补签
-		tList = self:RetroactiveReq(nID)
-	else 
-		tList = self:TiredSign(nID)    --累签
+	local tDate = os.date("*t", os.time())
+	local nDay = tDate.day
+	if nDay == tID[1] then 
+		tList = self:MonthSignReq()
+	else	
+		tList = self:RetroactiveReq(tID[1])
 	end
-
-	if tList == nil then
+	if not tList then
 		return
 	end
-	local tMsg = {tList=tList}
-	CmdNet.PBSrv2Clt(self.m_oPlayer:GetSession(), "QDAwardRet", tMsg)
-	--self:CheckRedPoint() --检测小红点
+	-- self.m_oRole:SendMsg("QDAwardRet", {tList=tList})
+	self:InfoReq()
 end
 
---检测小红点
-function CQianDao:CheckRedPoint()
-	if not self:IsAlreadyQianDao() then
-		return self.m_oPlayer.m_oRedPoint:MarkRedPoint(gtRPDef.eQianDao, 1)
+--累签
+function CQianDao:TiredSignAwardReq(nID)
+	self:CheckQianDao()
+	--达成条件领取
+	if self.m_tTiredSign[nID] ~= self.tTriedState.eFeed then
+		return self.m_oRole:Tips("未达领取条件") 
 	end
-	for k, v in pairs(self.m_tTiredSign) do
-		if v == self.tTriedState.eFeed then
-			return self.m_oPlayer.m_oRedPoint:MarkRedPoint(gtRPDef.eQianDao, 1)
+
+	self.m_tTiredSign[nID] = self.tTriedState.eClose
+	local tList = {}
+	local tAward = ctTiredSignConf[nID].tAward
+	for nID, tItem in ipairs(tAward) do 
+		table.insert(tList, {nType=gtItemType.eProp, nID=tItem[1], nNum=tItem[2]})
+		self.m_oRole:AddItem(gtItemType.eProp, tItem[1], tItem[2], "累签奖励")
+	end
+	self:MarkDirty(true)
+	self:InfoReq()
+	return tList
+end
+
+--累签邮件奖励
+function CQianDao:CheckTriedMailAward()
+	local tItemMap = {}
+	for nID, nState in pairs(self.m_tTiredSign) do
+		if nState == CQianDao.tTriedState.eFeed then
+			local tConf = ctTiredSignConf[nID]
+			for _, tItem in pairs(tConf.tAward) do
+				tItemMap[tItem[1]] = (tItemMap[tItem[1]] or 0) + tItem[2]
+			end
+			self.m_tTiredSign[nID] = CQianDao.tTriedState.eClose
+			self:MarkDirty(true)
 		end
 	end
-	self.m_oPlayer.m_oRedPoint:MarkRedPoint(gtRPDef.eQianDao, 0)
+	if not next(tItemMap) then
+		return
+	end
+	local tItemList = {}
+	for nID, nNum in pairs(tItemMap) do
+		table.insert(tItemList, {gtItemType.eProp, nID, nNum})
+	end
+	GF.SendMail(self.m_oRole:GetServer(), "累天签到奖励", "未领取的累天签到奖励，请注意查收", tItemList, self.m_oRole:GetID())
 end

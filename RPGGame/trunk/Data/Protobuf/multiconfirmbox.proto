@@ -1,0 +1,54 @@
+//多重确认框协议
+package multiconfirmbox;
+
+
+message ConfirmButton
+{
+	required int32 nID = 1;         //Button ID
+	optional string sContent = 2;   //Button文本
+	required bool bActive = 3;      //是否可操作
+}
+
+
+//通知客户端刷新多重确认框
+//nService和nConfirmBoxID确定一个ConfirmBox的唯一性
+//不存在，则创建，已存在，则用新的消息刷新当前确认框内容
+//如果当前box已存在，且新同步过来的nSerialID和原来的一致，则不用理会，理论不会出现这种情况
+message MultiConfirmBoxRet  
+{
+	required int32 nService = 1;       //服务ID
+	required int32 nConfirmBoxID = 2;
+	required int32 nSerialID = 3;
+	optional string sTitle = 4;
+	repeated string tContentList = 5;
+	repeated ConfirmButton tButtonList = 6;
+	required int32 nTimeOut = 7;
+	required bool bCanCancel = 8;       //是否可取消，false不可取消，不显示关闭按钮，则必须等待服务器通知或者超时自动销毁
+	optional bool bConfirmDestroy = 9;  //选择后，是否马上销毁，false，仍然停留，等待超时或服务器通知销毁
+}
+
+//多重确认框操作反馈请求
+message MultiConfirmBoxReactReq
+{
+	required int32 nService = 1;       //服务ID
+	required int32 nConfirmBoxID = 2;
+	required int32 nSerialID = 3;
+	required int32 nSelButton = 4;     //选择项ButtonID, 0，玩家取消直接关闭
+}
+
+//通知销毁确认框
+//如果本地已销毁，找不到此ConfirmBox，则无需理会
+message MultiConfirmBoxDestroyRet
+{
+	required int32 nService = 1;
+	required int32 nConfirmBoxID = 2;
+}
+
+
+
+
+
+
+
+
+

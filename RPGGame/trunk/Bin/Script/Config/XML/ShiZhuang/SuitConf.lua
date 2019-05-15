@@ -1,0 +1,16 @@
+ctSuitConf={}
+ctSuitConf[1]={nIndex=1,sName="鲲鹏展翅",tSuitIDList={{13001,},{13101,},{13201,},},tAttrActTwo={{105,8,},{107,1,},{102,13,},},tAttrActThree={{105,22,},{107,3,},{102,34,},},}
+ctSuitConf[2]={nIndex=2,sName="吉祥如意",tSuitIDList={{13002,},{13102,},{13202,},},tAttrActTwo={{104,9,},{101,7,},{106,3,},},tAttrActThree={{104,23,},{101,18,},{106,7,},},}
+ctSuitConf[3]={nIndex=3,sName="凤凰来仪",tSuitIDList={{13003,},{13103,},{13203,},},tAttrActTwo={{105,8,},{107,1,},{102,13,},},tAttrActThree={{105,22,},{107,3,},{102,34,},},}
+ctSuitConf[4]={nIndex=4,sName="化茧成蝶",tSuitIDList={{13004,},{13104,},{13204,},},tAttrActTwo={{104,9,},{101,7,},{106,3,},},tAttrActThree={{104,23,},{101,18,},{106,7,},},}
+ctSuitConf[5]={nIndex=5,sName="青云直上",tSuitIDList={{13005,},{13105,},{13205,},},tAttrActTwo={{105,8,},{107,1,},{102,13,},},tAttrActThree={{105,22,},{107,3,},{102,34,},},}
+ctSuitConf[6]={nIndex=6,sName="御剑情缘",tSuitIDList={{13006,},{13106,},{13206,},},tAttrActTwo={{104,9,},{101,7,},{106,3,},},tAttrActThree={{104,23,},{101,18,},{106,7,},},}
+ctSuitConf[7]={nIndex=7,sName="纯真梦幻",tSuitIDList={{13007,},{13107,},{13207,},},tAttrActTwo={{105,8,},{107,1,},{102,13,},},tAttrActThree={{105,22,},{107,3,},{102,34,},},}
+ctSuitConf[8]={nIndex=8,sName="光耀天使",tSuitIDList={{13008,},{13108,},{13208,},},tAttrActTwo={{104,9,},{101,7,},{106,3,},},tAttrActThree={{104,23,},{101,18,},{106,7,},},}
+ctSuitConf[9]={nIndex=9,sName="暗影獠牙",tSuitIDList={{13009,},{13109,},{13209,},},tAttrActTwo={{105,8,},{107,1,},{102,13,},},tAttrActThree={{105,22,},{107,3,},{102,34,},},}
+ctSuitConf[10]={nIndex=10,sName="福禄双全",tSuitIDList={{13010,},{13110,},{13210,},},tAttrActTwo={{104,9,},{101,7,},{106,3,},},tAttrActThree={{104,23,},{101,18,},{106,7,},},}
+ctSuitConf[11]={nIndex=11,sName="冰雪奇缘",tSuitIDList={{13011,},{13111,},{13211,},},tAttrActTwo={{105,8,},{107,1,},{102,13,},},tAttrActThree={{105,22,},{107,3,},{102,34,},},}
+ctSuitConf[12]={nIndex=12,sName="神机鬼械",tSuitIDList={{13012,},{13112,},{13212,},},tAttrActTwo={{104,9,},{101,7,},{106,3,},},tAttrActThree={{104,23,},{101,18,},{106,7,},},}
+ctSuitConf[13]={nIndex=13,sName="浴火重生",tSuitIDList={{13013,},{13113,},{13213,},},tAttrActTwo={{105,8,},{107,1,},{102,13,},},tAttrActThree={{105,22,},{107,3,},{102,34,},},}
+ctSuitConf[14]={nIndex=14,sName="剑影惊梦",tSuitIDList={{13014,},{13114,},{13214,},},tAttrActTwo={{104,9,},{101,7,},{106,3,},},tAttrActThree={{104,23,},{101,18,},{106,7,},},}
+ctSuitConf[15]={nIndex=15,sName="浪漫姻缘",tSuitIDList={{13505,},{13504,},{13506,},},tAttrActTwo={{104,9,},{101,7,},{106,3,},},tAttrActThree={{104,23,},{101,18,},{106,7,},},}

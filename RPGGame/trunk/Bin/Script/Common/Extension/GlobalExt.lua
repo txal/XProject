@@ -7,7 +7,7 @@ function tostring(Val)
 end
 
 gfRawPrint = gfRawPrint or print
-print = CustomPrint
+print = gbDebug and CustomPrint or function()end
 
 gfRawError = gfRawError or error
 error = CustomError
@@ -22,13 +22,17 @@ function gfReloadScript(sScript, sProject)
     return ReloadScript(sScript)
 end
 
-function gfReloadAll()
+function gfReloadAll(sProject)
     for sModule, trunk in pairs(package.loaded) do
         if sModule ~= "protobuf.c" and sModule ~= "lpeg" then
             package.loaded[sModule] = nil
         end
     end
-    local bRes = ReloadScript("Main")
+    local sMain = "Main"
+    if (sProject or "") ~= "" then
+        sMain = sProject.."/"..sMain
+    end
+    local bRes = ReloadScript(sMain)
     collectgarbage()
     return bRes
 end

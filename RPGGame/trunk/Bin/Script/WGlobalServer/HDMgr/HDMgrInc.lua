@@ -3,6 +3,8 @@ CHDBase = CHDBase or class()
 
 
 require("HDMgr/HDBase")
+require("HDMgr/YY/YYInc")
+require("HDMgr/CB/CBInc")
 
 
 --放在最后

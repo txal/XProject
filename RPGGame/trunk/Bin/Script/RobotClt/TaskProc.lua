@@ -17,11 +17,11 @@ end
 local function _GMSendCmd(sTask)
 	local oRobot = goRobotMgr:RndRobot()
 	if not oRobot then return end
-	CmdNet.PBClt2Srv("GMCmdReq", oRobot:PacketID(), oRobot:GetSession(), {sCmd=sTask})
+	oRobot:SendMsg("GMCmdReq", {sCmd=sTask})
 end
 
 _tTaskProc["lreload"] = function(tParam, sTask)	--重载
-	local bRes = gfReloadAll()
+	local bRes = gfReloadAll("RobotClt")
 	LuaTrace("重载所有脚本 "..(bRes and "成功!" or "失败!"))
 end
 
@@ -31,6 +31,20 @@ _tTaskProc["auth"] = function(tParam, sTask)	--授权
 end
 
 _tTaskProc["reload"] = function(tParam, sTask)	--重载
+	_GMSendCmd(sTask)
+end
+_tTaskProc["svnupdate"] = function(tParam, sTask)	--重载
+	_GMSendCmd(sTask)
+end
+_tTaskProc["reloadall"] = function(tParam, sTask)	--重载
+	_GMSendCmd(sTask)
+end
+
+_tTaskProc["gitupdate"] = function(tParam, sTask)	--重载
+	_GMSendCmd(sTask)
+end
+
+_tTaskProc["cgm"] = function(tParam, sTask)		--重载
 	_GMSendCmd(sTask)
 end
 
@@ -43,6 +57,10 @@ _tTaskProc["rgm"] = function(tParam, sTask)		--重载
 end
 
 _tTaskProc["wgm"] = function(tParam, sTask)		--重载
+	_GMSendCmd(sTask)
+end
+
+_tTaskProc["wgm2"] = function(tParam, sTask)		--重载
 	_GMSendCmd(sTask)
 end
 
@@ -87,10 +105,36 @@ end
 _tTaskProc["startrun"] = function(tParam, sTask)
 	goRobotMgr:StartRun()
 end
+_tTaskProc["stoprun"] = function(tParam, sTask)
+	goRobotMgr:StopRun()
+end
+_tTaskProc["startwalk"] = function(tParam, sTask)
+	goRobotMgr:StartWalk()
+end
+_tTaskProc["stopwalk"] = function(tParam, sTask)
+	goRobotMgr:StopWalk()
+end
 
-_tTaskProc["enterdup"] = function(tParam, sTask)
+_tTaskProc["openact"] = function(tParam, sTask)
+	_GMSendCmd(sTask)
+end
+
+_tTaskProc["close"] = function(tParam, sTask)
+	NetworkExport.Terminate()
+end
+
+_tTaskProc["rolenum"] = function(tParam, sTask)
+	LuaTrace("当前人数:", goRobotMgr.m_nRobotNum)
+end
+
+_tTaskProc["ping"] = function(tParam, sTask)
 	local oRobot = goRobotMgr:RndRobot()
 	if not oRobot then return end
-	local nDupID = tonumber(tParam[1])
-	CmdNet.PBClt2Srv("RoleEnterSceneReq", oRobot:PacketID(), oRobot:GetSession(), {nDupMixID=nDupID, nRoleID=oRobot:GetID()})
+    CmdNet.Clt2Srv("Ping", oRobot:PacketID(), oRobot:GetSession())
+	gtPingMap[oRobot:GetSession()] = GF.GetClockMSTime()
+end
+
+_tTaskProc["mergeserver"] = function(tParam, sTask)
+	local bTest = tParam[1] == "test"
+	MergeDB(bTest)
 end

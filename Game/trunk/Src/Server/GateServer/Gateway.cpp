@@ -42,7 +42,7 @@ bool Gateway::Init(ServerNode* poConf)
 	{
 		return false;
 	}
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, poConf->oGate.uService, 1024, &m_oNetEventHandler);
+	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, poConf->oGate.uService, 8, &m_oNetEventHandler);
 	if (m_poInnerNet == NULL)
 	{
 		return false;
@@ -79,6 +79,7 @@ bool Gateway::Start()
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMSTime = XTime::MSTime();
+		Service::Update(nNowMSTime);
 		ProcessTimer(nNowMSTime);
 	}
 	return true;
@@ -197,12 +198,12 @@ void Gateway::DecodeMask(Packet* poPacket)
 		return;
 	}
 	uint8_t* tMaskingKey = poPacket->GetMaskingKey();
-	uint8_t* pRealData = poPacket->GetRealData();
-	int nSize = poPacket->GetRealDataSize();
+	uint8_t* pData = poPacket->GetData();
+	int nSize = poPacket->GetDataSize();
 	for (int i = 0; i < nSize; i++)
 	{
 		int j = i % 4;
-		pRealData[i] = pRealData[i] ^ tMaskingKey[j];
+		pData[i] = pData[i] ^ tMaskingKey[j];
 	}
 }
 

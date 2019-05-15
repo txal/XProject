@@ -1,23 +1,34 @@
-function CltPBProc.MailListReq(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local oRole = goGPlayerMgr:GetRoleBySS(nSrcServer, nTarSession)
+function CltPBProc.MailListReq(nCmd, Server, Service, nSession, tData)
+    local oRole = goGPlayerMgr:GetRoleBySS(Server, nSession)
     if not oRole then return end
     goMailMgr:MailListReq(oRole)
 end
 
-function CltPBProc.MailBodyReq(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local oRole = goGPlayerMgr:GetRoleBySS(nSrcServer, nTarSession)
+function CltPBProc.MailBodyReq(nCmd, Server, Service, nSession, tData)
+    local oRole = goGPlayerMgr:GetRoleBySS(Server, nSession)
     if not oRole then return end
     goMailMgr:MailBodyReq(oRole, tData.nMailID)
 end
 
-function CltPBProc.DelMailReq(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local oRole = goGPlayerMgr:GetRoleBySS(nSrcServer, nTarSession)
+function CltPBProc.DelMailReq(nCmd, Server, Service, nSession, tData)
+    local oRole = goGPlayerMgr:GetRoleBySS(Server, nSession)
     if not oRole then return end
     goMailMgr:DelMailReq(oRole, tData.nMailID)
 end
 
-function CltPBProc.MailItemsReq(nCmd, nSrcServer, nSrcService, nTarSession, tData)
-    local oRole = goGPlayerMgr:GetRoleBySS(nSrcServer, nTarSession)
+function CltPBProc.MailItemsReq(nCmd, Server, Service, nSession, tData)
+    local oRole = goGPlayerMgr:GetRoleBySS(Server, nSession)
     if not oRole then return end
     goMailMgr:MailItemsReq(oRole, tData.nMailID)
+end
+
+
+--------服务器内部
+function Srv2Srv.SendMailReq(nSrcServer, nSrcService, nTarSession, sTitle, sContent, tItemList, nTarRoleID)
+    return goMailMgr:SendMail(sTitle, sContent, tItemList, nTarRoleID)
+end
+
+--获取小于Max邮件的数量
+function Srv2Srv.GetLaveMailNumReq(nSrcServer, nSrcService, nTarSession, nTarRoleID)
+    return goMailMgr:GetLaveMailNum(nTarRoleID)
 end

@@ -1,9 +1,9 @@
 protobuf = require("Common/Network/protobuf")
 parser = require("Common/Network/parser")
 
-local tServerConf = gtServerConf
-
+local GF = GF
 local _pairs = pairs
+local _time = os.time
 local _assert = assert
 local _clock = os.clock
 local _insert = table.insert
@@ -33,12 +33,34 @@ CltCmdProc = CltCmdProc or {}       --客户端CMD包处理
 SrvCmdProc = SrvCmdProc or {}       --服务端CMD包处理
 BsrCmdProc = BsrCmdProc or {}       --浏览器CMD包处理
 
+--拦截200秒内的同一个请求指令
+local tClientFrequentCmdMap = {}
+local function _CheckFrequentReq(nServer, nSession, nCmd)
+    do --屏蔽
+        return false
+    end
+
+    local nSSKey = nServer << 32 | nSession
+    if not tClientFrequentCmdMap[nSSKey] or _time() >= tClientFrequentCmdMap[nSSKey].nResetTime then
+        tClientFrequentCmdMap[nSSKey] = {nResetTime = _time()+3600}
+    end
+    local nMSTime = GF.GetClockMSTime()
+    if nMSTime - (tClientFrequentCmdMap[nSSKey][nCmd] or 0) < 200 then
+        print("200毫秒内多个相同的请求被拦截 CMD:", nCmd)
+        return true
+    end
+    tClientFrequentCmdMap[nSSKey][nCmd] = nMSTime
+end
+
 --@xPacket 可能是Packet对象或者字符串(PB)
 CmdMessageCenter = function(nCmd, nSrcServer, nSrcService, nTarSession, xPacket)
     local nStartTime = _clock()
 
     local tProtoType, tProcType, fnDecoder
     if nCmd >= tCltPBCmdDef[1] and nCmd <= tCltPBCmdDef[2] then
+        if _CheckFrequentReq(nSrcServer, nTarSession, nCmd) then
+            return
+        end
         tProtoType = CmdNet.bServer and tCltPBReq or tCltPBRet
         tProcType = CltPBProc
         fnDecoder = pbc_decode
@@ -65,37 +87,49 @@ CmdMessageCenter = function(nCmd, nSrcServer, nSrcService, nTarSession, xPacket)
     if tProto then
         local sCmdName, sProto = tProto[2], tProto[3]
         if CmdNet.bServer then
-            LuaTrace("---cmd message---", sCmdName, sProto)
+            if nCmd ~= 1100 then
+                print("---cmd message---", sCmdName, sProto)
+            end
         end
+
         local fnProc = tProcType[sCmdName]
         if not fnProc then
             if CmdNet.bServer then
-                LuaTrace("Cmd:"..nCmd.." proc not define!!!")
+                LuaTrace("Cmd:", nCmd, sCmdName, " proc not define!!!")
             end
             return
         end
+
         if gbInnerServer then
             xpcall(function() fnProc(nCmd, nSrcServer, nSrcService, nTarSession, fnDecoder(sProto, xPacket)) end
                 , function(sErr) 
-                    local nKey = nSrcServer << 32 | nTarSession
-                    local oPlayer = goPlayerMgr:GetPlayerBySession(nKey)
-                    if oPlayer then
-                        sErr = string.format("角色ID:%d 账号:%s error:%s", oPlayer:GetCharID(), oPlayer:GetAccount(), sErr)
+                    sErr = sErr.."\t"..debug.traceback() 
+                    local oPlayerMgr = goPlayerMgr or goGPlayerMgr 
+                    if oPlayerMgr then
+                        local oRole = oPlayerMgr:GetRoleBySS(nSrcServer, nTarSession)
+                        if oRole then
+                            sErr = string.format("角色ID:%d 账号:%s error:%s", oRole:GetID(), oRole:GetAccountName(), sErr)
+                        end
+                        if nSrcServer > 0 and nSrcServer < gnWorldServerID and nTarSession > 0 then
+                            CmdNet.PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont=sErr})
+                        end
                     end
-                    LuaTrace(sErr, debug.traceback())
-                    CPlayer:Tips(sErr, nKey) 
+                    LuaTrace(sErr)
                 end)
         else
             fnProc(nCmd, nSrcServer, nSrcService, nTarSession, fnDecoder(sProto, xPacket)) 
         end
+
     else
         local sTips = "Cmd:"..nCmd.." proto not register!!!"
         LuaTrace(sTips)
         if gbInnerServer then
-            CPlayer:Tips(sTips, nSrcServer<<32|nTarSession)
+            if nSrcServer > 0 and nSrcServer < gnWorldServerID and nTarSession > 0 then
+                CmdNet.PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont=sTips})
+            end
         end
     end
-
+    
     goCmdMonitor:AddCmd(nCmd, _clock() - nStartTime)
 end
 
@@ -129,7 +163,9 @@ end
 
 --服务器内部
 function CmdNet.Srv2Srv(sCmdName, nTarServer, nTarService, nTarSession, ...)
-    _assert(nTarServer>0 and nTarService>0 and nTarSession>=0, "参数错误")
+    if nTarServer <= 0 or nTarService <= 0 or nTarSession < 0 then
+        return
+    end
     local tProto = _assert(tSrvSrvCmd[sCmdName], "sCmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local oPacket = _cmd_pack(sProto, ...)
@@ -158,12 +194,16 @@ function CmdNet.PBSrv2Clt(sCmdName, nTarServer, nTarSession, tData)
     local sData = pbc_encode(sProto, tData)
     local oPacket = _pb_pack(sData)
     _send_exter(nCmd, oPacket, nTarServer, nTarSession>>24, nTarSession, 0)
+    -- print("------CmdNet.PBSrv2Clt------", sCmdName)
 end
 
 function CmdNet.PBClt2Srv(sCmdName, nPacketIdx, nTarSession, tData) 
     _assert(nTarSession>0, "参数错误:"..nTarSession)
     local tProto = _assert(tCltPBReq[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sCmdName, sProto, nService = table.unpack(tProto)
+    if (tData.nService or 0) > 0 then
+        nService = tData.nService
+    end
     local sData = pbc_encode(sProto, tData)
     local oPacket = _pb_pack(sData)
     _send_exter(nCmd, oPacket, 0, nService, nTarSession, nPacketIdx)
@@ -171,12 +211,24 @@ end
 
 --广播若干客户端:tTarSession:{server,session,server,session,...}
 function CmdNet.PBBroadcastExter(sCmdName, tTarSession, tData)
-    _assert(#tTarSession>0 and #tTarSession%2==0, "参数错误")
+    local tValidSession = {}
+    for k = 1, #tTarSession, 2 do
+        if tTarSession[k+1] <= 0 then
+            LuaTrace(sCmdName, debug.traceback())
+        else
+            table.insert(tValidSession, tTarSession[k])
+            table.insert(tValidSession, tTarSession[k+1])
+        end
+    end
+    if #tValidSession == 0 then
+        return
+    end
+    _assert(#tValidSession%2==0, "参数错误")
     local tProto = _assert(tCltPBRet[sCmdName], "CmdName '"..sCmdName.."' proto not register")
     local nCmd, sProto = tProto[1], tProto[3]
     local sData = pbc_encode(sProto, tData)
     local oPacket = _pb_pack(sData)
-    _broadcast_exter(nCmd, oPacket, tTarSession)
+    _broadcast_exter(nCmd, oPacket, tValidSession)
 end
 
 --广播所有客户端
@@ -185,8 +237,38 @@ function CmdNet.PBSrv2All(sCmdName, tData)
 
     --网关服务列表
     local tTarService = {}
-    for _, tConf in _pairs(tServerConf.tGateService) do
-        _insert(tTarService, {tConf.nServer, tConf.nID, 0})
+    for _, tConf in _pairs(goServerMgr:GetGateServiceList()) do
+        tTarService[#tTarService+1] = tConf.nServer
+        tTarService[#tTarService+1] = tConf.nID
+        tTarService[#tTarService+1] = 0
+    end
+    if #tTarService <= 0 then
+        return
+    end
+
+    local nRawCmd, sProto = tProto[1], tProto[3]
+    local sData = pbc_encode(sProto, tData)
+    local oPacket = _pb_pack(sData)
+    local nBroadcastCmd = tSrvSrvCmd["BroadcastGate"][1]
+    _broadcast_inner(nBroadcastCmd, nRawCmd, oPacket, tTarService)
+    -- print("------CmdNet.PBSrv2All------", sCmdName)
+end
+
+--指定服务器的全服广播
+function CmdNet.PBSrv2Srv(nServerID, sCmdName, tData) 
+    local tProto = _assert(tCltPBRet[sCmdName], "sCmdName '"..sCmdName.."' proto not register")
+    if nServerID >= 1000 then 
+        return CmdNet.PBSrv2All(sCmdName, tData)
+    end
+
+    --网关服务列表
+    local tTarService = {}
+    for _, tConf in _pairs(goServerMgr:GetGateServiceList()) do
+        if tConf.nServer == nServerID then 
+            tTarService[#tTarService+1] = tConf.nServer
+            tTarService[#tTarService+1] = tConf.nID
+            tTarService[#tTarService+1] = 0
+        end
     end
     if #tTarService <= 0 then
         return
@@ -198,8 +280,6 @@ function CmdNet.PBSrv2All(sCmdName, tData)
     local nBroadcastCmd = tSrvSrvCmd["BroadcastGate"][1]
     _broadcast_inner(nBroadcastCmd, nRawCmd, oPacket, tTarService)
 end
-
-
 
 -----------------------------注册协议相关----------------------------
 local function CmdCheck(nCmd, sCmdName, sProto, bReq)

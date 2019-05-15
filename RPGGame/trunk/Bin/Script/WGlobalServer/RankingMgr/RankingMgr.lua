@@ -2,7 +2,6 @@
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
 local nAutoSaveTick = 5*60
-
 function CRankingMgr:Ctor()
 	self.m_nSaveTick = nil
 	self.m_tRankingMap = {}

@@ -2,6 +2,6 @@
 
 path=$PWD
 
-pushd _RouterServer
+pushd _WorldServer
 ./StopServer.sh
 popd

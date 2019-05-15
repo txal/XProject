@@ -31,20 +31,23 @@ function CWatchDog:Traverse(key, value, parent)
 	end
 	parent = parent or "root"
 	self.m_tbmap[value] = true
+
 	local mt = getmetatable(value)
 	if mt then
-		local str = string.format("%s.%s._mt_", parent, key)
-		self:Traverse("_mt_", mt, str)
+		local name = string.format("%s.%s._mt_", parent, key)
+		self:Traverse("_mt_", mt, name)
 	end
 	self.m_tbnode[parent] = (self.m_tbnode[parent] or 0) + 1
+
 	for k, v in pairs(value) do
 		if type(k) == "table" or type(k) == "function" then
 		--情况很少,不处理
 		end
+
 		local stype = type(v)
 		if stype == "table" then
-			local str = string.format("%s.%s", parent, key)
-			self:Traverse(k, v, str)
+			local name = string.format("%s.%s", parent, key)
+			self:Traverse(k, v, name)
 
 		elseif stype == "function" then
 			local index = 1
@@ -53,11 +56,12 @@ function CWatchDog:Traverse(key, value, parent)
 				if not name then
 					break
 				end
+
 				index = index + 1
 			    if not self.m_filter[name] then
     				if type(value) == "table" then
-    					local str = string.format("%s.%s.upvalue(%s)", parent, key, k)
-    					self:Traverse(name, value, str)
+    					local name = string.format("%s.%s.upvalue(%s)", parent, key, k)
+    					self:Traverse(name, value, name)
     				end
     			end
 			end

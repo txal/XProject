@@ -1,0 +1,9 @@
+//成长属性计算,,
+nAttrID,sAttrName,fnProc
+i,s,e
+属性ID,属性名称,计算公式
+104,攻击,Math.floor(X/40.8 * nAttrRatio/nTotalRatio)
+105,防御,Math.floor(X/47.6 * nAttrRatio/nTotalRatio)
+101,气血,Math.floor(X/7.1 * nAttrRatio/nTotalRatio)
+106,灵力,Math.floor(X/142.8 * nAttrRatio/nTotalRatio)
+107,速度,Math.floor(X/142.8 * nAttrRatio/nTotalRatio)

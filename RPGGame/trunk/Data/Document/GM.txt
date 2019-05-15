@@ -1,97 +1,139 @@
 ﻿1.添加物品:
-additem type id num
-type: 物品类型，一般都是道具: 1
-id: 道具ID
-num: 道具数量
+additem type id num bind
+type: 物品类型:
+	eProp = 1,		--道具
+	ePet  = 3, 		--宠物
+	ePartner = 4,   --伙伴
+	eFaBao = 5,		--法宝
+		
+id: 物品ID
+num: 物品数量
+bind: 是否绑定(0否, 1是)
 
 例子：
-增加银两:additem 1 10002 100000
+增加银两:additem 1 31004 10
 
-2.重新加载脚本:
-lgm reload
+2.重新加载所有服务脚本:
+reloadall
 
-3.增加奏章数量：
-addzz num
+3.添加宠物
+addPetObj 101
+101为宠物编号 
 
-4.增加请按折数量:
-addqaz num
+4.添加宠物寿命
+addLife nPos value
+nPos为宠物位置，value添加的值
 
-5.增加寻访次数:
-addxf num
+5.添加宠物经验
+addExp nPos value
 
-6.设置VIP等级:
-setvip num
+6.添加好友友好度
+wgm addfriendhoney 好友角色ID 友好度数量
 
-7.通关副本关卡
-duppass num
+7.发送邮件
+sendmail 物品类型 物品ID 物品数量
+物品类型：1道具; 3宠物; 4伙伴; 5法宝
 
-8.创建皇子
-createhz 性别[1-2] 天赋[1-5]
+8.开启pvp活动
+pvpactivityrestart xxx(活动ID)
+ 
+9.重新计算角色属性
+calcroleattr
 
-9.升级所有大臣
-mcupgrade num
+10.清空背包
+clrpack
 
-10.升级所有皇子
-hzupgrade num
-
-11.完成主线任务
-mtask id
-
-12.调出主线任务
-inittask id
-
-13.模拟充值
-gmrecharge id
-
-14.开启活动
-hdtime 活动ID 持续时间(分钟) 子活动ID(如果有)
-
-
-15.重置军机处次数
-resetjjc
-
-16.发送公告
-sendnotice id keep interval content
-id 		随意(>0)
-keep		持续时间(秒)
-interval	公告间隔(秒)
-content 	公告内容
-
-17.更新svn并热更
+11.svn更新
 svnupdate
 
-18.系统公告
-systalk 内容
+12.查看服务器等级
+serverlv
 
-19.增加联盟经验
+13.增加帮派经验
 addunionexp 数量
 
-20.增加联盟贡献
+14.增加帮派贡献
 addunioncontri 数量
 
-21.重置怡红院
-resetyhy
+15.增加帮派活跃度
+addunionactivity 数量
 
-22.重置联盟出战妃子
-resetunfz
+16.手动触发合并帮派事件
+combindunion
 
-23.清空国库
-clrguoku
+17.手动触发退位事件
+unionretire
 
-24.结束宴会
-finishparty
+18.模拟充值
+gmrecharge 充值ID
 
-25.加满道具到国库
-itemall
+19.开启活动
+openact id min subid round propid
+id 活动ID(HuoDongConf.xml)
+min 开启分钟数
+subid 子活动ID(限时奖励有)
+ext1 扩展参数1(轮次/其他)
+ext2 扩展参数1(替换物品ID)
 
-26. 重置三生殿次数
-resetxx
+19-1.关闭活动
+closeact id subid
+id 活动ID(HuoDongConf.xml)
+subid 子活动ID(限时奖励有)
 
-27. 增加知己技能点
-addsp mcid num
+19-2.关闭所有活动
+closeallact
 
-28. 重置天灯祈福
-resettd
+20.修改商会物品价格
+modifychambercorepropparice propid
+propid 修改的物品id
 
-29. 重置游园
-resteyw
+21.添加商会道具(删除道具也可以用)
+addchambercoreItem
+
+22.目标任务指令
+targettask 3 任务ID  再重新登录
+
+23.开放所有系统
+openall 需要重新登录
+
+24.测试装备专用指令
+addtestitem
+
+25.清空排行榜
+resetrank
+
+26.模拟微端下载成功
+wddown
+
+27.重置微端下载数据
+wdrest
+
+28.删除当前角色
+lgm deleterole
+
+29.开启科举
+lgm keju 1 科举类型
+
+30.重置循环活动
+resethdcircle
+
+31.重置日程所有数据
+daily 5
+
+32.增加植物成长点
+wgm2 addplantgrow x
+
+33.当前最佳仙侣
+wgm2 bestpartner
+
+34.批量刷新商会价格
+batchupdateprice
+
+35.开启限时活动(决战九霄,混沌试炼),单位时间内不能多开
+openpveact nAcdID, nReadyMin, nEndMin
+nAcdID--活动ID
+nReadyMin--大厅准备时长(默认为5分钟)
+nEndMin--活动持续时长(默认为一个小时)
+
+36.关闭限时活动
+closepveact nActID 

@@ -1,0 +1,12 @@
+ctBeginGuide={}
+ctBeginGuide[1]={nID=1,nGuideType=2,nIcon=0,sName="0",sConversation="天地之大，无奇不有。",sBackground="P1",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[2]={nID=2,nGuideType=2,nIcon=0,sName="0",sConversation="渐渐地巫族实力慢慢壮大，不可阻挡，一场争斗马上开启。",sBackground="P1",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[3]={nID=3,nGuideType=2,nIcon=0,sName="0",sConversation="因毒仙子等人逐一清除巫妖，巫族势力消弱，但是力量还很大！",sBackground="P3",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[4]={nID=4,nGuideType=2,nIcon=0,sName="0",sConversation="途中斩杀妖魔，巫族秘密逐渐被发现！",sBackground="P4",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[5]={nID=5,nGuideType=2,nIcon=0,sName="0",sConversation="九黎巫王为重返人界，无恶不作！",sBackground="P5",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[6]={nID=6,nGuideType=2,nIcon=0,sName="0",sConversation="从此，巫妖发展迅速，一发不可收拾。而人妖双方，在此一战均损失惨重。",sBackground="P6",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[7]={nID=7,nGuideType=2,nIcon=0,sName="0",sConversation="正魔双方均大为衰弱的十年间，南疆十万大山中，兽神苏醒，座下无数妖兽，蜂拥而出。",sBackground="P6",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[8]={nID=8,nGuideType=2,nIcon=0,sName="0",sConversation="妖兽所到之处，生灵涂炭。连修真门派，亦无法抵挡，无数仙门传承，湮没在兽潮之中。",sBackground="P8",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[9]={nID=9,nGuideType=2,nIcon=0,sName="0",sConversation="正魔各大门派，纷纷派出精英弟子，前往南疆，镇压妖兽，意图阻止兽潮席卷神州。",sBackground="P9",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[10]={nID=10,nGuideType=2,nIcon=0,sName="0",sConversation="残酷的历练才能使各派精英弟子的修行飞涨，妖兽的妖晶更是修炼的至宝。",sBackground="P9",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[11]={nID=11,nGuideType=2,nIcon=0,sName="0",sConversation="我们的故事，就从这里开始。",sBackground="P11",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}

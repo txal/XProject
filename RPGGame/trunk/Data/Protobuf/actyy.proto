@@ -1,0 +1,76 @@
+package actyy;
+//运营活动:单笔充值,累天充值
+
+//活动状态请求
+message ActYYStateReq
+{
+	required int32 nID = 1;			//运营活动ID
+}
+
+//活动状态返回
+message ActYYStateRet
+{
+	required int32 nID = 1; 		//运营活动ID
+	required int32 nState = 2; 		//活动状态:0预告; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+	required bool bCanGetAward = 6; //是否可以领奖
+}
+
+//活动信息请求
+message ActYYInfoReq  
+{
+	required int32 nID = 1;			//运营活动id
+	optional int32 nTarget = 2;		//充值目标活动使用,团购目标人数
+}
+
+//单次充值信息
+message ActSCInfoRet {
+	required int32 nID = 1;			//运营活动id
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nState = 2; 		//状态:0不能领取; 1可领取
+		required int32 nRewardCnt = 3;	//已经领取次数
+	}
+	required int32 nRemainTime = 2; 	//剩余时间
+	repeated _Item tList = 3;  			//奖励表
+	required int32 nBeginTime = 4; 		//开始时间
+	required int32 nEndTime = 5; 		//结束时间
+	optional string sConf = 6; 			//配置表
+}
+
+//信息返回:累天充值,累计消耗元宝两个活动使用
+message ActYYInfoRet
+{
+	required int32 nID = 1;			//运营活动id
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nState = 2; 		//状态:0未达成; 1可领取; 2已领取
+	}
+	required int32 nRemainTime = 2; 	//剩余时间
+	repeated _Item tList = 3;  			//奖励表
+	required int32 nBeginTime = 4; 		//开始时间
+	required int32 nEndTime = 5; 		//结束时间
+	optional string sConf = 6; 			//配置表
+	optional int32 nTotalRechargeCnt = 7;//全服团购首充使用,表示当前有多少人充值
+}
+
+//运营活动领取奖励请求
+message ActYYAwardReq   
+{
+	required int32 nID = 1;			//运营活动id
+	required int32 nRewardID = 2; 	//对应奖励ID
+}
+
+//领取奖励返回，刷新奖励信息
+message ActYYRewardRet 
+{
+	required int32 nID = 1;			//运营活动id
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nState = 2; 		//状态:0未达成; 1可领取; 2已领取
+		optional int32 nRewardCnt = 3;	//已经领取次数,单次充值信息使用
+	}
+	required _Item tItem = 2;		//刷新单个状态信息
+}

@@ -1,0 +1,12 @@
+CYYBase = CYYBase or class(CHDBase)
+CSC = CSC or class(CYYBase)
+CDC = CDC or class(CYYBase)
+CLY = CLY or class(CYYBase)
+CTC = CTC or class(CYYBase)
+
+require("HDMgr/YY/YYBase")
+require("HDMgr/YY/SC")
+require("HDMgr/YY/DC")
+require("HDMgr/YY/LY")
+require("HDMgr/YY/TC")
+require("HDMgr/YY/YYRpc")

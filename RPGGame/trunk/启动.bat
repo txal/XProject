@@ -1,5 +1,5 @@
 @echo off
 
-pushd Bin
+pushd Server
 call StartServer.bat
 popd

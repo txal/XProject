@@ -6,7 +6,7 @@ volatile uint32_t Packet::m_uTotalPacket = 0;
 Packet::PacketLogMap Packet::m_oPacketLogMap;
 MutexLock Packet::m_oLock;
 
-Packet* Packet::Create(int nSize/*=nPACKET_DEFAULT_SIZE*/, int nOffset/*=nPACKET_OFFSET_SIZE*/, const char* file /*= NULL*/, int line /*= 0*/)
+Packet* Packet::Create(int nSize/*=nPACKET_DEFAULT_SIZE*/, int nOffset/*=nPACKET_OFFSET_SIZE*/, const char* file /*=""*/, int line /*= 0*/)
 {
 	static uint32_t uPacketIndex = 0;
 	if (nSize < nOffset || nSize > nPACKET_MAX_SIZE) 
@@ -79,7 +79,7 @@ void Packet::DumpLeak()
 	m_oLock.Unlock();
 }
 
-void Packet::Release(const char* file/*=NULL*/, int line/*=0*/)
+void Packet::Release(const char* file/*=""*/, int line/*=0*/)
 {
 	int nRef = atomic_dec16(&m_nRef);
 	if (nRef <= 0)
@@ -172,7 +172,7 @@ void Packet::Move(int nSize)
     m_nDataSize = nSize;
 }
 
-Packet* Packet::DeepCopy(const char* file/*=NULL*/, int line/*=0*/)
+Packet* Packet::DeepCopy(const char* file/*=""*/, int line/*=0*/)
 {
     Packet* poPacket = Create(m_nCapacity, m_nOffsetSize, file, line);
     memcpy(poPacket->m_pData, m_pData, m_nDataSize);

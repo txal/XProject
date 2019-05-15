@@ -1,0 +1,54 @@
+package shangjintask;
+
+//赏金任务所有信息请求
+message ShangJinAllTaskReq
+{
+}
+
+message _TaskInfo
+{
+	required int32 nTaskID = 1;		//赏金任务ID
+	required int32 nStart = 2;		//任务星数
+	required bool  bCompleted = 3;	//是否完成
+}
+
+//赏金任务所有信息请求应答
+message ShangJinAllTaskRet
+{
+	repeated _TaskInfo tShangJinTaskList = 1; 	//赏金任务列表
+	required int32 nNumShangJinLing = 2;		//赏金令数量
+	required int32 nLeftFreeReflashTimes = 3;	//剩余免费刷新次数
+}
+
+//赏金任务请求刷新
+message ShangJinRefreshReq
+{
+	required bool bUseGold = 1;		//是否使用元宝不足
+}
+
+//接取赏金任务
+message ShangJinAccepReq
+{
+	required int32 nTaskID = 1;		//接取任务ID
+}
+
+//当前接取赏金任务信息
+message ShangJinAccepRet
+{
+	required int32 nTaskID = 1; 	//当前接取的任务
+	required int32 nCompTimes = 2;	//完成次数
+	required int32 nDupID = 3;		//目标场景
+	required int32 nPosX = 4;		//坐标X
+	required int32 nPosY = 5;		//坐标Y
+}
+
+//赏金任务攻击请求
+message ShangJinAttReq
+{
+}
+
+//赏金任务元宝完成
+message YuanBaoCompReq
+{
+	optional int32 nTaskID = 1;		//选择元宝完成的任务的ID(没接任务是要发选择的任务id,已接任务不用发该字段)
+}

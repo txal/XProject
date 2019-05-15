@@ -1,0 +1,68 @@
+//pve
+package shenmozhi;
+
+//玩家创建队伍,便捷组队请求
+message ShenMoZhiMatchTeamReq
+{
+}
+
+
+message ShenMoZhiGuanQiaData {
+	required int32 nID = 1;			//关卡id
+	required int32 nStar = 2;		//通关星数,未通关为0
+}
+
+message _GuanQiaInfo
+{
+	required int32 nType = 1;	//类型
+	required int32 nMaxChapter = 2;	//当前通关的的最大章节(相对于类型)
+}
+
+message ShenMoZhiTypeChapterData{
+	required int32 nType = 1;									//类型,对应难度
+	required int32 nChapter = 2;								//章节
+	repeated ShenMoZhiGuanQiaData tGuanQia = 3;					//关卡信息
+	repeated int32 tChapterStarReward = 4;						//当前章节已领取星级奖励信息
+	required bool bLastChapterRedHot = 5;						//上一章是否有未领取的宝箱奖励
+	required int32 nStar = 6;									//总星数
+	repeated _GuanQiaInfo tGuanQiaList = 7;				//当前通关的的最大章节信息
+}
+
+//登录发送神魔志章节信息
+message OnlineShenMoZhiDataRet{
+	repeated ShenMoZhiTypeChapterData tChapter = 1;	//类型的章节信息
+}
+
+message OpenShenMoZhiReq {
+	required int32 nType = 1;									//类型
+	required int32 nChapter = 2;								//章节
+}
+
+message OpenShenMoZhiRet {
+	required ShenMoZhiTypeChapterData tChapter = 1;				//章节信息
+}
+
+//战斗请求
+message ShenMoZhiFightReq {
+	required int32 nID = 1;			//关卡id
+}
+
+//战斗胜利返回
+message ShenMoZhiFightRet {
+	required ShenMoZhiGuanQiaData tGuanQia = 1;			//关卡ID
+	repeated _GuanQiaInfo tGuanQiaList = 2;				//当前通关的的最大章节信息
+}
+
+//星数奖励
+message ShenMoZhiStarRewardReq {
+	required int32 nType = 1;		//类型,对应难度
+	required int32 nChapter = 2;	//章节
+	required int32 nStar = 3;		//领取奖励星数
+}
+
+message ShenMoZhiStarRewardRet {
+	required int32 nType = 1;		//类型,对应难度z
+	required int32 nChapter = 2;	//章节
+	repeated int32 tRewardStar = 3;	//已领取星数
+}
+

@@ -1,0 +1,11 @@
+ctBattleDupConf={}
+ctBattleDupConf[101]={nID=101,sName="抓鬼",bSingle=false,nDailyActID=101,nLevelLimit=35,tDupList={{10101,},{10102,},{10103,},{10104,},{10105,},},nPointType=7,nTeamMembs=3,tMonster={{101001,},{101002,},{101003,},{101004,},},sShowTalk="每天都可参与抓鬼任务哦，还能获得丰厚奖励，伙伴们，一起开启好玩的抓鬼任务吧!",}
+ctBattleDupConf[102]={nID=102,sName="降妖除魔",bSingle=false,nDailyActID=102,nLevelLimit=30,tDupList={{10201,},{10202,},{10203,},{10204,},{10205,},},nPointType=0,nTeamMembs=3,tMonster={{102001,},{102002,},{102003,},{102004,},},sShowTalk="听说大唐现在妖乱不断，百姓处于水火之中，你否能助我一臂之力，平定这四方妖乱，解救黎民百姓呢？",}
+ctBattleDupConf[103]={nID=103,sName="伏心魔",bSingle=false,nDailyActID=103,nLevelLimit=60,tDupList={{10301,},},nPointType=0,nTeamMembs=3,tMonster={},sShowTalk="修行至深，难逃心魔侵扰，而心魔之力甚大非比寻常。各位侠士一起挑战心魔吧！",}
+ctBattleDupConf[201]={nID=201,sName="决战九霄",bSingle=false,nDailyActID=201,nLevelLimit=30,tDupList={{4001,},{4002,},{4003,},},nPointType=0,nTeamMembs=3,tMonster={{104001,},{104002,},{104003,},{104004,},{104005,},{104006,},{104007,},},sShowTalk="0",}
+ctBattleDupConf[202]={nID=202,sName="群雄逐鹿",bSingle=false,nDailyActID=202,nLevelLimit=30,tDupList={{10501,},{10502,},{10503,},{10504,},{10505,},},nPointType=0,nTeamMembs=3,tMonster={{105001,},{105002,},{105003,},{105004,},{105005,},{105006,},{105007,},{105008,},{105009,},},sShowTalk="0",}
+ctBattleDupConf[203]={nID=203,sName="大唐无双",bSingle=false,nDailyActID=0,nLevelLimit=30,tDupList={{0,},},nPointType=0,nTeamMembs=1,tMonster={{106001,},},sShowTalk="0",}
+ctBattleDupConf[105]={nID=105,sName="超级神兽",bSingle=true,nDailyActID=105,nLevelLimit=30,tDupList={{10701,},},nPointType=0,nTeamMembs=1,tMonster={{107001,},},sShowTalk="0",}
+ctBattleDupConf[109]={nID=109,sName="魔神讨伐",bSingle=false,nDailyActID=110,nLevelLimit=30,tDupList={{10902,},},nPointType=0,nTeamMembs=1,tMonster={},sShowTalk="0",}
+ctBattleDupConf[115]={nID=115,sName="尊师考验",bSingle=false,nDailyActID=0,nLevelLimit=35,tDupList={{10903,},},nPointType=0,nTeamMembs=1,tMonster={{1,},{2,},{10,},{11,},{12,},},sShowTalk="0",}
+ctBattleDupConf[117]={nID=117,sName="挂机",bSingle=true,nDailyActID=0,nLevelLimit=0,tDupList={{10904,},},nPointType=0,nTeamMembs=1,tMonster={},sShowTalk="0",}

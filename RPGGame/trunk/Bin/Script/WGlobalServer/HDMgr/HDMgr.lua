@@ -1,7 +1,6 @@
 --活动管理器
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
-local nAutoSaveTime = 5*60
 function CHDMgr:Ctor()
 	self.m_nSaveTick = nil 		--保存计时器
 	self.m_nMinTick = nil 		--分钟计时器
@@ -11,6 +10,9 @@ end
  
 function CHDMgr:Init()
 	--self.m_tActivityMap[gtHDDef.eXXX] = CXXX:new(gtHDDef.eXXX)	--例子
+	self.m_tActivityMap[gtHDDef.eServerRechargeCB] = CRechargeCB:new(gtHDDef.eServerRechargeCB)
+	self.m_tActivityMap[gtHDDef.eServerResumYBCB] = CResumeYBCB:new(gtHDDef.eServerResumYBCB)
+	-- self.m_tActivityMap[gtHDDef.eTC] = CTC:new(gtHDDef.eTC) --已改成单服
 end
 
 --加载数据
@@ -28,7 +30,7 @@ end
 function CHDMgr:StartTick()
 	local nNextMinTime = os.NextMinTime(os.time())
 	self.m_nMinTick = goTimerMgr:Interval(nNextMinTime, function() self:OnMinEvent() end)
-	self.m_nSaveTick = goTimerMgr:Interval(nAutoSaveTime, function() self:SaveData() end)
+	self.m_nSaveTick = goTimerMgr:Interval(gnAutoSaveTime, function() self:SaveData() end) 
 end
 
 --保存数据
@@ -64,65 +66,147 @@ function CHDMgr:OnMinEvent()
 end
 
 --玩家上线
-function CHDMgr:Online(oPlayer)
+function CHDMgr:Online(oRole)
 	for k, v in pairs(self.m_tActivityMap) do
-		v:Online(oPlayer)
+		v:Online(oRole)
 	end
 end
 
 --取活动对象
-function CHDMgr:GetHuoDong(nID)
+function CHDMgr:GetActivity(nID)
 	return self.m_tActivityMap[nID]
-end
-
---GM后台开启活动调用
-function CHDMgr:GMOpenAct(nActID, nSubActID, nStartTime, nAwardTime, nEndTime, nExtID1, nExtID2)
-	print("CHDMgr:GMOpenAct***", nActID, nStartTime, nEndTime)
-	assert(nStartTime <= nEndTime, "时间区间非法")
-	if not ctHuoDongConf[nActID] then
-		return LuaTrace("活动:", nActID, "不存在")
-	end
-	if not self.m_tActivityMap[nActID] then
-		return LuaTrace("活动:", nActID, "未实现")
-	end
-
-	local nAwardTime = nAwardTime or ctHuoDongConf[nActID].nAwardTime
-	self.m_tActivityMap[nActID]:OpenAct(nStartTime, nEndTime, nAwardTime, nExtID1, nExtID2)
-	return self.m_tActivityMap[nActID]:GetActTime()
 end
 
 --取某活动的状态
 function CHDMgr:GetActState(nActID, nSubActID)
+	local tConf = ctHuoDongConf[nActID]
+	if tConf.bSubAct then
+		local oSubAct = self.m_tActivityMap[nActID]:GetAct(nSubActID)
+		if not oSubAct then
+			return 0
+		end
+		return oSubAct:GetState()
+	end
 	return self.m_tActivityMap[nActID]:GetState()
 end
 
+--GM后台开启活动调用
+function CHDMgr:GMOpenAct(nActID, nSubActID, nStartTime, nEndTime, nAwardTime,nExtID, nExtID1)
+	print("CHDMgr:GMOpenAct***", nActID, nStartTime, nEndTime)
+	assert(nStartTime <= nEndTime, "时间区间非法")
+	local tConf = ctHuoDongConf[nActID]
+	if not tConf then
+		return LuaTrace("活动配置不存在:", nActID)
+	end
+	if tConf.bClose then
+		return LuaTrace("活动已屏蔽:", nActID, tConf.sName)
+	end
+
+	if not self.m_tActivityMap[nActID] then
+		return LuaTrace("活动不存在:", nActID)
+	end
+
+	if not tConf.bCrossServer then
+		return LuaTrace("非跨服活动:", nActID)
+	end
+
+	nAwardTime = ctHuoDongConf[nActID].nAwardTime
+	nAwardTime = math.min(nAwardTime, ctHuoDongConf[nActID].nAwardTime)
+	nExtID = math.max(1, nExtID or 1)
+	nExtID1 = nExtID1 or 0
+
+	--关闭活动
+	local bCloseAct = false
+	if nStartTime == nEndTime then
+		bCloseAct = true
+		nStartTime, nEndTime, nAwardTime = os.time(), os.time(), 0
+	end
+
+	--检测是否可以开启活动
+	local nState = self:GetActState(nActID, nSubActID)
+	if not bCloseAct and (nState == CHDBase.tState.eStart or nState == CHDBase.tState.eAward) then
+		if (nState == CHDBase.tState.eStart and nStartTime > os.time()) or nState == CHDBase.tState.eAward then
+			return LuaTrace("CHDMgr:GMOpenAct开启活动失败(活动状态会改变)", nState, ctHuoDongConf[nActID], nSubActID)
+		end
+
+	elseif bCloseAct and not (nState == CHDBase.tState.eStart or nState == CHDBase.tState.eAward) then
+		return
+
+	end
+
+	if ctHuoDongConf[nActID].bSubAct then
+		return LuaTrace("CHDMgr:GMOpenAct开启子活动失败", nState, ctHuoDongConf[nActID], nSubActID)
+	end
+	--开启/关闭活动
+	self.m_tActivityMap[nActID]:OpenAct(nStartTime, nEndTime, nAwardTime, nExtID, nExtID1)
+	return self.m_tActivityMap[nActID]:GetActTime()
+end
+
+
 --循环活动开启
-function CHDMgr:HDCirclActOpen(tList)
+function CHDMgr:HDCircleActOpen(tList)
 	local tSuccList = {}
 	for _, tData in ipairs(tList) do
 		local nIndex = tData.nIndex
 		local nActID = tData.nActID
 		local nSubActID = tData.nSubActID
-		local nExtID = tData.nExtID1
-		local nExtID1 = tData.nExtID2
+		local nExtID = tData.nExtID
+		local nExtID1 = tData.nExtID1
 		local nBeginTime =tData.nBeginTime
-		local tEndTime = tData.tEndTime
-		local nEndTime = nBeginTime+tEndTime[1]*24*3600+tEndTime[2]*3600+tEndTime[3]*60
+		local nEndTime = tData.nEndTime
 
 		local nState = self:GetActState(nActID, nSubActID)
 		if nState == CHDBase.tState.eStart or nState == CHDBase.tState.eAward then
-			LuaTrace("CHDMgr:HDCirclActOpen开启循环活动失败(活动进行中)", nState, tData)
+			LuaTrace("CHDMgr:HDCircleActOpen开启活动失败(活动进行中)", nState, tData)
 		else
-			local nBeginTime1, nEndTime1, nAwardTime1 = self:GMOpenAct(nActID, nSubActID, nBeginTime, nEndTime, nil, nExtID1, nExtID2)
+			local nBeginTime1, nEndTime1, nAwardTime1 = self:GMOpenAct(nActID, nSubActID, nBeginTime, nEndTime, nil, nExtID, nExtID1)
 			if nBeginTime1 and nEndTime1 and nAwardTime1 then
 				table.insert(tSuccList, {nIndex=nIndex, nBeginTime=nBeginTime1, nEndTime=nEndTime1, nAwardTime=nAwardTime1})
-				LuaTrace("CHDMgr:HDCirclActOpen开始循环活动成功", tData)
+				LuaTrace("CHDMgr:HDCircleActOpen开始活动成功", tData)
 			else
-				LuaTrace("CHDMgr:HDCirclActOpen开始循环活动失败", tData)
+				LuaTrace("CHDMgr:HDCircleActOpen开始活动失败", tData)
 			end
 		end
 	end
 	return tSuccList
+end
+
+function CHDMgr:OnPowerChange(oRole, nOldPower, nNewPower)
+end
+
+function CHDMgr:OnRechargeSuccess(oRole, nRechargeID, nMoney, nYuanBao, nBYuanBao, nTime) 
+	-- local tActivityID = {gtHDDef.eTC}
+	-- for _,nActivityID in pairs(tActivityID) do
+	-- 	local oAct = goHDMgr:GetActivity(nActivityID)
+	-- 	if oAct then
+	-- 		oAct:OnRechargeSuccess(oRole, nMoney)
+	-- 	end
+	-- end
+end
+
+--元宝变化
+function CHDMgr:OnYuanBaoChange(oRole, nYuanBao, bBind)
+    print("CHDMgr:OnYuanBaoChange*******", nYuanBao, bBind) 
+	local nRoleID = oRole:GetID()
+	if nYuanBao > 0 then
+		if not bBind then
+			--全服充值冲榜
+			local oAct = goHDMgr:GetActivity(gtHDDef.eServerRechargeCB)
+			if oAct then
+				oAct:UpdateValue(nRoleID, nYuanBao)
+			end
+		end
+		return
+	end
+
+	if nYuanBao < 0 then
+		--全服消耗元宝冲榜	
+		local oAct = goHDMgr:GetActivity(gtHDDef.eServerResumYBCB)
+		if oAct then
+			oAct:UpdateValue(nRoleID, math.abs(nYuanBao))
+		end
+		return
+	end
 end
 
 goHDMgr = goHDMgr or CHDMgr:new()

@@ -1,0 +1,35 @@
+//商城
+package shop;
+
+//商品列表请求
+message ShopItemListReq 
+{
+	required int32 nShopType = 1;           //商店类型(101 药店，102 服装店， 103 武器店， 104 元宝商城， 105 积分商城)
+}
+
+//商品列表返回
+message ShopItemListRet
+{
+	message _itemList
+	{
+		required int32 nID = 1;			 	//商品ID
+		required int32 nRemainNum = 2; 		//限购商品的剩余购买次数(nRemainNum为-1则非限购商品)
+	}
+	repeated _itemList tList = 1;
+	required int32 nShopType = 2;		//商店类型
+}
+
+//购买商品请求
+message ShopBuyReq
+{
+	required int32 nShopType = 1; //商店类型(101 药店，102 服装店， 103 武器店， 104 元宝商城， 105 积分商城)
+	required int32 nID = 2;       //商品id
+	required int32 nNum = 3;      //购买数量
+}
+
+//购买商品返回
+message ShopBuyRet
+{
+	required int32 nID = 1;          //商品ID
+	required int32 nNum = 2;		 //购买数量
+}

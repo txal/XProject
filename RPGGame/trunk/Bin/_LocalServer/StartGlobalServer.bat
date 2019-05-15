@@ -1,2 +1,2 @@
-start GlobalServer 20
+start MZ-GlobalServer 20
 

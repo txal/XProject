@@ -37,13 +37,13 @@ bool GlobalServer::Init(int8_t nServiceID, const char* psListenIP, uint16_t uLis
 		strcpy(m_sListenIP, psListenIP);
 	}
 	m_uListenPort = uListenPort;
-	m_poExterNet = INet::CreateNet(NET_TYPE_EXTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_poExterNet = INet::CreateNet(NET_TYPE_EXTERNAL, nServiceID, 32, &m_oNetEventHandler);
 	if (m_poExterNet == NULL)
 	{
 		return false;
 	}
 
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 8, &m_oNetEventHandler);
 	if (m_poInnerNet == NULL)
 	{
 		return false;
@@ -80,6 +80,7 @@ bool GlobalServer::Start()
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();
+		Service::Update(nNowMS);
 		ProcessTimer(nNowMS);
 	}
 	return true;

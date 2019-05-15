@@ -23,7 +23,8 @@
         {
             $sFileName = substr($sFile, 0, -6);
 			$cont = file_get_contents($sFile);
-			$cont = preg_replace("/\n/", "\\n", $cont);
+			$cont = preg_replace("/(\r\n)|(\n)/", "\\n", $cont);
+			$cont = preg_replace("/\"/", '\\"', $cont);
 			file_put_contents("proto_".$sFileName.".js", "var $sFileName = \"$cont\";\nmodule.exports = $sFileName;\n");
             array_push($tFileArray, "$sFileName");
             echo "$sFile\n";

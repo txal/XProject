@@ -1,0 +1,11 @@
+//,,
+nAttrID,sName,fnAttr
+i,s,e
+属性ID,名称,"属性计算公式 nBaseAttr(基础属性) nEquAttr(装备属性) nStarLv(对应属性星级) nGrade(评级)
+所有公式都需要按照上述顺序包含上述所列参数，如果修改顺序或者删除相关参数，请通知程序，否则计算会出错"
+104,攻击,Math.floor(nBaseAttr + nEquAtr * (1+(nStarLv - 1)*0.03 - (0.15+ nGrade*0.03)))*1.2
+105,防御,Math.floor(nBaseAttr + nEquAtr * (1+(nStarLv - 1)*0.03 - (0.15+ nGrade*0.03)))*1.2
+106,灵力,Math.floor(nBaseAttr + nEquAtr * (1+(nStarLv - 1)*0.03 - (0.15+ nGrade*0.03)))*1.2
+101,气血,Math.floor(nBaseAttr + nEquAtr * (1+(nStarLv - 1)*0.03 - (0.15+ nGrade*0.03)))*1.2
+102,法力,Math.floor(nBaseAttr + nEquAtr * (1+(nStarLv - 1)*0.03 - (0.15+ nGrade*0.03)))*1.2
+107,速度,Math.floor(nBaseAttr + nEquAtr * (1+(nStarLv - 1)*0.03 - (0.15+ nGrade*0.03)))*1.2

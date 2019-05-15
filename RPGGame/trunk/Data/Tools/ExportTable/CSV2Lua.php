@@ -84,7 +84,6 @@ function CSV2Lua($sCSVFile, $sScriptDir)
 	{
 		exit();
 	}
-
 	$nDs = strrpos($sCSVFile, $DIRECTORY_SEPARATOR);
 	if (!$nDs) 
 	{
@@ -95,7 +94,7 @@ function CSV2Lua($sCSVFile, $sScriptDir)
 	$sFileName = substr($sCSVFile, $nDs + 1, $nDot - $nDs - 1);
 	$sLuaFile = $sScriptDir.$DIRECTORY_SEPARATOR.$sFileName.".lua";
 
-	print("Converting: $sFileName.csv => $sFileName.lua\n");
+	print("Converting: ${sFileName}.csv => ${sFileName}.lua\n");
 
 	$sRootTable = $sPrefix.$sFileName;
 	$sScript = "$sRootTable={}\n";
@@ -104,121 +103,220 @@ function CSV2Lua($sCSVFile, $sScriptDir)
 	$nRow = 0;
 	$tType = array();
 	$tField = array();
-	while ($sRow = fgets($hFile))
+	$keywords = array("min", "max", "math", "floor", "ceil", "abs", "pow", "and", "or", "random");
+	while ($tRow=fgetcsv($hFile))
 	{
-		//在 $LANG=zh_CN.UTF-8 的时候用 fget csv 读取会乱码
-		$sRow = iconv("gbk", "utf-8", $sRow);
-		$tRow = str_getcsv($sRow);
-
 		$nRow++;
+		$sRowScript = "";
 		if ($nRow == 1)
 		{
-			$tField = $tRow;
+			//注释行
 		}
 		else if ($nRow == 2)
 		{
-			$tType = $tRow;
+			//字段行
+			$tField = $tRow;
 		}
 		else if ($nRow == 3)
-		{/*注释行*/}
-		else if ($nRow >= 4)
+		{	
+			//类型行
+			$tType = $tRow;
+		}
+		else if ($nRow == 4)
 		{
-			$sSubTable = $sRootTable."[".intval($tRow[0])."]";
-			$sScript .= $sSubTable."={";
+			/*名字行*/
+		}
+		else if ($nRow >= 5)
+		{
+			$sValue = $tRow[0];
+			if (is_numeric($sValue))
+			{
+				$key = floatval($sValue);
+			}
+			else
+			{
+				$key = "\"$sValue\"";
+			}
+
+			$sSubTable = $sRootTable."[$key]";
+			$sRowScript = "$sSubTable={";
 			foreach ($tRow as $k => $v)
 			{
 				$nCol = $k;
-				$sData = $v;
-				switch($tType[$nCol])
+				$sValue = $v;
+				switch(substr($tType[$nCol],0,1))
 				{
 					case "i":
 					{
-						if (!is_numeric($sData))
+						if (!is_numeric($sValue))
 						{
-							exit("ERROR: Row:$nRow Col:".($nCol+1)." value error!\n");
-						}	
-						if ($sData == "")
-						{
-							exit("ERROR: Row:$nRow Col:".($nCol+1)." error!\n");
+							exit("ERROR: Row:$nRow Col:$tField[$nCol] value error!\n");
 						}
-						$nVal = $sData;
-						$sScript .= "$tField[$nCol]=$nVal,";
+						$sValue = $sValue;
+						$sRowScript .= "$tField[$nCol]=$sValue,";
+						break;
+					}
+					case "b":
+					{
+						$iValue = intVal($sValue);
+						$sValue = $iValue != 0 ? "true" : "false";
+						$sRowScript .= "$tField[$nCol]=$sValue,";
 						break;
 					}
 					case "s":
 					{
-						$sVal = "\"".strval($sData)."\"";
-						$sScript .= "$tField[$nCol]=$sVal,";
+						$sValue = "\"".strVal($sValue)."\"";
+						$sRowScript .= "$tField[$nCol]=$sValue,";
 						break;
 					}
-					default:
+					case "e":
+					{
+						$params = array();
+						$sValue = str_replace("?", " and ", $sValue);
+						$sValue = str_replace(":", " or ", $sValue);
+						$sValue = str_ireplace("Math", "math", $sValue);
+						preg_match_all("/[a-zA-Z]+/i", strVal($sValue), $params);
+						if (count($params[0]) > 0)
+						{
+							$params[0] = array_unique($params[0]);
+							$params[0] = array_diff($params[0], $keywords);
+							$sValue = "function(".join(",",$params[0]).") return ($sValue) end";
+						}
+						else
+							$sValue = "function() return ($sValue) end";
+						$sRowScript .= "$tField[$nCol]=$sValue,";
+						break;
+					}
+					case "c":
+					{
+						$sValue = strVal($sValue);
+						$sRowScript .= "$tField[$nCol]=$sValue,";
+						break;
+					}
+					case "t":
 					{
 						$sType = $tType[$nCol];
-						$nTableNum = substr_count($sType, "t");
-						if ($nTableNum == 0)
+						$nTableLevel = substr_count($sType, "t");
+						if ($nTableLevel == 0)
 						{
 							exit("ERROR: '$sType' not support!\n");
 						}
-						if ($nTableNum >= 2)
+						if ($nTableLevel >= 2)
 						{
-							exit("ERROR: '$sType' error, only support 1 levels table!\n");
+							exit("ERROR: '$sType' error, only support 1 levels table, break!\n");
 						}
 						$sType = substr($sType, 2, -1);
-
-						$sScript .= "$tField[$nCol]={";
-						$tSubTable = explode(";", $sData);
+						$sRowScript .= "$tField[$nCol]={";
+						$tSubTable = explode(";", $sValue);
 						foreach ($tSubTable as $k => $v)
 						{
 							if ($v == "")
 							{
 								break;
 							}
-							$sScript .= "{";
+							$sRowScript .= "{";
 							$tMember = explode(",", $v);
 							for ($i = 0; $i < strlen($sType); $i++)
 							{
 								if (!isset($tMember[$i]))
 								{
-									exit("ERROR: Row:$nRow Col:".($nCol+1)." error!\n");
+									exit("ERROR: Row:$nRow Col:$tField[$nCol] is empty!\n");
 								}
 								switch ($sType[$i])
 								{
 									case "i":
 									{
-										$nVal = $tMember[$i];	
-										$sScript .= "$nVal,";
+										$nVal = $tMember[$i];
+										if (!is_numeric($nVal))
+										{
+											exit("ERROR: Row:$nRow Col:$tField[$nCol] value error!\n");
+										}	
+										$sRowScript .= "$nVal,";
+										break;
+									}
+									case "b":
+									{
+										$iValue = intVal($tMember[$i]);
+										$sValue = $iValue != 0 ? "true" : "false";	
+										$sRowScript .= "$sValue,";
 										break;
 									}
 									case "s":
 									{
 										$sVal = "\"".strval($tMember[$i])."\"";
-										$sScript .= "$sVal,";
+										$sRowScript .= "$sVal,";
 										break;
 									}
-									default: 
+									case "e":
 									{
-										exit("ERROR: Row:$nRow Col:".($nCol+1)." error!\n");
+										$data = "";
+										if ($i == strlen($sType)-1)
+											for ($k=$i; $k<count($tMember); $k++)
+												$data .= $tMember[$k].(($k>=count($tMember)-1)?"":",");
+										$params = array();
+										$sValue = str_replace("?", " and ", $data);
+										$sValue = str_replace(":", " or ", $data);
+										$sValue = str_ireplace("Math", "math", $data);
+										preg_match_all("/[a-zA-Z]+/i", strVal($data), $params);
+										if (count($params[0]) > 0)
+										{
+											$params[0] = array_unique($params[0]);
+											$params[0] = array_diff($params[0], $keywords);
+											$sValue = "function(".join(",",$params[0]).") return ($sValue) end";
+										}
+										else
+										{
+											$sValue = "function() return ($sValue) end";	
+										}
+										$sRowScript .= "$sValue,";
+										break;
+									}
+									default:
+									{
+										exit("ERROR: Row:$nRow Col:$nCol type '$sType[$i]' error!\n");
+										break;
 									}
 								}
 							}
-							$sScript .= "},";
+							$sRowScript .= "},";
 						}
-						$sScript .= "},";
+						$sRowScript .= "},";
+						break;
+					}
+					default:
+					{
+						exit("ERROR: Row:$nRow Col:$nCol type '$tType[$nCol]' not support!\n");
+						break;
 					}
 				}
 			}			
-			$sScript .= "}\n";
+			$sScript .= "$sRowScript}\n";
 		}
 	}  
 	fclose($hFile);  
-	$hLuaFile = fopen($sLuaFile, "w");
-	if (!$hLuaFile) exit("ERROR: Saving '$sLuaFile' fail, break!\n");
-	fwrite($hLuaFile, $sScript, strlen($sScript));
-	fclose($hLuaFile);
+
+	$sScript = iconv("gbk", "utf-8", $sScript);
+	if (file_exists($sLuaFile))
+	{
+		$sOldScript = file_get_contents($sLuaFile);
+		if ($sOldScript != $sScript)
+		{
+			file_put_contents($sLuaFile, $sScript);
+		}
+	}
+	else 
+	{
+		file_put_contents($sLuaFile, $sScript);
+	}
 }
+
 $sMainFile = $sScriptDir.$DIRECTORY_SEPARATOR."Main.lua";
 $hMainFile = fopen($sMainFile, "a");
-if (!$hMainFile) exit("ERROR: Saving '$sMainFile' fail, break!\n");
+if (!$hMainFile)
+{
+	exit("ERROR: Saving '$sMainFile' fail, break!\n");
+}
+
 foreach ($tLuaFileList as $k => $v)
 {
 	$sName = $v[0];

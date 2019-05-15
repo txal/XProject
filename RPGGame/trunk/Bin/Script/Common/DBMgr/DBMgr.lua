@@ -1,58 +1,97 @@
 --数据库管理模块
 function CDBMgr:Ctor()
-	self.m_tSSDBMap = {}	--{[serverid]={[name]=ssdb, ...}, ...}
+	self.m_tNewSSDBMap = {} --新版数据库管理
+	self.m_oMgrMysql = nil
+	self.m_nUpdateTimer = nil
 end
 
-function CDBMgr:Init()
-	--清除旧数据
-	self.m_tSSDBMap = {}
+function CDBMgr:OnRelease()
+	goTimerMgr:Clear(self.m_nUpdateTimer)
+	self.m_nUpdateTimer = nil
+end
 
-	--连接SSDB
-	for sName, tConf in pairs(gtServerConf.tGameDB) do
-		if sName == "user" then
-			for _, tUserConf in ipairs(tConf) do
-			    if not self.m_tSSDBMap[tUserConf.nServer] then
-			    	self.m_tSSDBMap[tUserConf.nServer] = {}
-			    end
-			    if not self.m_tSSDBMap[tUserConf.nServer][sName] then
-			    	self.m_tSSDBMap[tUserConf.nServer][sName] = {}
-			    end
+function CDBMgr:ConnDB(nServerID, sDBName, nIdentID, sAddr)
+	self.m_tNewSSDBMap[nServerID] = self.m_tNewSSDBMap[nServerID] or {}
+	self.m_tNewSSDBMap[nServerID][sDBName] = self.m_tNewSSDBMap[nServerID][sDBName] or {}
+	local tOldDB = self.m_tNewSSDBMap[nServerID][sDBName][nIdentID] 
+	if tOldDB and tOldDB.sAddr == sAddr then
+		return
+	end
 
-				local oSSDB = SSDBDriver:new()
-				local bRes = oSSDB:Connect(tUserConf.sIP, tUserConf.nPort)
-				assert(bRes, "连接SSDB失败:", tUserConf)
-			    LuaTrace("连接SSDB成功:", tUserConf)
-
-			    table.insert(self.m_tSSDBMap[tUserConf.nServer][sName], oSSDB)
-			end
-
-		else
-		    if not self.m_tSSDBMap[tConf.nServer] then
-		    	self.m_tSSDBMap[tConf.nServer] = {}
-		    end
-
-			local oSSDB = SSDBDriver:new()
-			local bRes = oSSDB:Connect(tConf.sIP, tConf.nPort)
-			assert(bRes, "连接SSDB失败:", tConf)
-		    LuaTrace("连接SSDB成功:", tConf)
-
-		    self.m_tSSDBMap[tConf.nServer][sName] = oSSDB
+	local tAddr = string.Split(sAddr, "|")
+	local oSSDB = SSDBDriver:new()
+	local bRes = xpcall(function() oSSDB:Connect(tAddr[1], tonumber(tAddr[2])) end, function(sErr) LuaTrace(sErr) end)
+	if bRes then
+	    LuaTrace("连接"..sDBName.."成功:", tAddr)
+	    local bAuth = true
+	    if tAddr[3] then
+	    	bAuth = oSSDB:Auth(tAddr[3])
+	    end
+	    if bAuth then
+		    self.m_tNewSSDBMap[nServerID][sDBName][nIdentID] = {oSSDB=oSSDB, sAddr=sAddr}
 		end
 	end
 end
 
---通过SSDB名字取SSDB: 如果是玩家数据库，必须要传AccountID
-function CDBMgr:GetSSDB(nServer, sDBName, nAccountID)
-	assert(nServer and sDBName, "参数错误")
-	if sDBName == "user" then
-		assert(nAccountID, "参数错误")
-		local tSSDBMap = assert(self.m_tSSDBMap[nServer], "服务器ID错误:"..nServer)
-		return assert(tSSDBMap[sDBName][1], "找不到SSDB:"..nServer..":"..sDBName)
+function CDBMgr:InitNew()
+	goTimerMgr:Clear(self.m_nUpdateTimer)
+	self.m_nUpdateTimer = nil
+	
+	if not self.m_oMgrMysql then
+		local tConf = gtMgrSQL
+		local oMgrMysql = MysqlDriver:new() 
+		local bRes = oMgrMysql:Connect(tConf.ip, tConf.port, tConf.db, tConf.usr, tConf.pwd, "utf8")
+		assert(bRes, "连接数据库失败"..tostring(tConf))
+		self.m_oMgrMysql = oMgrMysql
+	end
+	if gnServerID < gnWorldServerID then --本地服
+		-- self.m_oMgrMysql:Query("select serverid,centerdb,userdb,localglobaldb from serverlist where serverid="..gnServerID)
+		self.m_oMgrMysql:Query(string.format("select serverid,centerdb,userdb from serverlist where serverid=%d;", gnServerID))
+		assert(self.m_oMgrMysql:FetchRow(), "服务器配置不存在:"..gnServerID)
+
+		-- local centerdb, userdb, localglobaldb = self.m_oMgrMysql:ToString("centerdb", "userdb", "localglobaldb")
+		local centerdb, userdb = self.m_oMgrMysql:ToString("centerdb", "userdb")
+		self:ConnDB(0, "center", 1, centerdb)
+		self:ConnDB(gnServerID, "user", 1, userdb)
+		self:ConnDB(gnServerID, "global", 20, userdb)
 
 	else
-		local tSSDBMap = assert(self.m_tSSDBMap[nServer], "服务器ID错误:"..nServer)
-		return assert(tSSDBMap[sDBName], "找不到SSDB:"..nServer..":"..sDBName)
+		assert(gnGroupID > 0, "世界服组ID错误")
+		-- self.m_oMgrMysql:Query("select serverid,centerdb,userdb,worldglobaldb,worldglobaldb2 from serverlist where groupid="..gnGroupID)
+		self.m_oMgrMysql:Query(string.format("select serverid,centerdb,userdb,worldglobaldb from serverlist where groupid=%d;", gnGroupID))
+		while self.m_oMgrMysql:FetchRow() do
+			local localserverid = self.m_oMgrMysql:ToInt32("serverid")
+			-- local centerdb, userdb, worldglobaldb, worldglobaldb2 = self.m_oMgrMysql:ToString("centerdb", "userdb", "worldglobaldb", "worldglobaldb2")
+			local centerdb, userdb, worldglobaldb = self.m_oMgrMysql:ToString("centerdb", "userdb", "worldglobaldb")
+			self:ConnDB(0, "center", 1, centerdb)
+			self:ConnDB(localserverid, "user", 1, userdb)
+			self:ConnDB(gnServerID, "global", 110, worldglobaldb)
+			self:ConnDB(gnServerID, "global", 111, worldglobaldb)
+		end
 	end
+
+	self.m_nUpdateTimer = goTimerMgr:Interval(60, function() self:InitNew() end)
+end
+
+--通过SSDB名字取SSDB
+--@nIdentID user数据库要传角色ID; global数据库要传服务ID
+function CDBMgr:GetSSDB(nServer, sDBName, nIdentID)
+	assert(nServer and sDBName, "参数错误")
+	nIdentID = nIdentID or 1
+	if sDBName == "user" then
+		nIdentID = 1
+	end
+    self.m_tNewSSDBMap[nServer] = self.m_tNewSSDBMap[nServer] or {}
+    self.m_tNewSSDBMap[nServer][sDBName] = self.m_tNewSSDBMap[nServer][sDBName] or {}
+
+	local oSSDB = self.m_tNewSSDBMap[nServer][sDBName][nIdentID].oSSDB
+	assert(oSSDB, "SSDB不存在:server:"..nServer.." dbname:"..sDBName.." ident:"..nIdentID)
+	return oSSDB
+end
+
+--取后台MYSQL连接
+function CDBMgr:GetMgrMysql()
+	return self.m_oMgrMysql
 end
 
 goDBMgr = goDBMgr or CDBMgr:new()

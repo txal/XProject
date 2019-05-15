@@ -4,25 +4,24 @@ cjson.encode_sparse_array(true, 1, 1) --稀疏表转换成对象
 
 --打开协议
 local function OpenProto()
-    local f = io.open("protopath.txt", "r")
-    if not f then
-        require("../../Data/Protobuf/LoadPBCProto")
-        LoadProto("../../Data/Protobuf")
-        return
-    else
-        local sLoaderPath = f:read("l")
-        local sProtoPath = f:read("l")
-        f:close()
-        require(sLoaderPath)
-        LoadProto(sProtoPath)
-        return
-    end
+    local sDir = gsDataPath and gsDataPath or "../../"
+    require(sDir.."/Data/Protobuf/LoadPBCProto")
+    LoadProto(sDir.."/Data/Protobuf")
 end
 
 --Global script
 require = gfRawRequire or require  --恢复原生require
+require("RobotConf")
 require("Config/Main")
 require("Common/CommonInc")
+CHDBase = CHDBase or class()
+require("GlobalServer/HDMgr/HDBase")
+require("GlobalServer/HDMgr/HDDef")
+require("GlobalServer/SystemMall/SystemMallDef")
+require("GlobalServer/RankingMgr/RankingDef")
+require("GlobalServer/RankingMgr/RankingDef")
+require("LogicServer/Module/ModuleDef")
+require("MergeServer/MergeServer")
 OpenProto()
 
 --RobotClt
@@ -31,7 +30,6 @@ require = function(sScript)
 	gfRawRequire("RobotClt/"..sScript)
 end
 require("TaskProc")
-require("RobotConf")
 require("Robot/RobotInc")
 
 

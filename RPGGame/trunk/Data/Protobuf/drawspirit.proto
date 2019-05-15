@@ -1,0 +1,137 @@
+//摄魂
+package drawspirit;
+
+
+//摄魂数据请求
+message DrawSpiritDataReq
+{
+}
+
+//摄魂属性
+message DrawSpiritAttr
+{
+    required int32 nAttrID = 1;     //属性ID
+    required int32 nAttrVal = 2;    //属性值
+}
+
+//摄魂数据响应
+message DrawSpiritDataRet
+{
+    required int32 nLevel = 1;      //摄魂等级
+    required int32 nSpirit = 2;     //灵气值
+    required int32 nCrystal = 3;    //妖晶数量
+    required int32 nMagicPill = 4;  //内丹数量
+    required int32 nTriggerLevel = 5;  //当前灵气触发等级，即注灵等级
+    required int32 nTriggerNum = 6;    //触发等级对应的消耗数量
+    repeated DrawSpiritAttr tAttrList = 7;  //加成属性
+    optional bool bLevelUpTips = 8;        // 小红点提示
+}
+
+//当前灵气数量请求
+message DrawSpiritCurSpiritNumReq 
+{
+}
+
+//当前灵气数量响应
+message DrawSpiritCurSpiritNumRet
+{
+    required int32 nSpiritNum = 1;   //灵气数量
+}
+
+//摄魂升级请求
+message DrawSpiritLevelUpReq
+{
+}
+
+//摄魂升级响应
+message DrawSpiritLevelUpRet
+{
+    required bool bSuccess = 1;      //升级是否成功
+    optional int32 nOldLevel = 2;    //升级前的等级
+    optional int32 nCurLevel = 3;    //升级后的等级
+}
+
+//摄魂灵气触发消耗通知
+message DrawSpiritTriggerRet
+{
+    required int32 nCostLevel = 1;    //注灵等级
+    required int32 nCostNum = 2;      //注灵数量
+}
+
+//摄魂灵气消耗等级调整请求
+message DrawSpiritSetTriggerLevelReq
+{
+    required int32 nTriggerLevel = 1;   //目标消耗等级
+}
+
+//摄魂灵气消耗等级调整响应
+message DrawSpiritSetTriggerLevelRet
+{
+    required int32 nTriggerLevel = 1;  //当前触发等级
+    required int32 nTriggerNum = 2;    //触发消耗数量
+}
+
+//摄魂炼魂信息请求
+message DrawSpiritLianhunInfoReq
+{
+}
+
+//摄魂炼魂信息响应
+message DrawSpiritLianhunInfoRet
+{
+	message _Attr
+	{
+		required int32 nAttrID = 1;
+		required int32 nAttrVal = 2;
+	}
+
+	required int32 nLevel = 1;       //当前等级
+	required int32 nExp = 2;         //当前等级经验
+	repeated _Attr tAttrList = 3;    //属性
+	optional int32 nScore = 4;       //评分
+}
+
+//摄魂炼魂升级请求
+message DrawSpiritLianhunLevelUpReq
+{
+}
+
+//摄魂炼魂升级响应
+message DrawSpiritLianhunLevelUpRet
+{
+	optional int32 nOldLevel = 1;
+	optional int32 nCurLevel = 2;
+}
+
+//摄魂法阵信息请求
+message DrawSpiritFazhenInfoReq
+{
+}
+
+//摄魂法阵信息响应
+message DrawSpiritFazhenInfoRet
+{
+	message _Attr
+	{
+		required int32 nAttrID = 1;
+		required int32 nAttrVal = 2;
+	}
+
+	required int32 nTotalLevel = 1;       //当前等级
+	required int32 nExp = 2;         //当前等级经验
+	repeated _Attr tAttrList = 3;    //属性
+	optional int32 nScore = 4;       //评分
+}
+
+//摄魂法阵升级请求
+message DrawSpiritFazhenLevelUpReq
+{
+}
+
+//摄魂法阵升级响应
+message DrawSpiritFazhenLevelUpRet
+{
+	optional int32 nOldLevel = 1;
+	optional int32 nCurLevel = 2;
+}
+

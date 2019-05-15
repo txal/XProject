@@ -1,0 +1,9 @@
+ctPetHFResetConf={}
+ctPetHFResetConf[133001]={nItemID=133001,sNmae="一级护符",nLevel=1,tCost={{19001,1,},},}
+ctPetHFResetConf[133002]={nItemID=133002,sNmae="二级护符",nLevel=2,tCost={{19002,1,},},}
+ctPetHFResetConf[133003]={nItemID=133003,sNmae="三级护符",nLevel=3,tCost={{19003,1,},},}
+ctPetHFResetConf[133004]={nItemID=133004,sNmae="四级护符",nLevel=4,tCost={{133004,1,},},}
+ctPetHFResetConf[19001]={nItemID=19001,sNmae="一级重置符",nLevel=1,tCost={{0,0,},},}
+ctPetHFResetConf[19002]={nItemID=19002,sNmae="二级重置符",nLevel=2,tCost={{0,0,},},}
+ctPetHFResetConf[19003]={nItemID=19003,sNmae="三级重置符",nLevel=3,tCost={{0,0,},},}
+ctPetHFResetConf[19004]={nItemID=19004,sNmae="四级重置符",nLevel=4,tCost={{0,0,},},}

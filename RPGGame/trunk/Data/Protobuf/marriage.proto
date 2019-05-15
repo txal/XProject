@@ -1,0 +1,243 @@
+//结婚功能协议
+package marriage;
+
+
+//玩家婚姻关系数据请求
+message RoleMarriageDataReq
+{	
+}
+
+//配偶数据
+message MarriageRelation
+{
+	required int32 nID = 1;              //配偶ID
+	required string sName = 2;           //姓名
+	required string sHeader = 3;         //头像
+	required int32 nGender = 4;          //性别
+	required int32 nSchool = 5;          //门派
+	required int32 nLevel = 6;           //等级
+	required int32 nMarriageStamp = 7;   //结婚时间戳
+	required int32 nMarriageID = 8;      //结婚编号
+	optional int32 nMarriageTime = 9;    //结婚时长
+}
+
+//玩家的婚姻关系数据响应
+message RoleMarriageDataRet
+{
+	required int32 nMarriageState = 1;    //婚姻状态  0 未婚，1已婚，2强制离婚中
+	optional MarriageRelation tMarriage = 2; //婚姻关系
+	optional int32 nDivorceRoleID = 3;       //强制离婚发起人ID
+	optional int32 nDivorceCountdown = 4;    //强制离婚倒计时
+	optional int32 nDivorceStamp = 5;        //强制离婚时间戳
+}
+
+//结婚离婚操作数据请求  //npc对话用
+message MarriageActionDataReq
+{
+}
+
+//结婚离婚操作数据返回  //npc对话用
+message MarriageActionDataRet
+{
+	required int32 nMarriageState = 1;   // 婚姻状态，未婚、已婚、强制离婚中
+	optional bool bDivorceRole = 2;           // 是否是强制离婚发起人
+	optional int32 nDivorceCountDown = 3;     // 强制离婚倒计时
+	optional int32 nMarriageTime = 4;         // 如果是非未婚状态，结婚时长
+}
+
+//玩家结婚条件检查请求
+message MarryPermitDataReq
+{
+	required int32 nTarRoleID = 1;           //目标对象ID
+}
+
+//玩家结婚条件检查响应
+message MarryPermitDataRet
+{
+	required bool bTeam = 1;             // 两人组队，互为异性
+	required bool bLevel = 2;            // 两人等级 >= 30
+	required bool bFriend = 3;           // 双方互为好友，且好友度>=1000
+	required bool bMarriage = 4;         // 双方当前均未婚，且72小时内没有解除过婚姻关系
+	optional int32 nTarRoleID = 5;       // 目标对象ID
+}
+
+//离婚条件检查请求
+message DivorcePermitDataReq
+{
+}
+
+//离婚条件检查响应
+message DivorcePermitDataRet
+{
+	required bool bTimeLimit = 1;       //是否满足结婚7天以上
+}
+
+
+//玩家结婚请求
+message RoleMarryReq
+{
+	required int32 nTarRoleID = 1;           //目标对象ID
+}
+
+//通知选择婚礼级别
+message MarriageNotifyChooseWeddingLevelRet
+{
+}
+
+//选择婚礼反馈请求
+message MarriageChoosWeddingLevelReactReq
+{
+	required int32 nLevel = 1;  //选择的级别
+}
+
+//通知婚礼开始  //针对结婚玩家
+message MarriageWeddingStartRet
+{
+}
+
+//通知婚礼结束  //针对结婚玩家
+message MarriageWeddingEndRet
+{	
+}
+
+//通知婚礼流程开始  //广播场景所有玩家
+message MarriageWeddingStepNotifyRet
+{
+	required int32 nStep = 1;            // 当前婚礼阶段
+	required int32 nHusband = 2;         // 婚礼对象丈夫id
+	required string sHusbandName = 3;    // 婚礼对象丈夫名字
+	required int32 nWife = 4;            // 婚礼对象妻子id
+	required string sWifeName= 5;        // 婚礼对象妻子名字
+}
+
+//拾取喜糖请求
+message MarriagePickWeddingCandyReq
+{
+	required int32 nAOIID = 1;           //喜糖AOIID
+	optional int32 nMonsterID = 2;		//怪物ID
+}
+
+//通知有喜糖刷新  //NPC喊话
+message MarriageWeddingCandyNotifyRet
+{
+}
+
+//离婚请求
+message MarriageDivorceReq
+{
+}
+
+// 取消离婚请求
+message MarriageDivorceCancelReq
+{
+}
+
+//花轿租赁请求
+message MarriagePalanquinRentReq
+{
+}
+
+// //花轿租赁响应
+// message MarriagePalanquinRentRet
+// {
+// 	required bool bPermit = 1;           // 是否符合条件
+// 	optional string sContent = 2;        // 不符合条件时的提示文本
+// }
+
+// //花轿游览开始
+// message PalanquinParadeBeginRet
+// {
+// }
+
+
+// //花轿游览结束
+// message PalanquinParadeEndRet
+// {
+// }
+
+// 赠送贺礼请求
+message MarriageGiftSendReq
+{
+	required int32 nRoleID = 1;        //被赠送的目标角色ID
+	required int32 nCoupleID = 2;      //夫妻ID，就是格式化字符串中那个数据
+	required int32 nGiftLevel = 3;     //礼物等级
+}
+
+
+
+
+// 结婚活动数据请求
+message MarriageActStateReq
+{
+}
+
+// 结婚活动数据响应
+message MarriageActStateRet
+{
+	required int32 nActID = 1;        //活动ID
+	required bool bOpen = 2;          //当前是否开启
+	optional int32 nBeginTime = 3;    //开始时间
+	optional int32 nEndTime = 4;      //结束时间
+	optional int32 nCurTime = 5;      //当前时间
+	optional bool bRecord = 6;        //是否已参与领取奖励      
+}
+
+//结婚询问条件检查请求
+message MarriageAskCheckReq
+{
+	required int32 nTarRoleID = 1;
+}
+
+//结婚询问条件检查响应
+message MarriageAskCheckRet
+{
+	required bool bGender = 1;           // 两人互为异性
+	required bool bLevel = 2;            // 两人等级 >= 30
+	required bool bFriend = 3;           // 双方互为好友，且好友度>=1000
+	required bool bMarriage = 4;         // 双方当前均未婚，且72小时内没有解除过婚姻关系
+	optional int32 nTarRoleID = 5;
+}
+
+//发起结婚询问请求
+message MarriageAskReq
+{
+	required int32 nTarRoleID = 2;     // 对方玩家ID
+}
+
+//结婚询问结果响应
+message MarriageAskRet 
+{
+	required int32 nTarRoleID = 2;     //对方ID
+	required bool bAgree = 3;          //对方是否同意
+}
+
+//婚礼广播通知
+message MarriageWeddingStartBroadcastRet
+{
+	message _RoleInfo
+	{
+		required int32 nID = 1;
+		required string sName = 2;
+		required int32 nRoleConfID = 3;
+		required int32 nLevel = 4;
+		// required int32 nGender = 5;
+		// required int32 nSchool = 6;
+	}
+	repeated _RoleInfo tRoleList = 1;    //婚礼角色列表
+}
+
+//月老物品当前拾取状态请求
+message MarriagePickItemStateReq
+{
+	required int32 nAOIID = 1;           //喜糖AOIID
+	required int32 nMonsterID = 2;		//怪物ID
+}
+
+//月老物品当前拾取状态请求
+message MarriagePickItemStateRet
+{
+	required bool bState = 1;			//当前是否播放进度条
+	required int32 nAOIID = 2;           //喜糖AOIID
+	required int32 nMonsterID = 3;		//怪物ID
+	
+}

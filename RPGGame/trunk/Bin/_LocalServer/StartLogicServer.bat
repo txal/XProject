@@ -1,2 +1,3 @@
-start LogicServer 50
+start MZ-LogicServer 50
+
 

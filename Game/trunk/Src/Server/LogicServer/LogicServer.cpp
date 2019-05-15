@@ -40,7 +40,7 @@ bool LogicServer::Init(int8_t nServiceID)
 	}
 
 	// Init network
-	m_pInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_pInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 8, &m_oNetEventHandler);
 	if (m_pInnerNet == NULL)
 	{
 		return false;
@@ -77,6 +77,7 @@ bool LogicServer::Start()
 	{
 		ProcessNetEvent(1);
 		nNowMS = XTime::MSTime();
+		Service::Update(nNowMS);
 		ProcessTimer(nNowMS);
 	    m_oSceneMgr.UpdateScenes(nNowMS);
 	    m_oPlayerMgr.UpdatePlayers(nNowMS);

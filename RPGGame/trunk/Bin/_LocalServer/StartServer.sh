@@ -1,19 +1,18 @@
 # /sbin/bash
 path=$PWD
 
-mkdir -m 755 -p DB/global
 mkdir -m 755 -p DB/user
 mkdir -m 755 -p Log
 
-ulimit -n 102400
+ulimit -n 10240
 ulimit -c unlimited
 
 chmod 755 ./ -R
 rm debug.txt -f
+rm adb.txt -f
 
 echo 重启本地SSDB
-${path}/SSDBServer -d ./DB/user/ssdb.conf -s restart
-${path}/SSDBServer -d ./DB/global/ssdb.conf -s restart
+./StartDB.sh
 ping 127.0.0.1 -c 4
 
 
@@ -24,12 +23,6 @@ ${path}/GlobalServer 20 &
 ping 127.0.0.1 -c 1
 ${path}/LogicServer 50 &
 ping 127.0.0.1 -c 1
-${path}/LogicServer 51 &
-ping 127.0.0.1 -c 1
-${path}/LogicServer 52 &
-ping 127.0.0.1 -c 1
 ${path}/LoginServer 40 &
 ping 127.0.0.1 -c 1
 ${path}/GateServer 10 &
-ping 127.0.0.1 -c 1
-${path}/GateServer 11 &

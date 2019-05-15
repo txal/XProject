@@ -3,34 +3,62 @@ package talk;
 //聊天请求
 message TalkReq 
 {
-	required int32 nChannel = 1; 	//频道: 1系统; 2世界; 3联盟
+	required int32 nChannel = 1; 	//频道: 1系统; 2世界; 3联盟; 4队伍; 5当前; 6传闻;
 	required string sCont = 2; 		//聊天内容
+	optional bool bXMLMsg = 3;      //是否是结构化文本消息
+}
+
+//聊天信息
+message _TALK
+{
+	message _HEAD
+	{
+		optional int32 nID = 1; 		//角色ID
+		optional string sName = 2; 		//角色名
+		optional string sHeader = 3; 	//角色头像
+		optional int32 nLevel = 4; 		//角色等级
+		optional int32 nUnionPos = 5; 	//角色联盟职位
+		optional int32 nGender = 6; 	//性别
+		optional int32 nSchool = 7; 	//门派
+	}
+	required int32 nChannel = 1; 	//频道
+	optional _HEAD tHead = 2; 		//头部
+	required string sCont = 3; 		//内容
+	required int32 nTime = 4; 		//时间
 }
 
 //聊天返回
 message TalkRet
 {
-	required int32 nCharID = 1; 	//发言者ID
-	required string sCharName = 2; 	//发言者名字
-	required int32 nVIP = 3; 		//VIP
-	required int32 nChannel = 4; 	//频道
-	required string sCont = 5; 		//内容
-	required int32 nTitle = 6; 		//称号
+	repeated _TALK tList = 1;
 }
 
-//聊天记录返回
-message TalkHistoryRet 
+//屏蔽名单列表同步
+message ShieldRoleListRet
 {
-	message _List
-	{ 
-		optional int32 nCharID = 1; 	//发言者ID
-		optional string sCharName = 2; 	//发言者名字
-		optional int32 nVIP = 3; 		//VIP
-		optional int32 nChannel = 4; 	//频道
-		optional string sCont = 5; 		//内容
-		optional int32 nTime = 6; 		//聊天时间
-		optional int32 nTitle = 7; 		//称号
-	}
-	repeated _List tWorld = 1; 			//世界聊天记录
-	repeated _List tUnion = 2; 			//联盟聊天记录(没有加入联盟不显示联盟聊天)
+	message _ROLE
+	{
+		required int32 nRoleID = 1;
+		required string sName = 2;
+		required string sHeader = 3;
+		required int32 nSchool = 4;
+		required int32 nLevel = 5;
+		required int32 nGender = 6;
+	}	
+	repeated _ROLE tList = 1;
+}
+
+//添加/移除屏蔽名单
+message ShieldRoleReq
+{
+	required int32 nTarRoleID = 1; 	//目标角色ID
+	required int32 nType = 2; 		//操作类型: 1新加; 2移除
+}
+
+//历史聊天记录返回
+message TalkHistoryRet
+{
+	repeated _TALK tWorldTalk = 1; 	//世界频道聊天记录
+	repeated _TALK tUnionTalk = 2; 	//帮派频道聊天记录
+	repeated _TALK tHearsayTalk = 3; //传闻频道聊天记录
 }

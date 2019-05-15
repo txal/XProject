@@ -1,11 +1,20 @@
---Get year day ID
+--距离某个时间点的第几天
+local nStandTime = 1483286399 --2017/1/1 23:59:59(不能改)
+function os.DayNo(timestamp)
+    assert(timestamp) 
+    local nTime = timestamp - nStandTime
+    local nDayNo = math.ceil(nTime/(3600*24))
+    return nDayNo
+end
+
+--一年的第几天(可能超过1年的就用os.DayNo)
 function os.YDay(timestamp)
     assert(timestamp) 
 	local tDate = os.date("*t", timestamp)	
 	return tDate.yday
 end
 
---Get week day ID [1,7]
+--周几[1,7]
 function os.WDay(timestamp)
     assert(timestamp)
 	local tDate = os.date("*t", timestamp)	
@@ -14,13 +23,38 @@ function os.WDay(timestamp)
 	return nWeekDay
 end
 
---Make time
+--从19701月1日(星期4)早上8点算的到现今周数
+--以nSecond作为分界线,如4点刷新(则传入4*60*60)
+function os.WeekNumber(nSecond)
+    --标准时间是从19701月1日(星期4)早上8点算的
+    --604800表示一周的秒数(7*24*60*60)
+    --288000表示从星期1到星期4早上8点过的秒数(3*24*60*60+8*60*60)，仅限于东8区，要修改成全球通用，动态
+    --259200三天秒数(3*24*60*60)
+    local tOffsetTime = os.date("*t", 0)
+    local nOffsetTime = 259200 + tOffsetTime.hour * 3600
+    return math.floor((os.time()+nOffsetTime-nSecond)/604800)
+end
+
+function os.Hour(timestamp)
+    timestamp = timestamp or os.time()
+    local tDate = os.date("*t", timestamp)  
+    return tDate.hour
+end
+
+--生成时间戳
 function os.MakeTime(year, month, day, hour, min, sec)
 	local nTimestamp = os.time{year=year, month=month, day=day, hour=hour, min=min, sec=sec}
 	return nTimestamp
 end
 
---下nDay天nHour点
+--某个时间戳的0点
+function os.ZeroTime(nTime)
+    local tDate = os.date("*t", nTime)
+    tDate.hour, tDate.min, tDate.sec = 0, 0, 0
+    return os.time(tDate)
+end
+
+--下nDays天nHour点
 function os.MakeDayTime(nTime, nDays, nHour, nMin, nSec)
     local tDate = os.date("*t", nTime)  
     tDate.day = tDate.day + nDays
@@ -44,6 +78,7 @@ function os.IsSameDay(nTime1, nTime2, nSecond)
     if math.floor((nTime1+nOffsetTime-nSecond)/86400) == math.floor((nTime2+nOffsetTime-nSecond)/86400) then
         return true
     end
+    return false
 end
 
 --是否是同一周，以nSecond作为分界线，如星期1早上4点刷新(则传入(1-1)*24*60*60+4*60*60)，每周第1天取星期1
@@ -108,7 +143,7 @@ function os.WeekDayTime(nTimeStamp, nWeekDay, nSecond)
     local nTarTimeStamp
     local nStdWeekDay = os.WDay(nTimeStamp)
     if nWeekDay > nStdWeekDay or (nWeekDay == nStdWeekDay and nHourSecond <= nSecond) then
-        local nTimeIntval = (nWeekDay - nStdWeekDay) * 3600
+        local nTimeIntval = (nWeekDay - nStdWeekDay) * 24 * 3600
         nTarTimeStamp = nTimeStamp + nTimeIntval
     else
         local nTimeIntval = (nWeekDay - nStdWeekDay + 7) * 24 * 3600
@@ -129,7 +164,7 @@ function os.NextDayTime(nTimeStamp, nHour, nMin, nSec)
     return os.time(tDate) - nTimeStamp
 end
 
---nTimeStamp距离下1整小时时间(秒)
+--nTimeStamp距离下1整点时间(秒)
 function os.NextHourTime(nTimeStamp)
     assert(nTimeStamp, "时间戳为空")
     local tDate = os.date("*t", nTimeStamp)
@@ -181,8 +216,8 @@ function os.Str2Time(sDate)
     end
     if tSplit[2] then
         local tSplitTime = string.Split(tSplit[2], ":")
-        assert(#tSplitTime == 3, "时间格式错误:"..sDate)
-        nHour, nMin, nSec = tonumber(tSplitTime[1]), tonumber(tSplitTime[2]), tonumber(tSplitTime[3])
+        assert(#tSplitTime >= 2, "时间格式错误:"..sDate)
+        nHour, nMin, nSec = tonumber(tSplitTime[1]), tonumber(tSplitTime[2]), (tonumber(tSplitTime[3]) or 0)
     end
     assert(nYear > 0 and nMonth > 0 and nDay > 0, "日期格式错误:"..sDate)
     return os.MakeTime(nYear, nMonth, nDay, nHour, nMin, nSec)

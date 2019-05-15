@@ -12,6 +12,7 @@ function table.Print(root, bNotExpend)
 end
 
 --Table to string 
+--@bNotExpand true不展开,false展开
 function table.ToString(root, bNotExpend)
 	if not(type(root)=="table") then
 		local sErr = "What you input is not a table: "..root
@@ -54,12 +55,13 @@ function table.ToString(root, bNotExpend)
 end
 
 --Deep copy
-function table.DeepCopy(tTable)
+function table.DeepCopy(tTable, bIpair)
+	local _pairs = bIpair and ipairs or pairs
 	local tCopy = {}
-	for k, v in pairs(tTable) do
+	for k, v in _pairs(tTable) do
 		assert(type(k) ~= "table")
 		if type(v) == "table" then
-			tCopy[k] = table.DeepCopy(v)
+			tCopy[k] = table.DeepCopy(v, bIpair)
 		else
 			tCopy[k] = v
 		end
@@ -75,4 +77,20 @@ function table.InArray(Val, tArray)
 		end
 	end
 	return false
+end
+
+function table.Keys(tArray)
+	local tRet = {}
+	for k,v in pairs(tArray) do
+		table.insert(tRet,k)
+	end
+	return tRet
+end
+
+function table.Count(tArray)
+	local nCnt = 0
+	for k,v in pairs(tArray) do
+		nCnt = nCnt + 1
+	end
+	return nCnt
 end

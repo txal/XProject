@@ -5,19 +5,9 @@ cjson_raw.encode_sparse_array(true, 1, 1) --稀疏表转换成对象
 
 --打开协议
 local function OpenProto()
-    local f = io.open("protopath.txt", "r")
-    if not f then
-        require("../../Data/Protobuf/LoadPBCProto")
-        LoadProto("../../Data/Protobuf")
-        return
-    else
-        local sLoaderPath = f:read("l")
-        local sProtoPath = f:read("l")
-        f:close()
-        require(sLoaderPath)
-        LoadProto(sProtoPath)
-        return
-    end
+    local sDir = gsDataPath and gsDataPath or "../../"
+    require(sDir.."/Data/Protobuf/LoadPBCProto")
+    LoadProto(sDir.."/Data/Protobuf")
 end
 
 --通用脚本
@@ -35,16 +25,36 @@ end
 require("MainRpc")
 require("Global/GlobalInc")
 require("Player/PlayerInc")
+require("LRobot/LRobotInc")
 require("Monster/MonsterInc")
 require("Module/ModuleInc")
 require("Dup/DupInc")
+require("NpcFunc/NpcInc")
+require("BattleDup/BattleDupInc")
+require("PVPActivity/PVPActivityInc")
+require("Arena/ArenaLogicInc")
+require("Marriage/MarriageLogicInc")
+require("Market/MarketLogicRpc")
+require("EventHandler/EventHandlerInc")
+require("RoleTimeExpiryMgr/RoleTimeExpiryMgrInc")  --必须在角色相关Module后面加载
+
 
 --全局初始化
 local function _InitGlobal()
-    goServerMgr:Init()
+    goDBMgr:InitNew()
+    goServerMgr:InitNew(gnServerID)
+    
     goRemoteCall:Init()
-    goDBMgr:Init()
+    goClientCall:Init(GF.GetServiceID())
+    
+    goRoleTimeExpiryMgr:Init()
     goDupMgr:Init()
+    goPVPActivityMgr:Init()
+    goPVEActivityMgr:Init()
+    goMultiConfirmBoxMgr:Init(GF.GetServiceID())
+    CMarriageSceneMgr:Inst() --必须在DupMgr:Init后面初始化
+    CFBTransitScene:Inst()
+    goNpcMgr:LoadData()
 
 end
 
@@ -52,11 +62,27 @@ end
 local function _UninitGlobal()
     local bSuccess = true
     local function fnError(sErr)
-        bSuccess=false
+        bSuccess = false
         LuaTrace(sErr, debug.traceback())
     end
 
+    xpcall(function() goLRobotMgr:OnRelease() end, fnError) --必须在BattleMgr和BattleDupMgr之前
+    xpcall(function() goDBMgr:OnRelease() end, fnError)
+    xpcall(function() goServerMgr:OnRelease() end, fnError)
+    xpcall(function() goClientCall:OnRelease() end, fnError)
+    xpcall(function() goBattleMgr:OnRelease() end, fnError)
+    xpcall(function() goPVPActivityMgr:OnRelease() end, fnError)
+    xpcall(function() goPVEActivityMgr:OnRelease() end, fnError)
+    xpcall(function() goMultiConfirmBoxMgr:OnRelease() end, fnError)
+    xpcall(function() if goMarriageSceneMgr then goMarriageSceneMgr:OnRelease() end end, fnError)
+    xpcall(function() if goFBTransitScene then goFBTransitScene:OnRelease() end end, fnError)
+    xpcall(function() goNpcMgr:OnRelease() end, fnError)
+    xpcall(function() goBattleDupMgr:OnRelease() end, fnError)
+    xpcall(function() goRoleTimeExpiryMgr:OnRelease() end, fnError)
+    xpcall(function() goPlayerMgr:OnRelease() end, fnError)
+    xpcall(function() goDupMgr:OnRelease() end, fnError)
     xpcall(function() goRemoteCall:OnRelease() end, fnError)
+
     return bSuccess
 end
 
@@ -65,15 +91,15 @@ local nGCIndex = 0
 local nGCTime = 10
 local function _LuaGC()
     local nClock = os.clock() 
-    if nGCIndex % 6 == 0 then
+    if nGCIndex % 180 == 0 then
         collectgarbage()
     else
-        collectgarbage("step", 256) --k
+        collectgarbage("step", 1024) --k
     end
-    if nGCIndex % 60 == 0 then --10分钟打印1次
+    if nGCIndex % 30 == 0 then --5分钟打印1次
         local sCostTime = string.format("%.4f", os.clock() - nClock)
-        local nLuaMemery = math.floor((collectgarbage("count")/1024))
-        LuaTrace("Lua memory: "..nLuaMemery.."M time:"..sCostTime.." index:"..nGCIndex)
+        local nLuaMemery = (collectgarbage("count")/1024)
+       LuaTrace("Lua memory: ", nLuaMemery, "M time:", sCostTime, " index:", nGCIndex, " timers:", goTimerMgr:TimerCount(), goPlayerMgr:GetCount())
     end
     nGCIndex = nGCIndex + 1
 end
@@ -86,23 +112,36 @@ function Main()
     collectgarbage("setpause", 100) --开启新的循环前不等待
     collectgarbage("setstepmul", 300) --内存分配速度的3倍
     gnGCTimer = goTimerMgr:Interval(nGCTime, function() _LuaGC() end)
+    
+    local nLuaMemory = math.floor((collectgarbage("count")/1024))
+    LuaTrace("启动 LogicServer 完成******", "lua memory:", nLuaMemory)
 
-    --加载非法字
-    for _, tConf in pairs(ctKeywordConf) do
-        GlobalExport.AddWord(tConf.sKey)
+    if gnServerID ~= gnWorldServerID then
+        goServerMgr:OnLogicStart()
     end
-    print("启动 LogicServer 完成******")
 end
 
 --准备退出进程
-function OnExitServer()
-    LuaTrace("OnExitServer start***")
-    goTimerMgr:Clear(gnGCTimer)
-    local bSuccess = _UninitGlobal()
-    assert(bSuccess, "注意！！！关服报错了！！！")
-    if goTimerMgr:TimerCount() > 0 then
-        assert(false, "！！！计时器泄漏！！！剩余:"..goTimerMgr:TimerCount())
+function OnExitServer(nServer, nService)
+    LuaTrace("服务器关闭------beg", nServer, nService)
+
+    gbServerClosing = true
+    --强制相关服所有玩家下线
+    goPlayerMgr:OnServerClose(nServer)
+
+    if nServer == gnServerID and nService == GF.GetServiceID() then
+        --全局模块释放
+        local bSuccess = _UninitGlobal()
+        assert(bSuccess, "注意！！！关服报错了！！！")
+
+        --计时器检测
+        goTimerMgr:Clear(gnGCTimer)
+        if goTimerMgr:TimerCount() > 0 then
+            goTimerMgr:DebugLog()
+            assert(false, "！！！计时器泄漏！！！剩余:"..goTimerMgr:TimerCount())
+        end
     end
-    LuaTrace("OnExitServer finish***")
-    os.exit()
+    
+    LuaTrace("服务器关闭------end")
+
 end

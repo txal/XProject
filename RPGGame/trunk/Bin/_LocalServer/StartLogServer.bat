@@ -1,2 +1,2 @@
-start LogServer 30
+start MZ-LogServer 30
 

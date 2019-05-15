@@ -19,6 +19,6 @@ ServiceNode::~ServiceNode()
 
 bool ServiceNode::Init(int nParentService, NetEventHandler* poHandler)
 {
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nParentService, 1024, poHandler);
+	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nParentService, 512, poHandler);
 	return (m_poInnerNet != NULL);
 }

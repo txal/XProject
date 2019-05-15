@@ -10,6 +10,14 @@ CHDBase.tState =
 	eClose = 3, 	--已结束
 }
 
+--奖励状态
+CHDBase.tAwardState = 
+{
+	eInit = 0, 	--初始状态	
+	eFeed = 1, 	--满足未领取
+	eClose = 2, --已领取	
+}
+
 function CHDBase:Ctor(nID)
 	self.m_nID = nID
 	self.m_nBegTime = 0 	--开始时间
@@ -49,6 +57,7 @@ end
 
 --取活动ID
 function CHDBase:GetID() return self.m_nID end
+function CHDBase:GetName() return ctHuoDongConf[self.m_nID].sName end
 --设置脏
 function CHDBase:MarkDirty(bDirty) self.m_bDirty = bDirty end
 --是否脏
@@ -59,13 +68,12 @@ function CHDBase:GetState() return self.m_nState end
 function CHDBase:GetActTime() return self.m_nBegTime, self.m_nEndTime, self.m_nAwardTime end
 
 --开启活动
-function CHDBase:OpenAct(nBegTime, nEndTime, nAwardTime)
+function CHDBase:OpenAct(nBegTime, nEndTime, nAwardTime, nExtID, nExtID1)
 	print("CHDBase:OpenAct***", nBegTime, nEndTime, nAwardTime)
 	assert(nAwardTime >= 0, "奖励时间必须>=0")
-	LuaTrace("开启活动:", self.m_nID, "当前状态:", self.m_nState
-		, "开始时间:", os.date("%Y-%m-%d %X", nBegTime)
-		, "结束时间:", os.date("%Y-%m-%d %X", nEndTime)
-		, "领奖时间:", nAwardTime)
+	LuaTrace("开启活动:", self:GetID(), self:GetName(), "当前状态:", self.m_nState
+		, "开始时间:", os.date("%Y-%m-%d %X", nBegTime) , "结束时间:", os.date("%Y-%m-%d %X", nEndTime) , "领奖时间:", nAwardTime
+		, nExtID, nExtID1)
 
 	self.m_nBegTime = nBegTime
 	self.m_nEndTime = nEndTime
@@ -77,16 +85,16 @@ end
 --取当前状态剩余时间
 function CHDBase:GetStateTime()
 	if self.m_nState == CHDBase.tState.eInit then
-		return self.m_nBegTime - os.time()
+		return self.m_nBegTime, self.m_nEndTime, self.m_nBegTime-os.time()
 	end
 	if self.m_nState == CHDBase.tState.eStart then
-		return self.m_nEndTime - os.time()
+		return self.m_nBegTime, self.m_nEndTime, self.m_nEndTime-os.time()
 	end
 	if self.m_nState == CHDBase.tState.eAward then
-		return self.m_nAwardTime - os.time()
+		return self.m_nEndTime, self.m_nAwardTime, self.m_nAwardTime-os.time()
 	end
 	if self.m_nState == CHDBase.tState.eClose then
-		return 0
+		return self.m_nBegTime, self.m_nEndTime, 0
 	end
 end
 

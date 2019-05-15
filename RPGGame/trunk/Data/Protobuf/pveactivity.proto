@@ -1,0 +1,152 @@
+//pve
+package pve;
+
+//玩家创建队伍,便捷组队请求
+message PVEMatchTeamReq
+{
+	required int32 nType = 1; //1创建队伍,2便捷组队
+}
+
+
+//创建怪物请求
+message PVECreateMonsterReq
+{
+	
+}
+
+//活动开启状态推送
+message PVEActivityInfoRet
+{
+	required int32 nID = 1;	//活动ID
+	required int32 bState = 2;	//状态
+}
+//玩家上线活动信息下发
+message PVERoleOnlineRet
+{
+	required int32 nID = 1;		//活动ID
+	required int32 nActStatus = 2;	//状态1开启,2关闭s
+}
+
+//副本信息改变下发
+message PVEDupInfoUpdateRet
+{
+	required int32 nID = 1;	//活动ID
+	required int32 nCheckpoint = 2;	//当前所在的关卡数
+	required string sCheckpointName = 3;	//关卡名
+}
+
+
+//战斗结束,下发翻牌物品到客户端
+message PVERewardSendClientRet
+{		
+	message _itemList
+	{
+		required int32 nItemID = 1;			 	//商品ID
+		required int32 nNum = 2; 			//商品数量
+		required int32 nGrid = 3; 			//格子ID
+		required int32 nRoleID = 4;			
+	}
+	repeated _itemList tList = 1;			//商品列表
+}
+
+//活动倒计时推送
+message PVEStartTimeRet
+{
+	optional int32 nSec = 1;			//活动倒计时推送
+	optional int32 nStatus = 2;			//活动状态,1在准备时间内,2超过准备时间
+	required string sName = 3;			//关卡名
+}
+
+//离开副本请求
+message PVEOnObjLeaveReq
+{
+
+}
+
+//玩家点击进入副本
+message PVEEnterBattleDupReq
+{	
+	
+}
+
+//副本类型为拼图通知客户端
+message PVEDupPinTuSendClientRet
+{
+	required int32 nTaskId = 1; 		//任务Id
+	required int32 nSec = 2;	//拼图结束时间
+	required int32 nImageID = 3;	//拼图ID
+}
+
+//拼图完成统一关牌消息返回
+message PVECloseBrandRet
+{
+
+}
+
+//战斗结束翻牌奖励请求
+message PVEClickRewardReq
+{
+	 required int32 nID = 1; 		
+}
+
+//玩家点击破解机关
+message PVEClickCrackOrganReq
+{
+	
+}
+
+//玩家点击破解机关返回
+message PVEClickCrackOrganRet
+{
+	optional bool bFlag = 1; 	//真打开拼图界面,假不打开拼图界面
+	optional int32 nSec =  2;	//拼图结束时时间戳
+}
+
+//拼图结果返回请求
+message PVEPinTuResuitReq
+{
+	required int32 nResuit = 1;	//拼图答案
+}
+
+//点击翻牌返回
+message PVEClickRewardRet
+{
+	message _itemList
+	{
+		required int32 nID = 1; 		//商品ID
+		optional string nRoleName = 2; 	//角色姓名
+		required int32 nGrid = 3; 		//格子ID
+		optional int32 nNum = 4;		//道具数量
+	}
+	
+	repeated _itemList tList = 1; 		//物品列表
+}
+
+//寻路通知
+message PVENavigateRet
+{
+
+}
+
+//通知客户端提示翻牌操作
+message PVEFlopSendClientRet
+{
+	required int32 nSec =  1;	//拼图结束时时间戳
+}
+
+//玩家切换地图
+message PVESwitchMapReq
+{	
+	
+}
+
+message PVESwitchMapRet
+{
+	required int32 nIndex = 1;
+}
+
+//今日副本全部奖励领取完成通知
+message PVERewardCompleteRet
+{
+	
+}

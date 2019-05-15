@@ -1,0 +1,9 @@
+ctFaBaoSuit={}
+ctFaBaoSuit[1]={nIndex=1,sSuitName="殇落青花",tSuitIDList={{32501,},{32507,},{32508,},},tAttrActTwo={{104,88,},{105,73,},{101,69,},},tAttrActThree={{104,177,},{105,146,},{101,139,},},bNstate=false,}
+ctFaBaoSuit[2]={nIndex=2,sSuitName="悲喜无相",tSuitIDList={{32502,},{32504,},{32505,},},tAttrActTwo={{104,88,},{105,73,},{101,69,},},tAttrActThree={{104,177,},{105,146,},{101,139,},},bNstate=true,}
+ctFaBaoSuit[3]={nIndex=3,sSuitName="九斩阴阳",tSuitIDList={{32503,},{32509,},{32510,},},tAttrActTwo={{106,25,},{107,9,},{102,112,},},tAttrActThree={{106,51,},{107,19,},{102,225,},},bNstate=true,}
+ctFaBaoSuit[4]={nIndex=4,sSuitName="奕剑三锋",tSuitIDList={{32506,},{32511,},{32512,},},tAttrActTwo={{106,25,},{107,9,},{102,112,},},tAttrActThree={{106,51,},{107,19,},{102,225,},},bNstate=false,}
+ctFaBaoSuit[5]={nIndex=5,sSuitName="真·殇落青花",tSuitIDList={{32601,},{32607,},{32608,},},tAttrActTwo={{104,114,},{105,94,},{101,89,},},tAttrActThree={{104,230,},{105,189,},{101,180,},},bNstate=false,}
+ctFaBaoSuit[6]={nIndex=6,sSuitName="真·悲喜无相",tSuitIDList={{32602,},{32604,},{32605,},},tAttrActTwo={{104,114,},{105,94,},{101,89,},},tAttrActThree={{104,230,},{105,189,},{101,180,},},bNstate=false,}
+ctFaBaoSuit[7]={nIndex=7,sSuitName="真·九斩阴阳",tSuitIDList={{32603,},{32609,},{32610,},},tAttrActTwo={{106,32,},{107,11,},{102,145,},},tAttrActThree={{106,66,},{107,24,},{102,292,},},bNstate=false,}
+ctFaBaoSuit[8]={nIndex=8,sSuitName="真·奕剑三锋",tSuitIDList={{32606,},{32611,},{32612,},},tAttrActTwo={{106,32,},{107,11,},{102,145,},},tAttrActThree={{106,66,},{107,24,},{102,292,},},bNstate=false,}

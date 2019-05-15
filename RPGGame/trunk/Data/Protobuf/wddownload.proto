@@ -1,0 +1,40 @@
+package wddownload;
+
+//微端下载成功请求
+message WDDownloadedReq
+{
+}
+
+//微端下载界面请求
+message WDDownloadInfoReq
+{
+}
+
+//微端下载界面返回
+message WDDownloadInfoRet
+{
+	message _Award 
+	{
+		required int32 nItemID = 1; 	//物品ID
+		required int32 nItemNum = 2; 	//物品数量
+	}
+	repeated _Award tList = 1; //奖励
+	required int32 nState = 2;	//状态(0.未下载 1.可领 2.已领)
+ }
+
+
+//微端下载奖励请求
+message GetWDDownloadAwardReq   
+{
+}
+
+//微端下载奖励返回
+message GetWDDownloadAwardRet
+{                   
+	message _Award    //奖励结构
+	{
+		required int32 nItemID = 1;      //奖励ID
+		required int32 nItemNum = 2;     //奖励数量
+	}
+	repeated _Award tAward = 1;   //奖励数组 
+}

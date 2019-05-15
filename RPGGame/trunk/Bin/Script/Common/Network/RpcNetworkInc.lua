@@ -18,14 +18,14 @@ Srv2Srv = Srv2Srv or {sName = "Srv2Srv"}
 local function _fnUnpackProxy(nSrcServer, nSrcService, nTarSession, sRpcType, sRpcFunc, ...)
     local nStartTime = _clock()
 
-    LuaTrace("------rpc message------", sRpcType, sRpcFunc)
+    -- LuaTrace("------rpc message------", sRpcType, sRpcFunc)
     local tRpcType = _LG[sRpcType]
     _assert(tRpcType, string.format("Rpc type '%s' not exist", sRpcType))
     local oFunc = _rawget(tRpcType, sRpcFunc)
     _assert(oFunc, string.format("Rpc func '%s.%s' not exist", sRpcType, sRpcFunc))
     oFunc(nSrcServer, nSrcService, nTarSession, ...)
 
-    goCmdMonitor:AddCmd(sRpcType.."."..sRpcFunc, _clock() - nStartTime)
+    -- goCmdMonitor:AddCmd(sRpcType.."."..sRpcFunc, _clock() - nStartTime)
 end
 RpcMessageCenter = function(nSrcServer, nSrcService, nTarSession, oPacket)
     _fnUnpackProxy(nSrcServer, nSrcService, nTarSession, _rpc_unpack(oPacket))
@@ -88,12 +88,19 @@ end
 
 --远程调用请求
 Srv2Srv.RemoteCallReq = function(nTarServer, nTarService, nTarSession, nCallID, sCallFunc, ...)
+    if nTarServer <= 0 or nTarService <= 0 then
+        return 
+    end
     local oPacket = _rpc_pack(Srv2Srv.sName, "RemoteCallDispatcher", nCallID, sCallFunc, ...)
     _send_inner(gtMsgType.eLuaRpcMsg, oPacket, nTarServer, nTarService, nTarSession)
 end
 
 --远程调用返回
 Srv2Srv.RemoteCallRet = function(nTarServer, nTarService, nTarSession, nCallID, nCode, ...)
+    if nTarServer <= 0 or nTarService <= 0 then
+        return
+    end
     local oPacket = _rpc_pack(Srv2Srv.sName, "RemoteCallCallback", nCallID, nCode, ...)
     _send_inner(gtMsgType.eLuaRpcMsg, oPacket, nTarServer, nTarService, nTarSession)
+
 end

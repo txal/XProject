@@ -1,0 +1,14 @@
+ctExchangeActivityConf={}
+ctExchangeActivityConf[1]={nSeq=1,nActivityID=1,nExchangeID=1,bIsOpen=false,nMaxTimes=1,tStuffList={{13300,99,},},tItemList={{20111,1,},},bIsBroad=true,}
+ctExchangeActivityConf[2]={nSeq=2,nActivityID=1,nExchangeID=2,bIsOpen=false,nMaxTimes=0,tStuffList={{13300,17,},},tItemList={{13152,1,},},bIsBroad=false,}
+ctExchangeActivityConf[3]={nSeq=3,nActivityID=1,nExchangeID=3,bIsOpen=true,nMaxTimes=0,tStuffList={{13300,2,},},tItemList={{34011,1,},},bIsBroad=false,}
+ctExchangeActivityConf[4]={nSeq=4,nActivityID=2,nExchangeID=1,bIsOpen=true,nMaxTimes=0,tStuffList={{20001,30,},},tItemList={{10006,1,},},bIsBroad=false,}
+ctExchangeActivityConf[5]={nSeq=5,nActivityID=2,nExchangeID=2,bIsOpen=true,nMaxTimes=0,tStuffList={{20001,60,},},tItemList={{19000,1,},},bIsBroad=false,}
+ctExchangeActivityConf[6]={nSeq=6,nActivityID=2,nExchangeID=3,bIsOpen=true,nMaxTimes=0,tStuffList={{20002,6,},},tItemList={{10006,1,},},bIsBroad=false,}
+ctExchangeActivityConf[7]={nSeq=7,nActivityID=2,nExchangeID=4,bIsOpen=true,nMaxTimes=0,tStuffList={{20002,12,},},tItemList={{19000,1,},},bIsBroad=false,}
+ctExchangeActivityConf[8]={nSeq=8,nActivityID=2,nExchangeID=5,bIsOpen=true,nMaxTimes=0,tStuffList={{20003,1,},},tItemList={{10006,1,},},bIsBroad=false,}
+ctExchangeActivityConf[9]={nSeq=9,nActivityID=2,nExchangeID=6,bIsOpen=true,nMaxTimes=0,tStuffList={{20003,2,},},tItemList={{19000,1,},},bIsBroad=false,}
+ctExchangeActivityConf[10]={nSeq=10,nActivityID=2,nExchangeID=7,bIsOpen=true,nMaxTimes=0,tStuffList={{20004,1,},},tItemList={{10006,2,},},bIsBroad=false,}
+ctExchangeActivityConf[11]={nSeq=11,nActivityID=2,nExchangeID=8,bIsOpen=true,nMaxTimes=0,tStuffList={{20004,1,},},tItemList={{19000,1,},},bIsBroad=false,}
+ctExchangeActivityConf[12]={nSeq=12,nActivityID=3,nExchangeID=1,bIsOpen=false,nMaxTimes=30,tStuffList={{13333,4,},},tItemList={{13402,1,},},bIsBroad=false,}
+ctExchangeActivityConf[13]={nSeq=13,nActivityID=3,nExchangeID=2,bIsOpen=true,nMaxTimes=0,tStuffList={{13333,10,},},tItemList={{18006,1,},},bIsBroad=false,}

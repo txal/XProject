@@ -113,6 +113,8 @@ function XML2Lua($sXMLFile, $sScriptDir)
 	$nData = 0;
 	$nCell = 0;
 	$nLastCell = 0;
+	
+	$keywords = array("min", "max", "math", "floor", "ceil", "abs", "pow", "and", "or", "random");
 	while ($XML->read())
 	{
 		if ($XML->name == "Worksheet" && $XML->nodeType == XMLReader::ELEMENT)
@@ -131,11 +133,23 @@ function XML2Lua($sXMLFile, $sScriptDir)
 		}
 		if ($XML->name == "Row" && $XML->nodeType == XMLReader::ELEMENT)
 		{
-			if ($nRow >= 4 && $sRowScript)
+			if ($nRow == 0)
+			{
+				$nTmpRow = $XML->getAttribute("ss:Index");
+				if ($nTmpRow) 
+					$nRow = $nTmpRow;
+				else
+					$nRow++;
+			}
+			else 
+			{
+				$nRow++;
+			}
+			if ($nRow >= 5 && $sRowScript)
 			{
 				$sScript .= "$sRowScript}\n";
 			}
-			$nRow++;
+
 			$nCell = 0;
 			$nLastCell = 0;
 			$sRowScript = "";
@@ -144,7 +158,7 @@ function XML2Lua($sXMLFile, $sScriptDir)
 		{
 			$nCell++;
 		}
-		if ($XML->name == "Data" || ($nRow >= 4 && $XML->name == "ss:Data"))
+		if ($XML->name == "Data" || ($nRow >= 5 && $XML->name == "ss:Data"))
 		{
 
 			if ($XML->nodeType == XMLReader::ELEMENT)
@@ -159,17 +173,18 @@ function XML2Lua($sXMLFile, $sScriptDir)
 		}
 		if ($nData > 0 && $XML->nodeType == XMLReader::TEXT)
 		{
-			if ($nRow == 1)
+			if ($nRow == 2)
 			{
 				$tField[$nCell] = $XML->value;
 			}
-			if ($nRow == 2)
+			if ($nRow == 3)
 			{
 				$tType[$nCell] = $XML->value;
 			}
-			if ($nRow == 3)
-			{/* 注释行 */}
-			if ($nRow >= 4)
+			if ($nRow == 4)
+			{/* 注释行 */
+			}
+			if ($nRow >= 5)
 			{
 				if ($nLastCell + 1 != $nCell)
 				{
@@ -180,7 +195,12 @@ function XML2Lua($sXMLFile, $sScriptDir)
 				$sValue = $XML->value;
 				if ($nCell == 1)
 				{
-					$sSubTable = $sRootTable."[".intval($sValue)."]";
+					$key = $sValue;
+					if (is_numeric($sValue))
+						$key = floatval($sValue);
+					else
+						$key = "\"$key\"";
+					$sSubTable = $sRootTable."[$key]";
 					$sRowScript .= "$sSubTable={";
 				}
 				switch (substr($tType[$nCell],0,1))
@@ -205,6 +225,30 @@ function XML2Lua($sXMLFile, $sScriptDir)
 					case "s":
 					{
 						$sValue = "\"".strVal($sValue)."\"";
+						$sRowScript .= "$tField[$nCell]=$sValue,";
+						break;
+					}
+					case "e":
+					{
+						$params = array();
+						$sValue = str_replace("?", " and ", $sValue);
+						$sValue = str_replace(":", " or ", $sValue);
+						$sValue = str_ireplace("Math", "math", $sValue);
+						preg_match_all("/[a-zA-Z]+/i", strVal($sValue), $params);
+						if (count($params[0]) > 0)
+						{
+							$params[0] = array_unique($params[0]);
+							$params[0] = array_diff($params[0], $keywords);
+							$sValue = "function(".join(",",$params[0]).") return ($sValue) end";
+						}
+						else
+							$sValue = "function() return ($sValue) end";
+						$sRowScript .= "$tField[$nCell]=$sValue,";
+						break;
+					}
+					case "c":
+					{
+						$sValue = strVal($sValue);
 						$sRowScript .= "$tField[$nCell]=$sValue,";
 						break;
 					}
@@ -260,6 +304,28 @@ function XML2Lua($sXMLFile, $sScriptDir)
 									{
 										$sVal = "\"".strval($tMember[$i])."\"";
 										$sRowScript .= "$sVal,";
+										break;
+									}
+									case "e":
+									{
+										$data = "";
+										if ($i == strlen($sType)-1)
+											for ($k=$i; $k<count($tMember); $k++)
+												$data .= $tMember[$k].(($k>=count($tMember)-1)?"":",");
+										$params = array();
+										$sValue = str_replace("?", " and ", $data);
+										$sValue = str_replace(":", " or ", $data);
+										$sValue = str_ireplace("Math", "math", $data);
+										preg_match_all("/[a-zA-Z]+/i", strVal($data), $params);
+										if (count($params[0]) > 0)
+										{
+											$params[0] = array_unique($params[0]);
+											$params[0] = array_diff($params[0], $keywords);
+											$sValue = "function(".join(",",$params[0]).") return ($sValue) end";
+										}
+										else
+											$sValue = "function() return ($sValue) end";	
+										$sRowScript .= "$sValue,";
 										break;
 									}
 									default:

@@ -1,0 +1,2932 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>Windows 用户</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2019-04-03T06:39:02Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-11.1.0.8415</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <SupBook>
+   <Path> </Path>
+   <SheetName> </SheetName>
+  </SupBook>
+  <WindowHeight>6240</WindowHeight>
+  <WindowWidth>9210</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ActiveSheet>1</ActiveSheet>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s88">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s89">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s90">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s91">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s95">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s96">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s97">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s98">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s99">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s100">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s101">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s102">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s103">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s104">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s105">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s106">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s107">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+  </Style>
+  <Style ss:ID="s108">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s109">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s110">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s114">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#C0C0C0"/>
+  </Style>
+  <Style ss:ID="s118">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s119">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s120">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s121">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctBuffConf">
+  <Names>
+   <NamedRange ss:Name="_FilterDatabase" ss:RefersTo="=ctBuffConf!R5C1:R28C17"
+    ss:Hidden="1"/>
+  </Names>
+  <Table ss:ExpandedColumnCount="21" ss:ExpandedRowCount="67" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s88" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="38.25"/>
+   <Column ss:StyleID="s89" ss:Width="69.75"/>
+   <Column ss:StyleID="s90" ss:AutoFitWidth="0" ss:Width="56.25" ss:Span="1"/>
+   <Column ss:Index="5" ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="57"/>
+   <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="135"/>
+   <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="142.5"/>
+   <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="90.75"/>
+   <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="142.5"/>
+   <Column ss:StyleID="s91" ss:AutoFitWidth="0" ss:Width="142.5"/>
+   <Column ss:StyleID="s91" ss:AutoFitWidth="0" ss:Width="56.25"/>
+   <Column ss:StyleID="s91" ss:Width="176.25"/>
+   <Column ss:StyleID="s91" ss:AutoFitWidth="0" ss:Width="81.75"/>
+   <Column ss:StyleID="s91" ss:AutoFitWidth="0" ss:Width="119.25"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="328.5"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="83.25"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="47.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="90.9375" ss:StyleID="s95">
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">1 异常状态&#10;2 辅助状态&#10;3 临时状态&#10;4 特殊状态</Data></Cell>
+    <Cell ss:StyleID="s97"><Data ss:Type="String">0 未指定 &#10;1 属性类&#10;2 封印&#10;3 恢复&#10;4 辅助&#10;5 减益</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">0不清除&#10;1清除</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">资源名称,绑点名称;&#10;nPosBot,nPosMid,nPosTop</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">资源名称,绑点名称;&#10;nPosBot,nPosMid,nPosTop</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">资源名称,绑点名称;&#10;nPosBot,nPosMid,nPosTop</Data></Cell>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">资源名称,绑点名称;&#10;nPosBot,nPosMid,nPosTop</Data></Cell>
+    <Cell ss:StyleID="s99"><Data ss:Type="String">加成公式</Data></Cell>
+    <Cell ss:StyleID="s100"/>
+    <Cell ss:StyleID="s100"/>
+    <Cell ss:StyleID="s100"><Data ss:Type="String">正面：0&#10;负面：1</Data></Cell>
+    <Cell ss:StyleID="s100"><Data ss:Type="String">技能：1&#10;道具：2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">sName</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">nType</Data><Comment
+      ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9">Administrator:</Font></B><Font html:Size="9">&#13;1 异常状态&#13;2 辅助状态&#13;3 临时状态&#13;4 特殊状态</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">nTypeAttr</Data><Comment
+      ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9">Administrator:</Font></B><Font html:Size="9">&#13;0 未指定 &#13;1 属性类&#13;2 封印&#13;3 恢复&#13;4 辅助&#13;5 减益</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">bDeadClear</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">tResBot_1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">tResTop_1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">tResBot_5</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">tResTop_5</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">eValue</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">sDesc</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">bCommand</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">nEffect</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">nIcon</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">b</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">t{ss}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">t{ss}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">t{ss}</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">t{ss}</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">t{ie}</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">b</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">t{ii}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s104"><Data ss:Type="String">编号</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">名称</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">状态类型</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">状态属性</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">死亡清除</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">Buff资源</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">Buff资源</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">Buff资源</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">Buff资源</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">加成公式</Data></Cell>
+    <Cell ss:StyleID="s104"><Data ss:Type="String">效果描述</Data></Cell>
+    <Cell ss:StyleID="s106"><Data ss:Type="String">指挥面板是否显示</Data></Cell>
+    <Cell ss:StyleID="s106"><Data ss:Type="String">效果类型</Data></Cell>
+    <Cell ss:StyleID="s106"><Data ss:Type="String">图标</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">101</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">虚弱</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">4</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_101,nPosTop;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_101,nPosTop;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">防御和灵力降低，不能进行任何行动</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,101;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">102</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">后发先至</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">4</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_102,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_102,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">减少受到的物理和法术伤害，下回合提前出手</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1113;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">103</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">幽冥盾</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="String">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">4</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff103_bottom,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff103_up,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff103_bottom,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff103_up,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">受到单体物理攻击时会反击对方</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1115;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">104</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">休息</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">4</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_101,nPosTop;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_101,nPosTop;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">不能使用战斗指令</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,104;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">105</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">金刚怒目</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">3</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_105,nPosTop;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_105,nPosTop;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">攻击力提升</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1215;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">106</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">水晶之境</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">3</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">106_1_bottom,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">106_1_up,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">106_1_bottom,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">106_1_up,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">防御力提升</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1216;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">107</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">失魂</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">108</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">失心</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s89"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">109</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">定身</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">110</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">催眠</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">111</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">乱神</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">113</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">醉风望月</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">4</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_113_up,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_113_up,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">受到单体法术攻击时会反击对方</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1415;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">114</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">子午心灯</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">115</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">普度众生</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s114">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">116</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">感化</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s88"/>
+    <Cell ss:Index="20" ss:StyleID="s88"/>
+    <Cell ss:StyleID="s88"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">117</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">灵动九天</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">119</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">赤炎咒</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">120</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">觉醒</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">4</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_120,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_120,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">使用烟雨断肠，绵里藏针，移花接木，落花听雨的前提</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">121</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">绵里藏针</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_121,nPosTop;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_121,nPosTop;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">无法使用法术、特技、物理攻击</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1314;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">122</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">虚弱</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">4</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_122_bottom,nPosBot;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_122_up,nPosBot;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_122_bottom,nPosBot;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_122_up,nPosBot;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">只能执行防御、保护、召唤指令或使用药品</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,101;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">124</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">禁灵</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_124_bottom,nPosBot;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_124_up,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_124_bottom,nPosBot;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_124_up,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">无法使用物理攻击</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1512;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">125</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">绵骨</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_125,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_125,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">无法使用法术、物理攻击</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1513;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">126</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">魔入膏肓</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_126,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_126,nPosMid;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">无法被复活</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1516;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">127</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">强化防御</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">2</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">1</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_127,nPosBot;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">buff_127,nPosBot;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">防御力提升</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">128</Data></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">魔焰</Data></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s107"><Data ss:Type="Number">303</Data></Cell>
+    <Cell ss:StyleID="s107"><Data ss:Type="String">隐身</Data></Cell>
+    <Cell ss:StyleID="s108"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s109"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">造成伤害结果减少20%，隐身状态下无法使用法术</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">1,5111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5" ss:StyleID="s110">
+    <Cell><Data ss:Type="Number">401</Data></Cell>
+    <Cell><Data ss:Type="String">睡眠</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_401,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_401,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">101,5;</Data></Cell>
+    <Cell><Data ss:Type="String">不能进行任何行动，收到伤害时候会解除该状态</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,401;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5" ss:StyleID="s110">
+    <Cell><Data ss:Type="Number">402</Data></Cell>
+    <Cell><Data ss:Type="String">混乱</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_402,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_402,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">101,5;</Data></Cell>
+    <Cell><Data ss:Type="String">随机普通攻击场上任意一个单位</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,402;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">901</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">鬼魅BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">死亡5回合复活。不受任何状态影响，但也不能使用主动技能恢复气血。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">902</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">冥思BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">102,aimlv*0.5;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">战斗中，每回合结束时恢复等级*0.5点法力。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">903</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">再生BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">101,aimlv*1;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">战斗中，每回合结束时恢复等级*1的气血</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">904</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">中毒BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">buff_904,nPosBot;</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">buff_904,nPosBot;</Data></Cell>
+    <Cell ss:StyleID="s110"><Data ss:Type="String">101,5;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">战斗中，每回合开始前扣除气血。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,5124;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">905</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">凝神BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">可以抵挡封印类异常状态</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">906</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">强迫BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">使目标在行动时只能被迫执行防御</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,5127;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">907</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">冰霜BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">107,-10;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">速度降低10%。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,5134;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">908</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">气势BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">108,10;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">物理伤害结果增加10%。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,5135;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">909</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">震慑BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">208,10;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">法术伤害结果增加10%。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,5136;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">910</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">审判BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">将敌人击倒时，其重生类技能或效果无效。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">911</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">幸运BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">不会受到物理重击、法术暴击</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">912</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">忠心BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">不会逃跑，不受强迫效果影响</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">913</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">持久BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,100</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">受到的增益状态持续回合数加倍。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">1901</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">高级鬼魅BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">死亡4回合复活。不受任何状态影响，但也不能使用主动技能恢复气血。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s119">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">1903</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">高级再生BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">101,aimlv*1.2;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">战斗中，每回合结束时恢复等级*1.2的气血</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s119">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">1902</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">高级冥思BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">102,aimlv*0.75;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">战斗中，每回合结束时恢复等级*0.75点法力。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s119">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">1907</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">高级冰霜BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">107,-15;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">速度降低15%。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,5234;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s119">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">1908</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">高级气势BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">108,15;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">物理伤害结果增加15%。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,5235;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s119">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">1909</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">高级震慑BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">208,15;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">法术伤害结果增加15%。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,5236;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">1913</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">高级持久BUFF</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,200;</Data></Cell>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">受到的增益状态持续回合数为原来的3倍。</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2001</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">翻天印</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">104,12;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">提高12%攻击力</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32002;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2002</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">震天剑</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">105,12;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">提高12%防御力</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32003;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2003</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">清净琉璃瓶</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">104,-12;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">降低12%攻击力</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32102;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2004</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">鸣鸿刀</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">105,-12;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">降低12%防御力</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32103;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2005</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">神禹令</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">107,12;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">提高12%速度</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32202;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2006</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">金刚锤</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">107,-12;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">降低12%速度</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32203;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2007</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">赤焰剑</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">104,9;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">提高9%攻击力</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32504;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2008</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">血焰叉</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">105,9;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">提高9%防御力</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32505;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2009</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">紫芒剑</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">107,9;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">提高9%速度</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32506;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2010</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">彼岸花</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">104,-9;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">降低9%攻击力</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32507;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2011</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">噬魂杖</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">105,-9;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">降低9%防御力</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32508;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2012</Data></Cell>
+    <Cell ss:StyleID="s120"><Data ss:Type="String">寒冰刺</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">107,-9;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">降低9%速度</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32509;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2013</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">金钟罩</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">反隐身</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32306;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2014</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">昏迷剑</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">108,15;208,15;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">伤害结果提高15%</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32402;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">2015</Data></Cell>
+    <Cell ss:StyleID="s121"><Data ss:Type="String">太极图</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s102"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s101"><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">108,-15;208,-15;</Data></Cell>
+    <Cell ss:StyleID="s103"><Data ss:Type="String">伤害结果降低15%，且每回合有15%几率逃跑</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,12,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,13,FALSE)"><Data
+      ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s103" ss:Formula="=VLOOKUP(RC1,Sheet2!C3:C16,14,FALSE)"><Data
+      ss:Type="String">2,32406;</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <FreezePanes/>
+   <FrozenNoSplit/>
+   <SplitHorizontal>4</SplitHorizontal>
+   <TopRowBottomPane>7</TopRowBottomPane>
+   <SplitVertical>2</SplitVertical>
+   <LeftColumnRightPane>2</LeftColumnRightPane>
+   <ActivePane>0</ActivePane>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+    </Pane>
+    <Pane>
+     <Number>1</Number>
+    </Pane>
+    <Pane>
+     <Number>2</Number>
+    </Pane>
+    <Pane>
+     <Number>0</Number>
+     <ActiveRow>24</ActiveRow>
+     <ActiveCol>9</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="16" ss:ExpandedRowCount="67" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Column ss:Index="13" ss:AutoFitWidth="0" ss:Width="354.75"/>
+   <Row ss:AutoFitHeight="0"/>
+   <Row ss:Index="6" ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="String">编号</Data></Cell>
+    <Cell><Data ss:Type="String">名称</Data></Cell>
+    <Cell><Data ss:Type="String">状态类型</Data></Cell>
+    <Cell><Data ss:Type="String">状态属性</Data></Cell>
+    <Cell><Data ss:Type="String">死亡清除</Data></Cell>
+    <Cell><Data ss:Type="String">Buff资源</Data></Cell>
+    <Cell><Data ss:Type="String">Buff资源</Data></Cell>
+    <Cell><Data ss:Type="String">Buff资源</Data></Cell>
+    <Cell><Data ss:Type="String">Buff资源</Data></Cell>
+    <Cell><Data ss:Type="String">加成公式</Data></Cell>
+    <Cell><Data ss:Type="String">效果描述</Data></Cell>
+    <Cell><Data ss:Type="String">指挥面板是否显示</Data></Cell>
+    <Cell><Data ss:Type="String">效果类型</Data></Cell>
+    <Cell><Data ss:Type="String">图标</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">101</Data></Cell>
+    <Cell><Data ss:Type="String">虚弱</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_101,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_101,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">防御和灵力降低，不能进行任何行动</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,101;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">102</Data></Cell>
+    <Cell><Data ss:Type="String">后发先至</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">buff_102_bottom,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_102_up,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_102_bottom,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_102_up,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">减少受到的物理和法术伤害，下回合提前出手</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,1113;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">103</Data></Cell>
+    <Cell><Data ss:Type="String">幽冥盾</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_103,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_103,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">受到单体物理攻击时会反击对方</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,1115;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">104</Data></Cell>
+    <Cell><Data ss:Type="String">休息</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_101,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_101,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">不能使用战斗指令</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,104;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">105</Data></Cell>
+    <Cell><Data ss:Type="String">金刚怒目</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_105,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_105,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">攻击力提升</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,1215;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">106</Data></Cell>
+    <Cell><Data ss:Type="String">水晶之境</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">106_1_bottom,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">106_1_up,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">106_5,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">106_5,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">防御力提升</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,1216;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">107</Data></Cell>
+    <Cell><Data ss:Type="String">失魂</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">108</Data></Cell>
+    <Cell><Data ss:Type="String">失心</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">109</Data></Cell>
+    <Cell><Data ss:Type="String">定身</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">110</Data></Cell>
+    <Cell><Data ss:Type="String">催眠</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">111</Data></Cell>
+    <Cell><Data ss:Type="String">乱神</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">113</Data></Cell>
+    <Cell><Data ss:Type="String">醉风望月</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">buff_113_bottom,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_113_up,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_113_bottom,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_113_up,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">受到单体法术攻击时会反击对方</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,1415;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">114</Data></Cell>
+    <Cell><Data ss:Type="String">子午心灯</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">115</Data></Cell>
+    <Cell><Data ss:Type="String">普度众生</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">116</Data></Cell>
+    <Cell><Data ss:Type="String">感化</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">117</Data></Cell>
+    <Cell><Data ss:Type="String">灵动九天</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">119</Data></Cell>
+    <Cell><Data ss:Type="String">赤炎咒</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="String">觉醒</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_120,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_120,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">使用烟雨断肠，绵里藏针，移花接木，落花听雨的前提</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">121</Data></Cell>
+    <Cell><Data ss:Type="String">绵里藏针</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_121,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_121,nPosTop;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">无法使用法术、特技、物理攻击</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1314;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">122</Data></Cell>
+    <Cell><Data ss:Type="String">虚弱</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">buff_122_bottom,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_122_up,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_122_bottom,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_122_up,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">只能执行防御、保护、召唤指令或使用药品</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,101;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">124</Data></Cell>
+    <Cell><Data ss:Type="String">禁灵</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">buff_124,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_124,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">无法使用物理攻击</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1512;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">125</Data></Cell>
+    <Cell><Data ss:Type="String">绵骨</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">buff_125,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_125,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">无法使用法术、物理攻击</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1513;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">126</Data></Cell>
+    <Cell><Data ss:Type="String">魔入膏肓</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_126,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_126,nPosMid;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">无法被复活</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1516;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">127</Data></Cell>
+    <Cell><Data ss:Type="String">强化防御</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">buff_127,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">buff_127,nPosBot;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">防御力提升</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">128</Data></Cell>
+    <Cell><Data ss:Type="String">魔焰</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">1,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">303</Data></Cell>
+    <Cell><Data ss:Type="String">隐身</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">造成伤害结果减少20%，隐身状态下无法使用法术</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,5111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">901</Data></Cell>
+    <Cell><Data ss:Type="String">鬼魅BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">死亡5回合复活。不受任何状态影响，但也不能使用主动技能恢复气血。</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">902</Data></Cell>
+    <Cell><Data ss:Type="String">冥思BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">102,aimlv*0.5;</Data></Cell>
+    <Cell><Data ss:Type="String">战斗中，每回合结束时恢复等级*0.5点法力。</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">903</Data></Cell>
+    <Cell><Data ss:Type="String">再生BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">101,aimlv*1;</Data></Cell>
+    <Cell><Data ss:Type="String">战斗中，每回合结束时恢复等级*1的气血</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">904</Data></Cell>
+    <Cell><Data ss:Type="String">中毒BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">5</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">101,5;</Data></Cell>
+    <Cell><Data ss:Type="String">每回合开始前扣除气血。</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">3,5124;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">905</Data></Cell>
+    <Cell><Data ss:Type="String">凝神BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">可以抵挡封印类异常状态</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">906</Data></Cell>
+    <Cell><Data ss:Type="String">强迫BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">行动时只能被迫执行防御</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">3,5127;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">907</Data></Cell>
+    <Cell><Data ss:Type="String">冰霜BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">5</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">107,-10;</Data></Cell>
+    <Cell><Data ss:Type="String">速度降低10%。</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">3,5134;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">908</Data></Cell>
+    <Cell><Data ss:Type="String">气势BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">108,10;</Data></Cell>
+    <Cell><Data ss:Type="String">物理伤害结果增加10%。</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,5135;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">909</Data></Cell>
+    <Cell><Data ss:Type="String">震慑BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">208,10;</Data></Cell>
+    <Cell><Data ss:Type="String">法术伤害结果增加10%。</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,5136;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">910</Data></Cell>
+    <Cell><Data ss:Type="String">审判BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">将敌人击倒时，其重生类技能或效果无效。</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">911</Data></Cell>
+    <Cell><Data ss:Type="String">幸运BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">不会受到物理重击、法术暴击</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">912</Data></Cell>
+    <Cell><Data ss:Type="String">忠心BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">不会逃跑，不受强迫效果影响</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">913</Data></Cell>
+    <Cell><Data ss:Type="String">持久BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,100</Data></Cell>
+    <Cell><Data ss:Type="String">受到的增益状态持续回合数加倍。</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">1901</Data></Cell>
+    <Cell><Data ss:Type="String">高级鬼魅BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">死亡4回合复活。不受任何状态影响，但也不能使用主动技能恢复气血。</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">1903</Data></Cell>
+    <Cell><Data ss:Type="String">高级再生BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">101,aimlv*1.2;</Data></Cell>
+    <Cell><Data ss:Type="String">战斗中，每回合结束时恢复等级*1.2的气血</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">1902</Data></Cell>
+    <Cell><Data ss:Type="String">高级冥思BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">102,aimlv*0.75;</Data></Cell>
+    <Cell><Data ss:Type="String">战斗中，每回合结束时恢复等级*0.75点法力。</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">1907</Data></Cell>
+    <Cell><Data ss:Type="String">高级冰霜BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">5</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">107,-15;</Data></Cell>
+    <Cell><Data ss:Type="String">速度降低15%。</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">3,5234;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">1908</Data></Cell>
+    <Cell><Data ss:Type="String">高级气势BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">108,15;</Data></Cell>
+    <Cell><Data ss:Type="String">物理伤害结果增加15%。</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,5235;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">1909</Data></Cell>
+    <Cell><Data ss:Type="String">高级震慑BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">208,15;</Data></Cell>
+    <Cell><Data ss:Type="String">法术伤害结果增加15%。</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,5236;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">1913</Data></Cell>
+    <Cell><Data ss:Type="String">高级持久BUFF</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,200;</Data></Cell>
+    <Cell><Data ss:Type="String">受到的增益状态持续回合数为原来的3倍。</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,1111;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2001</Data></Cell>
+    <Cell><Data ss:Type="String">獠牙</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">104,12;</Data></Cell>
+    <Cell><Data ss:Type="String">提高12%攻击力</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">2,32002;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2002</Data></Cell>
+    <Cell><Data ss:Type="String">十虎剑</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">105,12;</Data></Cell>
+    <Cell><Data ss:Type="String">提高12%防御力</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">2,32003;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2003</Data></Cell>
+    <Cell><Data ss:Type="String">赤魔眼</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">104,-12;</Data></Cell>
+    <Cell><Data ss:Type="String">降低12%攻击力</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2,32102;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2004</Data></Cell>
+    <Cell><Data ss:Type="String">杀生刀</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">105,-12;</Data></Cell>
+    <Cell><Data ss:Type="String">降低12%防御力</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2,32103;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2005</Data></Cell>
+    <Cell><Data ss:Type="String">琥珀朱绫</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">107,12;</Data></Cell>
+    <Cell><Data ss:Type="String">提高12%速度</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">2,32202;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2006</Data></Cell>
+    <Cell><Data ss:Type="String">寒冰剑</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">107,-12;</Data></Cell>
+    <Cell><Data ss:Type="String">降低12%速度</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2,32203;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2007</Data></Cell>
+    <Cell><Data ss:Type="String">赤焰剑</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">104,9;</Data></Cell>
+    <Cell><Data ss:Type="String">提高9%攻击力</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">2,32504;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2008</Data></Cell>
+    <Cell><Data ss:Type="String">墨雪</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">105,9;</Data></Cell>
+    <Cell><Data ss:Type="String">提高9%防御力</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">2,32505;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2009</Data></Cell>
+    <Cell><Data ss:Type="String">紫芒刃</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">107,9;</Data></Cell>
+    <Cell><Data ss:Type="String">提高9%速度</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">2,32506;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2010</Data></Cell>
+    <Cell><Data ss:Type="String">伤心花</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">104,-9;</Data></Cell>
+    <Cell><Data ss:Type="String">降低9%攻击力</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2,32507;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2011</Data></Cell>
+    <Cell><Data ss:Type="String">噬魂棍</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">105,-9;</Data></Cell>
+    <Cell><Data ss:Type="String">降低9%防御力</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2,32508;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2012</Data></Cell>
+    <Cell><Data ss:Type="String">九寒凝冰刺</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">107,-9;</Data></Cell>
+    <Cell><Data ss:Type="String">降低9%速度</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2,32509;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2013</Data></Cell>
+    <Cell><Data ss:Type="String">九阳尺</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">反隐身</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">2,32306;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2014</Data></Cell>
+    <Cell><Data ss:Type="String">控妖笛</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">108,15;208,15;</Data></Cell>
+    <Cell><Data ss:Type="String">伤害结果提高15%</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">2,32402;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">2015</Data></Cell>
+    <Cell><Data ss:Type="String">血骷髅</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell><Data ss:Type="String">108,-15;208,-15;</Data></Cell>
+    <Cell><Data ss:Type="String">伤害结果降低15%，且每回合有15%几率逃跑</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">2,32406;</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <FreezePanes/>
+   <FrozenNoSplit/>
+   <SplitHorizontal>6</SplitHorizontal>
+   <TopRowBottomPane>48</TopRowBottomPane>
+   <SplitVertical>4</SplitVertical>
+   <LeftColumnRightPane>4</LeftColumnRightPane>
+   <ActivePane>0</ActivePane>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+    </Pane>
+    <Pane>
+     <Number>1</Number>
+    </Pane>
+    <Pane>
+     <Number>2</Number>
+     <ActiveRow>6</ActiveRow>
+    </Pane>
+    <Pane>
+     <Number>0</Number>
+     <ActiveRow>66</ActiveRow>
+     <ActiveCol>14</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

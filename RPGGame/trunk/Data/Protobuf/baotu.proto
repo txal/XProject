@@ -1,0 +1,48 @@
+package baotu;
+
+//挖宝信息请求
+message WaBaoInfoReq
+{
+}
+
+//挖宝坐标请求
+message WaBaoReq
+{
+	required int32 nWaBaoType = 1;		//挖宝类型	普通宝藏：1，乾坤宝藏：2
+}
+
+//挖宝坐标应答
+message WaBaoPosRet
+{
+	message _WaBaoPos
+	{
+		required int32 nDupID = 1;		//场景ID
+		required int32 nPosX = 2;		//坐标x
+		required int32 nPosY = 3;		//坐标y
+		required int32 nWaBaoType = 4;	//挖宝类型
+	}
+	repeated _WaBaoPos PosList = 1;		//位置信息
+	required bool bActShouHu = 2;		//是否激活守护
+	required int32 nFreeTimes = 3; 		//免费次数
+}
+
+//挖宝状态请求
+message WaBaoStatusReq
+{
+	required int32 nWaBaoType = 1;		//挖宝类型
+	required int32 nStatusType = 2; 	//开始挖宝：1； 挖宝结束：2；
+}
+
+//挖宝结果应答
+message WaBaoResultRet
+{
+	required int32 nItemID = 1;		//物品ID
+	required int32 nNum = 2;		//奖励数量
+}
+
+//高级藏宝图合成
+message MapCompReq
+{
+	required bool bUseGold = 1;		//是否使用元宝补充材料
+	required int32 nCompNum = 2;	//要合成高级宝图数量
+}

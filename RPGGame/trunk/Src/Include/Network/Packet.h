@@ -58,14 +58,14 @@ public:
 	typedef PacketLogMap::iterator PacketLogIter;
 
 public:
-	static Packet* Create(int nSize = nPACKET_DEFAULT_SIZE, int nOffset = nPACKET_OFFSET_SIZE, const char* file = NULL, int line = 0);
+	static Packet* Create(int nSize = nPACKET_DEFAULT_SIZE, int nOffset = nPACKET_OFFSET_SIZE, const char* file = "", int line = 0);
 	static uint32_t GetTotalPackets() { return m_uTotalPacket; }
 	static void ClearLeak(uint32_t uExeptID);
 	static void DumpLeak();
 
 	void Reset();
 	void Retain();
-	void Release(const char* file=NULL, int line=0);
+	void Release(const char* file="", int line=0);
 
 	int16_t  GetRef() { return m_nRef; }
 	uint8_t* GetData() { return m_pData; }
@@ -74,7 +74,7 @@ public:
 	int GetRealDataSize() { return m_nDataSize - m_nOffsetSize; }
 
 public:
-	Packet* DeepCopy(const char* file=NULL, int line=0);
+	Packet* DeepCopy(const char* file="", int line=0);
 	void Move(int nLen);
 	void CutData(int nSize);
 	bool WriteBuf(const void* pBuf, int nSize);

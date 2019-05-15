@@ -1,0 +1,87 @@
+package chongbang;
+import "scene.proto";
+
+//冲榜请求
+message CBInfoReq
+{
+}
+
+//冲榜返回
+message CBInfoRet
+{
+    message _tAcTime 
+    {
+        required int32 nID = 1;             //活动ID(11战力榜; 12竞技场榜; 13亲密度榜; 14人气榜; 15帮派榜; 16小游戏榜;17:充值榜,18:消耗榜,19:全服充值榜,20:全服消耗榜)
+        required int32 nState = 2;          //活动状态(0预告; 1进行中; 2领奖中; 3活动关闭)
+        required int32 nBeginTime = 3;      //开始时间
+        required int32 nEndTime = 4;        //结束时间
+        required int32 nStateTime = 5;      //状态时间
+        required int32 nOpenTimes = 6;      //开启次数(1为首次开启; 大于1非首次)
+        required bool bCanGetAward = 7;     //是否可以领奖
+    }
+    repeated _tAcTime tActList = 1;         //活动状态数组
+    required int32 nSingleServer = 2;       //单服还是全服活动,1是单服,0:全服排行榜
+}
+
+//活动进入请求
+message CBInActivityReq  
+{
+    required int32 nID = 1;                 //活动ID(11战力榜; 12竞技场榜; 13亲密度榜; 14人气榜; 15帮派榜; 16小游戏榜;17:充值榜,18:消耗榜,19:全服充值榜,20:全服消耗榜)
+}
+
+//活动进入返回              
+message CBInActivityRet   
+{ 
+    required int32 nState = 1;              //活动状态(1进行中; 2领奖中)
+    required int32 nStateTime = 2;          //状态剩余时间
+    required int32 nAwardState = 3;         //领奖状态(0未达到领奖条件; 1已达到未领取; 2已领取)
+    required int32 nID = 4;                 //活动ID
+    optional string sFirstName = 5;         //第一名名字
+    optional int32 nFirstValue = 6;         //第一名涨幅
+    optional int32 nMyRank = 7;             //我的排名
+    optional int32 nMyValue = 8;            //我的数据值(冲榜和消耗榜使用)
+    optional int32 nOpenTimes = 9;          //开启次数(1为首次开启; 大于1非首次)
+}
+
+//冲榜榜单请求
+message CBRankingReq
+{
+    required int32 nID = 1;                 //活动ID
+    required int32 nRankNum = 2;            //取前X名
+}
+
+//冲榜榜单返回    
+message CBRankingRet
+{
+    message _Rank
+    {
+        required int32 nRank = 1;       //排名
+        required string sName = 2;      //名字
+        required string nValue = 3;     //值
+        optional string sExtName = 4;   //额外名字信息,充值榜和消耗榜使用,帮派名字
+        optional scene.RoleShapeData tShapeData = 5;  //场景外观
+    }                                                                           
+    repeated _Rank tRanking = 1;    //排行列表
+    required int32 nMyRank = 2;     //我的排名
+    required int32 nMyValue = 3;    //我的数值
+    required int32 nID = 4;         //活动ID
+}
+
+//奖励请求
+message CBGetAwardReq 
+{
+    required int32 nID = 1;             //活动ID
+}
+
+//奖励返回
+message CBGetAwardRet
+{
+    message _tAward                     //奖励结构
+    {
+        required int32 nType = 1;       //物品类型
+        required int32 nID = 2;         //物品ID
+        required int32 nNum = 3;        //物品数量
+    }
+    repeated _tAward tList = 1;         //奖励数组
+    required int32 nAwardState = 2;     //领奖状态(0未达到领奖条件; 1已达到未领取; 2已领取)
+}

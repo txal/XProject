@@ -1,0 +1,136 @@
+package growthtargetact;
+import "scene.proto";
+
+
+//活动信息请求
+message GrowthTargetActInfoReq
+{
+    required int32 nID = 1;   //活动ID
+}
+
+//活动信息响应
+message GrowthTargetActInfoRet
+{
+    required int32 nID = 1;         //活动ID
+    required int32 nState = 2;      // 活动状态
+    optional int32 nStateTime = 3;  // 状态倒计时
+    optional int32 nActVal = 4;     // 活动数值
+    optional int32 nRank = 5;       // 活动排名
+    optional int32 nRechargeNum = 6;  // 活动充值金额
+    repeated int32 tTargetAwardRecord = 7;    // 已领取的目标奖励 奖励的nIndex值
+    repeated int32 tRechargeAwardRecord = 8;  // 已领取的充值奖励 奖励的nIndex值
+    optional int32 nRankAwardState = 9;       // 排名奖励状态
+    // 1不可领取, 2可领取, 3已领取
+}   
+
+//活动信息列表请求
+message GrowthTargetActInfoListReq
+{
+}
+
+//活动信息列表响应
+message GrowthTargetActInfoListRet
+{
+    message _ActInfo
+    {
+        required int32 nID = 1;         //活动ID
+        required int32 nState = 2;      // 活动状态
+        optional int32 nStateTime = 3;  // 状态倒计时
+        optional int32 nActVal = 4;     // 活动数值
+        optional int32 nRank = 5;       // 活动排名
+        optional int32 nRechargeNum = 6;  // 活动充值金额
+        repeated int32 tTargetAwardRecord = 7;    // 已领取的目标奖励 奖励的nIndex值
+        repeated int32 tRechargeAwardRecord = 8;  // 已领取的充值奖励 奖励的nIndex值
+        optional int32 nRankAwardState = 9;       // 排名奖励状态
+        // 1不可领取, 2可领取, 3已领取
+    }
+    repeated _ActInfo tActInfoList = 1;
+}
+
+//活动排行榜信息请求
+message GrowthTargetActRankInfoReq
+{
+    required int32 nActID = 1;         // 活动ID
+    required int32 nPageID = 2;        // 排行榜页码
+}
+
+//活动排行榜信息响应
+message GrowthTargetActRankInfoRet
+{
+    message _RoleInfo
+    {
+        required int32 nRank = 1;          // 排名
+        required int32 nID = 2;            // 玩家ID
+        required string sName = 3;
+        required int32 nRoleConfID = 4;    // 角色配置ID
+        required int32 nVal = 5;
+        optional int32 nLevel = 6;
+        optional scene.RoleShapeData tShapeData = 7;  //场景外观
+    }
+    required int32 nActID = 1;          // 活动ID
+    optional int32 nMaxPageID = 2;
+    optional int32 nPageID = 3;
+    repeated _RoleInfo tRankList = 4;
+    required _RoleInfo tMyRank = 5;
+}
+
+//活动奖励领取请求
+message GrowthTargetActRewardReq
+{
+    required int32 nActID = 1;        // 活动ID
+    required int32 nRewardID = 2;      // 奖励ID
+}
+
+//活动排名奖励领取请求
+message GrowthTargetActRankRewardReq
+{
+    required int32 nActID = 1;
+}
+
+//活动充值奖励领取请求
+message GrowthTargetActRechargeRewardReq
+{
+    required int32 nActID = 1;
+    required int32 nRewardID = 2;
+}
+
+//活动商店信息请求
+message GrowthTargetActShopReq
+{
+}
+
+//活动商店信息响应
+message GrowthTargetActShopRet
+{
+    message _Item
+    {
+        required int32 nIndexID = 1;
+        required int32 nItemID = 2;
+        required int32 nCurrType = 3;
+        required int32 nSrcPrice = 4;
+        required int32 nDiscountRatio = 5;
+        required int32 nDiscountPrice = 6;
+        optional bool bNumLimit = 7;         //是否限制购买数量
+        optional int32 nLimitNum = 8;        //限制购买的数量
+        optional int32 nRecordNum = 9;       //当前已购买的数量
+
+        optional bool bActPermit = 10;       //是否已达到活动购买资格
+        //活动购买资格
+        message ActPermitVal 
+        {
+            required int32 nActID = 1;        // 活动ID
+            required int32 nVal = 2;          // 解锁购买值
+            required int32 nCurVal = 3;       // 当前值
+        }
+        repeated ActPermitVal tActPermitVal = 11;  // 解锁购买资格所需的活动数值列表
+    }
+
+    repeated _Item tItemList = 1;             //商品列表
+}
+
+//活动商店购买请求
+message GrowthTargetActShopPurchaseReq
+{
+    required int32 nIndexID = 1;         // 商品编号
+    required int32 nNum = 2;             // 购买数量
+}

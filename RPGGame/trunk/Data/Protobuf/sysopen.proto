@@ -1,0 +1,14 @@
+package sysopen;
+
+//已开放系统列表返回
+message OpenSysListRet
+{
+    repeated int32 tList = 1;   //系统放列表(登陆推): 1修炼系统
+}
+
+//新开放系统通知
+message SysOpenRet
+{
+    repeated int32 tList = 1;   //类型同上
+}
+

@@ -12,7 +12,12 @@ if (count($argv) < 3)
 
 //要过滤的文件
 $FILTER_LIST = array(
+	"AIConf.xml"=>true,
+	"AISkillConf.xml"=>true,
 	"KeywordConf.xml"=>true,
+	"SubMonsterConf.xml"=>true,
+	"AwardPoolConf.xml"=>true,
+	"RobotSysConf.xml"=>true,
 );
 
 $sXMLDir = $argv[1];
@@ -60,7 +65,7 @@ function ProcDir($sXMLDir, $sScriptDir)
 				ProcDir($sSubXMLDir, $sSubScriptDir);
 			}
 			elseif (isset($FILTER_LIST[$sFile])) {
-				print("------filter: ".$sFile."------\n");
+				print("##########################filter: $sFile\n");
 			}
 			else
 			{
@@ -131,6 +136,9 @@ function XML2Js($sXMLFile, $sScriptDir)
 	$nData = 0;
 	$nCell = 0;
 	$nLastCell = 0;
+	
+	$keywords = array("math", "min", "max", "Math", "floor", "ceil", "pow", "random", "and", "or");
+		
 	while ($XML->read())
 	{
 		if ($XML->name == "Worksheet" && $XML->nodeType == XMLReader::ELEMENT)
@@ -149,12 +157,23 @@ function XML2Js($sXMLFile, $sScriptDir)
 		}
 		if ($XML->name == "Row" && $XML->nodeType == XMLReader::ELEMENT)
 		{
-			if ($nRow >= 4 && $sRowScript)
+			if ($nRow == 0)
+			{
+				$nTmpRow = $XML->getAttribute("ss:Index");
+				if ($nTmpRow) 
+					$nRow = $nTmpRow;
+				else
+					$nRow++;
+			}
+			else 
+			{
+				$nRow++;
+			}
+			if ($nRow >= 5 && $sRowScript)
 			{
 				$sRowScript = RemoveComma($sRowScript);
 				$sScript .= "$sRowScript};\n";
 			}
-			$nRow++;
 			$nCell = 0;
 			$nLastCell = 0;
 			$sRowScript = "";
@@ -163,7 +182,7 @@ function XML2Js($sXMLFile, $sScriptDir)
 		{
 			$nCell++;
 		}
-		if ($XML->name == "Data" || ($nRow >= 4 && $XML->name == "ss:Data"))
+		if ($XML->name == "Data" || ($nRow >= 5 && $XML->name == "ss:Data"))
 		{
 
 			if ($XML->nodeType == XMLReader::ELEMENT)
@@ -178,17 +197,26 @@ function XML2Js($sXMLFile, $sScriptDir)
 		}
 		if ($nData > 0 && $XML->nodeType == XMLReader::TEXT)
 		{
-			if ($nRow == 1)
+			if ($nRow == 2)
 			{
 				$tField[$nCell] = $XML->value;
+				for ($i = 1; $i < $nCell-1; $i++)
+				{
+					if ($tField[$i] == $XML->value)
+					{
+						exit("ERROR: Duplication columns '$XML->value'!\n");
+					}
+				}
+	
 			}
-			if ($nRow == 2)
+			if ($nRow == 3)
 			{
 				$tType[$nCell] = $XML->value;
 			}
-			if ($nRow == 3)
-			{/* 注释行 */}
-			if ($nRow >= 4)
+			if ($nRow == 4)
+			{/* 注释行 */
+			}
+			if ($nRow >= 5)
 			{
 				if ($nLastCell + 1 != $nCell)
 				{
@@ -199,8 +227,13 @@ function XML2Js($sXMLFile, $sScriptDir)
 				$sValue = $XML->value;
 				if ($nCell == 1)
 				{
-					$sSubTable = $sRootTable."[".intval($sValue)."]";
-					$sRowScript .= "$sSubTable = {";
+					$key = $sValue;
+					if (is_numeric($sValue))
+						$key = floatval($sValue);
+					else
+						$key = "\"$key\"";
+					$sSubTable = $sRootTable."[$key]";
+					$sRowScript .= "$sSubTable={";
 				}
 				$sField = trim($tField[$nCell]);
 				switch (substr($tType[$nCell],0,1))
@@ -226,6 +259,29 @@ function XML2Js($sXMLFile, $sScriptDir)
 					{
 						$sValue = "\"".strVal($sValue)."\"";
 						$sRowScript .= "$sField: $sValue, ";
+						break;
+					}
+					case "e":
+					{
+						$params = array();
+						preg_match_all("/[a-zA-Z]+/i", strVal($sValue), $params);
+						if (count($params[0]) > 0)
+						{
+							$params[0] = array_unique($params[0]);
+							$params[0] = array_diff($params[0], $keywords);
+							$sValue = "function(".join(",",$params[0])."){ return ($sValue); }";
+							$sValue = preg_replace("/math/","Math",$sValue);
+							$sValue = preg_replace("/and/","&&",$sValue);
+						}
+						else
+						{
+							$sValue = "function(){ return ($sValue); }";
+						}
+						$sRowScript .= "$tField[$nCell]: $sValue,";
+						break;
+					}
+					case "c":
+					{
 						break;
 					}
 					case "t":
@@ -281,6 +337,30 @@ function XML2Js($sXMLFile, $sScriptDir)
 									{
 										$sVal = "\"".strval($tMember[$i])."\"";
 										$sRowScript .= "$sVal, ";
+										break;
+									}
+									case "e":
+									{
+										$data = "";
+										if ($i == strlen($sType)-1)
+											for ($k=$i; $k<count($tMember); $k++)
+												$data .= $tMember[$k].(($k>=count($tMember)-1)?"":",");
+
+										$params = array();
+										preg_match_all("/[a-zA-Z]+/i", strVal($data), $params);
+										if (count($params[0]) > 0)
+										{
+											$params[0] = array_unique($params[0]);
+											$params[0] = array_diff($params[0], $keywords);
+											$sValue = "function(".join(",",$params[0])."){ return ($data); }";
+											$sValue = preg_replace("/math/","Math",$sValue);
+											$sValue = preg_replace("/and/","&&",$sValue);
+										}
+										else
+										{
+											$sValue = "function(){ return ($tMember[$i]); }";
+										}											
+										$sRowScript .= "$sValue,";
 										break;
 									}
 									default:

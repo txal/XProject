@@ -1,0 +1,189 @@
+//法宝系统
+package fabao;
+
+message _AttrList
+{
+	required int32 nBAT = 1;	//属性标识:101->气血,102->魔法,103->怒气,104->攻击, 104->攻击,105->防御,106->灵力,107->速度
+	required int32 nAttr = 2;	//属性值
+}
+
+message _FaBaoInfoList
+{
+	required int32 nID = 1;		 	//法宝ID
+	required int32 nLevel = 2;	    //法宝等级
+	required int32 nStars = 3;		//法宝星级
+	repeated int32 sName = 4;		//法宝名字
+	repeated  _AttrList tAttrList= 5;	//属性列表
+	optional int32 nGrid = 6;		//格子ID
+	optional int32 nCostFeastStone = 7;	//消耗祭炼石数量
+	optional int32 nCostYinBi = 8;		//消耗的银币数量
+	required int32 nType = 9;	//法宝类型
+	optional int32 nSuitCount = 10;	//当前套装件数
+	required int32 nScore = 11;	//评分
+	required bool bBind = 12;	//是否绑定
+	required bool bWear = 13;	//是否穿戴
+	optional int32 nFold = 14;	//当前格子堆叠数量
+	
+}
+
+//套装属性
+message _FaBaoSetAttrList
+{
+	//repeated int32 nPropID = 1;	//道具ID
+	required int32 nSuitCount = 1;//当前套装件数
+}
+
+
+//属性页面请求
+message FaBaoAttrPageReq
+{
+
+}
+
+//法宝属性界面请求返回
+message FaBaoAttrPageRet
+{
+	repeated  _AttrList tTotalAttrList = 1;	//六个法宝单项属性之和列表
+	repeated  _FaBaoInfoList tFaBaoInfoList = 2;	//单个法宝信息
+	required int32 nCurFeastStone = 3;	//拥有的祭炼数量
+	required int32 nCurYinBi = 4;
+}
+
+//同步法宝背包数据
+message FaBaoKnapsackItemListRet
+{
+	repeated  _FaBaoInfoList tFaBaoInfoList = 1;
+}
+
+//法宝数量变化通知
+message FaBaoCountChangeRet
+{
+	required int32 nType = 1; //1法宝增加,2法宝消耗
+	required _FaBaoInfoList tFaBaoInfoList = 2;//数据返回列表
+}
+
+//穿法宝请求
+message FaBaoWearReq
+{		
+	required int32 nGrid = 1;
+	optional int32 nType = 2;	//1转移等级,0不转移等级
+}
+
+//穿法宝请求返回
+message FaBaoWearRet
+{		
+	required bool bFlag = 1;
+}
+
+//脱法宝请求返回
+message FaBaoTakeOffRet
+{	
+	required bool bFlag = 1;
+	required int32 nGrid = 2;
+}
+
+
+//脱法宝请求
+message FaBaoTakeOffReq
+{	
+	required int32 nGrid = 1;
+}
+
+//法宝祭炼请求
+message FaBaoFeastReq
+{
+	required int32 nGrid = 1;
+}
+
+message _ItemList
+{	
+	required int32 nGrid = 1;
+}
+
+//法宝合成请求
+message FaBaoCompositeReq
+{
+	repeated int32 tCompositeList = 1; // 合成列表：tCompositeList[1] = nGrid,tCompositeList[2] = nGrid
+	required bool bFlag = 2;	//是否使用元宝补足(只有一星法宝补足哦)
+	
+}
+
+//法宝合成请求1
+message FaBaoCompositeReq1
+{
+	message _tComposi
+	{
+		required int32 nGrid = 1;	//格子ID
+		required int32 nNum = 2;	//当前格子使用的数量
+	}
+	repeated _tComposi tCompositeList = 1;	
+}
+message _CompositeList
+{
+	required int32 nID = 1;	//道具ID
+}
+
+//法宝合成返回
+message FaBaoCompositeRet
+{
+	optional int32 nID = 1;	//新法宝ID
+	required int32 nYinBi = 2;	//合成获得的银币
+	required int32 nFeastStone = 3;	//合成获得的祭炼石
+	optional int32 nNum = 4; //抢救的法宝数量
+	repeated _CompositeList tCostItemList = 5; //消耗合成列表列表返回tItemList[1] = {nID = 1001}
+	repeated _ItemList ItemList = 6;//没有消耗的列表ItemList[1] = nGrid
+	required bool bFlag = 7;	//
+	
+}
+
+//法宝重置请求
+message FaBaoResetReq
+{
+	repeated int32 tResetList = 1; //重置列表tResetList[1] =nGrid,tResetList[2] = nGrid
+}
+
+//法宝重置请求返回
+message FaBaoResetRet
+{
+	required int32 nID = 1;	//新法宝ID
+	required int32 nYinBi = 2;	//重置获得的银币
+	required int32 nFeastStone = 3;	//重置获得的祭炼石
+}
+
+//法宝标记请求
+message FaBaoFalgReq
+{
+	required bool bFlag = 1;
+	required int32 nGrid = 2;
+}
+
+//法宝标记请求返回
+message FaBaoFalgRet
+{
+	required bool bFlag = 1;
+	required int32 nGrid = 2;
+}
+
+//法宝道具数量变更通知
+message FaBaoPropRemoveRet
+{
+	repeated int32 tRemoveGrid = 1;
+}
+
+//法宝增加
+message FaBaoAddRet
+{
+	repeated _FaBaoInfoList tFaBaoInfoList = 1;	//增加法宝列表
+}
+
+//一键升级
+message FaBaoOnekeyUpgradeReq
+{
+
+}
+
+//一键升级返回
+message FaBaoOnekeyUpgradeRet
+{
+	
+}

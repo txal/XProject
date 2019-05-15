@@ -2,18 +2,19 @@ function CCmdMonitor:Ctor()
     self.m_tCmdMap = {}
 end
 
-function CCmdMonitor:AddCmd(nCmd, nCostMSTime)
-    assert(nCmd and nCostMSTime)
-    if nCostMSTime * 1000 >= 5 then
-        LuaTrace("------slow cmd------", nCmd, "time:", nCostMSTime)
+--@nCostTime 秒
+function CCmdMonitor:AddCmd(xCmd, nCostTime)
+    assert(xCmd and nCostTime)
+    if nCostTime * 1000 >= 12 then
+        LuaTrace("------slow msg------", xCmd, "time:", nCostTime)
     end
-    local tCmdRecord = self.m_tCmdMap[nCmd]
+    local tCmdRecord = self.m_tCmdMap[xCmd]
     if not tCmdRecord then
         tCmdRecord = {0, 0}
-        self.m_tCmdMap[nCmd] = tCmdRecord
+        self.m_tCmdMap[xCmd] = tCmdRecord
     end
     tCmdRecord[1] = tCmdRecord[1] + 1
-    tCmdRecord[2] = tCmdRecord[2] + nCostMSTime
+    tCmdRecord[2] = tCmdRecord[2] + nCostTime
 end
 
 function CCmdMonitor:DupCmd()

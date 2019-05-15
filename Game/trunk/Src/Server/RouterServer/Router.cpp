@@ -1,5 +1,6 @@
 ﻿#include "Server/RouterServer/Router.h"
 #include "Common/PacketParser/PacketWriter.h"
+#include "Common/DataStruct/XTime.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/PacketHandler.h"
@@ -39,7 +40,7 @@ bool Router::Init(int nServiceID, const char* psListenIP, uint16_t uListenPort)
 		strcpy(m_sListenIP, psListenIP);
 	}
 	m_uListenPort = uListenPort;
-	m_poListener = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_poListener = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 8, &m_oNetEventHandler);
 	if (m_poListener == NULL)
 	{
 		return false;
@@ -57,6 +58,8 @@ bool Router::Start()
 	for (;;)
 	{
         ProcessNetEvent(1);
+		int64_t nNowMS = XTime::MSTime();
+		Service::Update(nNowMS);
 	}
 	return true;
 }

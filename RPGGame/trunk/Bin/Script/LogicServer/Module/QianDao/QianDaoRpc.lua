@@ -1,11 +1,17 @@
-function CltPBProc.QDInfoReq(nCmd, nSrc, nSession, tData)
-	local oPlayer = goPlayerMgr:GetPlayerBySession(nSession)
-	if not oPlayer then return end
-	oPlayer.m_oQianDao:InfoReq()
+function CltPBProc.QDInfoReq(nCmd, nServer, nService, nSession, tData)
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
+	if not oRole then return end
+	oRole.m_oQianDao:InfoReq()
 end
 
-function CltPBProc.QDAwardReq(nCmd, nSrc, nSession, tData)     
-	local oPlayer = goPlayerMgr:GetPlayerBySession(nSession)
-	if not oPlayer then return end
-	oPlayer.m_oQianDao:QianDaoAwardReq(tData.nSelect, tData.nID)    
+function CltPBProc.QDAwardReq(nCmd, nServer, nService, nSession, tData)     
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
+	if not oRole then return end
+	oRole.m_oQianDao:QianDaoAwardReq(tData.nID)    
+end
+
+function CltPBProc.QDTiredSignAwardReq(nCmd, nServer, nService, nSession, tData)     
+	local oRole = goPlayerMgr:GetRoleBySS(nServer, nSession)
+	if not oRole then return end
+	oRole.m_oQianDao:TiredSignAwardReq(tData.nID)    
 end

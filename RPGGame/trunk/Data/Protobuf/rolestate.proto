@@ -1,0 +1,79 @@
+package rolestate;
+
+//饱食状态
+message _BAOSHI
+{
+    required int32 nStateID = 1;        //状态ID
+    required int32 nRemainTimes = 2;    //剩余次数
+    required int32 nMaxTimes = 3;       //次数上限
+    required int32 nCostSilver = 4;     //购买花费银币
+}
+
+//装备耐久
+message _EQUDUR
+{
+	required int32 nStateID = 1; 		//状态ID	
+}
+
+//新婚时装
+message _MarriageSuit
+{
+    required int32 nStateID = 1;        //状态ID
+    optional int32 nExpiryStamp = 2;    //失效时间戳
+    required int32 nTimeRemain = 3;     //剩余时间，单位秒
+    required bool bActive = 4;          //当前是否激活穿戴
+}
+
+//新婚祝福
+message _MarriageBless
+{
+    required int32 nStateID = 1;        //状态ID
+    optional int32 nExpiryStamp = 2;    //失效时间戳
+    optional int32 nTimeRemain = 3;     //剩余时间
+    optional bool bActive = 4;          //是否激活
+}
+
+//队伍新婚祝福buff
+message _TeamMarriageBless
+{
+    required int32 nStateID = 1;        //状态ID
+}
+
+//队长加成buff
+message _TeamLeaderBuff
+{
+    required int32 nStateID = 1;        //状态ID
+}
+
+//同心加成buff
+message _HoneyRelationship
+{
+    required int32 nStateID = 1;           //状态ID
+    //同心加成 子类型 1夫妻, 2结拜, 3情缘, 4师徒
+    repeated int32 tActiveRelation = 2;    //当前加成关系列表
+    required int32 nActiveType = 3;        //当前生效的加成关系
+}
+
+//角色状态返回
+message RoleStateSyncRet
+{
+    required _BAOSHI tBaoShi = 1;   //饱食状态
+    optional _EQUDUR tEquDur = 2; 	//装备耐久
+    optional _MarriageSuit tMarriageSuit = 3;    //新婚时装
+    optional _MarriageBless tMarriageBless = 4;  //新婚祝福
+    optional _TeamMarriageBless tTeamMarriageBless = 5;  //队伍新婚祝福
+    optional _TeamLeaderBuff tTeamLeaderBuff = 6;     //队长加成
+    optional _HoneyRelationship tHoneyRelation = 7;   //同心加成
+}
+
+//购买饱食度次数(银币)
+message RoleStateBuyBaoShiReq
+{
+    
+}
+
+//新婚礼服激活设置请求
+message RoleStateMarriageSuitSetReq
+{
+    required bool bActive = 1;       // 设置新婚礼服激活状态
+}

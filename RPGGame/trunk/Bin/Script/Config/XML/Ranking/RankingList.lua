@@ -1,0 +1,17 @@
+Ranking={}
+Ranking[12]={nId=12,sName="综合战力榜",nTypeId={{1,4,5,},},nTradeMenuId=1,}
+Ranking[13]={nId=13,sName="人物战力榜",nTypeId={{1,4,6,},},nTradeMenuId=1,}
+Ranking[14]={nId=14,sName="人物等级榜",nTypeId={{1,4,7,},},nTradeMenuId=1,}
+Ranking[15]={nId=15,sName="宠物评分榜",nTypeId={{3,2,8,},},nTradeMenuId=1,}
+Ranking[16]={nId=16,sName="帮派等级榜",nTypeId={{9,10,11,},},nTradeMenuId=1,}
+Ranking[17]={nId=17,sName="家园资产榜",nTypeId={{3,12,0,},},nTradeMenuId=1,}
+Ranking[21]={nId=21,sName="鬼王宗",nTypeId={{1,4,5,},},nTradeMenuId=2,}
+Ranking[22]={nId=22,sName="青云门",nTypeId={{1,4,5,},},nTradeMenuId=2,}
+Ranking[23]={nId=23,sName="合欢派",nTypeId={{1,4,5,},},nTradeMenuId=2,}
+Ranking[24]={nId=24,sName="圣巫教",nTypeId={{1,4,5,},},nTradeMenuId=2,}
+Ranking[25]={nId=25,sName="天音寺",nTypeId={{1,4,5,},},nTradeMenuId=2,}
+Ranking[31]={nId=31,sName="竞技场积分",nTypeId={{1,13,0,},},nTradeMenuId=3,}
+Ranking[1]={nId=1,sName="科举排行",nTypeId={{1,14,15,},},nTradeMenuId=3,}
+Ranking[41]={nId=41,sName="周人气榜",nTypeId={{1,16,0,},},nTradeMenuId=4,}
+Ranking[42]={nId=42,sName="总人气榜",nTypeId={{1,17,0,},},nTradeMenuId=4,}
+Ranking[43]={nId=43,sName="总好友度榜",nTypeId={{1,18,0,},},nTradeMenuId=4,}

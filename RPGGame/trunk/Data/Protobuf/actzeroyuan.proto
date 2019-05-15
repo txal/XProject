@@ -1,0 +1,65 @@
+//零元活动
+package actzeroyuan;
+
+//活动状态信息请求
+message ZYActStateReq
+{
+	
+}
+
+message _ActData
+{
+	required int32 nID = 1;	//档次ID
+	required int32 nAwrdState = 2; //0不可领取道具奖励, 1领取玩家购买获得物品，2领取玩加购买返还元宝,3不可领取元宝,4领取所有奖励完成
+	required int32 nDays = 3;	//领奖的天数
+	required bool bBuy = 4;	//是否购买
+	required string sPower = 5;	//道具加的战力
+}
+
+//活动状态信息返回
+message ZYActStateRet
+{
+	required int32 nID = 1; 		//活动ID
+	required int32 nState = 2; 		//活动状态:0预告; 1进行中; 2领奖中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+	repeated _ActData tActData = 6;
+}
+
+//活动信息请求
+message ZYActInfoReq  
+{
+	
+}
+
+//活动信息返回
+message ZYActInfoRet
+{
+	repeated _ActData tActData = 1;
+}
+
+//领取奖励请求
+message ZYActAwardReq   
+{
+	required int32 nID = 1;	//档次ID
+}
+
+//领取奖励请求返回
+message ZYActAwardRet   
+{
+	repeated _ActData tActData = 1;
+}
+
+
+//购买请求
+message ZYBuyQualificattionsReq
+{
+	required int32 nID = 1;
+}
+
+//购买资格请求返回
+message ZYBuyQualificattionsRet
+{
+	repeated _ActData tActData = 1;
+}

@@ -1,0 +1,10 @@
+ctJueZhanJiuXiao={}
+ctJueZhanJiuXiao[300001]={nTaskId=300001,nTaskType=1,nBattleGroup=104001,nNextTask=300002,nTaskName="九霄一层",}
+ctJueZhanJiuXiao[300002]={nTaskId=300002,nTaskType=1,nBattleGroup=104002,nNextTask=300003,nTaskName="九霄二层",}
+ctJueZhanJiuXiao[300003]={nTaskId=300003,nTaskType=1,nBattleGroup=104002,nNextTask=300004,nTaskName="九霄三层",}
+ctJueZhanJiuXiao[300004]={nTaskId=300004,nTaskType=1,nBattleGroup=104003,nNextTask=300005,nTaskName="九霄四层",}
+ctJueZhanJiuXiao[300005]={nTaskId=300005,nTaskType=1,nBattleGroup=104004,nNextTask=300006,nTaskName="九霄五层",}
+ctJueZhanJiuXiao[300006]={nTaskId=300006,nTaskType=1,nBattleGroup=104004,nNextTask=300007,nTaskName="九霄六层",}
+ctJueZhanJiuXiao[300007]={nTaskId=300007,nTaskType=1,nBattleGroup=104005,nNextTask=300008,nTaskName="九霄七层",}
+ctJueZhanJiuXiao[300008]={nTaskId=300008,nTaskType=1,nBattleGroup=104006,nNextTask=300009,nTaskName="九霄八层",}
+ctJueZhanJiuXiao[300009]={nTaskId=300009,nTaskType=1,nBattleGroup=104007,nNextTask=0,nTaskName="九霄九层",}

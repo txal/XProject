@@ -1,45 +1,113 @@
 package battle;
 
+//开始战斗请求(测试用)
+message BattleStartReq
+{
+	optional int32 nObjID = 1; 		//目标ID
+	optional int32 nObjType = 2; 	//目标类型
+}
+
+message _Unit
+{
+	required int32 nUnitID = 1;		//单位ID
+	required int32 nObjID = 2; 		//对象ID
+	required int32 nObjType = 3; 	//对象类型(1角色;2子女;3伙伴;4宠物;5怪物)
+	required string sObjName = 4; 	//对象名字
+	required int32 nLevel = 5; 		//等级
+	repeated int32 tResAttr = 6; 	//结果属性(气血,魔法,怒气,攻击,防御,灵力,速度)
+	repeated double tAdvAttr = 7; 	//高级属性(法术攻击,法术防御,治疗强度,封印命中,封印抗性)
+	repeated double tHidAttr = 8; 	//隐藏属性(命中率,闪避率,暴击率,抗暴率)
+	required string sModel = 9; 	//角色模型
+	required int32 nMaxHP = 10; 	//血量上限
+	required int32 nMaxMP = 12; 	//魔法上限
+	required int32 nMaxSP = 13; 	//怒气上限
+	optional bool bAuto = 14; 		//是否自动
+	repeated int32 tBuffList = 15; 	//BUFF列表
+	required int32 nAutoInst = 16; 	//自动指令
+	required int32 nAutoSkill = 17; //自动指令技能
+	optional int32 nPetExp = 18; 	//宠物当前经验
+	optional int32 nPetNextExp = 19; 	//宠物下级经验
+	optional int32 nWeaponID = 20; 		//武器ID
+	optional int32 nSchool = 21; 		//门派
+	optional int32 nArtifactID = 22; 	//神器ID
+	optional string sGrade = 23; 		//评级
+	optional int32 nCmdID = 24; 	 	//战斗指挥ID: 敌方[101-112]; 己方[201-212]; 0无
+	optional string sCmdName = 25; 		//战斗指挥名字
+	optional int32 nArtifactLevel = 26;	//神器等级
+	optional int32 nParentID = 27; 		//父亲ID(伙伴,宠物所属角色ID)
+}
+
 //开始战斗
 message BattleStartRet
 {
-	message _Unit
-	{
-		required int32 nUnitID = 1;		//单位ID
-		required int32 nObjID = 2; 		//对象ID
-		required int32 nObjType = 3; 	//对象类型
-		required int32 sObjName = 4; 	//对象名字
-		required int32 nLevel = 5; 		//等级
-		repeated int32 tResAttr = 6; 	//结果属性(气血,魔法,怒气,攻击,防御,灵力,速度)
-		repeated int32 tAdvAttr = 7; 	//高级属性(法术攻击,法术防御,治疗强度,封印命中,封印抗性)
-		repeated int32 tHidAttr = 8; 	//隐藏属性(命中率,闪避率,暴击率,抗暴率)
-	}
-	required int32 nID = 1; 	//战斗ID
-	required int32 nRound = 2; 	//当前回合	
-	repeated _Unit tAtk = 3; 	//攻方(101~110)
-	repeated _Unit tDef = 4; 	//守方(201~210)
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nRound = 2; 		//当前回合	
+	repeated _Unit tAtk = 3; 		//攻方(101~110)
+	repeated _Unit tDef = 4; 		//守方(201~210)
+	required bool bReconnect = 5; 	//是否重连
+	required int32 nAtkFmt = 6; 	//攻方阵法ID
+	required int32 nDefFmt = 7;		//守方阵法ID
+	optional string sMusic = 8; 	//音乐
+	optional int32 nBattleType = 9; 	//战斗类型: 1 PVE; 2 PVP; 3 竞技场;
+	optional int32 nBattleCount = 10;	//已经战斗过的场数(0表示第一场战斗)
+	optional int32 nSubBattleType = 11; //战斗子类型: 101镇妖; 1001师门任务战斗; 1002赏金任务战斗; 1003主线任务; 1004支线任务
+
+}
+
+//战斗结束返回
+message BattleEndRet
+{
+	required int32 nWinner = 1; 	//胜利方(1攻方,2守方)
+	required int32 nBattleType = 2;	//战斗类型(1PVE,2PVP,3竞技场)
+	required int32 nEndType = 3; 		//战斗结束类型(1正常; 2逃避; 3异常)
+	optional int32 nSubBattleType = 4; 	//战斗子类型
+}
+
+message _SKILL
+{
+	required int32 nID = 1;	 		//技能ID
+	optional int32 nLevel = 2; 		//技能等级
+	optional string sName = 3; 		//技能名字
+	optional bool bValid = 4; 		//是否可用
+	optional string sTips = 5; 		 //不可用原因
+	optional int32 nLearnLevel = 6;  //技能学习等级
+	optional string sConsumeTips = 7;//消耗Tips
 }
 
 //回合开始
 message RoundBeginRet
 {
-	required int32 nRoundID = 1;	//回合ID
+	required int32 nRound = 1;		//回合
 	required int32 nMainTime = 2; 	//主倒计时(30秒)
 	required int32 nAutoTime = 3; 	//自动倒计时(3秒)
 	required bool bAuto = 4; 		//是否自动
+	required _SKILL tRoleManualSkill = 5; 	//上次人物使用的技能
+	required _SKILL tPetManualSkill = 6; 	//上次宠物使用的技能
 }
 
 //单位下达指令请求
 message UnitInstReq
 {
-	required int32 nUnitID = 1; 	//单位ID
-	required int32 nInst = 2; 		//指令(法术,攻击,3物品,4召唤,5自动,6防御,7保护,8捕捉,9撤退)
-	optional int32 nTarUnit = 3; 	//目标单位ID
-	optional int32 nSkillID = 4;	//法术ID
-	optional int32 nPropID = 5; 	//道具ID
-	optional int32 nPetID = 6; 		//宠物ID
-	optional bool bAuto = 6; 		//自动/取消
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nUnitID = 2; 	//单位ID
+	required int32 nInst = 3; 		//指令(1法术,2攻击,3物品,4召唤,5自动,6防御,7保护,8捕捉,9撤退)
+	//法术:nTarUnit,nSkillID
+	//攻击:nTarUnit
+	//物品:nTarUnit,nGridID
+	//召唤:nPosID
+	//自动:bAuto
+	//防御:
+	//保护:nTarUnit
+	//捕捉:
+	//撤退:
+
+	optional int32 nTarUnit = 4; 	//目标单位ID
+	optional int32 nSkillID = 5;	//法术ID
+	optional int32 nGridID = 6; 	//道具格子
+	optional int32 nPosID = 7; 		//宠物格子号
+	optional bool bAuto = 8; 		//自动/取消
 }
+
 
 //单位下达指令成功
 message UnitInstRet
@@ -52,18 +120,264 @@ message UnitInstRet
 //回合数据
 message RoundDataRet
 {
+	message _ITEM
+	{
+		required int32 nID = 1; 	//物品ID
+		required int32 nNum = 2; 	//物品数量
+	}
 	message _ACT
 	{
-		required int32 nAct = 1; 		//动作(1物攻;2闪避;4保护;5受伤;6死亡;7撤退;8战斗结束)
+		required int32 nAct = 1; //动作
+		//(1物攻;2闪避;3保护;4受伤;5死亡;6撤退;
+		//7防御(和受伤合并了);8法术;9增加BUFF;10移除BUFF;11物品;12复活;13召唤;14治疗;15执行BUFF;16喊话;17摄魂扣;18摄魂加;19被动技能喊招)
+		
+		//物攻:nSrcUnit,tTarUnit,nTime,sGJTips
+		//闪避:nSrcUnit,nTime
+		//保护:nSrcUnit,tTarUnit,nTime
+		//受伤:nSrcUnit,nMP,nHurt,bCrit,nCurrHP,nCurrSP,nCurrMP,nTime,bDefense
+		//死亡:nSrcUnit,bLeave,nCurrHP,nCurrSP,nCurrMP,nTime
+		//撤退:nSrcUnit,bLeave,nTime
+		//防御:nSrcUnit,nTime
+		//法术:nSKID,sSKName,nSKType,nSrcUnit,tTarUnit,nCurrHP,nCurrSP,nCurrMP,nTime,sGJTips
+		//增加BUFF: nSrcUnit,nBuffID,nTime
+		//移除BUFF: nSrcUnit,nBuffID,nCurrHP,nCurrSP,nCurrMP,nTime
+		//物品: nSrcUnit,tTarUnit,nPropID,sTips,nTime
+		//复活: nSrcUnit,nMP,nHurt,nCurrHP,nCurrSP,nCurrMP,nTime,nSKID
+		//召唤: nSrcUnit,tTarUnit,tUnit,sTips,nTime
+		//治疗: nSrcUnit,nMP,nHurt,nCurrHP,nCurrSP,nCurrMP,nTime
+		//执行BUFF: nSrcUnit,nBuffID,nTime 
+		//喊话: nSrcUnit,sTips,nTime
+		//摄魂扣除: nSrcUnit,tTarUnit,tSubItem,tCurItem,nTime
+		//摄魂奖励: nSrcUnit,tTarUnit,tAward,tCurItem,nTime
+		//被动技能喊招: nSrcUnit,nSKID,nTime
+
 		optional int32 nSrcUnit = 2; 	//发起单位
-		optional int32 nTarUnit = 3; 	//目标单位
-		optional bool bCrit = 4; 		//是否暴击
-		optional int32 nHurt = 5; 		//伤害
-		optional int32 nWinner = 6; 	//胜利方(1攻方,2守方)
-		optional bool bLeave = 7; 		//是否离开战斗(撤退成功;NPC/宠物死亡)
-		optional int32 nTime = 8; 		//用时
+		repeated int32 tTarUnit = 3; 	//目标单位(可能有多个)
+		optional int32 nHurt = 4; 		//治疗/受伤: >=0
+		optional int32 nCurrHP = 5; 	//当前HP
+		optional int32 nCurrSP = 6; 	//当前怒气
+		optional int32 nCurrMP = 7;		//当前魔法
+		optional bool bCrit = 8; 		//是否暴击
+		optional int32 nSKID = 9; 		//技能ID
+		optional string sSKName = 10;	//技能名
+		optional int32 nSKType = 11;	//技能类型(1群物;2单物;3群法;4单法)
+		optional int32 nBuffID = 12;	//BUFF编号
+		optional string sTips = 13; 	//提示
+		optional bool bLeave = 14; 		//是否离开战斗(撤退成功;NPC/宠物死亡)
+		optional float nTime = 15; 		//用时(小数)
+		repeated _ACT tReact = 16; 		//反馈
+		optional int32 nPropID = 17; 	//药品道具ID
+		optional _Unit tUnit = 18; 		//单位数据
+		optional string sGJTips = 19; 	//攻击提示(技能喊招): 物理反击,魔法反击,物理连击,物理追击,法术连击
+		optional bool bDefense = 20; 	//是否防御
+		repeated _ITEM tAward = 21; 	//摄魂奖励
+		repeated _ITEM tSubItem = 22; 	//摄魂扣除
+		repeated _ITEM tCurItem = 23; 	//摄魂当前
+		optional int32 nMP = 24; 		//魔法变化
 	}
 	required int32 nRound = 1;	 	//回合
 	required int32 nRoundTime = 2;  //回合时间(秒)
 	repeated _ACT tAction = 3; 		//动作表
 }
+
+//技能列表请求
+message BattleSkillListReq
+{
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nUnitID = 2; 	//单位ID
+}
+
+//技能列表返回
+message BattleSkillListRet
+{
+	repeated _SKILL tList = 1; 		//普通技能
+	repeated _SKILL tFBList = 2; 	//法宝技能(角色)
+	required int32 nUnitID = 3; 	//单位ID
+}
+
+//药品列表请求
+message BattlePropListReq
+{
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nUnitID = 2; 	//单位ID(角色或宠物)
+}
+
+//药品列表返回
+message BattlePropListRet
+{
+	message _ITEM	
+	{
+		required int32 nGrid = 1; 	//格子ID
+		required int32 nID = 2; 	//物品ID
+		required int32 nNum = 3; 	//物品数量
+		optional int32 nStar = 4; 	//品质
+		optional string sEffect = 5;//效果
+	}
+	repeated _ITEM tList = 1; 	//物品列表
+	optional int32 nRemains = 2; //剩余可使用次数
+}
+
+//客户端播放回合完成请求
+message RoundPlayFinishReq
+{
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nUnitID = 2; 	//单位ID(角色)
+}
+
+//单位用到技能推送(客户端预加载)
+message BattlePreloadSkillRet
+{
+	message _UNIT
+	{
+		required int32 nUnitID = 1; 	//单位ID
+		repeated int32 tSkillList = 2; 	//技能ID列表
+	}	
+	repeated _UNIT tList = 1; 		//单位列表
+}
+
+//宠物列表请求
+message BattlePetListReq
+{
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nUnitID = 2; 	//单位ID(角色或宠物)
+}
+
+//宠物列表返回
+message BattlePetListRet
+{
+	message _PET
+	{
+		required int32 nPosID = 1; 	//宠物格子ID
+		required int32 nPetID = 2; 	//宠物ID
+		optional bool bUsed = 3; 	//是否已出战过 
+	}
+	repeated _PET tList = 1; 		//宠物列表
+	required int32 nRemains = 2;	//剩余可召唤数量
+}
+
+//客户端撤退播放完毕
+message BattleEscapeFinishReq
+{
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nUnitID = 2; 	//单位ID(角色或宠物)
+}
+
+//自动战斗可操作列表请求
+message BattleAutoInstListReq
+{
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nUnitID = 2; 	//单位ID(角色或宠物)
+}
+
+//自动战斗可操作列表返回
+message BattleAutoInstListRet
+{
+	message _AUTOINST
+	{
+		required int32 nInst = 1; 		//指令:1法术; 2普攻; 6防御
+		optional _SKILL tSkill = 2; 	//技能
+	}
+	required int32 nUnitID = 1; 		//单位ID
+	repeated _AUTOINST tInstList = 2;	//列表
+}
+
+//自动战斗设置指令请求
+message BattleSetAutoInstReq
+{
+	required double nBattleID = 1; 	//战斗ID
+	required int32 nUnitID = 2; 	//单位ID(角色或宠物)
+	required int32 nInst = 3; 		//指令:1法术; 2普攻; 6防御
+	optional int32 nSkillID = 4; 	//技能ID
+}
+
+//自动战斗已设置指令返回
+message BattleSetAutoInstRet
+{
+	message _AUTOINST
+	{
+		required int32 nUnitID = 1; 	//单位ID(角色或宠物)
+		required int32 nInst = 2; 		//指令:1法术; 2普攻; 6防御
+		optional _SKILL tSkill = 3; 	//技能
+	}		
+	repeated _AUTOINST tInstList = 1; 	//列表
+}
+
+//战斗指挥信息请求
+message BattleCommandInfoReq
+{
+	required int32 nUnitID = 1; 		//目标单位
+}
+
+//战斗指挥信息返回
+message BattleCommandInfoRet
+{
+	message BUFF
+	{
+		required int32 nID = 1;	 		//ID
+		required string sName = 2; 		//名字
+		required int32 nType = 3; 		//BUFF类型
+		required int32 nRounds = 4; 	//剩余回合
+		required string sDesc = 5; 		//描述
+	}
+	message FMT
+	{
+		message ATTR
+		{
+			required int32 nID = 1; 	//属性ID
+			required int32 nVal = 2; 	//属性值
+		}
+		required int32 nFmtID = 1; 		//阵法ID
+		required int32 nUnitPos = 2;  	//位置
+		required string sName = 3; 		//阵法名字
+		repeated ATTR tAtrrList = 4; 	//加成列表
+	}
+	message CMD
+	{
+		required int32 nID = 1; 		//指挥ID
+		required string sName = 2; 		//指挥名字
+	}
+	required int32 nUnitID = 1; 			//单位ID
+	required int32 nLevel = 2; 				//等级
+	required string sName = 3; 				//名字
+	required int32 nSchool = 4; 			//门派
+	required int32 nCurrHP = 5; 			//当前血量
+	required int32 nMaxHP = 6; 				//血量上限
+	required int32 nCurrMP = 7; 			//当前魔法
+	required int32 nMaxMP = 8;  			//魔法上限
+	repeated BUFF tBuffList = 9; 			//BUFF列表
+	optional FMT tFmtInfo = 10; 		 	//阵法信息,可能没有
+	repeated CMD tEnemyCommandList = 11; 	//敌方指挥指令,队长才会有
+	repeated CMD tFriendCommandList = 12;	//己方指挥指令,队长才会有
+}
+
+
+//编辑战斗指挥指令请求
+message ChangeBattleCommandReq
+{
+	required int32 nCmdID = 1;	 			//指挥ID: 敌方[101-112]; 己方[201-212]
+	required string sCmdName = 2; 			//指挥名字
+}
+
+//编辑战斗指挥指令成功返回
+message ChangeBattleCommandRet
+{
+	required int32 nCmdID = 1;	 			//指挥ID
+	required string sCmdName = 2; 			//指挥名字
+}
+
+//设置指挥指令请求
+message SetBattleCommandReq
+{
+	required int32 nCmdID = 1;	 			//指挥ID
+	required int32 nUnitID = 2; 			//目标单位
+}
+
+//设置指挥指令返回(广播)
+message SetBattleCommandRet
+{
+	required int32 nSrcUnitID = 1;			//下达指挥单位
+	required int32 nUnitID = 2; 			//目标单位
+	required int32 nCmdID = 3; 				//指挥ID
+	required string sCmdName = 4; 			//指挥名字
+}
+

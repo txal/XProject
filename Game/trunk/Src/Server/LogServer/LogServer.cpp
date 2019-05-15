@@ -29,7 +29,7 @@ bool LogServer::Init(int8_t nServiceID)
 	{
 		return false;
 	}
-	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 1024, &m_oNetEventHandler);
+	m_poInnerNet = INet::CreateNet(NET_TYPE_INTERNAL, nServiceID, 8, &m_oNetEventHandler);
 	if (m_poInnerNet == NULL)
 	{
 		return false;
@@ -58,6 +58,7 @@ bool LogServer::Start()
 	{
 		ProcessNetEvent(10);
 		int64_t nNowMS = XTime::MSTime();
+		Service::Update(nNowMS);
 		ProcessTimer(nNowMS);
 	}
 	return true;

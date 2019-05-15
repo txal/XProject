@@ -5,19 +5,9 @@ cjson_raw.encode_sparse_array(true, 1, 1) --稀疏表转换成对象
 
 --打开协议
 local function OpenProto()
-    local f = io.open("protopath.txt", "r")
-    if not f then
-        require("../../Data/Protobuf/LoadPBCProto")
-        LoadProto("../../Data/Protobuf")
-        return
-    else
-        local sLoaderPath = f:read("l")
-        local sProtoPath = f:read("l")
-        f:close()
-        require(sLoaderPath)
-        LoadProto(sProtoPath)
-        return
-    end
+    local sDir = gsDataPath and gsDataPath or "../../"
+    require(sDir.."/Data/Protobuf/LoadPBCProto")
+    LoadProto(sDir.."/Data/Protobuf")
 end
 
 --Common script
@@ -34,30 +24,42 @@ require = function(sScript)
 end
 require("GMMgr/GMMgrInc")
 require("LoginMgr/LoginMgrInc")
+require("MainRpc")
+require("Watcher")
 
 --全局初始化
 local function _InitGlobal()
-    goRemoteCall:Init()
-    goDBMgr:Init()
+    goDBMgr:InitNew()
+    goServerMgr:InitNew(gnServerID)
     
+    goRemoteCall:Init()
+    goWatcher:Init()
 end
 
 --全局反初始化
 local function _UninitGlobal()
     local bSuccess = true
     local function fnError(sErr)
-        bSuccess=false
+        bSuccess = false
         LuaTrace(sErr, debug.traceback())
     end
 
+    xpcall(function() goDBMgr:OnRelease() end, fnError)
+    xpcall(function() goServerMgr:OnRelease() end, fnError)
     xpcall(function() goRemoteCall:OnRelease() end, fnError)
+    xpcall(function() goLoginMgr:OnRelease() end, fnError)
+    xpcall(function() goWatcher:SignOut() end, fnError)
     return bSuccess
 end
 
 
-local nGCTime = 180 --秒
+local nGCTime = 1800 --秒
 local function _LuaGC()
+    local nClock = os.clock() 
     collectgarbage()
+    local sCostTime = string.format("%.4f", os.clock() - nClock)
+    local nLuaMemery = math.floor((collectgarbage("count")/1024))
+    LuaTrace("Lua memory: ", nLuaMemery, "M time:", sCostTime, " timers:", goTimerMgr:TimerCount())
 end	
 
 gnGCTimer = gnGCTimer
@@ -67,20 +69,31 @@ function Main()
     collectgarbage("setstepmul", 300)
     collectgarbage()
     gnGCTimer = goTimerMgr:Interval(nGCTime, function() _LuaGC() end)
+
+    --屏蔽非法字接口
+    GlobalExport.HasWord = nil
+    -- for _, tConf in pairs(ctKeywordConf) do
+    --     GlobalExport.AddWord(tConf.sKey)
+    -- end
+    
     LuaTrace("启动 LoginServer 完成******")
-    Test()
 end
 
-function OnExitServer()
-    LuaTrace("OnExitServer start***")
-    goTimerMgr:Clear(gnGCTimer)
+function OnExitServer(nServer, nService)
+    LuaTrace("服务器关闭------beg", nServer, nService)
+    gbServerClosing = true
+    --所有帐户断线处理
+    goLoginMgr:OnServerClose(nServer)
+    --全局模块释放
     local bSuccess = _UninitGlobal()
     assert(bSuccess, "注意！！！关服报错了！！！")
-    if goTimerMgr:TimerCount() > 0 then
+
+    goTimerMgr:Clear(gnGCTimer)
+    if goTimerMgr:TimerCount() > 0 then 
+        goTimerMgr:DebugLog()
         assert(false, "！！！计时器泄漏！！！剩余:"..goTimerMgr:TimerCount())
     end
-    LuaTrace("OnExitServer finish***")
-    os.exit()
+    LuaTrace("服务器关闭------end")
 end
 
 function Test()

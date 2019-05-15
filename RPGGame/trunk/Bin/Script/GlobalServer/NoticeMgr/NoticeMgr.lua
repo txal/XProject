@@ -1,61 +1,35 @@
 --滚动公告管理模块
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
-local nAutoSaveTime = 5*60 	--自动保存时间
-local nServerID = gnServerID
-
 function CNoticeMgr:Ctor()
-	self.m_tNoticeMap = {} 	--{[id]={nStartTime=0, nEndTime=0, nInterval=0, nLastTime=0, sCont=""}, ...}
+	self.m_tNoticeMap = {} 	--{[id]={nBeginTime=0, nEndTime=0, nInterval=0, nLastTime=0, nVIP=0, sCont=""}, ...}
+	self.m_tNoticeTick = {} --{[id]=tickid, ...}
+	self.m_nUpdateTimer = nil
 
 	--不保存
-	self.m_bDirty = false
-	self.m_nSaveTimer = nil
-	self.m_tNoticeTick = {} --{[id]=tickid, ...}
+	-- self.m_bDirty = false
+	-- self.m_nSaveTimer = nil
 end
 
 function CNoticeMgr:LoadData()
-	local sData = goDBMgr:GetSSDB(nServerID, "global"):HGet(gtDBDef.sNoticeDB, "data")
-	if sData ~= "" then
-		local nNowSec = os.time()
-		local tData = cjson.decode(sData)
-		for nID, tNotice in pairs(tData.m_tNoticeMap) do
-			if tNotice.nEndTime > nNowSec then --没结束得才加载
-				self.m_tNoticeMap[nID] = tNotice
-
-			else --有已结束的要保存
-				print("公告过期:", nID, tNotice)
-				self:MarkDirty(true)
-
-			end
-		end
-	end
 	self:OnLoaded()
 end
 
 function CNoticeMgr:OnLoaded()
-	for nID, tNotice in pairs(self.m_tNoticeMap) do
-		self.m_tNoticeTick[nID] = goTimerMgr:Interval(tNotice.nInterval, function() self:OnNoticeTimer(nID) end)
-	end
-	self.m_nSaveTimer = goTimerMgr:Interval(nAutoSaveTime, function() self:SaveData() end)
+	self.m_nUpdateTimer = goTimerMgr:Interval(60, function() self:OnUpdateTimer() end)
 end
 
 function CNoticeMgr:SaveData()
-	if not self:IsDirty() then
-		return
-	end
-	self:MarkDirty(false)
-
-	local tData = {}
-	tData.m_tNoticeMap = self.m_tNoticeMap
-	goDBMgr:GetSSDB(nServerID, "global"):HSet(gtDBDef.sNoticeDB, "data", cjson.encode(tData))
 end
 
 function CNoticeMgr:OnRelease()
-	self:SaveData()
+	-- self:SaveData()
+	-- goTimerMgr:Clear(self.m_nSaveTimer)
+	-- self.m_nSaveTimer = nil
 
-	goTimerMgr:Clear(self.m_nSaveTimer)
-	self.m_nSaveTimer = nil
-	
+	goTimerMgr:Clear(self.m_nUpdateTimer)
+	self.m_nUpdateTimer = nil
+
 	for nID, nTimer in pairs(self.m_tNoticeTick) do
 		goTimerMgr:Clear(nTimer)
 	end
@@ -72,19 +46,52 @@ function CNoticeMgr:DoNotice(nID)
 	if not tNotice then
 		return
 	end
-	CmdNet.PBSrv2All("NoticeRet", {sCont=tNotice.sCont})
+
+	local function _fnCondSessionList(nSource, nVIP)
+		local function _fnCondCheck(oRole)
+			if nSource > 0 and nVIP > 0 then
+				if oRole:GetSource() == nSource and oRole:GetVIP() >= nVIP then
+					return true
+				end
+			elseif nSource > 0 then
+				if oRole:GetSource() == nSource then
+					return true
+				end
+			elseif nVIP > 0 then
+				if oRole:GetVIP() >= nVIP then
+					return true
+				end
+			else
+				assert(false, "参数错误:"..nSource.."-"..nVIP)
+			end
+		end
+		local tSessionList = {}
+		local tSSMap = goGPlayerMgr:GetRoleSSMap()
+		for nSS, oRole in pairs(tSSMap) do
+			if oRole:IsOnlnie() and _fnCondCheck(oRole) then
+				tSessionList[#tSessionList] = oRole:GetServer()
+				tSessionList[#tSessionList] = oRole:GetSession()
+			end
+		end
+		return tSessionList
+	end
+
+	if tNotice.nVIP > 0 or tNotice.nSource > 0 then
+		local tSessionList = _fnCondSessionList(tNotice.nVIP, tNotice.nSource)
+		CmdNet.PBBroadcastExter("ScrollNoticeRet", tSessionList, {sCont=tNotice.sCont})
+	else
+		CmdNet.PBSrv2All("ScrollNoticeRet", {sCont=tNotice.sCont})
+	end
 end
 
 --移除公告
 function CNoticeMgr:RemoveNotice(nID)
 	if self.m_tNoticeMap[nID] then
 		self.m_tNoticeMap[nID] = nil
-		self:MarkDirty(true)
 
 		goTimerMgr:Clear(self.m_tNoticeTick[nID])
 		self.m_tNoticeTick[nID] = nil
 	end
-	return true
 end
 
 --公告到时
@@ -94,7 +101,7 @@ function CNoticeMgr:OnNoticeTimer(nID)
 		return
 	end
 	local nNowSec = os.time()
-	if nNowSec < tNotice.nStartTime then
+	if nNowSec < tNotice.nBeginTime then
 		return
 	end
 	if nNowSec - tNotice.nLastTime < tNotice.nInterval then
@@ -105,23 +112,47 @@ function CNoticeMgr:OnNoticeTimer(nID)
 		self:RemoveNotice(nID)
 	else
 		tNotice.nLastTime = nNowSec
-		self:MarkDirty(true)
+		goTimerMgr:Clear(self.m_tNoticeTick[nID])
+		self.m_tNoticeTick[nID] = goTimerMgr:Interval(tNotice.nInterval, function() self:OnNoticeTimer(nID) end)
 	end
 end
 
---GM发公告
-function CNoticeMgr:GMSendNotice(nID, nStartTime, nEndTime, nInterval, sCont)
-	if nID <= 0 or nInterval <= 0 or sCont =="" or not (nStartTime and nEndTime) then
-		return LuaTrace("发送公告失败:", nID, nStartTime, nEndTime, nInterval, sCont)
+--更新跑马灯公告,只能新增和删除,不能修改
+function CNoticeMgr:OnUpdateTimer()
+	local oMysql = goDBMgr:GetMgrMysql()
+	local sSqlFmt = "select id,`source`,`content`,`interval`,begintime,endtime,vip from notice where serverid in(0,%d) and endtime>%d and `interval`>0;"
+	local sSql = string.format(sSqlFmt, gnServerID, os.time())
+	if not oMysql:Query(sSql) then
+		return
 	end
-	self.m_tNoticeMap[nID] = {nStartTime=nStartTime, nEndTime=nEndTime, nInterval=nInterval, sCont=sCont, nLastTime=0}
-	if self.m_tNoticeTick[nID] then
-		goTimerMgr:Clear(self.m_tNoticeTick[nID])
+	local tNoticeList = {}
+	while oMysql:FetchRow() do
+		local sCont = oMysql:ToString("content")
+		local nID, nSource, nInterval, nBeginTime, nEndTime, nVIP = oMysql:ToInt32("id", "source", "interval", "begintime", "endtime", "vip")
+		table.insert(tNoticeList, nID)
+
+		if not self.m_tNoticeMap[nID] then
+			self.m_tNoticeMap[nID] = {nBeginTime=nBeginTime, nEndTime=nEndTime, nInterval=nInterval, sCont=sCont, nLastTime=0, nVIP=nVIP, nSource=nSource}
+			local nTimerInterval = math.max(os.time()-nBeginTime, nInterval)
+			self.m_tNoticeTick[nID] = goTimerMgr:Interval(nTimerInterval, function() self:OnNoticeTimer(nID) end)
+			self:OnNoticeTimer(nID)
+		end
 	end
-	self.m_tNoticeTick[nID] = goTimerMgr:Interval(nInterval, function() self:OnNoticeTimer(nID) end)
-	self:OnNoticeTimer(nID)
-	self:MarkDirty(true)
-	return true
+	for nID, tNotice in pairs(self.m_tNoticeMap) do
+		if not table.InArray(nID, tNoticeList) then
+			self:RemoveNotice(nID)
+		end
+	end
+end
+
+--后台调用
+function CNoticeMgr:BrowserSendNotice(nID, nStartTime, nEndTime, nInterval, sCont)
+end
+
+--游戏内部发公告
+function CNoticeMgr:SendNoticeReq(sCont)
+	print("CNoticeMgr:SendNoticeReq***", sCont)
+	CmdNet.PBSrv2All("ScrollNoticeRet", {sCont=sCont})
 end
 
 goNoticeMgr = goNoticeMgr or CNoticeMgr:new()

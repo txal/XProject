@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>AutoBVT</Author>
+  <LastAuthor>DM-PC092</LastAuthor>
+  <Created>2018-05-25T08:27:44Z</Created>
+  <LastSaved>2019-01-11T12:00:50Z</LastSaved>
+  <Company>Microsoft</Company>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>7896</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62" ss:Name="常规 4">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+  </Style>
+  <Style ss:ID="s65" ss:Parent="s62">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctPVPActivityConf">
+  <Table ss:ExpandedColumnCount="28" ss:ExpandedRowCount="8" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:Width="96.6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="156"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="76.8" ss:Span="1"/>
+   <Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="105.6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="74.400000000000006"/>
+   <Column ss:Width="76.8"/>
+   <Column ss:Width="96.6"/>
+   <Column ss:Width="78"/>
+   <Column ss:AutoFitWidth="0" ss:Width="95.399999999999991"/>
+   <Column ss:AutoFitWidth="0" ss:Width="80.400000000000006"/>
+   <Column ss:AutoFitWidth="0" ss:Width="70.8"/>
+   <Column ss:AutoFitWidth="0" ss:Width="64.8"/>
+   <Column ss:AutoFitWidth="0" ss:Width="78"/>
+   <Column ss:AutoFitWidth="0" ss:Width="88.800000000000011" ss:Span="1"/>
+   <Column ss:Index="18" ss:AutoFitWidth="0" ss:Width="107.4"/>
+   <Column ss:AutoFitWidth="0" ss:Width="77.399999999999991"/>
+   <Column ss:AutoFitWidth="0" ss:Width="92.4"/>
+   <Column ss:AutoFitWidth="0" ss:Width="93" ss:Span="1"/>
+   <Column ss:Index="23" ss:AutoFitWidth="0" ss:Width="111"/>
+   <Column ss:AutoFitWidth="0" ss:Width="85.8"/>
+   <Column ss:Index="26" ss:AutoFitWidth="0" ss:Width="84"/>
+   <Column ss:AutoFitWidth="0" ss:Width="111"/>
+   <Column ss:AutoFitWidth="0" ss:Width="90.6"/>
+   <Row ss:AutoFitHeight="0" ss:Height="111.75">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="String">1首席争霸&#10;2八方会武&#10;3雷霆之战&#10;4帮战</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s63"><Data ss:Type="String">0不带&#10;1带</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">nEnemy为敌方队伍人数</Data></Cell>
+    <Cell ss:Index="23"><Data ss:Type="String">nEnemy为敌方队伍人数</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nPVPActivityID</Data></Cell>
+    <Cell><Data ss:Type="String">sActivityName</Data></Cell>
+    <Cell><Data ss:Type="String">nActivityType</Data></Cell>
+    <Cell><Data ss:Type="String">nScheduleID</Data></Cell>
+    <Cell><Data ss:Type="String">tSceneID</Data></Cell>
+    <Cell><Data ss:Type="String">nMaxJoinNum</Data></Cell>
+    <Cell><Data ss:Type="String">bAutoMatch</Data></Cell>
+    <Cell><Data ss:Type="String">nLimitLevel</Data></Cell>
+    <Cell><Data ss:Type="String">bPartnerPermit</Data></Cell>
+    <Cell><Data ss:Type="String">bTeamPermit</Data></Cell>
+    <Cell><Data ss:Type="String">nDefaultScore</Data></Cell>
+    <Cell><Data ss:Type="String">nWinScore</Data></Cell>
+    <Cell><Data ss:Type="String">nFailScore</Data></Cell>
+    <Cell><Data ss:Type="String">tWinAward</Data></Cell>
+    <Cell><Data ss:Type="String">fnWinRoleExp</Data></Cell>
+    <Cell><Data ss:Type="String">fnWinPetExp</Data></Cell>
+    <Cell><Data ss:Type="String">nWinSilverCoin</Data></Cell>
+    <Cell><Data ss:Type="String">nWinPvpPoints</Data></Cell>
+    <Cell><Data ss:Type="String">tFailAward</Data></Cell>
+    <Cell><Data ss:Type="String">fnFailRoleExp</Data></Cell>
+    <Cell><Data ss:Type="String">fnFailPetExp</Data></Cell>
+    <Cell><Data ss:Type="String">nFailSilverCoin</Data></Cell>
+    <Cell><Data ss:Type="String">nFailPvpPoints</Data></Cell>
+    <Cell><Data ss:Type="String">nRankAward</Data></Cell>
+    <Cell><Data ss:Type="String">nNpcID</Data></Cell>
+    <Cell><Data ss:Type="String">nWinWaitTime</Data></Cell>
+    <Cell><Data ss:Type="String">nFailedWaitTime</Data></Cell>
+    <Cell><Data ss:Type="String">nRobotNum</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">b</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">b</Data></Cell>
+    <Cell><Data ss:Type="String">b</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{i}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">t{i}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">PVP活动ID</Data></Cell>
+    <Cell><Data ss:Type="String">活动名称</Data></Cell>
+    <Cell><Data ss:Type="String">活动类型</Data></Cell>
+    <Cell><Data ss:Type="String">日程ID</Data></Cell>
+    <Cell><Data ss:Type="String">场景ID,门派</Data></Cell>
+    <Cell><Data ss:Type="String">活动最大参与人数</Data></Cell>
+    <Cell><Data ss:Type="String">是否自动匹配</Data></Cell>
+    <Cell><Data ss:Type="String">最低等级</Data></Cell>
+    <Cell><Data ss:Type="String">是否带仙侣</Data></Cell>
+    <Cell><Data ss:Type="String">是否允许组队</Data></Cell>
+    <Cell><Data ss:Type="String">初始默认积分</Data></Cell>
+    <Cell><Data ss:Type="String">胜利获得积分</Data></Cell>
+    <Cell><Data ss:Type="String">失败获得积分</Data></Cell>
+    <Cell><Data ss:Type="String">胜利奖励</Data></Cell>
+    <Cell><Data ss:Type="String">胜利获得角色经验</Data></Cell>
+    <Cell><Data ss:Type="String">胜利获得宠物经验</Data></Cell>
+    <Cell><Data ss:Type="String">胜利银币奖励</Data></Cell>
+    <Cell><Data ss:Type="String">胜利竞技积分奖励</Data></Cell>
+    <Cell><Data ss:Type="String">失败奖励</Data></Cell>
+    <Cell><Data ss:Type="String">失败获得角色经验</Data></Cell>
+    <Cell><Data ss:Type="String">失败获得宠物经验</Data></Cell>
+    <Cell><Data ss:Type="String">失败银币奖励</Data></Cell>
+    <Cell><Data ss:Type="String">失败竞技积分奖励</Data></Cell>
+    <Cell><Data ss:Type="String">排名奖励</Data></Cell>
+    <Cell><Data ss:Type="String">NPC编号</Data></Cell>
+    <Cell><Data ss:Type="String">胜利时进战保护时长</Data></Cell>
+    <Cell><Data ss:Type="String">失败时进战保护时长</Data></Cell>
+    <Cell><Data ss:Type="String">投放的机器人数量</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1001</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">首席竞赛</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1001</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">10601,1;10602,3;10603,4;10604,2;10605,5;</Data></Cell>
+    <Cell><Data ss:Type="Number">300</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">100</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell><Data ss:Type="Number">-50</Data></Cell>
+    <Cell><Data ss:Type="String">3000;</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*150+500</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*120+400</Data></Cell>
+    <Cell><Data ss:Type="Number">50000</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+    <Cell><Data ss:Type="String">3000;</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*75+250</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*60+200</Data></Cell>
+    <Cell><Data ss:Type="Number">25000</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">5009</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1002</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">八方会武</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">1002</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">10801,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">300</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">100</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell><Data ss:Type="Number">-50</Data></Cell>
+    <Cell><Data ss:Type="String">3000;</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*150+500</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*120+400</Data></Cell>
+    <Cell><Data ss:Type="Number">50000</Data></Cell>
+    <Cell><Data ss:Type="String">nEnemy*2+10</Data></Cell>
+    <Cell><Data ss:Type="String">3000;</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*75+250</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*60+200</Data></Cell>
+    <Cell><Data ss:Type="Number">25000</Data></Cell>
+    <Cell><Data ss:Type="String">nEnemy+5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5011</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1003</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">雷霆之战</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">1003</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">10901,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">300</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">100</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell><Data ss:Type="Number">-50</Data></Cell>
+    <Cell><Data ss:Type="String">3000;</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*150+500</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*120+400</Data></Cell>
+    <Cell><Data ss:Type="Number">50000</Data></Cell>
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="String">3000;</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*75+250</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*60+200</Data></Cell>
+    <Cell><Data ss:Type="Number">25000</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">5012</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1004</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">帮战</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1004</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">13,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">300</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">200</Data></Cell>
+    <Cell><Data ss:Type="Number">-10</Data></Cell>
+    <Cell><Data ss:Type="Number">-50</Data></Cell>
+    <Cell><Data ss:Type="String">3000;</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*150+500</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*120+400</Data></Cell>
+    <Cell><Data ss:Type="Number">50000</Data></Cell>
+    <Cell><Data ss:Type="String">nEnemy*5</Data></Cell>
+    <Cell><Data ss:Type="String">3000;</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*75+250</Data></Cell>
+    <Cell><Data ss:Type="String">Lv*60+200</Data></Cell>
+    <Cell><Data ss:Type="Number">25000</Data></Cell>
+    <Cell><Data ss:Type="String">nEnemy*2</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">5010</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>13</ActiveRow>
+     <ActiveCol>8</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

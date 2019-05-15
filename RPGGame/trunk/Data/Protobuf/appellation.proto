@@ -1,0 +1,73 @@
+//称谓协议
+package appellation;
+
+
+//称谓数据请求
+message AppellationDataReq
+{
+}
+
+//称谓具体数据
+message AppellationData
+{
+    required int32 nID = 1;            //称谓ID
+    required int32 nConfID = 2;        //称谓配置id
+    repeated string tNameParam = 3;    //名称参数
+    required int32 nTimeStamp = 4;     //获得称号时间戳
+    optional int32 nExpiryTime = 5;    //过期失效时间戳
+    // optional bool bEquiped = 6;        //是否装备  --客户端自己根据当前装备的称号判断吧
+}
+
+//称谓数据响应
+message AppellationDataRet
+{
+    repeated AppellationData tAppellationList = 1;  //称谓列表
+    optional AppellationData tDisplay = 2;          //当前显示的称谓
+    optional int32 nAttrAppeID = 3;                 //当前激活属性的称谓ID, 0未激活
+}
+
+//新增称谓通知
+message AppellationAddRet
+{
+    required AppellationData tAppellation = 1;     //称谓信息
+}
+
+//称谓数据更新通知
+message AppellationUpdateRet
+{
+    required AppellationData tAppellation = 1;    //称谓信息
+}
+
+//删除称谓通知
+message AppellationRemoveRet
+{
+    required int32 nID = 1;         //称谓ID
+}
+
+//装备称谓请求
+message AppellationDisplayReq
+{
+    required int32 nID = 1;         //称谓ID， 0表示取消当前显示的称谓
+}
+
+//装备称谓响应
+message AppellationDisplayRet
+{
+    optional AppellationData tAppellation = 1;  //当前显示的称谓，如果空，说明当前没装备
+    optional bool bActive = 2;                  //是否主动操作
+}
+
+//称谓属性激活请求
+message AppellationAttrSetReq
+{
+    required int32 nID = 1;         //称谓ID，0表示取消激活称谓属性
+}
+
+//称谓属性激活响应
+message AppellationAttrSetRet
+{
+    optional int32 nID = 1;         //称谓ID，0或者空，当前没有激活属性的称谓
+    optional int32 nOldID = 2;      //原激活的属性称谓
+}
+
+

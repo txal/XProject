@@ -445,7 +445,8 @@ function M.decode(typename, buffer, length)
 	if ok then
 		return setmetatable(ret , default_table(typename))
 	else
-		return false , c._last_error(P)
+		-- return false, c._last_error(P)
+		assert(false , string.format("<%s>协议解析错误, <%s>", tostring(typename), c._last_error(P)))
 	end
 end
 
