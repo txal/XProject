@@ -4,6 +4,7 @@
 HttpServer::HttpServer()
 {
 	m_bStop = true;
+	m_pMGConn = NULL;
 }
 HttpServer::~HttpServer()
 {

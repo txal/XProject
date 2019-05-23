@@ -62,7 +62,13 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
     assert(poPacket != NULL && oNaviList.Size() > 0);
 	Service* poService = g_poContext->GetService();
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
-	if (poService == NULL || poRouter == NULL)
+	if (poService == NULL)
+	{
+		poPacket->Release(__FILE__, __LINE__);
+		return false;
+	}
+	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
+	if (poRouter == NULL)
 	{
 		poPacket->Release(__FILE__, __LINE__);
 		return false;
@@ -133,8 +139,13 @@ bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 {
 	assert(poPacket != NULL);
 	Service* poService = g_poContext->GetService();
+	if (poService == NULL)
+	{
+		poPacket->Release(__FILE__, __LINE__);
+		return false;
+	}
 	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
-	if (poService == NULL || poRouter == NULL)
+	if (poRouter == NULL)
 	{
 		poPacket->Release(__FILE__, __LINE__);
 		return false;

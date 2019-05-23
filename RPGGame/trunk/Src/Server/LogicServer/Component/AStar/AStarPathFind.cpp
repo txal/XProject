@@ -79,11 +79,11 @@ int AStarPathFind::GetG(int nStartX, int nStartY, int nEndX, int nEndY)
 
 bool AStarPathFind::CanWalk(int nX, int nY)
 {
-    if (nX < 0 || nX >= m_poMapConf->nUnitNumX || nY < 0 || nY >= m_poMapConf->nUnitNumY)
+    if (m_poMapConf == NULL)
     {
         return false;
     }
-    if (m_poMapConf == NULL)
+    if (nX < 0 || nX >= m_poMapConf->nUnitNumX || nY < 0 || nY >= m_poMapConf->nUnitNumY)
     {
         return false;
     }
