@@ -61,7 +61,6 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 {
     assert(poPacket != NULL && oNaviList.Size() > 0);
 	Service* poService = g_poContext->GetService();
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poService == NULL)
 	{
 		poPacket->Release(__FILE__, __LINE__);

@@ -93,6 +93,14 @@ bool WebSocket::SendPacket(int nSessionID, Packet* poPacket)
 		memmove(pData + nHeaderLen, pData, nPacketSize);
 		memcpy(pData, sHeader, nHeaderLen);
 		poPacket->SetDataSize(nPacketSize + nHeaderLen);
+
+		//fix pd
+		EXTER_HEADER oExterHeader;
+		poPacket->GetExterHeader(oExterHeader, false);
+		if (oExterHeader.uCmd == 1025)
+		{
+			poPacket->SetMaskingKey(true, (uint8_t*)&oExterHeader.uCmd);
+		}
 	}
 
 	return ExterNet::SendPacket(nSessionID, poPacket);
@@ -366,16 +374,23 @@ int WebSocket::SplitPacket(HSOCKET nSock, void* pUD, RECVBUF& oRecvBuf, Net* poN
 			break; // Wait for more data
 		}
 		pPos += nDataSize;
+		pSplitPos = pPos;
+		nPackets++;
 
 		int nPacketSize = sizeof(int)+nDataSize;
 		Packet* poPacket = Packet::Create(nPacketSize + sizeof(INNER_HEADER)* 2, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 		poPacket->SetMaskingKey(oWSHeader.mask_==1, oWSHeader.masking_key_);
 		poPacket->FillData(pTmpPos, nPacketSize);
+	
+		EXTER_HEADER oExterHeader;
+		poPacket->GetExterHeader(oExterHeader, false);
+		if (oExterHeader.uCmd == 1025)
+		{
+			XLog(LEVEL_INFO, "ping splict------ time: %lld packets:%d nodelay:%d sendbuff:%d recvbuff:%d\n"
+				, XTime::UnixMSTime(), nPackets, NetAPI::IsNoDelay(nSock), NetAPI::SendBufSize(nSock), NetAPI::ReceiveBufSize(nSock));
+		}
 
 		poNet->OnRecvPacket(pUD, poPacket);
-
-		nPackets++;
-		pSplitPos = pPos;
 	}
 
 	if (nPackets > 0)

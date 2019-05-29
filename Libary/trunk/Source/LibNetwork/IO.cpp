@@ -1,4 +1,6 @@
-﻿#include "LibNetwork/Net.h"
+﻿#include "Common/DataStruct/XTime.h"
+#include "Include/Network/NetAPI.h"
+#include "LibNetwork/Net.h"
 #include "LibNetwork/IO.h"
 
 //默认的切包函数
@@ -58,7 +60,8 @@ int IORead(HSOCKET nSock, void* pUD, RECVBUF& oRecvBuf, Net* poNet, int nMaxRead
 	uint8_t* pEnd = oRecvBuf.pBuf + oRecvBuf.nSize;
 	for (;;)
 	{
-		int nReaded = ::recv(nSock, (char*)oRecvBuf.pPos, (int)(pEnd - oRecvBuf.pPos), 0);
+		int nCapacity = (pEnd - oRecvBuf.pPos);
+		int nReaded = ::recv(nSock, (char*)oRecvBuf.pPos, (int)nCapacity, 0);
 		if (nReaded <= 0)
 		{
 			// Common close
@@ -152,6 +155,16 @@ int IOWrite(HSOCKET nSock, MsgList* poMsgList, uint32_t nMaxWritePerEvent, uint3
 			{
 				poPacket->SetSentSize(0);
 			}
+			
+			if (poPacket->IsMasking())
+			{
+				uint16_t uCmd = *(uint16_t*)poPacket->GetMaskingKey();
+				if (uCmd == 1025)
+				{
+					XLog(LEVEL_INFO, "gate network sent mstime:%lld ref:%d nodelay:%d cork:%d\n", XTime::UnixMSTime(), poPacket->GetRef(), NetAPI::IsNoDelay(nSock), NetAPI::IsCork(nSock));
+				}
+			}
+
 			poPacket->Release(__FILE__, __LINE__);
 			(*pSentPackets)++;
 		}

@@ -14,7 +14,9 @@ namespace NetAPI
 	bool ReuseAddr(HSOCKET nSock);
 	bool NonBlock(HSOCKET nSock);
 	bool NoDelay(HSOCKET nSock);
+	bool IsNoDelay(HSOCKET nSock);
 	bool Linger(HSOCKET nSock);
+	bool IsCork(HSOCKET hSock);
 
 	bool Bind(HSOCKET nServerSock, uint32_t nIP, uint16_t nPort);
 	bool Listen(HSOCKET nServerSock);

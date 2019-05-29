@@ -101,8 +101,8 @@ bool NetAPI::ReuseAddr(HSOCKET hSock)
 
 bool NetAPI::NoDelay(HSOCKET hSock)
 {
-	int nNoDelay = 1;
-	int nRet = setsockopt(hSock, IPPROTO_TCP, TCP_NODELAY, (char*)&nNoDelay, sizeof(nNoDelay));
+	int nOptValue = 1;
+	int nRet = setsockopt(hSock, IPPROTO_TCP, TCP_NODELAY, (char*)&nOptValue, sizeof(nOptValue));
 	if (nRet == SOCKET_ERROR)
 	{
 #ifdef __linux
@@ -115,6 +115,40 @@ bool NetAPI::NoDelay(HSOCKET hSock)
 		return false;
 	}
 	return true;
+}
+
+bool NetAPI::IsNoDelay(HSOCKET hSock) {
+	int nOptValue = 0;
+	socklen_t nOptLen = sizeof(nOptValue);
+	int nRet = getsockopt(hSock, IPPROTO_TCP, TCP_NODELAY, (char*)&nOptValue, &nOptLen);
+	if (nRet == SOCKET_ERROR)
+	{
+#ifdef __linux
+		const char* psErr = strerror(errno);
+		XLog(LEVEL_ERROR, LOG_ADDR"%s\n", psErr);
+#else
+		const char* psErr = Platform::LastErrorStr(GetLastError());
+		XLog(LEVEL_ERROR, LOG_ADDR"%s", psErr);
+#endif
+		return false;
+	}
+	return (nOptValue == 1);
+}
+
+bool NetAPI::IsCork(HSOCKET hSock) {
+#ifdef __linux
+	int nOptValue = 0;
+	socklen_t nOptLen = sizeof(nOptValue);
+	int nRet = getsockopt(hSock, IPPROTO_TCP, TCP_CORK, (char*)&nOptValue, &nOptLen);
+	if (nRet == SOCKET_ERROR)
+	{
+		const char* psErr = strerror(errno);
+		XLog(LEVEL_ERROR, LOG_ADDR"%s\n", psErr);
+		return false;
+	}
+	return (nOptValue == 1);
+#endif
+	return false;
 }
 
 bool NetAPI::Linger(HSOCKET hSock)

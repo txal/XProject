@@ -1,5 +1,6 @@
 ﻿#include "Include/Logger/Logger.hpp"
 #include "Include/Network/Network.hpp"
+#include "Common/DataStruct/XTime.h"
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
@@ -88,6 +89,13 @@ void GatewayPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HE
 	{
 		XLog(LEVEL_WARNING, "Large parcket cmd:%d size:%d\n", oHeader.uCmd, poPacket->GetDataSize());
 	}
+
+	//fix pd
+	if (oHeader.uCmd == 1025)
+	{
+		XLog(LEVEL_INFO, "router-gate mstime:%lld\n", XTime::UnixMSTime());
+	}
+
 	super::CacheSessionArray(pSessionArray, oHeader.uSessionNum);
 	Service* poService = g_poContext->GetService();
 	INet* pExterNet = poService->GetExterNet();

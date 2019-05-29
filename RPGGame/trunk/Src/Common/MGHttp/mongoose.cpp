@@ -3767,7 +3767,7 @@ static sock_t mg_open_listening_socket(union socket_address *sa, int type,
 #if !MG_LWIP /* LWIP doesn't support either */
 #if defined(_WIN32) && defined(SO_EXCLUSIVEADDRUSE) && !defined(WINCE)
       /* "Using SO_REUSEADDR and SO_EXCLUSIVEADDRUSE" http://goo.gl/RmrFTm */
-      !setsockopt(sock, SOL_SOCKET, SO_EXCLUSIVEADDRUSE, (void *) &on,
+      !setsockopt(sock, SOL_SOCKET, SO_EXCLUSIVEADDRUSE, (char*) &on,
                   sizeof(on)) &&
 #endif
 

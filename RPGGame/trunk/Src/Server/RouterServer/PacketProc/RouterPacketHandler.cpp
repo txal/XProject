@@ -50,12 +50,11 @@ void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEA
 		poPacket->AppendInnerHeader(oHeader, m_oSessionCache.Ptr(), m_oSessionCache.Size());
 	}
 
-#ifdef _DEBUG
-	if (oHeader.uCmd == 40002)
-		XLog(LEVEL_INFO, "wglobal->router mstime:%lld\n", XTime::UnixMSTime());
-	else if (oHeader.uCmd == 40003)
+	//fix pd
+	if (oHeader.uCmd == 1025)
+	{
 		XLog(LEVEL_INFO, "logic->router mstime:%lld\n", XTime::UnixMSTime());
-#endif // DEBUG
+	}
 
 	Router* poRouter = (Router*)g_poContext->GetService();
 	ServiceNode* poTarService = poRouter->GetService(oHeader.uTarServer, oHeader.nTarService);

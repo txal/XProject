@@ -1,4 +1,5 @@
 ﻿#include "LibNetwork/Net.h"
+#include "Common/DataStruct/XTime.h"
 #include "Include/Network/NetAPI.h"
 #include "Include/Network/NetEventDef.h"
 #include "Include/Network/NetEventHandler.h"
