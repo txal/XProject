@@ -14,7 +14,7 @@ PlayerMgr::PlayerMgr()
 {
 }
 
-Player* PlayerMgr::CreatePlayer(const GAME_OBJID& oID, int nRoleID, const char* psName, int8_t nCamp)
+Player* PlayerMgr::CreatePlayer(const OBJID& oID, int nRoleID, const char* psName, int8_t nCamp)
 {
 	
 	Player* poPlayer = GetPlayerByID(oID);
@@ -29,7 +29,7 @@ Player* PlayerMgr::CreatePlayer(const GAME_OBJID& oID, int nRoleID, const char* 
 	return poPlayer;
 }
 
-void PlayerMgr::BindSession(const GAME_OBJID& oID, int nSession)
+void PlayerMgr::BindSession(const OBJID& oID, int nSession)
 {
 	Player* poPlayer = GetPlayerByID(oID);
 	if (poPlayer == NULL)
@@ -48,7 +48,7 @@ void PlayerMgr::BindSession(const GAME_OBJID& oID, int nSession)
 	}
 }
 
-void PlayerMgr::RemovePlayer(const GAME_OBJID& oID)
+void PlayerMgr::RemovePlayer(const OBJID& oID)
 {
 	PlayerIDIter iter = m_oPlayerIDMap.find(oID.llID);
 	if (iter == m_oPlayerIDMap.end())
@@ -69,7 +69,7 @@ void PlayerMgr::RemovePlayer(const GAME_OBJID& oID)
 	SAFE_DELETE(poPlayer);
 }
 
-Player* PlayerMgr::GetPlayerByID(const GAME_OBJID& oID)
+Player* PlayerMgr::GetPlayerByID(const OBJID& oID)
 {
 	PlayerIDIter iter = m_oPlayerIDMap.find(oID.llID);
 	if (iter != m_oPlayerIDMap.end())

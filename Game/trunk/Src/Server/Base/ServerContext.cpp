@@ -7,6 +7,15 @@ ServerContext::ServerContext()
 	m_poService = NULL;
 	m_poRouterMgr = NULL;
 	m_poPacketHandler = NULL;
+
+	m_poLuaTableSeri = NULL;
+	m_poLuaSerialize = NULL;
+}
+
+ServerContext::~ServerContext()
+{
+	SAFE_DELETE(m_poLuaTableSeri);
+	SAFE_DELETE(m_poLuaSerialize);
 }
 
 int ServerContext::GetRandomLogic()

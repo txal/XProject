@@ -10,12 +10,12 @@
 #include "Server/LogServer/LuaSupport/LuaExport.h"
 #include "Server/LogServer/WorkerMgr.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 
 bool InitNetwork(int8_t nServiceID)
 {
 	LogNode* poLog = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLogList.size(); i++)
 	{
 		if (oSrvConf.oLogList[i].uServer == oSrvConf.uServerID && oSrvConf.oLogList[i].uID == nServiceID)
@@ -30,7 +30,7 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -78,9 +78,9 @@ void OnSigTerm(int)
 
 void OnSigInt(int)
 {
-	if (g_poContext != NULL)
+	if (gpoContext != NULL)
 	{
-		g_poContext->GetService()->Terminate();
+		gpoContext->GetService()->Terminate();
 	}
 }
 
@@ -106,8 +106,8 @@ int main(int nArg, char *pArgv[])
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
-	g_poContext = XNEW(ServerContext);
-	bool bRes = g_poContext->LoadServerConfig();
+	gpoContext = XNEW(ServerContext);
+	bool bRes = gpoContext->LoadServerConfig();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -120,24 +120,24 @@ int main(int nArg, char *pArgv[])
 	{
 		char szLogName[128] = "";
 		sprintf(szLogName, "logserver%d", nServiceID);
-		Logger::Instance()->SetLogFile(g_poContext->GetServerConfig().sLogPath, szLogName);
+		Logger::Instance()->SetLogFile(gpoContext->GetServerConfig().sLogPath, szLogName);
 	}
 
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-	g_poContext->SetRouterMgr(poRouterMgr);
+	gpoContext->SetRouterMgr(poRouterMgr);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	LogServer* poLogServer = XNEW(LogServer);
 	poLogServer->Init(nServiceID);
-	g_poContext->SetService(poLogServer);
+	gpoContext->SetService(poLogServer);
 
 	LuaSerialize* poSerialize = XNEW(LuaSerialize);
-	g_poContext->SetLuaSerialize(poSerialize);
+	gpoContext->SetLuaSerialize(poSerialize);
 
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
@@ -148,7 +148,7 @@ int main(int nArg, char *pArgv[])
 	}
 
 	goHttpClient.Init();
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLogList.size(); i++)
 	{
 		LogNode& oNode = oSrvConf.oLogList[i];
@@ -164,7 +164,7 @@ int main(int nArg, char *pArgv[])
 	}
 
 	XLog(LEVEL_INFO, "LogServer start successful\n");
-	bRes = g_poContext->GetService()->Start();
+	bRes = gpoContext->GetService()->Start();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -173,10 +173,10 @@ int main(int nArg, char *pArgv[])
 	}
 
 	//wchar_t wcBuffer[256] = { L"" };
-	//wsprintfW(wcBuffer, L"log%d.leak", g_poContext->GetService()->GetServiceID());
+	//wsprintfW(wcBuffer, L"log%d.leak", gpoContext->GetService()->GetServiceID());
 	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
 
-	SAFE_DELETE(g_poContext);
+	SAFE_DELETE(gpoContext);
 	TimerMgr::Instance()->Release();
 	WorkerMgr::Instance()->Release();
 	LuaWrapper::Instance()->Release();

@@ -1,0 +1,33 @@
+CMinHeap = CMinHeap or class()
+CSkipList = CSkipList or class()
+CMatchHelper = CMatchHelper or class()
+CBinarySearch = CBinarySearch or class()
+CWeightRandom = CWeightRandom or class()
+CCircleQueue = CCircleQueue or class()
+CUniqCircleQueue = CUniqCircleQueue or class(CCircleQueue)
+CKeyList = CKeyList or class()
+
+CRBTree = CRBTree or class()
+CMultiRBTree = CMultiRBTree or class()
+CRBRank = CRBRank or class()
+CRBMatch = CRBMatch or class()
+
+CToday = CToday or class()
+CThisTemp = CThisTemp or class()
+CThisWeek = CThisWeek or class(CToday)
+CSeveralDay = CSeveralDay or class()
+
+
+require("Common/Tools/BinarySearch")
+require("Common/Tools/CircleQueue")
+require("Common/Tools/KeyList")
+require("Common/Tools/MatchHelper")
+require("Common/Tools/MinHeap")
+require("Common/Tools/MultiRBTree")
+require("Common/Tools/RBMatch")
+require("Common/Tools/RBRank")
+require("Common/Tools/RBTree")
+require("Common/Tools/SkipList")
+require("Common/Tools/Time")
+require("Common/Tools/WeightRandom")
+

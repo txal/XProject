@@ -1,0 +1,25 @@
+CCBMgr = CCBMgr or class()
+
+CCBBase = CCBBase or class(CHDBase)
+CArenaCB = CArenaCB or class(CCBBase)
+CHoneyCB = CHoneyCB or class(CCBBase)
+CPowerCB = CPowerCB or class(CCBBase)
+CPopularityCB = CPopularityCB or class(CCBBase)
+CSmallGameCB = CSmallGameCB or class(CCBBase)
+CUnionExpCB = CUnionExpCB or class(CCBBase)
+CRechargeCB = CRechargeCB or class(CCBBase)
+CResumeYBCB = CResumeYBCB or class(CCBBase)
+
+
+require("HDMgr/CB/CBBase")
+require("HDMgr/CB/PowerCB")
+require("HDMgr/CB/ArenaCB")
+require("HDMgr/CB/HoneyCB")
+require("HDMgr/CB/UnionExpCB")
+require("HDMgr/CB/PopularityCB")
+require("HDMgr/CB/SmallGameCB")
+require("HDMgr/CB/RechargeCB")
+require("HDMgr/CB/ResumeYBCB")
+
+require("HDMgr/CB/CBMgr")
+require("HDMgr/CB/CBRpc")

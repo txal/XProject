@@ -92,8 +92,8 @@ Role* RoleMgr::GetRoleByID(int nID)
 
 Role* RoleMgr::GetRoleBySS(uint16_t uServer, int nSession)
 {
-	int nSSKey = GenSSKey(uServer, nSession);
-	RoleIter iter = m_oRoleSSMap.find(nSSKey);
+	int64_t nSSKey = GenSSKey(uServer, nSession);
+	RoleSSIter iter = m_oRoleSSMap.find(nSSKey);
 	if (iter != m_oRoleSSMap.end())
 	{
 		return iter->second;
@@ -115,16 +115,16 @@ void RoleMgr::BindSession(int nID, int nSession)
 
 	if (nOldSession > 0)
 	{
-		int nOldSSKey = GenSSKey(poRole->GetServer(), nOldSession);
+		int64_t nOldSSKey = GenSSKey(poRole->GetServer(), nOldSession);
 		m_oRoleSSMap.erase(nOldSSKey);
 
-		LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
+		LogicServer* poLogic = (LogicServer*)(gpoContext->GetService());
 		poLogic->OnClientClose(poRole->GetServer(), nOldSession>>SERVICE_SHIFT, nOldSession);
 	}
 
 	if (nSession > 0)
 	{
-		int nNewSSKey = GenSSKey(poRole->GetServer(), nSession);
+		int64_t nNewSSKey = GenSSKey(poRole->GetServer(), nSession);
 		m_oRoleSSMap[nNewSSKey] = poRole;
 	}
 }

@@ -4,14 +4,14 @@
     <ClCompile Include="..\..\Src\Test\Main.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp">
+    <ClCompile Include="..\..\..\..\Common\HttpRequest\HttpRequest.cpp">
       <Filter>Src\Common\HttpRequest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\Timer.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32,14 +32,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h">
+    <ClInclude Include="..\..\..\..\Common\HttpRequest\HttpRequest.h">
       <Filter>Src\Common\HttpRequest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\Timer.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\TimerMgr.h">
+      <Filter>Src\Common\PacketParser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

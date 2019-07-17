@@ -1,0 +1,920 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>AutoBVT</Author>
+  <LastAuthor>Administrator</LastAuthor>
+  <Created>2018-05-04T09:30:31Z</Created>
+  <LastSaved>2019-03-06T03:38:51Z</LastSaved>
+  <Company>Microsoft</Company>
+  <Version>12.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-11.1.0.8415</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12465</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>135</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s64" ss:Name="常规 2">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s67">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Interior ss:Color="#33CCCC" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior ss:Color="#33CCCC" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s70">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Interior ss:Color="#33CCCC" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s71">
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s73">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s75">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s76">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s77">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s78">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s79">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctPartnerConf">
+  <Table ss:ExpandedColumnCount="31" ss:ExpandedRowCount="39" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:Width="76.5" ss:Span="1"/>
+   <Column ss:Index="3" ss:Width="66"/>
+   <Column ss:Width="92.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="210"/>
+   <Column ss:AutoFitWidth="0" ss:Width="123"/>
+   <Column ss:AutoFitWidth="0" ss:Width="120"/>
+   <Column ss:AutoFitWidth="0" ss:Width="128.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:AutoFitWidth="0" ss:Width="107.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="112.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="110.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="78.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="93.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="168.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="362.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="322.5"/>
+   <Row ss:AutoFitHeight="0" ss:Height="47.25">
+    <Cell ss:Index="4" ss:StyleID="s66"><Data ss:Type="String">1 天策(物理单攻)&#10;2 水晶(法术群攻)&#10;3 药王(治疗辅助)&#10;4 兽王(物理群攻)&#10;5 盘丝(封印控制)</Data></Cell>
+    <Cell><Data ss:Type="String">1. 物攻&#10;2. 法攻&#10;3. 辅助&#10;4. 封印</Data></Cell>
+    <Cell ss:Index="7"><Data ss:Type="String">1：主线任务获得&#10;2：招募获得</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">B&#10;A&#10;S&#10;SS&#10;SSS</Data></Cell>
+    <Cell><Data ss:Type="String">0 炼气&#10;1 筑基&#10;2 金丹&#10;3 元婴&#10;4 化神&#10;5 返虚</Data></Cell>
+    <Cell ss:Index="16" ss:StyleID="s67"><Data ss:Type="String">1311,0,200;1312,0,100;1313,0,10;1316,0,100;1315,0,100;</Data></Cell>
+    <Cell><Data ss:Type="String">初始技能ID,开放星级,开放品质,高级技能ID,进阶品质;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">nSort</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">sName</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">nSchool</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">nType</Data></Cell>
+    <Cell><Data ss:Type="String">sDesc</Data></Cell>
+    <Cell><Data ss:Type="String">nGainWayIdStr</Data></Cell>
+    <Cell><Data ss:Type="String">nGradeID</Data></Cell>
+    <Cell><Data ss:Type="String">sGrade</Data></Cell>
+    <Cell><Data ss:Type="String">nStar</Data></Cell>
+    <Cell><Data ss:Type="String">nIntimacy</Data></Cell>
+    <Cell><Data ss:Type="String">sModel</Data></Cell>
+    <Cell><Data ss:Type="String">nRecruitLevel</Data></Cell>
+    <Cell><Data ss:Type="String">nStarLeveCost</Data></Cell>
+    <Cell><Data ss:Type="String">nRecruitCost</Data></Cell>
+    <Cell><Data ss:Type="String">tActSkill</Data></Cell>
+    <Cell><Data ss:Type="String">tPasSkill</Data></Cell>
+    <Cell><Data ss:Type="String">fnBaseHp</Data></Cell>
+    <Cell><Data ss:Type="String">fnBaseMp</Data></Cell>
+    <Cell><Data ss:Type="String">fnBaseAttack</Data></Cell>
+    <Cell><Data ss:Type="String">fnBaseDefense</Data></Cell>
+    <Cell><Data ss:Type="String">fnBaseMagic</Data></Cell>
+    <Cell><Data ss:Type="String">fnBaseSpeed</Data></Cell>
+    <Cell><Data ss:Type="String">fnEquipHp</Data></Cell>
+    <Cell><Data ss:Type="String">fnEquipMp</Data></Cell>
+    <Cell><Data ss:Type="String">fnEquipAttack</Data></Cell>
+    <Cell><Data ss:Type="String">fnEquipDefense</Data></Cell>
+    <Cell><Data ss:Type="String">fnEquipMagic</Data></Cell>
+    <Cell><Data ss:Type="String">fnEquipSpeed</Data></Cell>
+    <Cell><Data ss:Type="String">fnWeaponAttack</Data></Cell>
+    <Cell><Data ss:Type="String">fnStarEffect</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iiiii}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">伙伴ID</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">排序</Data></Cell>
+    <Cell><Data ss:Type="String">名称</Data></Cell>
+    <Cell><Data ss:Type="String">门派</Data></Cell>
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+    <Cell><Data ss:Type="String">描述</Data></Cell>
+    <Cell><Data ss:Type="String">获得来源</Data></Cell>
+    <Cell><Data ss:Type="String">评级</Data></Cell>
+    <Cell><Data ss:Type="String">评级</Data></Cell>
+    <Cell><Data ss:Type="String">初始星级</Data></Cell>
+    <Cell><Data ss:Type="String">亲密度</Data></Cell>
+    <Cell><Data ss:Type="String">模型</Data></Cell>
+    <Cell><Data ss:Type="String">招募等级</Data></Cell>
+    <Cell><Data ss:Type="String">境界消耗</Data></Cell>
+    <Cell><Data ss:Type="String">招募消耗</Data></Cell>
+    <Cell><Data ss:Type="String">主动技能</Data></Cell>
+    <Cell><Data ss:Type="String">被动技能</Data></Cell>
+    <Cell><Data ss:Type="String">基础气血</Data></Cell>
+    <Cell><Data ss:Type="String">基础法力</Data></Cell>
+    <Cell><Data ss:Type="String">基础攻击</Data></Cell>
+    <Cell><Data ss:Type="String">基础防御</Data></Cell>
+    <Cell><Data ss:Type="String">基础灵力</Data></Cell>
+    <Cell><Data ss:Type="String">基础速度</Data></Cell>
+    <Cell><Data ss:Type="String">装备气血</Data></Cell>
+    <Cell><Data ss:Type="String">装备法力</Data></Cell>
+    <Cell><Data ss:Type="String">装备攻击</Data></Cell>
+    <Cell><Data ss:Type="String">装备防御</Data></Cell>
+    <Cell><Data ss:Type="String">装备灵力</Data></Cell>
+    <Cell><Data ss:Type="String">装备速度</Data></Cell>
+    <Cell><Data ss:Type="String">武器攻击</Data></Cell>
+    <Cell><Data ss:Type="String">星级效果</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20002</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">毒仙子</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">A</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1005</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">20001</Data></Cell>
+    <Cell><Data ss:Type="String">20001,200;</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1211,0,100;1212,0,100;1213,0,50;1214,0,10;</Data></Cell>
+    <Cell><Data ss:Type="String">5121,1,0,5221,3;5117,3,0,5217,4;5116,5,0,5216,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(23*LV+315)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/10)^(2))+2.2*LV+72)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+5.5*LV+18)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+2.15*LV+13.35)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.4)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20003</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">小小</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1002</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">20001</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">20103,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1311,0,200;1313,0,10;1315,0,100;1312,0,100;</Data></Cell>
+    <Cell><Data ss:Type="String">5123,1,0,5223,3;5129,3,0,5229,4;5127,5,0,5227,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+5.9*LV+99.8)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.5*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+3.5*LV+14.7)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.5*LV+10.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20001</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">3</Data></Cell>
+    <Cell><Data ss:Type="String">青鸟</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">A</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1006</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">20001</Data></Cell>
+    <Cell><Data ss:Type="String">20001,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1411,0,100;1413,0,50;1412,0,50;1416,0,100;</Data></Cell>
+    <Cell><Data ss:Type="String">5112,1,0,5212,3;5136,3,0,5236,4;5106,5,0,5206,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+4*LV+16.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+4.1*LV+15.3)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.2*LV+10.2)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20005</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">10</Data></Cell>
+    <Cell><Data ss:Type="String">卓一平</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">SS</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1001</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">20003</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">20003,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1111,0,100;1112,0,500;1114,0,10;1116,0,10;</Data></Cell>
+    <Cell><Data ss:Type="String">5126,1,0,5226,3;5135,3,0,5235,4;5103,5,0,5203,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/10)^(2))+5.65*LV+69.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.5*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+3.25*LV+14.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.1*LV+11.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20007</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">7</Data></Cell>
+    <Cell><Data ss:Type="String">玄奘法师</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1007</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">20002</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">20002,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1411,0,100;1413,0,50;1412,0,50;1416,0,100;</Data></Cell>
+    <Cell><Data ss:Type="String">5134,1,0,5234,3;5126,3,0,5226,4;5116,5,0,5216,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.5*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+4*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.5*LV+10.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20012</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">6</Data></Cell>
+    <Cell><Data ss:Type="String">铁扇公主</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1003</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">13500</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">13500,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1511,0,100;1512,0,200;1513,0,200;1514,0,10;</Data></Cell>
+    <Cell><Data ss:Type="String">5131,1,0,5231,3;5107,3,0,5207,4;5124,5,0,5224,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(22*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/10)^(2))+2.2*LV+79)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+4*LV+16.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+2*LV+13.2)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.8*LV+10)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*45+40)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.3+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+27)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*6.6+7.7)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20008</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">8</Data></Cell>
+    <Cell><Data ss:Type="String">道济和尚</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1008</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">20002</Data></Cell>
+    <Cell><Data ss:Type="String">20002,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1411,0,100;1413,0,50;1412,0,50;1416,0,100;</Data></Cell>
+    <Cell><Data ss:Type="String">5136,1,0,5236,3;5108,3,0,5208,4;5119,5,0,5219,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+4*LV+16.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+4.4*LV+15.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20009</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">9</Data></Cell>
+    <Cell><Data ss:Type="String">捉妖天师</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1004</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">20002</Data></Cell>
+    <Cell><Data ss:Type="String">20002,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1311,0,200;1313,0,10;1315,0,100;1312,0,100;</Data></Cell>
+    <Cell><Data ss:Type="String">5124,1,0,5224,3;5105,3,0,5205,4;5126,5,0,5226,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+5.9*LV+99.8)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+3.25*LV+15.75)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+3.5*LV+14.7)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*10+10)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s75">
+    <Cell ss:StyleID="s76"><Data ss:Type="String">20004</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">九天玄女</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">凌霄瑶池不曾闻，九天玄女下凡尘。先天女仙，正义之神。</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">ss</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">partner_1010</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">13508</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">20104,1;</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">1411,0,100;1413,0,50;1412,0,50;1416,0,100;</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">5137,1,0,5237,3;5120,3,0,5220,4;5118,5,0,5218,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+4*LV+16.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+4.4*LV+15.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s75">
+    <Cell ss:StyleID="s76"><Data ss:Type="String">20006</Data></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">白面狐狸</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">纤媚笑，芙蓉俏，回首一探万千瑶。自古狐仙多留情，三簇丹翎美人心。</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">ss</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">partner_1009</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="Number">13509</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">20106,1;</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">1311,0,200;1313,0,10;1315,0,100;1312,0,100;</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">5135,1,0,5235,3;5110,3,0,5210,4;5101,5,0,5201,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/10)^(2))+5.65*LV+69.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.5*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+3.25*LV+14.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.1*LV+11.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.51+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20010</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">11</Data></Cell>
+    <Cell><Data ss:Type="String">太阳神</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">SS</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1011</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">20003</Data></Cell>
+    <Cell><Data ss:Type="String">20003,200;</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1211,0,100;1212,0,100;1213,0,50;1214,0,10;</Data></Cell>
+    <Cell><Data ss:Type="String">5126,1,0,5226,3;5131,3,0,5231,4;5132,5,0,5232,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(23*LV+315)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/10)^(2))+2.2*LV+79)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+5.5*LV+17.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+2.11*LV+13.2)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.3+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20011</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">15</Data></Cell>
+    <Cell><Data ss:Type="String">赤天帝</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">partner_1012</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">20004</Data></Cell>
+    <Cell><Data ss:Type="String">20004,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1411,0,100;1413,0,50;1412,0,50;1416,0,100;</Data></Cell>
+    <Cell><Data ss:Type="String">5121,1,0,5221,3;5115,3,0,5215,4;5119,5,0,5219,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+4*LV+16.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+4.4*LV+15.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.51+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20014</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">13</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">钟馗</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">partner_1014</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">20004</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">20114,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1311,0,200;1313,0,10;1315,0,100;1312,0,100;</Data></Cell>
+    <Cell><Data ss:Type="String">5137,1,0,5237,3;5127,3,0,5227,4;5101,5,0,5201,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+5.9*LV+99.8)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.5*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+3.5*LV+14.7)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.5*LV+10.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20015</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">14</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">吕四娘</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">partner_1015</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">20004</Data></Cell>
+    <Cell><Data ss:Type="String">20004,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1111,0,100;1112,0,500;1114,0,10;1116,0,10;</Data></Cell>
+    <Cell><Data ss:Type="String">5103,1,0,5203,3;5133,3,0,5233,4;5109,5,0,5209,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/10)^(2))+6.7*LV+70.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+2.5*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+3.8*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.5*LV+10.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20013</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">12</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">盘丝大仙</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">partner_1013</Data></Cell>
+    <Cell><Data ss:Type="Number">90</Data></Cell>
+    <Cell><Data ss:Type="Number">20004</Data></Cell>
+    <Cell><Data ss:Type="String">20004,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1511,0,100;1512,0,200;1513,0,200;1514,0,10;</Data></Cell>
+    <Cell><Data ss:Type="String">5117,1,0,5217,3;5116,3,0,5216,4;5126,5,0,5226,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(22*LV+310)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/11)^(2))+2.2*LV+77)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+4.75*LV+17.25)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+2.05*LV+13.25)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(3*LV+12)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*42+40)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.51+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*21+25)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9.5+11)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20016</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">16</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">桃园力士</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s78"><Data ss:Type="String">partner_1016</Data></Cell>
+    <Cell><Data ss:Type="Number">90</Data></Cell>
+    <Cell><Data ss:Type="Number">20004</Data></Cell>
+    <Cell><Data ss:Type="String">20004,200;</Data></Cell>
+    <Cell><Data ss:Type="String">1211,0,100;1212,0,100;1213,0,50;1214,0,10;</Data></Cell>
+    <Cell><Data ss:Type="String">5122,1,0,5222,3;5125,3,0,5225,4;5115,5,0,5215,5;</Data></Cell>
+    <Cell><Data ss:Type="String">(23*LV+315)*0.8</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/10)^(2))+2.2*LV+72)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/12)^(2))+5.5*LV+18)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(((LV/15)^(2))+2.15*LV+13.35)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.4)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.44+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+((Math.floor(LV/5))^(2))*1.3)*(1.51+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.25+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.38+0)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:Index="26" ss:AutoFitHeight="0" ss:Height="12"/>
+   <Row ss:Index="28" ss:AutoFitHeight="0">
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s75"/>
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s64"/>
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s64"/>
+    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s64"/>
+    <Cell ss:StyleID="s74"/>
+    <Cell ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s64"/>
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s64"/>
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <LeftColumnVisible>4</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>22</ActiveRow>
+     <ActiveCol>10</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+  <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
+   <Range>R5C1:R8C1</Range>
+   <Condition>
+    <Value1>AND(COUNTIF(C2,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
+    <Format Style='background:#FF9900;mso-pattern:none'/>
+   </Condition>
+  </ConditionalFormatting>
+  <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
+   <Range>R28C5:R39C5</Range>
+   <Condition>
+    <Value1>AND(COUNTIF(R28C5:R39C5,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
+    <Format Style='color:#9C0006;background:#FFC7CE;mso-pattern:none'/>
+   </Condition>
+  </ConditionalFormatting>
+  <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
+   <Range>R1C12:R16C12,R21C12:R1048576C12</Range>
+   <Condition>
+    <Value1>AND(COUNTIF(R1C12:R16C12,RC)+COUNTIF(R21C12:R1048576C12,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
+    <Format Style='color:#9C0006;background:#FFC7CE;mso-pattern:none'/>
+   </Condition>
+  </ConditionalFormatting>
+  <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
+   <Range>R2C1:R2C2,R2C5</Range>
+   <Condition>
+    <Value1>AND(COUNTIF(#REF!,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
+    <Format Style='background:#FF9900;mso-pattern:none'/>
+   </Condition>
+  </ConditionalFormatting>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

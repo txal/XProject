@@ -1,0 +1,144 @@
+//竞技场协议
+package arena;
+
+
+//玩家竞技场数据请求
+message ArenaRoleInfoReq
+{
+}
+
+
+message ArenaMatchRoleData
+{
+	required int32 nRoleID = 1;          // 玩家ID
+	required int32 nGender = 2;          // 性别
+	required int32 nSchool = 3;          // 门派
+	required string sHeader = 4;         // 头像
+	required int32 nLevel = 5;           // 玩家等级
+	required int32 nScore = 6;           // 竞技场积分
+	required int32 nArenaLevel = 7;      // 竞技场段位
+	required string sArenaLevelName = 8; // 段位名称
+}
+
+//玩家竞技场数据响应
+message ArenaRoleInfoRet
+{
+	required int32 nArenaSeason = 1;  // 当前赛季
+	required int32 nArenaSeasonEndTime = 2; // 赛季结束时间戳
+	required int32 nArenaSeasonEndCountdown = 3; // 赛季结束时间倒计时
+	required int32 nScore = 4;        // 竞技场积分
+	required int32 nArenaLevel = 5;   // 当前竞技场段位
+	required string sArenaLevelName = 6; //段位名称
+
+	required int32 nChallenge = 7;            // 当前剩余挑战次数
+	required int32 nDailyChallPurchCount = 8; // 当天用元宝购买的挑战次数
+	required int32 nCanPurchChallCount = 9;    // 当天剩余可用元宝购买的挑战次数
+	optional int32 nPurchChallCost = 10;      //使用元宝购买挑战次数的花费
+
+	optional int32 nDailyFirstWinRewardState = 11;     // 每日首胜奖励领取状态
+	optional int32 nDailyJoinBattleRewardState = 12;  // 每日挑战次数礼包领取状态
+
+	required int32 nArenaBoxRewardLevel = 13;   // 赛季宝箱奖励等级及上赛季的段位
+	required int32 nArenaBoxRewardState = 14;   // 赛季奖励领取状态
+
+	repeated ArenaMatchRoleData tMatchRoleList = 15;   // 匹配到的对手列表
+	optional int32 nMatchFlushCountdown = 16;          // 匹配可刷新倒计时
+	optional int32 nFreeFlushMatchCount = 17;          // 免费刷新次数
+
+	// 统计数据
+	optional int32 nDailyBattleCount = 18;      // 当天挑战次数
+	optional int32 nDailyWinKeep = 19;          // 当天的连胜(当前连胜状态)
+	optional int32 nRank = 20;                  // 玩家自身排名
+}
+
+//竞技场排行榜数据请求
+message ArenaRankDataReq
+{
+	required int32 nPageNum = 1;   // 页表序号
+}
+
+//竞技场排行榜数据
+message ArenaRoleRankData
+{
+	required int32 nRoleID = 1;         // 角色ID
+	required string sRoleName = 2;      // 角色姓名
+	required int32 nGender = 3;         // 性别
+	required int32 nSchool = 4;         // 门派
+	required string sHeader = 5;        // 头像
+	required int32 nLevel = 6;          // 角色等级
+	required int32 nScore = 7;          // 积分	
+	required int32 nRank = 8;           // 名次
+}
+
+//竞技场排行榜数据响应  
+//请注意，这是一个实时数据，可能某个ID两次请求都在某页数据上或者某个玩家，因为排名变动，没反应在页表数据上
+message ArenaRankDataRet    
+{
+	required int32 nMaxPageNum = 1;  // 当前排行榜最大页表数量
+	required int32 nPageNum = 2;  // 排行榜页表序号
+	repeated ArenaRoleRankData tRankPageData = 3;  // 排行榜数据
+	optional ArenaRoleRankData tRoleRank = 4; // 角色自己的排行榜数据
+}
+
+//刷新匹配玩家请求
+message ArenaFlushMatchReq
+{	
+}
+
+//发起竞技场挑战请求
+message ArenaBattleReq
+{
+	required int32 nEnemyID = 1;   // 被挑战的玩家ID
+}
+
+//竞技场战斗结果返回
+message ArenaBattleResultRet
+{
+	required int32 nEnemyID = 1;       // 对手ID
+	required string sEnemyName = 2;    // 对手名字
+	required int32 nEnemyGender = 3;   // 对手性别
+	required int32 nEnemySchool = 4;   // 对手门派
+	required string sEnemyHeader = 5;  // 对手头像
+	required int32 nEnemyLevel = 6;    // 对手等级
+	required int32 nEnemyOldScore = 7;    // 对手原来积分
+	required int32 nEnemyNewScore = 8;    // 对手当前积分
+	required bool bWin = 9;            // 战斗结果
+	required bool nOldScore = 10;      // 原积分
+	required bool nNewScore = 11;      // 当前积分
+	optional ArenaRoleInfoRet tRoleData = 12; //玩家当前的竞技场数据
+}
+
+//领取竞技场奖励请求
+message ArenaRewardReceiveReq
+{
+	required int32 nRewardType = 1;  // 奖励类型
+}
+
+//奖励信息
+message ArenaRewardData
+{
+	required int32 nRewardID = 1;   // 奖励ID
+	required int32 nRewardNum = 2;  // 奖励数量
+}
+
+//领取竞技场奖励响应
+message ArenaRewardReceiveRet
+{
+	required int32 nRewardType = 1;  // 奖励类型
+	repeated ArenaRewardData tRewardList = 2; //奖励列表
+}
+
+//元宝购买竞技场挑战次数请求
+message ArenaAddChallengeReq
+{
+	required int32 nAddNum = 1;  // 购买数量
+}
+
+//元宝购买竞技场挑战次数响应
+message ArenaAddChallengeRet
+{
+	required int32 nAddNum = 1;  // 购买数量
+	required int32 nCurChallenge = 2; // 购买后，当前的数量
+}
+
+

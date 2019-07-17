@@ -212,7 +212,7 @@ void Router::OnRouterMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
-	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
+	gpoContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }
 
 ServiceNode* Router::GetService(int nServerID, int nServiceID)
@@ -228,7 +228,7 @@ ServiceNode* Router::GetService(int nServerID, int nServiceID)
 
 void Router::BroadcastService(int nServerID, Packet* poPacket)
 {
-	uint16_t nWorldServerID = g_poContext->GetWorldServerID();
+	uint16_t nWorldServerID = gpoContext->GetWorldServerID();
 	for (ServiceIter iter = m_oServiceMap.begin(); iter != m_oServiceMap.end(); iter++)
 	{
 		ServiceNode* poService = iter->second;
@@ -324,7 +324,7 @@ void Router::ProcessServerClose()
 		return;
 	}
 	remove("closeserver.txt");
-	m_oServerClose.CloseServer(g_poContext->GetWorldServerID());
+	m_oServerClose.CloseServer(gpoContext->GetWorldServerID());
 }
 
 void Router::ProcessUpdate()

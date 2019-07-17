@@ -17,6 +17,12 @@ luaL_Reg CustomFuncList[] =
 	{ NULL, NULL },
 };
 
+//默认的不使用的类
+LUNAR_IMPLEMENT_CLASS(CNOTUSE)
+{
+	{0, 0}
+};
+
 LuaWrapper* LuaWrapper::Instance()
 {
 	static LuaWrapper* poLuaWrapper = NULL;

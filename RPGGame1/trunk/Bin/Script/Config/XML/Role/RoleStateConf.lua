@@ -1,0 +1,12 @@
+ctRoleStateConf={}
+ctRoleStateConf[601]={nID=601,sName="饱食",nMaxTimes=2000,tProp={{21000,},{21001,},{21002,},{21003,},{21004,},{21005,},{21006,},{21007,},{21008,},{21009,},{21010,},{21040,},{21041,},{21042,},{21044,},{21045,},{21046,},{21047,},{21048,},{21049,},{21050,},},tCond={{1,50,},},tGameType={{0,},},tAdd={{0,0,},},nParam=0,tParam={{0,},},nIdx=1,sIcon="baoshidu",sDesc="战斗结束时自动恢复人物、伙伴和宠物的气血与魔法。",}
+ctRoleStateConf[604]={nID=604,sName="双倍点数",nMaxTimes=0,tProp={{0,},},tCond={{1,50,},},tGameType={{0,},},tAdd={{0,0,},},nParam=0,tParam={{0,},},nIdx=2,sIcon="baoshidu",sDesc="此状态下进行野外打怪、捉鬼、封妖获得经验加倍，每场战斗消耗1点，野外打怪有50%概率不消耗。",}
+ctRoleStateConf[607]={nID=607,sName="装备损毁",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{0,},},tAdd={{0,0,},},nParam=0,tParam={{0,},},nIdx=10,sIcon="zhuangbeisunhuai",sDesc="你穿戴的装备耐久已不足，请尽快修理",}
+ctRoleStateConf[610]={nID=610,sName="普天同庆",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{0,},},tAdd={{0,0,},},nParam=0,tParam={{0,},},nIdx=4,sIcon="baoshidu",sDesc="你获得了祝福，野外烧双、抓鬼和封妖获得经验提高30%",}
+ctRoleStateConf[613]={nID=613,sName="变身卡",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{0,},},tAdd={{0,0,},},nParam=0,tParam={{0,},},nIdx=5,sIcon="baoshidu",sDesc="您正处于变身状态，外形改变了",}
+ctRoleStateConf[619]={nID=619,sName="变化大小",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{0,},},tAdd={{0,0,},},nParam=0,tParam={{0,},},nIdx=6,sIcon="baoshidu",sDesc="您正处于变化大小状态，外形变大了",}
+ctRoleStateConf[620]={nID=620,sName="新婚时装",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{0,},},tAdd={{0,0,},},nParam=0,tParam={{0,},},nIdx=7,sIcon="shizhuang",sDesc="喜庆的新婚时装，传说穿戴后会得到爱神的祝福哦~",}
+ctRoleStateConf[621]={nID=621,sName="新婚祝福",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{101,},{102,},{103,},},tAdd={{0,0,},},nParam=10,tParam={{0,},},nIdx=8,sIcon="fuqizudui",sDesc="当新婚夫妻存在在队伍中时，进行活动，全队成员可获得经验加成。",}
+ctRoleStateConf[622]={nID=622,sName="新婚祝福",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{101,},{102,},{103,},},tAdd={{0,0,},},nParam=10,tParam={{0,},},nIdx=9,sIcon="duiyou",sDesc="队伍中存在新婚夫妻，全队成员可获得经验加成",}
+ctRoleStateConf[630]={nID=630,sName="队长加成",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{101,},{102,},{103,},},tAdd={{0,0,},},nParam=20,tParam={{0,},},nIdx=10,sIcon="duizhang",sDesc="队伍归队人数达到3人且为队长，进行活动时可获得经验加成",}
+ctRoleStateConf[631]={nID=631,sName="同心加成",nMaxTimes=0,tProp={{0,},},tCond={{0,0,},},tGameType={{101,},{102,},{103,},},tAdd={{0,0,},},nParam=0,tParam={{10,},{10,},{10,},{15,},},nIdx=11,sIcon="tongxin",sDesc="当队伍中存在与自己互为夫妻、结拜、情缘、师徒任意一种关系的玩家，进行活动时可获得经验加成",}

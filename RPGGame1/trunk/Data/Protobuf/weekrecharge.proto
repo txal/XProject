@@ -1,0 +1,34 @@
+package weekrecharge;
+
+
+//活动信息请求
+message WeekRechargeInfoReq
+{
+	
+}
+
+//活动信息返回
+message WeekRechargeInfoRet
+{
+	message _Item {
+		required int32 nID = 1; 		//奖励ID
+		required int32 nState = 2; 		//状态:0未达成; 1可领取; 2已领取
+	}	
+	required int32 nWeekRechargeTimes = 1; 	//周充值次数
+	repeated _Item tList = 2;  				//奖励表
+	required int32 nBegTime = 3; 			//开始时间
+	required int32 nEndTime = 4; 			//结束时间
+}
+
+//领取奖励请求
+message WeekRechargeAwardReq
+{
+	required int32 nID = 1; 	//奖励ID	
+}
+
+//领取奖励成功返回
+message WeekRechargeAwardRet
+{
+	required int32 nID = 1; 	//奖励ID	
+}
+

@@ -1,0 +1,189 @@
+
+package systemMall;
+//系统商城
+
+//商品列表请求
+message SystemMallItemListReq 
+{
+	required int32 nShopType = 1;           //商店类型(101 商会，102 商城， 103 特惠， 104 充值)
+	optional int32 nTradeMenuId = 2;		//子菜单编号
+}
+
+//商会列表返回
+message SystemMallItemListRet
+{
+	message _itemList
+	{
+		required int32 nID = 1;			 	//商品ID
+		required int32 nRemainNum = 2; 		//限购商品的剩余购买次数(nRemainNum为-1则非限购商品)
+		required int32 nStatus = 3;			//商品涨跌状态,3为下跌,2为不涨不跌,1为上涨
+		required float nChange = 4; 		//商品的涨跌系数
+		required int32 nUnitPrice = 5;     //单价
+		
+	}
+	repeated _itemList tList = 1;
+	required int32 nShopType = 2;		//商店类型
+	optional int32 nTradeMenuId = 3;	//子菜单编号
+	required int32 nServerLv = 4;	//当前服务器等级
+}
+
+//商城列表返回
+message SystemMallShopListRet
+{
+	message _itemList
+	{
+		required int32 nID = 1;			//商品Id
+		required int32 nRemainNum = 2;	//限购商品的剩余购买次数(nRemainNum为-1则非限购商品)
+		required int32 nRebate = 3;		//折扣
+		required int32  nIndex = 4; 	//道具索引
+	}
+	repeated _itemList tList = 1;
+	required int32 nShopType = 2; 
+	optional int32 nTradeMenuId = 3;	//子菜单编号
+	optional int32 nUpdatePrice = 4; 	//刷新价格
+	optional int32 nUpdateCount = 5; 	//特惠剩余刷新次数
+}
+
+
+//购买商品请求
+message SystemMallBuyReq
+{
+	required int32 nShopType = 1; //商店类型(101 商会，102 商城， 103 特惠， 104 充值)
+	required int32 nID = 2;       //商品id
+	required int32 nNum = 3;      //购买数量
+	optional int32 nShopSubType = 4; //子商店类型(205：积分兑换301：侠义积分302：竞技积分)
+}
+
+//购买商品返回
+message SystemMalluyRet
+{
+	required int32 nID = 1;          //商品ID
+	required int32 nNum = 2;		 //购买数量
+	
+	optional int32 nRemainNum = 3; 	//限购商品的剩余购买次数
+	optional int32 nStatus = 4;		//商品涨跌状态,3为下跌,2为不涨不跌,1为上涨
+	optional float nChange = 5; 	//商品的涨跌系数
+	optional int32 nUnitPrice = 6;  //单价
+	optional bool bFreeUpdate = 7;	//特惠商城免费刷新,true免费刷新
+}
+
+//商会商品出售请求
+message SystemMallSellReq
+{
+	required int32 nID = 1; 	//商品Id
+	required int32 nGrid = 2;	//格子ID
+	required int32 nNum = 3 ;	//出售数量 
+	required int32 nShopType = 4; //商店类型
+}
+
+//商品刷新
+message SystemMallUpdateReq
+{
+	required int32 nShopType = 1; //商店类型
+}
+
+//金币，银币,帮贡, 金锭购买请求
+message SystemMallGoidBuyReq
+{	
+	required int32 nID = 1;		 //购买编号ID
+	//required int32 nGidType = 2; //1金币,2银币
+	
+}
+
+//快速购买列表请求
+message SystemMallFastBuyListReq
+{
+	required int32 nShopType = 1;
+	optional int32 nTradeMenuId = 2;	//交易菜单编号
+}
+
+message _BuyItemList 
+{	
+	required int32 nID = 1;	//商品ID
+	required int32 nPrice = 2;	//商品价格
+}
+
+//快速购买列表请求返回
+message SystemMallFastBuyListRet
+{
+	repeated _BuyItemList ShopList = 1;
+	required int32 nShopType = 2;
+	optional int32 nTradeMenuId = 3;
+}
+
+//宠物快速购买请求(学习)
+message SystemMallFastBuyReq
+{
+	required int32 nShopType = 1;
+	required int32 PropID = 2;
+	required int32 nPetPos = 3;
+}
+
+//请求帮贡可购买次数
+message SystemUnionContriAmountReq{
+	
+}
+
+message SystemUnionContriData{
+	required int32 nID = 1;			//购买编号ID
+	required int32 nAmount = 2;		//剩余可购买数目
+}
+
+//返回帮贡可购买信息
+message SystemUnionContriAmountRet{
+	repeated SystemUnionContriData tAmount = 1;
+}
+
+
+//获取当前商会价格(出售专用)
+message SystemGetShopPriceReq
+{	
+	required int32 nID = 1;	//商品ID
+	required int32 nGrid = 2; //格子ID
+	optional int32 nNum = 3; //数量
+}
+
+//获取当前商会价格返回
+message SystemGetShopPriceRet
+{
+	required int32 nYinBi = 1;	
+	required int32 nJinBi = 2;
+}
+
+//获取当前商会价格
+message SystemGetPropPriceReq
+{
+	message _itemList
+	{
+		required int32 nPropID = 1;
+	}
+	repeated _itemList tItemList = 1;
+	optional int32 nClientFlag = 2; 	//客户端用标识
+}
+
+message SystemGetPropPriceRet
+{
+	message _itemList
+	{
+		required int32 nPropID = 1;
+		required int32 nYuanBao = 2;
+		required int32 nJinBi = 3;
+		required int32 nYinBi = 4;
+	}
+	repeated _itemList tItemList = 1;
+	optional int32 nClientFlag = 2; 	//客户端用标识
+}
+
+//银币兑换
+message systemMallMoneyConvertReq
+{
+	required int32 nID = 1;
+	required int32 nNum = 2;	
+}
+
+//银币兑返回
+message systemMallMoneyConvertRet
+{
+	required int32 nID = 1;
+	required int32 nNum = 2;	
+}

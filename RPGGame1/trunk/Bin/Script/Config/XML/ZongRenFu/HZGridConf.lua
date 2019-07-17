@@ -1,0 +1,11 @@
+ctHZGridConf={}
+ctHZGridConf[1]={nGrid=1,nYuanBao=0,}
+ctHZGridConf[2]={nGrid=2,nYuanBao=0,}
+ctHZGridConf[3]={nGrid=3,nYuanBao=250,}
+ctHZGridConf[4]={nGrid=4,nYuanBao=750,}
+ctHZGridConf[5]={nGrid=5,nYuanBao=1000,}
+ctHZGridConf[6]={nGrid=6,nYuanBao=2000,}
+ctHZGridConf[7]={nGrid=7,nYuanBao=2000,}
+ctHZGridConf[8]={nGrid=8,nYuanBao=4000,}
+ctHZGridConf[9]={nGrid=9,nYuanBao=4000,}
+ctHZGridConf[10]={nGrid=10,nYuanBao=4000,}

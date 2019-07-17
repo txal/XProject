@@ -57,7 +57,7 @@ bool LogicServer::Init(int8_t nServiceID)
 
 bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	if (poRouter == NULL)
 	{
 		return false;
@@ -70,7 +70,7 @@ bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 	PacketWriter oPW(poPacket);
 	oPW << (int)Service::SERVICE_LOGIC;
 
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, poRouter->nService, 0);
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, gpoContext->GetServerID(), GetServiceID(), 0, poRouter->nService, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_pInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -160,7 +160,7 @@ void LogicServer::OnConnected(int nSessionID, int nRemoteIP, uint16_t nRemotePor
 {
 	char sIPBuf[128] = { 0 };
 	XLog(LEVEL_INFO, "%s: On connectioned session:%d ip:%s\n", GetServiceName(), nSessionID, NetAPI::N2P(nRemoteIP, sIPBuf, sizeof(sIPBuf)));
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
 	assert(poRouter != NULL);
     RegToRouter(poRouter->nService);
 }
@@ -168,7 +168,7 @@ void LogicServer::OnConnected(int nSessionID, int nRemoteIP, uint16_t nRemotePor
 void LogicServer::OnDisconnect(int nSessionID)
 {
 	XLog(LEVEL_INFO, "%s: On disconnect session:%d\n", GetServiceName(), nSessionID);
-	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	gpoContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
 	m_oMsgBalancer.RemoveConn(0, 0, nSessionID);
 }
 
@@ -185,13 +185,13 @@ void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
-	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
+	if (oHeader.uTarServer != gpoContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
 		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
-	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
+	gpoContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }
 
 void LogicServer::OnClientClose(uint16_t uServer, int8_t nService, int nSession)

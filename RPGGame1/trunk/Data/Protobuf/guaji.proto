@@ -1,0 +1,82 @@
+package guaji;
+
+message _Item
+{
+	required int32 nItemType = 1;			//物品类型
+	required int32 nItemID = 2;				//物品ID
+	required int32 nItemNum = 3;			//物品数量
+}
+
+//挂机状态通知
+message GuaJiStatusRet
+{
+	required bool  bIsInBattle = 1;				//是否在战斗
+	required bool  bIsAutoBattle = 2;			//是否勾选自动战斗
+	required bool  bCanChalBoss = 3;			//是否能挑战boss
+	required int32 nBattleTimes = 4;			//战斗次数
+	required int32 nGuanQiaSeqID = 5;			//关卡配置ID    动画要拿相关配置数据
+}
+
+//战斗动画结束通知
+message GuaJiBattleEndNoticeReq
+{
+}
+
+//挂机自动战斗操作
+message GuaJiAutoBattleOperaReq
+{
+	required bool bIsAutoBattle = 1;			//是否选择自动战斗
+}
+
+//挂机挑战Boss请求
+message GuaJiChalBossReq
+{
+}
+
+//进入挂机请求
+message GuaJiReq
+{
+}
+
+//是否在挂机(没有挂机状态显示红点)
+message GuaJiRet
+{
+	required bool bIsDuringGuaJi = 1;			//是否正在挂机
+}
+
+//挂机关卡信息
+message GuaJiGuanQiaRet
+{
+	required int32 nCurrGuanQia = 1;			//当前关卡
+	required int32 nGuanQiaSeqID = 2;			//关卡配置ID	页面要显示相关配置内容
+}
+
+//收益信息
+message RewardInfoRet
+{
+	required int32 nPassMin = 1;				//离开时间(分钟)
+	required int32 nRoleExp = 2;				//获得人物经验值
+	required int32 nPetExp = 3;					//获得宠物经验值
+	required int32 nYinBi = 4;					//获得银币
+	repeated _Item tItemList = 5;				//奖励物品列表
+}
+
+//巡逻开始请求(挑战Boss奖励确定按钮)
+//message StartNoticReq
+//{
+//}
+
+//挑战boss获得奖励信息
+message BossRewardInfoRet
+{
+	message _Item
+	{
+		required int32 nItemType = 1;			//物品类型
+		required int32 nItemID = 2;				//物品ID
+		required int32 nItemNum = 3;			//物品数量
+	}
+	
+	repeated _Item tItemList = 1;				//奖励物品列表
+	required int32 nOldGuanQia = 2;				//boss所在关卡
+	required int32 nNewGuanQia = 3;				//当前关卡
+}

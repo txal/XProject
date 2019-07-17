@@ -1,0 +1,156 @@
+package bahuanghuozhen;
+//八荒火阵
+
+message _ItemList
+{
+	required int32 nID = 1;	//道具ID
+	required int32 nNum = 2;//道具数量
+}
+
+message _BoxLIst
+{
+	required int32 nBoxID = 1;			//箱子ID
+	required int32 nState = 2;			//箱子状态0未完成,1完成,2求助
+	required int32 nXiuLianExp = 3;		//修炼经验奖励
+	//required int32 nHelpRoleID = 4;	//帮助完成装箱玩家的iD
+	required int32 nPropID = 4;			//需要的道具ID
+	required int32  nPropNum = 5; 		//需要的道具数量
+}
+
+message BaHuangHuoZhenBoxListData
+{
+	required int32 nHelpTimes = 1;   		//当前帮助次数
+	required int32 nCurHelpTimes = 2;		//当前求助次数
+	required int32 nOverTime = 3;			//剩余提交时间
+	required bool bHelpButton = 4;			//求助按钮亮显,true为亮显,false为灰显
+	required int32 nState = 5;				//领奖状态0未完成,1完成,2已领取
+	required bool bPracticeState = 6; 		//修炼技能是否达到上限状态
+	repeated _BoxLIst tBoxList= 7;			//宝箱列表信息
+	repeated _ItemList tCompleteList = 8;	//完成8个宝箱后显示的5个道具物品
+}
+
+//任务信息请求
+message BaHuangHuoZhenInfoTaskReq
+{
+	optional int32 nType = 1;	//客户端请求(发1)
+}
+
+//任务信息请求返回
+message BaHuangHuoZhenInfoTaskRet
+{
+		required int32 nState = 1; 							//1,没有参加,2,今日已参加, 3,今日已经完成,
+		repeated _ItemList tFirsItemList = 2; 				//首次参加物品显示(nState = 1)
+		repeated _ItemList tCompleteList = 3;				//完成任务后显示的物品显示(nState = 4)
+		required BaHuangHuoZhenBoxListData tBoxData = 4; 	//(参加以后相关宝箱列表信息(nState = 3))
+		optional int32 nPushType = 5;						//客户端主动请求返回1,其他返回2
+}
+
+//任务接取请求
+message BaHuangHuoZhenPickupTaskReq
+{
+	
+}
+
+//任务接取请求返回
+message BaHuangHuoZhenPickupTaskRet
+{
+	required BaHuangHuoZhenBoxListData tBoxData = 1;
+}
+
+
+//八荒火阵箱子列表请求
+message BaHuangHuoZhenBoxListReq
+{
+	
+}
+
+
+//八荒火阵箱子列表请求返回
+message BaHuangHuoZhenBoxListRet
+{
+	required BaHuangHuoZhenBoxListData tBoxData = 1;
+}
+
+//单个箱子信息变化返回
+message BaHuangHuoZhenBoxChangeRet
+{
+	required BaHuangHuoZhenBoxListData tBoxData = 1; //(repeated _BoxLIst tBoxList 这个列表只会有变化箱子的相关信息)
+}
+
+//任务完成领奖请求
+message BaHuangHuoZhenReceiveReq
+{
+
+}
+
+//任务完成领奖请求返回
+message BaHuangHuoZhenReceiveRet
+{
+	required int32 nState = 1;	//领奖状态0未完成,1完成,2已领取
+}
+
+message BaHuangHuoZhenData
+{
+	repeated _ItemList tItemList = 1;
+}
+//装箱请求
+message BaHuangHuoZhenPackingReq
+{
+	required int32 nBoxID = 1;	//箱子ID
+	repeated _ItemList tItemList = 2;
+}
+
+//装箱请求返回
+message BaHuangHuoZhenPackingRet
+{
+	required int32 nBoxID = 1;	//箱子ID
+	required int32 nState = 2;	//箱子状态0未完成,1完成,2求助
+}
+
+//玩家宝箱求助请求
+message BaHuangHuoZhenBoxHelpReq
+{
+	required int32 nBoxID = 1;	//宝箱ID
+}
+
+//玩家宝箱求助请求返回
+message BaHuangHuoZhenBoxHelpRet
+{
+	required int32 nBoxID = 1;	//宝箱ID
+	required int32 nState = 2;	////箱子状态0未完成,1完成,2求助
+}
+
+//帮助玩家装箱请求
+message BahuanghuozhenHelpPackingBoxReq
+{
+	required int32 nRoleID = 1;	//求助玩家角色ID
+	required int32 nBoxID = 2;	//宝箱ID
+	repeated _ItemList tItemList = 3;
+}
+
+//帮助玩家装箱请求返回
+message BahuanghuozhenHelpPackingBoxRet
+{
+	required int32 nRoleID = 1;	//求助玩家角色ID
+}
+
+//请求求助玩家宝箱信息
+message BaHuangHuoZhenHelpPlayerBoxListReq
+{
+	required int32 nRoleID = 1;	//求助玩家角色ID
+	required int32 nBoxID = 2;	//宝箱ID
+}
+
+//请求帮助玩家宝箱信息请求返回
+message BaHuangHuoZhenHelpPlayerBoxListRet
+{
+	required int32 nRoleID = 1;		 //求助玩家角色ID
+	repeated _BoxLIst tBoxList = 2;  //求助玩家宝箱信息
+	repeated int32 tBoxID = 3;	//当前玩家求助的宝箱ID(点击链接进来的箱子ID)
+}
+
+//默认修炼技能变化通知
+message BaHuangHuoZhenPracticeChangeRet
+{
+	required bool bPracticeState = 1;	//true达到上限,fals没有达到上限
+}

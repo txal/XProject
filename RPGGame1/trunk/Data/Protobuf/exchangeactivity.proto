@@ -1,0 +1,62 @@
+package exchangeactivity;
+
+//兑换活动面板信息请求
+message ExchangeActInfoReq
+{
+}
+
+//兑换次数记录(材料数量由客户端切活动页面时统计，这样减少的需统计的兑换项，减少统计次数)
+message ExchangeInfoListRet	
+{
+	//每兑换项对应的兑换记录
+	message _EachExchangeInfo
+	{
+		required int32 nExchangeID = 1;				//兑换ID
+		required int32 nExchangeTimes = 2;			//兑换次数
+	}
+	
+	//每个兑换活动信息
+	message _ExhcangeActInfo
+	{
+		required int32 nActID = 1;								//开启的活动的ID
+		repeated _EachExchangeInfo ExchangeInfoList = 2; 		//兑换项记录列表
+		required bool bIsClick = 3;								//是否点击过
+	}
+	
+	repeated _ExhcangeActInfo tActInfoList= 1;	//兑换活动信息
+}
+
+//单条兑换信息
+message ExchangeInfoRet
+{
+	required int32 nActID = 1;					//兑换活动ID
+	required int32 nExchangeID = 2;				//兑换ID
+	required int32 nExchangeTimes = 3;			//兑换次数
+}
+
+//兑换请求
+message ExchangeReq
+{
+	required int32 nActID = 1;					//兑换活动ID
+	required int32 nExchangeID = 2;				//兑换项ID
+}
+
+//活动开启通知
+message ActStateChangeNoticRet
+{
+	required int32 nActID = 1;					//活动ID
+	required int32 nState = 2;					//活动状态  1：开启；2：结束
+}
+
+//活动点击打开请求
+message ExchangeActClickReq
+{
+	required int32 nActID = 1;					//点击打开的活动
+}
+
+//活动点击请求应答
+message ExchangeActClickRet
+{
+	required int32 nActID = 1;
+	required bool bIsClick = 2;					//是否已经点击过
+}

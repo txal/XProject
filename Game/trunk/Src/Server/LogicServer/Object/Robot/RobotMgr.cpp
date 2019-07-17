@@ -12,7 +12,7 @@ RobotMgr::RobotMgr()
 {
 }
 
-Robot* RobotMgr::CreateRobot(const GAME_OBJID& oID, int nRobotID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
+Robot* RobotMgr::CreateRobot(const OBJID& oID, int nRobotID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
 {
 	
 	Robot* poRobot = GetRobotByID(oID);
@@ -27,7 +27,7 @@ Robot* RobotMgr::CreateRobot(const GAME_OBJID& oID, int nRobotID, const char* ps
 	return poRobot;
 }
 
-Robot* RobotMgr::GetRobotByID(const GAME_OBJID& oID)
+Robot* RobotMgr::GetRobotByID(const OBJID& oID)
 {
 	RobotIDIter iter = m_oRobotIDMap.find(oID.llID);
 	if (iter != m_oRobotIDMap.end())

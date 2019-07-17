@@ -7,7 +7,7 @@
 
 void NSPacketProc::RegisterPacketProc()
 {
-	PacketHandler* poPacketHandler = g_poContext->GetPacketHandler();
+	PacketHandler* poPacketHandler = gpoContext->GetPacketHandler();
 	poPacketHandler->RegsterExterPacketProc(NSMsgType::eLuaRpcMsg, (void*)OnLuaRpcMsg);
 	poPacketHandler->RegsterExterPacketProc(NSMsgType::eLuaCmdMsg, (void*)OnLuaCmdMsg);
 
@@ -55,7 +55,7 @@ void NSPacketProc::OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, EXTER_HEADER
 
 void NSPacketProc::OnSyncActorPos(int nSrcSessionID, Packet* poPacket, EXTER_HEADER& oHeader)
 {
-	Robot* poRobot = ((RobotMgr*)g_poContext->GetService())->GetRobot(nSrcSessionID);
+	Robot* poRobot = ((RobotMgr*)gpoContext->GetService())->GetRobot(nSrcSessionID);
 	if (poRobot == NULL)
 	{
 		return;

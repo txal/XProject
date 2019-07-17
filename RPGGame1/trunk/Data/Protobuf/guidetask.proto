@@ -1,0 +1,39 @@
+package guidetask;
+
+//任务信息请求
+message GuideTaskInfoReq
+{
+}
+
+message _TaskInfo
+{
+	required int32 nTaskID = 1;			//任务ID
+	required int32 nCurrTarNum = 2;		//当前目标数
+	required bool  bIsComplete = 3;		//是否已经完成
+	required bool  bCanGetReward = 4;	//是否能领取奖励
+}
+
+//指引任务信息应答
+message GuideTaskInfoListRet
+{
+	repeated _TaskInfo tTaskList = 1;		//任务列表
+}
+
+//指引任务单个任务信息
+message GuideTaskInfoRet
+{
+	required _TaskInfo tTaskInfo = 1;
+}
+
+//领取任务奖励
+message GuideTaskRewardReq
+{
+	required int32 nTaskID = 1;
+}
+
+//领取奖励结果
+message GuideTaskRewardRet
+{
+	required bool bIsSucc = 1;		//是否领取成功(true:将任务从任务栏删除)
+	required int32 nTaskID = 2;		//领取奖励成功的任务ID
+}

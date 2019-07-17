@@ -1,0 +1,74 @@
+package dailyactivity;
+
+message DailyActivityReq
+{
+	required int32 nOperaType  = 1;			// 请求所有信息：1; 浏览星期几活动：2; 请求参加活动：3; 领取活跃奖励：4; 					点击活动：5；
+	required int32 nParam1 = 2;				// 请求所有信息：0; 浏览星期几活动：星期几; 请求参加活动：活动ID; 领取活跃奖励：index		点击活动：活动ID
+}
+
+message _ActivityInfo							// 具体活动信息
+{
+	required int32 nActType = 1;				// 活动类型
+	required int32 nActID = 2;					// 活动ID
+	required int32 nCountComp = 3;				// 今天完成次数
+	required int32 nActValue = 4;				// 今天获得的活跃值
+	required bool bCanJoin = 5;					// 是否能参加活动
+	required bool bIsComp = 6;					// 活动是否已经完成
+	required bool bIsEnd = 7;					// 活动时间是否结束
+	required bool bClick = 8;					// 是否已经点击查看
+	required bool bIsCanJoin = 9;				//是否点击参加
+}
+
+message ActivityInfoListRet						// 活动信息列表应答
+{
+	required int32 nTotalActValue = 1;				// 今天总的活跃值
+	repeated _ActivityInfo tActInfoList = 2;			// 活动信息列表
+	repeated int32 tActRewardState = 3;					// 活跃奖励领取状态  0:不可领取  1:可领取  2:已领取
+}
+
+message ActivitySingleInfoRet					
+{
+	required _ActivityInfo ActivityInfo = 1;		// 单个活动刷新的信息
+	required int32 nTotalActValue = 2;				// 今天总的活跃值
+}
+
+message DayActListRet							
+{
+	required int32 nDayIndex = 1;					// 星期几
+	repeated int32 tActIDList = 2;					// 某天可参加的活动ID列表
+	repeated _ActivityInfo tActInfoList = 3;        // 在星期几那天能参加的活动列表
+}
+
+//日常活动开启事件通知
+message DailyActOpenEventNotifyRet
+{	
+	repeated int32 tActList = 1;               //活动列表
+}
+
+//分享游戏是否领取过奖励状态请求
+message ShareGameStatusReq
+{
+}
+
+//分享游戏是否领取过奖励状态应答
+message ShareGameStatusRet
+{
+	required int32 nShareState = 1;		//0未分享; 1分享未领奖; 2已领奖
+}
+
+//分享游戏成功请求
+message ShareGameSuccessReq
+{
+}
+
+//分享游戏领取奖励请求
+message ShareGameRewardReq
+{
+}
+
+//点击参加活动按钮
+message ClickCanJoinActButtonReq
+{
+	required int32 nActID = 1;
+}
+

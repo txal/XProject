@@ -1,0 +1,22 @@
+// 新手协议
+package playerguide;
+
+
+//引导数据请求
+message PlayerGuideDataReq
+{
+}
+
+//引导数据响应
+message PlayerGuideDataRet
+{
+    required int32 nGuideID = 1;           //当前已完成的引导ID
+}
+
+//设置引导数据值
+message PlayerGuideSetReq
+{
+    required int32 nGuideID = 1;        //引导ID
+}
+
+

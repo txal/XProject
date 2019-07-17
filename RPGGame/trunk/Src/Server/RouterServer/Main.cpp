@@ -11,11 +11,11 @@
 #include "Server/RouterServer/PacketProc/RouterPacketHanderl.h"
 #include "Server/RouterServer/PacketProc/RouterPacketProc.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 bool InitNetwork(int8_t nServiceID)
 {
 	RouterNode* poNode = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
 	{
 		if (oSrvConf.oRouterList[i].uID == nServiceID)
@@ -30,7 +30,7 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	Router* poRouter = (Router*)(g_poContext->GetService());
+	Router* poRouter = (Router*)(gpoContext->GetService());
 	return poRouter->Init(nServiceID, poNode->sIP, poNode->uPort);
 }
 
@@ -66,17 +66,17 @@ void ExitFunc(void)
 
 void OnSigTerm(int)
 {	
-	Router* poRouter = (Router*)(g_poContext->GetService());
-	poRouter->GetServerClose().CloseServer(g_poContext->GetWorldServerID());
+	Router* poRouter = (Router*)(gpoContext->GetService());
+	poRouter->GetServerClose().CloseServer(gpoContext->GetWorldServerID());
 }
 
 void OnSigInt(int)
 {
-	if (g_poContext == NULL)
+	if (gpoContext == NULL)
 	{
 		return;
 	}
-	g_poContext->GetService()->Terminate();
+	gpoContext->GetService()->Terminate();
 }
 
 int main(int nArg, char* pArgv[])
@@ -101,8 +101,8 @@ int main(int nArg, char* pArgv[])
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
-	g_poContext = XNEW(ServerContext);
-	bool bRes = g_poContext->LoadServerConfig();
+	gpoContext = XNEW(ServerContext);
+	bool bRes = gpoContext->LoadServerConfig();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -115,14 +115,14 @@ int main(int nArg, char* pArgv[])
 	{
 		char szLogName[128] = "";
 		sprintf(szLogName, "routerserver%d", nServiceID);
-		Logger::Instance()->SetLogFile(g_poContext->GetServerConfig().sLogPath, szLogName);
+		Logger::Instance()->SetLogFile(gpoContext->GetServerConfig().sLogPath, szLogName);
 	}
 
 	Router* poService = XNEW(Router);
-	g_poContext->SetService(poService);
+	gpoContext->SetService(poService);
 
 	RouterPacketHandler* poPacketHandler = XNEW(RouterPacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 	NSPacketProc::RegisterPacketProc();
 
 	bRes = InitNetwork(nServiceID);
@@ -145,10 +145,10 @@ int main(int nArg, char* pArgv[])
 	}
 
 	//wchar_t wcBuffer[256] = { L"" };
-	//wsprintfW(wcBuffer, L"router%d.leak", g_poContext->GetService()->GetServiceID());
+	//wsprintfW(wcBuffer, L"router%d.leak", gpoContext->GetService()->GetServiceID());
 	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
 
-	SAFE_DELETE(g_poContext);
+	SAFE_DELETE(gpoContext);
 	TimerMgr::Instance()->Release();
 	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();

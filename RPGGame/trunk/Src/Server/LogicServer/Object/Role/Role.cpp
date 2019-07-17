@@ -30,26 +30,6 @@ void Role::Init(int nID, int nConfID, const char* psName)
 	strcpy(m_sName, psName);
 }
 
-void Role::Update(int64_t nNowMS)
-{
-	Actor::Update(nNowMS);
-}
-
-void Role::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
-{
-	Actor::OnEnterScene(poScene, nAOIID, oPos);
-}
-
-void Role::AfterEnterScene()
-{
-	Actor::AfterEnterScene();
-}
-
-void Role::OnLeaveScene()
-{
-	Actor::OnLeaveScene();
-}
-
 void Role::RoleStartRunHandler(Packet* poPacket)
 {
 	if (GetScene() == NULL)
@@ -107,16 +87,16 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 		Actor::UpdateRunState(m_nRunStartMSTime + (nClientMSTime - m_nClientRunStartMSTime));
 	}
 
-	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
-	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
-	{
-		XLog(LEVEL_INFO, "%s sync pos for start run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, uTarPosX, uTarPosY);
-		uPosX = (uint16_t)m_oPos.x;
-		uPosY = (uint16_t)m_oPos.y;
-		Actor::SyncPosition();
-		Actor::StopRun(true, true); //坐标不对就停下来 by panda 2018.6.29 mengzhu
-		return;
-	}
+	////客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
+	//if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
+	//{
+	//	XLog(LEVEL_INFO, "%s sync pos for start run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, uTarPosX, uTarPosY);
+	//	uPosX = (uint16_t)m_oPos.x;
+	//	uPosY = (uint16_t)m_oPos.y;
+	//	Actor::SyncPosition();
+	//	Actor::StopRun(true, true); //坐标不对就停下来 by panda 2018.6.29 mengzhu
+	//	return;
+	//}
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	
 	m_nClientRunStartMSTime = nClientMSTime;
@@ -149,10 +129,11 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	nClientMSTime = (int64_t)dClientMSTime;
 
 	XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
+
+	MapConf* poMapConf = m_poScene->GetMapConf();
 	if (m_nRunStartMSTime == 0)
 	{
-		//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
-		if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
+		if (uPosX >= poMapConf->nPixelWidth || uPosY >= poMapConf->nPixelHeight || poMapConf->IsBlockUnit(uPosX / gnUnitWidth, uPosY / gnUnitHeight))
 		{
 			XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -01\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
 			Actor::SyncPosition();
@@ -161,11 +142,20 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 		{
 			Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 		}
+		////客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
+		//if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
+		//{
+		//	XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -01\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
+		//	Actor::SyncPosition();
+		//}
+		//else
+		//{
+		//	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
+		//}
 		return;
 	}
 
 	//客户端提交的时间比起跑时提交的时间小，则视为非法数据，强制使用服务器计算的值
-	MapConf* poMapConf = m_poScene->GetMapConf();
 	if (nClientMSTime < m_nClientRunStartMSTime || uPosX >= poMapConf->nPixelWidth || uPosY >= poMapConf->nPixelHeight || poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight))
 	{
 		int64_t nNowMS = XTime::MSTime();
@@ -181,15 +171,16 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 		Actor::UpdateRunState(m_nRunStartMSTime + (nClientMSTime - m_nClientRunStartMSTime));
 	}
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
-	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
-	{
-		XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -03\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
-		Actor::SyncPosition();
-	}
-	else
-	{
-		Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
-	}
+	//if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
+	//{
+	//	XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -03\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
+	//	Actor::SyncPosition();
+	//}
+	//else
+	//{
+	//	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
+	//}
+	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	m_nClientRunStartMSTime = 0;
 	Actor::StopRun(true, true);
 }

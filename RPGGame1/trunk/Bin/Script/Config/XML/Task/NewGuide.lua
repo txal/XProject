@@ -1,0 +1,27 @@
+ctNewGuideConf={}
+ctNewGuideConf[1]={nID=1,sIcon="icon_npc_songtaiyi",sName="宋太医",sConversation="娘娘吉祥，张灵灵已在兴圣宫候着了，似有事找您，娘娘快去见见她吧",nSceneID=1,nFuntion=-1,nTag=101,sBackground="0",sDubbing="0",}
+ctNewGuideConf[2]={nID=2,sIcon="icon_npc_zhanglingling",sName="张灵灵",sConversation="灵灵恭迎姐姐回宫，姐姐身为一宫之主，还有诸多事宜需要姐姐打理呢",nSceneID=1,nFuntion=-1,nTag=102,sBackground="0",sDubbing="0",}
+ctNewGuideConf[3]={nID=3,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，奴婢已将各位大人送来的信件整理成册，还望娘娘过目",nSceneID=1,nFuntion=-1,nTag=103,sBackground="0",sDubbing="0",}
+ctNewGuideConf[4]={nID=4,sIcon="50001",sName="元稹",sConversation="娘娘，江南风景美如画。今日闲来无事，特前来邀约娘娘一同共赏那江南的秀丽风光",nSceneID=1,nFuntion=-1,nTag=104,sBackground="0",sDubbing="0",}
+ctNewGuideConf[5]={nID=5,sIcon="50001",sName="元稹",sConversation="娘娘，人不可无名，即使萌宠也是一样，请娘娘给它赐一个好名字吧。",nSceneID=1,nFuntion=-1,nTag=105,sBackground="0",sDubbing="0",}
+ctNewGuideConf[6]={nID=6,sIcon="50001",sName="元稹",sConversation="娘娘，此番出游，能让娘娘觅到陪伴娘娘的第一只萌宠，真乃元某之幸。元某衷心祝愿它能在娘娘身边健康无忧的长大。\n【娘娘，加速可以让萌宠快速进入少年期】",nSceneID=1,nFuntion=-1,nTag=106,sBackground="0",sDubbing="0",}
+ctNewGuideConf[7]={nID=7,sIcon="50001",sName="元稹",sConversation="娘娘，这萌宠看起来颇具慧根，娘娘若能予以指导，他日必能助娘娘一臂之力",nSceneID=1,nFuntion=-1,nTag=107,sBackground="0",sDubbing="0",}
+ctNewGuideConf[8]={nID=8,sIcon="50001",sName="元稹",sConversation="娘娘，近来元稹深感学识已达瓶颈，举步维艰。还望娘娘能为元稹点播一二，突破此难关。\n 【请将元稹升到10级，升级知己可大幅提高势力】",nSceneID=1,nFuntion=-1,nTag=108,sBackground="0",sDubbing="0",}
+ctNewGuideConf[9]={nID=9,sIcon="icon_npc_qianggonggong",sName="强公公",sConversation="娘娘，奴才已将您近些年来的随手笔录整理好了，现已重新编纂记录成册，还望娘娘过目",nSceneID=1,nFuntion=-1,nTag=114,sBackground="0",sDubbing="0",}
+ctNewGuideConf[10]={nID=10,sIcon="icon_npc_zhanglingling",sName="张灵灵",sConversation="恭喜姐姐，贺喜姐姐。姐姐为国为民殚精竭虑，皇上看在眼里，对娘娘甚是赞赏，要为娘娘升官加品呢~",nSceneID=1,nFuntion=-1,nTag=115,sBackground="0",sDubbing="0",}
+ctNewGuideConf[11]={nID=11,sIcon="icon_npc_zhanglingling",sName="张灵灵",sConversation="姐姐，最新的妃子功绩榜单已经出炉了哦，姐姐要不去榜单看看自己的排名或膜拜一番位列榜首的大神呢？",nSceneID=1,nFuntion=-1,nTag=116,sBackground="0",sDubbing="0",}
+ctNewGuideConf[12]={nID=12,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，自古以来，才貌双冠的名姝数不胜数。娘娘若有闲情，不妨去拜访拜访那些名满天下的前辈们，好讨教一番经验",nSceneID=1,nFuntion=-1,nTag=117,sBackground="0",sDubbing="0",}
+ctNewGuideConf[13]={nID=13,sIcon="icon_npc_zhanglingling",sName="张灵灵",sConversation="姐姐，每日登陆游戏后，可别忘记了签到获取奖励哟",nSceneID=1,nFuntion=-1,nTag=118,sBackground="0",sDubbing="0",}
+ctNewGuideConf[14]={nID=14,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，对于那些兢兢业业、功绩非常出色的知己，娘娘若能嘉赏一番，他们也自当会为娘娘鞠躬尽瘁哦~【前往赏赐知己】",nSceneID=1,nFuntion=-1,nTag=119,sBackground="0",sDubbing="0",}
+ctNewGuideConf[15]={nID=15,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘日益操劳政事，难免会有力不从心的时候，这时候不妨出宫放松心情一番，指不定会有意想不到的收获~",nSceneID=1,nFuntion=-1,nTag=120,sBackground="0",sDubbing="0",}
+ctNewGuideConf[16]={nID=16,sIcon="icon_npc_zhanglingling",sName="张灵灵",sConversation="姐姐，爱美之心人皆有之。近日宫内到了一批上好的丝绸，姐姐不如为自己制作几身漂亮舒适的服装吧~",nSceneID=1,nFuntion=-1,nTag=121,sBackground="0",sDubbing="0",}
+ctNewGuideConf[17]={nID=17,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，今日天色晴暖，娘娘要不要走一走呢？不如娘娘随机挑选一位知己陪同去御花园散散心吧~",nSceneID=1,nFuntion=-1,nTag=122,sBackground="0",sDubbing="0",}
+ctNewGuideConf[18]={nID=18,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，已经有数位知己在觐见阁等候面见娘娘了，娘娘不如去觐见阁看看他们有何事上访娘娘吧",nSceneID=1,nFuntion=-1,nTag=123,sBackground="0",sDubbing="0",}
+ctNewGuideConf[19]={nID=19,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，俗话说礼尚往来，来而不往非礼也。知己们能为娘娘奉上如此珍贵的厚礼，衷心可见一斑，娘娘大可回一份心意哟",nSceneID=1,nFuntion=-1,nTag=124,sBackground="0",sDubbing="0",}
+ctNewGuideConf[20]={nID=20,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，如果您感觉处理政事感到力不从心的话，可以去三生殿求求姻缘来获得更多的知己助自己一臂之力哦",nSceneID=1,nFuntion=-1,nTag=125,sBackground="0",sDubbing="0",}
+ctNewGuideConf[21]={nID=21,sIcon="icon_npc_zhanglingling",sName="张灵灵",sConversation="姐姐，微服私访前往寻宝，兴许会获得一些难见的珍宝哦~",nSceneID=1,nFuntion=-1,nTag=126,sBackground="0",sDubbing="0",}
+ctNewGuideConf[22]={nID=22,sIcon="icon_npc_lvli",sName="绿篱",sConversation="近日江映月这个小妖精嚣张跋涉，在后宫作威作福，浑然不把娘娘您这后宫之主放在眼里，奴婢觉得是该好好管教她一番，让她知道什么叫规矩！",nSceneID=1,nFuntion=-1,nTag=127,sBackground="0",sDubbing="0",}
+ctNewGuideConf[23]={nID=23,sIcon="50001",sName="元稹",sConversation="为了能更好的巩固娘娘后宫之主的地位，娘娘，还望能在微臣突破学识修为上助微臣一臂之力！",nSceneID=1,nFuntion=-1,nTag=128,sBackground="0",sDubbing="0",}
+ctNewGuideConf[24]={nID=24,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，服装可以通过强化来获得更高额的评分点数哦，娘娘要不要试试呢？",nSceneID=1,nFuntion=-1,nTag=129,sBackground="0",sDubbing="0",}
+ctNewGuideConf[25]={nID=25,sIcon="icon_npc_lvli",sName="绿篱",sConversation="娘娘，服装若得到进阶的话，可以获得更多的强化上限与等级上限哟，娘娘要不要来亲手打造一件最完美的服饰呢？",nSceneID=1,nFuntion=-1,nTag=130,sBackground="0",sDubbing="0",}
+ctNewGuideConf[26]={nID=26,sIcon="icon_npc_zhanglingling",sName="张灵灵",sConversation="姐姐，今日皇宫正在举行盛大的天灯活动，姐姐要不要去祈福看看呢？说不定会得到上天的垂青喔",nSceneID=1,nFuntion=-1,nTag=131,sBackground="0",sDubbing="0",}

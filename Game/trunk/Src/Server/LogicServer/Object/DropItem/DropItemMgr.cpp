@@ -12,7 +12,7 @@ DropItemMgr::DropItemMgr()
 {
 }
 
-DropItem* DropItemMgr::CreateDropItem(const GAME_OBJID& oID, int nConfID, const char* psName, int nAliveTime, int nCamp)
+DropItem* DropItemMgr::CreateDropItem(const OBJID& oID, int nConfID, const char* psName, int nAliveTime, int nCamp)
 {
 	DropItem* poDropItem = GetDropItemByID(oID);
 	if (poDropItem != NULL)
@@ -26,7 +26,7 @@ DropItem* DropItemMgr::CreateDropItem(const GAME_OBJID& oID, int nConfID, const 
 	return poDropItem;
 }
 
-DropItem* DropItemMgr::GetDropItemByID(const GAME_OBJID& oID)
+DropItem* DropItemMgr::GetDropItemByID(const OBJID& oID)
 {
 	DropItemIter iter = m_oDropItemMap.find(oID.llID);
 	if (iter != m_oDropItemMap.end())

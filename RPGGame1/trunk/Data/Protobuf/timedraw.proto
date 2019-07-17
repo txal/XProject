@@ -1,0 +1,65 @@
+package timedraw;
+
+//活动状态请求
+message TimeDrawStateReq
+{
+}
+
+//活动状态返回
+message TimeDrawStateRet
+{
+	required int32 nID = 1;				//活动ID
+	required int32 nBeginTime = 2; 		//活动开始时间
+	required int32 nEndTime = 3; 		//活动结束时间
+	required int32 nStateTime = 4; 		//活动时间
+	required int32 nIntegral = 5;		//我的积分
+	required int32 nMyRank = 6; 		//我的排名
+	required int32 nTimes = 7; 		  	//抽奖次数
+	required int32 nFreeTimeCD = 8; 	//免费抽奖CD时间
+	required int32 nState = 9; 			//活动状态:0未开始状态; 1进行中; 2领奖中; 3已结束
+	required int32 nMCID = 10;			//特殊知己ID
+}
+
+//限时选秀请求
+message TimeDrawReq
+{
+	required int32 nDrawType = 1;		//1.单抽 2.10连抽
+}
+
+//限时选秀返回
+message TimeDrawRet
+{
+	message _Item
+	{
+		required int32 nType = 1; 		//类型(1道具,3宫女)
+		required int32 nID = 2; 		//物品ID
+		required int32 nNum = 3; 		//物品数量
+		optional bool bExchange = 4; 	//true知己已经换成亲密度
+	}
+	repeated _Item tAwardList = 1; 	 	//奖励表
+	optional int32 nRareRemain = 2;  	//还剩多少次抽珍稀库
+}
+
+///////////////////排行榜////////////////////
+
+//排行榜请求
+message TimeDrawRankingReq
+{
+	required int32 nRankNum = 1; 	//数量
+}
+
+//排行榜返回
+message TimeDrawRankingRet
+{
+	message _Item 
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}
+	required int32 nMyRank = 1; 	//我的排名
+	required string sMyName = 2; 	//我的名字
+	required int32 nMyValue = 3; 	//我的值
+	repeated _Item tRanking = 4; 	//列表
+}
+

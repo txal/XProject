@@ -1,0 +1,45 @@
+package itemquery;
+import "knapsack.proto";
+import "pet.proto";
+import "scene.proto";
+
+message ItemQueryReq
+{
+    required int32 nRoleID = 1;
+    required int32 nItemType = 2;  //  1道具，3宠物，这个同全局ItemType定义
+    required int32 nKey = 3;       //如果是道具，则填写道具key值，如果是宠物，则填写宠物pos值
+    optional int32 nMsgStamp = 4;  //消息时间戳
+}
+
+message ItemQueryRet
+{
+    required int32 nItemType = 1;
+    optional knapsack.KnapsacPropDetailRet tPropData = 2;
+    optional pet.PetDetailInfo tPetData = 3;
+}
+
+//玩家基本信息查询请求
+message RoleInfoQueryReq
+{
+    required int32 nRoleID = 1;
+    optional int32 nTimeStamp = 2;
+}
+
+//玩家基本信息查询响应
+message RoleInfoQueryRet
+{
+    required int32 nRoleID = 1;   //角色ID
+    required string sName = 2;     //角色姓名
+    required int32 nConfID = 3;   //角色配置ID //可以通过这个读配置表获取角色头像、门派等信息
+    required int32 nLevel = 4;    //角色等级
+    required knapsack.KnapsacWearEquListRet tEquData = 5;  //装备列表
+    required int32 nPower = 6;    //战斗力
+    optional scene.RoleShapeData tShapeData = 7;  //场景外观
+    // 宠物
+    // 称号
+    // 时装
+    //TODO
+}
+
+
+

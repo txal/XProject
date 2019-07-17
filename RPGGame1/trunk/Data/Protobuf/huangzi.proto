@@ -1,0 +1,327 @@
+package huangzi;
+
+//皇子信息结构
+message _HZInfo
+{
+	required int32 nID = 1; 		//皇子ID
+	required string sIcon = 2;  	//头像
+	required string sName = 3; 		//名字
+	required int32 nLv = 4; 		//等级
+	required int32 nMaxLv = 5; 		//等级上限
+	required int32 nHuoLi = 6; 		//活力
+	required int32 nExpEff = 7; 	//经验效率
+	required int32 nStage = 8; 		//成长阶段(1婴儿; 2少年; 3成年)
+	required int32 nStageTime = 9; 	//婴儿阶段剩余时间
+	required int32 nHuoLiCD = 10; 	//活力恢复剩余时间
+	required int32 nTalentLv = 11; 	//天赋等级
+	repeated int32 tAttr = 12; 		//属性值
+	required int32 nFZID = 13; 		//妃子ID
+	required int32 nQinMi = 14; 	//亲密度
+	required int32 nJueWei = 15; 	//爵位(品级)
+	required int32 nGender = 16; 	//性别(1男; 2女)
+	required int32 nExp =  17;  		//经验
+	required int32 nTalentType = 18; 	//天赋
+	required int32 nExpAdd = 19; 		//离开宗人府时间段获得的经验(飘字用)
+	optional int32 nLearnExpAdd = 20; 	//皇子学习增加的经验(飘字用)
+}	
+
+//皇子列表请求
+message HZListReq
+{
+	
+}
+
+//皇子列表返回
+message HZListRet
+{
+	repeated _HZInfo tList = 1; 	//皇子列表
+	required int32 nGrids = 2; 		//当前已有席位
+}
+
+//同步单个皇子信息
+message HZSyncInfo
+{
+	required _HZInfo tInfo = 1; 	//皇子信息
+}
+
+//皇子改名请求
+message HZModNameReq
+{
+	required int32 nID = 1; 		//皇子ID
+	required string sName = 2;	 	//名字
+}
+
+//皇子加速成长请求
+message HZSpeedGrowUpReq
+{
+	required int32 nID = 1; 		//皇子ID
+	required int32 nPropID = 2;	 	//道具ID
+	required int32 nPropNum = 3;	//道具数量
+}
+
+//皇子提升学习效率请求
+message HZUpLearnEffReq
+{
+	required int32 nID = 1; 		//皇子ID	
+}
+
+
+//皇子学习请求
+message HZLearnReq
+{
+	required int32 nID = 1; 		//皇子ID	
+	required bool bUseProp = 2; 	//是否使用道具
+}
+
+//皇子封爵请求
+message HZFengJueReq
+{
+	required int32 nID = 1; 		//皇子ID
+}
+
+//未婚皇子列表请求
+message HZUnmarriedListReq
+{
+}
+
+//未婚皇子列表返回
+message HZUnmarriedListRet
+{
+	message _UHZ
+	{
+		required int32 nID = 1; 			//皇子ID
+		required int32 nJueWei = 2; 		//爵位
+		required string sIcon = 3; 			//头像
+		required string sName = 4; 			//名字
+		required int32 nNengLi = 5; 		//能力
+		required int32 nGender = 6;			//性别(1男,2女)
+		required int32 nFZID = 7; 			//妃子ID
+		required int32 nLYRemainTime = 8;	//联姻请求剩余时间
+		repeated int32 tAttr = 9;			//属性
+		required int32 nQinMi = 10;			//亲密度
+		required int32 nTalentLv= 11;		//天赋等级
+		required int32 nTalentType = 12;	//天赋类型
+		required int32 nLv = 13; 			//等级
+	}
+	repeated _UHZ tList = 1; 			//列表
+}
+
+//已婚皇子列表请求
+message HZMarriedListReq
+{
+	
+}
+
+//已婚皇子列表返回
+message HZMarriedListRet
+{
+	message _MHZ
+	{
+		required int32 nID = 1; 		//皇子ID
+		required int32 nJueWei = 2; 	//爵位
+		required string sIcon= 3; 		//头像
+		required string sName = 4; 		//名字
+		required int32 nNengLi = 5; 	//能力
+		required int32 nGender = 6;		//性别(1男,2女)
+		repeated int32 tAttr = 7;		//配偶属性
+		required int32 nQinMi = 8; 		//亲密度
+		required int32 nFZID = 9; 		//妃子ID
+		required int32 nTalentLv= 10;	//天赋等级
+		required int32 nTalentType = 11;//天赋类型
+		required int32 nLv = 12;		//等级
+
+		required int32 nPOJueWei = 13; 	//配偶爵位
+		required string sPOIcon = 14; 	//配偶头像
+		required string sPOName = 15; 	//配偶名字
+		required string sPOCharName = 16; //亲家名字
+		required int32 nPOLv = 17; 		//配偶等级
+		repeated int32 tPOAttr = 18;	//配偶属性
+		required int32 nPOTalentLv= 19;	//配偶天赋等级
+		required int32 nPOTime = 20; 	//联姻时间
+		required int32 nPOGender = 21; 	//配偶性别
+	}
+	repeated _MHZ tList = 1; 			//列表
+}
+
+//联姻列表请求
+message LYListReq
+{
+	
+}
+
+//联姻列表返回
+message LYListRet
+{
+	message _LY
+	{
+		required int32 nID = 1; 		//皇子ID
+		required int32 nJueWei = 2; 	//爵位
+		required string sName = 3; 		//名字
+		required string sIcon = 4; 		//头像
+		repeated int32 tAttr = 5; 		//属性
+		required int32 nFZID = 6; 		//妃子ID
+		required int32 nCharID = 7; 	//玩家ID
+		required string sCharName = 8; 	//玩家名字
+		required int32 nGender = 9; 	//1男;2女
+		optional int32 nCaiLiID = 10; 	//彩礼ID(0:没有)
+	}	
+	repeated _LY tList = 1;
+}
+
+//指定玩家发送联姻请求
+message LYPlayerSendReq
+{
+	required int32 nHZID = 1; 		//皇子ID
+	required int32 nTarCharID = 2;	//目标玩家ID
+	required int32 nCostType = 3; 	//联姻类型(1道具; 2元宝)
+}
+
+//全服玩家联姻请求
+message LYServerSendReq
+{
+	required int32 nHZID = 1; 		//皇子ID
+	required int32 nCostType = 2; 	//联姻类型(1道具; 2元宝)
+}
+
+//取消联姻请求
+message LYCancelReq
+{
+	required int32 nHZID = 1; 		//皇子ID
+}
+
+//拒绝联姻请求
+message LYRejectReq
+{
+	required int32 nTarCharID = 1; 		//玩家ID
+	required int32 nTarHZID = 2; 		//皇子ID
+}
+
+//同意联姻请求
+message LYAgreeReq
+{
+	required int32 nSrcHZID = 1; 		//自己皇子ID
+	required int32 nTarCharID = 2; 		//目标玩家ID
+	required int32 nTarHZID = 3; 		//目标皇子ID
+	required int32 nCostType = 4; 		//联姻类型(1道具; 2元宝)
+}
+
+//取符合条件的皇子列表
+message LYHZMatchListReq
+{
+	required int32 nTarCharID = 1;	 	//联姻请求的玩家ID
+	required int32 nTarHZID = 2;	 	//联姻请求的皇子ID
+}
+
+//符合条件的皇子列表返回
+message LYHZMatchListRet
+{
+	message _HZ
+	{
+		required int32 nHZID = 1;
+		required int32 nJueWei = 2;
+		required string sName = 3;
+		required string sIcon = 4;
+		required int32 nFZID = 5;
+		repeated int32 tAttr = 6;
+		required int32 nGender = 7; 	//1男;2女
+	}
+	repeated _HZ tList = 1;
+}
+
+//联姻成功返回
+message LYSuccessRet
+{
+	message _Married
+	{
+		required string sSrcName = 1; 	//自己皇子名字
+		required string sSrcIcon = 2; 	//自己皇子头像
+		required string sTarName = 3; 	//对方皇子名字
+		required string sTarIcon = 4; 	//对方皇子头像
+		repeated int32 tAttr = 5; 		//增加的属性
+	}
+	repeated _Married tList = 1; 		//结婚列表
+}
+
+//皇子排行榜请求
+message HZRankingReq
+{
+	required int32 nRankNum = 1; 	//取前X名	
+}
+
+//皇子排行榜返回
+message HZRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	
+	repeated _Rank tRanking = 1; 	//排行列表
+	required int32 nMyRank = 2; 	//我的排名
+	required string sMyName = 3; 	//我的名字
+	required int32 nMyValue = 4; 	//我的数值
+}
+
+//扩建宗人府请求
+message HZOpenGridReq
+{
+	
+}
+
+//扩建宗人府返回
+message HZOpenGridRet
+{
+	required int32 nGrids = 1;	 	//席位数
+}
+
+//一键学习(突飞猛进)请求
+message OneKeyLearnReq
+{
+	
+}
+
+//一键恢复请求
+message OneKeyRecoverReq
+{
+	
+}
+
+
+//联姻彩礼信息请求
+message HZCaiLiInfoReq
+{
+	required int32 nID = 1; 	//皇子ID
+}
+
+//联姻彩礼信息返回
+message HZCaiLiInfoRet
+{
+	message _CaiLi 
+	{
+		required int32 nID = 1; 	//彩礼ID
+		required int32 nNum = 2; 	//彩礼数量
+		required bool bSel = 3; 	//是否已经选择
+	}	
+	repeated _CaiLi tList = 1; 		//彩礼列表(全部,不需要从国库取了)
+}
+
+//设置彩礼请求
+message HZSetCaiLiReq
+{
+	required int32 nID = 1; 		//皇子ID	
+	required int32 nCaiLiID = 2; 	//彩礼ID 
+}
+
+//取宗人府席位信息
+message ZRFGridInfoReq
+{
+	
+}
+
+//宗人府席位信息返回
+message ZRFGridInfoRet
+{
+	required int32 nFreeGrids = 1;	 	//剩余席位数
+	required int32 nMaxGrids = 2;	 	//席位上限数
+}

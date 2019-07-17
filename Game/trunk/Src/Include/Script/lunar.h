@@ -107,6 +107,12 @@ public:
 			lua_settable(L, methods);
 		}
 
+		////到这里栈结构
+		//metatable{ __metatable = methods, __index = methods, __tostring = tostring_T __gc = gc_T __call = new_T }
+		//methods{ new = new_T }->table(meta), funlist = ...}
+		////到这里的全局
+		//_G{ [classname] = methods }
+
 		// drop metatable and method table
 		lua_pop(L, 2);
 	}
@@ -167,7 +173,14 @@ public:
 		if (lua_isnil(L, -1)) luaL_error(L, "%s missing metatable", T::className);
 		int mt = lua_gettop(L);
 		subtable(L, mt, "userdata", "v");
+		//堆栈
+		//table->same table(meta){ __mode="v" }
+		//metatable{ userdata=table->same table(meta){ __mode="v" } }
 		userdataType *ud = static_cast<userdataType*>(pushuserdata(L, obj, sizeof(userdataType)));
+		//堆栈
+		//userdata
+		//table->same table(meta) { __mode="v", lightud=userdata }
+		//metatable{ userdata=table->same table(meta){ __mode="v", lightud=userdata} }
 		if (ud)
 		{
 			// store pointer to object in userdata
@@ -183,6 +196,10 @@ public:
 				lua_pushboolean(L, 1);
 				lua_settable(L, -3);
 				lua_pop(L, 1);
+				//堆栈
+				//userdata->metatable
+				//table->same table(meta){ __mode="v", lightud=userdata }
+				//metatable{ userdata=table->same table(meta){ __mode="v", lightud=userdata}, "do not trash"=table->same table(meta){ __mode="k", userdata=true} }
 			}
 		}
 		lua_replace(L, mt);
@@ -200,6 +217,43 @@ public:
 		if (!ud) luaL_error(L, "not a userdata of %s", T::className);
 		// pointer to T object
 		return ud->pT;
+	}
+
+	//由c/cpp调用的清理函数,跟push相反的过程(by panda)
+	static void cthunk_once(lua_State *L, T* tarObj)
+	{
+		push(L, tarObj);
+		// stack has userdata, followed by method args
+		// get 'self', or if you prefer, 'this'
+		T *obj = check(L, 1);
+		lua_pushnil(L);
+		//delete metatable
+		lua_setmetatable(L, 1);
+		// remove self so member function args start at index 1
+		lua_remove(L, 1);
+
+		// clear weak table "userdata" and "do not trash" because of the memory pool 
+		int e = lua_gettop(L);
+		luaL_getmetatable(L, T::className);
+		if (!lua_isnil(L, -1))
+		{
+			int mt = lua_gettop(L);
+			lua_getfield(L, mt, "userdata");
+			int ud = lua_gettop(L);
+			lua_getfield(L, mt, "do not trash");
+			int dnt = lua_gettop(L);
+
+			// clear do not trash
+			lua_pushlightuserdata(L, obj);
+			lua_pushnil(L);
+			lua_settable(L, dnt);
+
+			// clear userdata
+			lua_pushlightuserdata(L, obj);
+			lua_pushnil(L);
+			lua_settable(L, ud);
+		}
+		lua_settop(L, e);
 	}
 
 private:
@@ -400,5 +454,13 @@ private:
 	char Class::className[] = #Class; \
 	Class::Class(lua_State* pState) { assert(false); } \
 	Lunar<Class>::RegType Class::methods[] =
+
+//默认的不使用的类
+class CNOTUSE
+{
+public:
+	LUNAR_DECLARE_CLASS(CNOTUSE);
+private:
+};
 
 #endif

@@ -1,0 +1,209 @@
+//组队协议
+package team;
+
+//创建队伍请求
+message CreateTeamReq
+{
+}
+
+//队伍信息请求
+message TeamReq
+{
+}
+
+//队员信息
+message _MEMBER
+{
+	optional int32 nMemType = 1; 		//队员类型: 1角色; 2伙伴;
+	optional int32 nID = 2; 			//角色:角色编号; 伙伴:伙伴编号
+	optional string sName = 3; 			//名字
+    optional int32 nGender = 4;     	//性别: 1:男; 2:女
+    optional int32 nSchool = 5;     	//门派: 1鬼王;2青云;3天音;4合欢;5圣巫;
+	optional string sHeader = 6; 		//头像
+	optional int32 nLevel = 7; 			//等级
+	optional bool bOnline = 8; 			//是否在线
+	optional bool bLeave = 9; 			//是否暂离
+	optional int32 nPartnerType = 10;	//伙伴类型
+	optional int32 nPos = 11; 			//位置(非固定)
+	optional double nBattleID = 12; 	//战斗ID(>0表示在战斗中)
+}
+
+//队伍信息返回(变化会主动推送)
+message TeamRet
+{
+	required int32 nTeamID = 1;		//队伍ID: 0无队伍; >0队伍编号
+	required int32 nFmtID = 2; 		//阵法ID
+	required int32 nFmtLv = 3; 		//阵法等级
+	repeated _MEMBER tTeam = 4; 	//队伍列表
+}
+
+//队员信息变化同步
+message TeamMemberInfoChangeRet
+{
+	required int32 nTeamID = 1;	 	//同上
+	required int32 nMemType = 2; 	//同上
+	required int32 nID = 3; 		//同上
+	optional double nBattleID = 4;  //同上	
+}
+
+//退出队伍请求
+message TeamQuitReq
+{
+}
+
+//归队请求
+message TeamReturnReq
+{
+}
+
+//暂离请求
+message TeamLeaveReq
+{
+}
+
+//好友列表请求
+message TeamFriendReq
+{
+}
+
+message _FRIEND
+{
+	required int32 nID = 1;
+	required string sName = 2;
+	required string sHeader = 3;
+	required int32 nLevel = 4;
+	required int32 nSchool = 5;
+	required int32 nTeamID = 6;
+	required int32 nGender = 7;
+}
+
+//好友列表返回
+message TeamFriendRet
+{
+	repeated _FRIEND tList = 1;
+}
+
+//帮派成员列表请求
+message TeamUnionMemberReq
+{
+}
+
+//帮派成员列表返回
+message TeamUnionMemberRet
+{
+	repeated _FRIEND tList = 1;
+}
+
+//邀请请求
+message TeamInviteReq
+{
+	required int32 nRoleID = 1; 	//目标角色ID
+}
+
+//申请入队请求
+message TeamApplyJoinReq
+{
+	required int32 nTeamID = 1; 	//目标队伍
+}
+
+//申请列表请求
+message TeamApplyListReq
+{
+}
+
+//申请列表返回
+message TeamApplyListRet
+{
+	message _APPLY
+	{
+		required int32 nID = 1;		
+		required string sName = 2;
+		required string sHeader = 3;
+		required int32 nGender = 4;
+		required int32 nSchool = 5;
+		required int32 nLevel = 6;
+		required int32 nTime = 7;
+	}
+	repeated _APPLY tList = 1;
+}
+ 
+//同意入队申请请求
+message TeamAgreeJoinReq
+{
+	required int32 nRoleID = 1; 	//申请者ID
+}
+
+//交换队员位置请求
+message TeamExchangePosReq
+{
+	required int32 nIndex1 = 1;
+	required int32 nIndex2 = 2;
+}
+
+//召回所有队员归队请求
+message TeamCallReturnReq
+{
+}
+
+//请离队伍请求
+message TeamKickMemberReq
+{
+	required int32 nRoleID = 1;
+}
+
+//移交队长请求
+message TeamTransferLeaderReq
+{
+	required int32 nRoleID = 1;	
+}
+
+//申请带队请求
+message TeamApplyLeaderReq
+{
+}
+
+//队长变更通知
+message TeamLeaderChangeRet
+{
+}
+
+//视野角色队伍发生变化广播
+message ViewRoleTeamChangeRet
+{
+	required int32 nAOIID = 1;	 //角色AOIID
+	required int32 nTeamID = 2;  //队伍ID
+	required bool bLeader = 3; 	 //是否队长
+}
+
+//清空申请列表
+message TeamClearApplyListReq
+{
+}
+
+//匹配请求(测试用)
+message TeamMatchReq
+{
+	required int32 nGameType = 1;
+	optional string sGameName = 2;
+}
+
+
+//队伍匹配状态请求
+message TeamMatchInfoReq
+{
+}
+
+//队伍匹配状态响应
+message TeamMatchInfoRet
+{
+	optional int32 nGameType = 1;
+	optional int32 nWaitTime = 2;
+	optional int32 bMatchRobot = 3;      //是否匹配机器人
+	optional int32 nRobotCountdown = 4;  //机器人倒计时
+}
+
+//取消匹配请求  --匹配走各功能模块，需要做合法性验证
+message CancelTeamMatchReq
+{
+}
+

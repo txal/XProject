@@ -13,6 +13,7 @@ link_directories(/usr/lib64/)
 
 
 include_directories(${PROJECT_SOURCE_DIR}/Src)
+include_directories(${PROJECT_SOURCE_DIR}/../../)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Bin/${CMAKE_BUILD_TYPE}/)
 

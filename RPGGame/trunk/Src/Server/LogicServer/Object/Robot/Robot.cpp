@@ -80,11 +80,6 @@ void Robot::Update(int64_t nNowMS)
 	}
 }
 
-void Robot::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
-{
-	Actor::OnEnterScene(poScene, nAOIID, oPos);
-}
-
 void Robot::AfterEnterScene()
 {
 	Actor::AfterEnterScene();

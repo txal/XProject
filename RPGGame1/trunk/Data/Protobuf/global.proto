@@ -1,0 +1,98 @@
+package global;
+
+//测试包
+message TestPack
+{
+	repeated int32 tData = 1;
+}
+
+//GM指令
+message GMCmdReq
+{
+	required string sCmd = 1;
+}
+
+//飘字提示
+message TipsMsgRet
+{
+	required string sCont = 1;	
+}
+
+//通知客户端弹询问确认框
+message ConfirmRet
+{
+	optional int32 nCallID = 1;  	//调用ID(null/0不需要反馈)
+	optional int32 nService = 2; 	//来源服务
+
+	optional string sTitle = 3; 	//标题
+	optional string sCont = 4; 		//内容1
+	optional string sCont2 = 5; 	//内容2
+	repeated string tOption = 6; 	//选项
+	optional int32 nTimeOut = 7;  	//超时时间(null/0不超时)
+	optional int32 nTimeOutSelIdx = 8; //超时默认选择(null/0不默认选择)
+	optional int32 nType = 9; 		//确认框类型:
+	//null/0默认; 1队员申请带队投票框; 2推送可以申请队长提示框
+	// 3结婚邀请, 4结拜请求, 5拜师请求, 6收徒请求
+	optional int32 nParam1 = 10;	//可变参数1 --尼玛, 请注意这个不是非通用数据字段, 用于特定功能的
+	optional int32 nTypeParam = 11;  //类型参数字段
+}
+
+//客户端询问确认框反馈请求
+message ConfirmReactReq
+{
+	required int32 nCallID = 1; 	//同上
+	required int32 nService = 2; 	//同上
+
+	required int32 nSelIdx = 3; 	//选择项
+	optional int32 nParam = 4;      //可选参数
+	optional int32 nTypeParam = 5;  //类型参数字段
+}
+
+
+//消耗物品确认框通知
+message ItemConfirmRet
+{
+	optional int32 nCallID = 1;  	//调用ID(null/0不需要反馈)
+	optional int32 nService = 2; 	//来源服务
+
+	optional string sID = 3; 		//配置KEY(PropConsumeConf.xml)
+	optional int32 nTimeOut = 4;  	//超时时间(null/0不超时)
+	optional int32 nTimeOutSelIdx = 5; //超时默认选择(null/0不默认选择)
+	optional string sCont = 6; 		//内容
+}
+
+//消耗物品确认框反馈
+message ItemConfirmReactReq
+{
+	required int32 nCallID = 1; 	//同上
+	required int32 nService = 2; 	//同上
+
+	required int32 nSelIdx = 3; 	//选择项
+}
+
+//元宝不足通知
+message GoldAllNotEnoughtRet
+{
+}
+
+//金币不足通知
+message JinBiNotEnoughtRet
+{
+}
+
+//银币不足通知
+message YinBiNotEnoughtRet
+{
+}
+
+//内丹不足通知
+message MagicPillNotEnoughtRet
+{
+	
+}
+
+//道具不足通知
+message PropNotEnoughtRet
+{
+	required int32 nPropID = 1;
+}

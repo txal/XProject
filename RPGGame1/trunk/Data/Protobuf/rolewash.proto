@@ -1,0 +1,69 @@
+//角色洗点
+package rolewash;
+
+//方案信息请求
+message RWPlanInfoReq
+{
+    required int32 nPlan = 1;   //方案号0~3, 0当前
+}
+
+//方案信息返回
+message RWPlanInfoRet
+{
+    message _ATTR
+    {
+        required int32 nAttrID = 1;
+        required int32 nAttrVal = 2;
+    }
+    required int32 nPlan = 1;           //方案号
+    required int32 nCurrPlan = 2;       //当前启用的方案
+    required int32 nMaxPlan = 3;        //已开放方案数
+    required int32 nPoten = 4;          //未分配潜力点
+    repeated int32 tMainAttr = 5;       //包括潜力点的主属性: (体质,魔力,力量,耐力,敏捷)
+    repeated _ATTR tResAttr = 6;        //结果属性: 101气血,102魔法,103怒气,104攻击,105防御,106灵力,107速度,108伤害,109受伤
+    repeated int32 tRecommandPlan = 7;  //在使用自动加点方案(体质,魔力,力量,耐力,敏捷)
+    required int32 nRecommandPlan = 8;  //选择的加点方案
+    required bool bAutoAddPoten = 9;    //是否自动加点
+}
+
+//保存当前方案请求
+message RWSavePlanReq
+{
+    repeated int32 tPotenAttr = 1;  //分配的潜力点(体质,魔力,力量,耐力,敏捷)
+}
+
+//启用方案请求
+message RWUsePlanReq
+{
+   required int32 nPlan = 1;    //方案号
+}
+
+//洗点信息请求
+message RWResetInfoReq
+{
+    
+}
+
+//洗点信息返回
+message RWResetInfoRet
+{
+    required int32 nPoten = 1;          //未分配潜力点
+    repeated int32 tMainAttr = 2;       //主属性(体质,魔力,力量,耐力,敏捷)
+    repeated int32 tResetPoten = 3;     //可重置的潜力点(体质,魔力,力量,耐力,敏捷)
+    required bool bFreeResetAll = 4;    //是否可以免费全部重置
+}
+
+//洗点请求
+message RWResetReq
+{
+    required int32 nAttrType = 1;   //主属性类型: 0全部,目前改成只支持全部重置了
+    required bool bYuanBao = 2;     //是否使用元宝(没有洗点道具情况下)
+}
+
+//设置推荐方案和自动加点否
+message RWSetRecommandPlanReq
+{
+    repeated int32 tRecommandPlan = 1;  //自动加点方案:(体质,魔力,力量,耐力,敏捷)
+    required int32 nRecommandPlan = 2;  //选择的加点方案
+    required bool bAutoAddPoten = 3;    //是否自动加点 
+}

@@ -1,0 +1,49 @@
+package qiandao;
+
+//签到界面请求
+message QDInfoReq
+{
+}
+
+//签到界面返回
+message QDInfoRet
+{
+	message _IsSign
+	{
+		required int32 nID = 1;        //配置表ID
+		required int32 nState = 2;     //签到状态(签到：0不能签 1可签 2已签到 3可补签) or (累签：0未达成 1可领取 2已领取)
+	}
+	repeated _IsSign tList = 1;       		//月签数组
+	repeated _IsSign tTirt = 2;       		//累签数组
+	required int32 nTiredSignDays = 3;      //累签天数
+	required int32 nMonthDays = 4;          //这个月份的天数
+	required int32 nMonth = 5;              //月份
+	required int32 nBuQianCount = 6;        //可补签次数
+	required int32 nQianDaoState = 7;       //月签到状态(0.不可签到,1.可签到, 2.已签到)
+	required int32 nDay = 8;				//当天日期
+}
+
+
+//签到奖励请求
+message QDAwardReq   
+{
+	repeated int32 nID = 1;     //签到日期
+}
+
+//签到奖励返回(已取消返回)
+message QDAwardRet
+{                   
+	message _Award    //奖励结构
+	{
+		required int32 nType = 1;    //奖励类型
+		required int32 nID = 2;      //奖励ID
+		required int32 nNum = 3;     //奖励数量
+	}
+	repeated _Award tList = 1;   //奖励数组 
+}
+
+//累月签到领取奖励请求
+message QDTiredSignAwardReq   
+{
+	required int32 nID = 1;     //编号
+}

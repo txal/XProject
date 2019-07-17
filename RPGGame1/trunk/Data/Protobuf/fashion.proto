@@ -1,0 +1,95 @@
+package fashion;
+
+//已经拥有的时装列表返回
+message FashionListRet
+{
+    message _Fashion
+    {
+        required int32 nID = 1;         //时装ID
+        required int32 nLv = 2;         //等级
+        required int32 nSGLv = 3;       //强化等级
+        required int32 nSGExp = 4;      //强化经验
+        required int32 nADLv = 5;       //进阶等级
+        repeated int32 tAttr = 6;       //总属性(智财魅武)
+        repeated int32 tChar = 7;       //总特性(1-14)
+    }   
+    repeated _Fashion tList = 1;        //列表 
+    required int32 nMaxChar = 2;        //特性上限
+}
+
+//已穿戴时装返回
+message FashionWearRet
+{
+    message _Part 
+    {
+        required int32 nPos = 1;    //时装位置(1发型,2头饰,3首饰,4装饰)
+        required int32 nID = 2;     //时装ID
+    }
+    repeated _Part tList = 1;       //列表
+}
+
+
+//时装商店请求 
+message FashionMallReq
+{
+    
+}
+
+//时装商店返回
+message FashionMallRet
+{
+    message _Item
+    {
+        required int32 nID = 1;     //物品ID
+        required bool bGot = 2;    //是否已获得
+    }
+    repeated _Item tList = 1;       //物品列表
+}
+
+//购买时装请求
+message FashionBuyReq
+{
+    required int32 nID = 1;         //物品ID   
+}
+
+//穿时装请求
+message FashionWearReq
+{
+    required int32 nID = 1;         //时装ID     
+}
+
+//卸时装请求
+message FashionOffReq
+{
+    required int32 nID = 1;         //时装ID     
+}
+
+//强化请求
+message FashionStrengthReq
+{
+    message _Item
+    {
+        required int32 nID = 1;     //ID
+        required int32 nNum = 2;    //数量
+    } 
+    required int32 nID = 1;         //时装ID
+    repeated _Item tList = 2;       //强化材料列表
+}
+
+//进阶请求
+message FashionAdvanceReq
+{
+    required int32 nID = 1;         //时装ID 
+}
+
+//升级请求
+message FashionUpgradeReq
+{
+    required int32 nID = 1;         //时装ID 
+}
+
+//制作请求
+message FashionMakeReq
+{
+    required int32 nID = 1;         //时装ID 
+}

@@ -23,7 +23,7 @@ extern HttpClient goHttpClient;
 //////////////////////////Global funcitons/////////////////////////////
 int GetServiceID(lua_State* pState)
 {
-	int nService = g_poContext->GetService()->GetServiceID();
+	int nService = gpoContext->GetService()->GetServiceID();
 	lua_pushinteger(pState, nService);
 	return 1;
 }

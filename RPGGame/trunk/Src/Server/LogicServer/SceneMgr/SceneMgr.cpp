@@ -1,6 +1,6 @@
 ﻿#include "SceneMgr.h"
 #include "Common/DataStruct/XTime.h"
-#include "Common/DataStruct/ObjID.h"
+#include "Common/DataStruct/XUUID.h"
 #include "Common/CDebug.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
@@ -199,7 +199,7 @@ int SceneMgr::SetFollow(lua_State* pState)
 		return LuaWrapper::luaM_error(pState, "object type error");
 	}
 
-	LogicServer* poLogicServer = (LogicServer*)g_poContext->GetService();
+	LogicServer* poLogicServer = (LogicServer*)gpoContext->GetService();
 	RoleMgr* poRoleMgr = poLogicServer->GetRoleMgr();
 	MonsterMgr* poMonsterMgr = poLogicServer->GetMonsterMgr();
 

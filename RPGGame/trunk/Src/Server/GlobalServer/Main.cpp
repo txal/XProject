@@ -10,11 +10,11 @@
 #include "Server/LogServer/PacketProc/PacketProc.h"
 #include "Server/LogServer/LuaSupport/LuaExport.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 bool InitNetwork(int8_t nServiceID)
 {
 	GlobalNode* poNode = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGlobalList.size(); i++)
 	{
 		if (oSrvConf.oGlobalList[i].uServer == oSrvConf.uServerID && oSrvConf.oGlobalList[i].uID == nServiceID)
@@ -29,13 +29,13 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	GlobalServer* poGlobalServer = (GlobalServer*)g_poContext->GetService();
+	GlobalServer* poGlobalServer = (GlobalServer*)gpoContext->GetService();
 	if (!poGlobalServer->Init(nServiceID, poNode->sIP, poNode->uPort))
 	{
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -46,10 +46,10 @@ static void MonitorThreadFunc(void* pParam)
 	uint32_t uLastMainLoops = 0;
 	uint32_t uNowMainLoops = 0;
 	uint32_t nTimeCount = 0;
-	while (g_poContext != NULL)
+	while (gpoContext != NULL)
 	{
 		XTime::MSSleep(1000);
-		if (g_poContext == NULL)
+		if (gpoContext == NULL)
 		{
 			break;
 		}
@@ -58,7 +58,7 @@ static void MonitorThreadFunc(void* pParam)
 			continue;
 		}
 		nTimeCount = 0;
-		uNowMainLoops = g_poContext->GetService()->GetMainLoopCount();
+		uNowMainLoops = gpoContext->GetService()->GetMainLoopCount();
 		if (uNowMainLoops == uLastMainLoops && !LuaWrapper::Instance()->IsBreaking())
 		{
 			XLog(LEVEL_ERROR, "May endless loop!!!\n");
@@ -116,9 +116,9 @@ void OnSigTerm(int)
 
 void OnSigInt(int)
 {
-	if (g_poContext != NULL)
+	if (gpoContext != NULL)
 	{
-		g_poContext->GetService()->Terminate();
+		gpoContext->GetService()->Terminate();
 	}
 }
 
@@ -144,8 +144,8 @@ int main(int nArg, char *pArgv[])
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
-	g_poContext = XNEW(ServerContext);
-	bool bRes = g_poContext->LoadServerConfig();
+	gpoContext = XNEW(ServerContext);
+	bool bRes = gpoContext->LoadServerConfig();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -158,22 +158,22 @@ int main(int nArg, char *pArgv[])
 	{
 		char szLogName[128] = "";
 		sprintf(szLogName, "globalserver%d", nServiceID);
-		Logger::Instance()->SetLogFile(g_poContext->GetServerConfig().sLogPath, szLogName);
+		Logger::Instance()->SetLogFile(gpoContext->GetServerConfig().sLogPath, szLogName);
 	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-	g_poContext->SetRouterMgr(poRouterMgr);
+	gpoContext->SetRouterMgr(poRouterMgr);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	GlobalServer* poGlobalServer = XNEW(GlobalServer);
-	g_poContext->SetService(poGlobalServer);
+	gpoContext->SetService(poGlobalServer);
 
 	LuaSerialize* poSerialize = XNEW(LuaSerialize);
-	g_poContext->SetLuaSerialize(poSerialize);
+	gpoContext->SetLuaSerialize(poSerialize);
 
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
@@ -184,7 +184,7 @@ int main(int nArg, char *pArgv[])
 	}
 
 	goHttpClient.Init();
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGlobalList.size(); i++)
 	{
 		GlobalNode& oNode = oSrvConf.oGlobalList[i];
@@ -196,7 +196,7 @@ int main(int nArg, char *pArgv[])
 	}
 
 	XLog(LEVEL_INFO, "GlobalServer start successful\n");
-	bRes = g_poContext->GetService()->Start();
+	bRes = gpoContext->GetService()->Start();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -205,10 +205,10 @@ int main(int nArg, char *pArgv[])
 	}
 
 	//wchar_t wcBuffer[256] = { L"" };
-	//wsprintfW(wcBuffer, L"global%d.leak", g_poContext->GetService()->GetServiceID());
+	//wsprintfW(wcBuffer, L"global%d.leak", gpoContext->GetService()->GetServiceID());
 	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
 
-	SAFE_DELETE(g_poContext);
+	SAFE_DELETE(gpoContext);
 	TimerMgr::Instance()->Release();
 	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();

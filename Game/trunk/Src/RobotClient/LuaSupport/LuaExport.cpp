@@ -10,7 +10,7 @@
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/LuaCommon/LuaTableSeri.h"
 #include "Common/TimerMgr/TimerMgr.h"
-#include "Common/Filter/Filter.h"
+#include "Common/WordFilter/WordFilter.h"
 
 #include "RobotClient/RobotMgr.h"
 #include "Server/Base/NetworkExport.h"

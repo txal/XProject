@@ -10,11 +10,11 @@
 #include "Server/LoginServer/PacketProc/PacketProc.h"
 #include "Server/LoginServer/LuaSupport/LuaExport.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 bool InitNetwork(int8_t nServiceID)
 {
 	LoginNode* poLogin = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLoginList.size(); i++)
 	{
 		if (oSrvConf.oLoginList[i].uServer == oSrvConf.uServerID && oSrvConf.oLoginList[i].uID == nServiceID)
@@ -29,7 +29,7 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -77,11 +77,11 @@ void OnSigTerm(int)
 
 void OnSigInt(int)
 {
-	if (g_poContext == NULL)
+	if (gpoContext == NULL)
 	{
 		return;
 	}
-	g_poContext->GetService()->Terminate();
+	gpoContext->GetService()->Terminate();
 }
 
 int main(int nArg, char *pArgv[])
@@ -106,8 +106,8 @@ int main(int nArg, char *pArgv[])
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
-	g_poContext = XNEW(ServerContext);
-	bool bRes = g_poContext->LoadServerConfig();
+	gpoContext = XNEW(ServerContext);
+	bool bRes = gpoContext->LoadServerConfig();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -120,23 +120,23 @@ int main(int nArg, char *pArgv[])
 	{
 		char szLogName[128] = "";
 		sprintf(szLogName, "loginserver%d", nServiceID);
-		Logger::Instance()->SetLogFile(g_poContext->GetServerConfig().sLogPath, szLogName);
+		Logger::Instance()->SetLogFile(gpoContext->GetServerConfig().sLogPath, szLogName);
 	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-	g_poContext->SetRouterMgr(poRouterMgr);
+	gpoContext->SetRouterMgr(poRouterMgr);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	LoginServer* poLoginServer = XNEW(LoginServer);
 	poLoginServer->Init(nServiceID);
-	g_poContext->SetService(poLoginServer);
+	gpoContext->SetService(poLoginServer);
 
 	LuaSerialize* poSerialize = XNEW(LuaSerialize);
-	g_poContext->SetLuaSerialize(poSerialize);
+	gpoContext->SetLuaSerialize(poSerialize);
 
 	goHttpClient.Init();
 
@@ -149,7 +149,7 @@ int main(int nArg, char *pArgv[])
 	}
 
 	XLog(LEVEL_INFO, "LoginServer start successful\n");
-	bRes = g_poContext->GetService()->Start();
+	bRes = gpoContext->GetService()->Start();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -158,10 +158,10 @@ int main(int nArg, char *pArgv[])
 	}
 
 	//wchar_t wcBuffer[256] = { L"" };
-	//wsprintfW(wcBuffer, L"login%d.leak", g_poContext->GetService()->GetServiceID());
+	//wsprintfW(wcBuffer, L"login%d.leak", gpoContext->GetService()->GetServiceID());
 	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
 
-	SAFE_DELETE(g_poContext);
+	SAFE_DELETE(gpoContext);
 	TimerMgr::Instance()->Release();
 	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();

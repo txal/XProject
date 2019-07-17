@@ -25,13 +25,13 @@ void ServerCloseProgress::CloseServer(int nServerID)
 	}
 	XLog(LEVEL_INFO, "Closing server:%d\n", nServerID);
 
-	Router* poRouter = (Router*)g_poContext->GetService();
-	if (nServerID == g_poContext->GetWorldServerID())
+	Router* poRouter = (Router*)gpoContext->GetService();
+	if (nServerID == gpoContext->GetWorldServerID())
 	{
 		int tServerList[MAX_SERVICE_NUM];
 		int nNum = poRouter->GetServerList(tServerList, MAX_SERVICE_NUM);
 		for (int i = 0; i < nNum; i++)
-			if (tServerList[i] != g_poContext->GetWorldServerID())
+			if (tServerList[i] != gpoContext->GetWorldServerID())
 				m_oServerList.push_back(tServerList[i]);
 		m_oServerList.push_back(nServerID);
 	}
@@ -44,7 +44,7 @@ void ServerCloseProgress::CloseServer(int nServerID)
 
 void ServerCloseProgress::BroadcastPrepServerClose(ServiceNode** tServiceList, int nNum, int nTarServer, int nTarService)
 {
-	Router* poRouter = (Router*)g_poContext->GetService();
+	Router* poRouter = (Router*)gpoContext->GetService();
 	for (int i = 0; i < nNum; i++)
 	{
 		Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
@@ -58,7 +58,7 @@ void ServerCloseProgress::BroadcastPrepServerClose(ServiceNode** tServiceList, i
 		else
 			oPW << poService->GetServerID() << poService->GetServiceID();
 
-		INNER_HEADER oHeader(NSSysCmd::ssPrepCloseServer, g_poContext->GetWorldServerID(), poRouter->GetServiceID(), poService->GetServerID(), poService->GetServiceID(), 0);
+		INNER_HEADER oHeader(NSSysCmd::ssPrepCloseServer, gpoContext->GetWorldServerID(), poRouter->GetServiceID(), poService->GetServerID(), poService->GetServiceID(), 0);
 		poPacket->AppendInnerHeader(oHeader, NULL, 0);
 		INet* pNet = poRouter->GetNetPool()->GetNet(poService->GetNetIndex());
 		if (!pNet->SendPacket(poService->GetSessionID(), poPacket))
@@ -75,7 +75,7 @@ void ServerCloseProgress::StartRoutine()
 
 void ServerCloseProgress::CloseGate()
 {
-	Router* poRouter = (Router*)g_poContext->GetService();
+	Router* poRouter = (Router*)gpoContext->GetService();
 	ServiceNode* tServiceList[MAX_SERVICE_NUM];
 	int nServerID = m_oServerList.front();
 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_GATE);
@@ -87,7 +87,7 @@ void ServerCloseProgress::CloseGate()
 
 void ServerCloseProgress::CloseLogin()
 {
-	Router* poRouter = (Router*)g_poContext->GetService();
+	Router* poRouter = (Router*)gpoContext->GetService();
 	ServiceNode* tServiceList[MAX_SERVICE_NUM];
 	int nServerID = m_oServerList.front();
 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_LOGIN);
@@ -99,7 +99,7 @@ void ServerCloseProgress::CloseLogin()
 
 void ServerCloseProgress::CloseLogic()
 {
-	Router* poRouter = (Router*)g_poContext->GetService();
+	Router* poRouter = (Router*)gpoContext->GetService();
 	ServiceNode* tServiceList[MAX_SERVICE_NUM];
 	int nServerID = m_oServerList.front();
 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_LOGIC);
@@ -112,10 +112,10 @@ void ServerCloseProgress::CloseLogic()
 		
 		BroadcastPrepServerClose(tServiceList, nNum);
 
-		if (nServerID != g_poContext->GetWorldServerID())
+		if (nServerID != gpoContext->GetWorldServerID())
 		{
 			ServiceNode* tServiceListW[MAX_SERVICE_NUM];
-			int nNumW = poRouter->GetServiceListByServer(g_poContext->GetWorldServerID(), tServiceListW, MAX_SERVICE_NUM, Service::SERVICE_LOGIC);
+			int nNumW = poRouter->GetServiceListByServer(gpoContext->GetWorldServerID(), tServiceListW, MAX_SERVICE_NUM, Service::SERVICE_LOGIC);
 			for (int i = 0; i < nNum; i++)
 			{
 				ServiceNode* poService = tServiceList[i];
@@ -127,7 +127,7 @@ void ServerCloseProgress::CloseLogic()
 
 void ServerCloseProgress::CloseGlobal()
 {
-	Router* poRouter = (Router*)g_poContext->GetService();
+	Router* poRouter = (Router*)gpoContext->GetService();
 	ServiceNode* tServiceList[MAX_SERVICE_NUM];
 	int nServerID = m_oServerList.front();
 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_GLOBAL);
@@ -139,7 +139,7 @@ void ServerCloseProgress::CloseGlobal()
 
 void ServerCloseProgress::CloseLog()
 {
-	Router* poRouter = (Router*)g_poContext->GetService();
+	Router* poRouter = (Router*)gpoContext->GetService();
 	ServiceNode* tServiceList[MAX_SERVICE_NUM];
 	int nServerID = m_oServerList.front();
 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_LOG);
@@ -151,7 +151,7 @@ void ServerCloseProgress::CloseLog()
 
 void ServerCloseProgress::OnCloseServerFinish(int nServerID)
 {
-	Router* poRouter = (Router*)g_poContext->GetService();
+	Router* poRouter = (Router*)gpoContext->GetService();
 
 	m_oServerList.pop_front();
 	if (m_oServerList.size() <= 0)

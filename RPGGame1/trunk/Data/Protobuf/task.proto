@@ -1,0 +1,82 @@
+package task;
+
+//主线请求
+message MainTaskListReq
+{
+}
+
+//主线返回
+message MainTaskListRet
+{
+	message _Task
+	{
+		required int32 nID = 1;	 		//任务ID
+		required int32 nState = 2;  	//状态(0初始; 1已达成; 2已领取)
+		required int32 nProgress = 3; 	//进度数值
+		optional string sName = 4; 		//知己名字
+	}	
+	repeated _Task tList = 1;
+}
+
+//每日任务请求
+message DailyTaskListReq
+{
+}
+
+//每日任务返回
+message DailyTaskListRet
+{
+	message _Task
+	{
+		required int32 nID = 1;	 		//任务ID
+		required int32 nState = 2;  	//状态(0初始; 1已达成; 2已领取)
+		required int32 nProgress = 3; 	//进度数值
+		optional string sName = 4; 		//知己名字
+	}	
+	message _ActTask
+	{
+		message _Item
+		{
+			required int32 nType = 1;	//类型
+			required int32 nID = 2;	 	//ID
+			required int32 nNum  = 3;	//数量
+		}
+		required int32 nID = 1; 		//活跃任务ID
+		required int32 nState = 2; 		//活跃宝箱状态(0:未达成; 1:已达成; 2:已领取)
+		repeated _Item tAward = 3; 		//奖励表
+	}
+	repeated _Task tList = 1; 			//任务列表
+	repeated _ActTask tActList = 2; 	//活跃任务列表	
+	required int32 nActivity = 3; 		//当前活跃度
+}
+
+//主线领取任务奖励请求
+message MainTaskAwardReq
+{
+	required int32 nID = 1; 		//任务ID	
+}
+
+//每日领取任务奖励请求
+message DailyTaskAwardReq
+{
+	required int32 nID = 1; 		//任务ID	
+	required int32 nType = 2; 		//任务类型(1.普通; 2.宝箱)
+}
+
+//领取任务奖励成功返回
+message TaskAwardRet
+{
+	message _Item 
+	{
+		required int32 nType = 1;	//类型
+		required int32 nID = 2;	 	//ID
+		required int32 nNum = 3;	//数量
+	}
+	repeated _Item tAward = 3; 		//奖励
+}
+
+//客户端请求完成任务(特定任务)
+message CompleteTaskReq
+{
+	required int32 nID = 1; 		//任务ID	
+}

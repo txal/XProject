@@ -1,0 +1,10 @@
+ctRechargeRankingConf={}
+ctRechargeRankingConf[1]={nIndex=1,tRanking={{1,1,},},sIcon="bg_paiming1",tAward1={{1,13349,1,},{1,34004,150,},{1,13343,5,},{1,19022,100,},{1,11001,50,},},tAward2={{1,13349,1,},{1,34004,150,},{1,13343,5,},{1,19022,100,},{1,11001,50,},},nTitle=0,}
+ctRechargeRankingConf[2]={nIndex=2,tRanking={{2,2,},},sIcon="bg_paiming2",tAward1={{1,13350,1,},{1,34004,100,},{1,13343,3,},{1,19022,80,},{1,11001,30,},},tAward2={{1,13350,1,},{1,34004,100,},{1,13343,3,},{1,19022,80,},{1,11001,30,},},nTitle=0,}
+ctRechargeRankingConf[3]={nIndex=3,tRanking={{3,3,},},sIcon="bg_paiming3",tAward1={{1,13350,1,},{1,34004,70,},{1,13343,2,},{1,19022,50,},{1,11001,20,},},tAward2={{1,13350,1,},{1,34004,70,},{1,13343,2,},{1,19022,50,},{1,11001,20,},},nTitle=0,}
+ctRechargeRankingConf[4]={nIndex=4,tRanking={{4,5,},},sIcon="bg_paiming4",tAward1={{1,13350,1,},{1,34004,50,},{1,13343,1,},{1,19022,30,},{1,11001,10,},},tAward2={{1,13350,1,},{1,34004,50,},{1,13343,1,},{1,19022,30,},{1,11001,10,},},nTitle=0,}
+ctRechargeRankingConf[5]={nIndex=5,tRanking={{6,10,},},sIcon="bg_paiming4",tAward1={{1,34004,30,},{1,13344,5,},{1,19022,20,},{1,11001,10,},},tAward2={{1,34004,30,},{1,13344,5,},{1,19022,20,},{1,11001,10,},},nTitle=0,}
+ctRechargeRankingConf[6]={nIndex=6,tRanking={{11,20,},},sIcon="bg_paiming4",tAward1={{1,34004,20,},{1,13344,3,},{1,19022,20,},{1,11001,5,},},tAward2={{1,34004,20,},{1,13344,3,},{1,19022,20,},{1,11001,5,},},nTitle=0,}
+ctRechargeRankingConf[7]={nIndex=7,tRanking={{21,50,},},sIcon="bg_paiming4",tAward1={{1,34004,10,},{1,13344,2,},{1,19022,20,},{1,11001,5,},},tAward2={{1,34004,10,},{1,13344,2,},{1,19022,20,},{1,11001,5,},},nTitle=0,}
+ctRechargeRankingConf[8]={nIndex=8,tRanking={{51,100,},},sIcon="bg_paiming4",tAward1={{1,13344,1,},{1,19022,10,},{1,11001,5,},},tAward2={{1,13344,1,},{1,19022,10,},{1,11001,5,},},nTitle=0,}
+ctRechargeRankingConf[9]={nIndex=9,tRanking={{101,200,},},sIcon="bg_paiming4",tAward1={{1,13344,1,},{1,19022,10,},{1,11001,5,},},tAward2={{1,13344,1,},{1,19022,10,},{1,11001,5,},},nTitle=0,}

@@ -1,0 +1,13 @@
+ctPartnerStoneCollectConf={}
+ctPartnerStoneCollectConf[1]={nRewardID=1,nColor=1,nWeight=25,nRewardNum={{200,250,},},}
+ctPartnerStoneCollectConf[2]={nRewardID=2,nColor=1,nWeight=35,nRewardNum={{150,199,},},}
+ctPartnerStoneCollectConf[3]={nRewardID=3,nColor=1,nWeight=40,nRewardNum={{100,149,},},}
+ctPartnerStoneCollectConf[4]={nRewardID=4,nColor=2,nWeight=20,nRewardNum={{82,100,},},}
+ctPartnerStoneCollectConf[5]={nRewardID=5,nColor=2,nWeight=30,nRewardNum={{60,81,},},}
+ctPartnerStoneCollectConf[6]={nRewardID=6,nColor=2,nWeight=50,nRewardNum={{40,59,},},}
+ctPartnerStoneCollectConf[7]={nRewardID=7,nColor=3,nWeight=10,nRewardNum={{30,35,},},}
+ctPartnerStoneCollectConf[8]={nRewardID=8,nColor=3,nWeight=25,nRewardNum={{20,29,},},}
+ctPartnerStoneCollectConf[9]={nRewardID=9,nColor=3,nWeight=65,nRewardNum={{14,19,},},}
+ctPartnerStoneCollectConf[10]={nRewardID=10,nColor=4,nWeight=7,nRewardNum={{7,9,},},}
+ctPartnerStoneCollectConf[11]={nRewardID=11,nColor=4,nWeight=30,nRewardNum={{5,6,},},}
+ctPartnerStoneCollectConf[12]={nRewardID=12,nColor=4,nWeight=63,nRewardNum={{3,4,},},}

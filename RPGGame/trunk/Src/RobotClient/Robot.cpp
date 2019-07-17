@@ -25,7 +25,7 @@ Lunar<Robot>::RegType Robot::methods[] =
 	{0, 0}
 };
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 Robot::Robot(RobotMgr* poRobotMgr)
 {
 	m_poPacketCache = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);

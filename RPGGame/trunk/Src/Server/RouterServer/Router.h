@@ -72,6 +72,6 @@ private:
 	DISALLOW_COPY_AND_ASSIGN(Router);
 };
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 #endif

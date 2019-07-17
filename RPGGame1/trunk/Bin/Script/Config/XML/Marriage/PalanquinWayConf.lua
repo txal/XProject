@@ -1,0 +1,11 @@
+ctPalanquinWayConf={}
+ctPalanquinWayConf["common_3038"]={sModel="common_3038",sName="乐师敲锣",tTargetPos={{1150,700,0,},{20,490,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3038"]={sModel="common_3038",sName="乐师敲锣",tTargetPos={{1340,870,0,},{250,550,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3033"]={sModel="common_3033",sName="男童",tTargetPos={{1290,630,0,},{230,380,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3034"]={sModel="common_3034",sName="女童",tTargetPos={{1160,830,0,},{420,490,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3036"]={sModel="common_3036",sName="婚车",tTargetPos={{600,560,0,},{520,300,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3035"]={sModel="common_3035",sName="媒婆",tTargetPos={{810,730,0,},{740,380,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3039"]={sModel="common_3039",sName="双喜牌",tTargetPos={{880,410,0,},{760,250,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3039"]={sModel="common_3039",sName="双喜牌",tTargetPos={{910,580,0,},{940,390,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3037"]={sModel="common_3037",sName="乐师唢呐",tTargetPos={{890,300,0,},{920,250,10,},},nSpeed=10,}
+ctPalanquinWayConf["common_3037"]={sModel="common_3037",sName="乐师唢呐",tTargetPos={{1200,450,0,},{1150,290,10,},},nSpeed=10,}

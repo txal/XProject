@@ -1,0 +1,5 @@
+//,,,,,,,,,,,,,,
+nIndex,nRankingUpdateTime,nArenaAwardRanking,nPowerAwardRanking,nHoneyAwardRanking,nUnionExpAwardRanking,nPopularityAwardRanking,nSmallGameAwardRanking,nRechargeAwardRanking,nResumeYBAwardRanking,nRechargeRankShowNum,nResumeYBRankShowNum,nRechargeRankLimitValue,nConsumeYBRankLimit,nIntimacyRankLimit
+i,i,i,i,i,i,i,i,i,i,i,i,i,i,i
+索引,排行榜更新时间(秒),竞技积分奖励排名最后一位,战力奖励排名最后一位,仙侣亲密度奖励排名最后一位,联盟经验奖励排名最后一位,人气奖励排名最后一位,小游戏奖励排名最后一位,充值冲榜排名最后一位,消耗元宝冲榜排名最后一位,充值排行榜展示的数目,消耗元宝排行榜展示数目,充值上榜条件,消耗元宝上榜条件,亲密度上榜条件
+1,60,30,30,30,3,30,30,200,200,50,50,100,100000,250

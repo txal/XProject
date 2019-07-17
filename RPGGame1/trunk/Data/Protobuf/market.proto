@@ -1,0 +1,215 @@
+//交易系统 协议
+import "knapsack.proto";
+package market;
+
+
+// 获取商品的价格和税率
+message MarketGoodsPriceDataReq
+{
+	required int32 nItemID = 1; // 商品ID
+}
+
+// 商品价格和税率响应
+message MarketGoodsPriceDataRet
+{
+	required int32 nItemID = 1;      // 商品ID
+	required bool bSale = 2;         // 是否可交易
+	optional int32 nBasePrice = 3;   // 基础价格
+	optional int32 nMinPriceRatio = 4; // 最低价格比率
+	optional int32 nMaxPriceRatio = 5; // 最低价格比率
+	optional int32 nTaxRate = 6;     // 税率
+}
+
+// 玩家摊位售卖商品详细数据
+message MarketStallItemDetail
+{
+	required int32 nItemID = 1;  // 商品ID
+	required int32 nPKey = 2;    // 商品私有Key
+	required int32 nState = 3;   // 商品交易状态
+	required int32 nPrice = 4;   // 商品出售价格
+	required int32 nExpiryTime = 5; // 商品下架时间
+	required int32 nExpiryCountdown = 6; // 商品下架倒计时
+	required int32 nRemainNum = 7;  // 商品剩余未售出数量
+	required int32 nSoldNum = 8;    // 已售出数量
+	required int32 nDrawNum = 9;    // 已提现数量
+}
+
+// 玩家摊位数据请求
+message MarketStallDataReq
+{
+}
+
+// 玩家摊位数据响应
+message MarketStallDataRet
+{
+
+	repeated MarketStallItemDetail tItemList = 1; // 当前摊位售卖物品列表
+	required int32 nGridNum = 2; // 当前总的交易格子
+	required int32 nGridUnlockNum = 3; // 当前花钱开启的交易格子数量
+	required int32 nRemainUnlockGrid = 4;    // 剩余可解锁交易格子
+	optional int32 nUnlockGridCost = 5; // 解锁花费
+}
+
+message MarketItemOnSaleInfo
+{
+	required int32 nItemID = 1;     // 商品ID
+	required int32 nGridNum = 2;    // 背包格子编号
+	required int32 nNum = 3;        // 商品数量
+	required int32 nBasePrice = 4;  // 服务器下发的基础价格
+	required int32 nPriceRatio = 5; // 价格比率
+}
+
+// 商品上架销售请求
+message MarketItemOnSaleReq
+{
+	repeated MarketItemOnSaleInfo tItemList = 1; //商品列表
+}
+
+// 商品上架销售响应
+message MarketItemOnSaleRet
+{
+	repeated MarketStallItemDetail tItemDetailList = 1; // 售卖信息列表
+}
+
+// 商品重新上架请求
+message MarketItemReSaleReq
+{
+	required int32 nPKey = 1;      // 商品PKey
+	required int32 nBasePrice = 2;  // 服务器下发的基础价格
+	required int32 nPriceRatio = 3; // 商品价格比率
+}
+
+// 商品重新上架响应
+message MarketItemReSaleRet
+{
+	required MarketStallItemDetail tItemDetail = 1; // 售卖信息
+}
+
+// 商品下架请求
+message MarketRemoveSaleReq
+{
+	required int32 nPKey = 1; // 商品PKey
+}
+
+// 商品下架响应
+message MarketRemoveSaleRet
+{
+	required int32 nItemID = 1; //下架的商品ID
+}
+
+// 商品提现请求
+message MarketDrawMoneyReq
+{
+	required int32 nPKey = 1;  // 提现的商品PKey
+}
+
+// 商品提现响应
+message MarketDrawMoneyRet
+{
+	required int32 nItemID = 1; // 提现的商品ID
+	required int32 nMoney = 2;  //提现的金钱
+	required int32 nNum = 3;    // 提现的商品数量
+	optional MarketStallItemDetail tItemDetail = 4; // 提现的商品信息
+}
+
+// 交易页表刷新数据
+message MarketViewPageFlushData
+{
+	required int32 nNextFreeFlushTime = 1; // 下一次免费刷新时间
+	required int32 nNextFreeFlushCountdown = 2;     // 免费刷新倒计时
+	required int32 nMoneyCost = 3; // 使用金钱刷新需要消耗的数量
+}
+
+// 获取交易页表刷新数据请求
+message MarketViewPageFlushDataReq
+{
+}
+
+// 获取交易页表刷新数据响应
+message MarketViewPageFlushDataRet
+{
+	required MarketViewPageFlushData tFlushData = 1;  //刷新数据
+}
+
+// 交易行浏览的商品详细信息
+message MarketViewItemDetail
+{
+	required int32 nItemID = 1; // 商品ID
+	required int32 nGKey = 2;   // 全局key
+	required int32 nRemainNum = 3; // 当前剩余可购买数量
+	required int32 nPrice = 4;  // 商品价格
+	required int32 nState = 5;  // 当前交易状态
+}
+
+// 商品浏览页表数据
+message MarketViewPageData
+{
+	required int32 nPageID = 1; // 商品页表ID
+	required MarketViewPageFlushData tFlushData = 2; // 刷新数据
+	repeated MarketViewItemDetail tItemList = 3; // 商品列表
+}
+
+// 获取交易页表数据请求
+message MarketViewPageDataReq
+{
+	required int32 nPageID = 1;  //页表ID
+}
+
+// 获取交易页表数据响应
+message MarketViewPageDataRet
+{
+	required MarketViewPageData tPageData = 1; // 商品页表数据
+}
+
+// 刷新整个交易页表数据请求
+message MarketFlushViewPageReq
+{
+	required bool bMoney = 1; // 是否使用金钱刷新
+}
+
+// 刷新整个交易页表数据响应
+message MarketFlushViewPageRet
+{
+	required MarketViewPageFlushData tFlushData = 1; // 刷新数据
+}
+
+// 购买商品请求
+message MarketPurchaseReq
+{
+	required int32 nPageID = 1;  // 商品页表信息
+	required int32 nGKey = 2;    // 商品全局Key
+}
+
+// 购买商品响应
+message MarketPurchaseRet
+{
+	required int32 nItemID = 1; // 商品ID
+	required int32 nNum = 2;    // 购买数量
+	required int32 nPrice = 3;  // 商品价格
+}
+
+// 解锁摊位格子请求
+message MarketUnlockStallGridReq
+{
+}
+
+// 解锁摊位格子响应
+message MarketUnlockStallGridRet
+{
+	required int32 nCost = 1;     // 解锁花费
+}
+
+// 摊位出售商品详细信息请求
+message MarketStallItemDetailInfoReq
+{
+	required int32 nPKey = 1;     // 商品的PKey
+}
+
+// 浏览的商品详细信息请求
+message MarketViewItemDetailInfoReq
+{
+	required int32 nPageID = 1;    // 浏览的页表ID
+	required int32 nGKey = 2;      // 商品的全局Key
+}
+
+

@@ -1,0 +1,41 @@
+package monthcard;
+
+//月卡/周卡请求
+message MonthCardInfoReq
+{
+	
+}
+
+//月卡/周卡返回
+message MonthCardInfoRet
+{
+	message _Card
+	{
+		required int32 nID = 1; 				//卡ID
+		required bool bCanGetAward = 2;			//是否可以领取奖励
+		required int32 nCardRemainTime = 3; 	//卡剩余时间
+		required int32 nMoney = 4; 				//人民币
+		required bool bBuy = 5; 				//是否购买了
+		required bool bCanBuy = 6; 				//是否可以购买(先要购买领完周卡才能购买月卡)
+	}	
+	repeated _Card tList = 1;
+	optional string sConf = 2;					//配置表
+}
+
+//月卡/周卡奖励请求
+message MonthCardAwardReq
+{
+	required int32 nID = 1;	
+}
+
+//月卡/周卡奖励成功返回
+message MonthCardAwardRet
+{
+	required int32 nYuanBao = 1; 	//元宝数量
+}
+
+//试用月卡请求
+message TrialMonthCardReq
+{
+}
+

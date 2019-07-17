@@ -10,7 +10,7 @@
 #include "Server/Base/ServerContext.h"
 #include "Server/GateServer/PacketProc/GatewayPacketHandler.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 Gateway::Gateway()
 {
@@ -66,7 +66,7 @@ bool Gateway::Init(GateNode* poConf)
 
 bool Gateway::RegToRouter(int nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacket == NULL)
@@ -77,7 +77,7 @@ bool Gateway::RegToRouter(int nRouterServiceID)
 	PacketWriter oPW(poPacket);
 	oPW << (int)Service::SERVICE_GATE;
 
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, gpoContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -199,11 +199,11 @@ void Gateway::OnExterNetClose(int nSessionID)
 	m_oClientMgr.OnClientClose(nSessionID);
 
 	NetAdapter::SERVICE_NAVI oNavi;
-	oNavi.uSrcServer = g_poContext->GetServerID();
-	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
-	oNavi.uTarServer = g_poContext->GetServerID();
+	oNavi.uSrcServer = gpoContext->GetServerID();
+	oNavi.nSrcService = gpoContext->GetService()->GetServiceID();
+	oNavi.uTarServer = gpoContext->GetServerID();
 
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLoginList.size(); i++)
 	{
 		LoginNode& oNode = oSrvConf.oLoginList[i];
@@ -287,7 +287,7 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	{
 		m_poExterNet->SetSentClose(nSessionID);
 	}
-	GatewayPacketHandler* pPacketHandler = (GatewayPacketHandler*)g_poContext->GetPacketHandler();
+	GatewayPacketHandler* pPacketHandler = (GatewayPacketHandler*)gpoContext->GetPacketHandler();
 	pPacketHandler->OnRecvExterPacket(nSessionID, poPacket, oExterHeader);
 }
 
@@ -298,7 +298,7 @@ void Gateway::OnInnerNetAccept(int nListenPort, int nSessionID)
 
 void Gateway::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRemotePort)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
 	assert(poRouter != NULL);
 	RegToRouter(poRouter->nService);
 }
@@ -306,7 +306,7 @@ void Gateway::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRemoteP
 void Gateway::OnInnerNetClose(int nSessionID)
 {
 	XLog(LEVEL_INFO, "On innernet disconnect\n");
-	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	gpoContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
 }
 
 void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
@@ -320,7 +320,7 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
-	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
+	if (oHeader.uTarServer != gpoContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
 		poPacket->Release(__FILE__, __LINE__);
@@ -330,5 +330,5 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		int nDataSize = poPacket->GetDataSize();
 		XLog(LEVEL_INFO, "%s, OnExterNetMsg: cmd:%d size:%d target:%d \n", GetServiceName(), oHeader.uCmd, nDataSize, oHeader.nTarService);
 	}
-	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
+	gpoContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }

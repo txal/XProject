@@ -67,7 +67,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\..\..\..\M2BT\trunk\Server\_LocalServer\</OutDir>
+    <OutDir>..\..\..\..\..\M2GJ\branches\new\Server\_LocalServer\</OutDir>
     <TargetName>MZ-$(ProjectName)</TargetName>
     <IncludePath>D:\download\vld-master\src\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\download\vld-master\src\bin\x64\Release-v140;$(LibraryPath)</LibraryPath>
@@ -104,7 +104,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Src;E:\XProject;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
@@ -140,21 +140,21 @@ popd</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\Base64.cpp" />
-    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\LuaCrypt.cpp" />
-    <ClCompile Include="..\..\Src\Common\DataStruct\Crypt\MSha1.cpp" />
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp" />
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
-    <ClCompile Include="..\..\Src\Common\MGHttp\HttpClient.cpp" />
-    <ClCompile Include="..\..\Src\Common\MGHttp\HttpLua.cpp" />
-    <ClCompile Include="..\..\Src\Common\MGHttp\HttpServer.cpp" />
-    <ClCompile Include="..\..\Src\Common\MGHttp\mongoose.cpp" />
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
-    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
-    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
+    <ClCompile Include="..\..\..\..\Common\DataStruct\Crypt\Base64.cpp" />
+    <ClCompile Include="..\..\..\..\Common\DataStruct\Crypt\LuaCrypt.cpp" />
+    <ClCompile Include="..\..\..\..\Common\DataStruct\Crypt\MSha1.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaCmd.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaRpc.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaSerialize.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpClient.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpLua.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpServer.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\mongoose.cpp" />
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketReader.cpp" />
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketWriter.cpp" />
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\Timer.cpp" />
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
@@ -168,25 +168,25 @@ popd</Command>
     <ClCompile Include="..\..\Src\Server\LogServer\WorkerMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\Base64.h" />
-    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\LuaCrypt.hpp" />
-    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\Md5.h" />
-    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\RC4.h" />
-    <ClInclude Include="..\..\Src\Common\DataStruct\Crypt\MSha1.h" />
-    <ClInclude Include="..\..\Src\Common\DataStruct\HashFunc.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
-    <ClInclude Include="..\..\Src\Common\MGHttp\HttpClient.h" />
-    <ClInclude Include="..\..\Src\Common\MGHttp\HttpLua.hpp" />
-    <ClInclude Include="..\..\Src\Common\MGHttp\HttpServer.h" />
-    <ClInclude Include="..\..\Src\Common\MGHttp\mongoose.h" />
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
-    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
-    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Crypt\Base64.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Crypt\LuaCrypt.hpp" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Crypt\Md5.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Crypt\RC4.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Crypt\MSha1.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\HashFunc.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaCmd.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaPB.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaRpc.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaSerialize.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpClient.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpLua.hpp" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpServer.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\mongoose.h" />
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketReader.h" />
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketWriter.h" />
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\Timer.h" />
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />

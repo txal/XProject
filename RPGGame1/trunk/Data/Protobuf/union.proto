@@ -1,0 +1,341 @@
+package union;
+
+//联盟基本信息返回(根据nID判断自己有没有公会)
+message UnionInfoRet
+{
+    required int32 nID = 1;                 //联盟ID
+    required string sName = 2;              //联盟名称
+    required int32 nPos = 3;                //职位ID
+    required string sPos = 4;                //职位名字
+    required int32 nShowID = 5;             //联盟显示ID
+}
+
+//请求联盟信息
+message UnionDetailReq
+{
+}
+
+//联盟信息返回
+message UnionDetailRet
+{
+    message _DECL
+    {
+        required string sDesc = 1;    
+        required string sName = 2;
+        required string sPos = 3;
+        required int32 nTime = 4;
+    }
+    required int32 nID = 1;                 //联盟ID
+    required string sName = 2;              //联盟名称
+    required int32 nLevel = 3;              //联盟等级
+    required int32 nExp = 4;                //联盟经验
+    required int32 nNextExp = 5;            //下级经验
+    required int32 nActivity = 6;           //联盟活跃度
+    required int32 nMembers = 7;            //当前成员
+    required int32 nMaxMembers = 8;         //成员上限
+    required int32 nPos = 9;                //我的职位ID
+    required string sPos = 10;              //我的职位名字
+    repeated _DECL tDeclaration = 11;       //公告列表
+    required int32 nUnionContri = 12;       //我的贡献
+    required int32 nAutoJoin = 13;          //是否允许随机加入(1是;0否)
+    required string sMengZhu = 14;          //盟主名称
+    required bool bSigned = 15;             //是否已签到
+    required string sPurpose = 16;          //联盟宗旨
+    required int32 nShowID = 17;            //显示ID
+}
+
+//联盟列表请求
+message UnionListReq
+{
+    required string sUnionKey = 1;      //搜索关键字(非搜索发空字符串)
+    required int32 nPageIndex = 2;      //页码
+}
+
+//联盟列表返回
+message UnionListRet
+{
+    message _Item
+    {
+        required int32 nID = 1;             //联盟ID
+        required string sName = 2;          //名称
+        required int32 nLevel = 3;          //联盟等级
+        required int32 nPower = 4;          //战力
+        required string sMengZhu = 5;       //盟主
+        required int32 nMembers = 6;        //成员
+        required int32 nMaxMembers = 7;     //成员上限
+        required bool bApplied = 8;         //是否已申请
+        required string sPurpose = 9;       //帮派宗旨
+        required int32 nShowID = 10;        //联盟显示ID
+    }
+    repeated _Item tUnionList = 1;          //列表
+    required int32 nPageIndex = 2;          //页码
+    required int32 nPageCount = 3;          //页数
+}
+
+//申请加入联盟请求
+message UnionApplyReq
+{
+    required int32 nID = 1;                 //联盟ID
+}
+
+//申请加入联盟成功返回
+message UnionApplyRet
+{
+    required int32 nUnionID = 1;            //申请成功的联盟
+}
+
+//创建联盟请求
+message UnionCreateReq
+{
+    required string sName = 1;              //联盟名称(最大6个汉字)
+    required string sNotice = 2;            //联盟公告(最大60个汉字)
+}
+
+//退出联盟请求
+message UnionExitReq
+{
+}
+
+//退出联盟通知(提示用)
+message UnionExitRet
+{
+    required int32 nExitType = 1;               //退出类型(1主动退出;2被踢出;3联盟解散)    
+}
+
+//设置联盟公告请求
+message UnionSetDeclarationReq
+{
+    required string sDeclaration = 1;
+}
+
+//联盟公告返回
+message UnionDeclarationRet
+{
+    message _DECL
+    {
+        required string sDesc = 1;      //内容
+        required string sName = 2;      //名字
+        required string sPos = 3;       //职位
+        required int32 nTime = 4;       //时间
+    }
+    repeated _DECL tDeclaration = 1;    //联盟公告列表
+    optional bool bRedPoint = 2;        //小红点
+}
+
+//联盟公告已读请求
+message UnionDeclarationReadedReq
+{
+    
+}
+
+//审批设置
+message UnionSetAutoJoinReq
+{
+    required int32 nAutoJoin = 1;           //1自动; 0审批
+}
+
+//申请列表请求
+message UnionApplyListReq
+{
+    
+}
+
+//申请列表返回
+message UnionApplyListRet
+{
+    message _Item
+    {
+        required int32 nID = 1;
+        required string sName = 2;
+        required string sHeader = 3;
+        required int32 nGender = 4;
+        required int32 nLevel = 5;
+        required int32 nSchool = 6;
+        required int32 nTime = 7;
+    }
+    repeated _Item tApplyList = 1;
+    required int32 nMembers = 2;        //联盟人数
+    required int32 nMaxMembers = 3;     //联盟人数上限
+}
+
+//接受申请
+message UnionAcceptApplyReq
+{
+    required int32 nRoleID = 1;        //全部接受为0,否则为角色ID
+}
+
+//拒绝申请
+message UnionRefuseApplyReq
+{
+    required int32 nRoleID = 1;        //全部拒绝为0,否则为角色ID
+}
+
+//队员列表请求
+message UnionMemberListReq
+{
+}
+
+//队员列表返回
+message UnionMemberListRet
+{
+    message _Item
+    {
+        required int32 nID = 1;         //ID
+        required string sName = 2;      //名字
+        required int32 nPos = 3;        //职位ID
+        required string sPos = 4;       //职位名字
+        required int32 nPower = 5;      //战力
+        required int32 nContri = 6;     //当前贡献
+        required int32 nTotalContri = 7;//总贡献
+        required bool bOnline = 8;      //是否在线
+        required int32 nOnlineTime = 9; //上线时间
+        required int32 nSchool = 10;    //门派
+        required int32 nLevel = 11;     //等级
+    }   
+    repeated _Item tMemberList = 1;     //成员列表
+    required int32 nPower = 2;          //总战力
+    required int32 nMembers = 3;        //成员数量
+    required int32 nMaxMembers = 4;     //成员上限
+}
+
+//移除队员
+message UnionKickMemberReq
+{
+    required int32 nRoleID = 1;    
+}
+
+message UnionKickMemberRet
+{
+    required int32 nRoleID = 1;
+}
+
+//任命职位请求
+message UnionAppointReq
+{
+    required int32 nRoleID = 1;     //目标成员ID
+    required int32 nPos = 2;        //职位ID
+}
+
+//职位变更返回
+message UnionPosChangeRet 
+{
+    required int32 nRoleID = 1;     //目标队员ID
+    required int32 nPos = 2;        //职位ID
+}
+
+//随机加入联盟
+message UnionJoinRandReq
+{
+    
+}
+
+//管理界面信息请求
+message UnionManagerInfoReq
+{
+}
+
+//管理界面信息返回
+message UnionManagerInfoRet
+{
+    message _POS
+    {
+        required int32 nPos = 1;
+        required string sPos = 2;  
+    }
+    required string sUnionName = 1;
+    required int32 nMembers = 2;
+    required int32 nMaxMembers = 3;
+    required int32 nAutoJoin = 4;         //1是;0非
+    repeated _POS tPos = 5;
+}
+
+//签到请求
+message UnionSignReq
+{
+    
+}
+
+//改职位名字请求
+message UnionModPosNameReq
+{
+    required int32 nPos = 1;
+    required string sPos = 2;
+}
+
+//领取俸禄请求
+message UnionGetSalaryReq
+{
+}
+
+//设置帮派宗旨
+message UnionSetPurposeReq
+{
+    required string sCont = 1;  
+}
+
+//帮派战力排行榜请求
+message UnionPowerRankingReq
+{
+    required int32 nRankNum = 1;    //取前X名
+}
+
+//帮派战力排行榜返回
+message UnionPowerRankingRet
+{
+    message _Rank
+    {
+        required int32 nRank = 1;       //排名
+        required string sName = 2;      //名字
+        required int32 nValue = 3;      //值
+        required int32 nLevel = 4;      //等级
+        required string sMengZhu = 5;   //帮主
+        required int32 nMember = 6;     //当前成员
+        required int32 nMaxMember = 7;  //最大成员
+    }   
+    repeated _Rank tRanking = 1;        //排行列表
+    required int32 nMyRank = 2;         //我的联盟排名
+    required string sMyName = 3;        //我的联盟名字
+    required int32 nMyValue = 4;        //我的联盟数值  
+}
+
+
+message UnionMemberGiftData {
+    required int32 nRoleID = 1;         //帮派成员ID
+    required string sName = 2;          //成员名字
+    required int32 nLevel = 3;          //等级
+    required int32 nPos = 4;            //职位ID
+    required int32 nContri = 5;         //当前贡献
+    required int32 nState = 6;          //0:可以发放,1:入帮小于5天,2:已领取
+}
+
+message UnionGiftBoxData {
+    required string sType = 1;          //帮派礼盒获取的类型,帮战
+    required int32 nCnt = 2;            //对应类型获取的数目
+}
+
+//帮派礼盒界面打开
+message UnionOpenGiftBoxReq{
+}
+
+//界面打开，信息刷新
+message UnionOpenGiftBoxRet{
+    repeated UnionMemberGiftData tMemGiftData = 1;      //帮派礼盒成员信息
+    repeated UnionGiftBoxData tUnionGiftData = 2;       //帮派礼盒获取信息
+    required int32 nGiftBoxCnt = 3;                     //剩余帮派礼盒数目
+    optional bool bCanDispatch = 4;                     //是否可操作派发礼包
+}
+
+//分配礼盒
+message UnionDispatchGiftReq{
+    repeated int32 tRoleID = 1;                         //帮派成员id列表
+}
+
+//进入帮派场景
+message UnionEnterSceneReq{
+}
+
+//登录发送帮派红点数据
+message UnionLoginRet{
+    required bool bSigned = 1;             //是否已签到
+    required bool bSalary = 2;             //是否可以领取俸禄
+}

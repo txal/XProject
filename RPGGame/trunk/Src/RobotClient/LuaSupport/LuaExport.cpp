@@ -17,13 +17,13 @@
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 
 ////////////////////////////Global funcitons////////////////////////////
 int GetRobotMgr(lua_State* pState)
 {
-	RobotMgr* pRobotMgr = (RobotMgr*)g_poContext->GetService();
+	RobotMgr* pRobotMgr = (RobotMgr*)gpoContext->GetService();
 	Lunar<RobotMgr>::push(pState, pRobotMgr);
 	return 1;
 }

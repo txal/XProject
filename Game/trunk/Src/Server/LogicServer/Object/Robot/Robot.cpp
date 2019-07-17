@@ -39,7 +39,7 @@ Robot::~Robot()
 	SAFE_DELETE(m_poAI);
 }
 
-void Robot::Init(const GAME_OBJID& oObjID, int nConfID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
+void Robot::Init(const OBJID& oObjID, int nConfID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
 {
 	Actor::m_oObjID = oObjID;
 	Actor::m_nConfID = nConfID;

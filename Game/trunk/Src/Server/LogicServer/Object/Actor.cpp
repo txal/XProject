@@ -376,7 +376,7 @@ void Actor::ClearBuff()
 	m_oBuffMap.clear();
 }
 
-HATE* Actor::GetHate(GAME_OBJID& oObjID)
+HATE* Actor::GetHate(OBJID& oObjID)
 {
 	HateIter iter = m_oHateMap.find(oObjID.llID);
 	if (iter != m_oHateMap.end())
@@ -392,7 +392,7 @@ void Actor::AddHate(Actor* poAtker, int nValue)
 	{
 		return;
 	}
-	GAME_OBJID& oAtkerID = poAtker->GetID();
+	OBJID& oAtkerID = poAtker->GetID();
 	HATE* poHate = GetHate(oAtkerID);
 	if (poHate != NULL)
 	{

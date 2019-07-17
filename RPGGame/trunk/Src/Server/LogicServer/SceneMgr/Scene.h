@@ -4,7 +4,7 @@
 #include "Include/Script/Script.hpp"
 
 #include "Server/LogicServer/SceneMgr/AOI.h"
-#include "Common/DataStruct/ObjID.h"
+#include "Common/DataStruct/XUUID.h"
 #include "Common/DataStruct/Point.h"
 
 class Object;
@@ -45,10 +45,10 @@ public:
 	int8_t GetSceneType() { return m_nSceneType; }
 
 public:
-	int EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], int8_t nAOIType=AOI_TYPE_RECT, int8_t nLine=-1, int8_t nFace=0);
+	int EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], int8_t nAOIType=AOI_TYPE_RECT, int16_t nLine=-1, int8_t nFace=0);
 	void LeaveScene(int nAOIID) { m_oAOI.RemoveObj(nAOIID, true); }
 	void MoveObj(int nAOIID, int nTarX, int nTarY) { m_oAOI.MoveObj(nAOIID, nTarX, nTarY); }
-	void SetLine(int nAOIID, int8_t nLine) { m_oAOI.ChangeLine(nAOIID, nLine); }
+	void SetLine(int nAOIID, int16_t nLine) { m_oAOI.ChangeLine(nAOIID, nLine); }
 	void OnObjEnterScene(AOIOBJ* pObj);		//进入场景但是未同步视野
 	void AfterObjEnterScene(AOIOBJ* pObj);	//同步了视野后
 	void OnObjLeaveScene(AOIOBJ* pObj);

@@ -1,0 +1,165 @@
+import "scene.proto";
+package login;
+
+//角色列表请求
+message RoleListReq
+{
+    required int32 nSource = 1;     //渠道号:其他0; 101安卓; 201苹果
+    required string sAccount = 2;   //账号名
+    optional int32 nServerID = 3;   //选择的服务器id 
+}
+
+//角色列表返回
+message RoleListRet
+{
+    message _Role
+    {
+        required int32 nID = 1;         //角色ID
+        required string sName = 2;      //角色名
+        required int32 nGender = 3;     //性别(1:男; 2:女)
+        required int32 nSchool = 4;     //门派(1鬼王;2青云;3天音;4合欢;5圣巫;)
+        required int32 nLevel = 5;      //等级
+        repeated int32 tEquipment = 6;  //装备列表
+        required string sModel = 7;     //模型名
+    } 
+    repeated _Role tList = 1;           //角色列表
+    required int32 nAccountID = 2;      //账号ID
+}
+
+//登陆请求
+message RoleLoginReq
+{
+    required int32 nAccountID = 1;  //帐号ID
+    required int32 nRoleID = 2;     //角色ID
+}
+
+//登陆成功返回
+message RoleLoginRet
+{
+    required int32 nAccountID = 1;  //帐号ID
+    required int32 nRoleID = 2;     //角色ID
+    required int32 nServerID = 3;   //服务器ID
+    required int32 nCreateTime = 4; //角色创建时间
+}
+
+//创建角色请求
+message RoleCreateReq
+{
+    required int32 nAccountID = 1;      //帐号ID
+    required int32 nConfID = 2;         //角色配置ID
+    required string sName = 3;          //角色名
+    optional int32 nInviteRoleID = 4;   //邀请者角色ID
+}
+
+//账号异地登录返回
+message OtherPlaceLoginRet
+{
+    
+}
+
+//角色登录排队返回
+message RoleLoginQueueRet
+{
+    required int32 nRoleID = 1;      //登录的角色ID
+    required int32 nRank = 2;        //排队名次
+    required int32 nWaitTime = 3;        //预计等待时间，单位秒
+}
+
+//角色数据同步
+message RoleInitDataRet
+{
+    required int32 nSource = 1;         //渠道号
+    required int32 nAccountID = 2;      //帐号ID
+    required string sAccountName = 3;   //帐号名
+	required int32 nRoleID = 4;  		//角色ID
+	required string sRoleName = 5;  	//角色名
+    required int32 nLevel = 6;          //角色等级
+    required int32 nVIP = 7;         	//VIP
+    required double nYuanBao = 8;       //元宝
+    required double nBYuanBao = 9;      //绑定元宝
+    required double nJinBi = 10;        //金币
+    required double nYinBi = 11;        //银币
+    required double nVitality = 12;     //活力
+    required double nExp = 13;          //经验
+    required double nStoreExp = 14;     //储备经验
+    required double nPotential = 15;    //潜力点
+    required int32 nBattleID = 16;      //战斗ID(>0就是战斗中)
+    required string sModel = 17;        //模型编号
+    required int32 nDir = 18;           //模型方向
+	required double nJinDing = 19;		//金锭数量
+    optional int32 nGender = 20;        //性别(1男; 2女)
+    optional int32 nServerID = 21;      //服务器ID
+	required double nFuYuan = 22;		//福缘值
+    required double nArenaCoin = 23;     // 竞技币
+    required scene.RoleShapeData tShapeData = 24; //外观数据
+    required double nMaxVitality = 25;   //活力上限
+    required double nCurrHP = 26;        //当前血量
+    required double nMaxHP = 27;         //血量上限
+    required double nCurrMP = 28;        //当前魔法
+    required double nMaxMP = 29;         //魔法上限
+    required double nPower = 30;         //战力
+    required double nCurrSP = 31;        //当前怒气
+    required double nMaxSP = 32;         //怒气上限
+	required double nLanZuan = 33;		//蓝钻数量
+    required int32 nSchool = 34;        //门派(1鬼王;2青云;3天音;4合欢;5圣巫;)
+    required double nDrawSpirit = 35;    //摄魂灵气
+    required double nMagicPill = 36;     //内丹
+    required double nEvilCrystal = 37;   //妖晶
+    optional int32 nServerLv = 38;       //服务器等级
+    optional int32 nRoleConfID = 39;     //角色配置ID(roleinitconf.xml)
+    optional double nColligatePower = 40;   //综合战力
+	required double nChivalry = 41;		//侠义值
+}
+
+//角色货币同步
+message RoleCurrencyRet
+{
+    message _CURR {
+        required int32 nType = 1;      //货币类型
+        //1VIP等级
+        //2元宝
+        //3绑定元宝
+        //4金币
+        //5银币
+        //6活力
+        //7经验
+        //8储备经验(已屏蔽)
+        //9潜力点
+        //10竞技币
+        //11修炼经验
+        //12灵石采集许可
+        //13绿灵石
+        //14蓝灵石
+        //15紫灵石
+        //16橙灵石
+        //17宠物经验
+        //18侠义值
+        //19活跃值
+        //20双倍点数
+        //21帮贡
+        //22联盟经验(不在角色身上)
+        //23联盟活跃度(不在角色身上)
+        //24金锭
+        //25福缘值
+        //26蓝钻
+        required double nValue = 2;    //货币值
+        optional double nValue1 = 3;   //货币值1[type=7:经验服务器加成]
+        optional double nValue2 = 4;   //货币值2[type=7:经验转换银币数量]
+    }
+    repeated _CURR tList = 1;           //货币同步列表
+}
+
+//等级同步
+message RoleLevelRet
+{
+    required int32 nLevel = 1;      //等级
+    required double nExp = 2;       //当前经验
+    required double nNextExp = 3;   //下一级经验
+    required int32 nMaxLevel = 4;   //等级上限
+}
+
+//服务器等级同步
+message ServerLvRet
+{
+    required int32 nServerLv = 1;  //服务器等级 
+}

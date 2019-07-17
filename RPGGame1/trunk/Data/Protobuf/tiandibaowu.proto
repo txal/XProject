@@ -1,0 +1,62 @@
+package tiandibaowu;
+
+//宝物信息列表
+message GoldBoxInfoListRet
+{
+	message _Goldinfo
+	{
+		required int32 nDupID = 1;			//场景ID
+		required int32 nPosX = 2;			//坐标X
+		required int32 nPosY = 3;			//坐标Y
+	}
+	repeated _Goldinfo tGoldBoxInfoList = 1;	//宝物信息列表
+}
+
+//打开界面请求
+message GoldBoxReq
+{
+	required int32 nNpcID = 1;					//宝箱ID
+}
+
+//打开界面信息返回
+message GoldBoxRet
+{
+	required int32 nSeq = 1;					//宝箱配置序号(福缘兑换相关ID)
+}
+
+//宝物移除广播
+message GoleBoxReMoveRet
+{
+}
+
+//开启宝箱请求
+message OpenGoldBoxReq
+{
+	required int32 nNpcID = 1;		//宝箱ID
+	required int32 nOpenTimes = 2;	//开启次数
+	required bool  bUseGold = 3;	//是否是使用元宝开启
+}
+
+//福缘兑换请求
+message FuYuanExchangeReq
+{
+	required int32 nNpcID = 1;		//宝箱ID
+	required int32 nExchangeID = 2;	//兑换ID
+}
+
+//开启宝箱结果预览
+message OpenGoldBoxViewRet
+{
+	required int32 nViewIndex = 1;		//展示物索引(开启十次取最后一次的结果展示)
+}
+
+//抽到物品展示
+message ShowOpenGoldBoxRet
+{
+	message _Item
+	{
+		required int32 nItemID = 1;
+		required int32 nItemNum = 2;
+	}	
+	repeated _Item tItemList = 1;
+}

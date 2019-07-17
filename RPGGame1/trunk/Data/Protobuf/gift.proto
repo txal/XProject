@@ -1,0 +1,69 @@
+//赠送
+package gift;
+
+//赠送物品请求
+message GiftPropReq
+{	
+	message _ItemList
+	{
+		required int32 nPropID = 1;		//道具ID
+		required int32 nSendNum = 2;	//赠送的数量
+		required int32 nGrid = 3;		//道具格子ID	
+	}
+	repeated _ItemList tItemList = 1;	//道具列表
+	required int32 nTarRoleID = 2;	//获取物品玩家的ID
+	required int32 nType = 3;		//道具赠送类型1-物品,2-宝物,3-鲜花 
+}
+
+//赠送物品请求返回
+message GiftPropRet
+{
+	required int32 nTarRoleID = 1;	//获取玩家ID
+	required int32 nDegrees = 2;	//好友度
+}
+
+//获取赠送记录信息请求
+message GiftGetRecordInfoReq
+{
+	
+}
+
+message _SendListInfo
+{
+	message _ItemList
+	{
+		required int32 nPropID = 1;		//道具ID
+		required int32 nPropNum = 2;	//赠送的道具数量
+		required string nPropName = 3;	//赠送的道具名
+	}
+	required int32 nRoleID = 1;		//玩家RoleID
+	required string sRoleName = 2;	//玩家姓名
+	required string nGiftTime = 3;	//赠送的时间
+	repeated _ItemList tItemList = 4;
+}
+
+message _SendListInf1
+{
+	required string sGiftRecorInfo = 1;	//单条赠送信息
+}
+
+
+//获取赠送记录信息请求返回
+message GiftGetRecordInfoRet 
+{
+	repeated  _SendListInfo tGiftRecordList = 1;	//玩家赠送记录信息列表
+}
+
+
+//获取玩家赠送进度数据
+message GiftGetSendNumReq
+{
+	required int32 nRoleID = 1;	 //玩家RoleID
+}
+
+//获取玩家赠送进度数据返回
+message GiftGetSendNumRet
+{
+	required int32 nRoleID = 1;	 //玩家RoleID
+	required int32 nSendNum = 2;	//赠送的道具数量
+}

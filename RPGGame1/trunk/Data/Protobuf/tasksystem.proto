@@ -1,0 +1,27 @@
+package tasksystem;
+
+message TouchNpcReq
+{
+	required int32 nNpcID = 1;
+	required int32 nTaskID = 2;			//任务id
+	required int32 nTaskType = 3;		//1主线任务; 2支线任务; 3引导任务
+	optional int32 nTaskStatus = 4;		//采集任务: 1开始采集; 2采集打断; 3采集完成
+}
+
+message _TaskInfo
+{
+	required int32 nTaskID = 1;
+	required int32 nTaskType = 2;			//主线任务：1； 支线任务：2; 引导任务：3
+	required bool bTaskCompelete = 3;		//任务是否已经完成
+	optional int32 nParam1 = 4;				//采集任务：采集次数；提交物品任务：已提交数量
+}
+
+message TaskAllInfoRet
+{
+	repeated _TaskInfo tTaskInfoList = 1;
+}
+
+message TaskSingleInfoRet
+{
+	required _TaskInfo tSingTaskInfo = 1;
+}

@@ -1,0 +1,194 @@
+package holidayactivity;
+
+///////////////////////////////////节日活动////////////////////////////////////
+//请求节日活动所有信息
+message HolidayActAllInfoReq
+{
+}
+
+//节日活动信息
+message _ActivityInfo
+{
+	required int32 nActivityID = 1;				//活动ID
+	required int32 nTodayCompTimes = 2;			//今天完成次数
+	required int32 nTotalTimes = 3;				//总次数 0表示无限
+	required bool  bCanJoin = 4;				//是否能参加
+	required bool  bIsComp = 5;					//是否完成活动
+	required bool  bIsEnd = 6;					//活动时间是否结束
+}
+
+//节日活动列表
+message HolidayActInfoListRet
+{
+	repeated _ActivityInfo tActInfoList = 1;		//活动信息列表
+}
+
+//单个活动信息
+message HolidayActSingleInfoRet
+{
+	required _ActivityInfo tActSingleInfo = 1;		//单个活动信息
+}
+
+//请求参加
+message HolidayActJoinReq
+{
+	required int32 nActivityID = 1;			//活动ID
+}
+
+
+
+//////////////////////////////////////学富五车/////////////////////////////////////
+//答题界面信息请求
+message AnswerAllInfoReq
+{
+}
+
+//答题界面所有信息
+message AnswerAllInfoRet
+{
+	required int32 nQuestionID = 1;			//题目ID
+	required int32 nEndTimestamp = 2;		//活动结束时间戳
+	required int32 nCountAnswer = 3;		//已回答数量
+}
+
+//答题请求
+message AnswerReq
+{
+	required int32 nAnswerIndex = 1;		//答案索引
+}
+
+//答题活动可参加通知
+message AnswerNoticeRet
+{
+}
+
+/////////////////////////////////////江湖历练///////////////////////////////////////
+//江湖历练任务接取
+message ExperienceAcceptReq
+{
+}
+
+//江湖历练任务信息(尝试沿用师门任务的协议，看客户端能不能复用原有逻辑)
+message ExperienceTaskRet
+{	
+	required int32 nMsgType = 1;			// 任务请求应答：2;
+	required bool  bComplete = 2;			// 任务完成：true; 任务未完成: false;
+	required int32 nTotalComplete = 3;		// 当天完成总环数
+	required int32 nTaskID = 4;				// 任务id; 
+	optional int32 nParam1 = 5;				// 物资任务时：ItemID
+	optional int32 nParam2 = 6;				// 物资任务时：ItemNum
+	optional int32 nParam3 = 7;				// 物资任务时：StartNum	
+	required int32 nTaskDupID = 8;			// 任务场景ID
+	required int32 nTaskPosX = 9;			// 任务坐标X
+	required int32 nTaskPosY = 10;			// 任务坐标Y
+}
+
+//任务提交
+message ExperienceCommitReq
+{	
+	required int32 nOperaType = 1;			// 提交任务：2 
+	required int32 nNpcID = 3;
+	optional int32 nItemID = 4;				// 物资任务提交的物品ID
+	optional int32 nGatherStatus = 5;		// 开始采集：1；完成采集：2;
+}
+
+/////////////////////////////////////尊师考验/////////////////////////////////////////////
+//参加尊师考验请求
+message TeachTestJoinReq
+{
+}
+
+//场景信息通过用BattleDup里的
+
+//下一只要击杀的怪物
+message TeachTestNextMonInfoRet
+{
+	required int32 nMonsterID = 1;		//怪物ID(配置ID)
+}
+
+//////////////////////////////////////策马奔腾///////////////////////////////////////////////
+//策马奔腾开始请求
+message HorseRaceStartReq
+{
+}
+
+//策马奔腾信息
+message HorseRaceInfoRet
+{
+	message _QueIndex
+	{
+		required int32 nIndex = 1;				//随机题目索引值
+	}
+	repeated _QueIndex 	tQueIndexList = 1;		//题目值随机排列数组
+	required int32 nEndTimestamp = 2;			//本题结束时间戳
+	required int32 nDistance = 3;				//总距离
+	required int32 nQuestionID = 4;				//题目ID
+}
+
+//通知服务端离开
+message HorseRaceLeaveReq
+{
+}
+
+//策马奔腾答题
+message HorseRaceAnswerReq
+{
+	required int32 nIndex = 1;		//题目值的索引
+}
+
+//点击结果
+message HorseRaceAnswerRet
+{
+	required bool bIsTrue = 1;		//结果是否正确
+}
+
+//本次策马奔腾结束通知
+message HorseRaceEndNoticRet
+{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

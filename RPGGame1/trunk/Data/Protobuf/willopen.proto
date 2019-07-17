@@ -1,0 +1,19 @@
+package willopen;
+
+//功能预告信息请求
+message WillOpenInfoReq
+{
+}
+
+//功能预告信息(不发协议不显示按钮)
+message WillOpenInfoRet
+{
+	required int32 nSeq = 1;			//当前即将开放功能序列ID
+	required bool  bCanReward = 2;		//能领取奖励:true; 不能领取奖励:false;
+}
+
+//功能预告奖励领取请求
+message WillOpenRewardReq
+{
+}
+

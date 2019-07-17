@@ -1,0 +1,26 @@
+package targettask;
+
+//目标任务信息请求
+message TargetTaskInfoReq
+{
+}
+
+//目标任务信息应答
+message TargetTaskInfoRet
+{
+	required int32 nTaskID = 1;			//任务ID
+	required int32 nCurrTarNum = 2;		//当前目标数
+	required bool  bIsComplete = 3;		//是否已经完成
+	required bool  bCanGetReward = 4;	//是否能领取奖励
+	required bool  bCompAllTask = 5;	//是否完成所有任务
+}
+
+//领取目标任务奖励
+message TargetTaskRewardReq
+{
+}
+
+//战斗训练任务请求
+message TargetTaskBattleReq
+{
+}

@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A34D1A77-CCBE-405F-B70C-6633783C4861}</ProjectGuid>
+    <RootNamespace>GameLogic</RootNamespace>
+    <ProjectName>LogicServer</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\Bin\_LocalServer\</OutDir>
+    <TargetName>MZ-$(ProjectName)</TargetName>
+    <IncludePath>D:\download\vld-master\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\download\vld-master\src\bin\x64\Release-v140;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\Bin\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>F:\XProject\Src\LuaEngine\LuaIncr;F:\XProject\Src\Tools\tolua++-1.0.93\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>F:\XProject\Lib64\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua52.lib;libmysql.lib;mysqlclient.lib;LibNetwork.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>F:\XProject\Src\LuaEngine\LuaIncr;F:\XProject\Src\Tools\tolua++-1.0.93\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>F:\XProject\Lib64\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua52.lib;libmysql.lib;mysqlclient.lib;LibNetwork.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\Src;E:\XProject;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua530.lib;LibNetwork.lib;LibLogger.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;lua_cjson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>pushd $(OutDir)
+xcopy /y/f MZ-LogicServer* ..\_WorldServer\
+rem xcopy /y/f MZ-LogicServer* E:\svnmengzhu\trunk\Server\_LocalServer\
+rem xcopy /y/f MZ-LogicServer* E:\M2BT\trunk\Server\_WorldServer\
+popd</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\Libs\Win64\Release;..\..\Libs\Win64\Release\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua530.lib;LibNetwork.lib;LibLogger.lib;LibDBDriver.lib;LuaWrapper.lib;lua_cjson.lib;pbc.lib;lpeg.lib;mysqlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Common\CSVDocument\CSVDocument.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaCmd.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaRpc.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaSerialize.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketReader.cpp" />
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketWriter.cpp" />
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\Timer.cpp" />
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp" />
+    <ClCompile Include="..\..\..\..\Common\WordFilter\WordFilter.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\Service.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\BattleLog.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\Component\AI\Action.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\Component\AI\AI.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\Component\AStar\AStarPathFind.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\Component\Buff\Buff.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\AIConf.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Actor.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Detector\Detector.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Detector\DetectorMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\DropItem\DropItem.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\DropItem\DropItemMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Monster\Monster.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Monster\MonsterMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Object.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Robot\Robot.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Robot\RobotMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Role\Role.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\GameObject\Role\RoleMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\LogicServer.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\LuaSupport\LuaExport.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\Main.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\PacketProc\LogicPacketProc.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\AOI.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\SceneBase.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\SceneMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\Tower.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Common\CSVDocument\CSVDocument.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Array.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\HexStr.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Md5.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Memory.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MemPool.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MinHeap.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MutexLock.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XUUID.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Point.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\PureList.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Ranking.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XMath.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XTime.h" />
+    <ClInclude Include="..\..\..\..\Common\CDebug.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaCmd.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaPB.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaRpc.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaSerialize.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketReader.h" />
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketWriter.h" />
+    <ClInclude Include="..\..\..\..\Common\Platform.h" />
+    <ClInclude Include="..\..\..\..\Common\PlatformHeader.h" />
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\Timer.h" />
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\TimerMgr.h" />
+    <ClInclude Include="..\..\..\..\Common\WordFilter\WordFilter.h" />
+    <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
+    <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h" />
+    <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
+    <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />
+    <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h" />
+    <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h" />
+    <ClInclude Include="..\..\Src\Server\Base\ServerConfig.h" />
+    <ClInclude Include="..\..\Src\Server\Base\ServerContext.h" />
+    <ClInclude Include="..\..\Src\Server\Base\Service.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\BattleLog.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\AI\Action.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\AI\AI.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\AStar\AStarPathFind.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\BattleDef.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\BattleUtil.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\WeaponList.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Buff\Buff.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\Component\Rank\RankData.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\AIConf.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Actor.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Detector\Detector.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Detector\DetectorMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\DropItem\DropItem.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\DropItem\DropItemMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Monster\Monster.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Monster\MonsterMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Object.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\ObjectDef.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Robot\Robot.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Robot\RobotMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Role\Role.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\GameObject\Role\RoleMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\LogicServer.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\LuaSupport\LuaExport.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\PacketProc\LogicPacketProc.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\AOI.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\SceneBase.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\SceneDef.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\SceneMgr.h" />
+    <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\Tower.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

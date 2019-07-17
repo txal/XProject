@@ -1,0 +1,37 @@
+package wuguicaiyun;
+
+//五鬼财运界面请求
+message WuGuiCaiYunInfoReq
+{
+}
+
+//五鬼财运界面返回
+message WuGuiCaiYunInfoRet
+{
+	message _List
+	{
+		required int32 nID = 1;				//五鬼财运ID	
+		required int32 nState = 2;			//状态(0.未满条件 1.可领 2.已领)
+	}
+	repeated _List tList = 1; 				//五鬼财运列表
+	required int32 nOnlineTimeCount = 2; 	//在玩家线总时间
+	required int32 nTotalZL = 3; 			//当前总兵力
+ }
+
+
+//五鬼财运奖励请求
+message GetWuGuiCaiYunAwardReq   
+{
+	required int32 nID = 1; 		//基金表ID
+}
+
+//五鬼财运奖励返回
+message GetWuGuiCaiYunAwardRet
+{                   
+	message _Award    //奖励结构
+	{
+		required int32 nID = 1;      //奖励ID
+		required int32 nNum = 2;     //奖励数量
+	}
+	repeated _Award tAward = 1;   //奖励数组 
+}

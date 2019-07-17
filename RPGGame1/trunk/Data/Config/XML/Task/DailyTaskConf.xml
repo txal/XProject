@@ -1,0 +1,400 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>Windows 用户</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2018-01-10T08:13:36Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6929</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12180</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctDailyTaskConf">
+  <Table ss:ExpandedColumnCount="10" ss:ExpandedRowCount="22" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="57.75"/>
+   <Column ss:Index="3" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="78.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="67.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="60.75"/>
+   <Column ss:StyleID="s64" ss:AutoFitWidth="0"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="224.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="122.25"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nID</Data></Cell>
+    <Cell><Data ss:Type="String">sName</Data></Cell>
+    <Cell><Data ss:Type="String">nType</Data><Comment ss:Author="Administrator"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><Font html:Size="9">1, &#45;-每日充值 &#13;2, &#45;-领取月卡 &#13;3, &#45;-知己升级 &#13;4, &#45;-征收银两 &#13;5, &#45;-征收文化 &#13;6, &#45;-征收兵力 &#13;7, &#45;-处理私信 &#13;8, &#45;-通过关卡 &#13;9, &#45;-每日膜拜 &#13;10, &#45;-每日讨教 &#13;11, &#45;-资质丹数&#13;12, &#45;-知己邀约 &#13;13, &#45;-培养宠物 &#13;14, &#45;-每日寻访 &#13;15, &#45;-惩戒犯人 &#13;16, &#45;-联盟建设 &#13;17, &#45;-宫斗 &#13;18, &#45;-每日赴宴</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">nPre</Data></Cell>
+    <Cell><Data ss:Type="String">nNext</Data></Cell>
+    <Cell><Data ss:Type="String">tParam</Data></Cell>
+    <Cell><Data ss:Type="String">tAward</Data></Cell>
+    <Cell><Data ss:Type="String">sDesc</Data></Cell>
+    <Cell><Data ss:Type="String">tForward</Data><Comment ss:Author="Administrator"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9">Administrator:</Font></B><Font
+        html:Size="9">&#13;兴圣宫 1,1&#10;内阁 2,1&#10;知己 1,2&#10;宗人府 2,2&#10;三生殿 1,3&#10;微服私访 1,4&#10;征服世界 1,5&#10;联盟 1,6&#13;时装 1,7&#13;御花园 1,8&#13;国库 1,9&#13;成就 1,10&#13;商城 1,11&#13;福利 1,12&#13;大明宫 1,13&#13;春江花月夜 1,14&#13;竞技 1,15&#13;幽若宫 1,16&#13;排行榜 1,17&#13;宴会 1,18&#13;充值 1,19</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">sIcon</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">t{iii}</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">任务ID</Data></Cell>
+    <Cell><Data ss:Type="String">任务名称</Data></Cell>
+    <Cell><Data ss:Type="String">分类</Data></Cell>
+    <Cell><Data ss:Type="String">前置任务ID</Data></Cell>
+    <Cell><Data ss:Type="String">后继任务ID</Data></Cell>
+    <Cell><Data ss:Type="String">目标参数</Data></Cell>
+    <Cell><Data ss:Type="String">奖励</Data></Cell>
+    <Cell><Data ss:Type="String">任务描述</Data></Cell>
+    <Cell><Data ss:Type="String">前往系统</Data></Cell>
+    <Cell><Data ss:Type="String">图标</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell><Data ss:Type="String">知己升级</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">10,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">知己升级次数达10次</Data></Cell>
+    <Cell><Data ss:Type="String">1,2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1001</Data></Cell>
+    <Cell><Data ss:Type="String">时装升级</Data></Cell>
+    <Cell><Data ss:Type="Number">22</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">时装升级次数达3次</Data></Cell>
+    <Cell><Data ss:Type="String">1,7</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1002</Data></Cell>
+    <Cell><Data ss:Type="String">银两经营</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">12,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">银两经营次数达12次</Data></Cell>
+    <Cell><Data ss:Type="String">2,1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1003</Data></Cell>
+    <Cell><Data ss:Type="String">文化经营</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">12,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">文化经营次数达12次</Data></Cell>
+    <Cell><Data ss:Type="String">2,1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1004</Data></Cell>
+    <Cell><Data ss:Type="String">兵力经营</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">12,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">兵力经营次数达12次</Data></Cell>
+    <Cell><Data ss:Type="String">2,1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1005</Data></Cell>
+    <Cell><Data ss:Type="String">查阅私信</Data></Cell>
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">12,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">查阅私信次数达12次</Data></Cell>
+    <Cell><Data ss:Type="String">1,1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1006</Data></Cell>
+    <Cell><Data ss:Type="String">通关关卡</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">10,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">通关据点数达10个</Data></Cell>
+    <Cell><Data ss:Type="String">1,5</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1007</Data></Cell>
+    <Cell><Data ss:Type="String">每日膜拜</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,5;1,10016,5;</Data></Cell>
+    <Cell><Data ss:Type="String">每日膜拜次数达1次</Data></Cell>
+    <Cell><Data ss:Type="String">1,17</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1008</Data></Cell>
+    <Cell><Data ss:Type="String">每日讨教</Data></Cell>
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,5;1,10016,5;</Data></Cell>
+    <Cell><Data ss:Type="String">每日讨教次数达1次</Data></Cell>
+    <Cell><Data ss:Type="String">1,13</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1009</Data></Cell>
+    <Cell><Data ss:Type="String">培养知己</Data></Cell>
+    <Cell><Data ss:Type="Number">11</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">培养知己次数达1次</Data></Cell>
+    <Cell><Data ss:Type="String">1,2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1010</Data></Cell>
+    <Cell><Data ss:Type="String">知己游玩</Data></Cell>
+    <Cell><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">知己游玩次数达3次</Data></Cell>
+    <Cell><Data ss:Type="String">1,8</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1011</Data></Cell>
+    <Cell><Data ss:Type="String">培养宠物</Data></Cell>
+    <Cell><Data ss:Type="Number">13</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">4,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">培养宠物次数达4次</Data></Cell>
+    <Cell><Data ss:Type="String">2,2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1012</Data></Cell>
+    <Cell><Data ss:Type="String">每日寻访</Data></Cell>
+    <Cell><Data ss:Type="Number">14</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">12,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">每日寻访次数达12次</Data></Cell>
+    <Cell><Data ss:Type="String">1,4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1013</Data></Cell>
+    <Cell><Data ss:Type="String">知己献礼</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">35,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">知己献礼次数达35次</Data></Cell>
+    <Cell><Data ss:Type="String">1,22</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1014</Data></Cell>
+    <Cell><Data ss:Type="String">联盟建设</Data></Cell>
+    <Cell><Data ss:Type="Number">16</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">联盟建设次数达1次</Data></Cell>
+    <Cell><Data ss:Type="String">1,6</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1015</Data></Cell>
+    <Cell><Data ss:Type="String">每日宫斗</Data></Cell>
+    <Cell><Data ss:Type="Number">17</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">8,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">每日宫斗次数达8次</Data></Cell>
+    <Cell><Data ss:Type="String">1,15</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1016</Data></Cell>
+    <Cell><Data ss:Type="String">每日赴宴</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">3,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,5;1,10016,5;</Data></Cell>
+    <Cell><Data ss:Type="String">每日赴宴次数达3次</Data></Cell>
+    <Cell><Data ss:Type="String">1,18</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1017</Data></Cell>
+    <Cell><Data ss:Type="String">千灯祈福</Data></Cell>
+    <Cell><Data ss:Type="Number">21</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">6,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,5;1,10016,5;</Data></Cell>
+    <Cell><Data ss:Type="String">千灯祈福次数达6次</Data></Cell>
+    <Cell><Data ss:Type="String">1,14</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1018</Data></Cell>
+    <Cell><Data ss:Type="String">强化时装</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1,0;</Data></Cell>
+    <Cell><Data ss:Type="String">1,10017,10;1,10016,10;</Data></Cell>
+    <Cell><Data ss:Type="String">强化时装次数达1次</Data></Cell>
+    <Cell><Data ss:Type="String">1,7</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>24</ActiveRow>
+     <ActiveCol>8</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

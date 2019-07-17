@@ -18,7 +18,7 @@ public:
 
 	bool Init(Scene *pScene, int nMapWidth, int nMapHeight, int nLineObjNum=MAX_OBJ_PERLINE);
 
-	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType = AOI_TYPE_RECT, int8_t nLine = -1);
+	int AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType = AOI_TYPE_RECT, int16_t nLine = -1);
 	void MoveObj(int nID, int nPosX, int nPosY);
 	void RemoveObj(int nID, bool bLeaveScene=false);
 
@@ -34,7 +34,7 @@ public:
 	AOIObjIter GetObjIterBegin() { return m_oObjMap.begin(); }
 	AOIObjIter GetObjIterEnd() { return m_oObjMap.end(); }
 
-	void ChangeLine(int nID, int8_t nNewLine);
+	void ChangeLine(int nID, int16_t nNewLine);
 
 public:
 	void PrintTower();
@@ -53,8 +53,8 @@ private:
 	void CalcCircleTowerArea(int nPosX, int nPosY, int nRadius, int nLTTower[], int nRBTower[]);
 
 private:
-	int8_t AddLineObj(int8_t nLine=-1);
-	int16_t SubLineObj(int8_t nLine);
+	int16_t AddLineObj(int16_t nLine=-1);
+	int16_t SubLineObj(int16_t nLine);
 	
 private:
 	Scene* m_poScene;		// 场景对象

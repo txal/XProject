@@ -1,0 +1,10 @@
+ctRecargeAwardConf={}
+ctRecargeAwardConf[1]={ID=1,nRecargeYunBao=25000,tAwardProp={{1,2,2500,},{1,3,2000,},{1,13507,1,},},}
+ctRecargeAwardConf[2]={ID=2,nRecargeYunBao=50000,tAwardProp={{1,2,2500,},{1,3,2000,},{1,13507,2,},},}
+ctRecargeAwardConf[3]={ID=3,nRecargeYunBao=100000,tAwardProp={{1,2,5000,},{1,3,6000,},{1,13507,3,},},}
+ctRecargeAwardConf[4]={ID=4,nRecargeYunBao=250000,tAwardProp={{1,2,15000,},{1,3,15000,},{1,13006,1,},},}
+ctRecargeAwardConf[5]={ID=5,nRecargeYunBao=500000,tAwardProp={{1,2,25000,},{1,3,25000,},{1,19012,99,},},}
+ctRecargeAwardConf[6]={ID=6,nRecargeYunBao=1000000,tAwardProp={{1,2,50000,},{1,3,25000,},{1,13206,1,},},}
+ctRecargeAwardConf[7]={ID=7,nRecargeYunBao=2500000,tAwardProp={{1,2,150000,},{1,3,25000,},{1,2000304,1,},},}
+ctRecargeAwardConf[8]={ID=8,nRecargeYunBao=5000000,tAwardProp={{1,2,250000,},{1,3,25000,},{1,20114,1,},},}
+ctRecargeAwardConf[9]={ID=9,nRecargeYunBao=10000000,tAwardProp={{1,2,500000,},{1,3,25000,},{1,13106,1,},},}

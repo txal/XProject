@@ -116,7 +116,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>..\..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Src;E:\XProject;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>_MBCS;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -153,21 +153,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Common\MGHttp\HttpClient.cpp" />
-    <ClCompile Include="..\..\Src\Common\MGHttp\HttpLua.cpp" />
-    <ClCompile Include="..\..\Src\Common\MGHttp\HttpServer.cpp" />
-    <ClCompile Include="..\..\Src\Common\MGHttp\mongoose.cpp" />
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp" />
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpClient.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpLua.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpServer.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\mongoose.cpp" />
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketReader.cpp" />
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketWriter.cpp" />
     <ClCompile Include="..\..\Src\Test\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Common\MGHttp\HttpClient.h" />
-    <ClInclude Include="..\..\Src\Common\MGHttp\HttpLua.hpp" />
-    <ClInclude Include="..\..\Src\Common\MGHttp\HttpServer.h" />
-    <ClInclude Include="..\..\Src\Common\MGHttp\mongoose.h" />
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h" />
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpClient.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpLua.hpp" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpServer.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\mongoose.h" />
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketReader.h" />
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketWriter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

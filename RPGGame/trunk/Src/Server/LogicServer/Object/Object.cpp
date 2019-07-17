@@ -75,7 +75,7 @@ void Object::Update(int64_t nNowMS)
 	}
 }
 
-void Object::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int8_t nLine)
+void Object::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int16_t nLine)
 {
 	assert(poScene != NULL && nAOIID > 0);
 	m_poScene = poScene;
@@ -109,8 +109,8 @@ void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 	if (uTarServer> 0 && nTarSession > 0)
 	{
 		NetAdapter::SERVICE_NAVI oNavi;
-		oNavi.uSrcServer = g_poContext->GetServerID();
-		oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+		oNavi.uSrcServer = gpoContext->GetServerID();
+		oNavi.nSrcService = gpoContext->GetService()->GetServiceID();
 		oNavi.uTarServer = uTarServer;
 		oNavi.nTarService = nTarSession >> SERVICE_SHIFT;
 		oNavi.nTarSession = nTarSession;
@@ -118,8 +118,8 @@ void Object::CacheActorNavi(uint16_t uTarServer, int nTarSession)
 	}
 
 	NetAdapter::SERVICE_NAVI oNavi;
-	oNavi.uSrcServer = g_poContext->GetServerID();
-	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uSrcServer = gpoContext->GetServerID();
+	oNavi.nSrcService = gpoContext->GetService()->GetServiceID();
 
 	Array<AOIOBJ*>& oAOIObjList = m_poScene->GetAreaObservers(m_nAOIID, GAMEOBJ_TYPE::eOT_Role);
 	for (int i = oAOIObjList.Size() - 1; i >= 0; --i)
@@ -231,7 +231,7 @@ int Object::GetLine(lua_State* pState)
 
 int Object::SetLine(lua_State* pState)
 {
-	int8_t nLine = (int8_t)luaL_checkinteger(pState, 1);
+	int16_t nLine = (int16_t)luaL_checkinteger(pState, 1);
 	if (m_poScene == NULL)
 		return 0;
 	m_poScene->SetLine(m_nAOIID, nLine);

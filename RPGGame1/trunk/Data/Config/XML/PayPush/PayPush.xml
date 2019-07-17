@@ -1,0 +1,2694 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>AutoBVT</Author>
+  <LastAuthor>Panda</LastAuthor>
+  <Created>2018-05-04T07:09:10Z</Created>
+  <LastSaved>2018-11-05T12:34:57Z</LastSaved>
+  <Company>Microsoft</Company>
+  <Version>12.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7520</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13050</WindowHeight>
+  <WindowWidth>28080</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>135</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62" ss:Name="常规 2">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s65">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Interior ss:Color="#33CCCC" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Interior ss:Color="#33CCCC" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s68">
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s71" ss:Parent="s62">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s72" ss:Parent="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s73" ss:Parent="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#008080"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s74" ss:Parent="s62">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s75" ss:Parent="s62">
+   <Alignment ss:Vertical="Center"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s76" ss:Parent="s62">
+   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s77" ss:Parent="s62">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#FFFFFF"/>
+   <Interior ss:Color="#000000" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s78" ss:Parent="s62">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#FFFFFF"/>
+   <Interior ss:Color="#000000" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s79" ss:Parent="s62">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s80" ss:Parent="s62">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Interior/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctPayPushConf">
+  <Table ss:ExpandedColumnCount="17" ss:ExpandedRowCount="21" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:Width="76.5" ss:Span="2"/>
+   <Column ss:Index="4" ss:Width="66"/>
+   <Column ss:Width="92.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="93.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="94.5"/>
+   <Column ss:Index="13" ss:AutoFitWidth="0" ss:Width="78.75"/>
+   <Column ss:Index="16" ss:AutoFitWidth="0" ss:Width="168"/>
+   <Row ss:AutoFitHeight="0" ss:Height="54">
+    <Cell ss:Index="2" ss:StyleID="s63"><Data ss:Type="String">事件类型；&#10;1：玩家等级&#10;2：第几次登陆</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s64"/>
+    <Cell ss:Index="17" ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s66"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">nEventType</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">nEventTimes</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">sDec</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">sbeizhu</Data></Cell>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">序号</Data></Cell>
+    <Cell><Data ss:Type="String">事件类型</Data></Cell>
+    <Cell><Data ss:Type="String">事件条件</Data></Cell>
+    <Cell><Data ss:Type="String">描述</Data></Cell>
+    <Cell><Data ss:Type="String">备注</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">15</Data></Cell>
+    <Cell><Data ss:Type="String">首充</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="17" ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">999</Data></Cell>
+    <Cell><Data ss:Type="String">月卡</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">若玩家已购买周卡，则推月卡；若玩家没购买周卡，此处再推一次周卡</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">成长基金</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">22</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">双周福利卡</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">30</Data></Cell>
+    <Cell><Data ss:Type="String">充值翻倍</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"><Data ss:Type="String">6</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">首次登陆</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="17" ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="16" ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="17" ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>19</ActiveRow>
+     <ActiveCol>7</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+  <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
+   <Range>R2C6,R2C1:R2C3</Range>
+   <Condition>
+    <Value1>AND(COUNTIF(#REF!,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
+    <Format Style='background:#FF9900;mso-pattern:none'/>
+   </Condition>
+  </ConditionalFormatting>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2 ">
+  <Table ss:ExpandedColumnCount="14" ss:ExpandedRowCount="54" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+   <Row ss:Index="8" ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">伙伴ID</Data></Cell>
+    <Cell><Data ss:Type="String">名称</Data></Cell>
+    <Cell><Data ss:Type="String">门派</Data></Cell>
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+    <Cell><Data ss:Type="String">描述</Data></Cell>
+    <Cell><Data ss:Type="String">获得来源</Data></Cell>
+    <Cell><Data ss:Type="String">评级</Data></Cell>
+    <Cell><Data ss:Type="String">评级</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20002</Data></Cell>
+    <Cell><Data ss:Type="String">小环</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20003</Data></Cell>
+    <Cell><Data ss:Type="String">金瓶儿</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20001</Data></Cell>
+    <Cell><Data ss:Type="String">张小凡</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20004</Data></Cell>
+    <Cell><Data ss:Type="String">陆雪琪</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">容貌空灵清绝，白衣翩翩，身负天琊仙剑临风而立。乃正道大派——青云门下新一代弟子的翘楚，修为高深，不喜言辞</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">ss</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">ss</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20005</Data></Cell>
+    <Cell><Data ss:Type="String">幽姬</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">B</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20006</Data></Cell>
+    <Cell><Data ss:Type="String">碧瑶</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">碧水奇花凌寒傲，虽死不悔痴情惘。鬼王宗宗主鬼王的爱女，自小容貌绝伦，不同寻常的经历令其幼年早慧，敢爱敢恨</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">ss</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">ss</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20007</Data></Cell>
+    <Cell><Data ss:Type="String">田灵儿</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">A</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">A</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20013</Data></Cell>
+    <Cell><Data ss:Type="String">鬼先生</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">S</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20014</Data></Cell>
+    <Cell><Data ss:Type="String">大巫师</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">SSS</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20017</Data></Cell>
+    <Cell><Data ss:Type="String">兽神</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">sss</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">sss</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20008</Data></Cell>
+    <Cell><Data ss:Type="String">林惊羽</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">60</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">60</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20019</Data></Cell>
+    <Cell><Data ss:Type="String">变异金瓶儿</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">ss</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">ss</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">60</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="Number">60</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20009</Data></Cell>
+    <Cell><Data ss:Type="String">秦无炎</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">65</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">65</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20010</Data></Cell>
+    <Cell><Data ss:Type="String">普智</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">SS</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">SS</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">70</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">70</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20018</Data></Cell>
+    <Cell><Data ss:Type="String">变异小环</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">SSS</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">70</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="Number">70</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20011</Data></Cell>
+    <Cell><Data ss:Type="String">小白</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">SS</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">SS</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">75</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">75</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20012</Data></Cell>
+    <Cell><Data ss:Type="String">青龙</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">SSS</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">80</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">80</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20015</Data></Cell>
+    <Cell><Data ss:Type="String">鬼厉</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">sss</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">sss</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">85</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">85</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20016</Data></Cell>
+    <Cell><Data ss:Type="String">法相</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">sss</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-7],R35C2:R54C7,6,FALSE)"><Data ss:Type="String">sss</Data></Cell>
+    <Cell ss:Formula="=IF(RC[-2]=RC[-1],0,1)"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Index="12" ss:Formula="=VLOOKUP(RC[-10],R35C2:R54C7,5,FALSE)"><Data
+      ss:Type="Number">90</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="Number">90</Data></Cell>
+    <Cell ss:Formula="=RC[-2]-RC[-1]"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20001</Data></Cell>
+    <Cell><Data ss:Type="String">张小凡</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20002</Data></Cell>
+    <Cell><Data ss:Type="String">小环</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20003</Data></Cell>
+    <Cell><Data ss:Type="String">金瓶儿</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20004</Data></Cell>
+    <Cell><Data ss:Type="String">陆雪琪</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">容貌空灵清绝，白衣翩翩，身负天琊仙剑临风而立。乃正道大派——青云门下新一代弟子的翘楚，修为高深，不喜言辞</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">ss</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20005</Data></Cell>
+    <Cell><Data ss:Type="String">幽姬</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">B</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">20006</Data></Cell>
+    <Cell><Data ss:Type="String">碧瑶</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">碧水奇花凌寒傲，虽死不悔痴情惘。鬼王宗宗主鬼王的爱女，自小容貌绝伦，不同寻常的经历令其幼年早慧，敢爱敢恨</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">ss</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20007</Data></Cell>
+    <Cell><Data ss:Type="String">田灵儿</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">A</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20008</Data></Cell>
+    <Cell><Data ss:Type="String">林惊羽</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20009</Data></Cell>
+    <Cell><Data ss:Type="String">秦无炎</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">65</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20010</Data></Cell>
+    <Cell><Data ss:Type="String">普智</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="String">SS</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20011</Data></Cell>
+    <Cell><Data ss:Type="String">小白</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="String">SS</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20012</Data></Cell>
+    <Cell><Data ss:Type="String">青龙</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20013</Data></Cell>
+    <Cell><Data ss:Type="String">鬼先生</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">S</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20014</Data></Cell>
+    <Cell><Data ss:Type="String">大巫师</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20015</Data></Cell>
+    <Cell><Data ss:Type="String">鬼厉</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">85</Data></Cell>
+    <Cell><Data ss:Type="String">sss</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20016</Data></Cell>
+    <Cell><Data ss:Type="String">法相</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">90</Data></Cell>
+    <Cell><Data ss:Type="String">sss</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20017</Data></Cell>
+    <Cell><Data ss:Type="String">兽神</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">sss</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20018</Data></Cell>
+    <Cell><Data ss:Type="String">变异小环</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="String">SSS</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">20019</Data></Cell>
+    <Cell><Data ss:Type="String">变异金瓶儿</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="String">ss</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <TopRowVisible>21</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>20</ActiveRow>
+     <ActiveCol>11</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3 ">
+  <Table ss:ExpandedColumnCount="34" ss:ExpandedRowCount="32" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="107.25"/>
+   <Column ss:Index="31" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="54.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="57.75"/>
+   <Row ss:AutoFitHeight="0" ss:Height="40.5">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5131,1,0;5122,3,0;</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s74"><Data ss:Type="String">仙灵</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s75"><Data ss:Type="String">1：天策&#10;2：药王&#10;5：龙宫&#10;6：普陀&#10;8：狮驼&#10;9：盘丝</Data></Cell>
+    <Cell ss:Index="18" ss:StyleID="s75"/>
+    <Cell ss:Index="22" ss:StyleID="s76"><Data ss:Type="String">1 鬼王(物理单攻)&#10;2 青云(法术群攻)&#10;3 天音(治疗辅助)&#10;4 合欢(物理群攻)&#10;5 圣巫(封印控制)</Data></Cell>
+    <Cell><Data ss:Type="String">1. 物攻&#10;2. 法攻&#10;3. 辅助&#10;4. 封印</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s77">
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:Index="7"><Data ss:Type="String">门派</Data></Cell>
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="String">门派</Data></Cell>
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">仙灵</Data></Cell>
+    <Cell><Data ss:Type="String">M1</Data></Cell>
+    <Cell><Data ss:Type="String">仙灵</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">名称</Data></Cell>
+    <Cell><Data ss:Type="String">门派</Data></Cell>
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+    <Cell ss:Index="26"><Data ss:Type="String">门派</Data></Cell>
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5123,1,0;5127,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="Number">20001</Data></Cell>
+    <Cell><Data ss:Type="String">卓一平</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="String">鬼王</Data></Cell>
+    <Cell ss:Formula="=RC[-2]"><Data ss:Type="String">天策</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">小环</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">天音</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">药王</Data></Cell>
+    <Cell ss:Index="32" ss:StyleID="s76"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5121,1,0;5116,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="Number">20002</Data></Cell>
+    <Cell><Data ss:Type="String">毒仙子</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">药王</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">药王</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="13" ss:StyleID="s75"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">药王</Data></Cell>
+    <Cell><Data ss:Type="String">天音</Data></Cell>
+    <Cell ss:Formula="=RC[-2]"><Data ss:Type="String">药王</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">金瓶儿</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">合欢</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">狮驼</Data></Cell>
+    <Cell ss:Index="31"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">鬼王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">物攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5121,1,0;5116,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20003</Data></Cell>
+    <Cell><Data ss:Type="String">小小</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="String">狮驼</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">狮驼</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">药王</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell><Data ss:Type="String">青云</Data></Cell>
+    <Cell ss:Formula="=RC[-2]"><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">张小凡</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">青云</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Index="31"><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">青云</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">法攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5123,1,0;5127,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20004</Data></Cell>
+    <Cell><Data ss:Type="String">小白龙</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="15"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">狮驼</Data></Cell>
+    <Cell><Data ss:Type="String">合欢</Data></Cell>
+    <Cell ss:Formula="=RC[-2]"><Data ss:Type="String">狮驼</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">陆雪琪</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">青云</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Index="31"><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">天音</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">辅助</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5110,1,0;5103,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20005</Data></Cell>
+    <Cell><Data ss:Type="String">沙和尚</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="Error">#N/A</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="15"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">盘丝</Data></Cell>
+    <Cell><Data ss:Type="String">圣巫</Data></Cell>
+    <Cell ss:Formula="=RC[-2]"><Data ss:Type="String">盘丝</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">幽姬</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">鬼王</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Index="31"><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">合欢</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">封印</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5125,1,0;5126,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20006</Data></Cell>
+    <Cell><Data ss:Type="String">猪八戒</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="String">狮驼</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">狮驼</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">普陀</Data></Cell>
+    <Cell><Data ss:Type="String">天音</Data></Cell>
+    <Cell ss:Formula="=RC[-2]"><Data ss:Type="String">普陀</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">碧瑶</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">合欢</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">狮驼</Data></Cell>
+    <Cell ss:Index="31"><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">圣巫</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5131,1,0;5125,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20007</Data></Cell>
+    <Cell><Data ss:Type="String">孙悟空</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">普陀</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">田灵儿</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">青云</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5131,1,0;5125,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20008</Data></Cell>
+    <Cell><Data ss:Type="String">唐僧</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">药王</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">药王</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s79"/>
+    <Cell ss:Index="22"><Data ss:Type="String">鬼先生</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">圣巫</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">盘丝</Data></Cell>
+    <Cell ss:Index="31" ss:StyleID="s80"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5115,1,0;5119,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20009</Data></Cell>
+    <Cell><Data ss:Type="String">嫦娥仙子</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">普陀</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">普陀</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">狮驼</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">大巫师</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">圣巫</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">盘丝</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5121,1,0;5116,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20010</Data></Cell>
+    <Cell><Data ss:Type="String">铁扇公主</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">盘丝</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">兽神</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">青云</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5123,1,0;5127,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20011</Data></Cell>
+    <Cell><Data ss:Type="String">赤脚大仙</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="String">盘丝</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">盘丝</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="13"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">林惊羽</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">青云</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5124,1,0;5126,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="String">20012</Data></Cell>
+    <Cell><Data ss:Type="String">白骨精</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="String">盘丝</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">盘丝</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">变异金瓶儿</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">合欢</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">狮驼</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5131,1,0;5125,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="Number">20024</Data></Cell>
+    <Cell><Data ss:Type="String">六耳猕猴</Data></Cell>
+    <Cell><Data ss:Type="Number">13</Data></Cell>
+    <Cell><Data ss:Type="Error">#N/A</Data></Cell>
+    <Cell><Data ss:Type="Number">13</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="Error">#N/A</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">秦无炎</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">合欢</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">狮驼</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5131,1,0;5122,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="Number">20025</Data></Cell>
+    <Cell><Data ss:Type="String">魔悟空</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">普智</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">天音</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">药王</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5117,1,0;5119,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="Number">21001</Data></Cell>
+    <Cell><Data ss:Type="String">崩将军</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">变异小环</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">天音</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">药王</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5123,1,0;5127,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="Number">21002</Data></Cell>
+    <Cell><Data ss:Type="String">芭将军</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">小白</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">青云</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5123,1,0;5127,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="Number">21003</Data></Cell>
+    <Cell><Data ss:Type="String">马元帅</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">普陀</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">普陀</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">青龙</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">鬼王</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s71"><Data ss:Type="String">5131,1,0;5122,3,0;</Data></Cell>
+    <Cell ss:Index="3"><Data ss:Type="Number">21004</Data></Cell>
+    <Cell><Data ss:Type="String">流元帅</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">鬼厉</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">鬼王</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21005</Data></Cell>
+    <Cell><Data ss:Type="String">孙悟空</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell ss:Index="22"><Data ss:Type="String">法相</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="26" ss:Formula="=VLOOKUP(RC[-3],C31:C32,2,FALSE)"><Data
+      ss:Type="String">天音</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C33:C34,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="29" ss:Formula="=VLOOKUP(RC[-3],C19:C20,2,FALSE)"><Data
+      ss:Type="String">药王</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21006</Data></Cell>
+    <Cell><Data ss:Type="String">蛟魔王</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21007</Data></Cell>
+    <Cell><Data ss:Type="String">牛魔王</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">普陀</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">普陀</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21008</Data></Cell>
+    <Cell><Data ss:Type="String">狮驼王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21011</Data></Cell>
+    <Cell><Data ss:Type="String">增长天王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21012</Data></Cell>
+    <Cell><Data ss:Type="String">广目天王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21013</Data></Cell>
+    <Cell><Data ss:Type="String">持国天王</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">普陀</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">普陀</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21014</Data></Cell>
+    <Cell><Data ss:Type="String">多闻天王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21015</Data></Cell>
+    <Cell><Data ss:Type="String">哪吒</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21016</Data></Cell>
+    <Cell><Data ss:Type="String">雷公</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">龙宫</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">龙宫</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21017</Data></Cell>
+    <Cell><Data ss:Type="String">电母</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="String">普陀</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">普陀</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3"><Data ss:Type="Number">21018</Data></Cell>
+    <Cell><Data ss:Type="String">李靖</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">天策</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:Index="10" ss:Formula="=VLOOKUP(RC[-3],C[3]:C[4],2,FALSE)"><Data
+      ss:Type="String">天策</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-3],C15:C16,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>3</ActiveRow>
+     <ActiveCol>14</ActiveCol>
+     <RangeSelection>R4C15:R7C16</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet4">
+  <Table ss:ExpandedColumnCount="48" ss:ExpandedRowCount="34" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="13.5">
+   <Column ss:Index="18" ss:StyleID="s62" ss:Width="110.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="55.5"/>
+   <Column ss:StyleID="s62" ss:Width="57"/>
+   <Column ss:StyleID="s62" ss:Width="249.75" ss:Span="1"/>
+   <Column ss:Index="23" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="59.25"/>
+   <Column ss:StyleID="s62" ss:Width="249.75"/>
+   <Column ss:StyleID="s62" ss:Width="129.75"/>
+   <Column ss:StyleID="s62" ss:Width="296.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="43.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="192.75"/>
+   <Column ss:StyleID="s62" ss:Width="296.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="71.25"/>
+   <Column ss:StyleID="s62" ss:Width="309.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="62.25"/>
+   <Column ss:StyleID="s62" ss:Width="282.75"/>
+   <Column ss:StyleID="s62" ss:Width="296.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="31.5"/>
+   <Column ss:StyleID="s62" ss:Width="196.5"/>
+   <Column ss:StyleID="s62" ss:Width="203.25"/>
+   <Column ss:StyleID="s62" ss:Width="409.5"/>
+   <Column ss:StyleID="s62" ss:Width="136.5"/>
+   <Column ss:StyleID="s62" ss:Width="90"/>
+   <Row ss:AutoFitHeight="0"/>
+   <Row ss:Index="3" ss:AutoFitHeight="0">
+    <Cell ss:Index="48" ss:StyleID="s79"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">编号</Data></Cell>
+    <Cell><Data ss:Type="String">名称</Data></Cell>
+    <Cell><Data ss:Type="String">门派编号</Data></Cell>
+    <Cell><Data ss:Type="String">分类</Data></Cell>
+    <Cell><Data ss:Type="String">是否限制招募</Data></Cell>
+    <Cell><Data ss:Type="String">描述</Data></Cell>
+    <Cell><Data ss:Type="String">是否显示在伙伴界面</Data></Cell>
+    <Cell><Data ss:Type="String">动作编号</Data></Cell>
+    <Cell><Data ss:Type="String">获得来源</Data></Cell>
+    <Cell><Data ss:Type="String">变色颜色</Data></Cell>
+    <Cell><Data ss:Type="String">变色贴图</Data></Cell>
+    <Cell><Data ss:Type="String">贴图</Data></Cell>
+    <Cell><Data ss:Type="String">模型</Data></Cell>
+    <Cell><Data ss:Type="String">招募LV</Data></Cell>
+    <Cell><Data ss:Type="String">招募消耗</Data></Cell>
+    <Cell><Data ss:Type="String">星数</Data></Cell>
+    <Cell><Data ss:Type="String">阶数</Data></Cell>
+    <Cell><Data ss:Type="String">血量公式</Data></Cell>
+    <Cell ss:Index="20"><Data ss:Type="String">法力公式</Data></Cell>
+    <Cell><Data ss:Type="String">攻击力</Data></Cell>
+    <Cell><Data ss:Type="String">防御力</Data></Cell>
+    <Cell ss:Index="24"><Data ss:Type="String">灵力</Data></Cell>
+    <Cell><Data ss:Type="String">速度</Data></Cell>
+    <Cell><Data ss:Type="String">装备血量</Data></Cell>
+    <Cell ss:Index="28"><Data ss:Type="String">装备法力</Data></Cell>
+    <Cell><Data ss:Type="String">装备攻击</Data></Cell>
+    <Cell ss:Index="31"><Data ss:Type="String">装备防御</Data></Cell>
+    <Cell ss:Index="33"><Data ss:Type="String">装备灵力</Data></Cell>
+    <Cell><Data ss:Type="String">装备速度</Data></Cell>
+    <Cell ss:Index="36"><Data ss:Type="String">武器攻击</Data></Cell>
+    <Cell><Data ss:Type="String">星级公式</Data></Cell>
+    <Cell><Data ss:Type="String">技能信息列表</Data></Cell>
+    <Cell><Data ss:Type="String">被动技能</Data></Cell>
+    <Cell><Data ss:Type="String">配音</Data></Cell>
+    <Cell><Data ss:Type="String">伙伴喊话</Data></Cell>
+    <Cell><Data ss:Type="String">是否可培养</Data></Cell>
+    <Cell><Data ss:Type="String">属性道具使用次数限制</Data></Cell>
+    <Cell ss:Index="47"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">物攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">20001</Data></Cell>
+    <Cell><Data ss:Type="String">卓一平</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">擅长物理单体击杀</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">16</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="String">751</Data></Cell>
+    <Cell><Data ss:Type="String">751</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10121,itemCount:0</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">(15*LV+305)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+5.65*LV+69.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.25*LV+14.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.1*LV+11.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6011:0:1,6012:0:50,6013:0:10,6014:0:5,6015:0:5</Data></Cell>
+    <Cell><Data ss:Type="String">8028:3,8029:4,8030:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_751</Data></Cell>
+    <Cell><Data ss:Type="String">1001,1002</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+    <Cell ss:Index="47"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">法攻</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">20002</Data></Cell>
+    <Cell><Data ss:Type="String">毒仙子</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">擅长群体治疗和瞬间恢复</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">16</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="String">752</Data></Cell>
+    <Cell><Data ss:Type="String">752</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10122,itemCount:0</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">(25*LV+315)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+2.2*LV+72)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+5.5*LV+18)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.15*LV+13.35)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.4)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6021:0:1,6022:0:50,6023:0:15,6024:0:0,6025:0:5</Data></Cell>
+    <Cell><Data ss:Type="String">8031:3,8032:4,8033:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_752</Data></Cell>
+    <Cell><Data ss:Type="String">1003,1004</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+    <Cell ss:Index="47"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">辅助</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20003</Data></Cell>
+    <Cell><Data ss:Type="String">小小</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长爆发型物理攻击</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">753</Data></Cell>
+    <Cell><Data ss:Type="Number">753</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10123,itemCount:5</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+5.9*LV+99.8)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.5*LV+14.7)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.5*LV+10.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6081:0:35,6082:0:20,6083:0:20,6084:0:2,6085:0:10</Data></Cell>
+    <Cell><Data ss:Type="String">8034:3,8035:4,8036:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_753</Data></Cell>
+    <Cell><Data ss:Type="String">1005,1006</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+    <Cell ss:Index="47"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s79"><Data ss:Type="String">封印</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20004</Data></Cell>
+    <Cell><Data ss:Type="String">小白龙</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">擅长群体法术攻击</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">15</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">705</Data></Cell>
+    <Cell><Data ss:Type="Number">705</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10124,itemCount:0</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4*LV+16.5)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+4.1*LV+15.3)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.2*LV+10.2)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6051:0:70,6052:0:15,6053:0:2,6054:0:10,6055:0:10</Data></Cell>
+    <Cell><Data ss:Type="String">8013:3,8014:4,8015:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_705</Data></Cell>
+    <Cell><Data ss:Type="String">1007,1008</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20005</Data></Cell>
+    <Cell><Data ss:Type="String">沙和尚</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长群体法术攻击</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">704</Data></Cell>
+    <Cell><Data ss:Type="Number">704</Data></Cell>
+    <Cell><Data ss:Type="String">55</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10125,itemCount:30</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">(15*LV+305)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+3.25*LV+15.75)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+4.7*LV+15.9)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.1*LV+10.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6051:0:70,6052:0:15,6053:0:2,6054:0:10,6055:0:10</Data></Cell>
+    <Cell><Data ss:Type="String">8010:3,8011:4,8012:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_704</Data></Cell>
+    <Cell><Data ss:Type="String">1009,1010</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20006</Data></Cell>
+    <Cell><Data ss:Type="String">猪八戒</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长爆发型物理攻击</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">703</Data></Cell>
+    <Cell><Data ss:Type="Number">703</Data></Cell>
+    <Cell><Data ss:Type="String">60</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10126,itemCount:30</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">(20*LV+310)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+5.9*LV+99.8)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.5*LV+14.7)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.5*LV+10.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6081:0:35,6082:0:20,6083:0:20,6084:0:2,6085:0:10</Data></Cell>
+    <Cell><Data ss:Type="String">8007:3,8008:4,8009:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_703</Data></Cell>
+    <Cell><Data ss:Type="String">1011,1012</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20007</Data></Cell>
+    <Cell><Data ss:Type="String">孙悟空</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">擅长物理单体击杀</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">59</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="String">702</Data></Cell>
+    <Cell><Data ss:Type="String">702</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10127,itemCount:0</Data></Cell>
+    <Cell><Data ss:Type="String">3</Data></Cell>
+    <Cell><Data ss:Type="String">3</Data></Cell>
+    <Cell><Data ss:Type="String">(10*LV+300)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+6.7*LV+70.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.8*LV+15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.5*LV+10.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6011:0:1,6012:0:50,6013:0:10,6014:0:5,6015:0:5</Data></Cell>
+    <Cell><Data ss:Type="String">8004:3,8005:4,8006:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_702</Data></Cell>
+    <Cell><Data ss:Type="String">1013,1014</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20008</Data></Cell>
+    <Cell><Data ss:Type="String">唐僧</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长群体治疗和瞬间恢复</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">701</Data></Cell>
+    <Cell><Data ss:Type="Number">701</Data></Cell>
+    <Cell><Data ss:Type="String">60</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10128,itemCount:30</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">(25*LV+315)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+87)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4.75*LV+17.25)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.1*LV+13.3)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.7*LV+11.7)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6021:0:1,6022:0:50,6023:0:15,6024:0:0,6025:0:5</Data></Cell>
+    <Cell><Data ss:Type="String">8001:3,8002:4,8003:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_701</Data></Cell>
+    <Cell><Data ss:Type="String">1015,1016</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20009</Data></Cell>
+    <Cell><Data ss:Type="String">嫦娥仙子</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长复活和持续治疗</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">709</Data></Cell>
+    <Cell><Data ss:Type="Number">709</Data></Cell>
+    <Cell><Data ss:Type="String">50</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10129,itemCount:15</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">(25*LV+315)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+2.2*LV+79)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+5.5*LV+17.5)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.11*LV+13.2)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.3+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.3+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.3+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.3+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6061:0:1,6062:0:5,6063:0:50,6064:0:5,6065:0:0</Data></Cell>
+    <Cell><Data ss:Type="String">8025:3,8026:4,8027:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_709</Data></Cell>
+    <Cell><Data ss:Type="String">1017,1018</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20010</Data></Cell>
+    <Cell><Data ss:Type="String">铁扇公主</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长单体法术攻击</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="String">706</Data></Cell>
+    <Cell><Data ss:Type="String">706</Data></Cell>
+    <Cell><Data ss:Type="String">40</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10130,itemCount:15</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">(15*LV+305)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4*LV+16.5)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+4.4*LV+15.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.25+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.25+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.25</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6071:0:70,6072:0:20,6073:0:1,6074:0:7,6075:0:2</Data></Cell>
+    <Cell><Data ss:Type="String">8016:3,8017:4,8018:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_706</Data></Cell>
+    <Cell><Data ss:Type="String">1019,1020</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20011</Data></Cell>
+    <Cell><Data ss:Type="String">赤脚大仙</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长封印和降敌属性</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="String">707</Data></Cell>
+    <Cell><Data ss:Type="String">707</Data></Cell>
+    <Cell><Data ss:Type="String">55</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10131,itemCount:15</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">(25*LV+315)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/11,2)+2.2*LV+77)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+3.25*LV+15.75)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2*LV+13.2)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(3.3*LV+12.3)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*15+10)*(1.32+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.32+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.32+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*21+25)*(1.32+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5)*(1.32+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9.5+11)*(1.32+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.32</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6031:0:2,6032:0:45,6033:0:45,6034:0:1,6035:0:7</Data></Cell>
+    <Cell><Data ss:Type="String">8019:3,8020:4,8021:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_707</Data></Cell>
+    <Cell><Data ss:Type="String">1021,1022</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20012</Data></Cell>
+    <Cell><Data ss:Type="String">白骨精</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长封印和干扰控制</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="String">708</Data></Cell>
+    <Cell><Data ss:Type="String">708</Data></Cell>
+    <Cell><Data ss:Type="String">45</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10132,itemCount:5</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">0</Data></Cell>
+    <Cell><Data ss:Type="String">(15*LV+305)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/13,2)+3.2*LV+77)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4.75*LV+17.25)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2*LV+13.2)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(3.3*LV+12.3)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*15+10)*(1.32+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.32+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.32+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*21+25)*(1.32+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5)*(1.32+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9.5+11)*(1.32+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.32</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6091:0:1,6092:0:1,6093:0:60,6094:0:1,6095:0:1</Data></Cell>
+    <Cell><Data ss:Type="String">8022:3,8023:4,8024:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_708</Data></Cell>
+    <Cell><Data ss:Type="String">1023,1024</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">20024</Data></Cell>
+    <Cell><Data ss:Type="String">六耳猕猴</Data></Cell>
+    <Cell><Data ss:Type="Number">13</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">擅长控制型物理攻击和解封</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="String">14</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">702</Data></Cell>
+    <Cell><Data ss:Type="Number">702</Data></Cell>
+    <Cell><Data ss:Type="String">65</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10144,itemCount:55</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">(10*LV+300)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+6*LV+69.8)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.4*LV+14.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.1*LV+11.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6041:0:15,6042:0:70,6043:0:5,6044:0:20,6045:0:0</Data></Cell>
+    <Cell><Data ss:Type="String">8037:3,8038:4,8039:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_710</Data></Cell>
+    <Cell><Data ss:Type="String">1025,1026</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">20025</Data></Cell>
+    <Cell><Data ss:Type="String">魔悟空</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">擅长单体法术攻击</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell ss:Index="9"><Data ss:Type="Number">58</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">754</Data></Cell>
+    <Cell><Data ss:Type="Number">754</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">itemId:10145,itemCount:0</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">(10*LV+300)*0.8</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+5.3*LV+16.5)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1*LV+10)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.38+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.38+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.38</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6071:0:70,6072:0:20,6073:0:1,6074:0:5,6075:0:2</Data></Cell>
+    <Cell><Data ss:Type="String">8040:3,8041:4,8042:5</Data></Cell>
+    <Cell><Data ss:Type="String">sound_npc_711</Data></Cell>
+    <Cell><Data ss:Type="String">1027,1028</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21001</Data></Cell>
+    <Cell><Data ss:Type="String">崩将军</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">物理</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2060</Data></Cell>
+    <Cell><Data ss:Type="Number">2060</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(15*LV+305)*0.9</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+5.65*LV+69.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.25*LV+14.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.1*LV+11.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6011:5:20,6012:15:5,6043:25:10,6045:40:0,6014:50:3,6015:60:2</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21002</Data></Cell>
+    <Cell><Data ss:Type="String">芭将军</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">法术</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2060</Data></Cell>
+    <Cell><Data ss:Type="Number">2060</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(15*LV+305)*0.9</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4*LV+16.5)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+4.4*LV+15.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6071:5:15,6052:15:10,6072:25:10,6073:40:2,6053:50:3,6055:60:3</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21003</Data></Cell>
+    <Cell><Data ss:Type="String">马元帅</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2060</Data></Cell>
+    <Cell><Data ss:Type="Number">2060</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(25*LV+315)*0.9</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+2.2*LV+72)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+5.5*LV+18)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.15*LV+13.35)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.4)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6021:5:10,6022:15:20,6062:25:10,6024:40:0,6025:50:5</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21004</Data></Cell>
+    <Cell><Data ss:Type="String">流元帅</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2060</Data></Cell>
+    <Cell><Data ss:Type="Number">2060</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(20*LV+310)*0.9</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/11,2)+2.2*LV+77)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4.75*LV+17.25)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.05*LV+13.25)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(3*LV+12)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*15+10)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*21+25)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9.5+11)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6031:5:5,6032:15:30,6035:25:30,6093:40:10,6034:50:2</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21005</Data></Cell>
+    <Cell><Data ss:Type="String">孙悟空</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">物理</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">702</Data></Cell>
+    <Cell><Data ss:Type="Number">702</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(15*LV+305)*0.95</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+5.65*LV+69.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.25*LV+14.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.1*LV+11.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.54+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6011:5:20,6012:15:5,6043:25:10,6045:40:0,6014:50:3,6015:60:2</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21006</Data></Cell>
+    <Cell><Data ss:Type="String">蛟魔王</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">法术</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2210</Data></Cell>
+    <Cell><Data ss:Type="Number">2210</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(15*LV+305)*0.95</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4*LV+16.5)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+4.4*LV+15.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.54+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6071:5:15,6052:15:10,6072:25:10,6073:40:2,6053:50:3,6055:60:3</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21007</Data></Cell>
+    <Cell><Data ss:Type="String">牛魔王</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2080</Data></Cell>
+    <Cell><Data ss:Type="Number">2080</Data></Cell>
+    <Cell><Data ss:Type="String">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(25*LV+315)*0.95</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+2.2*LV+72)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+5.5*LV+18)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.15*LV+13.35)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.4)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.54+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6021:5:10,6022:15:20,6062:25:10,6024:40:0,6025:50:5</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21008</Data></Cell>
+    <Cell><Data ss:Type="String">狮驼王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">5008</Data></Cell>
+    <Cell><Data ss:Type="Number">5008</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(20*LV+310)*0.95</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/11,2)+2.2*LV+77)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4.75*LV+17.25)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.05*LV+13.25)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(3*LV+12)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*15+10)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*21+25)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9.5+11)*(1.55+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6031:5:5,6032:15:30,6035:25:30,6093:40:10,6034:50:2</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21011</Data></Cell>
+    <Cell><Data ss:Type="String">增长天王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">物理</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2190</Data></Cell>
+    <Cell><Data ss:Type="Number">2190</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(15*LV+305)*0.9</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+5.65*LV+69.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.25*LV+14.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.1*LV+11.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6011:5:20,6012:15:5,6043:25:10,6045:40:0,6014:50:3,6015:60:2</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21012</Data></Cell>
+    <Cell><Data ss:Type="String">广目天王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">法术</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2190</Data></Cell>
+    <Cell><Data ss:Type="Number">2190</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(15*LV+305)*0.9</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4*LV+16.5)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+4.4*LV+15.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6071:5:15,6052:15:10,6072:25:10,6073:40:2,6053:50:3,6055:60:3</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21013</Data></Cell>
+    <Cell><Data ss:Type="String">持国天王</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2190</Data></Cell>
+    <Cell><Data ss:Type="Number">2190</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(25*LV+315)*0.9</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+2.2*LV+72)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+5.5*LV+18)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.15*LV+13.35)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.4)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6021:5:10,6022:15:20,6062:25:10,6024:40:0,6025:50:5</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21014</Data></Cell>
+    <Cell><Data ss:Type="String">多闻天王</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2190</Data></Cell>
+    <Cell><Data ss:Type="Number">2190</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(20*LV+310)*0.9</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/11,2)+2.2*LV+77)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4.75*LV+17.25)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.05*LV+13.25)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(3*LV+12)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*15+10)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*21+25)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5)*(1.44+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9.5+11)*(1.44+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.44</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6031:5:5,6032:15:30,6035:25:30,6093:40:10,6034:50:2</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21015</Data></Cell>
+    <Cell><Data ss:Type="String">哪吒</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">物理</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">5230</Data></Cell>
+    <Cell><Data ss:Type="Number">5230</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(15*LV+305)*0.95</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+5.65*LV+69.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.5*LV+15)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+3.25*LV+14.45)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.1*LV+11.1)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">Math.floor(LV/5)*25*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*26.5+22)*(1.54+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9+9)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4.5+5)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">物攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6011:5:20,6012:15:5,6043:25:10,6045:40:0,6014:50:3,6015:60:2</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21016</Data></Cell>
+    <Cell><Data ss:Type="String">雷公</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">法术</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2340</Data></Cell>
+    <Cell><Data ss:Type="Number">2340</Data></Cell>
+    <Cell><Data ss:Type="String">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(15*LV+305)*0.95</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+2.7*LV+67)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4*LV+16.5)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+4.4*LV+15.6)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(1.15*LV+10.15)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*33.5+10)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*18+25)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*12+12)*(1.54+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*4+4)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">法攻</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6071:5:15,6052:15:10,6072:25:10,6073:40:2,6053:50:3,6055:60:3</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21017</Data></Cell>
+    <Cell><Data ss:Type="String">电母</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">辅助</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2310</Data></Cell>
+    <Cell><Data ss:Type="Number">2310</Data></Cell>
+    <Cell><Data ss:Type="String">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(25*LV+315)*0.95</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/10,2)+2.2*LV+72)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+5.5*LV+18)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.15*LV+13.35)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(2.4*LV+11.4)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*48.5+40)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*23.5+29.5)*(1.54+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5.6)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*5.5+6.8)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">辅助</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">1211:5:10,1212:15:20,1612:25:10,1214:40:0,1215:50:5</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">21018</Data></Cell>
+    <Cell><Data ss:Type="String">李靖</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">y</Data></Cell>
+    <Cell><Data ss:Type="String">封印</Data></Cell>
+    <Cell ss:Index="12"><Data ss:Type="Number">2300</Data></Cell>
+    <Cell><Data ss:Type="Number">2300</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Index="16"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="18"><Data ss:Type="String">(20*LV+310)*0.95</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-15],C47:C48,2,FALSE)"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">LV*20+30</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/11,2)+2.2*LV+77)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/12,2)+4.75*LV+17.25)*0.9</Data></Cell>
+    <Cell ss:Formula="=RC[-4]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.pow(LV/15,2)+2.05*LV+13.25)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(3*LV+12)*0.9</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*15+10)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-8]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*25+Math.pow(Math.floor(LV/5),2)*1.3)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[2]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*21+25)*(1.51+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[3]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*7+5)*(1.51+starEffect)</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*9.5+11)*(1.55+starEffect)</Data></Cell>
+    <Cell ss:Formula="=RC[-12]"><Data ss:Type="String">封印</Data></Cell>
+    <Cell><Data ss:Type="String">(Math.floor(LV/5)*19+15)*1.51</Data></Cell>
+    <Cell><Data ss:Type="String">star&lt;3?star*0.06:(star+2)*0.03</Data></Cell>
+    <Cell><Data ss:Type="String">6031:5:5,6032:15:30,6035:25:30,6093:40:10,6034:50:2</Data></Cell>
+    <Cell ss:Index="42"><Data ss:Type="String">n</Data></Cell>
+    <Cell><Data ss:Type="String">11293:5</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>9</ActiveRow>
+     <ActiveCol>20</ActiveCol>
+     <RangeSelection>R10C21:R15C21</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

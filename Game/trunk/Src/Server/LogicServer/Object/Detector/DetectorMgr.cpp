@@ -12,7 +12,7 @@ DetectorMgr::DetectorMgr()
 {
 }
 
-Detector* DetectorMgr::CreateDetector(const GAME_OBJID& oID, int nConfID, const char* psName)
+Detector* DetectorMgr::CreateDetector(const OBJID& oID, int nConfID, const char* psName)
 {
 	Detector* poDetector = GetDetectorByID(oID);
 	if (poDetector != NULL)
@@ -26,7 +26,7 @@ Detector* DetectorMgr::CreateDetector(const GAME_OBJID& oID, int nConfID, const 
 	return poDetector;
 }
 
-Detector* DetectorMgr::GetDetectorByID(const GAME_OBJID& oID)
+Detector* DetectorMgr::GetDetectorByID(const OBJID& oID)
 {
 	DetectorIter iter = m_oDetectorMap.find(oID.llID);
 	if (iter != m_oDetectorMap.end())

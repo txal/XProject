@@ -89,7 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\XProject\Game\trunk\Src;E:\XProject;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
     <Link>
@@ -133,13 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp" />
-    <ClCompile Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.cpp" />
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp" />
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp" />
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp" />
-    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp" />
-    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaCmd.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaRpc.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaSerialize.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\Timer.cpp" />
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
@@ -152,14 +152,14 @@
     <ClCompile Include="..\..\Src\Server\GlobalServer\PacketProc\PacketProc.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h" />
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h" />
-    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h" />
-    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaCmd.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaPB.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaRpc.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaSerialize.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\Timer.h" />
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\TimerMgr.h" />
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />

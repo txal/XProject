@@ -37,25 +37,10 @@ Actor::~Actor()
 {
 }
 
-void Actor::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
+void Actor::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int16_t nLine)
 {
-	Object::OnEnterScene(poScene, nAOIID, oPos);
+	Object::OnEnterScene(poScene, nAOIID, oPos, nLine);
 	StopRun();
-}
-
-void Actor::AfterEnterScene()
-{
-	Object::AfterEnterScene();
-}
-
-void Actor::OnLeaveScene()
-{
-	Object::OnLeaveScene();
-}
-
-void Actor::Update(int64_t nNowMS)
-{
-	Object::Update(nNowMS);
 }
 
 void Actor::StartRun(int nSpeedX, int nSpeedY, int8_t nFace)
@@ -135,7 +120,7 @@ void Actor::UpdateFollow(int64_t nNowMS)
 		return;
 	}
 
-	LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
+	LogicServer* poLogic = (LogicServer*)(gpoContext->GetService());
 	SceneMgr* poSceneMgr = poLogic->GetSceneMgr();
 
 	Follow::FollowVec* poFollowVec = (poSceneMgr->GetFollow()).GetFollowList(m_nObjType, m_nObjID);
@@ -250,8 +235,8 @@ void Actor::SyncPosition(const char* pWhere)
 	Packet* poPacket = gpoPacketCache->DeepCopy(__FILE__, __LINE__);
 
 	NetAdapter::SERVICE_NAVI oNavi;
-	oNavi.uSrcServer = g_poContext->GetServerID();
-	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uSrcServer = gpoContext->GetServerID();
+	oNavi.nSrcService = gpoContext->GetService()->GetServiceID();
 	oNavi.uTarServer = GetServer();
 	oNavi.nTarService = GetSession() >> SERVICE_SHIFT;
 	oNavi.nTarSession = GetSession();
@@ -341,7 +326,7 @@ int Actor::GetRunSpeed(lua_State* pState)
 int Actor::BindSession(lua_State* pState)
 {
 	int nSession = (int)lua_tointeger(pState, -1);
-	LogicServer * poLogic = (LogicServer*)g_poContext->GetService();
+	LogicServer * poLogic = (LogicServer*)gpoContext->GetService();
 	poLogic->GetRoleMgr()->BindSession(m_nObjID, nSession);
 	return 0;
 }

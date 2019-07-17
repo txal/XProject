@@ -11,7 +11,7 @@ RouterPacketHandler::RouterPacketHandler()
 
 void RouterPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	Service* poService = g_poContext->GetService();
+	Service* poService = gpoContext->GetService();
 	if (oHeader.nTarService == poService->GetServiceID())
 	{
 		poPacket->RemoveInnerHeader();
@@ -45,7 +45,7 @@ void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEA
 			return;
 		}
 		CacheSessionArray(pSessionArray, oHeader.uSessionNum);
-		oHeader.uTarServer = g_poContext->GetWorldServerID();
+		oHeader.uTarServer = gpoContext->GetWorldServerID();
 		assert(oHeader.uTarServer >= 60000);
 		poPacket->AppendInnerHeader(oHeader, m_oSessionCache.Ptr(), m_oSessionCache.Size());
 	}
@@ -56,7 +56,7 @@ void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEA
 		XLog(LEVEL_INFO, "logic->router mstime:%lld\n", XTime::UnixMSTime());
 	}
 
-	Router* poRouter = (Router*)g_poContext->GetService();
+	Router* poRouter = (Router*)gpoContext->GetService();
 	ServiceNode* poTarService = poRouter->GetService(oHeader.uTarServer, oHeader.nTarService);
 	if (poTarService == NULL)
 	{

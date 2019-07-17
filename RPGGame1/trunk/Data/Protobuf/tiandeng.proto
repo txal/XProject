@@ -1,0 +1,31 @@
+package tiandeng;
+
+//天灯祈福信息请求
+message TDQFInfoReq
+{
+}
+
+//天灯祈福信息返回
+message TDQFInfoRet
+{
+    required int32 nCDTime = 1;         //冷却时间
+    required int32 nRemainTimes = 2;    //剩余次数
+}
+
+//天灯祈福祈福请求
+message TDQFReq
+{
+    required bool bUseProp = 1;    //是否使用道具
+}
+
+//天灯祈福祈福返回
+message TDQFRet
+{
+    message _Item
+    {
+        required int32 nType = 1;   //类型
+        required int32 nID = 2;     //ID
+        required int32 nNum = 3;    //数量
+    }
+    repeated _Item tAward = 1;      //奖励列表
+}

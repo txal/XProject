@@ -1,0 +1,16 @@
+//邀请
+package invite;
+
+//邀请信息返回
+message InviteInfoRet
+{
+    required int32 nGiftNum = 1;    //礼包数量
+    required int32 nYuanBao = 2;    //绑定元宝
+    required int32 nDownlines = 3;  //邀请人数
+}
+
+//领取奖励请求
+message InviteAwardReq
+{
+    required int32 nType = 1;    //类型: 1礼包; 2元宝
+}

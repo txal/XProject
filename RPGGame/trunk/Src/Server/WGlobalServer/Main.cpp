@@ -11,11 +11,11 @@
 #include "Server/WGlobalServer/WGlobalServer.h"
 
 std::string goScriptRoot;
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 bool InitNetwork(int8_t nServiceID)
 {
 	GlobalNode* poNode = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oWGlobalList.size(); i++)
 	{
 		if (oSrvConf.oWGlobalList[i].uServer == oSrvConf.uServerID && oSrvConf.oWGlobalList[i].uID == nServiceID)
@@ -30,13 +30,13 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	WGlobalServer* poGlobalServer = (WGlobalServer*)g_poContext->GetService();
+	WGlobalServer* poGlobalServer = (WGlobalServer*)gpoContext->GetService();
 	if (!poGlobalServer->Init(nServiceID, poNode->sIP, poNode->uPort))
 	{
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -84,9 +84,9 @@ void OnSigTerm(int)
 
 void OnSigInt(int)
 {
-	if (g_poContext != NULL)
+	if (gpoContext != NULL)
 	{
-		g_poContext->GetService()->Terminate();
+		gpoContext->GetService()->Terminate();
 	}
 }
 
@@ -115,8 +115,8 @@ int main(int nArg, char *pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 
-	g_poContext = XNEW(ServerContext);
-	bool bRes = g_poContext->LoadServerConfig();
+	gpoContext = XNEW(ServerContext);
+	bool bRes = gpoContext->LoadServerConfig();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -129,22 +129,22 @@ int main(int nArg, char *pArgv[])
 	{
 		char szLogName[128] = "";
 		sprintf(szLogName, "wglobalserver%d", nServiceID);
-		Logger::Instance()->SetLogFile(g_poContext->GetServerConfig().sLogPath, szLogName);
+		Logger::Instance()->SetLogFile(gpoContext->GetServerConfig().sLogPath, szLogName);
 	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-	g_poContext->SetRouterMgr(poRouterMgr);
+	gpoContext->SetRouterMgr(poRouterMgr);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	WGlobalServer* poGlobalServer = XNEW(WGlobalServer);
-	g_poContext->SetService(poGlobalServer);
+	gpoContext->SetService(poGlobalServer);
 
 	LuaSerialize* poSerialize = XNEW(LuaSerialize);
-	g_poContext->SetLuaSerialize(poSerialize);
+	gpoContext->SetLuaSerialize(poSerialize);
 
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
@@ -155,7 +155,7 @@ int main(int nArg, char *pArgv[])
 	}
 
 	XLog(LEVEL_INFO, "WGlobalServer start successful\n");
-	bRes = g_poContext->GetService()->Start();
+	bRes = gpoContext->GetService()->Start();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -164,10 +164,10 @@ int main(int nArg, char *pArgv[])
 	}
 
 	//wchar_t wcBuffer[256] = { L"" };
-	//wsprintfW(wcBuffer, L"wglobal%d.leak", g_poContext->GetService()->GetServiceID());
+	//wsprintfW(wcBuffer, L"wglobal%d.leak", gpoContext->GetService()->GetServiceID());
 	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
 
-	SAFE_DELETE(g_poContext);
+	SAFE_DELETE(gpoContext);
 	TimerMgr::Instance()->Release();
 	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();

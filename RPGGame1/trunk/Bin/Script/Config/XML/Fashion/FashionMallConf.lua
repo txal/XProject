@@ -1,0 +1,16 @@
+ctFashionMallConf={}
+ctFashionMallConf[1005]={nID=1005,sName="心意如水",nPrice=300,nType=1,}
+ctFashionMallConf[2005]={nID=2005,sName="春寒绿翠",nPrice=1200,nType=4,}
+ctFashionMallConf[3005]={nID=3005,sName="青花缠",nPrice=300,nType=2,}
+ctFashionMallConf[4005]={nID=4005,sName="玉春萧",nPrice=300,nType=5,}
+ctFashionMallConf[5005]={nID=5005,sName="馨香坠",nPrice=300,nType=3,}
+ctFashionMallConf[1015]={nID=1015,sName="月色皎皎",nPrice=300,nType=1,}
+ctFashionMallConf[2015]={nID=2015,sName="一霜清影",nPrice=1200,nType=4,}
+ctFashionMallConf[3015]={nID=3015,sName="蝶析",nPrice=300,nType=2,}
+ctFashionMallConf[4015]={nID=4015,sName="弦歌楚楚",nPrice=300,nType=5,}
+ctFashionMallConf[5015]={nID=5015,sName="微雨",nPrice=300,nType=3,}
+ctFashionMallConf[1020]={nID=1020,sName="青珑留香",nPrice=300,nType=1,}
+ctFashionMallConf[2020]={nID=2020,sName="五蕴悯光",nPrice=1200,nType=4,}
+ctFashionMallConf[3020]={nID=3020,sName="幻彩红",nPrice=300,nType=2,}
+ctFashionMallConf[4020]={nID=4020,sName="八宝玉灯",nPrice=300,nType=5,}
+ctFashionMallConf[5020]={nID=5020,sName="紫晶坠",nPrice=300,nType=3,}

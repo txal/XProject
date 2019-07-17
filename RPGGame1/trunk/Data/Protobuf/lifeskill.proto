@@ -1,0 +1,115 @@
+//生活技能
+package lifeskill;
+
+//技能制造物品请求
+message lifeskillManufactureItemReq
+{
+	required int32 nID  = 1;		//技能ID
+	optional int32 nItemID = 2; 	//产品ID
+	optional int32 nNum = 3;		//制造数量(针对于随机出的技能)
+}
+
+
+//列表请求
+message lifeskillListReq 
+{
+
+}
+
+//列表返回
+message lifeskillListRet
+{
+	message _SKILL
+	{
+		required int32 nID = 1;			 	//技能ID
+		required int32 nLevel = 2; 			//等级
+		required int32 nMaxLevel = 3;		//等级上限
+		required int32  nCostYB = 4; 		//消耗银币
+		required int32 nCostUC = 5;			//消耗的帮贡
+		//required int32 nOwn = 6; 			//拥有
+		//required bool bOpen = 7; 			//是新否开放
+	}
+	message _ManuFactureList
+	{
+		required int32 nSkillID = 1;	//技能ID
+		required int32 nID =  2;		//道具ID
+		required int32 nCostVitality = 3;	//消耗的活力
+
+	}
+	repeated _SKILL tList = 1;
+	repeated _ManuFactureList tItemList = 2;  //技能制造的道具列表
+	required int32 nCurrUC = 3; //当前拥有帮贡
+	required double nCurrYB = 4;	//当前拥有硬币
+	required int32 nCurrVitality = 5;	//当前拥有活力
+}
+
+
+//升级请求
+message lifeskillUpgradeReq
+{
+	required int32 nID = 1; 	//技能ID
+	required int32 nUpdateLv = 2;	//升级数量
+}
+
+//活力兑换界面请求
+message lifeskillVitalityPagReq
+{
+
+}
+
+message _Item
+{
+	required int32 nItemID = 1;	//道具iD
+	required int32 nCostUC = 2;	//消耗的活力
+}
+message _tItemList 
+{
+	required int32 nSkillID = 1; 	//技能ID
+	required int32 nType = 2;		//类型区分:1取nCurrUC这个值为, 2取tPropList这里的值,主要是区分2-武器精研,3-防具精研,4-饰品精研这类道具的不同点
+	optional int32 nCostUC = 3;		//消耗的活力(nType为1取)
+	repeated _Item tPropList = 4;	//技能制造的道具列表(当前技能等级可制造的物品,主要是对武器,防具,饰品精研),nType为2取
+	required int32 nIcon = 5;		//图标
+	optional string sName = 6;		//技能名(nType为1取)
+}
+
+//活力兑换界面请求返回
+message lifeskillVitalityPagRet
+{
+	repeated _tItemList tItemList = 1;	//活力兑换界面请求信息列表
+	required int32 nCurrVitality = 2;	//当前活力
+	required int32 nMaxVitality = 3;	//当前活力上限
+}
+
+//活力兑换制造请求
+message lifeskillVitalityMakeReq
+{
+	required int32 nSkillID = 1; //技能ID
+	optional int32 nItemID = 2;	//制造的道具ID(主要是对武器,防具,饰品精研)
+}
+
+//活力兑换制造请求返回
+message lifeskillVitalityMakeRet
+{
+	required int32 nCurrVitality = 1;	//当前拥有活力
+	required int32 nMaxVitality  = 2;	//当前活力上限
+}
+
+//增加活力使用请求
+message lifeskillAddVitalityReq
+{
+
+}
+
+//增加活力使用请求返回
+message lifeskillAddVitalityRet
+{
+	required int32 nCurrVitality = 1;	//当前拥有活力
+	required int32 nMaxVitality  = 2;	//当前活力上限
+
+}
+
+//小红点推送
+message lifeskillStateRet
+{
+	repeated int32 tSkillList = 1;	//技能ID
+}

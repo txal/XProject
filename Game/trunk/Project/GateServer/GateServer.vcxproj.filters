@@ -54,22 +54,22 @@
     <ClCompile Include="..\..\Src\Server\GateServer\Main.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\DataStruct\XString.cpp">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Server\GateServer\ClientMgr\ClientMgr.cpp">
       <Filter>Src\ClientMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp">
+    <ClCompile Include="..\..\..\..\Common\DataStruct\XString.cpp">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketReader.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketWriter.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\Timer.cpp">
       <Filter>Src\Common\TimerMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp">
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp">
       <Filter>Src\Common\TimerMgr</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,113 +101,116 @@
     <ClInclude Include="..\..\Src\Server\GateServer\Gateway.h">
       <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Array.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\CircleQueue.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Encoding.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Encrypt.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\HList.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\List.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Md5.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Memory.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\MemPool.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\MinHeap.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\MsgQueue.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\MutexLock.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Point.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\PureList.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Regexp.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\RWLock.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Slashes.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\stl_alloc.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Sync.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\SyncMap.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Thread.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\TimeMonitor.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\XMath.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\XString.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\XTime.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Atomic.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\ObjID.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\GateServer\ClientMgr\Client.h">
       <Filter>Src\ClientMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\GateServer\ClientMgr\ClientMgr.h">
       <Filter>Src\ClientMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\Platform.h">
-      <Filter>Src\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\PlatformHeader.h">
-      <Filter>Src\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\ServerConfig.h">
       <Filter>Src\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h">
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Array.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Atomic.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\CircleQueue.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Encoding.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\HashFunc.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\HexStr.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\HList.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\List.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Memory.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MemPool.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MinHeap.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MsgQueue.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MutexLock.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\ObjID.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Point.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\PureList.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Ranking.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Regexp.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\RWLock.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Slashes.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\stl_alloc.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Sync.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\SyncMap.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\TimeMonitor.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XMath.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XString.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XThread.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XTime.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketReader.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketWriter.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\Timer.h">
       <Filter>Src\Common\TimerMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h">
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\TimerMgr.h">
       <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\Platform.h">
+      <Filter>Src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\PlatformHeader.h">
+      <Filter>Src\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

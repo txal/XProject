@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>Administrator</LastAuthor>
+  <Created>2016-08-24T07:17:58Z</Created>
+  <LastSaved>2018-06-02T10:04:12Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.6929</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>4665</WindowHeight>
+  <WindowWidth>17535</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctUnionSyn">
+  <Table ss:ExpandedColumnCount="24" ss:ExpandedRowCount="10" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="84.75"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4"><Data ss:Type="String">1：日常活动 2：限时活动</Data></Cell>
+    <Cell><Data ss:Type="String">1:可以继续参加&#10;0:不可继续参加</Data></Cell>
+    <Cell><Data ss:Type="String">1可以在战斗中参加&#10;0不可在战斗中参加</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="String">1：没条件限制 2：服务器等级</Data></Cell>
+    <Cell ss:Index="15"><Data ss:Type="String">客户端</Data></Cell>
+    <Cell><Data ss:Type="String">客户端</Data></Cell>
+    <Cell ss:Index="19"><Data ss:Type="String">1:单人     2:组队</Data></Cell>
+    <Cell ss:Index="21"><Data ss:Type="String">客户端</Data></Cell>
+    <Cell><Data ss:Type="String">客户端</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nActivityID</Data></Cell>
+    <Cell><Data ss:Type="String">sActivityName</Data></Cell>
+    <Cell><Data ss:Type="String">sIcon</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">nActivityType</Data></Cell>
+    <Cell><Data ss:Type="String">bCanJoinContinues</Data></Cell>
+    <Cell><Data ss:Type="String">bCanDoInFight</Data></Cell>
+    <Cell><Data ss:Type="String">nTimesReward</Data></Cell>
+    <Cell><Data ss:Type="String">nRewardActValue</Data></Cell>
+    <Cell><Data ss:Type="String">nMaxActValue</Data></Cell>
+    <Cell><Data ss:Type="String">nOpenType</Data></Cell>
+    <Cell><Data ss:Type="String">nOpenLimit</Data></Cell>
+    <Cell><Data ss:Type="String">tOpenList</Data></Cell>
+    <Cell><Data ss:Type="String">nOpenTime</Data></Cell>
+    <Cell><Data ss:Type="String">nCloseTime</Data></Cell>
+    <Cell><Data ss:Type="String">sOpenTime1</Data></Cell>
+    <Cell><Data ss:Type="String">sCloseTime1</Data></Cell>
+    <Cell><Data ss:Type="String">nID</Data></Cell>
+    <Cell><Data ss:Type="String">nLevelLimit</Data></Cell>
+    <Cell><Data ss:Type="String">nJoinType</Data></Cell>
+    <Cell><Data ss:Type="String">nMenberNum</Data></Cell>
+    <Cell><Data ss:Type="String">sNumLimit1</Data></Cell>
+    <Cell><Data ss:Type="String">sLevelLimit1</Data></Cell>
+    <Cell><Data ss:Type="String">sActivityDesc</Data></Cell>
+    <Cell><Data ss:Type="String">nShowReward</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">b</Data></Cell>
+    <Cell><Data ss:Type="String">b</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{i}</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">t{i}</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">活动ID</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">活动名称</Data></Cell>
+    <Cell><Data ss:Type="String">图标</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">活动类型</Data></Cell>
+    <Cell><Data ss:Type="String">完成有奖励次数是否能继续参加</Data></Cell>
+    <Cell><Data ss:Type="String">能否在战斗中参加</Data></Cell>
+    <Cell><Data ss:Type="String">有奖励的次数</Data></Cell>
+    <Cell><Data ss:Type="String">奖励活跃值</Data></Cell>
+    <Cell><Data ss:Type="String">活跃值上限</Data></Cell>
+    <Cell><Data ss:Type="String">开启条件类型</Data></Cell>
+    <Cell><Data ss:Type="String">开启等级限制</Data></Cell>
+    <Cell><Data ss:Type="String">星期几开放列表</Data></Cell>
+    <Cell><Data ss:Type="String">开启时间</Data></Cell>
+    <Cell><Data ss:Type="String">关闭时间</Data></Cell>
+    <Cell><Data ss:Type="String">开启时间</Data></Cell>
+    <Cell><Data ss:Type="String">关闭时间</Data></Cell>
+    <Cell><Data ss:Type="String">NPC编号</Data></Cell>
+    <Cell><Data ss:Type="String">等级限制</Data></Cell>
+    <Cell><Data ss:Type="String">参加形式</Data></Cell>
+    <Cell><Data ss:Type="String">成员最小人数</Data></Cell>
+    <Cell><Data ss:Type="String">人数限制</Data></Cell>
+    <Cell><Data ss:Type="String">等级限制</Data></Cell>
+    <Cell><Data ss:Type="String">活动描述</Data></Cell>
+    <Cell><Data ss:Type="String">奖励展示</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">签到</Data></Cell>
+    <Cell><Data ss:Type="String">rc_slrw</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1;2;3;4;5;6;7</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2400</Data></Cell>
+    <Cell><Data ss:Type="String">00:00</Data></Cell>
+    <Cell><Data ss:Type="String">24:00</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">每天签到，都可获得大量银币奖励</Data></Cell>
+    <Cell><Data ss:Type="String">4;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">俸禄</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">rc_bprw</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1;2;3;4;5;6;7</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2400</Data></Cell>
+    <Cell><Data ss:Type="String">00:00</Data></Cell>
+    <Cell><Data ss:Type="String">24:00</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1.加入帮派一周之后，可领取金币俸禄;\n2.上交帮派神诏越多，金币奖励越丰厚</Data></Cell>
+    <Cell><Data ss:Type="String">3;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">成员</Data></Cell>
+    <Cell><Data ss:Type="String">rc_kfbz</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1;2;3;4;5;6;7</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2400</Data></Cell>
+    <Cell><Data ss:Type="String">00:00</Data></Cell>
+    <Cell><Data ss:Type="String">24:00</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">进行帮派成员的查看和管理</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">礼盒</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">rc_sjrw</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">1;2;3;4;5;6;7</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">2400</Data></Cell>
+    <Cell><Data ss:Type="String">00:00</Data></Cell>
+    <Cell><Data ss:Type="String">24:00</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">帮主可给各个成员发放帮派礼盒</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>8</ActiveRow>
+     <ActiveCol>6</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

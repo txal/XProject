@@ -14,7 +14,7 @@ GatewayPacketHandler::GatewayPacketHandler()
 
 void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket, EXTER_HEADER& oHeader)
 {
-	Gateway* poGateway = (Gateway*)g_poContext->GetService();
+	Gateway* poGateway = (Gateway*)gpoContext->GetService();
 	if (oHeader.nTarService == poGateway->GetServiceID() || oHeader.uCmd == NSCltSrvCmd::ppKeepAlive)
 	{
 		PacketProcIter iter = m_poExterPacketProcMap->find(oHeader.uCmd);
@@ -31,9 +31,9 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 	else
 	{
 		NetAdapter::SERVICE_NAVI oNavi;
-		oNavi.uSrcServer = g_poContext->GetServerID();
-		oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
-		oNavi.uTarServer = g_poContext->GetServerID();
+		oNavi.uSrcServer = gpoContext->GetServerID();
+		oNavi.nSrcService = gpoContext->GetService()->GetServiceID();
+		oNavi.uTarServer = gpoContext->GetServerID();
 		oNavi.nTarService = oHeader.nTarService;
 		oNavi.nTarSession = nSrcSessionID;
 
@@ -43,7 +43,7 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 			oNavi.nTarService = poGateway->GetClientMgr()->GetClientLogic(nSrcSessionID);
 			if (oNavi.nTarService <= 0) //没有目标服务，选1个本服的LogicServer
 			{
-				oNavi.nTarService = g_poContext->SelectLogic(nSrcSessionID);
+				oNavi.nTarService = gpoContext->SelectLogic(nSrcSessionID);
 				XLog(LEVEL_INFO, "%s: cmd:%d use random logic service:%d\n", poGateway->GetServiceName(), oHeader.uCmd, oNavi.nTarService);
 			}
 			if (oNavi.nTarService <= 0)
@@ -97,7 +97,7 @@ void GatewayPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HE
 	}
 
 	super::CacheSessionArray(pSessionArray, oHeader.uSessionNum);
-	Service* poService = g_poContext->GetService();
+	Service* poService = gpoContext->GetService();
 	INet* pExterNet = poService->GetExterNet();
 
 	EXTER_HEADER oExterHeader;

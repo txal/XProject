@@ -1,0 +1,567 @@
+package knapsack;
+
+//道具
+message _Item 
+{
+	required int32 nID = 1;	 	//配置ID
+	required int32 nType = 2;	//物品类型
+	//1宝图
+	//2珍宝
+	//3装备
+	//4烹饪
+	//5货币(虚拟)
+	//6其他
+	//7礼包
+	//8古董
+	//9宝石
+	//10阵法道具
+	//11阵法碎片
+	//12修炼丹药
+	//13药物
+	//14宠物装备
+	//15鲜花道具
+	//16低级技能书
+	//17高级技能书
+	//18双倍点数丹
+	//19帮派神诏
+	//20貔貅之宝
+	//21时装道具
+	//22器灵经验丹
+	//23时装碎片
+	//25附魔符
+	//26竞技令
+	//27法宝(法宝直接进法宝背包)
+	//28回神丹
+	//29人物经验心得
+	//30灵气瓶
+	//31神器碎片
+	//32神器
+	
+	required int32 nGrid = 3;		//格子ID
+	required int32 nFold= 4; 		//折叠数量
+	required bool bBind = 5; 		//是否绑定
+	optional int32 nBuyPrice = 6; 	//商会购入价格
+	optional int32 nQualityLevel = 7; 	//道具品质
+	required int32 nKey = 8;        //道具编号
+	optional int32 nStrengthenLevel = 9;  //强化等级
+	optional int32 nBaseScore = 10;	  //装备基础评分
+	optional bool bIsSync = 11;	  //是否同步弹提示 
+	optional int32 nWearTip = 12; //装备穿戴提示  -- 1正常穿戴,2快捷穿戴
+	optional bool bNew = 13; 	//是否新物品:true表示新获得的物品,如果要飘字也是为true才飘
+}
+
+//道具列表
+message KnapsackItemListRet
+{
+	repeated _Item tItemList = 1;		//背包道具列表
+	required int32 nGridNum = 2; 		//背包当前格子数
+	required int32 nBuyTimes = 3; 		//背包已扩容次数
+	repeated _Item tStoItemList = 4;	//仓库道具列表 
+	required int32 nStoGridNum = 5;		//仓库当前格子数
+	required int32 nStoBuyTimes = 6; 	//仓库已扩容次数
+}
+
+//道具增加通知
+message KnapsackItemAddRet
+{
+	required int32 nType = 1; 		//1背包;2仓库,3法宝背包
+	repeated _Item tItemList = 2;	//道具列表
+}
+
+//道具删除通知
+message KnapsackItemRemoveRet
+{
+	required int32 nType = 1; 		//1背包,2仓库
+	repeated int32 tGrid = 2; 		//格子列表
+}
+
+//道具数量变更通知(背包用)
+message KnapsackItemModRet
+{
+	repeated _Item tItemList = 1; 	//道具列表
+}
+
+//装备属性
+message _EquAttr
+{
+	required int32 nID = 1;				//属性id
+	required int32 nColor = 2;			//颜色 //等同于品质[1-5]
+	required int32 nEffectValue = 3;	//总属性值
+	optional int32 nEffectBaseValue = 4;//基础属性值(强化前的属性值)
+}
+
+//装备强化属性
+message _EquStrenAttr
+{
+	required int32 nLv = 1;				//等级
+	required int32 nScore = 2;			//积分
+}
+
+//宝石属性
+message _GemAddAttr
+{
+	required int32 nAttrID = 1;        //属性类型
+	required int32 nAttrVal = 2;       //属性值
+}
+
+//装备镶嵌属性
+message _EquGemAttr
+{
+	required int32 nPosID = 1;			//孔位置id
+	required int32 nGemID = 2;			//宝石id
+	required int32 nNum = 3;			//宝石数量
+	optional int32 nLv = 4;             //镶嵌等级
+	repeated _GemAddAttr tAttrList = 5; //宝石附加属性
+}
+
+//武器附魔符使用
+message _EquFuMoFuAttr
+{
+	optional int32 nAttrID = 1; 	//附魔属性ID
+	optional int32 nAttrVal = 2;	//附魔属性值
+	optional int32 nExpireTime = 3; //过期时间戳
+}
+
+//神器
+message _ArtifactEqu
+{
+	message _AttrList
+	{
+		required int32 nAttrID = 1;	//属性ID
+		required int32 nAttrValue = 2;	//属性值
+	}
+	
+	required int32 nID = 1;	//道具ID
+}
+
+//宠物装备
+message _PetEqu
+{
+	//宠物项圈跟头盔装备
+	message _PetCollarHelmet
+	{
+		required int32 nAttrID = 1;		//属性id
+		required int32 nAttrValue = 2;	//属性值
+	}
+
+	//宠物护符装备
+	message _PetTalisman
+	{
+		required int32 nSkillID = 1;	//技能ID
+		required int32 nHFSKill = 2;	//区别宠物技能
+	}
+
+	//宠物饰品装备
+	//message _PetAccessories
+	//{
+		//required int32 nAttrVal = 1;	//提高五项属性资质上限25点
+	//}
+	
+	required int32 nID = 1;								//装备id
+	required int32 nType = 2;									//装备类型1为项圈,2为头盔,3为护符,4为饰品
+	repeated _PetCollarHelmet tPetCollarHelmet = 3;		//项圈及头盔
+	repeated _PetTalisman tPetTalisman = 4;				//宠物护符装备
+	required int32 tPetAccessories = 5;					//宠物饰品装备提高五项属性资质上限25点
+	required int32 nLevel = 6;	//装备等级
+	optional int32 nGrid = 7;	//兼容单独获取多个装备信息而加
+}
+
+//装备
+message _Equ
+{
+	required int32 nID = 1;						//装备id
+	required bool bBind = 2;					//绑定状态
+	required int32 nLevel = 3;					//装备等级
+	required int32 nDurable = 4;				//耐久度
+	required int32 nStatus = 5;					//鉴定状态 0:未鉴定 1：鉴定
+	required int32 nQualityLevel = 6;			//品质等级
+	required int32 nScore = 7;					//评分
+	required int32 sProducer = 8;				//制作人
+	repeated _EquAttr tResAttrList = 9;			//结果属性
+	repeated _EquAttr tMainAttrList = 10;		//主属性(附加属性)
+	repeated _EquGemAttr tGemList = 11;			//镶嵌
+	required _EquStrenAttr tStrengthen = 12;	//强化
+	repeated _EquFuMoFuAttr tFuMoAttrList = 13; //附魔属性加成
+	optional int32 nNextStrengthenScore = 14;   //下一次强化评分
+	required int32 nMaxDurable = 15; 			//耐久度上限
+	required int32 nKey = 16;                   //道具编号
+	optional int32 nBaseScore = 17;             //装备基础评分
+}
+
+//道具查询请求
+message KnapsacPropDetailReq
+{
+	required int32 nBoxType = 1;                //容器类型，1背包，2装备栏，3仓库
+	required int32 nBoxParam = 2;               //容器参数, 背包为格子ID，装备栏为装备部位，仓库为仓库格子
+	optional int32 nOtherType = 3;				//客户端专用(发什么返回什么)
+}
+
+//道具详细信息
+message KnapsacPropDetailData
+{
+	required int32 nType = 1;                   //物品类型
+	optional int32 nBoxType = 2;                //物品容器类型
+	optional int32 nBoxParam = 3;               //物品容器参数
+	optional _Equ tEqu = 4;                     //装备属性
+	optional _PetEqu tPetEqu = 5;				//宠物装备属性
+	optional _ArtifactEqu tArtifactEqu = 6;		//神器属性
+	optional int32 nOtherType = 7;
+}
+
+//道具查询返回
+message KnapsacPropDetailRet
+{
+	required KnapsacPropDetailData tDetail = 1;  //道具详细信息
+}
+
+//出售道具请求
+message KnapsackSellItemReq
+{
+	required int32 nGrid = 1; 	//道具格子
+	required int32 nNum = 2; 	//道具数量
+	required int32 nType = 3;	//1出售系统,2回收银币
+}
+
+//出售道具列表请求
+message KnapsackSellItemListReq
+{
+	message _ItemInfo
+	{
+		required int32 nID = 1;     //道具ID, 防止出现数据不同步，导致错误出售道具
+		required int32 nGrid = 2; 	//道具格子
+		required int32 nNum = 3; 	//道具数量
+		required int32 nType = 4;	//1出售获得金币,2回收获得银币
+	}
+	repeated _ItemInfo tItemList = 1;  //单次最多支持100个道具
+}
+
+// 道具出售元宝限额通知
+message KnapsackSaleYuanbaoRecordRet
+{
+	required int32 nRemain = 1;     // 当前可出售获得元宝剩余限额
+}
+
+// 道具出售价格查询
+message KnapsackItemSalePriceReq
+{
+	message _ItemData 
+	{
+		required int32 nID = 1;     // 道具ID
+		required int32 nGrid = 2; 	// 道具格子
+		optional int32 nType = 3;   // 出售类型
+	}
+	repeated _ItemData tItemList = 1;
+}
+
+// 道具出售价格返回
+message KnapsackItemSalePriceRet
+{
+	message _ItemPrice
+	{
+		required int32 nID = 1;
+		required int32 nGrid = 2; 	   // 道具格子
+		required int32 nType = 3;      // 出售类型
+		optional int32 nCurrType = 4;  // 货币类型
+		optional int32 nPrice = 5;     // 价格
+	}
+	repeated _ItemPrice tItemPriceList = 1;
+}
+
+
+//使用道具请求
+message KnapsackUseItemReq
+{
+	required int32 nGrid = 1; 		//道具格子	
+	optional int32 nParam1 = 2; 	//整型参数1(数量)
+}
+
+//整理背包请求
+message KnapsackArrangeReq
+{
+	required int32 nType = 1; 	//1背包,2仓库
+}
+
+//购买格子请求
+message KnapsackBuyGridReq
+{
+	required int32 nType = 1; 		//1背包,2仓库
+	required int32 nCurrType = 2;	//0用道具,2用元宝,4用金币,5用银币
+}
+
+//购买格子成功请求
+message KnapsackBuyGridRet
+{
+	required int32 nType = 1;  		//1背包,2仓库
+	required int32 nGridNum = 2; 	//当前格子数
+	required int32 nBuyTimes = 3; 	//已购买次数
+}
+
+//存入仓库请求
+message KnapsackPutStorageReq
+{
+	required int32 nGrid = 1; 	//背包格子
+}
+
+//提取仓库请求
+message KnapsackGetStorageReq
+{
+	required int32 nGrid = 1; 	//仓库格子
+}
+
+//穿装备请求
+message KnapsacWearEquReq
+{
+	required int32 nGrid = 1;       	//背包格子
+}
+
+//一键穿戴请求
+message KnapsacQuickWearEquReq
+{
+}
+
+//穿装备返回
+message KnapsacWearEquRet
+{
+	required int32 nGrid = 1;       	//背包格子
+}
+
+//脱装备请求
+message KnapsacTakeOffEquReq
+{
+	required int32 nEquipPartType = 1; 	//装备部位
+}
+
+//脱装备返回
+message KnapsacTakeOffEquRet
+{
+	required int32 nEquipPartType = 1;  //装备部位
+	required int32 nID = 2;             //装备id
+}
+
+//一键维修装备请求
+message KnapsacFixEquReq
+{
+
+}
+
+//单个装备维修请求
+message KnapsacFixSingleEquReq
+{
+	required int32 nGrid = 1;       //背包格子
+	optional int32 nPartType = 2; 	//身上装备部位
+}
+
+//装备维修返回
+message KnapsacFixEquRet
+{
+    required int32 nID = 1;            	//装备id
+    required int32 nDurable = 2;       	//耐久度
+}
+
+//制造装备请求
+message KnapsacMakeEquReq
+{
+	required int32 nID = 1;       		//装备id
+	required bool bMoneyAdd = 2;       //是否用元宝补齐不足的材料
+}
+
+//宝石镶嵌请求
+message KnapsacGemReq
+{
+	required int32 nBoxType = 1;
+	required int32 nBoxParam = 2;
+	required int32 nPosID = 3;       	//位置id
+	required int32 nGemID = 4;			//宝石id
+	required bool bMoneyAdd = 5;       //是否用元宝补齐不足的材料
+}
+
+//宝石镶嵌响应
+message KnapsacGemRet
+{
+	required int32 nBoxType = 1;
+	required int32 nBoxParam = 2;
+	required int32 nPosID = 3;          //请求镶嵌孔信息
+	required _Equ tEquData = 4;         //装备信息
+}
+
+//宝石拆除请求
+message KnapsacRemoveGemReq
+{
+	required int32 nBoxType = 1;        //容器类型
+	required int32 nBoxParam = 2;       //容器参数
+	required int32 nPosID = 3;       	//位置id
+}
+
+//宝石拆除响应
+message knapsacRemoveGemRet
+{
+	required int32 nBoxType = 1;
+	required int32 nBoxParam = 2;
+	required int32 nPosID = 3;          //请求镶嵌孔信息
+	required _Equ tEquData = 4;         //装备信息
+}
+
+//装备强化请求
+message KnapsacStrengthenEquReq
+{
+	required int32 nBoxType = 1;       //容器类型
+	required int32 nBoxParam = 2;      //容器参数 这2个用来查找确定道具
+
+	required bool bStorageMode = 3;    //是否积累模式
+
+	optional int32 nQilingzhu = 4;     //启灵珠数量，冒险模式下，服务器会忽略该数据，直接读取配置表
+	optional int32 nZhenlingshi = 5;   //镇灵石数量，
+	                                   //冒险模式下，如果数量大于0，
+	                                   //服务器会自动将数量调整到配置表保底所需定灵玉数量，
+	                                   // 如果开启了元宝补足，则会自动补足此道具
+	optional int32 nLuckyStone = 6;    //幸运石数量，如果数量大于0，且身上拥有的数量不足此数量，
+	                                   //如果开启了元宝补足，则补足不足的数量
+
+	required bool bMoneyAdd = 7;       //是否元宝补足
+}
+
+//装备强化返回
+message KnapsacStrengthenEquRet
+{
+	required bool bSuccess = 1;        //是否成功
+	required KnapsacPropDetailData tEqu = 2;    //强化后的装备属性
+}
+
+// 身上穿戴装备宝石孔镶嵌提示
+message KnapsackGemTipsRet
+{
+	required bool bTips = 1;       //是否页签小红点提示
+	repeated int32 tPos = 2;       //装备栏位置列表
+}
+
+//身上装备列表请求
+message KnapsacWearEquListReq
+{
+}
+
+//装备返回
+message KnapsacWearEquListRet
+{
+	repeated _Equ tEqusList = 1;       			//装备列表
+	optional KnapsackGemTipsRet tGemTips = 2;   //宝石提示
+}
+
+//装备重铸
+message PropEquipReMakeReq {
+	required int32 nBoxType = 1;       //容器类型
+	required int32 nBoxParam = 2;      //容器参数 这2个用来查找确定道具
+	required int32 nType = 3;		   //重铸类型,分别对应文档里的操作1.2.3
+	required bool bMoneyAdd = 4;       //是否元宝补足
+	optional int32 nAttrID = 5;			//转移的属性ID
+	optional int32 nTarAttrID = 6;		//目标属性ID(转移属性ID替换的目标属性ID)
+	
+}
+
+//重铸成功响应
+message PropEquipReMakeRet
+{
+	
+}
+
+
+//多个宠物装备信息请求
+message KnapsacGetPetEquReq
+{
+	message _ItemGrid
+	{
+		required int32 nGrid = 1;
+	}
+	repeated _ItemGrid tItemGrid = 1;	//格子ID
+}
+
+
+//多个宠物装备信息请求返回
+message KnapsacGetPetEquRet
+{
+	repeated _PetEqu tPetEqu= 1;	//宠物装备属性
+	
+}
+
+// 神兵兑换请求
+message KnapsacLegendEquExchangeReq
+{
+	required int32 nEquID = 1;       //神兵ID
+}
+
+// 神兵兑换信息请求
+message KnapsacLegendEquExchangeInfoReq
+{
+}
+
+// 神兵兑换信息响应
+message KnapsacLegendEquExchangeInfoRet
+{
+	message _ExchangeInfo
+	{
+		required int32 nEquID = 1;  // 神兵ID
+		required int32 nCount = 2;  // 兑换次数
+	}
+	repeated _ExchangeInfo tExchangeInfo = 1;
+}
+
+// 装备共鸣属性请求
+message KnapsackEquTriggerAttrReq
+{
+}
+
+// 装备共鸣属性响应
+message KnapsackEquTriggerAttrRet
+{
+	message _Attr
+	{
+		required int32 nAttrID = 1;
+		required int32 nAttrVal = 2;
+	}
+
+
+	message _StrengthenTriggerAttr 
+	{
+		required int32 nStrengthenTriggerID = 1;   //强化共鸣ID
+		optional int32 nNextLevelActiveNum = 2;    
+		//下一等级强化共鸣激活数量，注意当前已达最高等级
+		repeated _Attr tAttrList = 3;           // 当前激活的属性
+		repeated _Attr tNextLevelAttrList = 4;  // 下一等级激活的属性
+	}
+
+	message _GemTriggerAttr 
+	{
+		required int32 nGemTriggerID = 1;
+		optional int32 nNextLevelActiveNum = 2;    
+		//下一等级强化共鸣激活数量，注意当前已达最高等级
+		repeated _Attr tAttrList = 3;           // 当前激活的属性
+		repeated _Attr tNextLevelAttrList = 4;  // 下一等级激活的属性
+	}
+
+	required _StrengthenTriggerAttr tStrengthenData = 1;   // 强化共鸣数据
+	required _GemTriggerAttr tGemData = 2;          // 宝石共鸣数据
+}
+
+//重铸界面出售请求
+message KnapsackRecastSellReq
+{
+	required int32 nBoxType = 1;                //容器类型，1背包，2装备栏，3仓库
+	required int32 nBoxParam = 2;               //容器参数, 背包为格子ID
+
+}
+
+//重铸界面出售请求响应
+message KnapsackRecastSellRet
+{
+
+}
+
+//重铸界面能请求能转移的所有装备
+message KnapsackTransferReq
+{
+	required int32 nPartType = 1;	//装备部位
+}
+
+message knapsacTransferkRet
+{
+	repeated int32 tGrid = 1;	//装备的格子
+}

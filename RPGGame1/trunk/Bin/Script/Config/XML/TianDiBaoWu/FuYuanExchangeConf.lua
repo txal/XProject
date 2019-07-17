@@ -1,0 +1,9 @@
+ctFuYuanExchangeConf={}
+ctFuYuanExchangeConf[1]={nExchangeID=1,tItem={{13054,5,},},nCostType=25,nNumCost=506,tSeqList={{1,},},nGridID=1,}
+ctFuYuanExchangeConf[2]={nExchangeID=2,tItem={{13055,5,},},nCostType=25,nNumCost=506,tSeqList={{2,},},nGridID=1,}
+ctFuYuanExchangeConf[3]={nExchangeID=3,tItem={{13154,5,},},nCostType=25,nNumCost=750,tSeqList={{1,},},nGridID=2,}
+ctFuYuanExchangeConf[4]={nExchangeID=4,tItem={{13155,5,},},nCostType=25,nNumCost=750,tSeqList={{2,},},nGridID=2,}
+ctFuYuanExchangeConf[5]={nExchangeID=5,tItem={{10110,1,},},nCostType=25,nNumCost=10,tSeqList={{1,},{2,},},nGridID=4,}
+ctFuYuanExchangeConf[6]={nExchangeID=6,tItem={{10111,1,},},nCostType=25,nNumCost=30,tSeqList={{1,},{2,},},nGridID=5,}
+ctFuYuanExchangeConf[7]={nExchangeID=7,tItem={{13254,5,},},nCostType=25,nNumCost=625,tSeqList={{1,},},nGridID=3,}
+ctFuYuanExchangeConf[8]={nExchangeID=8,tItem={{13255,5,},},nCostType=25,nNumCost=625,tSeqList={{2,},},nGridID=3,}

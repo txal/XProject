@@ -6,11 +6,11 @@
 #include "Server/Base/ServerContext.h"
 #include "Server/RouterServer/Router.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 void NSPacketProc::RegisterPacketProc()
 {
-	PacketHandler* poPacketHandler = g_poContext->GetPacketHandler();
+	PacketHandler* poPacketHandler = gpoContext->GetPacketHandler();
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceReq, (void*)OnRegisterService);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssCloseServerReq, (void*)OnCloseServerReq);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssPrepCloseServer, (void*)OnPrepCloseServer);
@@ -20,7 +20,7 @@ void NSPacketProc::RegisterPacketProc()
 
 void NSPacketProc::OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSesseionArray)
 {
-	Router* poRouter = (Router*)(g_poContext->GetService());
+	Router* poRouter = (Router*)(gpoContext->GetService());
 	if (oHeader.nTarService != poRouter->GetServiceID())
 		return;
 
@@ -55,14 +55,14 @@ void NSPacketProc::OnCloseServerReq(int nSrcSessionID, Packet* poPacket, INNER_H
 	PacketReader oPR(poPacket);
 	int nServerID = 0;
 	oPR >> nServerID;
-	Router* poRouter = (Router*)(g_poContext->GetService());
+	Router* poRouter = (Router*)(gpoContext->GetService());
 	poRouter->GetServerClose().CloseServer(nServerID);
 }
 
 //收到这个消息,表明服务准备好关服了
 void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	Router* poRouter = (Router*)(g_poContext->GetService());
+	Router* poRouter = (Router*)(gpoContext->GetService());
 
 	ServiceNode* poTarService = poRouter->GetService(oHeader.uSrcServer, oHeader.nSrcService);
 	if (poTarService == NULL)
@@ -75,7 +75,7 @@ void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_
 	PacketWriter oPW(poPacketRet);
 	oPW << (int)oHeader.uSrcServer << (int)oHeader.nSrcService;
 
-	INNER_HEADER oHeaderRet(NSSysCmd::ssImplCloseServer, g_poContext->GetWorldServerID(), poRouter->GetServiceID(), oHeader.uSrcServer, oHeader.nSrcService, 0);
+	INNER_HEADER oHeaderRet(NSSysCmd::ssImplCloseServer, gpoContext->GetWorldServerID(), poRouter->GetServiceID(), oHeader.uSrcServer, oHeader.nSrcService, 0);
 	poPacketRet->AppendInnerHeader(oHeaderRet, NULL, 0);
 
 	INet* pNet = poRouter->GetNetPool()->GetNet(poTarService->GetNetIndex());

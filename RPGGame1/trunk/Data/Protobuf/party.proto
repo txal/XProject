@@ -1,0 +1,211 @@
+package party;
+
+//宴会场景请求
+message PartySceneReq
+{
+}
+
+//宴会场景返回
+message PartySceneRet
+{
+	message _Party
+	{
+		required int32 nCharID = 1; 	//角色编号
+		required string sCharName = 2; 	//角色名
+		required string sPartyName = 3; //宴会名字
+	}
+	repeated _Party tList = 1; 			//小房子列表
+	required int32 nMaxTimes = 2; 		//最大赴宴次数
+	required int32 nRemainTimes = 3; 	//剩余赴宴次数
+	required int32 nMyParty = 4; 		//我的宴会ID(>0有宴会; =0没有宴会)
+}
+
+//开启宴会请求
+message PartyOpenReq
+{
+	required int32 nID = 1; 			//宴会ID
+	required bool bPublic = 2; 			//是否公开
+}
+
+//开启宴会成功返回
+message PartyOpenRet
+{
+	required int32 nCharID = 1; 		//角色编号
+	required int32 nPartyID = 2; 		//宴会ID
+}
+
+//宴会内部信息请求
+message PartyInfoReq
+{
+	required int32 nCharID = 1; 		//目标玩家ID(自己的发自己的ID)
+}
+
+//宴会内部信息返回
+message PartyInfoRet
+{
+	message _Record
+	{
+		required string sName = 1; 		//赴宴者角色名
+		required int32 nJoinType = 2; 	//赴宴类型(读表取参数)
+		required int32 nScore = 3; 		//赴宴分数
+	}
+	message _Desk
+	{
+		required int32 nDesk = 1; 		//座位编号
+		required string sIcon = 2; 		//赴宴者头像(空串表示空位)
+		required string sName = 3; 		//赴宴者名字
+	}
+	required int32 nCharID = 1; 		//角色编号
+	required string sCharName = 2; 		//角色名
+	required int32 nPartyID = 3; 		//宴会ID
+	required int32 nScore = 4; 			//宴会分数
+	required int32 nRemainTime = 5; 	//剩余时间
+	required int32 nPlayerCount = 6; 	//赴宴人数
+	required int32 nMaxPlayer = 7; 		//赴宴人数上限
+	repeated _Record tRecord = 8; 		//赴宴记录表
+	repeated _Desk tDesk = 9; 			//桌子列表
+}
+
+//玩家宴会查询
+message PartyQueryReq
+{
+	required int32 nCharID = 1; 		//目标玩家编号	
+}
+
+//玩家宴会查询返回
+message PartyQueryRet
+{
+	required int32 nCharID = 1;	 		//角色ID
+	required string sCharName = 2; 		//角色名
+	required string sPartyName = 3; 	//宴会名
+	required int32 nPlayerCount = 4; 	//赴宴玩家数
+	required int32 nMaxPlayer = 5; 		//赴宴人数上限
+	required int32 nRemainTime = 6; 	//剩余时间
+}
+
+//玩家赴宴请求
+message PartyJoinReq
+{
+	required int32 nJoinType = 1; 		//赴宴类型(配置表)
+	required int32 nCharID = 2; 		//目标玩家编号
+	required int32 nDesk = 3; 			//座位编号
+	required bool bFC = 4; 				//是否复仇
+}
+
+//玩家赴宴成功请求
+message PartyJoinRet
+{
+	message _Item
+	{
+		required int32 nType = 1;
+		required int32 nID = 2;
+		required int32 nNum = 3;
+	}
+	repeated _Item tAward = 1; 		//赴宴者奖励列表
+	required int32 nScore = 2; 		//赴宴者获得积分值
+	required int32 nPartyScore = 3; //宴会主人获得积分值
+	required int32 nJoinType = 4; 	//赴宴类型:4为捣乱
+	required string sName = 5; 		//宴会主人名字
+}
+
+//宴会信息请求
+message PartyMessageReq
+{
+	
+}
+
+//宴会信息返回
+message PartyMessageRet
+{
+	message _Msg
+	{
+		required int32 nID = 1; 		//宴会编号
+		required int32 nPlayer = 2; 	//赴宴人数
+		required int32 nDLPlayer = 3; 	//捣乱人数
+		required int32 nScore = 4; 		//积分
+		required int32 nTime = 5; 		//开启时间
+	}
+	message _Enemy
+	{
+		required int32 nCharID = 1; 	//角色编号
+		required string sName = 2; 		//角色名
+		required bool bParty = 3; 		//是否有宴会
+	}
+	repeated _Msg tMessageList = 1;		//我的宴会表
+	repeated _Enemy tEnemyList = 2; 	//仇人表
+}
+
+//物品列表请求
+message PartyGoodsListReq
+{
+}
+
+//物品列表返回
+message PartyGoodsListRet
+{
+	message _Item
+	{
+		required int32 nIndex = 1; 		 	//配置编号
+		required int32 nAutoIndex = 2; 		//自动编号(1-6)
+		required int32 nRemainTimes = 3; 	//剩余兑换次数
+	}
+	required int32 nActive = 1; 			//活跃
+	required int32 nNextRefreshTime = 2; 	//下一刷新时候
+	required int32 nRemainRefreshTimes = 3; //剩余刷新次数
+	repeated _Item tList = 4; 				//物品列表
+}
+
+//刷新物品请求
+message PartyRefreshGoodsReq
+{
+}
+
+//兑换物品请求
+message PartyExchangeGoodsReq
+{
+	required int32 nAutoIndex = 1; 	//自动生成的编号
+}
+
+//兑换物品成功返回
+message PartyExchangeGoodsRet
+{
+	required int32 nIndex = 1; 		//配置编号
+}
+
+
+//宴会排行榜请求
+message PartyRankingReq
+{
+	required int32 nRankNum = 1; 	//取前X名		
+}
+
+//宴会排行榜返回
+message PartyRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	
+	repeated _Rank tRanking = 1; 	//排行列表
+	required int32 nMyRank = 2; 	//我的排名
+	required string sMyName = 3; 	//我的名字
+	required int32 nMyValue = 4; 	//我的数值	
+}
+
+//宴会结束返回
+message PartyFinishRet
+{
+	message _Record
+	{
+		required string sName = 1; 		//名字
+		required int32 nJoinType = 2; 	//赴宴方式
+		required int32 nScore = 3; 		//宴会积分
+	}
+	required int32 nID = 1; 	//宴会编号
+	required string sName = 2; 	//宴会名
+	required int32 nScore = 3; 	//宴会分数/积分
+	required int32 nPlayer = 4; //赴宴人数
+	repeated _Record tRecord = 5; //赴宴记录
+}

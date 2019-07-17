@@ -1,0 +1,10 @@
+ctUpgradeBagConf={}
+ctUpgradeBagConf[1]={nID=1,nNeedLv=10,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="10级礼包",}
+ctUpgradeBagConf[2]={nID=2,nNeedLv=20,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="20级礼包",}
+ctUpgradeBagConf[3]={nID=3,nNeedLv=30,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="30级礼包",}
+ctUpgradeBagConf[4]={nID=4,nNeedLv=40,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="40级礼包",}
+ctUpgradeBagConf[5]={nID=5,nNeedLv=50,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="50级礼包",}
+ctUpgradeBagConf[6]={nID=6,nNeedLv=60,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="60级礼包",}
+ctUpgradeBagConf[7]={nID=7,nNeedLv=70,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="70级礼包",}
+ctUpgradeBagConf[8]={nID=8,nNeedLv=80,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="80级礼包",}
+ctUpgradeBagConf[9]={nID=9,nNeedLv=90,tAward={{18000,1,},{18001,1,},{18002,1,},{18003,1,},{18004,1,},},sDsec="90级礼包",}

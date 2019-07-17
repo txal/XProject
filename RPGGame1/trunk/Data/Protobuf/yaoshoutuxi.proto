@@ -1,0 +1,33 @@
+//妖兽突袭
+package yaoshoutuxi;
+
+message _DupList
+{
+	required int32 nDupID = 1;
+	required int32 nPosX = 2;
+	required int32 nPosY = 3;
+	required int32 nYaoShouID = 4; 	//妖兽ID,1-普通妖兽,2-精英妖兽,3-首领妖兽
+}
+
+//初始化任务信息
+message yaoshoutuxiInitInfoRet
+{
+	repeated _DupList tDupListInfo = 1;
+	optional bool bFlag = 2;	//true显示在任务追踪栏
+	optional int32 nTimes = 3;	//今日完成次数
+	optional bool bState = 4;	//是否选择参加
+	required int32 nType = 5;	//1主动请求,2进入场景返回
+}
+
+//攻击怪物
+message yaoshoutuxiAttacReq
+{
+	required int32 nYaoShouID = 1;
+	//required int32 nStars = 2;//星级(需求改动,这个字段暂时不用了)
+}
+
+//任务次数通知
+message yaoshoutuxiTaskTimesRet
+{
+	required int32 nNewTimes = 1;	//当前最新完成任务次数
+}

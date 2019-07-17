@@ -16,8 +16,8 @@ void NetAdapter::Release()
 bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi, uint32_t uPacketIdx /*= 0*/)
 {
     assert(poPacket != NULL);
-	Service* poService = g_poContext->GetService();
-	if ((oNavi.uTarServer == g_poContext->GetServerID() && oNavi.nTarService == poService->GetServiceID()) || uPacketIdx > 0) //uPackeIdx>0表示客户端发出的指令
+	Service* poService = gpoContext->GetService();
+	if ((oNavi.uTarServer == gpoContext->GetServerID() && oNavi.nTarService == poService->GetServiceID()) || uPacketIdx > 0) //uPackeIdx>0表示客户端发出的指令
 	{
 		poPacket->AppendExterHeader(EXTER_HEADER(uCmd, poService->GetServiceID(), oNavi.nTarService, uPacketIdx));
 		if (!poService->GetExterNet()->SendPacket(oNavi.nTarSession, poPacket))
@@ -41,8 +41,8 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi)
     	poPacket->Release(__FILE__, __LINE__);
     	return false;
     }
-	Service* poService = g_poContext->GetService();
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
+	Service* poService = gpoContext->GetService();
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poRouter == NULL)
 	{
 		poPacket->Release(__FILE__, __LINE__);
@@ -60,13 +60,13 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, SERVICE_NAVI& oNavi)
 bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList)
 {
     assert(poPacket != NULL && oNaviList.Size() > 0);
-	Service* poService = g_poContext->GetService();
+	Service* poService = gpoContext->GetService();
 	if (poService == NULL)
 	{
 		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poRouter == NULL)
 	{
 		poPacket->Release(__FILE__, __LINE__);
@@ -137,13 +137,13 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, Array<SERVICE_N
 bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, Array<SERVICE_NAVI>& oNaviList)
 {
 	assert(poPacket != NULL);
-	Service* poService = g_poContext->GetService();
+	Service* poService = gpoContext->GetService();
 	if (poService == NULL)
 	{
 		poPacket->Release(__FILE__, __LINE__);
 		return false;
 	}
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poRouter == NULL)
 	{
 		poPacket->Release(__FILE__, __LINE__);

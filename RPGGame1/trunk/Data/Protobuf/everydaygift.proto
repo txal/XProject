@@ -1,0 +1,45 @@
+package everydaygift;
+
+//每日礼包状态信息
+message EverydayGiftStatusRet
+{
+	//已经选择过的要变灰
+	message _ItemStatus
+	{
+		required int32 nGiftID = 1;			//奖励物品ID
+		required bool  bCanSelect = 2;		//是否能选择
+	}
+	message _GiftStatus
+	{
+		required int32 nMoney = 1;			//充值金额
+		required int32 nStatus = 2;			//礼包状态：1:购买，2:领取奖励，3:已领取
+		repeated _ItemStatus tSelectGiftList = 3;	//选择奖励物品状态列表
+	}
+	repeated _GiftStatus tGiftStatusList = 1;	//所有礼包状态信息
+}
+
+//每日礼包信息请求
+message EverydayGiftInfoReq
+{
+}
+
+//领取每日礼包
+message EverydayGiftGetReq
+{
+	required int32 nMoney = 1;			//充值金额
+}
+
+//多选一选中的物品
+message EverydayGiftSeleReq
+{
+	required int32 nMoney = 1;			//充值金额
+	required int32 nGiftID = 2;			//选择奖励的物品
+}
+
+//选择奖励物品结果
+message EverydayGiftSelectRet
+{
+	required bool bIsCanSelect = 1;		//是否能选择此奖励物品
+	required int32 nMoney = 2;			//充值金额
+	required int32 nGiftID = 3;			//奖励物品ID
+}

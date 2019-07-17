@@ -14,7 +14,7 @@ MonsterMgr::MonsterMgr()
 {
 }
 
-Monster* MonsterMgr::CreateMonster(const GAME_OBJID& oID, int nConfID, const char* psName, int nAIID, int8_t nCamp)
+Monster* MonsterMgr::CreateMonster(const OBJID& oID, int nConfID, const char* psName, int nAIID, int8_t nCamp)
 {
 	Monster* poMonster = GetMonsterByID(oID);
 	if (poMonster != NULL)
@@ -28,7 +28,7 @@ Monster* MonsterMgr::CreateMonster(const GAME_OBJID& oID, int nConfID, const cha
 	return poMonster;
 }
 
-void MonsterMgr::RemoveMonster(const GAME_OBJID& oID)
+void MonsterMgr::RemoveMonster(const OBJID& oID)
 {
 	MonsterIDIter iter = m_oMonsterIDMap.find(oID.llID);
 	if (iter == m_oMonsterIDMap.end())
@@ -45,7 +45,7 @@ void MonsterMgr::RemoveMonster(const GAME_OBJID& oID)
 	SAFE_DELETE(poMonster);
 }
 
-Monster* MonsterMgr::GetMonsterByID(const GAME_OBJID& oID)
+Monster* MonsterMgr::GetMonsterByID(const OBJID& oID)
 {
 	MonsterIDIter iter = m_oMonsterIDMap.find(oID.llID);
 	if (iter != m_oMonsterIDMap.end())

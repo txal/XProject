@@ -1,0 +1,185 @@
+package shizhuang;
+
+//时装所有信息请求
+message ShiZhuangAllInfoReq
+{
+}
+
+//穿戴时装
+message ShiZhuangPutOnReq
+{
+	required int32 nShiZhuangID = 1;//时装ID
+	required int32 nPosType = 2;	//时装位置
+}
+
+//卸下时装请求
+message ShiZhuangPutOffReq
+{
+	required int32 nPosType = 1;//时装ID
+}
+
+//时装属性
+message _ShiZhuangAttr
+{
+	required int32 nAttrType = 1;	//属性类型
+	required int32 nAttrVal = 2;	//属性值
+	required int32 nQuality = 3;	//品质值
+	optional int32 nBattleVal = 4;  //最终属性
+	optional int32 nStrengthVal = 5; //强化属性
+}
+
+//时装信息
+message _ShiZhuangSingleInfo
+{
+	required int32 nShiZhuangID = 1;			//时装ID
+	required int32 nPosType = 2;				//部位类型
+	required int32 nValueTimeStamp = 3;				//有效时间戳(-1代表永久)
+	required bool  bIsActivate = 4;				//是否解锁
+	repeated _ShiZhuangAttr tAttrList = 5;		//时装属性
+	repeated _ShiZhuangAttr tAttrWashList = 6;	//洗出的属性
+	optional int32 nStrengthLevel = 7;          //当前强化等级
+	optional int32 nStrengthExp = 8;            //当前等级强化经验
+}
+
+//时装所有信息应答
+message ShiZhuangAllInfoRet
+{
+	repeated _ShiZhuangSingleInfo tShiZhuangInfoList = 1;	//所有时装属性
+	required int32 nCurrFlyMountID = 2;	//当前飞行器ID
+	required int32 nCurrWingID = 3;		//当前翅膀ID
+	required int32 nCurrHaloID = 4;		//当前光影ID
+	required int32 nFightCapacity = 5;	//时装战斗力加成
+}
+
+//时装洗练请求
+message ShiZhuangWashReq
+{
+	required bool  bIsUseGold = 1;	//使用元宝：true; 不使用元宝：false
+	required int32 nShiZhuangID = 2;//时装ID
+}
+
+//时装属性替换请求
+message ShiZhuangAttrReplaceReq
+{
+	required int32 nShiZhuangID = 1;//时装ID
+}
+
+//洗练信息应答
+message ShiZhuangWashInfoRet
+{
+	repeated _ShiZhuangAttr tAttrList = 1;	//洗练出的属性
+}
+
+//单个时装信息
+message ShiZhuangInfoRet
+{
+	repeated _ShiZhuangSingleInfo tSingleInfo = 1; //时装信息
+}
+
+//器灵所有信息请求
+message QiLingAllInfoReq
+{
+}
+
+//器灵进阶
+message QiLingUpGradeReq
+{
+}
+
+//器灵信息应答
+message QiLingInfoRet
+{
+	message _Attr
+	{
+		required int32 nAttrType = 1;	//属性类型
+		required int32 nAttrValue = 2;	//属性值
+	}
+	repeated _Attr tAttrList = 1;		//属性列表
+	required int32 nQiLingLevel = 2;	//器灵等级
+	required int32 nQiLingGrade = 3;	//器灵品阶
+	required int32 nQiLingExp = 4;		//器灵经验
+	required int32 nQiLingCapacity = 5;	//器灵战斗力加成
+}
+
+//激活时装
+message ShiZhuangActReq
+{
+	required int32 nShiZhuangID = 1;	//时装ID
+}
+
+//器灵一键升级
+message QiLingAutoUpLevelReq
+{
+}
+
+//时装御器信息请求
+message ShiZhuangYuQiInfoReq
+{
+}
+
+//时装御器信息响应
+message ShiZhuangYuQiInfoRet
+{
+	message _Attr
+	{
+		required int32 nAttrID = 1;
+		required int32 nAttrVal = 2;
+	}
+
+	required int32 nTotalLevel = 1;  //总等级
+	required int32 nExp = 2;         //当前等级经验
+	repeated _Attr tAttrList = 3;    //属性
+	optional int32 nScore = 4;             //评分
+}
+
+//时装御器升级请求
+message ShiZhuangYuQiLevelUpReq
+{
+}
+
+//时装御器升级响应
+message ShiZhuangYuQiLevelUpRet
+{
+	optional int32 nOldLevel = 1;
+	optional int32 nCurLevel = 2;
+}
+
+//时装仙羽信息请求
+message ShiZhuangXianYuInfoReq
+{
+}
+
+//时装仙羽信息响应
+message ShiZhuangXianYuInfoRet
+{
+	message _Attr
+	{
+		required int32 nAttrID = 1;
+		required int32 nAttrVal = 2;
+	}
+
+	required int32 nLevel = 1;       //等级
+	required int32 nExp = 2;         //当前等级经验
+	repeated _Attr tAttrList = 3;    //属性
+	optional int32 nScore = 4;             //评分
+}
+
+//时装仙羽升级请求
+message ShiZhuangXianYuLevelUpReq
+{
+}
+
+//时装仙羽升级响应
+message ShiZhuangXianYuLevelUpRet
+{
+	optional int32 nOldLevel = 1;
+	optional int32 nCurLevel = 2;
+}
+
+//时装强化请求
+message ShiZhuangStrengthReq
+{
+	required int32 nID = 1;
+	required int32 nPropID = 2;
+	required int32 nPropNum = 3;
+}

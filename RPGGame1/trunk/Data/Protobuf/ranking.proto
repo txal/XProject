@@ -1,0 +1,64 @@
+//全局排行榜
+package ranking;
+
+
+//排行榜请求
+message RankingListReq
+{
+	required int32 nRankID = 1; 	//排行榜ID:
+	//1 科举排行
+	//12 综合战力排行
+	//13 人物战力榜
+	//14 人物等级榜
+	//15 宠物评分榜
+	//16 帮派等级榜
+	//17 家园资产榜
+
+	//21 鬼王宗
+	//22 青云门
+	//23 合欢派
+	//24 圣巫教
+	//25 天音寺
+
+	//31 竞技场积分
+
+	//41 周人气榜
+	//42 总人气榜
+	//43 总好友度榜
+
+	required int32 nRankNum = 2; 	//要取的数量(50)
+}
+
+message _RANK
+{
+	required int32 nRank = 1;
+	required double nValue = 2;
+	optional int32 nRoleID = 3; 	//角色ID
+	optional string sRoleName = 4;	//角色名字
+	optional int32 nSchool = 5; 	//门派
+	optional int32 nPetPos = 6; 	//宠物格子
+	optional string sPetName = 7; 	//宠物名字
+	optional string sUnionName = 8; //帮派名字
+}
+
+//排行榜返回
+message RankingListRet
+{
+	required int32 nRankID = 1; 	//排行榜ID
+	repeated _RANK tRanking = 2;	//排行数据
+	required int32 nMyRank = 3; 	//我的名次
+	required double nMyValue = 4; 	//我的值
+	optional bool bCanCongrat = 5; 	//是否可以祝贺
+}
+
+//排行榜祝贺红点同步
+message RankingRedpointRet
+{
+	required int32 nRankID = 1;		//排行榜ID
+	required bool bCanCongrat = 2;	//是否可以祝贺
+}
+
+message RankingCongratReq
+{
+	required int32 nRankID = 1;			//排行榜ID
+}

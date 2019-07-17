@@ -24,7 +24,7 @@ RouterMgr::~RouterMgr()
 void RouterMgr::InitRouters()
 {
 
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
 	{
 		const RouterNode& oNode = oSrvConf.oRouterList[i];
@@ -39,7 +39,7 @@ void RouterMgr::InitRouters()
 void RouterMgr::UpdateConfig(uint32_t uTimerID, void* pParam)
 {
 	RouterMgr* poRouterMgr = (RouterMgr*)pParam;
-	g_poContext->LoadServerConfig();
+	gpoContext->LoadServerConfig();
 	poRouterMgr->ClearDeadRouter();
 	poRouterMgr->InitRouters();
 }
@@ -47,7 +47,7 @@ void RouterMgr::UpdateConfig(uint32_t uTimerID, void* pParam)
 
 bool RouterMgr::IsRegisterFinish()
 {
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
 	{
 		int nService = oSrvConf.oRouterList[i].uID;
@@ -76,7 +76,7 @@ bool RouterMgr::AddRouter(int8_t nRouterService, const char* pszIP, uint16_t uPo
     oRouter.nIndex = m_nRouterNum++;
     strcpy(oRouter.szIP, pszIP);
     oRouter.uPort = uPort;
-	return g_poContext->GetService()->GetInnerNet()->Connect(pszIP, uPort);
+	return gpoContext->GetService()->GetInnerNet()->Connect(pszIP, uPort);
 }
 
 ROUTER* RouterMgr::OnConnectRouterSuccess(uint16_t uPort, int nSession)
@@ -91,7 +91,7 @@ ROUTER* RouterMgr::OnConnectRouterSuccess(uint16_t uPort, int nSession)
 
 void RouterMgr::OnRegisterRouterSuccess(int8_t nRouterService)
 {
-	XLog(LEVEL_INFO, "%s: Register to router:%d successful\n", g_poContext->GetService()->GetServiceName(), nRouterService);
+	XLog(LEVEL_INFO, "%s: Register to router:%d successful\n", gpoContext->GetService()->GetServiceName(), nRouterService);
 	ROUTER* poRouter = GetRouterByServiceID(nRouterService);
     assert(poRouter != NULL && poRouter->nSession > 0);
 	poRouter->bRegisted = true;

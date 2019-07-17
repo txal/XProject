@@ -1,0 +1,14 @@
+package awardrecord;  
+
+//奖励记录返回
+message AwardRecordReq
+{
+	required int32 nType = 1; 				//副本类型(1.微服私访, 2.怡红院, 3.宴会, 4.征服世界, 5.狩猎, 6.花魁, 7.点灯, 8.祈福)
+}
+
+//奖励记录返回
+message AwardRecordRet 
+{
+	repeated string tList = 1;				//记录列表
+	required int32 nType = 2;				//副本类型(1.微服私访, 2.怡红院, 3.宴会, 4.征服世界, 5.狩猎, 6.花魁, 7.点灯, 8.祈福)
+}

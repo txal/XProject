@@ -114,7 +114,7 @@ bool Scene::IsTime2Collect(int64_t nNowMS)
 }
 
 
-int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int8_t nLine, int8_t nFace)
+int Scene::EnterScene(Object* poObj, int nPosX, int nPosY, int8_t nAOIMode,  int nAOIArea[], int8_t nAOIType, int16_t nLine, int8_t nFace)
 {
 	int nObjID = poObj->GetID();
 	int nObjType = poObj->GetType();
@@ -339,7 +339,7 @@ int Scene::GetObj(lua_State* pState)
 int Scene::EnterDup(lua_State* pState)
 {
 	int nDupMixID = (int)luaL_checkinteger(pState, 1);
-	LogicServer *poService = (LogicServer*)(g_poContext->GetService());
+	LogicServer *poService = (LogicServer*)(gpoContext->GetService());
 	if (poService->GetSceneMgr()->GetScene(nDupMixID) == NULL)
 	{
 		return LuaWrapper::luaM_error(pState, "Scene::EnterDup scene:%d not exist!!!\n");

@@ -1,0 +1,333 @@
+//家园协议
+package house;
+import "scene.proto";
+
+//点击主界面家园
+message C2GSEnterHouseReq 
+{
+	required int32 nRoleID = 1;   	//家园主人id
+}
+
+//家园家具信息
+message HouseFurnitureData {
+	required int32 nPos = 1;			//家具部位
+	required int32 nID = 2;				//家具ID
+	required int32 nState = 3;			//家具状态,1:解锁,0:未解锁,2:装备
+}
+
+//访问家园玩家信息数据
+message HouseVisiterData {
+	required int32 nRoleID = 1;			//玩家id
+	required string sModel = 2;			//外形
+	required int32 nLevel = 3;			//等级
+	required string sName = 4;			//名字
+	required bool bIsFriend = 5;		//是否是好友
+	required int32 nSchool = 6;			//门派
+}
+
+//家园留言玩家信息
+message HouseMessageData {
+	required int32 nRoleID = 1;			//玩家id
+	required int32 nMessageID = 2;		//留言信息ID,删除发
+	required string sModel = 3;			//外形
+	required int32 nLevel = 4;			//等级
+	required string sName = 5;			//名字
+	required int32 nGender = 6;			//性别
+	required int32 nSchool = 7;			//门派
+	required string sMsg = 8;			//留言内容
+	required int32 nTime = 9;			//留言时间
+	required int32 nState = 10;			//留言读取状态,0:未读,1:已读
+}
+
+//植物信息
+message HousePlantData {
+	required int32 nShape = 1;			//植物外形
+	required int32 nState = 2;			//0:不可以赠送,1:可以赠送,2:进入领取倒计时,3:可以领取
+	required int32 nLeftTime = 3;		//领取倒计时剩余时间,状态为2时使用
+}
+
+//评论
+message HouseCommentData {
+	required int32 nRoleID = 1;			//评论人id
+	required int32 nID = 2;				//评论的id
+	required int32 nTargetID = 3;		//这条评论是否是回复某条评论的
+	required string sMsg = 4;			//评论内容
+	required string sName = 5;			//评论人的名字
+}
+
+//玩家一条动态信息
+message DynamicData {
+	required int32 nRoleID = 1;			//玩家id
+	required int32 nDynamicID = 2;		//动态id
+	required string sModel = 3;			//外形
+	required string sName = 4;			//名字
+	required int32 nGender = 5;			//性别
+	required int32 nSchool = 6;			//门派
+	required int32 nFriend = 7;			//好友标志
+	required int32 nTime = 8;			//发布时间
+	required string sMsg = 9;			//内容
+	repeated string tPictureKey = 10;	//图片key
+	repeated HouseCommentData tComment = 11;	//动态的评论
+	required int32 nVoteUp = 12;		//点赞数目
+	required int32 nIsVoteUp = 13;		//自己是否有点赞
+}
+
+//简略动态信息
+message SimpleDynamicData {
+	required int32 nDynamicID = 1;		//动态ID
+	required string sMsg = 2;			//内容
+	required int32 nVoteUp = 3;			//点赞数目
+	required int32 nCommentCnt = 4;		//评论条数
+}
+
+//家具套装信息
+message FurnitureSuitCntData{
+	required int32 nSuitID = 1;			//套装ID
+	required int32 nCnt = 2;			//当前套装达成数目
+}
+
+message GSC2HouseGiftPlayerData {
+	required int32 nRoleID = 1;			//玩家id
+	required string sModel = 2;			//外形
+	required int32 nLevel = 3;			//等级
+	required string sName = 4;			//名字
+	required bool bIsFriend = 5;		//是否是好友
+	required int32 nItemID = 6;			//赠送礼物的id
+	required int32 nAmount = 7;			//赠送礼物的数目
+	required int32 nTime = 8;			//赠送礼物的时间
+}
+
+//进入家园返回
+message GS2CEnterHouseRet{
+	required int32 nRoleID = 1;							//家园主人的id
+	required string sModel = 2;							//外形
+	required int32 nLevel = 3;							//等级
+	required string sName = 4;							//名字
+	required int32 nGender = 5;							//性别
+	required int32 nSchool = 6;							//门派
+	required int32 nDony = 7;							//人气
+	required int32 nBox = 8;							//宝箱
+	required int32 nGift = 9;							//礼物
+	required int32 nLeaveMessage = 10;					//是否有留言未读,1:有留言未读,0:无
+	repeated HouseFurnitureData tFurniture = 11;		//装备家具信息
+	required HousePlantData tPlant = 12;				//植物信息
+	required string sPhotoKey = 13;						//照片key,客户端上传
+	required SimpleDynamicData tSimpleDynamic = 14;		//简略动态信息
+	required scene.RoleShapeData tShapeData = 15;		//外形信息
+}
+
+//离开家园
+message C2GSLeaveHouseReq{
+	required int32 nRoleID = 1;			//离开某个玩家的家园
+}
+
+//购买家园宝箱
+message C2GSBuyHouseBoxReq{
+	required int32 nBuyBoxCnt = 1;					//购买宝箱数目
+}
+
+//返回当前宝箱数目
+message GS2CBuyHouseBoxRet{
+	required int32 nBoxCnt = 1;
+}
+
+//获取最近访问信息
+message C2GSHouseVisiterReq{
+	required int32 nRoleID = 1;						//家园主人id
+}
+
+//访问信息返回
+message GS2CHouseVisiterRet{
+	repeated HouseVisiterData tVisiter = 1;
+}
+
+//获取赠送的历史信息
+message C2GSHouseGiftInfoReq{
+	required int32 nRoleID = 1;
+}
+
+//返回赠送的历史信息
+message GS2CHouseGiftInfoRet{
+	repeated GSC2HouseGiftPlayerData tGift = 1;
+}
+
+//赠送礼物
+message C2GSHouseGiveGiftReq{
+	required int32 nRoleID = 1;			//家园主人id
+	required int32 nPropID = 2;			//物品ID
+	required int32 nAmount = 3;			//物品数目
+	required string sMsg = 4;			//寄语内容
+	required bool bMoneyAdd = 5;       //是否元宝补足
+}
+
+//赠送礼物返回
+message GS2CHouseGiveGiftRet{
+	required int32 nRoleID = 1;			//家园主人id
+	required int32 nDony = 2;			//人气
+	required int32 nGift = 3;			//礼物数目
+}
+
+//请求所有家具信息
+message C2GSHousePosFurnitureReq{
+}
+
+//返回某个部位的家具信息
+message GS2CHousePosFurnituerRet{
+	repeated HouseFurnitureData tFurniture = 1;		//家具信息
+	repeated FurnitureSuitCntData tSuit = 2;		//套装信息
+}
+
+//装备某个家具
+message C2GSHouseWieldFurnitureReq{
+	required int32 nPos = 1;					//部位
+	required int32 nFurnitureID = 2;			//家具
+}
+
+//刷新某个部位家具信息
+message GS2CHouseWieldFurnitureRet{
+	repeated HouseFurnitureData tFurniture = 1;
+}
+
+//家园留言信息请求
+message C2GSHouseMessageReq {
+	required int32 nPage = 1;					//页数,一页10条
+}
+
+//家园留言信息返回
+message GS2CHouseMessageRet{
+	repeated HouseMessageData tMessage = 1;
+}
+
+//家园留言
+message C2GSHouseMakeMessageReq{
+	required int32 nRoleID = 1;				//家园主人ID
+	required int32 sMsg = 2;				//留言内容
+}
+
+//家园留言信息红点返回
+message C2GSHouseMessageRedPointRet{
+}
+
+
+//删除家园留言
+message C2GSHouseDeleteMessageReq{
+	required int32 nMessageID = 1;
+}
+
+//删除家园留言返回
+message GS2CHouseDeleteMessageRet{
+	required int32 nMessageID = 1;
+}
+
+//上传照片后发送信息,服务端保存
+message C2GSSetPhotoKeyReq {
+	required string sPhotoKey = 1;
+}
+
+//家园植物浇水
+message C2GSHouseWaterPlantReq {
+	required int32 nRoleID = 1;			//家园拥有者id
+}
+
+//家园浇水返回
+message GS2CHousePlantRet{
+	required int32 nRoleID = 1;			//家园拥有者id
+	required HousePlantData tPlant = 2;
+}
+
+//家园植物赠送界面
+message C2GSHousePlantGiftDataReq{
+	
+}
+
+//家园植物赠送仙侣信息返回
+message GS2CHousePlantGiftDataRet{
+	required int32 nPartnerID = 1;			//仙侣类型id
+	required int32 nIntimacy = 2;			//好友度
+	required string sName = 3;				//名字 
+}
+
+//家园植物赠送更改仙侣
+message C2GSHousePlantChangePartner{
+	
+}
+
+//植物给予界面点击给予
+message C2GSHousePlantGiveGiftReq{
+}
+
+//返回家园植物信息
+message GS2CHousePlantGiveGiftRet{
+	required HousePlantData tPlant = 1;					//植物信息
+}
+
+//领取家园植物奖励
+message C2GSHousePlantReceiveReward{
+}
+
+//请求家园的动态信息
+message C2GSHouseDynamicDataReq{
+	required int32 nRoleID = 1;			//请求家园主人的id
+	required int32 nPage = 2;			//页数
+}
+
+//家园动态信息返回
+message GS2CHouseDyanmicDataRet{
+	repeated DynamicData tDynamic = 1;
+}
+
+//发布动态信息
+message C2GSHouseDynamicPublicReq{
+	required string sMsg = 1;			//内容
+	repeated string tPictureKey = 2;	//图片
+}
+
+//家园动态信息发表评论
+message C2GSHouseDynamicPublicCommentReq{
+	required int32 nRoleID = 1;			//被评论者的id
+	required int32 nDynamicID = 2;		//被评论者的动态id
+	required int32 nCommentID = 3;		//是否是评论某条评论的，没有:0,有:对应评论的id
+	required string sMsg = 4;			//评论的内容
+}
+
+//刷新某条动态
+message GS2CHouseDynamicRefreshRet{
+	required DynamicData tDynamic = 1;
+	required bool bAdd = 2;				//是否是添加的新评论
+}
+
+//家园删除动态评论
+message C2GSHouseDynamicDeleteCommentReq{
+	required int32 nRoleID = 1;			//动态所属玩家ID
+	required int32 nDynamicID = 2;		//动态ID
+	required int32 nCommentID = 3;		//评论id
+}
+
+//家园动态评论删除返回
+message GS2CHouseDynamicDeleteCommentRet{
+	required int32 nRoleID = 1;			//动态所属玩家id
+	required int32 nDynamicID = 2;		//动态ID
+	required int32 nCommentID = 3;		//评论ID
+}
+
+//家园动态点赞
+message C2GSHouseDynamicUpVoteReq{
+	required int32 nRoleID = 1;			//家园拥有者id
+	required int32 nDynamicID = 2;		//动态id
+}
+//家园动态点赞返回
+message GS2CHouseDynamicUpVoteRet{
+	required int32 nRoleID = 1;			//家园id
+	required int32 nDynamicID = 2;		//动态id
+	required int32 nVoteUp = 3;			//点赞数目
+}
+
+//删除家园动态
+message C2GSHouseDeleteDynamicReq{
+	required int32 nDynamicID = 1;		//动态id
+}
+
+//删除家园动态返回
+message GS2CHouseDeleteDynamicRet{
+	required int32 nDynamicID = 1;		//动态id
+}

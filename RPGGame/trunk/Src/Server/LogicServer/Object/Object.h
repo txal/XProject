@@ -42,7 +42,7 @@ public:
 	virtual bool UpdateRunState(int64_t nNowMS) { return true; }
 	virtual void UpdateViewList(int64_t nNowMS) {}
 
-	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int8_t nLine=0);
+	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int16_t nLine=0);
 	virtual void AfterEnterScene();
 	virtual void OnLeaveScene();
 	virtual uint16_t GetServer() { return 0; }
@@ -65,7 +65,7 @@ protected:
 	int m_nAOIID;
 	Point m_oPos;
 	int8_t m_nFace;
-	int8_t m_nLine;
+	int16_t m_nLine;
 
 	int64_t m_nLeaveSceneTime;
 	int64_t m_nLastUpdateTime;

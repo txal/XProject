@@ -207,7 +207,7 @@ void RobotMgr::OnExterNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
-	g_poContext->GetPacketHandler()->OnRecvExterPacket(nSessionID, poPacket, oHeader);
+	gpoContext->GetPacketHandler()->OnRecvExterPacket(nSessionID, poPacket, oHeader);
 }
 
 void RobotMgr::PushTask(std::string& osTask)

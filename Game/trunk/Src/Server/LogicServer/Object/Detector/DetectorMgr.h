@@ -15,8 +15,8 @@ public:
 
 public:
 	DetectorMgr();
-	Detector* CreateDetector(const GAME_OBJID& oID, int nConfID, const char* psName);
-	Detector* GetDetectorByID(const GAME_OBJID& oID);
+	Detector* CreateDetector(const OBJID& oID, int nConfID, const char* psName);
+	Detector* GetDetectorByID(const OBJID& oID);
 
 public:
 	void UpdateDetectors(int64_t nNowMS);

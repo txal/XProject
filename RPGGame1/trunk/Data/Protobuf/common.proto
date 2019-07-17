@@ -1,0 +1,11 @@
+//通用结构
+package common;
+
+
+//物品
+message ITEM
+{
+	required int32 nType = 1; 	//类型
+	required int32 nID = 2; 	//ID
+	required int32 nNum = 3; 	//数量
+}

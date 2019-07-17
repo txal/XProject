@@ -1,0 +1,14 @@
+ctTeamMatchLevelConf={}
+ctTeamMatchLevelConf[1]={nID=1,nGroupID=1,nMatchLevelMin=0,nMatchLevelMax=999,sContent="0",}
+ctTeamMatchLevelConf[2]={nID=2,nGroupID=2,nMatchLevelMin=35,nMatchLevelMax=999,sContent="35级以上",}
+ctTeamMatchLevelConf[3]={nID=3,nGroupID=3,nMatchLevelMin=35,nMatchLevelMax=999,sContent="35级以上",}
+ctTeamMatchLevelConf[4]={nID=4,nGroupID=4,nMatchLevelMin=60,nMatchLevelMax=999,sContent="60级以上",}
+ctTeamMatchLevelConf[5]={nID=5,nGroupID=5,nMatchLevelMin=40,nMatchLevelMax=999,sContent="40级以上",}
+ctTeamMatchLevelConf[6]={nID=6,nGroupID=6,nMatchLevelMin=30,nMatchLevelMax=999,sContent="30级以上",}
+ctTeamMatchLevelConf[7]={nID=7,nGroupID=7,nMatchLevelMin=30,nMatchLevelMax=999,sContent="30级以上",}
+ctTeamMatchLevelConf[8]={nID=8,nGroupID=8,nMatchLevelMin=0,nMatchLevelMax=999,sContent="0",}
+ctTeamMatchLevelConf[9]={nID=9,nGroupID=9,nMatchLevelMin=0,nMatchLevelMax=999,sContent="0",}
+ctTeamMatchLevelConf[10]={nID=10,nGroupID=10,nMatchLevelMin=30,nMatchLevelMax=999,sContent="30级以上",}
+ctTeamMatchLevelConf[11]={nID=11,nGroupID=11,nMatchLevelMin=0,nMatchLevelMax=999,sContent="0",}
+ctTeamMatchLevelConf[12]={nID=12,nGroupID=12,nMatchLevelMin=30,nMatchLevelMax=999,sContent="30级以上",}
+ctTeamMatchLevelConf[13]={nID=13,nGroupID=13,nMatchLevelMin=0,nMatchLevelMax=999,sContent="0",}

@@ -43,10 +43,10 @@ void Client::Update(int64_t nNowMS)
 
 		PacketWriter oWriter(poPacket);
 		oWriter << m_nRoleID << m_nPacketTime;
-		uint16_t uSrcServer = g_poContext->GetServerID();
-		int8_t nSrcService = g_poContext->GetService()->GetServiceID();
+		uint16_t uSrcServer = gpoContext->GetServerID();
+		int8_t nSrcService = gpoContext->GetService()->GetServiceID();
 		int8_t nTarService = 110;
-		NetAdapter::SERVICE_NAVI oNavi(uSrcServer, nSrcService, g_poContext->GetWorldServerID(), nTarService, m_nSession);
+		NetAdapter::SERVICE_NAVI oNavi(uSrcServer, nSrcService, gpoContext->GetWorldServerID(), nTarService, m_nSession);
 		NetAdapter::SendInner(NSSysCmd::ssClientLastPacketTimeRet, poPacket, oNavi);
 	}
 	else if (m_nLastNotifyTime > 0)

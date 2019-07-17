@@ -31,7 +31,7 @@ struct AOIOBJ
 	int16_t nPos[2];	//坐标(像素)
 	int16_t nArea[2];	//矩形(像素):(宽,高); 圆形(像素):(半径,0)
 	Object* poGameObj;	//游戏对象
-	int8_t nLine;		//所在分线
+	int16_t nLine;		//所在分线
 };
 
 

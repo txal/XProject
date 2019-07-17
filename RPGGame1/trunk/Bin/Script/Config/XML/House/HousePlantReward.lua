@@ -1,0 +1,10 @@
+ctHousePlantRewardConf={}
+ctHousePlantRewardConf[1]={nID=1,nIntimacy=100,nLevel=1,nRewardID=1000,}
+ctHousePlantRewardConf[2]={nID=2,nIntimacy=200,nLevel=2,nRewardID=1000,}
+ctHousePlantRewardConf[3]={nID=3,nIntimacy=300,nLevel=3,nRewardID=1000,}
+ctHousePlantRewardConf[4]={nID=4,nIntimacy=400,nLevel=4,nRewardID=1000,}
+ctHousePlantRewardConf[5]={nID=5,nIntimacy=500,nLevel=5,nRewardID=1000,}
+ctHousePlantRewardConf[6]={nID=6,nIntimacy=600,nLevel=6,nRewardID=1000,}
+ctHousePlantRewardConf[7]={nID=7,nIntimacy=700,nLevel=7,nRewardID=1000,}
+ctHousePlantRewardConf[8]={nID=8,nIntimacy=800,nLevel=8,nRewardID=1000,}
+ctHousePlantRewardConf[9]={nID=9,nIntimacy=1000000,nLevel=9,nRewardID=1000,}

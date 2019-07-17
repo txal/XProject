@@ -1,0 +1,704 @@
+//宠物协议
+package pet;
+
+
+//宠物属性页面请求
+message PetAttrListReq
+{
+	
+}
+//宠物装备
+message _PetEqu
+{
+	//宠物项圈跟头盔装备
+	message _PetCollarHelmet
+	{
+		required int32 nAttrID = 1;		//属性id
+		required int32 nAttrValue = 2;	//属性值
+	}
+
+	//宠物护符装备
+	message _PetTalisman
+	{
+		required int32 nSkillID = 1;	//技能ID
+		required int32 nHFSKill = 2;	//区别宠物技能
+	}
+
+	//宠物饰品装备
+	//message _PetAccessories
+	//{
+		//required int32 nAttrVal = 1;	//提高五项属性资质上限25点
+	//}
+	
+	required int32 nID = 1;								//装备id
+	required int32 nType = 2;							//装备类型1为项圈,2为头盔,3为护符,4为饰品
+	repeated _PetCollarHelmet tPetCollarHelmet = 3;		//项圈及头盔
+	repeated _PetTalisman tPetTalisman = 4;				//宠物护符装备
+	optional int32 tPetAccessories = 5;					//宠物饰品装备提高五项属性资质上限25点
+	required int32 nLevel = 6;	//装备等级
+	optional int32 nGrid = 7;	//兼容单独获取多个装备信息而加
+	
+	
+}
+message _PetAttrList
+{
+	required int32 nGJ = 1;			//攻击
+	required int32 nFY = 2;			//防御
+	required int32 nLingLi = 3;		//灵力
+	required int32 nSD = 4;			//速度
+	required int32 nLife = 5;		//寿命
+	required  float nCZL = 6;		//成长
+	required int32 nDQGJZZ = 7;		//当前攻击资质
+	required int32 nSXGJZZ = 8;		//当前上限攻击资质
+	required int32 nDQFYZZ = 9;		//当前防御资质
+	required int32 nSXFYZZ = 10;	//当前防御上限资质
+	required int32 nDQTLZZ = 11;	//当前体力资质
+	required int32 nSXTLZZ = 12;	//当前上限体力资质
+	required int32 nDQFLZZ =  13;	//当前发力资质
+	required int32 nSXFLZZ = 14;	//当前上限发力资质
+	required int32 nDQSDZZ =  15;	//当前速度资质
+	required int32 nSXSDZZ = 16;	//当前上限速度资质
+
+}
+	
+message _PetBasalList
+{
+	//觉醒数据
+	message _ReviveData 
+	{
+		required int32 nLevel = 1;    // 觉醒等级
+		required int32 nExp = 2;      // 觉醒经验
+	}
+
+	required int32 nID = 1; 
+	required int32 nPos = 2; 
+	required string sName = 3;		//姓名
+	required string sRatings = 4; 	// 评级
+	required int32 nType =  5; 		//宠物类型
+	required int32 nScore = 6; 		//评分
+	required int32 nBlood = 7; 		//气血
+	required int32 nWorkHard = 8; 	//发力
+	required int32 nExp = 9; 		//经验
+	required int32 nStatus = 10;		//战斗状态
+	required int32 nLevel = 11;		//等级
+	required int32 nQld = 12;		//潜力点
+	required int32 nPlayerId = 13;  //玩家Id
+	required string nModelNumber = 14; //模型编号
+	required int32 nDQBlood = 15; 		//当前气血
+	required int32 nDQWorkHard = 16; 	//当前发力
+	required int32 nZy = 17;           //专有标记
+	required int32 nFighting = 18;     //战斗力
+	required int32 nAdvanced = 19;    //进阶次数
+	required int32 nAutoAddPointState = 20; //加点状态,1-自动加点,2-不采用自动加点
+	optional _ReviveData tReviveData = 21;  //觉醒数据
+	
+}
+message _PetSkillList
+{
+	required int32 nID =  1; 		//技能Id
+	required bool nFlag =  2; 		//铭记标记
+	required int32 nType = 3;		//1-宠物技能, 2-护符技能
+}
+
+message PetDetailInfo
+{
+	required _PetBasalList tBasalList = 1;
+	repeated _PetEqu tEquitList = 2;
+	repeated _PetSkillList tSkillList = 3;
+	required _PetAttrList tAttrLIst = 4;
+	repeated int32 tPetAddPointList = 5;
+	repeated int32 tPetAutoAddPointList = 6;
+}
+
+//宠物属性页面返回
+message PetAttrListRet
+{	
+	repeated PetDetailInfo tPetObjList = 1;
+	required int32 nMaxLimit = 2;	//当前最大携带个数
+	required int32 nBattlePos = 3;	//参战宠物的位置
+	optional bool bButton = 4;		//记录便捷打书
+	required int32 nRecruitLevel = 5;	//招募信息
+}
+
+message _PetEquitList
+{
+	required int32 nID = 1;
+	required int32 nPos = 2;
+	required int32 nCDPos = 3; //穿戴位置
+	required int32 nLevel = 4;  
+}
+//宠物变更返回,1增加,2删除,3属性变化
+message PetChangeMsgRet
+{
+	
+	message _PetBasalList
+	{
+		//觉醒数据
+		message _ReviveData 
+		{
+			required int32 nLevel = 1;    // 觉醒等级
+			required int32 nExp = 2;      // 觉醒经验
+		}
+		
+		required int32 nID = 1; 
+		required int32 nPos = 2; 
+		required string sName = 3;		//姓名
+		required string sRatings = 4; 	// 评级
+		required int32 nType =  5; 		//宠物类型
+		required int32 nScore = 6; 		//评分
+		required int32 nBlood = 7; 		//气血
+		required int32 nWorkHard = 8; 	//发力
+		required int32 nExp = 9; 		//经验
+		required int32 nStatus = 10;		//战斗状态
+		required int32 nLevel = 11;		//等级
+		required int32 nQld = 12;		//潜力点
+		required int32 nPlayerId = 13;  //玩家Id
+		required string nModelNumber = 14; //模型编号
+		required int32 nDQBlood = 15; 		//当前气血
+		required int32 nDQWorkHard = 16; 	//当前发力
+		required int32 nZy = 17;           //专有标记
+		required int32 nFighting = 18;     //战斗力
+		required int32 nAdvanced = 19;    //进阶次数
+		required int32 nAutoAddPointState = 20; //加点状态,1-自动加点,2-不采用自动加点
+		optional _ReviveData tReviveData = 21;  //觉醒数据
+	}
+	
+	message _PetEquitList
+	{
+		required int32 nID = 1;
+		required int32 nPos = 2;
+		required int32 nCDPos = 3; //穿戴位置
+		required int32 nLevel = 4;  
+	}
+	
+	
+	message _PetSkillList
+	{
+		required int32 nID =  1; 		//技能Id
+		required bool nFlag =  2; 		//铭记标记
+		required int32 nType = 3;		//1-宠物技能, 2-护符技能
+	}
+	message _PetAttrList
+	{
+		required int32 nGJ = 1;			//攻击
+		required int32 nFY = 2;			//防御
+		required int32 nLingLi = 3;		//灵力
+		required int32 nSD = 4;			//速度
+		required int32 nLife = 5;		//寿命
+		required  float nCZL = 6;		//成长
+		required int32 nDQGJZZ = 7;		//当前攻击资质
+		required int32 nSXGJZZ = 8;		//当前上限攻击资质
+		required int32 nDQFYZZ = 9;		//当前防御资质
+		required int32 nSXFYZZ = 10;	//当前防御上限资质
+		required int32 nDQTLZZ = 11;	//当前体力资质
+		required int32 nSXTLZZ = 12;	//当前上限体力资质
+		required int32 nDQFLZZ =  13;	//当前发力资质
+		required int32 nSXFLZZ = 14;	//当前上限发力资质
+		required int32 nDQSDZZ =  15;	//当前速度资质
+		required int32 nSXSDZZ = 16;	//当前上限速度资质
+	
+	}
+	
+	message _PetList
+	{
+		required _PetBasalList tBasalList = 1;
+		repeated _PetEqu tEquitList = 2;
+		repeated _PetSkillList tSkillList = 3;
+		required _PetAttrList tAttrLIst = 4;
+		repeated int32 tPetAddPointList = 5;
+		repeated int32 tPetAutoAddPointList = 6; //记录当前每一个属性的加点数，用于自动加点
+	}
+	
+	optional _PetList tPetObjList = 1;
+	//repeated _PetList tPetObjList = 1;
+	required int32 nPos = 2;
+	required int32 nType = 3;		//1表示增加宠物,2表示删除,3表示属性变化
+	optional bool bButton = 4;		//记录便捷打书
+}
+
+//宠物穿装备
+message PetWearEquitReq
+{
+	required int32 nPos = 1;   //宠物仓库位置
+	required int32 nGrid = 2; //仓库格子Id
+}
+
+//宠物穿装备返回
+message PetWearEquitRet
+{
+
+}
+
+
+
+//宠物装备列表请求
+message PetEquitListReq
+{
+	required int32 nPos = 1;				//获取这个位置的所有的装备
+}
+
+//宠物装备列表返回
+message PetEquitListRet
+{
+	message _PetEquit
+	{
+		required int32 nID = 1;				//装备唯一ID
+		required int32 nLevel = 2;			//装备等级
+		required int32 nPos = 3;			//装备位置
+	}
+	repeated _PetEquit tList = 1;
+}
+
+
+//宠物合成请求
+message PetSynthesisReq
+{
+	required int32 nZID = 1;	
+	required int32 nFID = 2;
+	required int32 nZPos = 3;
+	required int32 nFPos = 4;
+	required int32 nBDType = 5; 	//1低级保底,2高级保底
+	required bool bFlag = 6; 	//是否使用元宝不足
+	optional bool bYuanBaoBuy =7; //是否勾选元宝购买副宠
+
+}
+
+//宠物合成请求返回
+message PetSynthesisRet
+{
+	required bool nFlag = 1;
+}
+
+//宠物进化请求
+message PetAdvancedReq
+{	
+	required int32 nPos = 1;
+	required int32 nType = 2; //1表示使用道具，2表示使用元宝补齐差价
+
+}
+
+//宠物进化请求返回
+message PetAdvancedRet
+{
+	required int32 nPos = 1;	//宠物位置
+	required int32 nCurAdvanced = 2;//当前进阶次数
+}
+
+//宠物装备合成请求
+message PetEquitCptReq
+{
+	required int32 nZGrid = 1;	//主装备格子ID
+	required int32 nFGrid = 2;	//副准备格子ID
+
+}
+
+//宠物装备合成返回
+message PetEquitCptRet
+{
+	required int32 nID = 1; 			//生成新的装备ID
+	required int32 nLevel = 2;			//装备等级
+	required int32 nPos = 3;
+}
+
+//护符重置请求
+message PetTalismanResetReq
+{
+	required int32 nID = 1;				//需要重置的护符ID
+	required int32 nPos = 2;			// nType为1背包格子ID,nType为2宠物的pos
+	required bool bFlag = 3;			//是否使用元宝不足
+	required int32 nType = 4;			//1背包护符,2宠物身上护符	
+	required int32 nUseType = 5;		//1重置请求,2保存请求
+
+}
+
+//护符重置请求返回
+message PetTalismanResetRet
+{
+	message _Skill
+	{
+		required int32 nSkillID = 1;
+	}
+	
+	repeated _Skill tSkillList = 1;
+	required int32 nUseType = 2;	//1重置请求返回,2保存请求返回
+}
+
+
+//获取双技能概率
+message PetTalismanPBReq
+{
+	required int32 nGrid1 = 1;	//护符1
+	required int32 nGrid2 = 2;  //护符2
+}
+
+//获取双技能概率返回
+message PetTalismanPBRet
+{
+	required int32 nProbability = 1;	//获得双技能概率
+}
+
+//宠物放生请求
+message PetReleaseReq
+{
+	required int32 nID = 1;		//宠物ID
+	required int32 nPos = 2;		//位置
+	
+}
+
+//宠物放生请求返回
+message PetReleaseRet
+{
+
+
+}
+
+//宠物改名请求
+message PetRenamedReq
+{
+	required int32 nID = 1; 		//宠物Id
+	required int32 nPos = 2; 		//位置
+	required string sNewName = 3; 	//新的宠物名字
+}
+
+//宠物改名返回
+message PetRenamedRet
+{
+	required string sNewName = 1;
+	required int32 nPos = 2;
+}
+
+
+//宠物参战请求
+message PetCombatReq
+{
+	required int32 nID = 1; 	//宠物ID
+	required int32 nPos	= 2; 	//位置
+	required int32 nFlag = 3; 	//1表示休战，2表示参战
+	
+}
+
+//宠物参战返回
+message PetCombatRet
+{
+	required int32 nFlag = 1;  //宠物参战标记
+	required int32 nPos = 2;
+}
+
+//宠物加点请求
+message PetAddPointReq
+{
+
+	required int32 nID = 1;	
+	required int32 nPos = 2;
+	repeated int32 tList = 3; //tList[1] = 体质,tList[2] = 魔力,tltList[3] = 力量, tList[4] = 耐力, tList[5] = 敏捷
+	
+}
+
+//宠物加点请求返回
+message PetAddPointRet
+{
+	required int32 nFlag = 1; 	//标记成功
+	required int32 nPos = 2;
+}
+
+
+//宠物开启(取消)自动加点请求
+message PetAutoAddPointReq
+{
+	required int32 nState = 1;	//自动保存,2取消自动保存
+	required int32 nPos = 2;	//宠物位置
+	repeated int32 tList = 3; //tList[1] = 体质,tList[2] = 魔力,tltList[3] = 力量, tList[4] = 耐力, tList[5] = 敏捷
+}
+
+message PetAutoAddPointRet
+{
+	required int32 nState = 1;	//自动保存,2取消自动保存
+	required int32 nPos = 2;	//宠物位置
+	repeated int32 tList = 3; //tList[1] = 体质,tList[2] = 魔力,tltList[3] = 力量, tList[4] = 耐力, tList[5] = 敏捷(取消的时候会返回一个空值)
+}
+
+//宠物洗点请求
+message PetWashPointReq
+{
+	required int32 nID = 1;
+	required int32 nPos = 2;
+	required int32 nProId = 3;
+	required int32 nType = 4;	//1表示扣道具，2表示扣元宝
+}
+
+message PetWashPointRet
+{
+	required int32 nFlag = 1; 	//0失败1成功
+	required int32 nPos = 2;
+}
+
+//宠物学习技能
+message PetSillLearnReq
+{
+	required int32 nID = 1;
+	required int32 nPos = 2; 
+	required int32 nProId = 3;		//学习技能Id
+	required int32 nType = 4; 		//1银币消耗，2元宝消耗,3表示已有技能书
+}
+
+
+message PetSillLearnRet
+{
+	required int32 nXId = 1; //新学会的技能ID
+	required int32 nYId = 2; //遗忘的技能Id
+	required int32 nPos = 3;
+}
+
+//宠物技能铭记
+message PetSkillRememberReq
+{
+	required int32 nID = 1;
+	required int32 nPos = 2;
+	required int32 nProId = 3;
+	required int32 nType = 4; 	//1为道具，2为元宝
+}
+
+message PetSkillRememberRet
+{
+	required int32 nFlag = 1;
+	required int32 nPos = 2;
+	required int32 nSkillID = 3;
+}
+
+//取消技能铭记
+message PetCancelSkillRememberReq
+{
+	required int32 nID = 1;
+	required int32 nPos = 2;
+	required int32 nSkillID = 3;
+}
+
+message PetCancelSkillRememberRet
+{
+	required bool nFlag = 1;	//真为取消成功，假不返回
+	required int32 nPos = 2;
+	required int32 nSkillID = 3;
+}
+
+
+//宠物炼骨
+message PetLianGuReq
+{
+		required int32 nID = 1;
+		required int32 nPos = 2;
+		required int32 nProId = 3;
+		required int32 nType = 4; 	//	1为攻击，2为防御，3为体力，4为发力，5为速度
+		required int32 nNum = 5; //使用的数量
+
+}
+
+message PetLianGuRet
+{
+	required int32 nQf = 1;  //获得资质
+	required int32 nNum = 2; //消耗的数量
+	required int32 nPos = 3;
+	required int32 nType = 4;//	1为攻击，2为防御，3为体力，4为发力，5为速度
+}
+
+//宠物添加经验
+message PetAddExpReq
+{
+	required int32 nPos = 1; 
+	required int32 nProIdType = 2;//道具使用类型,1,道具,2元宝
+}
+
+message PetAddExpRet
+{
+	
+	required int32 nExp = 1;
+	required int32 nPos = 2;
+}
+message _Item
+{
+	required int32 nID = 1;	//道具ID
+	required int32 nNum = 2;	//使用的数量
+}
+//宠物添加寿命
+message PetAddLifeReq
+{
+	required int32 nID = 1; 
+	required int32 nPos = 2;
+	repeated _Item tItem = 3;
+}
+
+message PetAddLifeRet
+{
+	required int32 nLife = 1;
+	required int32 nPos = 2;
+}
+
+
+//添加成长
+message PetAddGUReq
+{
+	required int32 nID = 1; 
+	required int32 nPos = 2;
+}
+
+message PetAddGURet
+{
+	required int32 nGu	= 1; //获得成长返回
+	required int32 nPos = 2;
+}
+
+//宠物扩充请求
+message PetCarryEpReq
+{
+	
+
+}
+
+//宠物携带扩充返回
+message PetCarryEpRet
+{
+	required int32 nCount = 1;			//扩充的次数
+}
+
+//宠物洗髓请求
+message PetXiSuiReq
+{
+	required int32 nID = 1; 
+	required int32 nPos = 2; 
+	required int32 nType = 3;	//1表示道具，2表示元宝补足
+
+}
+
+
+//宠物洗髓返回
+message PetXiSuiRet
+{
+	required _PetBasalList tBasalList = 1;
+	repeated _PetSkillList tSkillList = 2;
+	required _PetAttrList tAttrLIst = 3;
+}
+
+//洗髓保存请求
+message PetXiSuiSavaReq
+{
+	required int32 nType = 1;	//1保存,2不保存
+}
+
+//洗髓保存请求返回
+message PetXiSuiSavaRet
+{
+	
+}
+
+
+//记录便捷打书请求
+message PetSkipTipsReq
+{
+	required bool bFlag = 1;
+}
+
+message PetSkipTipsRet
+{
+	required bool bFlag = 1;
+}
+
+//请求洗髓宠物信息
+message PetXiSuiPetReq
+{
+	
+}
+
+//宠物购买请求
+message PetBuyReq
+{
+	required int32 nID = 1;	//宠物ID
+}
+
+
+//宠物加点方案请求
+message PetPlanInfoReq
+{
+	required int32 nPos = 1;	//宠物pos
+	required int32 nPlan = 2;	//方案ID
+}
+
+message PetPlanInfoRet{
+	repeated int32 tList = 1;	//
+	required int32 nPos = 2;
+	required int32 nState = 3;
+}
+
+message PetSetRecommandPlanReq
+{
+    repeated int32 tRecommandPlan = 1;  //自动加点方案:(体质,魔力,力量,耐力,敏捷)
+    required int32 nPos = 2;	//宠物位置
+    required bool bAutoAddPoten = 3;    //是否自动加点 
+}
+
+//兑换道具使用并上阵请求
+message PetPropUSEReq
+{
+	required int32 nPropID = 1;	
+}
+
+//记录招募提示等级请求
+message PetSavaRecruitReq
+{
+	required int32 nRecruitLevel = 1;
+}
+
+//宠物御兽信息请求
+message PetYuShouInfoReq
+{
+}
+
+//宠物御兽信息响应
+message PetYuShouInfoRet
+{
+	message _Attr
+	{
+		required int32 nAttrID = 1;
+		required int32 nAttrVal = 2;
+	}
+
+	required int32 nLevel = 1;       //等级
+	required int32 nExp = 2;         //当前等级经验
+	repeated _Attr tAttrList = 3;    //属性
+	optional int32 nScore = 4;             //评分
+}
+
+//宠物御兽升级请求
+message PetYuShouLevelUpReq
+{
+}
+
+//宠物御兽升级响应
+message PetYuShouLevelUpRet
+{
+	optional int32 nOldLevel = 1;
+	optional int32 nCurLevel = 2;
+}
+
+//宠物觉醒请求
+message PetReviveLevelUpReq
+{
+	required int32 nPetPos = 1;
+	required int32 nPropID = 2;
+	required int32 nPropNum = 3;
+}
+
+//宠物觉醒响应
+message PetReviveLevelUpRet
+{
+	message _ReviveData
+	{
+		required int32 nLevel = 1;
+		required int32 nExp = 2;
+	}
+
+	required int32 nPetPos = 1;
+	optional int32 nPropID = 2;
+	optional int32 nPropNum = 3;  //实际消耗的道具数量
+	optional _ReviveData tOldData = 4;    // 旧数据
+	optional _ReviveData tCurData = 5;    // 当前数据
+}
+

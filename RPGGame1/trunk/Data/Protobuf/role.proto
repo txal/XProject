@@ -1,0 +1,247 @@
+package role;
+
+//角色属性请求
+message RoleAttrReq
+{
+}
+
+//角色属性返回
+message RoleAttrRet
+{
+    required int32 nID = 1;         //角色ID
+    required string sName = 2;      //名字
+    required int32 nLevel = 3;      //等级
+    required int32 nSchool = 4;     //门派(1鬼王; 2青云; 3天音; 4合欢; 5圣巫;)
+    required double nPower = 5;     //战力
+    required double nHP = 6;        //气血
+    required double nMaxHP = 7;     //气血上限
+    required double nMP = 8;        //魔法
+    required double nMaxMP = 9;     //魔法上限
+    required double nVitality = 10;     //活力
+    required double nMaxVitality = 11;  //活力上限
+    required double nCurrExp = 12;      //当前经验
+    required double nNextExp = 13;      //下级经验
+    required double nStoreExp = 14;     //储备经验
+    required double nAtk = 15;          //攻击
+    required double eDef = 16;          //防御
+    required double nSpeed = 17;        //速度
+    required double nMana = 18;         //灵力
+    required double nPotential = 19;    //潜力点
+    repeated int32 tEquipment = 20;     //装备表
+    required string sModel = 21;        //模型ID
+    required int32 nCurrSP = 22;        //当前怒气
+    required int32 nMaxSP = 23;         //怒气上限
+    required int32 nServerLv = 24;          //当前服务器等级
+    required int32 nNextServerLvTime = 25;  //下一服务器等级开放时间(-1表示达到服务器等级上限)
+    optional bool bStuckLevel = 26;         //是否卡等级(true卡; null不卡) 
+    optional string sGrade = 27;            //评级
+}
+
+//改名请求
+message RoleModNameReq
+{
+    required string sName = 1;
+    required bool bProp = 2;        //是否使用道具改名
+}
+
+//改名成功返回
+message RoleModNameRet
+{
+    required string sName = 1; 
+}
+
+//角色信息框信息请求
+message RoleInfoReq 
+{
+    required int32 nTarRoleID = 1; 
+}
+
+//角色信息框信息返回
+message RoleInfoRet
+{
+    message _MarriageData
+    {
+        message _SpouseInfo
+        {
+            required int32 nID = 1;
+            required string sName = 2;
+            optional string sModel = 3;
+            optional string sHeader = 4;
+            optional int32 nLevel = 5;
+            optional int32 nGender = 6;
+            optional int32 nSchool = 7;
+        }
+        optional _SpouseInfo tSpouseData = 1;
+    }
+
+    message _BrotherData
+    {
+        message _BrotherInfo
+        {
+            required int32 nID = 1;
+            required string sName = 2;
+            optional string sModel = 3;
+            optional string sHeader = 4;
+            optional int32 nLevel = 5;
+            optional int32 nGender = 6;
+            optional int32 nSchool = 7;
+        }
+        repeated _BrotherInfo tBrotherList = 1;
+    }
+
+    message _MentorshipData
+    {
+        message _MasterData 
+        {
+            required int32 nID = 1;
+            required string sName = 2;
+            optional string sModel = 3;
+            optional string sHeader = 4;
+            optional int32 nLevel = 5;
+            optional int32 nGender = 6;
+            optional int32 nSchool = 7;
+        }
+        message _ApprentData
+        {
+            required int32 nID = 1;
+            required string sName = 2;
+            optional string sModel = 3;
+            optional string sHeader = 4;
+            optional int32 nLevel = 5;
+            optional int32 nGender = 6;
+            optional int32 nSchool = 7;
+            optional bool bUpgraded = 8;   //是否已出师
+        }
+        optional _MasterData tMaster = 1;  //师父信息
+        repeated _ApprentData tApprentList = 2; //徒弟信息
+    }
+
+    required int32 nID = 1;
+    required string sName = 2;
+    required string sHeader = 3;
+    required int32 nLevel = 4;
+    required int32 nGender = 5;
+    required int32 nSchool = 6;
+    required string sServerName = 7;
+    required string sTitleName = 8;     //称谓
+    required string sUnionName = 9;     //联盟名字
+    required int32 nUnionID = 10;       //联盟ID
+    required int32 nHoney = 11;         //亲密度
+    required string sRelation = 12;     //关系
+    required int32 nTeamID = 13;
+    required int32 nTeamMembers = 14; 
+    optional bool bStranger = 15;     //是否陌生人
+    optional bool bFriend = 16;       //是否好友
+
+    optional _MarriageData tMarriage = 17;     //婚姻信息
+    optional _BrotherData tBrother = 18;       //结拜信息
+    optional _MentorshipData tMentorship = 19;  //师徒信息
+}
+
+//角色战斗属性变化通知
+message RoleBattleAttrChangeRet
+{
+    message _ATTR
+    {
+        required int32 nAttrID = 1;     //属性ID
+        //101气血上限; 102魔法上限; 103怒气上限; 104攻击; 105防御; 106灵力; 107速度; 108伤害(百分比100倍,战斗中用); 109受伤(百分比100倍,战斗中用)
+        //201法术攻击(值); 202法术防御(值); 203治疗强度(值); 204封印命中(百分比100倍); 205封印抗性(百分比100倍); 206法术命中; 207法术闪避;
+        //208法术伤害(百分比100倍,战斗中用); 209法术受伤(百分比100倍,战斗中用); 301命中率; 302闪避率; 303暴击率; 304抗暴率;
+        required int32 nAttrVal = 2;    //当前值
+        required int32 nDiffVal = 3;    //变化值
+    } 
+    repeated _ATTR tList = 1;
+}
+
+//主界面人物/宠物信息同步(已废弃)
+message MainWindowHeadInfoRet
+{
+    required int32 nRoleID = 1;
+    required int32 nRoleLv = 2;
+    required string sModule = 3;
+    required int32 nRoleCurrHP = 4; 
+    required int32 nRoleMaxHP = 5; 
+    required int32 nRoleCurrMP = 6; 
+    required int32 nRoleMaxMP = 7; 
+    required int32 nRoleCurrSP = 8;
+    required int32 nRoleMaxSP = 9;
+
+    optional int32 nPetPos = 10; 
+    optional int32 nPetID = 11; 
+    optional int32 nPetLv = 12; 
+    optional int32 nPetCurrHP = 13; 
+    optional int32 nPetMaxHP = 14; 
+    optional int32 nPetCurrMP = 15; 
+    optional int32 nPetMaxMP = 16; 
+    optional int32 nPetCurrExp = 17;
+    optional int32 nPetNextExp = 18;
+}
+
+//角色战力同步
+message RolePowerSyncRet
+{
+    required int32 nPower = 1; 
+    required int32 nDiffVal = 2;    //变化值
+}
+
+//角色综合战力同步
+message RoleColligatePowerSyncRet
+{
+    required int32 nColligatePower = 1;
+    required int32 nDiffVal = 2;    //变化值
+}
+
+//设置卡等级请求
+message RoleStuckLevelReq
+{
+    required bool bStuck = 1;       //是否卡
+}
+
+//设置卡等级返回
+message RoleStuckLevelRet
+{
+    required bool bStuck = 1;       //是否卡
+}
+
+//角色杂项信息请求
+message RoleMiscDataReq
+{
+}
+
+//角色杂项信息响应
+message RoleMiscDataRet
+{
+    required int32 nArenaCoin = 1;     //竞技币
+}
+
+//角色服务器等级请求
+message RoleServerLvReq
+{
+
+}
+
+//角色服务器等级请求返回
+message RoleServerLvRet
+{
+	required int32 nServerLv = 1;	//服务器等级
+}
+
+message RoleBehaviour
+{
+    required int32 nRoleID = 1;
+    required int32 nLevel = 2;
+    required int32 nBehaviourID = 3;
+    required int32 nTimeStamp = 4;  
+}
+
+//角色行为
+message RoleBehaviourReq
+{
+    repeated RoleBehaviour tBehaviourList = 1;
+}
+
+//上线福利通知
+message RoleFirstOnlineAwardRet
+{
+    
+}

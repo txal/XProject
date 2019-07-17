@@ -1,0 +1,12 @@
+ctPartyExchangeConf={}
+ctPartyExchangeConf[1]={nIndex=1,nType=1,nID=30502,nNum=1,nActive=100,nLimit=1,nWeight=100,}
+ctPartyExchangeConf[2]={nIndex=2,nType=1,nID=10504,nNum=1,nActive=100,nLimit=1,nWeight=100,}
+ctPartyExchangeConf[3]={nIndex=3,nType=1,nID=31003,nNum=1,nActive=100,nLimit=1,nWeight=100,}
+ctPartyExchangeConf[4]={nIndex=4,nType=1,nID=31004,nNum=1,nActive=500,nLimit=1,nWeight=50,}
+ctPartyExchangeConf[5]={nIndex=5,nType=1,nID=31013,nNum=1,nActive=100,nLimit=1,nWeight=100,}
+ctPartyExchangeConf[6]={nIndex=6,nType=1,nID=31014,nNum=1,nActive=500,nLimit=1,nWeight=50,}
+ctPartyExchangeConf[7]={nIndex=7,nType=1,nID=31023,nNum=1,nActive=100,nLimit=1,nWeight=100,}
+ctPartyExchangeConf[8]={nIndex=8,nType=1,nID=31024,nNum=1,nActive=500,nLimit=1,nWeight=50,}
+ctPartyExchangeConf[9]={nIndex=9,nType=1,nID=31033,nNum=1,nActive=100,nLimit=1,nWeight=100,}
+ctPartyExchangeConf[10]={nIndex=10,nType=1,nID=31034,nNum=1,nActive=500,nLimit=1,nWeight=50,}
+ctPartyExchangeConf[11]={nIndex=11,nType=1,nID=30506,nNum=1,nActive=100,nLimit=1,nWeight=100,}

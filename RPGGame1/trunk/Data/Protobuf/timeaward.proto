@@ -1,0 +1,90 @@
+package timeaward;
+
+//限时活动状态请求
+message TimeAwardStateReq
+{
+}
+
+//限时活动状态返回
+message TimeAwardStateRet 
+{
+	message _Item 
+	{
+		required int32 nID = 1;	 		//限时活动ID
+			//1 	--累计消耗银币
+			//2 	--累计消耗金币
+			//3 	--累计仙缘次数
+			//4 	--累计消耗宠物资质丹
+			//5 	--累计被点赞次数 fix pd
+			//6 	--友好度度涨幅
+			//7 	--累计消耗活力
+			//8 	--竞技积分涨幅
+			//9 	--累计消耗挑战书
+			//10 --累计探宝次数（个人空间） fix pd
+			//11 --累计小游戏私人房对战次数 （房卡模式下进行次数） fix pd
+			//12 --累计消耗 仙豆（小游戏筹码） fix pd
+		required int32 nState = 2; 		//活动状态:0未开始状态; 1进行中; 2领奖中; 3已结束
+		required int32 nStateTime = 3; 	//状态时间
+		required int32 nBeginTime = 4; 	//活动开始时间
+		required int32 nEndTime = 5; 	//活动结束时间
+		required bool bCanGetAward = 6;	//是否可以领奖
+		required int32 nOpenTimes = 7;	//活动开启次数
+	}
+	repeated _Item tList = 1;
+}
+
+//活动进度请求
+message TimeAwardProgressReq
+{
+	required int32 nID = 1; 				//活动ID
+}
+
+//活动进度返回
+message TimeAwardProgressRet
+{
+	message _Item 
+	{
+		required int32 nAwardID = 1;		//奖励ID
+		required int32 nAwardState = 2;	 	//奖励状态:0未达成; 1已达成; 2已领取
+	}
+	required int32 nID = 1; 				//活动ID
+	required double nValue = 2; 			//当前数值
+	repeated _Item tList = 3; 				//列表
+}
+
+//活动排行榜请求
+message TimeAwardRankingReq
+{
+	required int32 nID = 1; 				//活动ID
+	required int32 nRankNum = 2; 			//榜数量
+}
+
+//活动排行榜返回
+message TimeAwardRankingRet
+{
+	message _Title
+	{
+		required int32 nRank = 1; 			//排名
+		required string sName = 2; 			//名字
+		required double nValue = 3; 		//数值
+	}
+	required int32 nID = 1; 				//活动ID
+	required int32 nMyRank = 2; 			//我的排行
+	required double nMyValue = 3; 			//我的数值
+	repeated _Title tList = 4; 				//排行列表
+}
+
+//领取奖励请求
+message TimeAwardAwardReq
+{
+	required int32 nID = 1;				//活动ID
+	required int32 nAwardID = 2; 		//奖励ID
+}
+
+//领取奖励成功返回
+message TimeAwardAwardRet
+{
+	required int32 nID = 1;				//活动ID
+	required int32 nAwardID = 2; 		//奖励ID
+	required int32 nOpenTimes = 3; 		//活动开启次数
+}

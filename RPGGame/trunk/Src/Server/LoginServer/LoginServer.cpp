@@ -12,7 +12,7 @@
 #include "Server/Base/RouterMgr.h"
 #include "Server/Base/ServerContext.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 LoginServer::LoginServer()
 {
@@ -47,14 +47,14 @@ bool LoginServer::Init(int8_t nServiceID)
 
 bool LoginServer::RegToRouter(int nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->GetRouterByServiceID(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 
 	PacketWriter oPW(poPacket);
 	oPW << (int)Service::SERVICE_LOGIN;
 
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, g_poContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, gpoContext->GetServerID(), GetServiceID(), 0, nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -140,7 +140,7 @@ void LoginServer::ProcessTimer(int64_t nNowMSTime)
 
 void LoginServer::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRemotePort)
 {
-    ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
+    ROUTER* poRouter = gpoContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
     assert(poRouter != NULL);
     RegToRouter(poRouter->nService);
 }
@@ -148,7 +148,7 @@ void LoginServer::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRem
 void LoginServer::OnInnerNetClose(int nSessionID)
 {
 	XLog(LEVEL_INFO, "On innernet disconnect\n");
-	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	gpoContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
 }
 
 void LoginServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
@@ -162,11 +162,11 @@ void LoginServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
-	if (oHeader.uTarServer != g_poContext->GetServerID() || oHeader.nTarService != GetServiceID())
+	if (oHeader.uTarServer != gpoContext->GetServerID() || oHeader.nTarService != GetServiceID())
 	{
 		XLog(LEVEL_INFO, "%s: Tar server:%d service:%d error\n", GetServiceName(), oHeader.uTarServer, oHeader.nTarService);
 		poPacket->Release(__FILE__, __LINE__);
 		return;
 	}
-	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
+	gpoContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }

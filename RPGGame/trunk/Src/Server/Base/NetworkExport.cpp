@@ -14,8 +14,8 @@ static int SendExter(lua_State* pState)
 	Packet* poPacket = (Packet*)lua_touserdata(pState, 2);
 
 	NetAdapter::SERVICE_NAVI oNavi;
-	oNavi.uSrcServer = g_poContext->GetServerID();
-	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uSrcServer = gpoContext->GetServerID();
+	oNavi.nSrcService = gpoContext->GetService()->GetServiceID();
 	oNavi.uTarServer = (uint16_t)luaL_checkinteger(pState, 3);
 	oNavi.nTarService = (int8_t)luaL_checkinteger(pState, 4);
 	oNavi.nTarSession = (int)luaL_checkinteger(pState, 5);
@@ -47,8 +47,8 @@ static int BroadcastExter(lua_State* pState)
 	oNaviCache.Clear();
 	luaL_checkstack(pState, nTableLen, NULL);
 
-	uint16_t uSrcServer = g_poContext->GetServerID();
-	int8_t nSrcService = g_poContext->GetService()->GetServiceID();
+	uint16_t uSrcServer = gpoContext->GetServerID();
+	int8_t nSrcService = gpoContext->GetService()->GetServiceID();
 	for (int i = 1; i <= nTableLen; i = i+2)
 	{
 		lua_rawgeti(pState, 3, i);
@@ -70,8 +70,8 @@ static int SendInner(lua_State* pState)
 	luaL_checktype(pState, 2, LUA_TLIGHTUSERDATA);
 	Packet* poPacket = (Packet*)lua_touserdata(pState, 2);
 	NetAdapter::SERVICE_NAVI oNavi;
-	oNavi.uSrcServer = g_poContext->GetServerID();
-	oNavi.nSrcService = g_poContext->GetService()->GetServiceID();
+	oNavi.uSrcServer = gpoContext->GetServerID();
+	oNavi.nSrcService = gpoContext->GetService()->GetServiceID();
 	oNavi.uTarServer = (uint16_t)luaL_checkinteger(pState, 3);
 	oNavi.nTarService = (int8_t)luaL_checkinteger(pState, 4);
 	oNavi.nTarSession = (int)luaL_checkinteger(pState, 5);
@@ -103,8 +103,8 @@ static int BroadcastInner(lua_State* pState)
 	oNaviCache.Clear();
 	luaL_checkstack(pState, nTableLen, NULL);
 
-	uint16_t uSrcServer = g_poContext->GetServerID();
-	int8_t nSrcService = g_poContext->GetService()->GetServiceID();
+	uint16_t uSrcServer = gpoContext->GetServerID();
+	int8_t nSrcService = gpoContext->GetService()->GetServiceID();
 	for (int i = 1; i <= nTableLen; i=i+3)
 	{
 		lua_rawgeti(pState, 4, i);
@@ -153,7 +153,7 @@ static int UnixMSTime(lua_State* pState)
 
 static int Terminate(lua_State* pState)
 {
-	g_poContext->GetService()->Terminate();
+	gpoContext->GetService()->Terminate();
 	return 0;
 }
 

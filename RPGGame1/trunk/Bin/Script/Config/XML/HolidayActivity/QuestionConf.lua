@@ -1,0 +1,12 @@
+ctQuestionConf={}
+ctQuestionConf[1]={nQuestionID=1,sQuestion="诗仙是谁？",sSelectA="李白",sSelectB="白居易",sSelectC="杜甫",nAnswer=1,}
+ctQuestionConf[2]={nQuestionID=2,sQuestion="诗仙所在哪个朝代？",sSelectA="明朝",sSelectB="宋朝",sSelectC="唐朝",nAnswer=3,}
+ctQuestionConf[3]={nQuestionID=3,sQuestion="唐朝定都哪里？",sSelectA="杭州",sSelectB="长安",sSelectC="洛阳",nAnswer=2,}
+ctQuestionConf[4]={nQuestionID=4,sQuestion="唐朝前一个朝代是哪个？",sSelectA="隋朝",sSelectB="汉朝",sSelectC="晋朝",nAnswer=1,}
+ctQuestionConf[5]={nQuestionID=5,sQuestion="端午节产生于纪念谁？",sSelectA="屈原",sSelectB="屈服",sSelectC="屈凌",nAnswer=1,}
+ctQuestionConf[6]={nQuestionID=6,sQuestion="中国第一长河是？",sSelectA="黄河",sSelectB="长江",sSelectC="黑龙江",nAnswer=2,}
+ctQuestionConf[7]={nQuestionID=7,sQuestion="中国位于哪个洲？",sSelectA="欧洲",sSelectB="非洲",sSelectC="亚洲",nAnswer=3,}
+ctQuestionConf[8]={nQuestionID=8,sQuestion="中国最后一个封建王朝是？",sSelectA="明朝",sSelectB="清朝",sSelectC="南北朝",nAnswer=2,}
+ctQuestionConf[9]={nQuestionID=9,sQuestion="中华人民共和国成立于哪年？",sSelectA="1949年",sSelectB="1948年",sSelectC="1950年",nAnswer=1,}
+ctQuestionConf[10]={nQuestionID=10,sQuestion="明朝开国皇帝是谁？",sSelectA="朱棣",sSelectB="朱元璋",sSelectC="朱允炆",nAnswer=2,}
+ctQuestionConf[11]={nQuestionID=11,sQuestion="统一六国是哪个国家？",sSelectA="楚国",sSelectB="赵国",sSelectC="秦国",nAnswer=3,}

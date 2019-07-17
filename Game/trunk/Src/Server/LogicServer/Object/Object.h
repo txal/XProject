@@ -22,7 +22,7 @@ public:
 public:
 	char* GetName()						{ return m_sName; }
 	int GetConfID()						{ return m_nConfID;  }
-	GAME_OBJID& GetID() 				{ return m_oObjID; }
+	OBJID& GetID() 				{ return m_oObjID; }
 	GAME_OBJ_TYPE GetType()				{ return m_nObjType; }
 
 	Point& GetPos() 					{ return m_oPos;  }
@@ -46,7 +46,7 @@ public:
 protected:
 	int m_nConfID;
 	char m_sName[64];
-	GAME_OBJID m_oObjID;
+	OBJID m_oObjID;
 	GAME_OBJ_TYPE m_nObjType;
 
 	int64_t m_nLeaveSceneTime;

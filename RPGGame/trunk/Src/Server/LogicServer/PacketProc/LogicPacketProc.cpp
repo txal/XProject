@@ -7,7 +7,7 @@
 
 void NSPacketProc::RegisterPacketProc()
 {
-	PacketHandler* poPacketHandler = g_poContext->GetPacketHandler();
+	PacketHandler* poPacketHandler = gpoContext->GetPacketHandler();
 	poPacketHandler->RegsterInnerPacketProc(NSMsgType::eLuaRpcMsg, (void*)OnLuaRpcMsg);
 	poPacketHandler->RegsterInnerPacketProc(NSMsgType::eLuaCmdMsg, (void*)OnLuaCmdMsg);
 
@@ -20,7 +20,7 @@ void NSPacketProc::RegisterPacketProc()
 
 void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
+	gpoContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
 }
 
 void NSPacketProc::OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
@@ -62,7 +62,7 @@ void NSPacketProc::OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER
 
 //void NSPacketProc::OnClientClose(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 //{
-//	LogicServer* poLogic = (LogicServer*)(g_poContext->GetService());
+//	LogicServer* poLogic = (LogicServer*)(gpoContext->GetService());
 //	poLogic->OnClientClose(oHeader.uSrcServer, oHeader.nSrcService, oHeader.uSessionNum > 0 ? pSessionArray[0] : 0);
 //	//OnLuaCmdMsg(nSrcSessionID, poPacket, oHeader, pSessionArray);
 //}
@@ -70,7 +70,7 @@ void NSPacketProc::OnLuaCmdMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER
 void NSPacketProc::OnRoleStartRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Role* poRole = ((LogicServer*)g_poContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
+	Role* poRole = ((LogicServer*)gpoContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
 	if (poRole == NULL)
 	{
 		XLog(LEVEL_INFO, "OnRoleStartRun: role not exist server:%d session:%d\n", oHeader.uSrcServer, nSession);
@@ -99,7 +99,7 @@ void NSPacketProc::OnRoleStartRun(int nSrcSessionID, Packet* poPacket, INNER_HEA
 void NSPacketProc::OnRoleStopRun(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	int nSession = oHeader.uSessionNum > 0 ? pSessionArray[0] : 0;
-	Role* poRole = ((LogicServer*)g_poContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
+	Role* poRole = ((LogicServer*)gpoContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
 	if (poRole == NULL)
 	{
 		XLog(LEVEL_INFO, "OnRoleStopRun: role not exist server:%d session:%d\n", oHeader.uSrcServer, nSession);

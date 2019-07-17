@@ -9,11 +9,11 @@
 #include "Server/GateServer/PacketProc/GatewayPacketProc.h"
 #include "Server/GateServer/PacketProc/GatewayPacketHandler.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 bool InitNetwork(int8_t nServiceID)
 {
 	GateNode* poNode = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGateList.size(); i++)
 	{
 		if (oSrvConf.oGateList[i].uServer == oSrvConf.uServerID && oSrvConf.oGateList[i].uID == nServiceID)
@@ -27,13 +27,13 @@ bool InitNetwork(int8_t nServiceID)
 		XLog(LEVEL_ERROR, "GateServer conf:%d not found\n", nServiceID);
 		return false;
 	}
-	Gateway* poGateway = (Gateway*)g_poContext->GetService();
+	Gateway* poGateway = (Gateway*)gpoContext->GetService();
 	if (!poGateway->Init(poNode))
 	{
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -54,9 +54,9 @@ void OnSigTerm(int)
 
 void OnSigInt(int)
 {
-	if (g_poContext != NULL)
+	if (gpoContext != NULL)
 	{
-		g_poContext->GetService()->Terminate();
+		gpoContext->GetService()->Terminate();
 	}
 }
 
@@ -82,8 +82,8 @@ int main(int nArg, char *pArgv[])
 	sprintf(szScriptPath, ";%s/Script/?.lua;%s/../Script/?.lua;", szWorkDir, szWorkDir);
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
-	g_poContext = XNEW(ServerContext);
-	bool bRes = g_poContext->LoadServerConfig();
+	gpoContext = XNEW(ServerContext);
+	bool bRes = gpoContext->LoadServerConfig();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -96,19 +96,19 @@ int main(int nArg, char *pArgv[])
 	{
 		char szLogName[128] = "";
 		sprintf(szLogName, "gateserver%d", nServiceID);
-		Logger::Instance()->SetLogFile(g_poContext->GetServerConfig().sLogPath, szLogName);
+		Logger::Instance()->SetLogFile(gpoContext->GetServerConfig().sLogPath, szLogName);
 	}
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-    g_poContext->SetRouterMgr(poRouterMgr);
+    gpoContext->SetRouterMgr(poRouterMgr);
 
     GatewayPacketHandler* poPacketHandler = XNEW(GatewayPacketHandler);
-    g_poContext->SetPacketHandler(poPacketHandler);
+    gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	Gateway* poGateway = XNEW(Gateway);
-	g_poContext->SetService(poGateway);
+	gpoContext->SetService(poGateway);
 
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);
@@ -121,7 +121,7 @@ int main(int nArg, char *pArgv[])
 	XLog(LEVEL_INFO, "GateServer start successful\n");
 	Logger::Instance()->SetSync(false);
 
-	bRes = g_poContext->GetService()->Start();
+	bRes = gpoContext->GetService()->Start();
 	assert(bRes);
 	if (!bRes)
 	{
@@ -130,10 +130,10 @@ int main(int nArg, char *pArgv[])
 	}
 
 	//wchar_t wcBuffer[256] = { L"" };
-	//wsprintfW(wcBuffer, L"gate%d.leak", g_poContext->GetService()->GetServiceID());
+	//wsprintfW(wcBuffer, L"gate%d.leak", gpoContext->GetService()->GetServiceID());
 	//VLDSetReportOptions(VLD_OPT_REPORT_TO_FILE | VLD_OPT_REPORT_TO_DEBUGGER, wcBuffer);
 
-	SAFE_DELETE(g_poContext);
+	SAFE_DELETE(gpoContext);
 	TimerMgr::Instance()->Release();
 	LuaWrapper::Instance()->Release();
 	Logger::Instance()->Terminate();

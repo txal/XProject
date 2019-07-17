@@ -1,0 +1,15 @@
+ctEquipetConf={}
+ctEquipetConf[131001]={nID=131001,nEquipLevel=1,sEquiName="一级项圈",nEquipPartType=1,nEquiSubType=1,nEquiType=1,tEquiAttr={{1,1,1,1,},},}
+ctEquipetConf[131002]={nID=131002,nEquipLevel=2,sEquiName="二级项圈",nEquipPartType=1,nEquiSubType=1,nEquiType=1,tEquiAttr={{1,1,1,1,},},}
+ctEquipetConf[131003]={nID=131003,nEquipLevel=3,sEquiName="三级项圈",nEquipPartType=1,nEquiSubType=1,nEquiType=1,tEquiAttr={{1,1,1,1,},},}
+ctEquipetConf[131004]={nID=131004,nEquipLevel=4,sEquiName="四级项圈",nEquipPartType=1,nEquiSubType=1,nEquiType=1,tEquiAttr={{1,1,1,1,},},}
+ctEquipetConf[132001]={nID=132001,nEquipLevel=1,sEquiName="一级头盔",nEquipPartType=2,nEquiSubType=0,nEquiType=1,tEquiAttr={{1,0,0,0,},},}
+ctEquipetConf[132002]={nID=132002,nEquipLevel=2,sEquiName="二级头盔",nEquipPartType=2,nEquiSubType=0,nEquiType=1,tEquiAttr={{1,0,0,0,},},}
+ctEquipetConf[132003]={nID=132003,nEquipLevel=3,sEquiName="三级头盔",nEquipPartType=2,nEquiSubType=0,nEquiType=1,tEquiAttr={{1,0,0,0,},},}
+ctEquipetConf[132004]={nID=132004,nEquipLevel=4,sEquiName="四级头盔",nEquipPartType=2,nEquiSubType=0,nEquiType=1,tEquiAttr={{1,0,0,0,},},}
+ctEquipetConf[133001]={nID=133001,nEquipLevel=1,sEquiName="一级护符",nEquipPartType=3,nEquiSubType=0,nEquiType=1,tEquiAttr={{31102,100,31103,20,},},}
+ctEquipetConf[133002]={nID=133002,nEquipLevel=2,sEquiName="二级护符",nEquipPartType=3,nEquiSubType=0,nEquiType=1,tEquiAttr={{31102,100,31103,20,},},}
+ctEquipetConf[133003]={nID=133003,nEquipLevel=3,sEquiName="三级护符",nEquipPartType=3,nEquiSubType=0,nEquiType=1,tEquiAttr={{31102,100,31103,20,},},}
+ctEquipetConf[133004]={nID=133004,nEquipLevel=4,sEquiName="四级护符",nEquipPartType=3,nEquiSubType=0,nEquiType=1,tEquiAttr={{31102,100,31103,20,},},}
+ctEquipetConf[144001]={nID=144001,nEquipLevel=0,sEquiName="0级携带宠饰品",nEquipPartType=4,nEquiSubType=0,nEquiType=1,tEquiAttr={{0,0,0,0,},},}
+ctEquipetConf[144002]={nID=144002,nEquipLevel=1,sEquiName="五级级携带饰品",nEquipPartType=4,nEquiSubType=1,nEquiType=1,tEquiAttr={{0,0,0,0,},},}

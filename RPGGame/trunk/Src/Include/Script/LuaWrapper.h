@@ -66,7 +66,7 @@ public:
 	bool CallLuaRef(int nLuaRef, int nArgs = 0, int nResults = 0);
 	bool CallLuaRef(const char* psFunc, int nArgs = 0, int nResults = 0);
 	bool CallLuaFunc(const char* psTable, const char* psFunc, int nArgs = 0, int nResults = 0);	//直接调用不产生Ref
-	template<typename RT>
+	template<typename RT,typename PT>
 	RT FastCallLuaRef(const char* psFunc, const char sReturnType = 0, const char* psParamList = NULL, ...);
 
 	///////debug///////
@@ -139,7 +139,7 @@ private:
 	}
 
 
-template<typename RT>
+template<typename RT,typename PT>
 RT LuaWrapper::FastCallLuaRef(const char* psFunc, const char cReturnType, const char* psFormat, ...)
 {
 	LUA_REF* poRef = GetLuaRef(psFunc);
@@ -160,7 +160,7 @@ RT LuaWrapper::FastCallLuaRef(const char* psFunc, const char cReturnType, const 
 			{
 				case 'b':
 				{
-							lua_pushboolean(m_pState, va_arg(vl, int32_t));
+					lua_pushboolean(m_pState, va_arg(vl, int32_t));
 				}break;
 				case 'c':
 				case 'C':
@@ -168,30 +168,34 @@ RT LuaWrapper::FastCallLuaRef(const char* psFunc, const char cReturnType, const 
 				case 'W':
 				case 'i':
 				{
-							lua_pushinteger(m_pState, va_arg(vl, int32_t));
+					lua_pushinteger(m_pState, va_arg(vl, int32_t));
 				}break;
 				case 'I':
 				{
-							lua_pushinteger(m_pState, va_arg(vl, uint32_t));
+					lua_pushinteger(m_pState, va_arg(vl, uint32_t));
 				}break;
 				case 'q':
 				{
-							lua_pushinteger(m_pState, va_arg(vl, int64_t));
+					lua_pushinteger(m_pState, va_arg(vl, int64_t));
 				}break;
 				case 'f':
 				case 'd':
 				{
-							lua_pushnumber(m_pState, va_arg(vl, double));
+					lua_pushnumber(m_pState, va_arg(vl, double));
 				}break;
 				case 's':
 				{
-							lua_pushstring(m_pState, va_arg(vl, const char*));
+					lua_pushstring(m_pState, va_arg(vl, const char*));
+				}break;
+				case 'u':
+				{
+					Lunar<PT>::push(m_pState, (PT*)va_arg(vl, void*));
 				}break;
 				default:
 				{
-						   XLog(LEVEL_ERROR, "FastCallLuaFunc format type not support:%s\n", psFormat);
-						   va_end(vl);
-						   return RT();
+				   XLog(LEVEL_ERROR, "FastCallLuaFunc format type not support:%s\n", psFormat);
+				   va_end(vl);
+				   return RT();
 				}break;
 			}
 			++nArgCount;

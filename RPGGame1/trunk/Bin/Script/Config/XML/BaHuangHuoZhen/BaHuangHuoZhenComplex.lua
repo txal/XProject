@@ -1,0 +1,2 @@
+ctBaHuangHuoZhenComplex={}
+ctBaHuangHuoZhenComplex[1]={nID=1,eFnSpecialMedicine=function(nServer) return (math.ceil(nServer/10)) end,eFnCooking=function(nServerLv) return (math.ceil(nServerLv/10)) end,eFnStall=function(nPrice) return (math.ceil(math.max(nPrice/2000)*1.5,10)) end,nPracticeLevelDifferent=5,nSuperfluityExp=30,eFnRoleRewardExp=function(nLevel) return (nLevel*40+100) end,tCompleteTaskReward={{10009,1,},},nHelpTiems=3,nCanHelpTimes=2,nUnionTimes=3,sNpcTalk="老夫明天需要以下几个东西，少侠可提前准备好",}

@@ -93,14 +93,8 @@
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
       <Filter>Src\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Server\LogicServer\PacketProc\LogicPacketProc.cpp">
       <Filter>Src\PacketProc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp">
-      <Filter>Src\Common\LuaCommon</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp">
       <Filter>Src\Base</Filter>
@@ -110,9 +104,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\Base\Service.cpp">
       <Filter>Src\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp">
-      <Filter>Src\Common\LuaCommon</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\LogicServer\SceneMgr\AOI.cpp">
       <Filter>Src\SceneMgr</Filter>
@@ -131,15 +122,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Object.cpp">
       <Filter>Src\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketReader.cpp">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\PacketParser\PacketWriter.cpp">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\CSVDocument\CSVDocument.cpp">
-      <Filter>Src\Common\CSVDocument</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.cpp">
       <Filter>Src\ConfMgr</Filter>
@@ -186,17 +168,8 @@
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Detector\DetectorMgr.cpp">
       <Filter>Src\Object\Detector</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp">
-      <Filter>Src\Common\TimerMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp">
-      <Filter>Src\Common\TimerMgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp">
       <Filter>Src\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\WordFilter\WordFilter.cpp">
-      <Filter>Src\Common\WordFilter</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Server\LogicServer\Object\Role\Role.cpp">
       <Filter>Src\Object\Role</Filter>
@@ -213,8 +186,41 @@
     <ClCompile Include="..\..\Src\Server\LogicServer\BattleLog.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaSerialize.cpp">
+    <ClCompile Include="..\..\..\..\Common\CSVDocument\CSVDocument.cpp">
+      <Filter>Src\Common\CSVDocument</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\DataStruct\XString.cpp">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.cpp">
       <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaCmd.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaRpc.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaSerialize.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketReader.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketWriter.cpp">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\Timer.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\WordFilter\WordFilter.cpp">
+      <Filter>Src\Common\WordFilter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,17 +245,8 @@
     <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h">
       <Filter>Src\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\PacketProc\LogicPacketProc.h">
       <Filter>Src\PacketProc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h">
-      <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\SceneMgr\AOI.h">
       <Filter>Src\SceneMgr</Filter>
@@ -275,21 +272,6 @@
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Object.h">
       <Filter>Src\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketReader.h">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\PacketParser\PacketWriter.h">
-      <Filter>Src\Common\PacketParser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\CSVDocument\CSVDocument.h">
-      <Filter>Src\Common\CSVDocument</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\HexStr.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\ConfMgr.h">
       <Filter>Src\ConfMgr</Filter>
     </ClInclude>
@@ -308,9 +290,6 @@
     <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\MapConf.h">
       <Filter>Src\ConfMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Ranking.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\ConfMgr\AIConf.h">
       <Filter>Src\ConfMgr</Filter>
     </ClInclude>
@@ -319,9 +298,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Robot\RobotMgr.h">
       <Filter>Src\Object\Robot</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Memory.h">
-      <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\Component\Battle\BattleDef.h">
       <Filter>Src\Component\Battle</Filter>
@@ -353,26 +329,8 @@
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Detector\DetectorMgr.h">
       <Filter>Src\Object\Detector</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\ObjID.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h">
-      <Filter>Src\Common\TimerMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h">
-      <Filter>Src\Common\TimerMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Md5.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h">
       <Filter>Src\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\WordFilter\WordFilter.h">
-      <Filter>Src\Common\WordFilter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Array.h">
-      <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Role\Role.h">
       <Filter>Src\Object\Role</Filter>
@@ -380,20 +338,8 @@
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Role\RoleMgr.h">
       <Filter>Src\Object\Role</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\MinHeap.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\LogicServer\Object\Follow.h">
       <Filter>Src\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\Point.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\XMath.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\XTime.h">
-      <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h">
       <Filter>Src\Base</Filter>
@@ -401,26 +347,140 @@
     <ClInclude Include="..\..\Src\Server\LogicServer\BattleLog.h">
       <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaSerialize.h">
+    <ClInclude Include="..\..\..\..\Common\CSVDocument\CSVDocument.h">
+      <Filter>Src\Common\CSVDocument</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\CSVDocument\CSVSerializer.hpp">
+      <Filter>Src\Common\CSVDocument</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\CSVDocument\Variant.hpp">
+      <Filter>Src\Common\CSVDocument</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Array.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Atomic.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\CircleQueue.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Encoding.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\HashFunc.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\HexStr.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\HList.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\List.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Memory.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MemPool.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MinHeap.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MsgQueue.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\MutexLock.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\ObjID.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Point.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\PureList.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Ranking.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Regexp.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\RWLock.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Slashes.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\stl_alloc.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\Sync.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\SyncMap.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\TimeMonitor.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XMath.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XString.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XThread.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XTime.h">
+      <Filter>Src\Common\DataStruct</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.h">
       <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\MutexLock.h">
-      <Filter>Src\Common\DataStruct</Filter>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaCmd.h">
+      <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\PureList.h">
-      <Filter>Src\Common\DataStruct</Filter>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaPB.h">
+      <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\CDebug.h">
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaRpc.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaSerialize.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketReader.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketWriter.h">
+      <Filter>Src\Common\PacketParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\Timer.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\TimerMgr.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\WordFilter\WordFilter.h">
+      <Filter>Src\Common\WordFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\CDebug.h">
       <Filter>Src\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\Platform.h">
+    <ClInclude Include="..\..\..\..\Common\Platform.h">
       <Filter>Src\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\PlatformHeader.h">
+    <ClInclude Include="..\..\..\..\Common\PlatformHeader.h">
       <Filter>Src\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\DataStruct\MemPool.h">
-      <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

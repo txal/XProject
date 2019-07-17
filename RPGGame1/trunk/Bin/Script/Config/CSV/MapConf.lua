@@ -1,0 +1,11 @@
+ctMapConf={}
+ctMapConf[1001]={nID=1001,sFile="1001.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[2001]={nID=2001,sFile="2001.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[2002]={nID=2002,sFile="2002.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[2003]={nID=2003,sFile="2003.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[2004]={nID=2004,sFile="2004.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[2005]={nID=2005,sFile="2005.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[3002]={nID=3002,sFile="3002.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[3005]={nID=3005,sFile="3005.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[4001]={nID=4001,sFile="4001.csv",nWidth=1620,nHeight=1920,}
+ctMapConf[4002]={nID=4002,sFile="4002.csv",nWidth=1620,nHeight=1920,}

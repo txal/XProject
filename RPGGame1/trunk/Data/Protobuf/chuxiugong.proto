@@ -1,0 +1,38 @@
+package chuxiugong;
+
+//三生殿信息请求
+message CXGInfoReq
+{
+	
+}
+
+//三生殿信息返回
+message CXGInfoRet
+{
+	required int32 nTiLiCD = 1; 		//体力为0时恢复时间
+	required int32 nFreeCD = 2; 		//免费元宝选秀剩余时间
+	required int32 nRareRemain = 3; 	//再进行N次元宝选秀必得妃嫔
+	required int32 nRemainTimes = 4; 	//剩余次数(版署)
+}
+
+//三生殿选秀请求
+message CXGDrawReq
+{
+	required int32 nDrawType = 1; 	//选秀类型(1普通,2元宝单抽,3元宝十连)
+	optional bool bUseProp = 2; 	//1普通选秀是否要使用体力道具
+}
+
+//三生殿选秀返回
+message CXGDrawRet
+{
+	message _Item
+	{
+		required int32 nType = 1; 		//类型(1道具)
+		required int32 nID = 2; 		//物品ID
+		required int32 nNum = 3; 		//物品数量(等于1000为整个知己)
+		optional bool bExchange = 4; 	//知己已经换成亲密度:true
+	}
+	repeated _Item tAwardList = 1; 	 	//奖励表
+	required int32 nDrawType = 2; 		//选秀类型
+	optional int32 nRareRemain = 3;  	//还剩多少次抽珍稀库
+}

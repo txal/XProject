@@ -1,0 +1,100 @@
+package battledup;
+
+//进入战斗副本请求
+message EnterBatteleDupReq
+{
+	required int32 nType = 1; 	//角色ID
+}
+
+//离开战斗副本请求
+message LeaveBattleDupReq
+{
+}
+
+//请求创建怪物
+message CreateMonsterReq
+{
+}
+
+
+message _MONSTER
+{
+	required double nDupMixID = 1; 	//怪物所在的副本对象ID
+	required int32 nDupID = 2; 		//怪物所在的副本配置ID
+	required int32 nMonObjID = 3; 	//怪物对象ID
+	required int32 nMonsterPosX = 4;//怪物坐标X
+	required int32 nMonsterPosY = 5;//怪物坐标Y
+	optional int32 nMonsterConfID = 6;	//怪物配置ID
+}	
+message _DUP
+{
+	required double nDupMixID = 1; 	//副本对象ID
+	required int32 nDupID= 2; 		//副本配置ID
+}
+
+//副本信息返回
+message BattleDupInfoRet
+{
+	required _MONSTER tMonster = 1;
+	repeated _DUP tDupList = 2;
+	optional int32 nCompTimes = 3;
+}
+
+//攻击怪物请求
+message AttackMonsterReq
+{
+	required int32 nMonObjID = 1;
+}
+
+//////////////////////////镇妖副本///////////////////////
+
+//镇妖创建怪物请求
+message ZhenYaoCreateMonsterReq
+{
+}
+ 
+//副本特殊界面操作
+message DupBuffOperaReq
+{
+	required int32 nOperaType = 1;		//请求全部信息：1; 冻结双倍点：2; 领取双倍点：3; 是否自动匹配：4;
+}
+
+//副本经验加成应答协议
+message DupBuffOperaRet
+{
+	required int32 nUseShuangbei = 1;	//已领取双倍点数(被消耗)
+	required int32 nUnuseShuangbei = 2;	//储存双倍点数
+	required bool bMemberEnougt = 3;	//是否队伍满人
+	required bool bIsLeader = 4;		//是否是队长
+	required bool bHadRelation = 5;		//是否有夫妻/结义/情缘/师徒中的某种关系
+	required bool bAutoMatch = 6;		//是否自动匹配
+	required int32 nMemberNum = 7;		//队伍成员数量
+	required int32 nTeamAdd = 8;		//队伍加成
+	required int32 nLeaderAdd = 9;		//队长加成
+	required int32 nRelaBuffNum = 10;	//关系加成百分比
+	required int32 nTotalBuffNum = 11;	//总加成百分比
+	required bool bHadTeam = 12;		//是否有队伍
+}
+
+//镇妖匹配请求
+message ZhenYaoMatchTeamReq
+{
+	
+}
+////////////////////////神兽乐园////////////////////////
+message ShenShouLeYuanChalReq
+{
+	required int32 nChalType = 1;	//挑战一个：1， 挑战十个：2， 挑战白银：3；挑战黄金：4；挑战钻石：5；
+}
+
+///////////////////////副本中转场景/////////////////////
+message EnterFBTransitSceneReq
+{
+}
+
+//////////////////////心魔侵蚀/////////////////////////
+message XinMoQinShiMonListRet
+{
+	repeated _MONSTER tMonsterList = 1;		//怪物信息列表
+}
+

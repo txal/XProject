@@ -1,0 +1,64 @@
+package findaward;
+
+//找回奖励界面请求
+message FindAwardInfoReq
+{
+	required int32 nTarType = 1; 	//找回奖励方式(1.免费领取 2.金币领取 3.元宝领取)
+}
+
+//找回奖励界面返回
+message FindAwardInfoRet
+{
+	message _Find
+	{
+		message _List
+		{
+			message _Award
+			{
+				required int32 nItemID = 1; 		//奖励物品ID
+				required int32 nItemNum = 2;		//奖励物品数量
+			}
+			required int32 nType = 1; 			//任务ID
+			required int32 nTimes = 2; 			//可领次数
+			required int32 nState = 3; 			//领奖状态(0.不可领 1.可领)
+			required int32 nPlayerExp = 4; 		//奖励玩家经验
+			required int32 nPetExp = 5; 			//奖励宠物经验
+			required int32 nPrice = 6; 			//领奖价格
+			repeated _Award tAward = 7; 		//奖励物品表
+		}	
+		repeated _List tList = 1; 		
+		required int32 nTarType = 2; 	//找回奖励方式(1.免费领取 2.金币领取 3.元宝领取)
+	}
+	repeated _Find tFindAward = 1; 	
+	required int32 nFindTimes = 2;	//找回的总次数
+}
+
+
+//找回奖励奖励请求
+message FindAwardGetAwardReq   
+{
+	required int32 nTarType = 1; //找回奖励方式(1.免费领取 2.金币领取 3.元宝领取)
+	required int32 nType = 2; 	//任务ID
+	required bool bUseZY = 3; 	//是否使用双倍(暂未定)
+	required bool bYB = 4; 		//是否使用非绑定元宝补足
+}
+
+//一键找回奖励
+message OneKeyFindAwardReq
+{
+	required bool bUseZY = 1; 	//是否使用双倍(暂未定)
+	required int32 nTarType = 2;	//找回奖励方式(1.免费领取 2.金币领取 3.元宝领取)
+}
+
+//找回奖励奖励返回
+message FindAwardGetAwardRet
+{                   
+	message _List
+	{
+		required int32 nItemID = 1; 		//奖励物品ID
+		required int32 nItemNum = 2;		//奖励物品数量
+	}
+	required int32 nPlayerExp = 1; 		//奖励玩家经验
+	required int32 nPetExp = 2; 			//奖励宠物经验
+	repeated _List tList = 3; 			//物品奖励列表
+}

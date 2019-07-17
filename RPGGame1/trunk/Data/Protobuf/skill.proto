@@ -1,0 +1,41 @@
+//门派技能
+package skill;
+
+//列表请求
+message SkillListReq 
+{
+}
+
+//列表返回
+message SkillListRet
+{
+	message _SKILL
+	{
+		required int32 nID = 1;			 	//技能ID
+		required int32 nLevel = 2; 			//等级
+		required int32 nMaxLevel = 3;		//等级上限
+		required int32 nCost = 4; 			//消耗
+		required int32 nOwn = 5; 			//拥有
+		required bool bOpen = 6; 			//是否开放
+		required bool bCanUpgrade = 7; 		//是否可以升级
+	}
+	repeated _SKILL tList = 1;
+	required int32 nServerLevel = 2;		//服务器等级
+}
+
+//升级请求
+message SkillUpgradeReq
+{
+	required int32 nID = 1; 	//技能ID
+}
+
+//1键升级请求
+message SkillOnekeyUpgradeReq
+{
+}
+
+//制造附魔符
+message SkillManufactureItemReq
+{
+	required int32 nSkillID = 1;	//技能ID
+}

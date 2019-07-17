@@ -1,0 +1,37 @@
+//名人堂
+package hallfame;
+
+
+//列表返回
+message HallFameInfoRet 
+{
+	message _TITLE
+	{
+		required int32 nTitleID = 1;	//称号ID: 301, 302, 303, 304, 305 配置表
+		required int32 nRoleID = 2; 	//角色ID
+		required string sHeader = 3; 	//头像
+		required bool bCongrat = 4; 	//是否可以祝贺
+		required string sTips = 5; 		//祝贺语
+	}	
+	repeated _TITLE tList = 1;
+}
+
+//祝贺请求
+message HallFameCongratReq
+{
+	required int32 nTitleID = 1;	
+}
+
+//设置祝贺语请求
+message HallFameSetCongratTipsReq
+{
+	required int32 nTitleID = 1;
+	required string sTips = 2;  	//祝贺语
+}
+
+//设置祝贺语成功返回
+message HallFameSetCongratTipsRet
+{
+	required int32 nTitleID = 1;
+	required string sTips = 2;  	//祝贺语
+}

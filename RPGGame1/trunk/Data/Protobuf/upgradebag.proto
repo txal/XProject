@@ -1,0 +1,35 @@
+package upgradebag;
+
+//成长礼包界面请求
+message UpgradeBagInfoReq
+{
+}
+
+//成长礼包界面返回
+message UpgradeBagInfoRet
+{
+	message _List
+	{
+		required int32 nID = 1;		//成长礼包ID	
+		required int32 nState = 2;	//状态(0.未满条件 1.可领 2.已领)
+	}
+	repeated _List tList = 1; 			//成长礼包列表
+ }
+
+
+//成长礼包奖励请求
+message GetUpgradeBagAwardReq   
+{
+	required int32 nID = 1; 		//成长礼包ID
+}
+
+//成长礼包奖励返回
+message GetUpgradeBagAwardRet
+{                   
+	message _Award    //奖励结构
+	{
+		required int32 nID = 1;      //奖励ID
+		required int32 nNum = 2;     //奖励数量
+	}
+	repeated _Award tAward = 1;   //奖励数组 
+}

@@ -1,0 +1,442 @@
+//玩家社会关系协议
+import "scene.proto";
+package relationship;
+
+
+//有缘简要数据请求
+message BriefRelationshipDataReq
+{
+}
+
+//有缘简要数据响应
+message BriefRelationshipDataRet
+{
+    message _MarriageBriefData 
+    {
+        optional string sSpouseName = 1;      //配偶名称
+    }
+
+    message _MentorshipBriefData
+    {
+        optional string sMasterName = 1;      //师父名称
+        required int32 nApprenticeNum = 2;    //徒弟数量
+    }
+
+    message _BrotherBriefData
+    {
+        repeated string tBrotherName = 1;     //结拜名称列表
+    }
+
+    message _LoverBriefData
+    {
+        repeated string tLoverName = 1;       //情缘名称列表
+    }
+
+    required _MarriageBriefData tMarriage = 1;           //婚姻
+    required _MentorshipBriefData tMentorship = 2;       //师徒
+    required _BrotherBriefData tBrother = 3;             //结拜
+    required _LoverBriefData tLover = 4;                 //情缘
+}
+
+
+///////////////////////////////////////////////////////
+//玩家结拜数据请求
+message BrotherInfoReq
+{
+}
+
+//结拜的对象数据
+message BrotherData
+{
+    required int32 nRoleID = 1;          //玩家ID
+    required string sName = 2;           //名字
+    required string sHeader = 3;         //头像
+    required int32 nGender = 4;          //性别
+    required int32 nSchool = 5;          //门派
+    required int32 nLevel = 6;           //等级
+    required int32 nTimeStamp = 7;       //结拜时间戳
+}
+
+//玩家结拜数据响应
+message BrotherInfoRet
+{
+    repeated BrotherData tBrotherList = 1;   //结拜列表
+    optional int32 nLimitTimeCountdown = 2;  //结拜限制倒计时
+}
+
+//结拜条件检查请求
+message BrotherSwearCheckReq
+{
+    required int32 nTarRoleID = 1;             // 目标对象ID
+}
+
+//结拜条件检查响应
+message BrotherSwearCheckRet
+{
+    required bool bOnline = 1;              //两人组队，且两人处于非暂离或离线状态
+    required bool bLevel = 2;             //等级>=40级
+    required bool bBrother = 3;           //双方之间没有结成结拜关系，且24小时内没有解除过结拜关系
+    required bool bFriend = 4;            //双方互为好友，且亲密度>=700
+    required bool bBrotherMax = 5;        //双方结义对象数量没有达到3人
+    required bool bGender = 6;            //双方是同性别玩家
+    optional int32 nTarRoleID = 7;        // 目标对象ID
+}
+
+//结拜请求
+message BrotherSwearReq
+{
+    required int32 nTarRoleID = 1;             // 目标对象ID
+}
+
+//解除结拜请求
+message BrotherDeleteReq
+{
+    required int32 nTarID = 1;        //对方玩家ID
+}
+
+
+///////////////////////////////////////////////////////////////
+//玩家情缘数据请求
+message LoverInfoReq
+{
+}
+
+//情缘对象数据
+message LoverData
+{
+    required int32 nRoleID = 1;          //玩家ID
+    required string sName = 2;           //名字
+    required string sHeader = 3;         //头像
+    required int32 nGender = 4;          //性别
+    required int32 nSchool = 5;          //门派
+    required int32 nLevel = 6;           //等级
+    required int32 nTimeStamp = 7;       //情缘时间戳
+}
+
+//玩家情缘数据响应
+message LoverInfoRet
+{
+    repeated BrotherData tLoverList = 1;     //情缘列表
+    optional int32 nLimitTimeCountdown = 2;  //情缘限制倒计时
+}
+
+//情缘条件检查请求
+message LoverTogetherCheckReq
+{
+    required int32 nTarRoleID = 1;             // 目标对象ID
+}
+
+//情缘条件检查响应
+message LoverTogetherCheckRet
+{
+    required bool bOnline = 1;            //两人组队，且两人处于非暂离或离线状态
+    required bool bLevel = 2;             //等级>=40级
+    required bool bLover = 3;             //双方之间没有结成情缘关系，且24小时内没有解除过情缘关系
+    required bool bFriend = 4;            //双方互为好友，且亲密度>=700
+    required bool bLoverMax = 5;          //双方情缘对象数量没有达到3人
+    required bool bGender = 6;            //双方是不性别玩家
+    optional int32 nTarRoleID = 7;        //目标对象ID
+}
+
+//情缘请求
+message LoverTogetherReq
+{
+    required int32 nTarRoleID = 1;             // 目标对象ID
+}
+
+//解除情缘请求
+message LoverDeleteReq
+{
+    required int32 nTarID = 1;        //对方玩家ID 
+}
+
+////////////////////////////////////////////////////////////////
+//师徒关系检查请求
+message MentorshipCheckReq
+{
+    required bool bTarMaster = 1;              // 是否拜师(即是否自己作为徒弟)
+    required int32 nTarRoleID = 2;             // 目标对象ID
+}
+
+//师徒关系检查响应
+message MentorshipCheckRet
+{
+    required bool bOnline = 1;             //且两人处于非离线状态
+    required bool bLevel = 2;              //徒弟等级>=25级，师父等级>=徒弟等级
+    required bool bMasterAndUpgraded = 3;  //徒弟当前没有师父，且没有出师
+    required bool bApprenticeLimit = 4;    //师父徒弟数量未满
+    required bool bMentorship = 5;         //双方之间不存在师徒关系，且24小时内没有解除过师徒关系
+    required bool bFriend = 6;             //双方互为好友，且亲密度>=50
+    optional int32 nTarRoleID = 7;         //目标对象ID
+    optional bool bTarMaster = 8;          // 是否拜师(即是否自己作为徒弟)
+}
+
+//拜师请求
+message MentorshipDealMasterReq
+{
+    required int32 nTarRoleID = 1;
+}
+
+//收徒请求
+message MentorshipDealApprentReq
+{
+    required int32 nTarRoleID = 1;
+}
+
+//开除徒弟请求
+message DeleteApprenticeReq
+{
+    required int32 nRoleID = 1; //对应玩家ID
+}
+
+//叛离师父请求
+message DeleteMasterReq
+{
+}
+
+//徒弟晋级(出师)检查请求
+message MentorshipUpgradeCheckReq
+{
+}
+
+//徒弟晋级(出师)检查响应
+message MentorshipUpgradeCheckRet
+{
+    required bool bLevel = 1;           //徒弟方达到50级
+    required bool bTime = 2;            //拜师时间达到7天
+    required bool bFriendDegree = 3;    //师徒双方亲密度>=300
+}
+
+//徒弟晋级(出师)请求
+message MentorshipUpgradeReq 
+{
+}
+
+//师徒信息
+message MentorshipData
+{
+    required int32 nRoleID = 1;          //玩家ID
+    required string sName = 2;           //名字
+    required string sHeader = 3;         //头像
+    required int32 nGender = 4;          //性别
+    required int32 nSchool = 5;          //门派
+    required int32 nLevel = 6;           //等级
+    required int32 nTimeStamp = 7;       //师徒时间戳
+    required int32 nStatus = 8;          //师徒身份(是自己的师父还是徒弟),1师父,2徒弟
+    required bool bUpgraded = 9;         //是否已出师
+}
+
+//玩家师徒数据请求
+message MentorshipInfoReq
+{ 
+}
+
+//玩家师徒数据响应
+message MentorshipInfoRet
+{
+    repeated MentorshipData tApprenticeList = 1;  //徒弟信息
+    optional MentorshipData tMaster = 2;          //师父信息
+    repeated MentorshipData tSchoolList = 3;      //同门信息
+    required bool bUpgraded = 4;                  //自己是否已出师
+}
+
+//任务信息
+message TaskData
+{
+    required int32 nTaskID = 1;         //任务ID
+    required int32 nTaskState = 2;      //任务状态   未发布，已发布未领取，已领取未完成，已完成未领取奖励，已领取奖励
+}
+
+//师徒任务数据
+message MentorshipTaskData
+{
+    required int32 nRoleID = 1;          //玩家ID
+    required string sName = 2;           //名字
+    required string sHeader = 3;         //头像
+    required int32 nGender = 4;          //性别
+    required int32 nSchool = 5;          //门派
+    required string sModel  = 6;         //角色模型
+    required int32 nLevel = 7;           //等级
+    required int32 nTimeStamp = 8;       //师徒时间戳
+    required int32 nStatus = 9;          //师徒身份(是自己的师父还是徒弟),1师父,2徒弟
+    required bool bUpgraded = 10;         //是否已出师
+    optional int32 nActiveNum = 11;         //徒弟活跃度
+    repeated int32 tActiveRewardRecord = 12; //活跃度奖励领取记录 如果配置ID存在，说明已领取
+    optional bool bTaskPublished = 13;   //是否已发布了任务
+    optional int32 nTaskFlushCount = 14; //任务可刷新次数
+    repeated TaskData tTaskList = 15;    //任务列表
+    optional scene.RoleShapeData tShapeData = 16;  //外观信息
+    optional bool bPublishTaskRemind = 17;      //是否已提醒发布师徒任务
+}
+
+
+// //师父任务信息
+// message MasterTaskData
+// {
+//     required int32 nRoleID = 1;          //玩家ID
+//     required string sName = 2;           //名字
+//     required string sHeader = 3;         //头像
+//     required int32 nGender = 4;          //性别
+//     required int32 nSchool = 5;          //门派
+//     required int32 nLevel = 6;           //等级
+//     required int32 nTimeStamp = 7;       //师徒时间戳
+//     required bool bUpgrade = 8;          //是否已出师
+//     required int32 nActiveNum = 10;      //活跃度
+//     repeated int32 tActiveRewardRecord = 11; //活跃度奖励领取状态 0不可领取，1可领取，2已领取
+//     repeated TaskData tTaskList = 12;    //师父发布的任务列表
+// }
+
+// //未出师徒弟任务信息
+// message ApprenticeTaskData
+// {
+//     required int32 nRoleID = 1;          //玩家ID
+//     required string sName = 2;           //名字
+//     required string sHeader = 3;         //头像
+//     required int32 nGender = 4;          //性别
+//     required int32 nSchool = 5;          //门派
+//     required int32 nLevel = 6;           //等级
+//     required int32 nTimeStamp = 7;       //师徒时间戳
+//     required int32 nActiveNum = 8;      //活跃度
+//     repeated int32 tActiveRewardRecord = 9; //活跃度奖励领取状态 0不可领取，1可领取，2已领取
+//     optional bool bTaskPublished = 10;   //是否已发布了任务
+//     optional int32 nTaskFlushCount = 11; //任务可刷新次数
+//     repeated TaskData tTaskList = 12;    //任务列表
+// }
+
+
+//获取师徒任务信息列表请求
+message MentorshipTaskDataListReq
+{
+}
+
+//获取师徒任务信息列表响应  
+//登录会发送一次，同步任务列表用，每次打开UI，建议主动请求一次
+message MentorshipTaskDataListRet
+{
+    optional MentorshipTaskData tMaster = 1;
+    repeated MentorshipTaskData tApprenticeList = 3;
+}
+
+//师徒任务数据刷新通知
+message MentorshipTaskDataUpdateRet
+{
+    required MentorshipTaskData tData = 1;
+}
+
+//刷新师徒任务请求
+message MentorshipFlushTaskReq
+{
+    required int32 nRoleID = 1;      //徒弟ID
+}
+
+//发布师徒任务请求
+message MentorshipTaskPublishReq
+{
+    required int32 nRoleID = 1;       //徒弟ID
+}
+
+//接取师徒任务请求
+message MentorshipTaskAcceptReq
+{
+    required int32 nTaskID = 1;            //任务ID
+}
+
+//接取师徒任务响应
+message MentorshipTaskAcceptRet
+{
+    required int32 nTaskID = 1;            //任务ID
+}
+
+//师徒任务战斗请求
+message MentorshipTaskBattleReq
+{
+}
+
+//徒弟领取任务奖励请求
+message MentorshipTaskRewardReq
+{
+    required int32 nTaskID = 1;            //任务ID
+}
+
+//师父领取徒弟任务奖励请求
+message MentorshiTaskMasterRewardReq
+{
+    required int32 nRoleID = 1;           //徒弟ID
+    required int32 nTaskID = 2;           //任务ID
+}
+
+//徒弟领取活跃度奖励请求
+message MentorshipActiveRewardReq
+{
+    required int32 nConfID = 1;     //奖励配置ID
+}
+
+//师父领取徒弟活跃度奖励请求
+message MentorshipMasterActiveRewardReq
+{
+    required int32 nRoleID = 1;     //徒弟ID
+    required int32 nConfID = 2;     //奖励配置ID
+}
+
+//给师父请安请求
+message MentorshipGreetMasterReq
+{
+    required bool bOffline = 1;     //是否是发送离线请安消息
+}
+
+//给师父请安回传
+message MentorshipGreetMasterRet
+{
+    optional bool bOffline = 1;     //师父是否离线
+}
+
+//指点徒弟请求
+message MentorshipTeachApprenticeReq
+{
+    required int32 nTarID = 1;      //徒弟ID
+}
+
+//提醒布置师徒任务请求
+message MentorshipPublishTaskRemindReq
+{
+}
+
+//玩家关系招募喊话请求
+message RoleRelationshipInviteTalkReq
+{
+    required int32 nType = 1;       //类型，1结婚，2结拜，3情缘，4拜师，5收徒
+}
+
+
+//缘分情义信息请求
+message RoleRelationshipQingyiInfoReq
+{
+}
+
+//缘分情义信息响应
+message RoleRelationshipQingyiInfoRet
+{
+	message _Attr
+	{
+		required int32 nAttrID = 1;
+		required int32 nAttrVal = 2;
+	}
+
+	required int32 nTotalLevel = 1;       //当前等级
+	required int32 nExp = 2;         //当前等级经验
+	repeated _Attr tAttrList = 3;    //属性
+	optional int32 nScore = 4;       //评分
+}
+
+//缘分情义升级请求
+message RoleRelationshipQingyiLevelUpReq
+{
+}
+
+//缘分情义升级响应
+message RoleRelationshipQingyiLevelUpRet
+{
+	optional int32 nOldLevel = 1;
+	optional int32 nCurLevel = 2;
+}
+

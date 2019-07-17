@@ -31,27 +31,5 @@ void Monster::Init(int nID, int nConfID, const char* psName)
 	strcpy(m_sName, psName);
 }
 
-void Monster::Update(int64_t nNowMS)
-{
-	Actor::Update(nNowMS);
-}
-
-void Monster::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos)
-{
-	Actor::OnEnterScene(poScene, nAOIID, oPos);
-}
-
-void Monster::AfterEnterScene()
-{
-	Actor::AfterEnterScene();
-	//Scene* poScene = Actor::GetScene();
-	//m_oAStar.InitMapData(poScene->GetMapConf()->nMapID);
-}
-
-void Monster::OnLeaveScene()
-{
-	Actor::OnLeaveScene();
-}
-
 
 ///////////////////lua export///////////////////

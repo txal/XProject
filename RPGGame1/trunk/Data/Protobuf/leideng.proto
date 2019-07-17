@@ -1,0 +1,33 @@
+package leideng;
+
+//累登界面请求
+message LDInfoReq
+{
+}
+
+//累登界面返回
+message LDInfoRet
+{
+	message _LD
+	{
+		required int32 nID = 1; 	 	//奖励ID
+		required int32 nState = 2; 		//状态(0.未达到领取条件 1.可领取 2.已领取)
+		required int32 nRemainDays = 3; //剩余天数
+	}
+	required int32 nLoginCount = 1; 	//登录天数
+	repeated _LD tList = 2; 		 	//累登状态
+	required bool bFinish = 3; 	 		//是否全部完成(true.完成)
+}
+
+
+//领取奖励请求
+message LDAwardReq
+{
+	required int32 nID = 1; 	 	 	//奖励ID
+}
+
+//领取奖励返回
+message LDAwardRet
+{
+	required int32 nID = 1; 		 	//奖励ID
+}

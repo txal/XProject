@@ -95,7 +95,7 @@ bool AOI::Init(Scene* pScene, int nMapWidth, int nMapHeight, int nLineObjNum)
 	return true;
 }
 
-int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int8_t nLine)
+int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* poGameObj, int8_t nAOIType, int16_t nLine)
 {
 	assert(nLine >= -1 && nLine < MAX_LINE);
 
@@ -124,7 +124,7 @@ int AOI::AddObj(int nPosX, int nPosY, int8_t nAOIMode, int nAOIArea[], Object* p
 	pObj->nArea[1] = (int16_t)nAOIArea[1];
 	pObj->poGameObj = poGameObj;
 
-	int8_t nTarLine = AddLineObj(nLine);
+	int16_t nTarLine = AddLineObj(nLine);
 	assert(nTarLine >= 0 && nTarLine < MAX_LINE);
 	pObj->nLine = nTarLine;
 
@@ -756,7 +756,7 @@ inline void AOI::CalcRectTowerArea(int nPosX, int nPosY, int nWidth, int nHeight
 	nRBTower[1] = nRBTowerY;
 }
 
-inline int8_t AOI::AddLineObj(int8_t nLine)
+inline int16_t AOI::AddLineObj(int16_t nLine)
 {
 	assert(nLine >= -1 && nLine < MAX_LINE);
 
@@ -803,7 +803,7 @@ inline int8_t AOI::AddLineObj(int8_t nLine)
 	return -1;
 }
 
-inline int16_t AOI::SubLineObj(int8_t nLine)
+inline int16_t AOI::SubLineObj(int16_t nLine)
 {
 	assert(nLine >= 0 && nLine < MAX_LINE);
 	m_tLineObj[nLine]--;
@@ -811,7 +811,7 @@ inline int16_t AOI::SubLineObj(int8_t nLine)
 	return m_tLineObj[nLine];
 }
 
-void AOI::ChangeLine(int nID, int8_t nNewLine)
+void AOI::ChangeLine(int nID, int16_t nNewLine)
 {
 	assert(nNewLine >= 0 && nNewLine < MAX_LINE);
 	AOIOBJ* pObj = GetObj(nID);

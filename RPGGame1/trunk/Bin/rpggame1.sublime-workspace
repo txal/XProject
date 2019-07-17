@@ -1,0 +1,2188 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tTi",
+				"tItemType"
+			],
+			[
+				"tRoe",
+				"tRoleParam"
+			],
+			[
+				"tAw",
+				"tAward"
+			],
+			[
+				"nAre",
+				"nArenaCoin"
+			],
+			[
+				"eAre",
+				"eArenaCoin"
+			],
+			[
+				"bNo",
+				"bNotTips"
+			],
+			[
+				"tPe",
+				"tPetObj"
+			],
+			[
+				"nIte",
+				"nItemType"
+			],
+			[
+				"tItm",
+				"tItem"
+			],
+			[
+				"Addi",
+				"AddItemList"
+			],
+			[
+				"_",
+				"_hashtableUniqueId"
+			],
+			[
+				"ui",
+				"uuid"
+			],
+			[
+				"ob",
+				"obj"
+			],
+			[
+				"tIt",
+				"tItem"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"type",
+				"typeQueue"
+			],
+			[
+				"sq",
+				"sqs"
+			],
+			[
+				"obj",
+				"object"
+			],
+			[
+				"tCur",
+				"tCurrDup"
+			],
+			[
+				"getDupo",
+				"GetCurrDupObj"
+			],
+			[
+				"Fighv",
+				"FightViewModel	alias"
+			],
+			[
+				"_b",
+				"_bCanJump	property"
+			],
+			[
+				"GetBa",
+				"GetBattleState"
+			],
+			[
+				"GetBat",
+				"GetBattleState"
+			],
+			[
+				"onRe",
+				"OnReadyTimer"
+			],
+			[
+				"onRou",
+				"OnRoundTimer"
+			],
+			[
+				"GetRou",
+				"GetRound"
+			],
+			[
+				"m_nRO",
+				"m_nRoleUnits"
+			],
+			[
+				"IsRo",
+				"IsRole"
+			],
+			[
+				"eP",
+				"ePVE"
+			],
+			[
+				"GetT",
+				"GetType"
+			],
+			[
+				"con",
+				"console	var"
+			],
+			[
+				"mod",
+				"modifyD	let"
+			],
+			[
+				"to",
+				"toggleTag	property"
+			],
+			[
+				"us",
+				"useItemNum	property"
+			],
+			[
+				"av",
+				"activeConf"
+			],
+			[
+				"ac",
+				"activeConf"
+			],
+			[
+				"tSki",
+				"tSkillAct"
+			],
+			[
+				"tAc",
+				"tAchieveData"
+			],
+			[
+				"GetAc",
+				"GetAchiveTypeConf"
+			],
+			[
+				"Ty",
+				"tType"
+			],
+			[
+				"GetA",
+				"GetAchiveType"
+			],
+			[
+				"nVa",
+				"nValidColumn"
+			],
+			[
+				"tF",
+				"tField"
+			],
+			[
+				"tFi",
+				"tFieldSpec"
+			],
+			[
+				"sR",
+				"sRawRootTable"
+			],
+			[
+				"IsP",
+				"IsPVP"
+			],
+			[
+				"m_trec",
+				"m_tRechargeIDMap"
+			],
+			[
+				"nEx",
+				"nExtTime"
+			],
+			[
+				"NEx",
+				"nExtTime"
+			],
+			[
+				"CBa",
+				"CBattleMgr"
+			],
+			[
+				"GetGlobalS",
+				"GetGlobalServiceList"
+			],
+			[
+				"m_t",
+				"m_tLevelMap"
+			],
+			[
+				"GetRol",
+				"GetRoleLevel"
+			],
+			[
+				"Di",
+				"DailyRechargeInfoRet"
+			],
+			[
+				"bCan",
+				"bCanGetAward3"
+			],
+			[
+				"bC",
+				"bCanGetAward2"
+			],
+			[
+				"nMo",
+				"nMoneyType"
+			],
+			[
+				"tA",
+				"tAwardList"
+			],
+			[
+				"m_n",
+				"m_nLastResetTime"
+			],
+			[
+				"nSta",
+				"nState2"
+			],
+			[
+				"nsta",
+				"nState1"
+			],
+			[
+				"nS",
+				"nState2"
+			],
+			[
+				"nDay",
+				"nDayRecharge"
+			],
+			[
+				"tDa",
+				"tDayConf"
+			],
+			[
+				"getAw",
+				"GetAwardKey"
+			],
+			[
+				"bCa",
+				"bCanAward2"
+			],
+			[
+				"sk",
+				"sKey"
+			],
+			[
+				"nSt",
+				"nStartTime"
+			],
+			[
+				"e",
+				"eClose"
+			],
+			[
+				"tT",
+				"tTriedState"
+			],
+			[
+				"Check",
+				"CheckTriedMailAward"
+			],
+			[
+				"eF",
+				"eFeed"
+			],
+			[
+				"serv",
+				"servergroup"
+			],
+			[
+				"and",
+				"android"
+			],
+			[
+				"an",
+				"android"
+			],
+			[
+				"nI",
+				"nID"
+			],
+			[
+				"Cal",
+				"CalcAttr"
+			],
+			[
+				"nAtt",
+				"nAttrID"
+			],
+			[
+				"nSu",
+				"nSpouseID"
+			],
+			[
+				"nLe",
+				"nLeaveMessage"
+			],
+			[
+				"tS",
+				"tShapeData"
+			],
+			[
+				"Update",
+				"UpdateFightAbility"
+			],
+			[
+				"nSkill",
+				"nSkillScore"
+			],
+			[
+				"nSki",
+				"nSkillScore"
+			],
+			[
+				"CPa",
+				"CPartnerObj"
+			],
+			[
+				"ini",
+				"InitFriendDynamic"
+			],
+			[
+				"Get",
+				"GetBestPartner"
+			],
+			[
+				"GetOb",
+				"GetObjID"
+			],
+			[
+				"nRP",
+				"nPropID"
+			],
+			[
+				"nCom",
+				"nCommentRoleID"
+			],
+			[
+				"gt",
+				"gtItemType"
+			],
+			[
+				"ctAI",
+				"ctAISkillConf"
+			],
+			[
+				"GetRole",
+				"GetRoleByID"
+			],
+			[
+				"m_tr",
+				"m_tRoleNameMap"
+			],
+			[
+				"goG",
+				"goGPlayerMgr"
+			],
+			[
+				"CG",
+				"CGPlayerMgr"
+			],
+			[
+				"nSk",
+				"nSkill"
+			],
+			[
+				"js",
+				"json_decode"
+			],
+			[
+				"Getu",
+				"GetUnitID"
+			],
+			[
+				"sCons",
+				"sConsumeTips"
+			],
+			[
+				"tCon",
+				"tConf"
+			],
+			[
+				"sGB",
+				"sGBKStr1"
+			],
+			[
+				"tSu",
+				"tSubMonster"
+			],
+			[
+				"tSubm",
+				"tSubMonsterList"
+			],
+			[
+				"tSub",
+				"tSubItemTalk"
+			],
+			[
+				"tIn",
+				"tInstList"
+			],
+			[
+				"tScho",
+				"tSchoolSkill"
+			],
+			[
+				"m_ntol",
+				"m_nTotalOnlineTime"
+			],
+			[
+				"n",
+				"not"
+			],
+			[
+				"sAc",
+				"sAccount"
+			],
+			[
+				"sou",
+				"source"
+			],
+			[
+				"GetObj",
+				"GetObjType"
+			],
+			[
+				"m_tA",
+				"m_tAccountNameMap"
+			],
+			[
+				"tAct",
+				"tActConf"
+			],
+			[
+				"bW",
+				"bWithoutCond"
+			],
+			[
+				"Remo",
+				"RemoveRoundFlag"
+			],
+			[
+				"tRe",
+				"tResultList"
+			],
+			[
+				"tSc",
+				"tSameSchoolMap"
+			],
+			[
+				"nIn",
+				"nIndex"
+			],
+			[
+				"tNo",
+				"tNorPos"
+			],
+			[
+				"nCo",
+				"nColligatePower"
+			],
+			[
+				"m_nco",
+				"m_nColligatePower"
+			],
+			[
+				"m_nCo",
+				"m_nColligatePower"
+			],
+			[
+				"GetRoun",
+				"GetRoundFlag"
+			],
+			[
+				"tGrou",
+				"tGroupAtkSkillList"
+			],
+			[
+				"tSkil",
+				"tSkillList"
+			],
+			[
+				"ctSki",
+				"ctAISkillConf"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Script/LogicServer/Main.lua",
+			"settings":
+			{
+				"buffer_size": 3227,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/GlobalServer/Main.lua",
+			"settings":
+			{
+				"buffer_size": 3223,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/WGlobalServer/Main.lua",
+			"settings":
+			{
+				"buffer_size": 2829,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/GModule/TimerMgr/TimerMgr.lua",
+			"settings":
+			{
+				"buffer_size": 1190,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/GModule/GModuleBase.lua",
+			"settings":
+			{
+				"buffer_size": 784,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Script/Common/GModule/GModuleMgr.lua",
+			"settings":
+			{
+				"buffer_size": 2908,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Script/Common/GModule/DBMgr/DBMgr.lua",
+			"settings":
+			{
+				"buffer_size": 2941,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/GModule/GModuleDef.lua",
+			"settings":
+			{
+				"buffer_size": 361,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Script/Common/GModule/Logger/Logger.lua",
+			"settings":
+			{
+				"buffer_size": 8604,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/GModule/GRoleMgr/GRoleMgr.lua",
+			"settings":
+			{
+				"buffer_size": 4289,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/Util.lua",
+			"settings":
+			{
+				"buffer_size": 19751,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Script/Common/GModule/GModuleInc.lua",
+			"settings":
+			{
+				"buffer_size": 383,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				":w",
+				":w - Save"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/XProject/RPGGame1/trunk/Bin/Script",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/GModule/ServerMgr",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/GModule/TimerMgr",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Network/RemoteCall"
+	],
+	"file_history":
+	[
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/GModule/DBMgr/DBMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/GModule/GRoleMgr/GRoleMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Extension/GlobalExt.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Extension/StringExt.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Extension/WatchDog.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/GDefine/GDefine.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/Arena/Arena.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/PVPActivity/PVPActivityBase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Marriage/Wedding.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/LRobot/LRobotMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/LoginMgr/LoginMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/GModule/GModuleMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Network/NetworkInc.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/LoginMgr/LAccount.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Util.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Main.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/Main.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/CB/RechargeCB.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/GrowthTarget/GrowthTargetBase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/MailMgr/MailMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Main.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Arena/ArenaRobot.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/LRobot/Robot.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Player/Role.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Player/RoleItem.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LoginServer/Main.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LoginServer/LoginMgr/LAccount.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LoginServer/LoginMgr/LoginMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/HDMgr/CB/RechargeCB.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer2/Main.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/GModule/GModuleBase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/ExchangeActivity/ExchangeActivityMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/GMMgr/GMMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/GPlayer/GPlayerMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/GuaJiTimerMgr/GuaJiTimerMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HallFame/HallFame.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDCircle/HDCircle.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/HDMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/GrowthTarget/GrowthTargetMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/KeyExchange/KeyExchange.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/LoginMgr/LoginQueue.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/LogWriter/LogWriter.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/Market/MarketMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/NoticeMgr/NoticeMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/RankingMgr/ColligatePowerRanking.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/RankingMgr/KejuRanking.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/RankingMgr/RankingMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/Recharge/Recharge.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/Reporter/ChatReport.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/Reporter/Watcher.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/SystemMall/SystemMall.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/Union/UnionMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/BattleDup/BattleDupBase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/BattleDup/BattleDupMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/BattleDup/GuaJiBattleDup.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/BattleDup/HunDunShiLian.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/BattleDup/JueZhanJiuXiao.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/BattleDup/PVEActivityMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/BattleDup/ZhenYao.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Dup/DupMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Global/Battle/Battle.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Global/Battle/BattleMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Global/Battle/Unit.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Global/GMMgr/GMMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Marriage/OldManItem.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Marriage/Palanquin.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Module/HolidayActivity/HolidayActHorseRace.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Monster/MonsterBase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Monster/MonsterMaker.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/NpcFunc/NpcGoldBox.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/NpcFunc/NpcMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/Player/PlayerMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/PVPActivity/PVPActivityMgrBase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogicServer/RoleTimeExpiryMgr/RoleTimeExpiryMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LoginServer/MainRpc.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LoginServer/Watcher.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LoginServer/LoginMgr/LoginQueue.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogServer/ChatReport.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogServer/Main.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/LogServer/LogMgr/LogMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/RobotClt/Robot/Robot.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Friend/FriendMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Gift/GiftMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/GPlayer/GPlayerMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/GRobotMgr/GRobotMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/HDMgr/HDMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Invite/Invite.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Marriage/MarriageMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/RankingMgr/RankingMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Relationship/BrotherRelation.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Relationship/LoverRelation.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Relationship/Mentorship.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Talk/Talk.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Team/Team.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Team/TeamMatchMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer/Team/TeamMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer2/HDBook/HDBook.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer2/House/HouseMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/WGlobalServer2/ItemQuery/ItemQuery.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/GModule/ServerMgr/ServerMgr.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/JsonHook.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/InitMysql.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Network/Network.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Network/RemoteCall/RemoteCall.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/RewardLaunch/RewardLaunch.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/Common/Tools/RBMatch.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/MainRpc.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/CB/CBBase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/CB/UnionExpCB.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/FB/FB.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/GrowthTarget/GrowthTargetShop.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/LC/LC.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/LD/LD.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/Marriage/MarriageAct.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/TA/TABase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/TA/TimeAward.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/XY/DHLN.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/XY/HDQF.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/XY/HSXS.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/XY/MHDJ.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/XY/TDBK.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/XY/ZXJZ.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/YY/DC.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/YY/LY.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/YY/SC.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/YY/TC.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/YY/YYBase.lua",
+		"/E/XProject/RPGGame1/trunk/Bin/Script/GlobalServer/HDMgr/ZeroYuan/ZeroYuan.lua"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+			"",
+			"E:\\M2GJ\\branches\\new\\Server\\Script\\LogicServer",
+			"",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"E:\\M2GJ\\branches\\new\\Client\\assets\\scripts",
+			"E:\\M2GJ\\branches\\new\\Server\\Script\\LogicServer",
+			"",
+			"E:\\M2GJ\\branches\\new\\Server\\Script\\LogicServer",
+			"",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"E:\\M2GJ\\branches\\new\\Server\\Script",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"E:\\M2GJ\\branches\\new\\Server\\Script",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"",
+			"E:\\M2GJ\\branches\\new\\Server\\Script",
+			"E:\\M2GJ\\branches\\new\\Client\\assets\\scripts",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"E:\\M2GJ\\branches\\new\\Data\\Protobuf",
+			"E:\\M2GJ\\branches\\new\\Client\\assets\\scripts",
+			"E:\\M2GJ\\branches\\new\\Server\\Script",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"",
+			"赏金",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"",
+			"E:\\M2GJ\\branches\\new\\Client\\assets",
+			"E:\\M2GJ\\branches\\new\\Client\\assets\\scripts",
+			"",
+			"E:\\svnmengzhu\\branches\\策划分支\\Client\\assets",
+			"E:\\M2GJ\\branches\\new\\Server\\Script",
+			"E:\\svnmengzhu\\branches\\策划分支\\Client\\assets",
+			"",
+			"E:\\M2GJ\\branches\\new\\Server\\Script\\GlobalServer",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Client\\assets\\scripts\\network",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\LogicServer\\Global\\Battle",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\HDBook",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer2\\House",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\Common\\ConfCheck",
+			"",
+			"当前称谓设置",
+			"E:\\Games\\mengzhu\\Runtime\\mzmgr",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\LoginServer\\LoginMgr",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\LogicServer\\Global\\Battle",
+			"",
+			"E:\\svnmengzhu\\trunk\\Client\\assets",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\LogicServer\\Global\\Battle",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\LogicServer\\Global\\Battle",
+			"",
+			"E:\\Games\\mengzhu\\Runtime\\mzmgr",
+			"",
+			"E:\\svnmengzhu\\trunk\\Client\\assets",
+			"E:\\svnmengzhu\\trunk\\Client\\assets\\scripts",
+			"E:\\svnmengzhu\\trunk\\Client\\assets\\Scene",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script",
+			"E:\\svnmengzhu\\trunk\\Client\\assets\\Scene",
+			"E:\\svnmengzhu\\trunk\\Client\\assets\\scripts",
+			"E:\\svnmengzhu\\trunk\\Client\\assets",
+			"",
+			"E:\\svnmengzhu\\trunk\\Client\\assets",
+			"E:\\svnmengzhu\\trunk\\Server\\Script",
+			"E:\\svnmengzhu\\trunk\\Client\\assets",
+			"E:\\svnmengzhu\\trunk\\Server\\Script",
+			"E:\\svnmengzhu\\trunk\\Client\\assets",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\GlobalServer\\HDMgr\\CB",
+			"",
+			"E:\\svnmengzhu\\trunk\\Client\\assets",
+			"E:\\svnmengzhu\\trunk\\Client\\assets\\scripts",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\GlobalServer\\HDMgr",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer\\HDMgr",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\GlobalServer\\HDMgr",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\Common",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\Common",
+			"",
+			"E:\\Games\\mengzhu\\Runtime\\mzmgr",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\LogicServer\\Monster",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\GlobalServer\\RankingMgr",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\WGlobalServer",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\LoginServer",
+			"",
+			"E:\\svnmengzhu\\trunk\\Server\\Script\\LogServer",
+			"",
+			"E:\\mengzhu\\Runtime\\trunk\\Server\\Script\\LogicServer\\Global\\Battle",
+			"",
+			"E:\\mengzhu\\Runtime\\trunk\\Data\\Protobuf",
+			"",
+			"E:\\mengzhu\\Runtime\\trunk\\Server\\Script\\GlobalServer\\Union",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"dbmgr",
+			"RegModule",
+			"nGCTime",
+			"gnGCTimer",
+			"_UninitGlobal",
+			"nArenaConfRobotIDMax",
+			"bServerClosing",
+			"nMaxPlayerID",
+			"gnMaxPlayerID",
+			"nBasePlayerID",
+			"AddStrict",
+			"IsRobot",
+			"isrobo",
+			"gtGDef.tConst.nBasePlayerID\\n\\S*gtGDef.tConst",
+			"gtGDef.tConst.nBasePlayerID",
+			"IsRobot",
+			"robot",
+			"isrobo",
+			"m_nSaveTimer",
+			"SaveData",
+			"OnLoaded",
+			"goTimerMgr",
+			"goTimerMgr:Interval\\(gtGDef.tConst.nBasePlayerID\\n\\s*",
+			"goTimerMgr:Interval\\(gtGDef.tConst.nBasePlayerID\\n",
+			"goTimerMgr:Interval(g",
+			"AfterLoaded",
+			"GPlayerMgr",
+			"InitMysql",
+			"sInitGameSql",
+			"sGameSql",
+			"sInsertRoleSql",
+			"sInsertAccountSql",
+			"InitMysql",
+			"getse",
+			"getserverid",
+			"_bMysqlInited",
+			"gbMysqlInited",
+			"GF.",
+			"CheckNameLen",
+			"goGModuleMgr",
+			"goGModuleMgr:GetModuleByName",
+			"GetGModule",
+			"goGModuleMgr:GetModuleByName",
+			"goGModuleMgr",
+			"goGModulMgr",
+			"goGModuelMgr",
+			"goTim",
+			"gtDef",
+			"vip",
+			"other",
+			"GetRoleInfo",
+			"gnMaxMailItemLength",
+			"gbServerClosing",
+			"gnRobotMoveSpeed",
+			"gnRobotIDMax",
+			"gnArenaConfRobotIDMax",
+			"gnMaxRoleNameLen",
+			"gnMaxOnlineNum",
+			"gnAutoSaveTime",
+			"nMaxPlayerID",
+			"gnBasePlayerID",
+			"gnMaxInteger",
+			"servi",
+			"nServers",
+			"gnServiceShift",
+			"gnSaleSilverRatio",
+			"SrvCmdProc",
+			"101005",
+			"createmo",
+			"101001",
+			"101002",
+			"清音仙子",
+			"18",
+			"清",
+			"onentercheck",
+			"LuaTrace",
+			"BattleResult",
+			"GMRemove",
+			"GMRemoveBattle",
+			"removeb",
+			"CheckTeamOp",
+			"checkteamop",
+			"EnterBattleDupReq",
+			"checktemo",
+			"findPos",
+			"cleart",
+			"targetPos",
+			"target",
+			"clean",
+			"RoleLeaveSceneRet",
+			"leave",
+			"镇妖",
+			"clearFindNpcState",
+			"clear",
+			"clean",
+			"setJumpMapSwitch",
+			"findPathStart",
+			"findPos",
+			"addNpcToMap",
+			"additem(",
+			"OnEnterCheck",
+			"EnterCheck",
+			"onenter",
+			"OnEnterCheck",
+			"EnterCheckReq",
+			"onenter",
+			"check",
+			"checken",
+			"m_tRoleMap",
+			"ettBase",
+			"EntityView",
+			"_name",
+			"objid",
+			"_nObj",
+			"_obj",
+			"objid",
+			"this._ettBase.name",
+			"bindModel",
+			"_dataModel",
+			"ettb",
+			"ettbase",
+			"101005",
+			"ettBase",
+			"check",
+			"getleader(",
+			":OnEnterCheck(",
+			"EnterDupReq",
+			"check"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"gtGDef.tConst",
+			"GetGModule(\"TimerMgr\")",
+			"GetGModule(\"TimerMgr\"):Interval(",
+			"GRoleMgr",
+			"CUtil.",
+			"GetGModule",
+			"GetGModule(\"ServerMgr\")",
+			"gtGDef.tConst.nBasePlayerID\ngtGDef.tConst.nMaxMailItemLength",
+			"gtGDef.tConst.nBasePlayerID\ngtGDef.tConst.bServerClosing",
+			"gtGDef.tConst.nBasePlayerID\ngtGDef.tConst.nRobotMoveSpeed",
+			"gtGDef.tConst.nBasePlayerID\ngtGDef.tConst.nRobotIDMax",
+			"gtGDef.tConst.nBasePlayerID\ngtGDef.tConst.nArenaConfRobotIDMax",
+			"gtGDef.tConst.nBasePlayerID\ngtGDef.tConst.nMaxRoleNameLen",
+			"gtGDef.tConst.nBasePlayerID\ngtGDef.tConst.nMaxOnlineNum",
+			"gtGDef.tConst.nBasePlayerID\ngtGDef.tConst.nAutoSaveTime",
+			"gtGDef.tConst.nBasePlayerID",
+			"gtGDef.tConst.nMaxInteger",
+			"gtGDef.tConst.nServiceShift",
+			"console.error",
+			"\"战斗已结束\"",
+			"ActUpgradeAwardReq",
+			"ActUpgradeInfoReq",
+			"ActUpgradeStateReq",
+			"actupgrade",
+			"ActUpgrade",
+			"LevelMap",
+			"CUpgrade",
+			"m_tUpgradeMap",
+			"CUpgrade",
+			"Upgrade",
+			"DailyRecharge",
+			"Daily",
+			"DailyRecharge",
+			"DailyActivity",
+			"nTimeRecharge",
+			"CDailyRecharge",
+			"DailyRecharge",
+			"CDC",
+			"DC",
+			"CBindPhone:",
+			"tBindPhone",
+			"BindPhone",
+			"Cure",
+			"required int32 ",
+			"CBattleCommand",
+			"127.0.0.1",
+			"goBattleMgr:IsBattleLog",
+			"goBattleMgr:",
+			"m_tLastSaveData",
+			"",
+			"CCBBase",
+			"CBBase",
+			"HDBook",
+			"FB",
+			"eFB",
+			"CFB",
+			"]",
+			"[",
+			"tPropList",
+			"m_oRole",
+			"CTalk.tChannel",
+			"nGiftID",
+			"self.m_oMgrSQL",
+			"nRoleID",
+			"GetID",
+			"oRole",
+			"CKeyExchange",
+			"sKeyExchangeDB",
+			"sKeyExchange",
+			"m_tOnePersonOneKey",
+			"CExchange",
+			"Exchange",
+			"goServerMgr:GetLoginService",
+			"goServerMgr:GetLogService",
+			"goServerMgr:GetGlobalService",
+			"InnoDB",
+			"groupid",
+			"m_tGameMysql",
+			"oRole",
+			"m_oRole",
+			"YinBiTips()",
+			"YuanBaoTips()",
+			"[\"\\1\"]=",
+			"[\\1]=",
+			"",
+			"--",
+			",",
+			"oRole",
+			",",
+			"",
+			"CRole.",
+			"] =",
+			"[gt",
+			"",
+			" = ",
+			"",
+			"] =",
+			"[gt",
+			",",
+			"",
+			"CRole.",
+			"",
+			"Ranking",
+			"gtHDDef.eTimeAward",
+			"ctPropConf:PropName",
+			"goHDMgr:GetActivity",
+			"RoleRankAwardInfoReq",
+			"RoleRanking",
+			"GetAct",
+			" ",
+			"",
+			"NetworkExport.UnixMSTime()",
+			"nBucketCount",
+			"return oRole:Tips",
+			"tData",
+			"\"",
+			"ColligatePower",
+			"ZXJZ",
+			"诛仙剑阵",
+			"TDBK",
+			"天帝宝库",
+			"MHDJ",
+			"蛮荒斗酒",
+			"HSXS",
+			"黑水玄蛇",
+			"HDQF",
+			"花灯祈福",
+			"Knapsack"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "E:\\XProject\\RPGGame1\\trunk\\Bin\\Script"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Script/LogicServer/Main.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1192,
+								1192
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 707.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Script/GlobalServer/Main.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1306,
+								1306
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 687.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Script/WGlobalServer/Main.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2829,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1238,
+								1238
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 574.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Script/Common/GModule/TimerMgr/TimerMgr.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1169,
+								1169
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Script/Common/GModule/GModuleBase.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 784,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								225,
+								225
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Script/Common/GModule/GModuleMgr.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2908,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								566,
+								566
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Script/Common/GModule/DBMgr/DBMgr.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2941,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2495,
+								2495
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 958.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Script/Common/GModule/GModuleDef.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 361,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								361,
+								361
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Script/Common/GModule/Logger/Logger.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8604,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								402,
+								402
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Script/Common/GModule/GRoleMgr/GRoleMgr.lua",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 4289,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								504,
+								504
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "Script/Common/Util.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								641,
+								641
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "Script/Common/GModule/GModuleInc.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 383,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								334,
+								334
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 142.0
+	},
+	"output.find_results":
+	{
+		"height": 815.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"uti",
+				"Common\\Util.lua"
+			],
+			[
+				"dbm",
+				"Common\\GModule\\DBMgr\\DBMgr.lua"
+			],
+			[
+				"serverm",
+				"Common\\GModule\\ServerMgr\\ServerMgr.lua"
+			],
+			[
+				"dbmg",
+				"Common\\GModule\\DBMgr\\DBMgr.lua"
+			],
+			[
+				"u",
+				"Common\\Util.lua"
+			],
+			[
+				"util",
+				"Common\\Util.lua"
+			],
+			[
+				"gmoduleb",
+				"Common\\GModule\\GModuleBase.lua"
+			],
+			[
+				"gmodulem",
+				"Common\\GModule\\GModuleMgr.lua"
+			],
+			[
+				"gf",
+				"Common\\GlobalFunc.lua"
+			],
+			[
+				"propconf",
+				"Config\\XML\\Prop\\PropConf.lua"
+			],
+			[
+				"propd",
+				"LogicServer\\Module\\Knapsack\\PropDef.lua"
+			],
+			[
+				"role",
+				"LogicServer\\Player\\Role.lua"
+			],
+			[
+				"weira",
+				"Common\\Tools\\WeightRandom.lua"
+			],
+			[
+				"awardp",
+				"Config\\XML\\AwardPool\\AwardPoolConf.lua"
+			],
+			[
+				"submo",
+				"Script\\Config\\XML\\Monster\\SubMonsterConf.lua"
+			],
+			[
+				"monstermgr",
+				"Script\\LogicServer\\Monster\\MonsterMgr.lua"
+			],
+			[
+				"monsterm",
+				"Script\\LogicServer\\Monster\\MonsterMaker.lua"
+			],
+			[
+				"zheny",
+				"Script\\LogicServer\\BattleDup\\ZhenYao.lua"
+			],
+			[
+				"gmm",
+				"Script\\LogicServer\\Global\\GMMgr\\GMMgr.lua"
+			],
+			[
+				"monsterconf",
+				"Script\\Config\\XML\\Monster\\MonsterConf.lua"
+			],
+			[
+				"battlegr",
+				"Script\\Config\\XML\\Monster\\BattleGroupConf.lua"
+			],
+			[
+				"submon",
+				"Script\\Config\\XML\\Monster\\SubMonsterConf.lua"
+			],
+			[
+				"monsetc",
+				"Script\\Config\\XML\\Monster\\MonsterConf.lua"
+			],
+			[
+				"battlleduo",
+				"Script\\Config\\XML\\BattleDup\\BattleDupConf.lua"
+			],
+			[
+				"dupconf",
+				"Script\\Config\\XML\\Dup\\DupConf.lua"
+			],
+			[
+				"battl",
+				"Script\\LogicServer\\Global\\Battle\\Battle.lua"
+			],
+			[
+				"battlmg",
+				"Script\\LogicServer\\Global\\Battle\\BattleMgr.lua"
+			],
+			[
+				"gmmgr",
+				"Script\\LogicServer\\Global\\GMMgr\\GMMgr.lua"
+			],
+			[
+				"dupb",
+				"Script\\LogicServer\\Dup\\DupBase.lua"
+			],
+			[
+				"dupr",
+				"Script\\LogicServer\\Dup\\DupRpc.lua"
+			],
+			[
+				"playr",
+				"Script\\LogicServer\\Player\\PlayerRpc.lua"
+			],
+			[
+				"battledupr",
+				"Script\\LogicServer\\BattleDup\\BattleDupRpc.lua"
+			],
+			[
+				"zhenyao",
+				"Script\\LogicServer\\BattleDup\\ZhenYao.lua"
+			],
+			[
+				"scene.p",
+				"Protobuf\\scene.proto"
+			],
+			[
+				"battledu.p",
+				"Protobuf\\battledup.proto"
+			],
+			[
+				"mapmo",
+				"assets\\Scene\\MapModel.ts"
+			],
+			[
+				"movesc",
+				"assets\\scripts\\MoveScript.ts"
+			],
+			[
+				"mainsc",
+				"assets\\Scene\\mainScene.ts"
+			],
+			[
+				"mapmod",
+				"assets\\Scene\\MapModel.ts"
+			],
+			[
+				"dupmgr",
+				"Script\\LogicServer\\Dup\\DupMgr.lua"
+			],
+			[
+				"entityv",
+				"assets\\scripts\\entity\\EntityView.ts"
+			],
+			[
+				"dupm",
+				"Script\\LogicServer\\Dup\\DupMgr.lua"
+			],
+			[
+				"team",
+				"Script\\WGlobalServer\\Team\\Team.lua"
+			],
+			[
+				"monster",
+				"Script\\LogicServer\\Monster\\MonsterBase.lua"
+			],
+			[
+				"mainui",
+				"assets\\scripts\\UI\\mainUIControl\\mainUI.ts"
+			],
+			[
+				"login",
+				"assets\\Scene\\login.ts"
+			],
+			[
+				"tcpn",
+				"assets\\scripts\\network\\tcpNet.ts"
+			],
+			[
+				"teammgr",
+				"Script\\WGlobalServer\\Team\\TeamMgr.lua"
+			],
+			[
+				"login.t",
+				"assets\\Scene\\login.ts"
+			],
+			[
+				"mis",
+				"assets\\scripts\\misc.ts"
+			],
+			[
+				"guaji.",
+				"Script\\LogicServer\\Module\\GuaJi\\GuaJi.lua"
+			],
+			[
+				"mys",
+				"assets\\Test\\myScrollView.js"
+			],
+			[
+				"tak.l",
+				"Script\\WGlobalServer\\Talk\\Talk.lua"
+			],
+			[
+				"talkmo",
+				"assets\\scripts\\UI\\talk\\talkModel.ts"
+			],
+			[
+				"chatco",
+				"assets\\scripts\\UI\\talk\\ChatContent.ts"
+			],
+			[
+				"talkp",
+				"assets\\scripts\\UI\\talk\\talkPanel.ts"
+			],
+			[
+				"talknod",
+				"assets\\scripts\\UI\\talk\\talkNodePool.ts"
+			],
+			[
+				"jhri",
+				"assets\\scripts\\JH_RichText.ts"
+			],
+			[
+				"vip",
+				"Script\\LogicServer\\Module\\VIP\\VIP.lua"
+			],
+			[
+				"pet",
+				"Protobuf\\pet.proto"
+			],
+			[
+				"itemd",
+				"Script\\Common\\ItemDef.lua"
+			],
+			[
+				"globalf",
+				"Script\\Common\\GlobalFunc.lua"
+			],
+			[
+				"rolei",
+				"Script\\LogicServer\\Player\\RoleItem.lua"
+			],
+			[
+				"roleit",
+				"Script\\LogicServer\\Player\\RoleItem.lua"
+			],
+			[
+				"awarlun",
+				"Script\\Common\\RewardLaunch\\RewardLaunch.lua"
+			],
+			[
+				"ldconf",
+				"Script\\Config\\XML\\HuoDong\\LD\\LDConf.lua"
+			],
+			[
+				"guaji",
+				"Script\\LogicServer\\Module\\GuaJi\\GuaJi.lua"
+			],
+			[
+				"talk.",
+				"Script\\WGlobalServer\\Talk\\Talk.lua"
+			],
+			[
+				"u.",
+				"assets\\scripts\\u.ts"
+			],
+			[
+				"backmod",
+				"assets\\scripts\\UI\\backPack\\backPackModel.ts"
+			],
+			[
+				"talkpan",
+				"assets\\scripts\\UI\\talk\\talkPanel.ts"
+			],
+			[
+				"chatp",
+				"assets\\scripts\\UI\\chatPanel\\ChatPanel.ts"
+			],
+			[
+				"talk.l",
+				"Script\\WGlobalServer\\Talk\\Talk.lua"
+			],
+			[
+				"loginm",
+				"Script\\LoginServer\\LoginMgr\\LoginMgr.lua"
+			],
+			[
+				"playerr",
+				"Script\\LogicServer\\Player\\PlayerRpc.lua"
+			],
+			[
+				"mon",
+				"assets\\scripts\\global\\monitor.js"
+			],
+			[
+				"targettask.proto",
+				"Protobuf\\targettask.proto"
+			],
+			[
+				"monit",
+				"assets\\scripts\\global\\monitor.js"
+			],
+			[
+				"customel",
+				"assets\\scripts\\UI\\basic\\customListView.ts"
+			],
+			[
+				"customlis",
+				"assets\\scripts\\UI\\basic\\customListView.ts"
+			],
+			[
+				"baselisti",
+				"assets\\scripts\\UI\\basic\\baseListItemScript.ts"
+			],
+			[
+				"denglui",
+				"assets\\scripts\\UI\\reward\\dengluItem.ts"
+			],
+			[
+				"dengluit",
+				"assets\\scripts\\UI\\reward\\dengluItem.ts"
+			],
+			[
+				"degnlupan",
+				"assets\\scripts\\UI\\reward\\dengluPanel.ts"
+			],
+			[
+				"leijidenglu",
+				"assets\\resources\\prefab\\reward\\leijidenglu.prefab"
+			],
+			[
+				"rewar.t",
+				"assets\\scripts\\UI\\reward\\reward.ts"
+			],
+			[
+				"bahuangfirp",
+				"assets\\scripts\\UI\\baHuangFireArr\\baHuangPabel.ts"
+			],
+			[
+				"bahuangf",
+				"assets\\scripts\\UI\\baHuangFireArr\\baHuangItem.ts"
+			],
+			[
+				"baseuip",
+				"assets\\scripts\\UI\\basic\\baseUIPanelScript.ts"
+			],
+			[
+				"uicon",
+				"assets\\scripts\\resMgr\\uiConst.ts"
+			],
+			[
+				"entiy",
+				"assets\\scripts\\EntityManager.ts"
+			],
+			[
+				"taskpanel.t",
+				"assets\\scripts\\UI\\mainUIControl\\taskPanel.ts"
+			],
+			[
+				"taskpn",
+				"assets\\scripts\\task\\TaskNpcItem.ts"
+			],
+			[
+				"entitym",
+				"assets\\scripts\\EntityManager.ts"
+			],
+			[
+				"moni",
+				"assets\\scripts\\global\\monitor.js"
+			],
+			[
+				"roleite",
+				"Script\\LogicServer\\Player\\RoleItem.lua"
+			],
+			[
+				"upgradebac",
+				"Script\\Config\\XML\\UpgradeBag\\UpgradeBagConf.lua"
+			],
+			[
+				"pet.l",
+				"Script\\LogicServer\\Module\\Pet\\Pet.lua"
+			],
+			[
+				"kanp",
+				"Protobuf\\knapsack.proto"
+			],
+			[
+				"taskmo",
+				"assets\\scripts\\task\\taskModel.ts"
+			],
+			[
+				"lacc",
+				"Script\\LoginServer\\LoginMgr\\LAccount.lua"
+			],
+			[
+				"clientp",
+				"assets\\scripts\\network\\clientPBRpc.ts"
+			],
+			[
+				"fightcon",
+				"assets\\scripts\\fight\\FightConst.ts"
+			],
+			[
+				"syn",
+				"assets\\scripts\\UI\\pet\\synthetise.ts"
+			],
+			[
+				"sysopenc",
+				"assets\\scripts\\UI\\mainUIControl\\sysOpenCache.ts"
+			],
+			[
+				"guajib",
+				"Script\\LogicServer\\BattleDup\\GuaJiBattleDup.lua"
+			],
+			[
+				"petma",
+				"assets\\scripts\\UI\\pet\\petMain.ts"
+			],
+			[
+				"cmdd.t",
+				"assets\\scripts\\network\\cmdDef.ts"
+			],
+			[
+				"clientpb",
+				"assets\\scripts\\network\\clientPBRpc.ts"
+			],
+			[
+				"clientcmdr",
+				"assets\\scripts\\network\\clientCmdRpc.ts"
+			],
+			[
+				"custom",
+				"assets\\scripts\\UI\\basic\\customListView.ts"
+			],
+			[
+				"buys",
+				"assets\\scripts\\UI\\backPack\\buyGrid.ts"
+			],
+			[
+				"propetc",
+				"assets\\scripts\\conf\\XML\\Prop\\PropEtcConf.js"
+			],
+			[
+				"buygr",
+				"assets\\scripts\\UI\\backPack\\buyGrid.ts"
+			],
+			[
+				"talkc",
+				"Script\\Config\\XML\\Talk\\TalkConf.lua"
+			],
+			[
+				"faboac",
+				"Script\\Config\\XML\\FaBao\\FaBaoConf.lua"
+			],
+			[
+				"gifconf",
+				"Script\\Config\\XML\\Prop\\GiftConf.lua"
+			],
+			[
+				"gifcon",
+				"Script\\Config\\XML\\Prop\\GiftConf.lua"
+			],
+			[
+				"fabaoc",
+				"Script\\Config\\XML\\FaBao\\FaBaoConf.lua"
+			],
+			[
+				"kan",
+				"Script\\LogicServer\\Module\\Knapsack\\Knapsack.lua"
+			],
+			[
+				"conf/mai",
+				"Script\\Config\\Main.lua"
+			],
+			[
+				"guajiconfc",
+				"Script\\Common\\ConfCheck\\GuaJiConfCheck.lua"
+			],
+			[
+				"fabaoo",
+				"Script\\LogicServer\\Module\\FaBao\\FaBaoObj.lua"
+			],
+			[
+				"talkconf",
+				"Script\\Config\\XML\\Talk\\TalkConf.lua"
+			],
+			[
+				"fabao",
+				"Script\\LogicServer\\Module\\FaBao\\FaBao.lua"
+			],
+			[
+				"guajic",
+				"Script\\Config\\XML\\GuaJi\\GuaJiConf.lua"
+			],
+			[
+				"guajiconf",
+				"Script\\Config\\XML\\GuaJi\\GuaJiConf.lua"
+			],
+			[
+				"battleguaji",
+				"Script\\LogicServer\\BattleDup\\GuaJiBattleDup.lua"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 242.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

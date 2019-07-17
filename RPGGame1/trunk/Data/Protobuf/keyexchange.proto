@@ -1,0 +1,8 @@
+//兑换码兑换
+package keyexchange;
+
+//兑换请求
+message KeyExchangeReq
+{
+	required string sCDKey = 1; 	//兑换码
+}

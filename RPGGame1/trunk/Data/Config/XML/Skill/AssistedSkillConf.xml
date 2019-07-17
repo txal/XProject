@@ -1,0 +1,567 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>AutoBVT</LastAuthor>
+  <Created>1996-12-17T01:32:42Z</Created>
+  <LastSaved>2018-06-20T20:51:19Z</LastSaved>
+  <Version>12.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13050</WindowHeight>
+  <WindowWidth>28695</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>135</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Vertical="Bottom"/>
+  </Style>
+  <Style ss:ID="s70">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctAssistedSkillConf">
+  <Table ss:ExpandedColumnCount="28" ss:ExpandedRowCount="14" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Column ss:Index="3" ss:Width="35.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="75.75" ss:Span="5"/>
+   <Column ss:Index="10" ss:AutoFitWidth="0" ss:Width="123.75"/>
+   <Column ss:Width="123"/>
+   <Column ss:Width="78"/>
+   <Column ss:AutoFitWidth="0" ss:Width="122.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="393.75"/>
+   <Column ss:Width="229.5"/>
+   <Column ss:Index="17" ss:Width="90"/>
+   <Column ss:Width="469.5"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="589.5"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="696"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="708.75"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="696"/>
+   <Column ss:Width="309.75"/>
+   <Row ss:AutoFitHeight="0" ss:Height="63.75">
+    <Cell ss:Index="5"><Data ss:Type="String">1:生产类技能</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s62"><Data ss:Type="String">1是出现在活力界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nID</Data></Cell>
+    <Cell><Data ss:Type="String">sName</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">nIcon</Data></Cell>
+    <Cell><Data ss:Type="String">nAvailableLevel</Data></Cell>
+    <Cell><Data ss:Type="String">nSkillType</Data></Cell>
+    <Cell><Data ss:Type="String">nSkillSubID</Data></Cell>
+    <Cell><Data ss:Type="String">bState</Data></Cell>
+    <Cell><Data ss:Type="String">nSkillSubType</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">tVitalityPage</Data></Cell>
+    <Cell><Data ss:Type="String">eMaxLevel</Data></Cell>
+    <Cell><Data ss:Type="String">tAttr</Data></Cell>
+    <Cell><Data ss:Type="String">sAttrDesc</Data></Cell>
+    <Cell><Data ss:Type="String">sFunDesc</Data></Cell>
+    <Cell><Data ss:Type="String">sDesc</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">eContributeFormula</Data></Cell>
+    <Cell><Data ss:Type="String">nContributeDiscountFormula</Data></Cell>
+    <Cell><Data ss:Type="String">tLevelRangeStr1</Data></Cell>
+    <Cell><Data ss:Type="String">eCopperFormula1</Data></Cell>
+    <Cell><Data ss:Type="String">tLevelRangeStr2</Data></Cell>
+    <Cell><Data ss:Type="String">eCopperFormula2</Data></Cell>
+    <Cell><Data ss:Type="String">tLevelRangeStr3</Data></Cell>
+    <Cell><Data ss:Type="String">eCopperFormula3</Data></Cell>
+    <Cell><Data ss:Type="String">tLevelRangeStr4</Data></Cell>
+    <Cell><Data ss:Type="String">eCopperFormula4</Data></Cell>
+    <Cell><Data ss:Type="String">tLevelRangeStr5</Data></Cell>
+    <Cell><Data ss:Type="String">eCopperFormula5</Data></Cell>
+    <Cell><Data ss:Type="String">eVigourConsumeFormula</Data></Cell>
+    <Cell><Data ss:Type="String">nVigourConsumeDiscount</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">b</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">t{ie}</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">e</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">技能ID</Data></Cell>
+    <Cell><Data ss:Type="String">名字</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">图标</Data></Cell>
+    <Cell><Data ss:Type="String">可用等级</Data></Cell>
+    <Cell><Data ss:Type="String">技能类型</Data></Cell>
+    <Cell><Data ss:Type="String">技能子ID</Data></Cell>
+    <Cell><Data ss:Type="String">是否推送小红点</Data></Cell>
+    <Cell><Data ss:Type="String">子类型</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="String">等级上限</Data></Cell>
+    <Cell><Data ss:Type="String">属性加成</Data></Cell>
+    <Cell><Data ss:Type="String">加成描述</Data></Cell>
+    <Cell><Data ss:Type="String">功能描述</Data></Cell>
+    <Cell><Data ss:Type="String">描述</Data></Cell>
+    <Cell><Data ss:Type="String">消耗帮贡公式</Data></Cell>
+    <Cell><Data ss:Type="String">帮贡消耗打折</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围1</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围内升级对应铜币消耗公式1</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围2</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围内升级对应铜币消耗公式2</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围3</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围内升级对应铜币消耗公式3</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围4</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围内升级对应铜币消耗公式4</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围5</Data></Cell>
+    <Cell><Data ss:Type="String">等级范围内升级对应铜币消耗公式5</Data></Cell>
+    <Cell><Data ss:Type="String">生产消耗活力公式</Data></Cell>
+    <Cell><Data ss:Type="String">生产消耗活力打折</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2001</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">武器精研</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2001</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1,2</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+10</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">制造武器的能力</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">上古流传下来的锻造技艺，善铸神兵，技能达到30级即可制造武器符。</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-31)^3-(LV-31)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="String">0.7</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">math.ceil(Math.max((productLevel/10-3)*8,10))</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2002</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">防具精研</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2002</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1,3</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+10</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">制造防具的能力</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">上古流传下来的锻造技艺，善造坚甲，技能达到30级即可制造防具符。</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-31)^3-(LV-31)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="String">0.7</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">math.ceil(Math.max((productLevel/10-3)*8,10))</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2003</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">饰品精研</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2003</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1,4</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+10</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">制造饰品的能力</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">上古流传下来的锻造技艺，善织巧饰，技能达到30级即可制造饰品符。</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-31)^3-(LV-31)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="String">0.7</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">math.ceil(Math.max((productLevel/10-3)*8,10))</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2004</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">炼药</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2004</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1,5</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+10</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">炼造丹药的能力</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">提高制造三级药的几率和品质，技能达到10级即可炼药</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-31)^3-(LV-31)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="String">0.7</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">math.ceil(Math.min(40,skillLevel+10))</Data></Cell>
+    <Cell><Data ss:Type="String">0.8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2005</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">烹饪</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2005</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1,6</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+10</Data></Cell>
+    <Cell><Data ss:Type="String">0,0;</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">制造烹饪的能力</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">提高制造烹饪的星级和种类，技能达到10级即可制作烹饪</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-31)^3-(LV-31)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="String">0.7</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)*0.5</Data></Cell>
+    <Cell><Data ss:Type="String">math.ceil(Math.min(60,(Math.floor(skillLevel/10)*10+10)))</Data></Cell>
+    <Cell><Data ss:Type="String">0.8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2006</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">追捕</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2006</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+5</Data></Cell>
+    <Cell><Data ss:Type="String">306,nSkillLevel*1;</Data></Cell>
+    <Cell><Data ss:Type="String">对方逃跑几率</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">提高追捕的能力</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">每学1级此项技能，可以减少敌人1%逃跑成功率。组队时按队长追捕技能计算</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-21)^3-(LV-21)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2007</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">逃离</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2007</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+5</Data></Cell>
+    <Cell><Data ss:Type="String">305,nSkillLevel*1;</Data></Cell>
+    <Cell><Data ss:Type="String">逃跑几率</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">提高逃离的能力</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">每学1级，增加自身1%的逃跑成功率，逃跑成功率最高为90%</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-21)^3-(LV-21)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2008</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">强身</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2008</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+5</Data></Cell>
+    <Cell><Data ss:Type="String">101,nSkillLevel*7;</Data></Cell>
+    <Cell><Data ss:Type="String">气血</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">提高气血上限</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">每学1级，增加7点气血</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-21)^3-(LV-21)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2009</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">冥想</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">2009</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">nRoleLevel+5</Data></Cell>
+    <Cell><Data ss:Type="String">102,nSkillLevel*7;</Data></Cell>
+    <Cell><Data ss:Type="String">法力</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">提高魔法上限</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">每学1级，增加7点魔法</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Math.ceil(((LV-21)^3-(LV-21)^2)/700+1)</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">0,39;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">40,79;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*2/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">80,99;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">100,120;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="String">121,150;</Data></Cell>
+    <Cell><Data ss:Type="String">0.5*(LV^3*1.3-LV^2*20+(LV-1)*150+60)*((LV-39)*0.1+1)*((LV-79)*0.1+1)*2.5/(LV*LV/250+5)</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="5" ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s67"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <FreezePanes/>
+   <FrozenNoSplit/>
+   <SplitHorizontal>1</SplitHorizontal>
+   <TopRowBottomPane>1</TopRowBottomPane>
+   <SplitVertical>1</SplitVertical>
+   <LeftColumnRightPane>1</LeftColumnRightPane>
+   <ActivePane>0</ActivePane>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+    </Pane>
+    <Pane>
+     <Number>1</Number>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+    <Pane>
+     <Number>2</Number>
+    </Pane>
+    <Pane>
+     <Number>0</Number>
+     <ActiveRow>17</ActiveRow>
+     <ActiveCol>7</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51180555555555596"/>
+    <Footer x:Margin="0.51180555555555596"/>
+   </PageSetup>
+   <Unsynced/>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

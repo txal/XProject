@@ -10,7 +10,7 @@
 extern void StartScriptEngine();
 void NSPacketProc::RegisterPacketProc()
 {
-	PacketHandler* poPacketHandler = (PacketHandler*)g_poContext->GetPacketHandler();
+	PacketHandler* poPacketHandler = (PacketHandler*)gpoContext->GetPacketHandler();
 	// 内部消息
 	poPacketHandler->RegsterInnerPacketProc(NSMsgType::eLuaRpcMsg, (void*)OnLuaRpcMsg);
 	poPacketHandler->RegsterInnerPacketProc(NSMsgType::eLuaCmdMsg, (void*)OnLuaCmdMsgInner);
@@ -20,7 +20,7 @@ void NSPacketProc::RegisterPacketProc()
 ///////////////////////////内部处理函数/////////////////////////////////
 void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
+	gpoContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
 }
 
 void NSPacketProc::OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)

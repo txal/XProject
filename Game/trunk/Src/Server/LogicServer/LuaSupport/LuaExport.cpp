@@ -5,13 +5,13 @@
 #include "Include/Script/Script.hpp"
 #include "Include/Script/Script.hpp"
 
-#include "Common/DataStruct/Md5.h"
+#include "Common/DataStruct/Crypt/Md5.h"
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaPB.h"
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/LuaCommon/LuaTableSeri.h"
 #include "Common/TimerMgr/TimerMgr.h"
-#include "Common/Filter/Filter.h"
+#include "Common/WordFilter/WordFilter.h"
 
 #include "Server/Base/NetworkExport.h"
 #include "Server/Base/ServerContext.h"
@@ -29,9 +29,9 @@ int GetServiceID(lua_State* pState)
 }
 
 //生成游戏唯一ID
-int MakeGameObjID(lua_State* pState)
+int MakeObjID(lua_State* pState)
 {
-	GAME_OBJID oID = MakeGameObjID(g_poContext->GetService()->GetServiceID());
+	OBJID oID = MakeObjID(g_poContext->GetService()->GetServiceID());
 	lua_pushinteger(pState, oID.llID);
 	return 1;
 }
@@ -106,7 +106,7 @@ int MD5(lua_State* pState)
 luaL_Reg _global_lua_func[] =
 {
 	{ "GetServiceID", GetServiceID},
-	{ "MakeGameObjID", MakeGameObjID},
+	{ "MakeGameObjID", MakeObjID},
 	{ "GetSceneMgr", GetSceneMgr},
 	{ "GetPlayerMgr", GetPlayerMgr},
 	{ "GetMonsterMgr", GetMonsterMgr},

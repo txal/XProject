@@ -1,0 +1,31 @@
+package shimentask;
+
+message ShiMenTaskActRet
+{
+	required bool bActShiMenTask = 1;		// 可接师门任务：true
+	required int32 nNpcID = 2;				// 师傅id
+	required int32 nTaskID = 3;				// 接取师门任务id
+}
+
+message ShiMenTaskReq						// 任务请求
+{	
+	required int32 nOperaType = 1;			// 请求接受师门任务: 1; 提交任务：2 
+	required int32 nNpcID = 3;
+	optional int32 nItemID = 4;				// 物资任务提交的物品ID
+	optional int32 nGatherStatus = 5;		// 开始采集：1；完成采集：2;
+}
+
+message ShiMenTaskRet						// 任务信息
+{	
+	required int32 nMsgType = 1;			// 初始任务设置：1; 任务请求应答：2;
+	required bool  bComplete = 2;			// 初始任务设置：false; 任务完成：true; 任务未完成: false;
+	required int32 nTotalComplete = 3;		// 当天完成总环数
+	required int32 nTaskID = 4;				// 初始任务设置：新任务id, 应答的任务完成时：新任务id; 
+	optional int32 nParam1 = 5;				// 物资任务时：ItemID
+	optional int32 nParam2 = 6;				// 物资任务时：ItemNum
+	optional int32 nParam3 = 7;				// 物资任务时：StartNum	
+	required int32 nTaskDupID = 8;			// 任务场景ID
+	required int32 nTaskPosX = 9;			// 任务坐标X
+	required int32 nTaskPosY = 10;			// 任务坐标Y
+}
+

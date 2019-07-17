@@ -1,0 +1,61 @@
+//成就协议
+package achieve;
+
+
+//点击主界面类型成就获取完成成就奖励
+message GetAchieveRewardReq 
+{
+	required int32 nAchieveID = 1;   //成就ID
+}
+
+//点击成就类型图标获取成就详细信息
+message OpeneAchieveReq
+{
+	required int32 nType = 1;		//成就类型ID
+}
+
+message AchieveData
+{
+	required int32 nID  = 1;				//成就id
+	required int32 nDegree = 2;				//成就当前进度
+	required int32 nDone = 3;				//成就状态　0-未完成　1-可领取　2-已完成(已领取奖励)
+}
+
+//类型成就数据
+message TypeAchieveData
+{
+	required int32 nType = 1;				//成就类型
+	required int32 nDegree = 2;				//进度
+	required int32 nRewardAchieveID = 3;	//可领取成就奖励ID
+}
+
+//角色上线发送成就信息
+message AchieveListRet 
+{
+	repeated TypeAchieveData tAchieve = 1;	
+}
+
+//点击成就类型图标返回成就相关数据
+message OpenTypeAchieveRet 
+{
+	repeated AchieveData tAchieve = 1;
+}
+
+//如果有成就达成，推送类型成就信息
+message SendTypeAchieveRet
+{
+	repeated TypeAchieveData tAchieve = 1;
+}
+
+//打开成就主界面
+message OpenAchieveMain {
+	
+}
+
+//点击主界面类型成就获取完成成就奖励返回
+message GetAchieveRewardRet 
+{
+	required AchieveData tAchieve = 1;
+}
+
+

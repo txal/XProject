@@ -1,0 +1,10 @@
+ctJunJiChuMatchConf={}
+ctJunJiChuMatchConf[1]={nIndex=1,tRang={{200,249,},},nBaseWeight=0,nWinsAdd=200,nLostsAdd=0,}
+ctJunJiChuMatchConf[2]={nIndex=2,tRang={{150,199,},},nBaseWeight=0,nWinsAdd=500,nLostsAdd=0,}
+ctJunJiChuMatchConf[3]={nIndex=3,tRang={{100,149,},},nBaseWeight=0,nWinsAdd=300,nLostsAdd=0,}
+ctJunJiChuMatchConf[4]={nIndex=4,tRang={{50,99,},},nBaseWeight=10,nWinsAdd=0,nLostsAdd=0,}
+ctJunJiChuMatchConf[5]={nIndex=5,tRang={{-49,49,},},nBaseWeight=40,nWinsAdd=0,nLostsAdd=0,}
+ctJunJiChuMatchConf[6]={nIndex=6,tRang={{-99,-50,},},nBaseWeight=10,nWinsAdd=0,nLostsAdd=0,}
+ctJunJiChuMatchConf[7]={nIndex=7,tRang={{-149,-100,},},nBaseWeight=0,nWinsAdd=0,nLostsAdd=300,}
+ctJunJiChuMatchConf[8]={nIndex=8,tRang={{-199,-150,},},nBaseWeight=0,nWinsAdd=0,nLostsAdd=500,}
+ctJunJiChuMatchConf[9]={nIndex=9,tRang={{-249,-200,},},nBaseWeight=0,nWinsAdd=0,nLostsAdd=200,}

@@ -1,0 +1,427 @@
+<?php
+//i 整形
+//s 字符串
+//t 表
+
+error_reporting(E_ALL);
+
+if (count($argv) < 3)
+{
+	exit("ERROR: Please set the csv file dir and lua file dir");
+}
+
+$sXMLDir = $argv[1];
+$sScriptDir = $argv[2];
+
+if(!is_dir($sXMLDir))
+{
+	exit("ERROR: Dir '$sXMLDir' is not found!");
+}
+
+if(!is_dir($sScriptDir))
+{
+	exit("ERROR: Dir '$sScriptDir' is not found!");
+}
+
+$DIRECTORY_SEPARATOR = '/';
+$tLuaFileList = array();
+
+ProcDir($sXMLDir, $sScriptDir);
+
+function ProcDir($sXMLDir, $sScriptDir)
+{
+	global $DIRECTORY_SEPARATOR; 
+
+	if(is_dir($sXMLDir))
+	{
+		$Handle = opendir($sXMLDir);
+		if (!$Handle)
+		{
+			exit("ERROR: Open dir '$sXMLDir' fail!");
+		}
+
+		while(($sFile = readdir($Handle)))
+		{
+			if($sFile == "." || $sFile == "..")
+			{
+				continue;
+			}
+
+			if(is_dir($sXMLDir.$DIRECTORY_SEPARATOR.$sFile))
+			{
+				$sSubXMLDir = $sXMLDir.$DIRECTORY_SEPARATOR.$sFile; 
+				$sSubScriptDir = $sScriptDir.$DIRECTORY_SEPARATOR.$sFile;
+				@mkdir($sSubScriptDir, 0777);
+				ProcDir($sSubXMLDir, $sSubScriptDir);
+			}
+			else
+			{
+				$sXMLFile = $sXMLDir.$DIRECTORY_SEPARATOR.$sFile;
+				$nDot = strrpos($sXMLFile, ".");
+				if (!$nDot)
+				{
+					continue;
+				}
+				$sExt = substr($sXMLFile, $nDot + 1, strlen($sXMLFile) - $nDot);
+				if (strtolower($sExt) == "xml")
+				{
+					XML2Lua($sXMLFile, $sScriptDir);
+				}
+			}
+		}
+		closedir($Handle);
+	}
+	else
+	{
+		print("ERROR: Dir '$sXMLDir' is not a dir or not found!\n");
+	}
+}
+
+function XML2Lua($sXMLFile, $sScriptDir)
+{
+	global $tLuaFileList;
+	global $DIRECTORY_SEPARATOR; 
+
+	$nDs = strrpos($sXMLFile, $DIRECTORY_SEPARATOR);
+	if (!$nDs) 
+	{
+		print("ERROR: '$sXMLFile' extract name fail!");
+		return;
+	}
+	$nDot = strrpos($sXMLFile, ".");
+	$sFileName = substr($sXMLFile, $nDs + 1, $nDot - $nDs - 1);
+	$sLuaFile = $sScriptDir.$DIRECTORY_SEPARATOR.$sFileName.".lua";
+
+	print("Converting: $sFileName.xml => $sFileName.lua\n");
+
+	$XML = new XMLReader();
+	if (!$XML->open($sXMLFile, "utf-8"))
+	{
+		exit("ERROR: Open '$sXMLFile' fail!\n");
+	}
+
+	$sScript = "";
+	$sRootTable = "";
+	$sRowScript = "";
+	array_push($tLuaFileList, $sLuaFile);
+
+	$tType = array();
+	$tField = array(); 
+	$tFieldSpec = array();
+	$bNotHasFieldSpec = false;
+
+	$nSheet = 0;
+	$nRow = 0;
+	$nData = 0;
+	$nCell = 0;
+	$nLastCell = 0;
+	
+	$keywords = array("min", "max", "math", "floor", "ceil", "abs", "pow", "and", "or", "random");
+	while ($XML->read())
+	{
+		if ($XML->name == "Worksheet" && $XML->nodeType == XMLReader::ELEMENT)
+		{
+			$nRow = 0;
+			$nSheet += 1;
+			if ($nSheet == 1)
+			{
+				$XML->moveToNextAttribute();
+				$sRootTable = $XML->value;
+			}
+			else
+			{
+				break;
+			}
+		}
+		if ($XML->name == "Row" && $XML->nodeType == XMLReader::ELEMENT)
+		{
+			if ($nRow == 0)
+			{
+				$nTmpRow = $XML->getAttribute("ss:Index");
+				if ($nTmpRow) 
+					$nRow = $nTmpRow;
+				else
+					$nRow++;
+			}
+			else 
+			{
+				$nRow++;
+			}
+			if ($nRow >= 5 && $sRowScript)
+			{
+				$sScript .= "$sRowScript}\n";
+			}
+
+			$nCell = 0;
+			$nLastCell = 0;
+			$sRowScript = "";
+		}
+		if ($XML->name == "Cell" && $XML->nodeType == XMLReader::ELEMENT)
+		{
+			$nCell++;
+		}
+		if ($XML->name == "Data" || ($nRow >= 5 && $XML->name == "ss:Data"))
+		{
+
+			if ($XML->nodeType == XMLReader::ELEMENT)
+			{
+				$nData = 1;
+			}
+			else if ($XML->nodeType == XMLReader::END_ELEMENT)
+			{
+				$nData = 0;
+			}
+			
+		}
+		if ($nData > 0 && $XML->nodeType == XMLReader::TEXT)
+		{
+			if ($nRow == 2)
+			{
+				if (strlen($XML->value) == 1 && is_numeric($XML->value))
+				{
+					$bNotHasFieldSpec = false;
+					$tFieldSpec[$nCell] = intval($XML->value);
+				}
+				else
+				{
+					$bNotHasFieldSpec = true;
+					$tFieldSpec[$nCell]	= 0;
+					$tField[$nCell] = $XML->value;
+					for ($i=1; $i < $nCell-1; $i++)
+					{
+						if ($tField[$i] == $XML->value)
+							exit("ERROR: Duplication columns '$XML->value'!\n");
+					}
+				}
+	
+			}
+			else if ($nRow == 3)
+			{
+				if ($bNotHasFieldSpec)
+				{
+					$tType[$nCell] = $XML->value;
+				}
+				else
+				{
+					$tField[$nCell] = $XML->value;
+					for ($i=1; $i < $nCell-1; $i++)
+					{
+						if ($tField[$i] == $XML->value)
+							exit("ERROR: Duplication columns '$XML->value'!\n");
+					}
+				}
+			}
+			else if ($nRow == 4)
+			{
+				if ($bNotHasFieldSpec)
+				{//注释行
+
+				}
+				else
+				{
+					$tType[$nCell] = $XML->value;
+				}
+			}
+			else if (!$bNotHasFieldSpec && $nRow == 5)
+			{//注释行
+			}
+			else if ($nRow >= 5)
+			{
+				if ($tFieldSpec[$nCell] == 2) 
+				{
+					$nLastCell = $nCell;
+					continue;	
+				}
+				if ($nLastCell + 1 != $nCell)
+				{
+					$nErrCell = $nLastCell + 1;
+					exit("ERROR: [$sXMLFile] Row:$nRow Col:$nLastCell->$nCell ColName:$tField[$nErrCell] can not read data!!!\n");
+				}
+				$nLastCell = $nCell;
+				$sValue = $XML->value;
+				if ($nCell == 1)
+				{
+					$key = $sValue;
+					if (is_numeric($sValue))
+						$key = floatval($sValue);
+					else
+						$key = "\"$key\"";
+					$sSubTable = $sRootTable."[$key]";
+					$sRowScript .= "$sSubTable={";
+				}
+				switch (substr($tType[$nCell],0,1))
+				{
+					case "i":
+					{
+						if (!is_numeric($sValue))
+						{
+							exit("ERROR: Row:$nRow Col:$tField[$nCell] value error!\n");
+						}
+						$sValue = $sValue;
+						$sRowScript .= "$tField[$nCell]=$sValue,";
+						break;
+					}
+					case "b":
+					{
+						$iValue = intVal($sValue);
+						$sValue = $iValue != 0 ? "true" : "false";
+						$sRowScript .= "$tField[$nCell]=$sValue,";
+						break;
+					}
+					case "s":
+					{
+						$sValue = "\"".strVal($sValue)."\"";
+						$sRowScript .= "$tField[$nCell]=$sValue,";
+						break;
+					}
+					case "e":
+					{
+						$params = array();
+						$sValue = str_replace("?", " and ", $sValue);
+						$sValue = str_replace(":", " or ", $sValue);
+						$sValue = str_ireplace("Math", "math", $sValue);
+						preg_match_all("/[a-zA-Z]+/i", strVal($sValue), $params);
+						if (count($params[0]) > 0)
+						{
+							$params[0] = array_unique($params[0]);
+							$params[0] = array_diff($params[0], $keywords);
+							$sValue = "function(".join(",",$params[0]).") return ($sValue) end";
+						}
+						else
+							$sValue = "function() return ($sValue) end";
+						$sRowScript .= "$tField[$nCell]=$sValue,";
+						break;
+					}
+					case "c":
+					{
+						$sValue = strVal($sValue);
+						$sRowScript .= "$tField[$nCell]=$sValue,";
+						break;
+					}
+					case "t":
+					{
+						$sType = $tType[$nCell];
+						$nTableLevel = substr_count($sType, "t");
+						if ($nTableLevel == 0)
+						{
+							exit("ERROR: '$sType' not support!\n");
+						}
+						if ($nTableLevel >= 2)
+						{
+							exit("ERROR: '$sType' error, only support 1 levels table, break!\n");
+						}
+						$sType = substr($sType, 2, -1);
+						$sRowScript .= "$tField[$nCell]={";
+						$tSubTable = explode(";", $sValue);
+						foreach ($tSubTable as $k => $v)
+						{
+							if ($v == "")
+							{
+								break;
+							}
+							$sRowScript .= "{";
+							$tMember = explode(",", $v);
+							for ($i = 0; $i < strlen($sType); $i++)
+							{
+								if (!isset($tMember[$i]))
+								{
+									exit("ERROR: Row:$nRow Col:$tField[$nCell] is empty!\n");
+								}
+								switch ($sType[$i])
+								{
+									case "i":
+									{
+										$nVal = $tMember[$i];
+										if (!is_numeric($nVal))
+										{
+											exit("ERROR: Row:$nRow Col:$tField[$nCell] value error!\n");
+										}	
+										$sRowScript .= "$nVal,";
+										break;
+									}
+									case "b":
+									{
+										$iValue = intVal($tMember[$i]);
+										$sValue = $iValue != 0 ? "true" : "false";	
+										$sRowScript .= "$sValue,";
+										break;
+									}
+									case "s":
+									{
+										$sVal = "\"".strval($tMember[$i])."\"";
+										$sRowScript .= "$sVal,";
+										break;
+									}
+									case "e":
+									{
+										$data = "";
+										if ($i == strlen($sType)-1)
+											for ($k=$i; $k<count($tMember); $k++)
+												$data .= $tMember[$k].(($k>=count($tMember)-1)?"":",");
+										$params = array();
+										$sValue = str_replace("?", " and ", $data);
+										$sValue = str_replace(":", " or ", $data);
+										$sValue = str_ireplace("Math", "math", $data);
+										preg_match_all("/[a-zA-Z]+/i", strVal($data), $params);
+										if (count($params[0]) > 0)
+										{
+											$params[0] = array_unique($params[0]);
+											$params[0] = array_diff($params[0], $keywords);
+											$sValue = "function(".join(",",$params[0]).") return ($sValue) end";
+										}
+										else
+											$sValue = "function() return ($sValue) end";	
+										$sRowScript .= "$sValue,";
+										break;
+									}
+									default:
+									{
+										exit("ERROR: Row:$nRow Col:$nCell type '$sType[$i]' error!\n");
+										break;
+									}
+								}
+							}
+							$sRowScript .= "},";
+						}
+						$sRowScript .= "},";
+						break;
+					}
+					default:
+					{
+						exit("ERROR: Row:$nRow Col:$nCell type '$tType[$nCell]' not support!\n");
+						break;
+					}
+				}
+			}
+		}
+	}
+	$XML->close();
+	if ($sRowScript)
+	{
+		$sScript .= "$sRowScript}\n";
+	}
+	$sScript = "$sRootTable={}\n$sScript";
+	if (file_exists($sLuaFile))
+	{
+		$sOldScript = file_get_contents($sLuaFile);
+		if ($sOldScript == $sScript)
+		{
+			return;
+		}
+	}
+	file_put_contents($sLuaFile, $sScript);
+}
+$sMainFile = $sScriptDir.$DIRECTORY_SEPARATOR."Main.lua";
+$hMainFile = fopen($sMainFile, "w");
+if (!$hMainFile)
+{
+	exit("ERROR: Open '$sMainFile' fail, break!\n");
+}
+foreach ($tLuaFileList as $k => $v)
+{
+	$sLuaFile = substr($v, 0, -4);
+	$sFileName = substr($sLuaFile, strlen($sScriptDir)+1);
+	fwrite($hMainFile, "require(\"Config/$sFileName\")\n");
+}
+fclose($hMainFile);
+?>

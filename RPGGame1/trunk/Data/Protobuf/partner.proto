@@ -1,0 +1,363 @@
+// 伙伴协议
+package partner;
+
+
+// 通用KeyValue数据
+message KeyValue
+{
+	required int32 nKey = 1;
+	required int32 nValue = 2;
+}
+
+// 伙伴上阵方案数据
+message PartnerPlanData
+{
+	required int32 nPlanID = 1;
+	repeated int32 tPartnerIDList = 2;  // 上阵伙伴列表 4个元素
+}
+
+// 灵石碎片数据
+message PartnerStoneData
+{
+	required int32 nPartnerStoneID = 1;    // 灵石ID
+	required int32 nPartnerStoneNum = 2;   // 灵石数量
+}
+
+// 伙伴属性
+message PartnerAttrData
+{
+	required int32 nAttrID = 1;   // 属性ID
+	required int32 nAttrVal = 2;  // 属性值
+}
+
+// 伙伴简要数据
+message PartnerBriefData
+{
+	required int32 nID = 1;	 	      // 伙伴ID
+	required int32 nGrade = 2;        // 品质等级
+	required int32 nStarLevel = 3;    // 星级
+	required int32 nStarCount = 4;    // 当前星级星星数量
+	required int32 nLevel = 5;        // 等级
+	required int32 nFightAbility = 6;  // 战斗力
+	required int32 nIntimacy = 7;    // 亲密度
+}
+
+// 伙伴详细数据
+message PartnerDetailData
+{	
+	//觉醒数据
+	message _ReviveData 
+	{
+		required int32 nLevel = 1;    // 觉醒等级
+		required int32 nExp = 2;      // 觉醒经验
+	}
+
+	required int32 nID = 1;	 	      // 伙伴ID
+	required int32 nGrade = 2;        // 品质等级
+	required int32 nStarLevel = 3;    // 星级
+	required int32 nStarCount = 4;    // 当前星级星星数量
+	required int32 nLevel = 5;        // 等级
+	required int32 nFightAbility = 6;  // 战斗力
+	required int32 nIntimacy = 7;    // 亲密度
+	repeated KeyValue tGiftPropRecord = 8;  // 礼物道具当前已使用数量
+	required int32 nGiftPropLimitNum = 9;   // 每种道具，可送礼物数量上限 --已废弃
+	repeated PartnerAttrData tGiftPropAttrList = 10; // 伙伴礼物添加的属性
+	repeated PartnerAttrData tBaseAttrList = 11;  //伙伴基础属性列表
+	repeated PartnerAttrData tAttrList = 12; // 伙伴最终属性列表
+	required int32 nWeaponAtk = 13;      // 武器攻击
+	// required bool bDailyAddSpiritOp = 14;  // 今日是否已操作增加灵气
+	optional int32 nSpirit = 14;         // 当前灵气
+	optional int32 nLevelUpSpirit = 15;  // 升级到SSS所需灵气
+	optional _ReviveData tReviveData = 16;  // 觉醒数据
+}
+
+// 获取伙伴模块数据
+message PartnerBlockDataReq
+{
+}
+
+// 伙伴模块数据响应
+message PartnerBlockDataRet
+{
+	repeated PartnerDetailData tPartnerList = 1;
+	repeated PartnerPlanData tPlanDataList = 2;    // 伙伴上阵数据
+	required int32 nUsePlanID = 3;                 // 当期使用的上阵方案
+	required int32 nMaterialCollectCount = 4;      // 灵石采集许可数量
+	repeated PartnerStoneData tStoneDataList = 5;  // 灵石数据列表
+	required bool bDailyAddSpiritOp = 6;          // 今日是否已操作增加灵气
+}
+
+// 获取伙伴详细数据
+message PartnerDetailReq
+{
+	required int32 nID = 1; // 伙伴ID
+}
+
+// 伙伴详细数据响应
+message PartnerDetailRet
+{
+	required PartnerDetailData tPartnerDetail = 1;
+}
+
+// 获取所有伙伴详细数据
+message PartnerListReq
+{	
+}
+
+// 所有伙伴详细数据响应
+message PartnerDetailListRet
+{
+	repeated PartnerDetailData tPartnerList = 1;	
+}
+
+// 招募伙伴请求
+message PartnerRecruitReq
+{
+	required int32 nPartnerID = 1; // 伙伴ID
+}
+
+// 招募伙伴响应
+message PartnerRecruitRet
+{
+	required PartnerDetailData tPartner = 1; // 成功招募的伙伴信息
+}
+
+// 购买灵石采集许可
+message PartnerAddMaterialCollectCountReq
+{
+	required int32 nCount = 1; // 灵石采集许可数量
+}
+
+// 购买灵石采集许可响应
+message PartnerAddMaterialCollectCountRet
+{
+	required int32 nAddCount = 1;    // 购买增加的许可数量
+	required int32 nTotalCount = 2;  // 购买后，当前总的许可数量
+}
+
+// 灵石采集请求
+message PartnerStoneCollectReq
+{
+	required int32 nPropID = 1;     // 配置表中灵石道具ID
+	required int32 nGridID = 2;      // 选择的格子ID[1-5]
+	required int32 nCount = 3;       // 采集次数
+	required bool bMax = 4;          // 是否必定最大
+}
+
+// 灵石采集响应
+message PartnerStoneCollectRet
+{
+	required int32 nPropID = 1;       // 灵石道具ID
+	required int32 nStoneID =  2;     // 灵石ID(货币类型)
+	required int32 nGridID = 3;      // 选择的格子ID[1-5]
+	required int32 nCount = 4;       // 请求的采集次数
+	required bool bMax = 5;          // 请求是否必定最大
+	required int32 nRewardNum = 6;   // 获得的奖励的数量
+	repeated KeyValue tGridRewardList = 7; // 所有的格子奖品列表
+}
+
+// 伙伴上阵请求
+message PartnerBattleActiveReq
+{
+	required int32 nPlanID = 1;       // 方案ID， 1,2攻击方案
+	required int32 nPartnerID = 2;    // 上阵的伙伴ID
+}
+
+// 伙伴上阵响应
+message PartnerBattleActiveRet
+{
+	required int32 nPlanID = 1;     // 上阵方案ID
+	required PartnerPlanData tPlanData = 2;   // 上阵伙伴列表
+	required int32 nPos = 3;        // 请求的上阵位置
+}
+
+// 伙伴下阵请求
+message PartnerBattleRestReq
+{
+	required int32 nPlanID = 1;       // 方案ID， 1,2攻击方案
+	required int32 nPos = 2;          // 上阵位置，1 - 4	
+}
+
+// 伙伴下阵响应
+message PartnerBattleRestRet
+{
+	required int32 nPlanID = 1;     // 上阵方案ID
+	required PartnerPlanData tPlanData = 2;   // 上阵伙伴列表	
+	required int32 nPos = 3;        // 请求的下阵位置
+	required int32 nRestPartnerID = 4;  // 下阵的伙伴ID
+}
+
+// 伙伴上阵方案切换请求
+message PartnerSwitchPlanReq
+{
+	required int32 nPlanID = 1;    // 切换的目标方案ID
+}
+
+// 伙伴上阵方案切换响应
+message PartnerSwitchPlanRet
+{
+	required int32 nOldPlanID = 1;  // 旧的方案ID
+	required int32 nCurPlanID = 2;  // 切换后，当前使用的方案ID
+}
+
+// 点亮伙伴星级星星请求
+message PartnerAddStarCountReq
+{
+	required int32 nPartnerID = 1; // 伙伴ID
+}
+
+// 点亮伙伴星级星星响应
+message PartnerAddStarCountRet
+{
+	required int32 nPartnerID = 1;        // 伙伴ID
+	required int32 nOldStarLevel = 2;
+	required int32 nOldStarCount = 3;
+	required int32 nNewStarLevel = 4;
+	required int32 nNewStarCount = 5;
+	//required PartnerDetailData tPartner = 6; // 伙伴数据
+}
+
+// 伙伴星级升级请求
+message PartnerStarLevelUpReq
+{
+	required int32 nPartnerID = 1; // 伙伴ID
+}
+
+// 伙伴星级升级响应
+message PartnerStarLevelUpRet
+{
+	required int32 nPartnerID = 1; // 伙伴ID
+	required int32 nStarLevel = 2; // 升级后的星级
+}
+
+// 伙伴送礼数据
+message PropIDNum
+{
+	required int32 nPropID = 1;   // 道具ID
+	required int32 nPropNum = 2;  // 道具数量
+}
+
+
+// 给指定伙伴送礼请求
+message PartnerSendGiftReq
+{
+	required int32 nPartnerID = 1;       // 伙伴ID
+	repeated PropIDNum tPropList = 2;    // 送礼的道具列表
+}
+
+// 给指定伙伴送礼响应
+message PartnerSendGiftRet
+{
+	required int32 nPartnerID = 1;       // 伙伴ID
+	repeated PropIDNum tPropList = 2;    // 实际送出的礼物列表
+	optional int32 nIntimacyAdd = 3;     // 亲密度增加值
+}
+
+// 给指定伙伴增加灵气请求
+message PartnerAddSpiritReq
+{
+	required int32 nPartnerID = 1;       // 伙伴ID
+	required int32 nConfID = 2;          // 伙伴灵气配置ID
+}
+
+// 给指定伙伴赠送灵气响应
+message PartnerAddSpiritRet
+{
+	required int32 nPartnerID = 1;       // 伙伴ID 
+	required int32 nConfID = 2;          // 增加灵气使用的配置ID
+	required int32 nOldSpirit = 3;       // 之前的灵气值
+	required int32 nNewSpirit = 4;       // 新的灵气值
+	required bool bGradeLevelUp = 5;     // 品质是否发生提升
+}
+
+//交换上阵伙伴位置请求
+message PartnerPlanSwapPosReq
+{
+	required int32 nPlanID = 1;          // 上阵方案ID
+	required int32 nPos1 = 2;            // 请求交换上阵位置[1 - 4]
+	required int32 nPos2 = 3;
+}
+
+//交换上阵伙伴位置响应
+message PartnerPlanSwapPosRet
+{
+	required int32 nPlanID = 1;          // 上阵方案ID
+	required int32 nPos1 = 2;            // 请求交换的上阵位置[1 - 4]
+	required int32 nPos2 = 3;            // 
+	required PartnerPlanData tPlanData = 4;   // 交换后最新的上阵伙伴列表
+}
+
+//伙伴招募提示
+message PartnerRecruitTipsRet
+{
+	required bool bTips = 1;             // 是否提示
+	repeated int32 tPartnerList = 2;     // 提示的伙伴ID列表
+}
+
+//关闭伙伴招募提示请求
+message PartnerRecruitTipsCloseReq
+{
+}
+
+//伙伴升星提示
+message PartnerAddStarTipsRet
+{
+	repeated int32 tPartnerList = 1;     // 提示的伙伴ID列表
+}
+
+//仙侣仙阵信息请求
+message PartnerXianzhenInfoReq
+{
+}
+
+//仙侣仙阵信息响应
+message PartnerXianzhenInfoRet
+{
+	message _Attr
+	{
+		required int32 nAttrID = 1;
+		required int32 nAttrVal = 2;
+	}
+
+	required int32 nLevel = 1;       //等级
+	required int32 nExp = 2;         //当前等级经验
+	repeated _Attr tAttrList = 3;    //属性
+	optional int32 nScore = 4;             //评分
+}
+
+//仙侣仙阵升级请求
+message PartnerXianzhenLevelUpReq
+{
+}
+
+//仙侣仙阵升级响应
+message PartnerXianzhenLevelUpRet
+{
+	optional int32 nOldLevel = 1;
+	optional int32 nCurLevel = 2;
+}
+
+//仙侣觉醒请求
+message PartnerReviveLevelUpReq
+{
+	required int32 nPartnerID = 1;
+	required int32 nPropID = 2;
+	required int32 nPropNum = 3;
+}
+
+//仙侣觉醒响应
+message PartnerReviveLevelUpRet
+{
+	message _ReviveData
+	{
+		required int32 nLevel = 1;
+		required int32 nExp = 2;
+	}
+
+	required int32 nPartnerID = 1;
+	optional int32 nPropID = 2;
+	optional int32 nPropNum = 3;
+	optional _ReviveData tOldData = 4;    // 旧数据
+	optional _ReviveData tCurData = 5;    // 当前数据
+}
+

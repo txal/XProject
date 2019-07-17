@@ -1,0 +1,19 @@
+//充值翻倍
+package actfb;
+
+//活动状态请求
+message ActFBStateReq
+{
+	
+}
+
+//活动状态返回
+message ActFBStateRet
+{
+	required int32 nID = 1;
+	required int32 nState = 2; 		//活动状态:1进行中; 3已结束
+	required int32 nStateTime = 3; 	//状态剩余时间
+	required int32 nBeginTime = 4; 	//活动开始时间
+	required int32 nEndTime = 5; 	//活动结束时间
+}
+

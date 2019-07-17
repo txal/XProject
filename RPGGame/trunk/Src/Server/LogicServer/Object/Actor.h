@@ -23,10 +23,8 @@ public:
 	int GetSpeedY() { return m_nRunSpeedY; }
 
 public:
-	virtual void Update(int64_t nNowMS);
-	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos);
-	virtual void AfterEnterScene();
-	virtual void OnLeaveScene();
+	virtual void OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int16_t nLine);
+
 	virtual int GetSession() { return m_nSession; }
 	virtual uint16_t GetServer() { return m_uServer; }
 	virtual AStarPathFind* GetAStar() { return NULL; }

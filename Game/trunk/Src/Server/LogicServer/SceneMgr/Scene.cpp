@@ -290,7 +290,7 @@ void Scene::UpdateDamage(Actor* poAtker, Actor* poDefer, int nHP, int nAtkID, in
 	}
 	if (m_uBattleType  == eBT_BugStorm || m_uBattleType == eBT_BugHole || m_uBattleType == eBT_BugHole1 || m_uBattleType == eBT_BugHole2)
 	{
-		GAME_OBJID& oID = poAtker->GetID();
+		OBJID& oID = poAtker->GetID();
 		DmgData* poData = m_oDmgRanking.GetDataByID(oID.llID);
 		if (poData == NULL)
 		{

@@ -27,7 +27,7 @@ Monster::~Monster()
 	SAFE_DELETE(m_poAI);
 }
 
-void Monster::Init(const GAME_OBJID& oObjID, int nConfID, const char* psName, int nAIID, int8_t nCamp)
+void Monster::Init(const OBJID& oObjID, int nConfID, const char* psName, int nAIID, int8_t nCamp)
 {
 	m_oObjID = oObjID;
 	m_nConfID = nConfID;

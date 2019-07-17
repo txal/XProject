@@ -13,6 +13,9 @@ public:
 	typedef std::unordered_map<int, Role*> RoleMap;
 	typedef RoleMap::iterator RoleIter;
 
+	typedef std::unordered_map<int64_t, Role*> RoleSSMap;
+	typedef RoleSSMap::iterator RoleSSIter;
+
 	typedef std::vector<int> FollowVec;
 	typedef FollowVec::iterator FollowIter;
 
@@ -32,7 +35,7 @@ public:
 	void Update(int64_t nNowMS);
 
 protected:
-	int GenSSKey(uint16_t uServer, int nSession) { return (int)uServer << 16 | nSession; }
+	int64_t GenSSKey(uint16_t uServer, int nSession) { return (int64_t)uServer << 32 | nSession; }
 
 
 ////////////////Lua export///////////////////
@@ -43,7 +46,7 @@ public:
 
 private:
 	RoleMap m_oRoleIDMap;
-	RoleMap m_oRoleSSMap;
+	RoleSSMap m_oRoleSSMap;
 };
 
 

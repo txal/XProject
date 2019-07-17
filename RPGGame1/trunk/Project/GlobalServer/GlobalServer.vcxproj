@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DE67EB28-1D3C-482E-BE78-04DD1EF85405}</ProjectGuid>
+    <RootNamespace>PayServer</RootNamespace>
+    <ProjectName>GlobalServer</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\Bin\_LocalServer\</OutDir>
+    <TargetName>MZ-$(ProjectName)</TargetName>
+    <IncludePath>D:\download\vld-master\src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\download\vld-master\src\bin\x64\Release-v140;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\..\..\..\king\Runtime\trunk\Server\Release\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\Src;E:\XProject;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>lua530.lib;LibLogger.lib;LibNetwork.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;lua_cjson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Libs\Win64\Debug;..\..\Libs\Win64\Debug\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>pushd $(OutDir)
+rem xcopy /y/f MZ-GlobalServer* E:\svnmengzhu\trunk\Server\_LocalServer\
+popd</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\Libs\Win64\Release;..\..\Libs\Win64\Release\3rd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua530.lib;LibLogger.lib;LibNetwork.lib;LibDBDriver.lib;LuaWrapper.lib;mysqlclient.lib;pbc.lib;lpeg.lib;lua_cjson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaCmd.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaRpc.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaSerialize.cpp" />
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpClient.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpLua.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\HttpServer.cpp" />
+    <ClCompile Include="..\..\..\..\Common\MGHttp\mongoose.cpp" />
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketReader.cpp" />
+    <ClCompile Include="..\..\..\..\Common\PacketParser\PacketWriter.cpp" />
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\Timer.cpp" />
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp" />
+    <ClCompile Include="..\..\..\..\Common\WordFilter\WordFilter.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\MsgBalancer.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\PacketHandler.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\ServerContext.cpp" />
+    <ClCompile Include="..\..\Src\Server\Base\Service.cpp" />
+    <ClCompile Include="..\..\Src\Server\GlobalServer\GlobalServer.cpp" />
+    <ClCompile Include="..\..\Src\Server\GlobalServer\LuaSupport\LuaExport.cpp" />
+    <ClCompile Include="..\..\Src\Server\GlobalServer\Main.cpp" />
+    <ClCompile Include="..\..\Src\Server\GlobalServer\MysqlWorker\MysqlWorkerMgr.cpp" />
+    <ClCompile Include="..\..\Src\Server\GlobalServer\PacketProc\PacketProc.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaCmd.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaPB.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaRpc.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaSerialize.h" />
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpClient.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpLua.hpp" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\HttpServer.h" />
+    <ClInclude Include="..\..\..\..\Common\MGHttp\mongoose.h" />
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketReader.h" />
+    <ClInclude Include="..\..\..\..\Common\PacketParser\PacketWriter.h" />
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\Timer.h" />
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\TimerMgr.h" />
+    <ClInclude Include="..\..\..\..\Common\WordFilter\WordFilter.h" />
+    <ClInclude Include="..\..\Src\Server\Base\CmdDef.h" />
+    <ClInclude Include="..\..\Src\Server\Base\MsgBalancer.h" />
+    <ClInclude Include="..\..\Src\Server\Base\NetAdapter.h" />
+    <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h" />
+    <ClInclude Include="..\..\Src\Server\Base\PacketHandler.h" />
+    <ClInclude Include="..\..\Src\Server\Base\RouterMgr.h" />
+    <ClInclude Include="..\..\Src\Server\Base\ServerConfig.h" />
+    <ClInclude Include="..\..\Src\Server\Base\ServerContext.h" />
+    <ClInclude Include="..\..\Src\Server\Base\Service.h" />
+    <ClInclude Include="..\..\Src\Server\GlobalServer\GlobalServer.h" />
+    <ClInclude Include="..\..\Src\Server\GlobalServer\LuaSupport\LuaExport.h" />
+    <ClInclude Include="..\..\Src\Server\GlobalServer\MysqlWorker\MysqlWorkerMgr.h" />
+    <ClInclude Include="..\..\Src\Server\GlobalServer\PacketProc\PacketProc.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

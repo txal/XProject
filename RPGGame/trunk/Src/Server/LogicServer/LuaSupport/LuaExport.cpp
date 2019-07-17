@@ -22,14 +22,14 @@
 //取服务ID
 int GetServiceID(lua_State* pState)
 {
-	int nService = g_poContext->GetService()->GetServiceID();
+	int nService = gpoContext->GetService()->GetServiceID();
 	lua_pushinteger(pState, nService);
 	return 1;
 }
 
 int GetSceneMgr(lua_State* pState)
 {
-	LogicServer* poServer = (LogicServer*)g_poContext->GetService();
+	LogicServer* poServer = (LogicServer*)gpoContext->GetService();
 	SceneMgr* poMgr = poServer->GetSceneMgr();
 	Lunar<SceneMgr>::push(pState, poMgr);
 	return 1;
@@ -37,7 +37,7 @@ int GetSceneMgr(lua_State* pState)
 
 int GetRoleMgr(lua_State* pState)
 {
-	LogicServer* poServer = (LogicServer*)g_poContext->GetService();
+	LogicServer* poServer = (LogicServer*)gpoContext->GetService();
 	RoleMgr* poMgr = poServer->GetRoleMgr();
 	Lunar<RoleMgr>::push(pState, poMgr);
 	return 1;
@@ -45,7 +45,7 @@ int GetRoleMgr(lua_State* pState)
 
 int GetMonsterMgr(lua_State* pState)
 {
-	LogicServer* poServer = (LogicServer*)g_poContext->GetService();
+	LogicServer* poServer = (LogicServer*)gpoContext->GetService();
 	MonsterMgr* poMgr = poServer->GetMonsterMgr();
 	Lunar<MonsterMgr>::push(pState, poMgr);
 	return 1;
@@ -53,7 +53,7 @@ int GetMonsterMgr(lua_State* pState)
 
 int GetDropItemMgr(lua_State* pState)
 {
-	LogicServer* poServer = (LogicServer*)g_poContext->GetService();
+	LogicServer* poServer = (LogicServer*)gpoContext->GetService();
 	DropItemMgr* poMgr = poServer->GetDropItemMgr();
 	Lunar<DropItemMgr>::push(pState, poMgr);
 	return 1;
@@ -61,7 +61,7 @@ int GetDropItemMgr(lua_State* pState)
 
 int GetRobotMgr(lua_State* pState)
 {
-	LogicServer* poServer = (LogicServer*)g_poContext->GetService();
+	LogicServer* poServer = (LogicServer*)gpoContext->GetService();
 	RobotMgr* poMgr = poServer->GetRobotMgr();
 	Lunar<RobotMgr>::push(pState, poMgr);
 	return 1;

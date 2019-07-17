@@ -22,23 +22,8 @@
     <Filter Include="Src\Common\TimerMgr">
       <UniqueIdentifier>{3cae9730-1e07-44ec-9809-0adf41f9bb52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Common\HttpRequest">
-      <UniqueIdentifier>{fa5f6b11-d983-4386-8e3e-817c9ea5e363}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.cpp">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaCmd.cpp">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaRpc.cpp">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\LuaCommon\LuaTableSeri.cpp">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">
       <Filter>Src\Base</Filter>
     </ClCompile>
@@ -66,35 +51,32 @@
     <ClCompile Include="..\..\Src\Server\GlobalServer\LuaSupport\LuaExport.cpp">
       <Filter>Src\LuaSupport</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\TimerMgr\Timer.cpp">
-      <Filter>Src\Common\TimerMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Common\TimerMgr\TimerMgr.cpp">
-      <Filter>Src\Common\TimerMgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Server\Base\NetworkExport.cpp">
       <Filter>Src\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\HttpRequest\HttpRequest.cpp">
-      <Filter>Src\Common\HttpRequest</Filter>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaCmd.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaRpc.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaSerialize.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\Timer.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp">
+      <Filter>Src\Common\TimerMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\ClientLuaCmd.h">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaCmd.h">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaPB.h">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaRpc.h">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\LuaCommon\LuaTableSeri.h">
-      <Filter>Src\Common\LuaCommon</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\CmdDef.h">
       <Filter>Src\Base</Filter>
     </ClInclude>
@@ -122,17 +104,32 @@
     <ClInclude Include="..\..\Src\Server\GlobalServer\LuaSupport\LuaExport.h">
       <Filter>Src\LuaSupport</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\TimerMgr\Timer.h">
-      <Filter>Src\Common\TimerMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Common\TimerMgr\TimerMgr.h">
-      <Filter>Src\Common\TimerMgr</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Server\Base\NetworkExport.h">
       <Filter>Src\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\HttpRequest\HttpRequest.h">
-      <Filter>Src\Common\HttpRequest</Filter>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaCmd.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaPB.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaRpc.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaSerialize.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\Timer.h">
+      <Filter>Src\Common\TimerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\TimerMgr\TimerMgr.h">
+      <Filter>Src\Common\TimerMgr</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

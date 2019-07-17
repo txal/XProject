@@ -1,0 +1,99 @@
+package daqinghuangbang;
+
+//皇榜请求
+message HBInfoReq
+{
+}
+
+//皇榜返回
+message HBInfoRet
+{
+	message _tAcTime 
+	{
+		required int32 nID = 1;			    //活动ID(1.国力皇榜，2.亲密度皇榜，3.军机处皇榜, 4.妃子PVP皇榜 待定联盟皇榜)
+		required int32 nState = 2;          //活动状态(0.活动还没有开始， 1.活动开始，2.领奖开始，3.活动关闭)
+		required int32 nBegTime = 3;        //冲榜开始时间
+		required int32 nEndTime = 4;        //冲榜结束时间/领奖开始时间
+		required int32 nStateTime = 5;      //冲榜/领奖剩余时间
+		required int32 nAwardTime = 6;      //活动关闭时间
+		required bool bCanGetAward = 7;		//是否可以领奖
+		required int32 nOpenTimes = 8;		//开启次数(1为首次开启，大于1为普通开启)
+	}
+	repeated _tAcTime tActList = 1;         //活动状态数组
+}
+
+//活动进入请求
+message HBInActivityReq  
+{
+	required int32 nID = 1;                 //活动ID(1.国力皇榜，2.亲密度皇榜，3.军机处皇榜, 4.妃子PVP皇榜 待定，5.联盟皇榜)
+}
+
+//活动进入返回              
+message HBInActivityRet   
+{ 
+	required int32 nRemainTime = 1;     	//冲榜/领奖剩余时间
+	required int32 nAwardState = 2;         //领奖状态(0.未达到领奖条件，1.已达到未领取，2.已领取)
+	required int32 nID = 3;                 //活动ID(1.国力皇榜，2.亲密度皇榜，3.军机处皇榜, 4.妃子PVP皇榜 待定，5.联盟皇榜)
+	optional string sFirstName = 4;			//第一名名字
+	optional int32 nFirstValue = 5; 		//第一名国力
+	optional int32 nMyRank = 6;				//我的排名
+}
+
+//冲榜榜单请求
+message HBRankingReq
+{
+	required int32 nID = 1;                 //活动ID(1.国力皇榜，2.亲密度皇榜，3.军机处皇榜, 4.妃子PVP皇榜 待定，5.联盟皇榜)
+	required int32 nRankNum = 2;            //取前X名
+}
+
+//冲榜榜单返回    
+message HBRankingRet
+{
+	message _Rank
+	{
+		required int32 nRank = 1; 	//排名
+		required string sName = 2; 	//名字
+		required int32 nValue = 3; 	//值
+	}	 																		
+	repeated _Rank tRanking = 1; 	//排行列表
+	required int32 nMyRank = 2; 	//我的排名
+	required string sMyName = 3; 	//我的名字
+	required int32 nMyValue = 4; 	//我的数值
+	required int32 nID = 5;			//活动ID(1.国力皇榜，2.亲密度皇榜，3.军机处皇榜, 4.妃子PVP皇榜 待定，5.联盟皇榜)
+}
+
+//奖励请求
+message HBGetAwardReq 
+{
+	required int32 nID = 1;             //活动ID(1.国力皇榜，2.亲密度皇榜，3.军机处皇榜, 4.妃子PVP皇榜 待定，5.联盟皇榜)
+}
+
+//奖励返回
+message HBGetAwardRet
+{
+	message _tAward                     //奖励结构
+	{
+		required int32 nType = 1;       //奖励物品的类型
+		required int32 nID = 2;         //物品ID
+		required int32 nNum = 3; 		//物品数量
+	}
+	repeated _tAward tList = 1;         //奖励数组
+	required int32 nAwardState = 2;		//领奖状态(0.未达到领奖条件，1.已达到未领取，2.已领取)
+	optional int32 nMyPos = 3;          //我的职位
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

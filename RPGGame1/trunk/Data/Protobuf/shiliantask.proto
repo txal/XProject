@@ -1,0 +1,48 @@
+package shiliantask;
+
+//接取试炼任务
+message ShiLianTaskAccepReq
+{
+}
+
+//接取到的任务
+message ShiLianTaskInfoRet
+{
+	required int32 nTaskType = 1;		//任务类型
+	required int32 nNpcID = 2;			//任务NPC
+	required int32 nCompleteTimes = 3;	//完成任务次数
+	required int32 nItmeID = 4;			//提交任务物品ID
+	required int32 nItemNum = 5;		//提交物品数量
+	required bool  bIsItemSet = 6;		//是否是物品集合
+	optional int32 nJumpType = 7;		//来源途径类型
+	required int32 nChuanShuoTimeStamp = 8;		//传说时间有效时间戳
+}
+
+//提交任务
+message ShiLianTaskCommitReq
+{
+	required int32 nNpcID = 1;			//提交任务NpcID
+	optional int32 nItemID = 2;			//提交物品任务时物品ID
+	optional int32 nCommitNum = 3;		//提交数量
+	optional int32 nGridID = 4;			//提交物品所在格子索引
+	required bool  bUseJinBi = 5;		//是否任性一下(使用金币)
+}
+
+//提交任务结果
+message ShiLianTaskCommitRet
+{
+	required bool bComplete = 1;	//是否完成
+}
+
+//单个奖励内容信息
+message _RewardSingle
+{
+	required int32 nItemID = 1;		//奖励物品ID
+	required int32 nItemNum = 2;	//奖励数量
+}
+
+//获得奖励
+message ShiLianRewardRet
+{
+	repeated _RewardSingle tRewardList = 1;		//奖励列表
+}

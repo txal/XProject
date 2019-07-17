@@ -1,0 +1,51 @@
+//修炼
+package practice;
+
+//修炼列表请求
+message PracticeInfoReq
+{
+    required int32 nID = 1;     //修炼ID: 0所有; >0指定
+}
+
+//修炼列表返回
+message PracticeInfoRet
+{
+    message _PRA
+    {
+        required int32 nID = 1;             //修炼ID
+        required int32 nLevel = 2;          //等级
+        required int32 nExp = 3;            //当前经验
+        required int32 nNextExp = 4;        //下级经验
+        required int32 nCostSilver = 5;     //消耗银币
+        required bool bCanLearn = 6;        //是否可以银币学习
+        required bool bCanUseProp = 7;      //是否可以使用修炼丹
+    } 
+    repeated _PRA tList = 1;            //列表(1个或所有)
+    required double nSilver = 2;         //拥有银币
+    required int32 nDefault = 3;        //默认修炼
+    required int32 nMaxLevel = 4;       //等级上限
+    required int32 nRemainProps = 5;    //剩余可用修炼丹数量
+}
+
+//修炼学习请求
+message PracticeLearnReq
+{
+    required int32 nID = 1;     //修炼ID 
+    required int32 nTimes = 2;   //学习次数(1,10,100)
+}
+
+
+//使用修炼丹请求
+message PracticeUsePropReq
+{
+    required int32 nID = 1;         //修炼ID
+    required int32 nPropID = 2;     //道具ID
+    optional int32 nUseNum = 3;     //使用数量
+}
+
+
+//选择默认修炼
+message PracticeSetDefaultReq
+{
+    required int32 nID = 1;         //修炼ID
+}

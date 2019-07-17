@@ -23,7 +23,7 @@ Player::~Player()
 {
 }
 
-void Player::Init(const GAME_OBJID& oObjID, int nConfID, const char* psName, int8_t nCamp)
+void Player::Init(const OBJID& oObjID, int nConfID, const char* psName, int8_t nCamp)
 {
 	m_oObjID = oObjID;
 	m_nConfID = nConfID;

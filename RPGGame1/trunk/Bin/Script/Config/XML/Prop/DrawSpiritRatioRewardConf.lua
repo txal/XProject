@@ -1,0 +1,12 @@
+ctDrawSpiritRatioRewardConf={}
+ctDrawSpiritRatioRewardConf[2]={nRatio=2,nProbability=400,}
+ctDrawSpiritRatioRewardConf[3]={nRatio=3,nProbability=160,}
+ctDrawSpiritRatioRewardConf[4]={nRatio=4,nProbability=150,}
+ctDrawSpiritRatioRewardConf[5]={nRatio=5,nProbability=140,}
+ctDrawSpiritRatioRewardConf[6]={nRatio=6,nProbability=130,}
+ctDrawSpiritRatioRewardConf[7]={nRatio=7,nProbability=110,}
+ctDrawSpiritRatioRewardConf[9]={nRatio=9,nProbability=70,}
+ctDrawSpiritRatioRewardConf[10]={nRatio=10,nProbability=60,}
+ctDrawSpiritRatioRewardConf[12]={nRatio=12,nProbability=50,}
+ctDrawSpiritRatioRewardConf[20]={nRatio=20,nProbability=20,}
+ctDrawSpiritRatioRewardConf[100]={nRatio=100,nProbability=7,}

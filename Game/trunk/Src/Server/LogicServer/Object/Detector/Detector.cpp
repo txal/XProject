@@ -18,7 +18,7 @@ Detector::~Detector()
 {
 }
 
-void Detector::Init(const GAME_OBJID& oObjID, int nConfID, const char* psName)
+void Detector::Init(const OBJID& oObjID, int nConfID, const char* psName)
 {
 	m_nCamp = (int8_t)eBC_Neutral;
 	m_oObjID = oObjID;
