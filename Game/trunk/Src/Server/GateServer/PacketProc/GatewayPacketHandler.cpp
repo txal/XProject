@@ -6,7 +6,7 @@
 #include "Server/GateServer/Gateway.h"
 #include "Server/GateServer/PacketProc/GatewayPacketHandler.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 GatewayPacketHandler::GatewayPacketHandler()
 {
@@ -15,7 +15,7 @@ GatewayPacketHandler::GatewayPacketHandler()
 
 void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket, EXTER_HEADER& oHeader)
 {
-	Gateway* poGateway = (Gateway*)g_poContext->GetService();
+	Gateway* poGateway = (Gateway*)gpoContext->GetService();
 	if (oHeader.nTarService == poGateway->GetServiceID() || oHeader.uCmd == NSCltSrvCmd::ppKeepAlive)
 	{
 		PacketProcIter iter = m_poExterPacketProcMap->find(oHeader.uCmd);
@@ -37,7 +37,7 @@ void GatewayPacketHandler::OnRecvExterPacket(int nSrcSessionID, Packet *poPacket
 			oHeader.nTarService = poGateway->GetClientMgr()->GetClientLogicService(nSrcSessionID);
 			if (oHeader.nTarService <= 0)
 			{
-				oHeader.nTarService = g_poContext->GetRandomLogic();
+				oHeader.nTarService = gpoContext->GetRandomLogic();
 			}
 			if (oHeader.nTarService <= 0)
 			{
@@ -78,7 +78,7 @@ void GatewayPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket
 void GatewayPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
 	super::CacheSessionArray(pSessionArray, oHeader.uSessionNum);
-	Service* poService = g_poContext->GetService();
+	Service* poService = gpoContext->GetService();
 	INet* pExterNet = poService->GetExterNet();
 
 	EXTER_HEADER oExterHeader;

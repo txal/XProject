@@ -210,7 +210,6 @@
     <ClInclude Include="..\..\..\..\Common\DataStruct\MinHeap.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\MsgQueue.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\MutexLock.h" />
-    <ClInclude Include="..\..\..\..\Common\DataStruct\ObjID.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\Point.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\PureList.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\Ranking.h" />
@@ -225,6 +224,7 @@
     <ClInclude Include="..\..\..\..\Common\DataStruct\XString.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\XThread.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\XTime.h" />
+    <ClInclude Include="..\..\..\..\Common\DataStruct\XUUID.h" />
     <ClInclude Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.h" />
     <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaCmd.h" />
     <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaPB.h" />

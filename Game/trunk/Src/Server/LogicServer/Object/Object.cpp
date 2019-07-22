@@ -94,14 +94,14 @@ bool Object::CheckCamp(Object* poTar)
 
 void Object::CachePlayerSessionList(int nSelfSession)
 {
-	g_oSessionCache.Clear();
+	goSessionCache.Clear();
 	if (m_poScene == NULL || m_nAOIID <= 0)
 	{
 		return;
 	}
 	if (nSelfSession > 0)
 	{
-		g_oSessionCache.PushBack(nSelfSession);
+		goSessionCache.PushBack(nSelfSession);
 	}
 	Array<AOI_OBJ*>& oAOIObjList = m_poScene->GetAreaObservers(m_nAOIID, GAME_OBJ_TYPE::eOT_Player);
 	if (oAOIObjList.Size() <= 0)
@@ -111,7 +111,7 @@ void Object::CachePlayerSessionList(int nSelfSession)
 	for (int i = oAOIObjList.Size() - 1; i >= 0; --i)
 	{
 		int nSession = ((Actor*)oAOIObjList[i]->poGameObj)->GetSession();
-		g_oSessionCache.PushBack(nSession);
+		goSessionCache.PushBack(nSession);
 	}
 }
 
@@ -126,7 +126,7 @@ void RegClassObject()
 
 int Object::GetObjID(lua_State* pState)
 {
-	lua_pushinteger(pState, m_oObjID.llID);
+	lua_pushinteger(pState, m_nObjID);
 	return 1;
 }
 

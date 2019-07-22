@@ -15,9 +15,9 @@ public:
 
 public:
 	MonsterMgr();
-	Monster* CreateMonster(const OBJID& oID, int nConfID, const char* psName, int nAIID, int8_t nCmap);
-	void RemoveMonster(const OBJID& oID);
-	Monster* GetMonsterByID(const OBJID& oID);
+	Monster* CreateMonster(int64_t nID, int nConfID, const char* psName, int nAIID, int8_t nCmap);
+	void RemoveMonster(int64_t nID);
+	Monster* GetMonsterByID(int64_t nID);
 
 public:
 	void UpdateMonsters(int64_t nNowMS);

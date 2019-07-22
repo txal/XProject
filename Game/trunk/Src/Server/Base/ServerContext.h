@@ -51,6 +51,6 @@ private:
 	DISALLOW_COPY_AND_ASSIGN(ServerContext);
 };
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 #endif

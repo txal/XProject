@@ -9,7 +9,7 @@
 #include "Server/Base/ServerContext.h"
 #include "Server/GateServer/PacketProc/GatewayPacketHandler.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 Gateway::Gateway()
 {
@@ -52,13 +52,13 @@ bool Gateway::Init(ServerNode* poConf)
 
 bool Gateway::RegToRouter(int nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->GetRouter(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
 	if (poPacket == NULL) {
 		return false;
 	}
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), g_poContext->GetServerID(), nRouterServiceID, 0);
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), gpoContext->GetServerID(), nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -165,14 +165,14 @@ void Gateway::OnExterNetAccept(int nSessionID, uint32_t uRemoteIP)
 
 void Gateway::OnExterNetClose(int nSessionID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(GetServiceID());
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->ChooseRouter(GetServiceID());
 	m_oClientMgr.RemoveClient(nSessionID);
 	if (poRouter == NULL)
 	{
 		XLog(LEVEL_ERROR, "%s: Get router fail\n", GetServiceName());
 		return;
 	}
-	ServerVector& oLogicList = g_poContext->GetLogicList();
+	ServerVector& oLogicList = gpoContext->GetLogicList();
 	for (int i = 0; i < oLogicList.size(); i++)
 	{
 		int nTarServiceID = oLogicList[i].oLogic.uService;
@@ -245,7 +245,7 @@ void Gateway::OnExterNetMsg(int nSessionID, Packet* poPacket)
 	{
 		m_poExterNet->SetSentClose(nSessionID);
 	}
-	GatewayPacketHandler* pPacketHandler = (GatewayPacketHandler*)g_poContext->GetPacketHandler();
+	GatewayPacketHandler* pPacketHandler = (GatewayPacketHandler*)gpoContext->GetPacketHandler();
 	pPacketHandler->OnRecvExterPacket(nSessionID, poPacket, oExterHeader);
 }
 
@@ -256,7 +256,7 @@ void Gateway::OnInnerNetAccept(int nListenPort, int nSessionID)
 
 void Gateway::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRemotePort)
 {
-    ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
+    ROUTER* poRouter = gpoContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
     assert(poRouter != NULL);
     RegToRouter(poRouter->nService);
 }
@@ -264,7 +264,7 @@ void Gateway::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRemoteP
 void Gateway::OnInnerNetClose(int nSessionID)
 {
 	XLog(LEVEL_INFO, "On innernet disconnect\n");
-	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	gpoContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
 }
 
 void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
@@ -284,5 +284,5 @@ void Gateway::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
+	gpoContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }

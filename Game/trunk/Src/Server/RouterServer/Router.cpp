@@ -186,12 +186,12 @@ void Router::OnRouterMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
+	gpoContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }
 
 ServiceNode* Router::GetService(int nServerID, int nServiceID)
 {
-	nServerID = nServerID == 0 ? g_poContext->GetServerID() : nServerID;
+	nServerID = nServerID == 0 ? gpoContext->GetServerID() : nServerID;
 	int nKey = ServiceNode::Key(nServerID, nServiceID);
 	ServiceIter iter = m_oServiceMap.find(nKey);
 	if (iter != m_oServiceMap.end())

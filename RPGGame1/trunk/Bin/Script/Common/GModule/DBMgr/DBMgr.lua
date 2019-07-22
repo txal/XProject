@@ -2,7 +2,7 @@
 function CDBMgr:Ctor()
 	CGModuleBase.Ctor(self, gtGModuleDef.tDBMgr)
 
-	self.m_tSSDBMap = {}
+	self.m_tGameDBMap = {}
 	self.m_oMgrMysql = nil
 end
 
@@ -39,45 +39,48 @@ end
 
 --连接数据库
 function CDBMgr:_ConnDB(nServerID, sDBName, nIdentID, sAddr)
-	self.m_tSSDBMap[nServerID] = self.m_tSSDBMap[nServerID] or {}
-	self.m_tSSDBMap[nServerID][sDBName] = self.m_tSSDBMap[nServerID][sDBName] or {}
-	local tOldDB = self.m_tSSDBMap[nServerID][sDBName][nIdentID] 
+	self.m_tGameDBMap[nServerID] = self.m_tGameDBMap[nServerID] or {}
+	self.m_tGameDBMap[nServerID][sDBName] = self.m_tGameDBMap[nServerID][sDBName] or {}
+	self.m_tGameDBMap[nServerID][sDBName][nIdentID] = self.m_tGameDBMap[nServerID][sDBName][nIdentID] or {}
+
+	local tOldDB = self.m_tGam3DBMap[nServerID][sDBName][nIdentID] 
 	if tOldDB and tOldDB.sAddr == sAddr then
 		return
 	end
 
 	local tAddr = string.Split(sAddr, "|")
-	local oSSDB = SSDBDriver:new()
-	local bRes = xpcall(function() oSSDB:Connect(tAddr[1], tonumber(tAddr[2])) end, function(sErr) LuaTrace(sErr) end)
+	local oGameDB = SSDBDriver:new()
+	local bRes = xpcall(function() oGameDB:Connect(tAddr[1], tonumber(tAddr[2])) end, function(sErr) LuaTrace(sErr) end)
 	if bRes then
 	    LuaTrace("连接"..sDBName.."成功:", tAddr)
 	    local bAuth = true
 	    if tAddr[3] then
-	    	bAuth = oSSDB:Auth(tAddr[3])
+	    	bAuth = oGameDB:Auth(tAddr[3])
 	    end
 	    if bAuth then
-		    self.m_tSSDBMap[nServerID][sDBName][nIdentID] = {oSSDB=oSSDB, sAddr=sAddr}
+		    self.m_tGameDBMap[nServerID][sDBName][nIdentID] = {oGameDB=oGameDB, sAddr=sAddr}
 		end
 	end
 end
 
---通过SSDB库名字取SSDB(user, global)
+--通过数据库名字取数据库对象(user, global)
 --@nIdentID user数据库要传角色ID; global数据库要传服务ID
-function CDBMgr:GetSSDB(nServer, sDBName, nIdentID)
+function CDBMgr:GetGameDB(nServer, sDBName, nIdentID)
 	assert(nServer and sDBName, "参数错误")
 	nIdentID = nIdentID or 1
 	if sDBName == "user" then
 		nIdentID = 1
 	end
-    self.m_tSSDBMap[nServer] = self.m_tSSDBMap[nServer] or {}
-    self.m_tSSDBMap[nServer][sDBName] = self.m_tSSDBMap[nServer][sDBName] or {}
+    self.m_tGameDBMap[nServer] = self.m_tGameDBMap[nServer] or {}
+    self.m_tGameDBMap[nServer][sDBName] = self.m_tGameDBMap[nServer][sDBName] or {}
+	self.m_tGameDBMap[nServer][sDBName][nIdentID] = self.m_tGameDBMap[nServer][sDBName][nIdentID] or {}
 
-	local oSSDB = self.m_tSSDBMap[nServer][sDBName][nIdentID].oSSDB
-	assert(oSSDB, "SSDB不存在:server:"..nServer.." dbname:"..sDBName.." ident:"..nIdentID)
-	return oSSDB
+	local oGameDB = self.m_tGameDBMap[nServer][sDBName][nIdentID].oGameDB
+	assert(oGameDB, "GameDB不存在:server:"..nServer.." dbname:"..sDBName.." ident:"..nIdentID)
+	return oGameDB
 end
 
---取后台MYSQL连接
+--取后台MYSQL数据库对象
 function CDBMgr:GetMgrMysql()
 	return self.m_oMgrMysql
 end

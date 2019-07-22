@@ -289,8 +289,8 @@ int SceneBase::GetConfID(lua_State* pState)
 }
 int SceneBase::GetGameObj(lua_State* pState)
 {
-	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	Object* poGameObj = GetGameObjByAOIID(nAOIID);
+	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
+	Object* poGameObj = GetGameObjByObjID(nObjID);
 	if (poGameObj == NULL)
 	{
 		return 0;
@@ -299,9 +299,9 @@ int SceneBase::GetGameObj(lua_State* pState)
 	switch (poGameObj->GetType())
 	{
 		case OBJTYPE::eOT_Role:
-		case OBJTYPE::eOT_Robot:
-		case OBJTYPE::eOT_Monster:
 		case OBJTYPE::eOT_Pet:
+		case OBJTYPE::eOT_Monster:
+		case OBJTYPE::eOT_Robot:
 		{
 			Actor* poActor = (Actor*)poGameObj;
 			Lunar<Actor>::push(pState, poActor);
@@ -339,7 +339,11 @@ int SceneBase::EnterScene(lua_State* pState)
 	tAOIArea[1] = (int)luaL_checkinteger(pState, 7);
 	assert(tAOIArea[0] >= 0 && tAOIArea[1] >= 0);
 
-	int16_t nLine = (int16_t)luaL_checkinteger(pState, 8);	//0公共线,-1自动
+	//0公共线,-1自动
+	int16_t nLine = (int16_t)luaL_checkinteger(pState, 8);
+	int8_t nFace = (int8_t)luaL_checkinteger(pState, 9);
+	poGameObj->SetFace(nFace);
+
 	int nAOIID = EnterScene(poGameObj, nPosX, nPosY, nAOIMode, tAOIArea, AOI_TYPE_RECT, nLine);
 	if (nAOIID <= 0)
 	{
@@ -351,51 +355,82 @@ int SceneBase::EnterScene(lua_State* pState)
 
 int SceneBase::LeaveScene(lua_State* pState)
 {
-	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	LeaveScene(nAOIID, false);
+	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
+	Object* poGameObj = GetGameObjByObjID(nObjID);
+	if (poGameObj == NULL)
+	{
+		return LuaWrapper::luaM_error(LuaWrapper::Instance()->GetLuaState(), "LeaveScene: game object not exist!");
+	}
+	LeaveScene(poGameObj->GetAOIID(), false);
 	return 0;
 }
 
 int SceneBase::RemoveObserver(lua_State* pState)
 {
-	int nAOIID = (int)luaL_checkinteger(pState, 1);
+	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
+	Object* poGameObj = GetGameObjByObjID(nObjID);
+	if (poGameObj == NULL)
+	{
+		return LuaWrapper::luaM_error(LuaWrapper::Instance()->GetLuaState(), "RemoveObserver: game object not exist!");
+	}
 	bool bLeaveScene = lua_toboolean(pState, 2) != 0;
-	m_oAOI.RemoveObserver(nAOIID, bLeaveScene);
+	m_oAOI.RemoveObserver(poGameObj->GetAOIID(), bLeaveScene);
 	return 0;
 }
 
 int SceneBase::RemoveObserved(lua_State* pState)
 {
-	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	m_oAOI.RemoveObserved(nAOIID);
+	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
+	Object* poGameObj = GetGameObjByObjID(nObjID);
+	if (poGameObj == NULL)
+	{
+		return LuaWrapper::luaM_error(LuaWrapper::Instance()->GetLuaState(), "RemoveObserved: game object not exist!");
+	}
+	m_oAOI.RemoveObserved(poGameObj->GetAOIID());
 	return 0;
 }
 
 int SceneBase::AddObserver(lua_State* pState)
 {
-	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	if (!m_oAOI.AddObserver(nAOIID))
+	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
+	Object* poGameObj = GetGameObjByObjID(nObjID);
+	if (poGameObj == NULL)
+	{
+		return LuaWrapper::luaM_error(LuaWrapper::Instance()->GetLuaState(), "AddObserver: game object not exist!");
+	}
+	bool bRes = m_oAOI.AddObserver(poGameObj->GetAOIID());
+	if (!bRes)
 	{
 		luaL_where(pState, 1);
-		XLog(LEVEL_ERROR, "%s\n", lua_tostring(pState, -1));
+		XLog(LEVEL_ERROR, "AddObserver: fail from: %s\n", lua_tostring(pState, -1));
 	}
-	lua_pushinteger(pState, nAOIID);
+	lua_pushboolean(pState, bRes?1:0);
 	return 1;
 }
 
 int SceneBase::AddObserved(lua_State* pState)
 {
-	int nAOIID = (int)luaL_checkinteger(pState, 1);
-	m_oAOI.AddObserved(nAOIID);
-	lua_pushinteger(pState, nAOIID);
+	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
+	Object* poGameObj = GetGameObjByObjID(nObjID);
+	if (poGameObj == NULL)
+	{
+		return LuaWrapper::luaM_error(LuaWrapper::Instance()->GetLuaState(), "AddObserved: game object not exist!");
+	}
+	bool bRes = m_oAOI.AddObserved(poGameObj->GetAOIID());
+	lua_pushboolean(pState, bRes?1:0);
 	return 1;
 }
 
 int SceneBase::GetAreaObservers(lua_State* pState)
 {
-	int nAOIID= (int)luaL_checkinteger(pState, 1);
+	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
 	int nGameObjType = (int)luaL_checkinteger(pState, 2);
-	GetAreaObservers(nAOIID, (OBJTYPE)nGameObjType);
+	Object* poGameObj = GetGameObjByObjID(nObjID);
+	if (poGameObj == NULL)
+	{
+		return LuaWrapper::luaM_error(LuaWrapper::Instance()->GetLuaState(), "GetAreaObservers: game object not exist!");
+	}
+	GetAreaObservers(poGameObj->GetAOIID(), (OBJTYPE)nGameObjType);
 
 	lua_newtable(pState);
 	int nTop = lua_gettop(pState);
@@ -409,9 +444,14 @@ int SceneBase::GetAreaObservers(lua_State* pState)
 
 int SceneBase::GetAreaObserveds(lua_State* pState)
 {
-	int nAOIID = (int)luaL_checkinteger(pState, 1);
+	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
 	int nGameObjType = (int)luaL_checkinteger(pState, 2);
-	GetAreaObserveds(nAOIID, (OBJTYPE)nGameObjType);
+	Object* poGameObj = GetGameObjByObjID(nObjID);
+	if (poGameObj == NULL)
+	{
+		return LuaWrapper::luaM_error(LuaWrapper::Instance()->GetLuaState(), "GetAreaObserverds: game object not exist!");
+	}
+	GetAreaObserveds(poGameObj->GetAOIID(), (OBJTYPE)nGameObjType);
 
 	lua_newtable(pState);
 	int nTop = lua_gettop(pState);

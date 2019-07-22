@@ -1,6 +1,6 @@
 ﻿#include "SceneMgr.h"
 #include "Common/DataStruct/XTime.h"
-#include "Common/DataStruct/ObjID.h"
+#include "Common/DataStruct/XUUID.h"
 #include "Server/Base/ServerContext.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
 
@@ -69,7 +69,7 @@ void SceneMgr::UpdateScenes(int64_t nNowMS)
 		{
 			iter = m_oSceneMap.erase(iter);
 			uint32_t uSceneIndex = poScene->GetSceneIndex();
-			LuaWrapper::Instance()->FastCallLuaRef<void>("OnSceneCollected", 0, "I", uSceneIndex);
+			LuaWrapper::Instance()->FastCallLuaRef<void,CNOTUSE>("OnSceneCollected", 0, "I", uSceneIndex);
 			SAFE_DELETE(poScene);
 			continue;
 		}

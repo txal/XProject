@@ -1,165 +1,64 @@
 package scene;
 
+//对象基本信息
+message ObjBaseData
+{
+	required string sModel = 3; 		//模型编号
+	required string sName = 4;			//名字
+	required int32 nLevel = 5;			//等级
+	required int32 nPosX = 6;			//坐标
+	required int32 nPosY = 7;
+	required int32 nFace = 8; 			//面向
+	optional int32 nSpeedX = 9;			//速度
+	optional int32 nSpeedY = 10;
+	optional optional nTarPosX = 11;	//目标点坐标(如果在跑动中)
+	optional optional nTarPosY = 12;
+}
+
+//对象外观表现信息
+message ObjShapeData
+{
+}
+
 //角色进入副本请求
 message RoleEnterSceneReq
 {
-	required int32 nRoleID = 1; 	//角色ID  已废弃，服务器忽略此参数
-	required double nDupMixID = 2;	//副本ID: 城镇:=配置ID; 副本:=自增ID<<16|配置ID 下同
-	required int32 nPosX = 3; 		//坐标X
-	required int32 nPosY = 4; 		//坐标Y
+	required double nDupID = 1;		//副本唯一ID
+	optional double nSceneID = 2;	//场景唯一ID
 }
 
-//角色进入副本返回(自己)
-message RoleEnterSceneRet
+//对象进入副本通知(通知角色)
+message ObjEnterSceneRet
 {
-	required double nDupMixID = 1;	//副本唯一ID: 城镇:=配置ID; 副本:=自增ID<<16|配置ID 下同
-	required int32 nDupID = 2;		//副本配置ID
-	required int32 nAOIID = 3;		//副本内对象唯一ID	
-	required int32 nObjID = 4; 		//角色ID
-	required int32 nPosX = 5;		//坐标
-	required int32 nPosY = 6;
-	required int32 nSpeedX = 7;		//速度
-	required int32 nSpeedY = 8;
-	required int32 nTarPosX = 9;	//如果在跑动中,目标点坐标
-	required int32 nTarPosY = 10;
-	required int32 nDir = 11; 		//模型方向
-	required string sModel = 12; 	//模型编号
-    required int32 nTeamID = 13; 	//队伍ID
-    required bool bLeader = 14; 	//是否队长
+	required double nDupID = 1;			//副本唯一ID
+	required double nSceneID = 2;		//场景唯一ID
+	required int32 nDupConfID = 3;		//副本配置ID
+	required int32 nSceneConfID = 4;	//场景配置ID
+
+	required double nObjID = 5;			//对象唯一ID
+	required int32 nObjType = 6;		//对象类型
+	required ObjBaseData tBaseData = 7;
+	optional ObjShapeData tShapeData = 8;
 }
 
-//角色离开副本请求(自己)
-message RoleLeaveSceneReq
+//对象进入视野返回
+message ObjEnterViewRet
 {
-	required double nDupMixID = 1;		//副本唯一ID
+	required double nObjID = 1;
+	required int32 nObjType = 2;
+	required ObjBaseData tBaseData = 3;
+	optional ObjShapeData tShapeData = 4;
 }
 
-//角色离开副本返回(自己)
-message RoleLeaveSceneRet
+//更新视野对象信息
+message FlushObjViewRet
 {
-}
-
-//视野内对象形象基本数据
-message ObjBaseData
-{
-	required int32 nAOIID = 1;		//副本内对象唯一ID	
-	required int32 nObjID = 2;		//对象ID
-	required int32 nObjType = 3; 	//对象类型:	1角色 2子女 3伙伴 4宠物 5怪物
-	required int32 nConfID = 4;		//配置ID
-	required string sName = 5;		//名字
-	required int32 nLevel = 6;		//等级
-	required int32 nPosX = 7;		//坐标
-	required int32 nPosY = 8;
-	required int32 nSpeedX = 9;		//速度
-	required int32 nSpeedY = 10;
-	required int32 nTarPosX = 11;	//如果在跑动中,目标点坐标
-	required int32 nTarPosY = 12;
-	required int32 nDir = 13; 		//模型方向
-	required string sModel = 14; 	//模型编号
-	optional int32 nObjSubType = 15;   //对象子类型
-}
-
-//角色外观表现信息
-message RoleShapeData
-{
-	message _PVPActivityData
-	{
-		required int32 nState = 1; // 角色状态
-	}
-	message _AppellationData
-	{
-		required int32 nConfID = 1;       //称谓配置ID
-		repeated string tNameParam = 2;   //名称参数
-	}
-	message _ActData 
-	{
-		required int32 nActID = 1;       //动作ID, 0无动作
-		optional int32 nTime = 2;        //进入当前动作状态的时长
-	}
-	required int32 nTeamID = 1;		//队伍编号 所有场景都是可见自己队伍成员，其他队伍只可见队长。总可见人数维持不变。
-	required bool bLeader = 2; 		//是否队长
-	optional int32 nTeamNum = 3;    //队伍成员数量
-	optional _PVPActivityData tPVPActivityData = 4; //角色的一些PVP活动相关状态
-	required int32 nFlyMountID = 5;	//飞行器ID
-	required int32 nWingID = 6;		//翅膀ID
-	required int32 nHaloID = 7;		//光环ID
-	required int32 nWeaponID = 8;   //武器ID
-	required int32 nUnionID = 9; 	//帮派ID
-	optional _AppellationData tAppellationData = 10;  //称谓数据
-	required int32 nArtifactID = 11;	//神器ID
-	optional _ActData tActData = 12;    //动作信息
-	optional string sModel = 13;        //模型信息
-}
-
-//角色场景表现信息
-message RoleSceneViewData
-{
-	required ObjBaseData tBaseData = 1;
-	required RoleShapeData tShapeData = 2;
-}
-
-//角色进入视野返回
-message RoleEnterViewRet
-{
-	repeated RoleSceneViewData tList = 1;	//角色列表
-}
-
-//角色场景表现刷新
-message RoleViewFlushRet
-{
-	repeated RoleSceneViewData tList = 1;	//角色列表
-}
-
-message MonsterSceneViewData
-{
-	message _ActData 
-	{
-		required int32 nActID = 1;       //动作ID, 0无动作
-		optional int32 nTime = 2;        //进入当前动作状态的时长
-	}
-
-	message _PalanquinData
-	{
-		optional RoleSceneViewData tHusbandInfo = 1;
-		optional RoleSceneViewData tWifeInfo = 2;
-		required int32 nTime = 3;
-	}
-
-	required int32 nAOIID = 1;		//副本内对象唯一ID	
-	required int32 nObjID = 2;		//对象ID
-	required int32 nObjType = 3; 	//对象类型:	1角色 2子女 3伙伴 4宠物 5怪物
-	required int32 nConfID = 4;		//配置ID
-	required string sName = 5;		//名字
-	required int32 nLevel = 6;		//等级
-	required int32 nPosX = 7;		//坐标
-	required int32 nPosY = 8;
-	required int32 nSpeedX = 9;		//速度
-	required int32 nSpeedY = 10;
-	required int32 nDir = 11; 		//模型方向
-	required string sModel = 12; 	//模型编号
-	optional int32 nObjSubType = 13;   //对象子类型  
-	// 如果是怪物，1普通怪, 4场景NPC, 5婚礼糖果, 6花轿
-	optional _ActData tActData = 14;    //动作信息
-	required bool bBattle = 15;        //如果是怪物，是否可挑战
-	optional _PalanquinData tPalanquin = 16;  //花轿信息
-	required int32 nTarPosX = 17;  		//如果在跑动,目标坐标
-	required int32 nTarPosY = 18;
-}
-
-//怪物进入视野返回
-message MonsterEnterViewRet
-{
-	repeated MonsterSceneViewData tList = 1;	//怪物列表
-}
-
-//怪物场景表现刷新
-message MonsterFlushViewRet
-{
-	repeated MonsterSceneViewData tList = 1;	//怪物列表
+	required double nObjID = 1;
+	required ObjShapeData tData = 1;
 }
 
 //对象离开视野返回
 message ObjLeaveViewRet
 {
-	repeated int32 tList = 1;	//对象AOI编号列表
+	repeated double tList = 1;		//对象ID列表
 }

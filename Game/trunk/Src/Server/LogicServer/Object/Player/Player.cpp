@@ -23,9 +23,9 @@ Player::~Player()
 {
 }
 
-void Player::Init(const OBJID& oObjID, int nConfID, const char* psName, int8_t nCamp)
+void Player::Init(int64_t nObjID, int nConfID, const char* psName, int8_t nCamp)
 {
-	m_oObjID = oObjID;
+	m_nObjID = nObjID;
 	m_nConfID = nConfID;
 	strcpy(m_sName, psName);
 	m_nCamp = nCamp;
@@ -63,8 +63,8 @@ void Player::PlayerRunHandler(Packet* poPacket)
 	int16_t nSpeedX = 0;
 	int16_t nSpeedY = 0;
 	uint32_t uClientMSTime = 0;
-	g_oPKReader.SetPacket(poPacket);
-	g_oPKReader >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> uClientMSTime;
+	goPKReader.SetPacket(poPacket);
+	goPKReader >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> uClientMSTime;
 	//客户端提供的时间值必须大于起始时间值
 	if (uClientMSTime < m_nClientRunStartMSTime)
 	{
@@ -109,8 +109,8 @@ void Player::PlayerStopRunHandler(Packet* poPacket)
 	uint16_t uPosX = 0;
 	uint16_t uPosY = 0;
 	uint32_t uClientMSTime = 0;
-	g_oPKReader.SetPacket(poPacket);
-	g_oPKReader >> uPosX >> uPosY >> uClientMSTime;
+	goPKReader.SetPacket(poPacket);
+	goPKReader >> uPosX >> uPosY >> uClientMSTime;
 	if (m_nRunStartMSTime == 0)
 	{
 		//XLog(LEVEL_INFO, "%s already stop client\n", m_sName, uPosX, uPosY);
@@ -167,8 +167,8 @@ void Player::PlayerStartAttackHandler(Packet* poPacket)
 	uint8_t uAtkType = 0;
 	float fAtkAngle = 0.0f;
 	int16_t nRemainBullet = 0;
-	g_oPKReader.SetPacket(poPacket);
-	g_oPKReader >> nAOIID >> uPosX >> uPosY >> uAtkID >> uAtkType >> fAtkAngle >> nRemainBullet;
+	goPKReader.SetPacket(poPacket);
+	goPKReader >> nAOIID >> uPosX >> uPosY >> uAtkID >> uAtkType >> fAtkAngle >> nRemainBullet;
 	if (GetAOIID() != nAOIID)
 	{
 		XLog(LEVEL_ERROR, "%s start attack aoi id error:%d correct:%d\n", m_sName, nAOIID, GetAOIID());
@@ -191,8 +191,8 @@ void Player::PlayerStopAttackHandler(Packet* poPacket)
 		return;
 	}
 	int nAOIID = 0;
-	g_oPKReader.SetPacket(poPacket);
-	g_oPKReader >> nAOIID;
+	goPKReader.SetPacket(poPacket);
+	goPKReader >> nAOIID;
 	if (GetAOIID() != nAOIID)
 	{
 		XLog(LEVEL_ERROR, "%s stop attack aoi id error:%d correct:%d\n", m_sName, nAOIID, GetAOIID());
@@ -217,8 +217,8 @@ void Player::PlayerHurtedHandler(Packet* poPacket)
 	int nHurtHP = 0;
 	uint16_t uAtkID = 0;
 	uint8_t uAtkType = 0;
-	g_oPKReader.SetPacket(poPacket);
-	g_oPKReader >> nSrcAOIID >> uSrcType >> uSrcPosX >> uSrcPosY >> uMyPosX >> uMyPosY >> nCurrHP >> nHurtHP >> uAtkID >> uAtkType;
+	goPKReader.SetPacket(poPacket);
+	goPKReader >> nSrcAOIID >> uSrcType >> uSrcPosX >> uSrcPosY >> uMyPosX >> uMyPosY >> nCurrHP >> nHurtHP >> uAtkID >> uAtkType;
 	if (nHurtHP <= 0)
 	{
 		XLog(LEVEL_ERROR, "PlayerHurted: %s hurted hp error:%d\n", m_sName, nHurtHP);
@@ -251,7 +251,7 @@ void Player::PlayerHurtedHandler(Packet* poPacket)
 		return;
 	}
 	OnHurted(poSource, nHurtHP, uAtkID, uAtkType);
-	if (g_bPrintBattle)
+	if (gbPrintBattle)
 	{
 		XLog(LEVEL_INFO, "PlayerHurted: %s->%s hurted pos:(%d, %d) hurt:%d after:%d\n", poSource->GetName(), m_sName, uMyPosX, uMyPosY, nHurtHP, m_oFightParam[eFP_HP]);
 	}
@@ -273,8 +273,8 @@ void Player::PlayerDamageHandler(Packet* poPacket)
 	int nHurtHP = 0;
 	uint16_t uAtkID = 0;
 	uint8_t uAtkType = 0;
-	g_oPKReader.SetPacket(poPacket);
-	g_oPKReader >> nTarAOIID >> uTarType >> uMyPosX >> uMyPosY >> uTarPosX >> uTarPosY >> nCurrHP >> nHurtHP >> uAtkID >> uAtkType;
+	goPKReader.SetPacket(poPacket);
+	goPKReader >> nTarAOIID >> uTarType >> uMyPosX >> uMyPosY >> uTarPosX >> uTarPosY >> nCurrHP >> nHurtHP >> uAtkID >> uAtkType;
 	if (nHurtHP <= 0)
 	{
 		XLog(LEVEL_ERROR, "PlayerDamage: dmg hp error:%d\n", nHurtHP);
@@ -300,7 +300,7 @@ void Player::PlayerDamageHandler(Packet* poPacket)
 		return;
 	}
 	poTarget->OnHurted(this, nHurtHP, uAtkID, uAtkType);
-	if (g_bPrintBattle)
+	if (gbPrintBattle)
 	{
 		XLog(LEVEL_INFO, "PlayerDamage: %s->%s pos(%d, %d) hurt:%d after:%d\n", m_sName, poTarget->GetName(), uTarPosX, uTarPosY, nHurtHP, poTarget->GetFightParam()[eFP_HP]);
 	}
@@ -318,8 +318,8 @@ void Player::EveHurtedHandler(Packet* poPacket)
 	int nHurtHP = 0;
 	uint16_t uAtkID = 0;
 	uint8_t uAtkType = 0;
-	g_oPKReader.SetPacket(poPacket);
-	g_oPKReader >> nSrcAOIID >> nTarAOIID >> nCurrHP >> nHurtHP >> uAtkID >> uAtkType;
+	goPKReader.SetPacket(poPacket);
+	goPKReader >> nSrcAOIID >> nTarAOIID >> nCurrHP >> nHurtHP >> uAtkID >> uAtkType;
 	Actor* poTarget = (Actor*)m_poScene->GetGameObj(nTarAOIID);
 	if (poTarget == NULL || poTarget->IsDead() || poTarget->GetScene() != GetScene())
 	{
@@ -348,7 +348,7 @@ void Player::EveHurtedHandler(Packet* poPacket)
 		return;
 	}
 	poTarget->OnHurted(poSource, nHurtHP, uAtkID, uAtkType);
-	if (g_bPrintBattle)
+	if (gbPrintBattle)
 	{
 		XLog(LEVEL_INFO, "EveHurtedHandler: %s->%s hurt:%d after:%d\n", poSource->GetName(), poTarget->GetName(), nHurtHP, poTarget->GetFightParam()[eFP_HP]);
 	}

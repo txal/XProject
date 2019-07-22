@@ -8,7 +8,7 @@
 #include "Server/Base/RouterMgr.h"
 #include "Server/Base/ServerContext.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 LogServer::LogServer()
 {
@@ -39,10 +39,10 @@ bool LogServer::Init(int8_t nServiceID)
 
 bool LogServer::RegToRouter(int nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->GetRouter(nRouterServiceID);
 	assert(poRouter != NULL);
 	Packet* poPacket = Packet::Create();
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), g_poContext->GetServerID(), nRouterServiceID, 0);
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), gpoContext->GetServerID(), nRouterServiceID, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_poInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -127,7 +127,7 @@ void LogServer::ProcessTimer(int64_t nNowMSTime)
 
 void LogServer::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRemotePort)
 {
-    ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
+    ROUTER* poRouter = gpoContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
     assert(poRouter != NULL);
     RegToRouter(poRouter->nService);
 }
@@ -135,7 +135,7 @@ void LogServer::OnInnerNetConnect(int nSessionID, int nRemoteIP, uint16_t nRemot
 void LogServer::OnInnerNetClose(int nSessionID)
 {
 	XLog(LEVEL_INFO, "On innernet disconnect\n");
-	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	gpoContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
 }
 
 void LogServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
@@ -155,5 +155,5 @@ void LogServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
+	gpoContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }

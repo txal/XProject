@@ -47,6 +47,7 @@ private:
 	char m_sServiceName[32];
 	bool m_bTerminate;
 
+private:
 	DISALLOW_COPY_AND_ASSIGN(Service);
 };
 

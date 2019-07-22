@@ -83,14 +83,14 @@ CmdMessageCenter = function(nCmd, nSrcServer, nSrcService, nTarSession, xPacket)
             xpcall(function() fnProc(nCmd, nSrcServer, nSrcService, nTarSession, fnDecoder(sProto, xPacket)) end
                 , function(sErr) 
                     sErr = sErr.."\t"..debug.traceback() 
-                    local oPlayerMgr = goPlayerMgr or goGPlayerMgr 
-                    if oPlayerMgr then
-                        local oRole = oPlayerMgr:GetRoleBySS(nSrcServer, nTarSession)
+                    local oRoleMgr = GetGModule("RoleMgr") or GetGModule("GRoleMgr")
+                    if oRoleMgr then
+                        local oRole = oRoleMgr:GetRoleBySS(nSrcServer, nTarSession)
                         if oRole then
                             sErr = string.format("角色ID:%d 账号:%s error:%s", oRole:GetID(), oRole:GetAccountName(), sErr)
                         end
-                        if nSrcServer > 0 and nSrcServer < gnWorldServerID and nTarSession > 0 then
-                            PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont=sErr})
+                        if nSrcServer > 0 and nSrcServer < GetGModule("ServerMgr"):GetWorldServerID() and nTarSession > 0 then
+                            Network.PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont=sErr})
                         end
                     end
                     LuaTrace(sErr)
@@ -104,7 +104,7 @@ CmdMessageCenter = function(nCmd, nSrcServer, nSrcService, nTarSession, xPacket)
         LuaTrace(sTips)
         if gbInnerServer then
             if nSrcServer > 0 and nSrcServer < gnWorldServerID and nTarSession > 0 then
-                PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont=sTips})
+                Network.PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont=sTips})
             end
         end
     end

@@ -15,8 +15,8 @@ public:
 
 public:
 	DropItemMgr();
-	DropItem* CreateDropItem(const OBJID& oID, int nConfID, const char* psName, int nAliveTime, int nCamp);
-	DropItem* GetDropItemByID(const OBJID& oID);
+	DropItem* CreateDropItem(int64_t nID, int nConfID, const char* psName, int nAliveTime, int nCamp);
+	DropItem* GetDropItemByID(int64_t nID);
 
 public:
 	void UpdateDropItems(int64_t nNowMS);

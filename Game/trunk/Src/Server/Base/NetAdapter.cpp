@@ -18,7 +18,7 @@ static BROADCAST_HEADER tBroadcastHeaderList[MAX_GATEWAY_NUM];
 bool NetAdapter::SendExter(uint16_t uCmd, Packet* poPacket, int8_t nToService, int nToSession, uint32_t uPacketIdx /*=0*/)
 {
     assert(poPacket != NULL);
-	Service* poService = g_poContext->GetService();
+	Service* poService = gpoContext->GetService();
 	int8_t nSessionService = nToSession >> SERVICE_SHIFT;
 	if (nSessionService == poService->GetServiceID())
 	{
@@ -44,8 +44,8 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, int8_t nToService, i
     	poPacket->Release();
     	return false;
     }
-	Service* poService = g_poContext->GetService();
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
+	Service* poService = gpoContext->GetService();
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poRouter == NULL)
 	{
 		poPacket->Release();
@@ -63,8 +63,8 @@ bool NetAdapter::SendInner(uint16_t uCmd, Packet* poPacket, int8_t nToService, i
 bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, int tSessionList[], int nSessionNum)
 {
     assert(poPacket != NULL && nSessionNum > 0);
-	Service* poService = g_poContext->GetService();
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
+	Service* poService = gpoContext->GetService();
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poService == NULL || poRouter == NULL)
 	{
 		poPacket->Release();
@@ -115,8 +115,8 @@ bool NetAdapter::BroadcastExter(uint16_t uCmd, Packet* poPacket, int tSessionLis
 bool NetAdapter::BroadcastInner(uint16_t uCmd, Packet* poPacket, int tServiceList[], int nServiceNum, int tServerList[])
 {
 	assert(poPacket != NULL);
-	Service* poService = g_poContext->GetService();
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
+	Service* poService = gpoContext->GetService();
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->ChooseRouter(poService->GetServiceID());
 	if (poService == NULL || poRouter == NULL)
 	{
 		poPacket->Release();

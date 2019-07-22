@@ -99,7 +99,7 @@ luaL_Reg _global_lua_func[] =
 {
 	{ "GetServiceID", GetServiceID},
 	{ "GetSceneMgr", GetSceneMgr},
-	{ "GetPlayerMgr", GetRoleMgr},
+	{ "GetRoleMgr", GetRoleMgr},
 	{ "GetMonsterMgr", GetMonsterMgr},
 	{ "GetDropItemMgr", GetDropItemMgr},
 	{ "GetRobotMgr", GetRobotMgr},

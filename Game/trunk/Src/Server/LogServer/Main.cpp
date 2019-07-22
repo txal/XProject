@@ -7,14 +7,14 @@
 #include "Server/LogServer/LuaSupport/LuaExport.h"
 #include "Server/LogServer/WorkerMgr.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
+	gpoContext->LoadServerConfig();
 
 	ServerNode* poServer = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLogList.size(); i++)
 	{
 		if (oSrvConf.oLogList[i].oLog.uService == nServiceID)
@@ -29,7 +29,7 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -50,7 +50,7 @@ void StartScriptEngine()
 	if (!Platform::FileExist("./debug.txt"))
 	{
 		char sLogName[256] = "";
-		sprintf(sLogName, "logserver%d", g_poContext->GetService()->GetServiceID());
+		sprintf(sLogName, "logserver%d", gpoContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
 	Logger::Instance()->SetSync(false);
@@ -68,7 +68,7 @@ void OnShutdownTimer(uint32_t uTimerID, void*)
 void OnSigTerm(int)
 {
 	XLog(LEVEL_INFO, "OnSigTerm------\n");
-	LogServer* poLogServer = (LogServer*)g_poContext->GetService();
+	LogServer* poLogServer = (LogServer*)gpoContext->GetService();
 	if (poLogServer->GetMsgCount() <= 0)
 	{
 		Logger::Instance()->Terminate();
@@ -93,7 +93,7 @@ int main(int nArg, char *pArgv[])
 	Logger::Instance()->SetSync(true);
 	NetAPI::StartupNetwork();
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
-	g_poContext = XNEW(ServerContext);
+	gpoContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
@@ -104,26 +104,26 @@ int main(int nArg, char *pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-	g_poContext->SetRouterMgr(poRouterMgr);
+	gpoContext->SetRouterMgr(poRouterMgr);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	LogServer* poLogServer = XNEW(LogServer);
 	poLogServer->Init(nServiceID);
-	g_poContext->SetService(poLogServer);
+	gpoContext->SetService(poLogServer);
 
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
 
 	//工作线程
-	WorkerMgr::Instance()->Init(g_poContext->GetServerConfig().oLogList[0].oLog.uWorkers);
+	WorkerMgr::Instance()->Init(gpoContext->GetServerConfig().oLogList[0].oLog.uWorkers);
 	XLog(LEVEL_INFO, "LogServer start successful\n");
 
 	atexit(OnExit);
-	bRes = g_poContext->GetService()->Start();
+	bRes = gpoContext->GetService()->Start();
 	assert(bRes);
 	return 0;
 }

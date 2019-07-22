@@ -5,26 +5,26 @@
 #include "Server/Base/CmdDef.h"
 #include "Server/Base/ServerContext.h"
 
-PacketReader g_oPKReader;
-PacketWriter g_oPKWriter;
-Packet* g_poPacketCache;
-Array<int> g_oSessionCache;
-bool g_bPrintBattle = false;
+PacketReader goPKReader;
+PacketWriter goPKWriter;
+Packet* gpoPacketCache;
+Array<int> goSessionCache;
+bool gbPrintBattle = false;
 
 LogicServer::LogicServer()
 {
 	m_uInPackets = 0;
 	m_uOutPackets = 0;
 	m_oMsgBalancer.SetEventHandler(&m_oNetEventHandler);
-	g_poPacketCache = Packet::Create();
-	g_oPKWriter.SetPacket(g_poPacketCache);
+	gpoPacketCache = Packet::Create();
+	goPKWriter.SetPacket(gpoPacketCache);
 }
 
 LogicServer::~LogicServer()
 {
-	if (g_poPacketCache != NULL)
+	if (gpoPacketCache != NULL)
 	{
-		g_poPacketCache->Release();
+		gpoPacketCache->Release();
 	}
 }
 
@@ -50,7 +50,7 @@ bool LogicServer::Init(int8_t nServiceID)
 
 bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->GetRouter(nRouterServiceID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->GetRouter(nRouterServiceID);
 	if (poRouter == NULL)
 	{
 		return false;
@@ -59,7 +59,7 @@ bool LogicServer::RegToRouter(int8_t nRouterServiceID)
 	if (poPacket == NULL) {
 		return false;
 	}
-	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), g_poContext->GetServerID(), poRouter->nService, 0);
+	INNER_HEADER oHeader(NSSysCmd::ssRegServiceReq, 0, GetServiceID(), gpoContext->GetServerID(), poRouter->nService, 0);
 	poPacket->AppendInnerHeader(oHeader, NULL, 0);
 	if (!m_pInnerNet->SendPacket(poRouter->nSession, poPacket))
 	{
@@ -134,7 +134,7 @@ void LogicServer::ProcessTimer(int64_t nNowMSTime)
 
 void LogicServer::OnConnected(int nSessionID, int nRemoteIP, uint16_t nRemotePort)
 {
-	ROUTER* poRouter = g_poContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
+	ROUTER* poRouter = gpoContext->GetRouterMgr()->OnConnectRouterSuccess(nRemotePort, nSessionID);
 	assert(poRouter != NULL);
     RegToRouter(poRouter->nService);
 }
@@ -142,7 +142,7 @@ void LogicServer::OnConnected(int nSessionID, int nRemoteIP, uint16_t nRemotePor
 void LogicServer::OnDisconnect(int nSessionID)
 {
 	XLog(LEVEL_INFO, "%s: On connection disconnect\n", GetServiceName());
-	g_poContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
+	gpoContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
 }
 
 void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket) 
@@ -164,11 +164,11 @@ void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket)
 		poPacket->Release();
 		return;
 	}
-	g_poContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
+	gpoContext->GetPacketHandler()->OnRecvInnerPacket(nSessionID, poPacket, oHeader, pSessionArray);
 }
 
 void LogicServer::ClientCloseHandler(int nSession)
 {
 	m_oMsgBalancer.RemoveConn(nSession);
-	LuaWrapper::Instance()->FastCallLuaRef<void>("OnClientClose", 0, "i", nSession);
+	LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnClientClose", 0, "i", nSession);
 }

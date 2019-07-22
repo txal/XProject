@@ -37,6 +37,9 @@
     <Filter Include="Src\Util">
       <UniqueIdentifier>{37df5a6e-f663-47ac-ad41-7fcc71c51097}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\GameObject">
+      <UniqueIdentifier>{49b90019-72c8-4388-b19f-d01379920e9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Server\Base\NetAdapter.cpp">

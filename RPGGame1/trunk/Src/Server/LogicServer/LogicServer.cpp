@@ -94,8 +94,8 @@ bool LogicServer::Start()
 		Service::Update(nNowMS);
 		ProcessTimer(nNowMS);
 		ProcessLoopCount(nNowMS);
-	    m_oSceneMgr.Update(nNowMS);
 	    m_oRoleMgr.Update(nNowMS);
+	    m_oSceneMgr.Update(nNowMS);
 	    m_oMonsterMgr.Update(nNowMS);
 		
 		//m_oRobotMgr.Update(nNowMS);
@@ -172,7 +172,7 @@ void LogicServer::OnDisconnect(int nSessionID)
 {
 	XLog(LEVEL_INFO, "%s: On disconnect session:%d\n", GetServiceName(), nSessionID);
 	gpoContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
-	m_oMsgBalancer.RemoveConn(0, 0, nSessionID);
+	m_oMsgBalancer.RemoveConn(gpoContext->GetServerConfig().GetServerID(), GetServiceID(), nSessionID);
 }
 
 void LogicServer::OnRevcMsg(int nSessionID, Packet* poPacket) 

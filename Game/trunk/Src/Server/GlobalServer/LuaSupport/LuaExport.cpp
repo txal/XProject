@@ -4,7 +4,7 @@
 #include "Include/Pbc/Pbc.hpp"
 #include "Include/Script/Script.hpp"
 
-#include "Common/DataStruct/ObjID.h"
+#include "Common/DataStruct/XUUID.h"
 #include "Common/LuaCommon/LuaCmd.h"
 #include "Common/LuaCommon/LuaRpc.h"
 #include "Common/LuaCommon/LuaPB.h"
@@ -17,7 +17,7 @@
 //服务ID
 int GetServiceID(lua_State* pState)
 {
-	int nService = g_poContext->GetService()->GetServiceID();
+	int nService = gpoContext->GetService()->GetServiceID();
 	lua_pushinteger(pState, nService);
 	return 1;
 }
@@ -25,8 +25,8 @@ int GetServiceID(lua_State* pState)
 //生成唯一ID
 int MakeObjID(lua_State* pState)
 {
-	OBJID oID = MakeObjID(g_poContext->GetService()->GetServiceID());
-	lua_pushinteger(pState,oID.llID);
+	int64_t nID = XUUID::GenID(gpoContext->GetService()->GetServiceID());
+	lua_pushinteger(pState,nID);
 	return 1;
 }
 

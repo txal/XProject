@@ -4,18 +4,18 @@
 #include "Server/Base/ServerContext.h"
 #include "Server/RouterServer/Router.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 
 void NSPacketProc::RegisterPacketProc()
 {
-	PacketHandler* poPacketHandler = g_poContext->GetPacketHandler();
+	PacketHandler* poPacketHandler = gpoContext->GetPacketHandler();
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceReq, (void*)OnRegisterService);
 }
 
 
 void NSPacketProc::OnRegisterService(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSesseionArray)
 {
-	Service* poService = g_poContext->GetService();
+	Service* poService = gpoContext->GetService();
 	if (oHeader.nTarService != poService->GetServiceID())
 	{
 		return;

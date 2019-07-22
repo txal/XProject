@@ -228,7 +228,7 @@ void GlobalServer::OnInnerNetClose(int nSessionID)
 {
 	XLog(LEVEL_INFO, "On innernet disconnect\n");
 	gpoContext->GetRouterMgr()->OnRouterDisconnected(nSessionID);
-	m_oMsgBalancer.RemoveConn(0, 0, nSessionID);
+	m_oMsgBalancer.RemoveConn(gpoContext->GetServerConfig().GetServerID(), GetServiceID(), nSessionID);
 }
 
 void GlobalServer::OnInnerNetMsg(int nSessionID, Packet* poPacket)

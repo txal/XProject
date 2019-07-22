@@ -71,6 +71,7 @@ private:
 ////////////////lua export//////////////////////
 public:
 	int GetRunSpeed(lua_State* pState);
+	int BindServer(lua_State* pState);
 	int BindSession(lua_State* pState);
 	int StopRun(lua_State* pState);
 	int RunTo(lua_State* pState);

@@ -6,7 +6,7 @@
 #include "Server/Base/ServerContext.h"
 #include "Common/DataStruct/TimeMonitor.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 
 void TrimCmd(std::string& sCmd)
 {
@@ -94,10 +94,10 @@ int main()
 
 	Logger::Instance()->Init();
 	NetAPI::StartupNetwork();
-	g_poContext = XNEW(ServerContext);
+	gpoContext = XNEW(ServerContext);
 	
 	RobotMgr* poRobotMgr = XNEW(RobotMgr);
-	g_poContext->SetService(poRobotMgr);
+	gpoContext->SetService(poRobotMgr);
 	poRobotMgr->Init(0, 30000);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
@@ -110,7 +110,7 @@ int main()
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 

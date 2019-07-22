@@ -39,9 +39,9 @@ Robot::~Robot()
 	SAFE_DELETE(m_poAI);
 }
 
-void Robot::Init(const OBJID& oObjID, int nConfID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
+void Robot::Init(int64_t nObjID, int nConfID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
 {
-	Actor::m_oObjID = oObjID;
+	Actor::m_nObjID = nObjID;
 	Actor::m_nConfID = nConfID;
 	strcpy(Actor::m_sName, psName);
 	m_nAIID = nAIID;
@@ -239,8 +239,8 @@ bool Robot::SwitchWeapon()
 		m_nGunIndex = nShouQiangIndex;
 	}
 	Gun& oGun = m_oHotWeaponList.tGunList[m_nGunIndex];
-	LuaWrapper::Instance()->FastCallLuaRef<void>("RobotSwitchWeapon", 0, "ii", Actor::GetID().llID, oGun.uID);
-	if (g_bPrintBattle)
+	LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("RobotSwitchWeapon", 0, "ii", Actor::GetID(), oGun.uID);
+	if (gbPrintBattle)
 	{
 		XLog(LEVEL_INFO, "%s Switch weapon successful old:%d new:%d\n", m_sName, poOldGun->uID, oGun.uID);
 	}

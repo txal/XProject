@@ -1,5 +1,6 @@
 ﻿
 #include "MsgBalancer.h"
+#include "ServerContext.h"
 #include "Service.h"
 
 static const int nMAX_ELEM = 102400;
@@ -49,7 +50,9 @@ void MsgBalancer::RemoveConn(uint16_t uServer, int8_t nService, int nSession)
 bool MsgBalancer::QueueEvent(NSNetEvent::EVENT& oEvent)
 {
 	if (m_oConnQueue.Size() <= 0)
+	{
 		return false;
+	}
 
 	uint16_t uServer = 0;
 	int8_t nService = 0;
@@ -102,7 +105,9 @@ bool MsgBalancer::QueueEvent(NSNetEvent::EVENT& oEvent)
 bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 {
 	if (m_poEventHandler->GetMailBox().Size() <= 0 && QueueEvent(oEvent))
+	{
 		return true;
+	}
 
 	uint16_t uServer = 0;
 	int8_t nService = 0;
@@ -134,7 +139,7 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 						XLog(LEVEL_ERROR, "Source server or service error cmd:%d server:%d service:%d\n", oInnHeader.uCmd, oInnHeader.uSrcServer, oInnHeader.nSrcService);
 					}
 					int nSessionService = nSession >> SERVICE_SHIFT;
-					if (nSessionService != nService) //是否网关发过来的玩家消息
+					if (nSessionService != nService || nSession <= 0) //非网关过来的消息(内部消息),马上处理
 					{
 						return true;
 					}
@@ -142,6 +147,7 @@ bool MsgBalancer::GetEvent(NSNetEvent::EVENT& oEvent, uint32_t uWaitMS)
 				else
 				{
 					oEvent.U.oRecv.poPacket->GetExterHeader(oExtHeader, false);
+					uServer = 0; //外部进来的包,统一为0
 					nService = oExtHeader.nSrcService;
 					nSession = oEvent.U.oRecv.nSessionID;
 				}

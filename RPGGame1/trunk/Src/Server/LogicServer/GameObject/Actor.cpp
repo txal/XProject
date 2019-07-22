@@ -137,7 +137,7 @@ bool Actor::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
 	bool bRes = true;
 	if (nNewX != m_oPos.x || nNewY != m_oPos.y)
 	{
-		bRes = BattleUtil::FixLineMovePoint(GetScene()->GetMapConf(), m_oPos.x, m_oPos.y, nNewX, nNewY, this);
+		bRes = BattleUtil::FixLineMovePoint(this->GetScene()->GetMapConf(), m_oPos.x, m_oPos.y, nNewX, nNewY);
 	}
 	nNewPosX = nNewX;
 	nNewPosY = nNewY;
@@ -274,9 +274,16 @@ int Actor::GetRunSpeed(lua_State* pState)
 	return 2;
 }
 
+int Actor::BindServer(lua_State* pState)
+{
+	uint16_t uServer = (uint16_t)luaL_checkinteger(pState, -1);
+	m_uServer = uServer;
+	return 0;
+}
+
 int Actor::BindSession(lua_State* pState)
 {
-	int nSession = (int)lua_tointeger(pState, -1);
+	int nSession = (int)luaL_checkinteger(pState, -1);
 	LogicServer * poLogic = (LogicServer*)gpoContext->GetService();
 	poLogic->GetRoleMgr()->BindSession(m_nObjID, nSession);
 	return 0;

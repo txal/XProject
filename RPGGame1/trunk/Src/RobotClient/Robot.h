@@ -13,13 +13,12 @@ class RobotMgr;
 class Robot
 {
 public:
-	static char className[];
-	static Lunar<Robot>::RegType methods[];
-	Robot(lua_State* pState) { XLog(LEVEL_ERROR, "Robot should not new in lua!\n"); }
+	LUNAR_DECLARE_CLASS(Robot);
 
 public:
 	Robot(RobotMgr* poRobotMgr);
-	~Robot();
+	virtual ~Robot();
+
 	void Update(int64_t nNowMS);
 	void OnConnect(int nSessionID);
 	void OnDisconnect();
@@ -62,6 +61,8 @@ private:
 	int m_nMoveSpeed;
 	int64_t m_nRunStartTime;
 	Point m_oTarPos;
+
+private:
 	DISALLOW_COPY_AND_ASSIGN(Robot);
 
 

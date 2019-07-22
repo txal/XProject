@@ -29,7 +29,7 @@ gtGDef.tObjType =
 --物品类型
 gtGDef.tItemType = 
 {
-	eCoin = 1, 		--货币
+	eCurr = 1, 		--货币
 	eOther = 2, 	--其他(道具)
 	eEquipment = 3,	--装备
 }
@@ -44,8 +44,15 @@ gtGDef.tItemClass =
 --物品子类
 gtGDef.tSubItemType = 
 {
-	[gtGDef.tItemType.eCoin] = 
+	[gtGDef.tItemType.eCurr] = 
 	{
 		eYuanBao = 1, 		--元宝
 	}
+}
+
+--副本类型
+gtGDef.tDupType = 
+{
+    eCity = 100,  --城镇
+    eDup = 200,   --副本
 }

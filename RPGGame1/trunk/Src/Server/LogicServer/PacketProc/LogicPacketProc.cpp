@@ -73,7 +73,7 @@ void NSPacketProc::OnRoleStartRun(int nSrcSessionID, Packet* poPacket, INNER_HEA
 	Role* poRole = ((LogicServer*)gpoContext->GetService())->GetRoleMgr()->GetRoleBySS(oHeader.uSrcServer, nSession);
 	if (poRole == NULL)
 	{
-		XLog(LEVEL_INFO, "OnRoleStartRun: role not exist server:%d session:%d\n", oHeader.uSrcServer, nSession);
+		XLog(LEVEL_INFO, "OnRoleStartRun: get role fail by server:%d session:%d\n", oHeader.uSrcServer, nSession);
 		return;
 	}
 	SceneBase* poScene = poRole->GetScene();
@@ -83,13 +83,14 @@ void NSPacketProc::OnRoleStartRun(int nSrcSessionID, Packet* poPacket, INNER_HEA
 		return;
 	}
 
-	int nTarAOIID = 0;
+	double dTarAOIID = 0;
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nTarAOIID;
-	Role* poTarRole = (Role*)poScene->GetGameObjByAOIID(nTarAOIID);
+	goPKReader >> dTarAOIID;
+
+	Role* poTarRole = (Role*)poScene->GetGameObjByObjID(dTarAOIID);
 	if (poTarRole == NULL || poTarRole->GetType() != eOT_Role)
 	{
-		XLog(LEVEL_INFO, "OnRoleStartRun: target role not exist aoiid:%d\n", nTarAOIID);
+		XLog(LEVEL_INFO, "OnRoleStartRun: target role not exist objid:%f\n", dTarAOIID);
 		return;
 	}
 
@@ -113,13 +114,14 @@ void NSPacketProc::OnRoleStopRun(int nSrcSessionID, Packet* poPacket, INNER_HEAD
 		return;
 	}
 
-	int nTarAOIID = 0;
+	double dTarAOIID = 0;
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nTarAOIID;
-	Role* poTarRole = (Role*)poScene->GetGameObjByAOIID(nTarAOIID);
+	goPKReader >> dTarAOIID;
+
+	Role* poTarRole = (Role*)poScene->GetGameObjByObjID(dTarAOIID);
 	if (poTarRole == NULL || poTarRole->GetType() != eOT_Role)
 	{
-		XLog(LEVEL_INFO, "OnRoleStopRun: target role not exist aoiid:%d\n", nTarAOIID);
+		XLog(LEVEL_INFO, "OnRoleStopRun: target role not exist objid:%f\n", dTarAOIID);
 		return;
 	}
 

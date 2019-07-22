@@ -4,6 +4,7 @@
 #include "Common/Platform.h"
 #include "Server/LogicServer/GameObject/Actor.h"
 #include "Server/LogicServer/ConfMgr/ConfMgr.h"
+#include "Server/LogicServer/SceneMgr/SceneBase.h"
 
 #define PI 3.141592653589793238462643383279502884
 static int gtDir[8][2] = { { 0, 1 }, { 0, -1 }, { -1, 0 }, { 1, 0 }, { -1, 1 }, { 1, 1 }, { 1, -1 }, { -1, -1 } };
@@ -29,7 +30,7 @@ namespace BattleUtil
 	}
 
 	//直线坐标检测
-	inline bool FixLineMovePoint(MAPCONF* poMapConf, int nStartPosX, int nStartPosY, int& nTarPosX, int& nTarPosY, Actor* poActor)
+	inline bool FixLineMovePoint(MAPCONF* poMapConf, int nStartPosX, int nStartPosY, int& nTarPosX, int& nTarPosY)
 	{
 		if (poMapConf == NULL)
 		{
@@ -87,26 +88,26 @@ namespace BattleUtil
 		}
 		return bResult;
 
-		//double fUnitX = (double)nStartPosX / gnUnitWidth;
-		//double fUnitY = (double)nStartPosY / gnUnitHeight;
+		//double fUnitSrcX = (double)nStartPosX / gnUnitWidth;
+		//double fUnitSrcY = (double)nStartPosY / gnUnitHeight;
 		//double fUnitTarX = (double)nTarPosX / gnUnitWidth;
 		//double fUnitTarY = (double)nTarPosY / gnUnitHeight;
-		//if ((int)fUnitX == (int)fUnitTarX && (int)fUnitY == (int)fUnitTarY)
+		//if ((int)fUnitSrcX == (int)fUnitTarX && (int)fUnitSrcY == (int)fUnitTarY)
 		//{
 		//	return bResult;
 		//}
-		//bool bInBlockUnit = poMapConf->IsBlockUnit((int)fUnitX, (int)fUnitY);
-		//double fDistUnitX = fUnitTarX - fUnitX;
-		//double fDistUnitY = fUnitTarY - fUnitY;
+		//bool bInBlockUnit = poMapConf->IsBlockUnit((int)fUnitSrcX, (int)fUnitSrcY);
+		//double fDistUnitX = fUnitTarX - fUnitSrcX;
+		//double fDistUnitY = fUnitTarY - fUnitSrcY;
 		//int nDistUnitMax = XMath::Max(1, XMath::Max((int)ceil(abs(fDistUnitX)), (int)ceil(abs(fDistUnitY))));
 		//fDistUnitX = fDistUnitX / nDistUnitMax;
 		//fDistUnitY = fDistUnitY / nDistUnitMax;
 
-		//double fOrgUnitX = fUnitX, fOrgUnitY = fUnitY;
+		//double fOrgUnitX = fUnitSrcX, fOrgUnitY = fUnitSrcY;
 		//for (int i = nDistUnitMax - 1; i > -1; --i)
 		//{
-		//	double fNewUnitX = fUnitX + fDistUnitX;
-		//	double fNewUnitY = fUnitY + fDistUnitY;
+		//	double fNewUnitX = fUnitSrcX + fDistUnitX;
+		//	double fNewUnitY = fUnitSrcY + fDistUnitY;
 
 		//	int8_t nMasks = 0;
 		//	if (fNewUnitX >= 0 && fNewUnitX < poMapConf->nUnitNumX && fNewUnitY >= 0 && fNewUnitY < poMapConf->nUnitNumY)
@@ -126,33 +127,29 @@ namespace BattleUtil
 		//		}
 		//		//else
 		//		//{//对角线判断
-		//		//	int nDistX = abs((int)fUnitX - (int)fNewUnitX);
-		//		//	int nDistY = abs((int)fUnitY - (int)fNewUnitY);
+		//		//	int nDistX = abs((int)fUnitSrcX - (int)fNewUnitX);
+		//		//	int nDistY = abs((int)fUnitSrcY - (int)fNewUnitY);
 		//		//	if (nDistX == 1 && nDistY == 1)
 		//		//	{
-		//		//		if (poMapConf->IsBlockUnit((int)fUnitX, (int)fNewUnitY)
-		//		//			|| poMapConf->IsBlockUnit((int)fNewUnitX, (int)fUnitY))
+		//		//		if (poMapConf->IsBlockUnit((int)fUnitSrcX, (int)fNewUnitY)
+		//		//			|| poMapConf->IsBlockUnit((int)fNewUnitX, (int)fUnitSrcY))
 		//		//		{
 		//		//			bResult = false;
 		//		//		}
 		//		//	}
 		//		//}
-		//		//if (poActor == NULL || poActor->GetType() == eOT_Robot)
-		//		//{
-		//		//	XDebug("####0.5 %s %s %f %f %f %f %f %f %d %d\n", bBlockUnit ? "true" : "false", bResult ? "true" : "false", fUnitX, fUnitY, fNewUnitX, fNewUnitY, fUnitTarX, fUnitTarY, nTarPosX, nTarPosY);
-		//		//}
 		//	}
 		//	if (bResult)
 		//	{
-		//		fUnitX = fNewUnitX;
-		//		fUnitY = fNewUnitY;
+		//		fUnitSrcX = fNewUnitX;
+		//		fUnitSrcY = fNewUnitY;
 		//	}
 		//	else
 		//	{
-		//		if (fUnitX != fOrgUnitX ||  fUnitY != fOrgUnitY)
+		//		if ((int)fUnitSrcX != (int)fOrgUnitX ||  (int)fUnitSrcY != (int)fOrgUnitY)
 		//		{
-		//			nTarPosX = (int)(fUnitX * gnUnitWidth);
-		//			nTarPosY = (int)(fUnitY * gnUnitHeight);
+		//			nTarPosX = (int)fUnitSrcX * gnUnitWidth;
+		//			nTarPosY = (int)fUnitSrcY * gnUnitHeight;
 		//		}
 		//		else
 		//		{
@@ -162,10 +159,6 @@ namespace BattleUtil
 		//		break;
 		//	}
 		//}
-		////if (poActor == NULL || poActor->GetType() == eOT_Robot)
-		////{
-		////	XDebug("####1 %s %d %d %d %d %f %f\n", bResult ? "true" : "false", nStartPosX, nStartPosY, nTarPosX, nTarPosY, fDistUnitX, fDistUnitY);
-		////}
 		//return bResult;
 	}
 

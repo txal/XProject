@@ -11,7 +11,7 @@ public:
 public:
 	DropItem();
 	virtual ~DropItem();
-	void Init(const OBJID& oObjID, int nConfID, const char* psName, int nAliveTime, int nCamp);
+	void Init(int64_t nObjID, int nConfID, const char* psName, int nAliveTime, int nCamp);
 
 public:
 	virtual void Update(int64_t nNowMS);

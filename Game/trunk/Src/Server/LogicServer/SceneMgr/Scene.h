@@ -3,7 +3,7 @@
 
 #include "AOI.h"
 #include "Include/Script/Script.hpp"
-#include "Common/DataStruct/ObjID.h"
+#include "Common/DataStruct/XUUID.h"
 #include "Common/DataStruct/Point.h"
 #include "Common/DataStruct/Ranking.h"
 #include "Server/LogicServer/Component/Rank/RankData.h"

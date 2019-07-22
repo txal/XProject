@@ -17,10 +17,10 @@ DropItem::~DropItem()
 {
 }
 
-void DropItem::Init(const OBJID& oObjID, int nConfID, const char* psName, int nAliveTime, int nCamp)
+void DropItem::Init(int64_t nObjID, int nConfID, const char* psName, int nAliveTime, int nCamp)
 {
 	m_nCamp = (int8_t)nCamp;
-	m_oObjID = oObjID;
+	m_nObjID = nObjID;
 	m_nConfID = nConfID;
 	strcpy(m_sName, psName);
 	m_nDisappearTime = (int)time(0) + nAliveTime;

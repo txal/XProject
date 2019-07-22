@@ -13,7 +13,7 @@ public:
 public:
 	Monster();
 	virtual ~Monster();
-	void Init(const OBJID& oObjID, int nConfID, const char* psName, int nAIID, int8_t nCamp);
+	void Init(int64_t nObjID, int nConfID, const char* psName, int nAIID, int8_t nCamp);
 
 public:
 	virtual void Update(int64_t nNowMS);

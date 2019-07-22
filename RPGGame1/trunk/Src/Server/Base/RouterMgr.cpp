@@ -114,6 +114,20 @@ void RouterMgr::OnRouterDisconnected(int nSession)
     }
 }
 
+ROUTER* RouterMgr::GetRouterBySessionID(int nRouterSessionID)
+{
+	ROUTER* poRouter = NULL;
+    for (int i = 0; i < m_nRouterNum; i++)
+    {
+        if (m_RouterList[i].nSession == nRouterSessionID)
+        {
+			poRouter = &m_RouterList[i];
+            break;
+        }
+    }
+	return poRouter;
+}
+
 ROUTER* RouterMgr::GetRouterByServiceID(int8_t nRouterService)
 {
 	ROUTER* poRouter = NULL;

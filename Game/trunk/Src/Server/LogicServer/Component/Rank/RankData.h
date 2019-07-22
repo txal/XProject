@@ -31,8 +31,8 @@ inline int DmgRankCompare(void* pData1, void* pData2)
 inline void DefaultRankTraverse(int nRank, void* pData, void* pContext)
 {
 	DmgData* poRank = (DmgData*)pData;
-	PacketWriter& g_oPKWriter = *(PacketWriter*)pContext;
-	g_oPKWriter << poRank->sName << poRank->nValue;
+	PacketWriter& goPKWriter = *(PacketWriter*)pContext;
+	goPKWriter << poRank->sName << poRank->nValue;
 }
 
 #endif

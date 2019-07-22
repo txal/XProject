@@ -12,24 +12,24 @@ RobotMgr::RobotMgr()
 {
 }
 
-Robot* RobotMgr::CreateRobot(const OBJID& oID, int nRobotID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
+Robot* RobotMgr::CreateRobot(int64_t nID, int nRobotID, const char* psName, int nAIID, int8_t nCamp, uint16_t uSyncHPTime)
 {
 	
-	Robot* poRobot = GetRobotByID(oID);
+	Robot* poRobot = GetRobotByID(nID);
 	if (poRobot != NULL)
 	{
-		XLog(LEVEL_ERROR, "CreateRobot %lld exist\n", oID.llID);
+		XLog(LEVEL_ERROR, "CreateRobot %lld exist\n", nID);
 		return NULL;
 	}
 	poRobot = XNEW(Robot);
-	poRobot->Init(oID, nRobotID, psName, nAIID, nCamp, uSyncHPTime);
-	m_oRobotIDMap[oID.llID] = poRobot;
+	poRobot->Init(nID, nRobotID, psName, nAIID, nCamp, uSyncHPTime);
+	m_oRobotIDMap[nID] = poRobot;
 	return poRobot;
 }
 
-Robot* RobotMgr::GetRobotByID(const OBJID& oID)
+Robot* RobotMgr::GetRobotByID(int64_t nID)
 {
-	RobotIDIter iter = m_oRobotIDMap.find(oID.llID);
+	RobotIDIter iter = m_oRobotIDMap.find(nID);
 	if (iter != m_oRobotIDMap.end())
 	{
 		return iter->second;
@@ -49,7 +49,7 @@ void RobotMgr::UpdateRobots(int64_t nNowMS)
 			if (poRobot->IsTimeToCollected(nNowMS))
 			{
 				iter = m_oRobotIDMap.erase(iter);
-				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poRobot->GetID().llID, poRobot->GetType());
+				LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnObjCollected", 0, "ii", poRobot->GetID(), poRobot->GetType());
 				SAFE_DELETE(poRobot);
 				continue;
 			}

@@ -18,13 +18,13 @@ public:
 
 public:
 	PlayerMgr();
-	Player* CreatePlayer(const OBJID& oID, int nRoleID, const char* psName, int8_t nCamp);
-	void RemovePlayer(const OBJID& oID);
+	Player* CreatePlayer(int64_t nID, int nRoleID, const char* psName, int8_t nCamp);
+	void RemovePlayer(int64_t nID);
 
-	Player* GetPlayerByID(const OBJID& oID);
+	Player* GetPlayerByID(int64_t nID);
 	Player* GetPlayerBySession(int nSession);
 
-	void BindSession(const OBJID& oID, int nSession);
+	void BindSession(int64_t nID, int nSession);
 
 public:
 	void UpdatePlayers(int64_t nNowMS);

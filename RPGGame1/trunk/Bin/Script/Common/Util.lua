@@ -110,7 +110,8 @@ end
 
 --通过逻辑服ID取服务器ID
 function CUtil:GetServerByLogic(nLogicService)
-    local nServerID = nLogicService>=100 and gnWorldServerID or gnServerID
+    local oServerMgr = GetGModule("ServerMgr")
+    local nServerID = nLogicService>=100 and oServerMgr:GetWorldServerID() or oServerMgr:GetServerID()
     return nServerID
 end
 
@@ -316,45 +317,6 @@ function GF.RandDiff(nMin, nMax, nNum)
     return tResultList
 end
 
--- [nMin, nMax]区间，随机nNum个不同数值
--- nMin和nMax可以为负数
--- 返回值1  {[1]=nVal1, [2]=nVal2, ...}
--- 返回值2  {nVal1:(第X次随机到), nVal2:(第X次随机到), ...}
-function CUtil:RandDiffNum(nMin, nMax, nNum)
-    assert(nMin <= nMax and nNum > 0, "参数错误")
-    local nRandRange = nMax - nMin + 1
-    assert(nRandRange >= nNum, "参数错误")
-
-    local tRandResult = {}
-
-    local tCacheList = {}
-    local tSwapList = {}  --交换列表，用于缓存交换的nMin值
-    for k = 1, nNum do 
-        local nRand = math.random(nRandRange) + nMin - 1
-        local nResultVal = nRand
-        if tCacheList[nRand] then 
-            nResultVal = tSwapList[nRand]  
-        end
-        tCacheList[nResultVal] = k
-        table.insert(tRandResult, nResultVal)
-        
-        if nRand ~= nMin then 
-            if not tSwapList[nMin] then 
-                tSwapList[nRand] = nMin
-            else
-                tSwapList[nRand] = tSwapList[nMin]
-                tSwapList[nMin] = nil
-            end
-        else
-            tSwapList[nMin] = nil
-        end
-        nRandRange = nRandRange - 1
-        nMin = nMin + 1
-    end
-
-    return tRandResult, tCacheList
-end
-
 --随机数迭代
 --用于生成[nMin, nMax]之间的随机数且和之前的生成结果不重复
 --nMin, nMax可以为负数
@@ -366,31 +328,27 @@ end
 ]]
 function CUtil:RandDiffIterator(nMin, nMax)
     assert(nMin <= nMax, "参数错误")
-    local nMaxIteration = 0xfffff  --1M个数据
-    --因为存在缓存列表，如果单次迭代太多，会导致内存占用过大，而且还会阻塞其他服务
+    local nMaxIteration = 0xFFFFF  --1M个数据
     --超过1M个数据，基本都是逻辑存在问题了
 
     local nMin = nMin
     local nRandRange = nMax - nMin + 1
     local nRandCount = 0
-    local tCacheList = {} 
     local tSwapList = {}
-    local fnIterator = function(tParam, nRandVal) 
+    local fnIterator = function() 
         if nRandRange <= 0 then 
             return 
         end
         if nRandCount >= nMaxIteration then 
-            LuaTrace("CUtil:RandDiffIterator请检查逻辑!!!!单次迭代大量数据!!!!")
-            LuaTrace(debug.traceback())
+            LuaTrace("CUtil:RandDiffIterator请检查逻辑,单次迭代大量数据!", debug.traceback())
             return 
         end
 
         local nRand = math.random(nRandRange) + nMin - 1
         local nResultVal = nRand
-        if tCacheList[nRand] then 
+        if tSwapList[nRand] then 
             nResultVal = tSwapList[nRand]  
         end
-        tCacheList[nResultVal] = true
         
         if nRand ~= nMin then 
             if not tSwapList[nMin] then 
@@ -403,195 +361,10 @@ function CUtil:RandDiffIterator(nMin, nMax)
             tSwapList[nMin] = nil
         end
 
-        nRandRange = nRandRange - 1
         nMin = nMin + 1
+        nRandRange = nRandRange - 1
         nRandCount = nRandCount + 1
         return nResultVal
     end
-    return fnIterator, nil, nil
+    return fnIterator
 end
-
-function CUtil:GetMaxRoleLevelByServer(nServer)
-    assert(nServer > 0 and nServer ~= gnWorldServerID)
-    return math.min(goServerMgr:GetServerLevel(nServer) + 8, #ctRoleLevelConf)
-end
-
-function CUtil:CalcAttrScore(nAttrID, nAttrVal)
-	local nConvertRate = gtEquAttrConvertRate[nAttrID]
-	if not nConvertRate then 
-		return 0
-	end
-	return math.floor(nAttrVal * nConvertRate)
-end
-
---是否是PVE活动场景
-function CUtil:IsPVEActDup(nDupID)
-    local tDupConf = ctDupConf[nDupID]
-    if not tDupConf then 
-        return false
-    end
-    if tDupConf.nBattleType == gtBattleDupType.ePVEPrepare 
-    or tDupConf.nBattleType == gtBattleDupType.eJueZhanJiuXiao
-    or tDupConf.nBattleType == gtBattleDupType.eHunDunShiLian
-    or tDupConf.nBattleType == gtBattleDupType.eMengZhuWuShuang then 
-        return true 
-    end
-
-    return false
-end
-
-
---获取道具补足价格
---当前只支持道具
---tItemList {nItemType, nItemID, nCurrType} --nCurrType是需要转换的目标货币类型
---bCeil查询价格，发生货币单位转换, 是否向上取整，false则向下取整
---正常，如果是查询补足价格，都向上取整
---fnCallback(bSucc, tPriceList) --tPriceList = {{nItemType, nItemID, nCurrType, nPrice}, ...}
-function CUtil:QueryItemPrice(nServer, tItemList, bCeil, fnCallback)
-    assert(nServer > 0 and nServer < 10000, "参数错误")
-    bCeil = bCeil and true or false
-    local fnInnerCallback = function(bSucc, tPriceList) 
-        if not bSucc then 
-            print("QueryItemPrice 查询价格失败")
-            tPriceList = {}
-        end
-        if fnCallback then 
-            fnCallback(bSucc, tPriceList)
-        end
-    end
-    if #tItemList <= 0 or #tItemList > 100 then 
-        fnInnerCallback(false, {})
-    end
-
-    local nServerID = nServer
-    local nServiceID = goServerMgr:GetGlobalService(nServerID, 20)
-
-    local tQueryShopMap = {}
-    local tQueryMarketMap = {}
-    local tQueryPropConfMap = {}
-    for _, tItem in ipairs(tItemList) do 
-        local nItemID = tItem.nItemID
-        assert(nItemID > 0, "参数错误")
-        if tItem.nItemType == gtItemType.eProp then 
-            assert(ctPropConf[nItemID], "道具配置不存在")
-            if ctCommerceItem[nItemID] then 
-                tQueryShopMap[nItemID] = tItem
-            elseif ctBourseItem[nItemID] then 
-                tQueryMarketMap[nItemID] = tItem
-            else
-                tQueryPropConfMap[nItemID] = nItemID
-            end
-        else
-            --暂时只支持道具
-            assert(false, string.format("物品(%d)不是道具", nItemID))
-        end
-    end
-
-    local tQueryShopList = {}
-    for nItemID, _ in pairs(tQueryShopMap) do 
-        table.insert(tQueryShopList, nItemID)
-    end
-    local tQueryMarketList = {}
-    for nItemID, _ in pairs(tQueryMarketMap) do 
-        table.insert(tQueryMarketList, nItemID)
-    end
-
-    local fnShopCallback = function(tShopResult) 
-		if not tShopResult then 
-			fnInnerCallback(false)
-			return 
-		end
-		local fnMarketCallback = function(tMarketResult) 
-			if not tMarketResult then 
-				fnInnerCallback(false)
-				return 
-            end
-
-            local fnGetBasePrice = function(nPropID, nCurrType) 
-                local tPropConf = ctPropConf[nPropID]
-                assert(tPropConf, "道具不存在")
-                if nCurrType == gtCurrType.eYuanBao 
-                    or nCurrType == gtCurrType.eBYuanBao 
-                    or nCurrType == gtCurrType.eAllYuanBao then 
-                    return tPropConf.nBuyPrice
-                elseif nCurrType == gtCurrType.eJinBi then 
-                    return tPropConf.nGoldPrice 
-                elseif nCurrType == gtCurrType.eYinBi then 
-                    return tPropConf.nSilverPrice
-                else
-                    assert(false, "不支持的货币类型")
-                end
-            end
-
-            local fnCurrencyExchange = function(nSrcType, nTarType, nNum, bCeil) 
-                assert(nSrcType and nTarType and nNum and nNum >= 0, "参数错误")
-                if nSrcType == nTarType then 
-                    return nNum
-                end
-                local nSrcRatio = gtCurrYuanbaoExchangeRatio[nSrcType]
-                assert(nSrcRatio and nSrcRatio > 0, "不受支持的兑换")
-                local nTarRatio = gtCurrYuanbaoExchangeRatio[nTarType]
-                assert(nTarRatio and nTarRatio > 0, "不受支持的兑换")
-
-                local nRatio = nTarRatio / nSrcRatio
-                if bCeil then 
-                    return math.ceil(nNum * nRatio)
-                else
-                    return math.floor(nNum * nRatio)
-                end
-            end
-
-			local tPriceList = {}  --{nItemType, nItemID, nCurrType, nPrice}
-			for _, tItem in ipairs(tItemList) do 
-                local nItemType = tItem.nItemType
-                local nItemID = tItem.nItemID
-                local nCurrType = tItem.nCurrType
-                local tPriceData = {nItemType = nItemType, nItemID = nItemID, 
-                    nCurrType = nCurrType}
-                local nPrice
-                if nItemType == gtItemType.eProp then 
-                    if ctCommerceItem[nItemID] then 
-                        nPrice = fnCurrencyExchange(gtCurrType.eJinBi, nCurrType, 
-                            tShopResult[nItemID], bCeil)
-                    elseif ctBourseItem[nItemID] then 
-                        nPrice = fnCurrencyExchange(gtCurrType.eYinBi, nCurrType, 
-                            tMarketResult[nItemID], bCeil)
-                    elseif tQueryPropConfMap[nItemID] then 
-                        nPrice = fnGetBasePrice(nItemID, nCurrType)
-                    else
-                        assert(false)
-                    end
-                end
-				tPriceData.nPrice = nPrice
-				table.insert(tPriceList, tPriceData)
-			end
-			fnInnerCallback(true, tPriceList)
-		end
-
-        if #tQueryMarketList > 0 then 
-            if gnServerID == nServerID and CUtil:GetServiceID() == nServiceID then
-                local tResult = Srv2Srv.GetMarketBasePriceTblReq(nServerID, 
-                    nServiceID, 0, tQueryMarketList)
-                fnMarketCallback(tResult) 
-            else
-                Network.oRemoteCall:CallWait("GetMarketBasePriceTblReq", fnMarketCallback, 
-                    nServerID, nServiceID, 0, tQueryMarketList)
-            end
-		else
-			fnMarketCallback({})
-		end
-	end
-    if #tQueryShopList > 0 then 
-        if gnServerID == nServerID and CUtil:GetServiceID() == nServiceID then 
-            local tResult = Srv2Srv.QueryCommercePriceTblReq(nServerID, 
-                nServiceID, 0, tQueryShopList)
-            fnShopCallback(tResult)
-        else
-            Network.oRemoteCall:CallWait("QueryCommercePriceTblReq", fnShopCallback, 
-                nServerID, nServiceID, 0, tQueryShopList)
-        end
-	else
-		fnShopCallback({})
-	end
-end
-

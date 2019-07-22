@@ -61,10 +61,10 @@ private:
 	DISALLOW_COPY_AND_ASSIGN(LogicServer);
 };
 
-extern PacketReader g_oPKReader;
-extern PacketWriter g_oPKWriter;
-extern Packet* g_poPacketCache;
-extern Array<int> g_oSessionCache;
-extern bool g_bPrintBattle;
+extern PacketReader goPKReader;
+extern PacketWriter goPKWriter;
+extern Packet* gpoPacketCache;
+extern Array<int> goSessionCache;
+extern bool gbPrintBattle;
 
 #endif

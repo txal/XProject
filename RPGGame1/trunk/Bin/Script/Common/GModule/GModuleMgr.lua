@@ -91,7 +91,7 @@ end
 
 --通过模块名字取模块
 function CGModuleMgr:GetModuleByName(sName)
-	return assert(self.m_tModuleNameMap[sName], "模块不存在 Name:"..sName)
+	return self.m_tModuleNameMap[sName]
 end
 
 --保存数据

@@ -10,8 +10,7 @@
 #include "Server/Base/ServerContext.h"
 #include "Server/LogicServer/Component/Battle/BattleUtil.h"
 
-char Robot::className[] = "Robot";
-Lunar<Robot>::RegType Robot::methods[] =
+LUNAR_IMPLEMENT_CLASS(Robot)
 {
 	LUNAR_DECLARE_METHOD(Robot, GetPos),
 	LUNAR_DECLARE_METHOD(Robot, SetPos),
@@ -112,7 +111,7 @@ bool Robot::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
 	bool bRes = true;
 	if (nNewX != m_oPos.x || nNewY != m_oPos.y)
 	{
-		bRes = BattleUtil::FixLineMovePoint(m_poMapConf, m_oPos.x, m_oPos.y, nNewX, nNewY, NULL);
+		bRes = BattleUtil::FixLineMovePoint(m_poMapConf, m_oPos.x, m_oPos.y, nNewX, nNewY);
 	}
 	nNewPosX = nNewX;
 	nNewPosY = nNewY;

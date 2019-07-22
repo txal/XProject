@@ -1,7 +1,7 @@
 ﻿#ifndef __OBJDEF_H__
 #define __OBJDEF_H__
 
-#include "Common/DataStruct/ObjID.h"
+#include "Common/DataStruct/XUUID.h"
 
 //游戏对象类型
 enum GAME_OBJ_TYPE

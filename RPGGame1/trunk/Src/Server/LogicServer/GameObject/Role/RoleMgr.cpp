@@ -24,7 +24,7 @@ RoleMgr::~RoleMgr()
 	m_oRoleSSMap.clear();
 }
 
-Role* RoleMgr::CreateRole(int64_t nObjID, int nConfID, const char* psName, uint16_t uServer, int nSession)
+Role* RoleMgr::CreateRole(int64_t nObjID, int nConfID, const char* psName)
 {
 	Role* poRole = GetRoleByID(nObjID);
 	if (poRole != NULL)
@@ -33,23 +33,9 @@ Role* RoleMgr::CreateRole(int64_t nObjID, int nConfID, const char* psName, uint1
 		return poRole;
 	}
 
-	if (nSession > 0)
-	{
-		poRole = GetRoleBySS(uServer, nSession);
-		if (poRole != NULL)
-		{
-			XLog(LEVEL_ERROR, "CreateRole error for role server:%d session:%d exist\n", uServer, nSession);
-			return NULL;
-		}
-	}
-
 	poRole = XNEW(Role);
 	poRole->Init(nObjID, nConfID, psName);
-	poRole->SetServer(uServer);
-	poRole->SetSession(nSession);
-
 	m_oRoleIDMap[nObjID] = poRole;
-	m_oRoleSSMap[GenSSKey(uServer,nSession)] = poRole;
 	return poRole;
 }
 
@@ -65,12 +51,7 @@ void RoleMgr::RemoveRole(int64_t nObjID)
 		poRole->GetScene()->LeaveScene(poRole->GetAOIID(), false);
 	}
 
-	int nSession = poRole->GetSession();
-	if (nSession > 0)
-	{
-		uint16_t uServer = poRole->GetServer();
-		m_oRoleSSMap.erase(GenSSKey(uServer, nSession));
-	}
+	BindSession(nObjID, 0);
 	poRole->MarkDeleted();
 }
 
@@ -178,9 +159,7 @@ int RoleMgr::CreateRole(lua_State* pState)
 	int64_t nObjID = (int64_t)luaL_checkinteger(pState, 1);
 	int nConfID = (int)luaL_checkinteger(pState, 2);
 	const char* psName = luaL_checkstring(pState, 3);
-	uint16_t uServer = (int16_t)luaL_checkinteger(pState, 4);
-	int nSession = (int)luaL_checkinteger(pState, 5);
-	Role* poRole = CreateRole(nObjID, nConfID, psName, uServer, nSession);
+	Role* poRole = CreateRole(nObjID, nConfID, psName);
 	if (poRole != NULL)
 	{
 		Lunar<Role>::push(pState, poRole);

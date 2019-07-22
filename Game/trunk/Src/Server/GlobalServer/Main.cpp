@@ -5,14 +5,14 @@
 #include "Server/LogServer/PacketProc/PacketProc.h"
 #include "Server/LogServer/LuaSupport/LuaExport.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
+	gpoContext->LoadServerConfig();
 
 	ServerNode* poServer = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGlobalList.size(); i++)
 	{
 		if (oSrvConf.oGlobalList[i].oGlobal.uService == nServiceID)
@@ -27,13 +27,13 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	GlobalServer* poGlobalServer = (GlobalServer*)g_poContext->GetService();
+	GlobalServer* poGlobalServer = (GlobalServer*)gpoContext->GetService();
 	if (!poGlobalServer->Init(nServiceID, poServer->oGlobal.sIP, poServer->oGlobal.uPort))
 	{
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -54,7 +54,7 @@ void StartScriptEngine()
 	if (!Platform::FileExist("./debug.txt"))
 	{
 		char sLogName[256] = "";
-		sprintf(sLogName, "globalserver%d", g_poContext->GetService()->GetServiceID());
+		sprintf(sLogName, "globalserver%d", gpoContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
 
@@ -79,7 +79,7 @@ int main(int nArg, char *pArgv[])
 	NetAPI::StartupNetwork();
 
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
-	g_poContext = XNEW(ServerContext);
+	gpoContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
@@ -90,21 +90,21 @@ int main(int nArg, char *pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-	g_poContext->SetRouterMgr(poRouterMgr);
+	gpoContext->SetRouterMgr(poRouterMgr);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	GlobalServer* poGlobalServer = XNEW(GlobalServer);
-	g_poContext->SetService(poGlobalServer);
+	gpoContext->SetService(poGlobalServer);
 
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
 
 	XLog(LEVEL_INFO, "GlobalServer start successful\n");
-	bRes = g_poContext->GetService()->Start();
+	bRes = gpoContext->GetService()->Start();
 	assert(bRes);
 	return 0;
 }

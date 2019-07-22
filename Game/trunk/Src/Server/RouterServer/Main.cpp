@@ -6,14 +6,14 @@
 #include "Server/RouterServer/PacketProc/RouterPacketHanderl.h"
 #include "Server/RouterServer/PacketProc/RouterPacketProc.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
+	gpoContext->LoadServerConfig();
 
 	ServerNode* poServer = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oRouterList.size(); i++)
 	{
 		if (oSrvConf.oRouterList[i].oRouter.uService == nServiceID)
@@ -28,7 +28,7 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	Router* poRouter = (Router*)(g_poContext->GetService());
+	Router* poRouter = (Router*)(gpoContext->GetService());
 	return poRouter->Init(nServiceID, poServer->oRouter.sIP, poServer->oRouter.uPort);
 }
 
@@ -49,7 +49,7 @@ int main(int nArg, char* pArgv[])
 	Logger::Instance()->Init();
 	Logger::Instance()->SetSync(true);
 	NetAPI::StartupNetwork();
-	g_poContext = XNEW(ServerContext);
+	gpoContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
@@ -60,10 +60,10 @@ int main(int nArg, char* pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	Router* poService = XNEW(Router);
-	g_poContext->SetService(poService);
+	gpoContext->SetService(poService);
 
 	RouterPacketHandler* poPacketHandler = XNEW(RouterPacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
@@ -75,7 +75,7 @@ int main(int nArg, char* pArgv[])
 	if (!Platform::FileExist("./debug.txt"))
 	{
 		char sLogName[256] = "";
-		sprintf(sLogName, "routerserver%d", g_poContext->GetService()->GetServiceID());
+		sprintf(sLogName, "routerserver%d", gpoContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
 

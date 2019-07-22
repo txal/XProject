@@ -33,6 +33,7 @@ public:
 	void InitRouters();
 
 	ROUTER* GetRouterByServiceID(int8_t nRouterService);
+	ROUTER* GetRouterBySessionID(int nRouterSessionID);
     ROUTER* OnConnectRouterSuccess(uint16_t uPort, int nSession);
     void OnRegisterRouterSuccess(int8_t nRouterService);
     void OnRouterDisconnected(int nSession);
@@ -51,6 +52,8 @@ private:
     int m_nWaitForRegister;
     ROUTER m_RouterList[MAX_ROUTER_NUM];
 	uint32_t m_nUpdateTimer;
+
+private:
     DISALLOW_COPY_AND_ASSIGN(RouterMgr);
 };
 

@@ -7,12 +7,12 @@
 #include "Server/Base/PacketHandler.h"
 #include "Server/Base/ServerContext.h"
 
-extern ServerContext* g_poContext;
+extern ServerContext* gpoContext;
 extern void StartScriptEngine();
 
 void NSPacketProc::RegisterPacketProc()
 {
-	PacketHandler* poPacketHandler = (PacketHandler*)g_poContext->GetPacketHandler();
+	PacketHandler* poPacketHandler = (PacketHandler*)gpoContext->GetPacketHandler();
 	// 内部消息
 	poPacketHandler->RegsterInnerPacketProc(NSMsgType::eLuaRpcMsg, (void*)OnLuaRpcMsg);
 	poPacketHandler->RegsterInnerPacketProc(NSSysCmd::ssRegServiceRet, (void*)OnRegisterRouterCallback);
@@ -21,7 +21,7 @@ void NSPacketProc::RegisterPacketProc()
 ///////////////////////////内部处理函数/////////////////////////////////
 void NSPacketProc::OnRegisterRouterCallback(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	g_poContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
+	gpoContext->GetRouterMgr()->OnRegisterRouterSuccess(oHeader.nSrcService);
 }
 
 void NSPacketProc::OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)

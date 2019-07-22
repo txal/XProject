@@ -9,14 +9,14 @@
 #include "Server/LogicServer/Component/Battle/BattleUtil.h"
 #include "Server/LogicServer/PacketProc/LogicPacketProc.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
+	gpoContext->LoadServerConfig();
 
 	ServerNode* poServer = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oLogicList.size(); i++)
 	{
 		if (oSrvConf.oLogicList[i].oLogic.uService == nServiceID)
@@ -31,7 +31,7 @@ bool InitNetwork(int8_t nServiceID)
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -52,10 +52,10 @@ void StartScriptEngine()
 	if (!Platform::FileExist("./debug.txt"))
 	{
 		char sLogName[256] = "";
-		sprintf(sLogName, "logicserver%d", g_poContext->GetService()->GetServiceID());
+		sprintf(sLogName, "logicserver%d", gpoContext->GetService()->GetServiceID());
 		Logger::Instance()->SetLogFile("./Log/", sLogName);
 	}
-	g_bPrintBattle = Platform::FileExist("./battle.txt");
+	gbPrintBattle = Platform::FileExist("./battle.txt");
 
 	bool bDebug = false;
 #ifdef _DEBUG
@@ -81,10 +81,10 @@ int main(int nArg, char *pArgv[])
 	//ConfMgr::Instance()->LoadConf();
 
 	int8_t nServiceID = (int8_t)atoi(pArgv[1]);
-	g_poContext = XNEW(ServerContext);
+	gpoContext = XNEW(ServerContext);
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-	g_poContext->SetRouterMgr(poRouterMgr);
+	gpoContext->SetRouterMgr(poRouterMgr);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
@@ -95,14 +95,14 @@ int main(int nArg, char *pArgv[])
     poLuaWrapper->AddSearchPath(szScriptPath);
 
 	PacketHandler* poPacketHandler = XNEW(PacketHandler);
-	g_poContext->SetPacketHandler(poPacketHandler);
+	gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	LogicServer* poService = XNEW(LogicServer);
 	bool bRes = poService->Init(nServiceID);
 	assert(bRes);
-	g_poContext->SetService(poService);
+	gpoContext->SetService(poService);
 
 	bRes = InitNetwork(nServiceID);
 	assert(bRes);

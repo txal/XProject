@@ -25,6 +25,9 @@
     <Filter Include="Src\Common\TimerMgr">
       <UniqueIdentifier>{bd06d248-c5d0-4e58-9fe7-31cac9edc524}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Common\LuaCommon">
+      <UniqueIdentifier>{a3ff96c5-ea0e-4a1e-ace7-896fa514a299}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Server\Base\RouterMgr.cpp">
@@ -71,6 +74,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Common\TimerMgr\TimerMgr.cpp">
       <Filter>Src\Common\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaCmd.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaRpc.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaSerialize.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.cpp">
+      <Filter>Src\Common\LuaCommon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +229,24 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Common\PlatformHeader.h">
       <Filter>Src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\ClientLuaCmd.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaCmd.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaPB.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaRpc.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaSerialize.h">
+      <Filter>Src\Common\LuaCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Common\LuaCommon\LuaTableSeri.h">
+      <Filter>Src\Common\LuaCommon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

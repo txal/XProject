@@ -5,14 +5,14 @@
 #include "Server/GateServer/PacketProc/GatewayPacketProc.h"
 #include "Server/GateServer/PacketProc/GatewayPacketHandler.h"
 
-ServerContext* g_poContext;
+ServerContext* gpoContext;
 
 bool InitNetwork(int8_t nServiceID)
 {
-	g_poContext->LoadServerConfig();
+	gpoContext->LoadServerConfig();
 
 	ServerNode* poServer = NULL;
-	ServerConfig& oSrvConf = g_poContext->GetServerConfig();
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	for (int i = 0; i < oSrvConf.oGateList.size(); i++)
 	{
 		if (oSrvConf.oGateList[i].oGate.uService == nServiceID)
@@ -26,13 +26,13 @@ bool InitNetwork(int8_t nServiceID)
 		XLog(LEVEL_ERROR, "GateServer conf:%d not found\n", nServiceID);
 		return false;
 	}
-	Gateway* poGateway = (Gateway*)g_poContext->GetService();
+	Gateway* poGateway = (Gateway*)gpoContext->GetService();
 	if (!poGateway->Init(poServer))
 	{
 		return false;
 	}
 
-	g_poContext->GetRouterMgr()->InitRouters();
+	gpoContext->GetRouterMgr()->InitRouters();
 	return true;
 }
 
@@ -53,7 +53,7 @@ int main(int nArg, char *pArgv[])
 	Logger::Instance()->SetSync(true);
 
 	NetAPI::StartupNetwork();
-	g_poContext = XNEW(ServerContext);
+	gpoContext = XNEW(ServerContext);
 
 	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
 	poLuaWrapper->Init(Platform::FileExist("./debug.txt"));
@@ -64,15 +64,15 @@ int main(int nArg, char *pArgv[])
 	poLuaWrapper->AddSearchPath(szScriptPath);
 
 	RouterMgr* poRouterMgr = XNEW(RouterMgr);
-    g_poContext->SetRouterMgr(poRouterMgr);
+    gpoContext->SetRouterMgr(poRouterMgr);
 
     GatewayPacketHandler* poPacketHandler = XNEW(GatewayPacketHandler);
-    g_poContext->SetPacketHandler(poPacketHandler);
+    gpoContext->SetPacketHandler(poPacketHandler);
 
 	NSPacketProc::RegisterPacketProc();
 
 	Gateway* poGateway = XNEW(Gateway);
-	g_poContext->SetService(poGateway);
+	gpoContext->SetService(poGateway);
 
 	bool bRes = InitNetwork(nServiceID);
 	assert(bRes);
@@ -87,7 +87,7 @@ int main(int nArg, char *pArgv[])
 	XLog(LEVEL_INFO, "GateServer start successful\n");
 	Logger::Instance()->SetSync(false);
 
-	bRes = g_poContext->GetService()->Start();
+	bRes = gpoContext->GetService()->Start();
 	assert(bRes);
 
 	return 0;

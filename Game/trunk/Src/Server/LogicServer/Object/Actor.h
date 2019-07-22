@@ -39,7 +39,7 @@ public:
 	int GetStaticSpeed() { return m_oFightParam[eFP_Speed]; }
 
 	//仇恨
-	HATE* GetHate(OBJID& oObjID);
+	HATE* GetHate(int64_t nObjID);
 	void AddHate(Actor* poAckter, int nValue);
 
 public:

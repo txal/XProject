@@ -10,7 +10,7 @@ RouterPacketHandler::RouterPacketHandler()
 
 void RouterPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)
 {
-	Service* poService = g_poContext->GetService();
+	Service* poService = gpoContext->GetService();
 	if (oHeader.nTarService == poService->GetServiceID())
 	{
 		poPacket->RemoveInnerHeader();
@@ -33,7 +33,7 @@ void RouterPacketHandler::OnRecvInnerPacket(int nSrcSessionID, Packet* poPacket,
 
 void RouterPacketHandler::Forward(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader)
 {
-	Router* poService = (Router*)g_poContext->GetService();
+	Router* poService = (Router*)gpoContext->GetService();
 	ServiceNode* poTarService = poService->GetService(oHeader.uTarServer, oHeader.nTarService);
 	if (poTarService == NULL)
 	{

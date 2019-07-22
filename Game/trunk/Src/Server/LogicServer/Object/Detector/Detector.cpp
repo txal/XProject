@@ -18,10 +18,10 @@ Detector::~Detector()
 {
 }
 
-void Detector::Init(const OBJID& oObjID, int nConfID, const char* psName)
+void Detector::Init(int64_t nObjID, int nConfID, const char* psName)
 {
 	m_nCamp = (int8_t)eBC_Neutral;
-	m_oObjID = oObjID;
+	m_nObjID = nObjID;
 	m_nConfID = nConfID;
 	strcpy(m_sName, psName);
 }

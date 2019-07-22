@@ -1,13 +1,6 @@
 ------场景相关定义------
 
 
---场景类型
-gtSceneType = 
-{
-    eCity = 100,  --城镇
-    eDup = 200,   --副本
-}
-
 --AOI类型
 gtAOIType = 
 {
