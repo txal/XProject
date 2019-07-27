@@ -23,4 +23,4 @@ add_executable (RouterServer
 )	
 
 target_link_libraries(RouterServer logger network luawrapper dbdriver)
-target_link_libraries(RouterServer lua530 mysqlclient readline pthread rt cjson lpeg pbc) #jemalloc 
+target_link_libraries(RouterServer lua530 mysqlclient jemalloc readline pthread rt cjson lpeg pbc)

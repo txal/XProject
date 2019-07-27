@@ -369,7 +369,7 @@ function CTeam:OnReturnTeam(tRole, tLeaderTarget)
 
 		Network.oRemoteCall:CallWait("QueryRoleDupInfoReq", function(nDupMixID, nLine, nPosX, nPosY)
 			if not nDupMixID then
-				return LuaTrace("CTeam:ReturnTeamReq 队长已释放?", oLeader:GetName(), oLeader:IsReleased(), oLeader:IsOnline())
+				return LuaTrace("CTeam:ReturnTeamReq 队长已释放?", oLeader:GetName(), oLeader:IsReleasedd(), oLeader:IsOnline())
 			end
 
 			local nDupID = CUtil:GetDupID(nDupMixID)
@@ -556,8 +556,8 @@ function CTeam:Join(nRoleID, bReturn)
 	end
 
 	local bLeader = #self.m_tRoleList==0
-	if bLeader and oRole:IsReleased() then
-		LuaTrace("状态错误mmm", oRole:IsReleased(), oRole:IsOnline(), oRole:GetName())
+	if bLeader and oRole:IsReleasedd() then
+		LuaTrace("状态错误mmm", oRole:IsReleasedd(), oRole:IsOnline(), oRole:GetName())
 	end
 	table.insert(self.m_tRoleList, {nRoleID=oRole:GetID(), bLeave=(not bLeader), 
 		nApplyTime=0, tPreQuit = {bQuit = false, bKick = false}})
@@ -687,11 +687,11 @@ function CTeam:CanReturnTeam(oLeaderRole, oMemberRole)
 	-- 	return false, "正在战斗中，无法归队"
 	-- end
 
-	if oMemberRole:IsReleased() then
+	if oMemberRole:IsReleasedd() then
 		return false, "已离线，无法归队"
 	end
 
-	if oLeaderRole:IsReleased() then
+	if oLeaderRole:IsReleasedd() then
 		return false, "队长已离线，无法归队"
 	end
 
@@ -769,7 +769,7 @@ function CTeam:OnEnterScene(oRole)
 
 	local function _fnCallback(nDupMixID, nLine, nPosX, nPosY)
 		if not nDupMixID then
-			return LuaTrace("取队长所在场景失败?", oRole:GetName(), "online:", oRole:IsOnline(), "release:", oRole:IsReleased())
+			return LuaTrace("取队长所在场景失败?", oRole:GetName(), "online:", oRole:IsOnline(), "release:", oRole:IsReleasedd())
 		end
 		if nDupMixID <= 0 then
 			return LuaTrace("队长场景数据错误?", tLeader, nDupMixID, nLine, nPosX, nPosY)
@@ -1913,13 +1913,13 @@ function CTeam:SyncTeam(oRole)
 		return 
 	end
 	local oLeader = goGPlayerMgr:GetRoleByID(tLeader.nRoleID)
-	if not oLeader:IsReleased() then
+	if not oLeader:IsReleasedd() then
 		Network.oRemoteCall:CallWait("WGlobalTeamPartnerReq", function(tPartnerInfo)
 			if tPartnerInfo then
 				self.m_tLeaderPartnerInfo = tPartnerInfo
 				self:MarkDirty(true)
 			else
-				LuaTrace("CTeam:SyncTeam 获取队长伙伴信息失败", oLeader:GetName(), oLeader:IsOnline(), oLeader:IsReleased())
+				LuaTrace("CTeam:SyncTeam 获取队长伙伴信息失败", oLeader:GetName(), oLeader:IsOnline(), oLeader:IsReleasedd())
 			end
 
 			local tMsg = _MakeTeamMsg()
@@ -1958,7 +1958,7 @@ function CTeam:SyncTeamEmpty(nRoleID)
 	local tMsg = {nTeamID=0, nFmtID=0,nFmtLv=0,tTeam={}}
 	Network.oRemoteCall:CallWait("WGlobalTeamPartnerReq", function(tPartnerInfo)
 		if not tPartnerInfo then
-			return LuaTrace("CTeam:SyncTeamEmpty 获取队长伙伴信息失败", oRole:GetName(), oRole:IsOnline(), oRole:IsReleased())
+			return LuaTrace("CTeam:SyncTeamEmpty 获取队长伙伴信息失败", oRole:GetName(), oRole:IsOnline(), oRole:IsReleasedd())
 		end
 		tMsg.nFmtID = tPartnerInfo.nFmtID
 		tMsg.nFmtLv = tPartnerInfo.nFmtLv

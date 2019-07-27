@@ -702,7 +702,7 @@ function CRole:SubItemByYuanbao(tItemList, sReason, fnCallback, bNotUseYuanbao)
             return fnCallback(false) 
         end
         assert(tItemPriceList)
-        if self:IsReleased() then --rpc期间，角色释放
+        if self:IsReleasedd() then --rpc期间，角色释放
             return fnCallback(false)
         end
         

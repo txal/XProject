@@ -23,7 +23,9 @@ gtGDef.tConst =
 gtGDef.tObjType = 
 {
 	eRole = 1,	
-	eMonster = 2,	
+	ePet = 2,	
+	eMonster = 3,	
+	eRobot = 4,
 }
 
 --物品类型
@@ -55,4 +57,11 @@ gtGDef.tDupType =
 {
     eCity = 100,  --城镇
     eDup = 200,   --副本
+}
+
+--副本类映射
+gtGDef.tDupClass = 
+{
+	[gtGDef.tDupType.eCity]	= CDupBase,
+	[gtGDef.tDupType.eDup]	= CDupBase,
 }

@@ -61,7 +61,7 @@ void DetectorMgr::Update(int64_t nNowMS)
 		if (poDetector->IsTime2Collect(nNowMS))
 		{
 			iter = m_oDetectorMap.erase(iter);
-			 LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poDetector->GetID(), poDetector->GetType());
+			 LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnObjCollected", 0, "ii", poDetector->GetID(), poDetector->GetType());
 			SAFE_DELETE(poDetector);
 			continue;
 		}

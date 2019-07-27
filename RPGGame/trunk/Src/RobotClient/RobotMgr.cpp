@@ -151,7 +151,7 @@ void RobotMgr::ProcessConsoleTask(int64_t nNowMS)
 	{
 		lua_State* pState = LuaWrapper::Instance()->GetLuaState();
 		std::string& osTask = m_oTaskList.front();
-		LuaWrapper::Instance()->FastCallLuaRef<void>("TaskDispatcher", 0, "s", osTask.c_str());
+		LuaWrapper::Instance()->FastCallLuaRef<void,CNOTUSE>("TaskDispatcher", 0, "s", osTask.c_str());
 		m_oTaskList.pop_front();
 	}
 }

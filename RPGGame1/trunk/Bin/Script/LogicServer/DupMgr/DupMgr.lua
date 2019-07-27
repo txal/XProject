@@ -1,7 +1,6 @@
 --副本(包括城镇)管理器
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
-
 function CDupMgr:Ctor()
     self.m_tDupMap = {}
 end
@@ -28,286 +27,174 @@ function CDupMgr:GetDupCount()
 end
 
 --创建副本
---@nDupID: 副本配置ID 下同
-function CDupMgr:CreateDup(nDupID)
-    print("CDupMgr:CreateDup***", nDupID)
-    local tDupConf = assert(ctDupConf[nDupID], "副本不存在:"..nDupID)
-    
-    if CUtil:GetServiceID() ~= tDupConf.nLogic then
-        assert(false, "不能创建非本逻辑服副本:"..nDupID)
+--@nDupConfID: 副本配置ID
+function CDupMgr:CreateDup(nDupConfID, tParams)
+    local tDupConf = assert(ctDupConf[nDupConfID], "副本不存在:"..nDupConfID)
+    if CUtil:GetServiceID() ~= tDupConf.nLogicServiceID then
+        assert(false, "不能创建非本逻辑服副本:"..nDupConfID)
     end
-    local nMapID = tDupConf.nMapID
-    if not ctMapConf[nMapID] then
-        return LuaTrace("副本:", nDupID, "地图不存在:", nMapID)
-    end
-    local oDup = CDupBase:new(nDupID)
-    self.m_tDupMap[oDup:GetMixID()] = oDup
-    self:AddDupCount(oDup:GetMixID(), 1)
+    local cDupClass = assert(gtGDef.tDupClass[tDupConf.nDupType], "副本类未定义:"..nDupConfID)
+    local oDup = cDupClass:new(nDupConfID)
+    self.m_tDupMap[oDup:GetDupID()] = oDup
     return oDup
 end
 
+--远程调用创建副本
+function CDupMgr:CreateDupReq(nDupConfID, tParams)
+    return self:CreateDup(nDupConfID, tParams)
+end
+
 --移除副本
---@nDupMixID: 同上
-function CDupMgr:RemoveDup(nDupMixID)
-    print("CDupMgr:RemoveDup***", nDupMixID)
-    local oDup = self:GetDup(nDupMixID)
+--@nDupID: 副本唯一ID
+function CDupMgr:RemoveDup(nDupID)
+    local oDup = self:GetDup(nDupID)
     if not oDup then 
-        return LuaTrace("副本不存在", nDupMixID)
+        return LuaTrace("副本不存在", nDupID)
     end
     oDup:Release()
-    self.m_tDupMap[nDupMixID] = nil
-    self:AddDupCount(nDupMixID, -1)
+    self.m_tDupMap[nDupID] = nil
 end
 
---进入副本,不存在则失败
---@nDupMixID: 同上
---@oNativeObj: C++对象
---@nPosX,nPosY: 坐标
---@nLine: 分线 0公共线; -1自动
---@nFace: 模型方向(左上0,右上1,右下2,左下3)
---返回值: AOIID, 大于0成功; 小于等于0失败
-function CDupMgr:EnterDup(nDupMixID, oNativeObj, nPosX, nPosY, nLine, nFace)
-    print("CDupMgr:EnterDup***", nDupMixID, nPosX, nPosY, nLine, nFace)
-    if not oNativeObj then 
-        assert(false, "请检查代码，重复离开场景或者进入场景未完成即再次离开场景")
-    end
-    --判断是不是在战斗中
-    local oLuaObj = GetLuaObjByNativeObj(oNativeObj)
-    if oLuaObj:IsInBattle() then
-        return oLuaObj:Tips("战斗中不能切换场景")
-    end
-    local nDupID = CUtil:GetDupID(nDupMixID)
-    local tDupConf = assert(ctDupConf[nDupID], "副本配置不存在:"..nDupID)
-
-
-    local fnEnterCallback = function()
-        --进入新副本
-        if CUtil:GetServiceID() == tDupConf.nLogic then
-            --城镇
-            if tDupConf.nType == CDupBase.tType.eCity then
-                local oDup = self:GetDup(nDupMixID)
-                assert(oDup, "城镇不存在")
-                return oDup:Enter(oNativeObj, nPosX, nPosY, nLine, nFace)
-
-            else
-            --副本
-                local oDup = self:GetDup(nDupMixID)
-                if not oDup then
-                    oLuaObj:Tips("副本不存在")
-                    return
-                end
-                return oDup:Enter(oNativeObj, nPosX, nPosY, nLine, nFace)
-
-            end
-        end
-
-        --切换逻辑服
-        assert(oNativeObj:GetObjType() == gtGDef.tObjType.eRole, "只有角色才跨服务")
-        local oRole = goPlayerMgr:GetRoleByID(oNativeObj:GetObjID())
-        if not oRole then 
-            return
-        end
-        local tSwitch = {nServer=oRole:GetServer(), nSession=oRole:GetSession(), nRoleID=oRole:GetID()
-            , nSrcDupMixID=oRole:GetDupMixID(), nTarDupMixID=nDupMixID
-            , nPosX=nPosX, nPosY=nPosY, nLine=nLine, nFace=nFace}
-        return self:SwitchLogic(tSwitch)
-    end
-    return fnEnterCallback()
-
-    --如果是角色 并且当前处于执行上线操作阶段
-    -- if oLuaObj:GetObjType() == gtGDef.tObjType.eRole then 
-    --     local oRole = oLuaObj
-    --     if oRole:IsDealOnline() then 
-    --         local fnCheck = function(bRet)
-    --             if oRole:IsReleased() then --异步事件期间, 角色已经释放, 可能切换逻辑服
-    --                 return 
-    --             end
-    --             --暂时不考虑异步事件期间, 还执行了其他跳转到同逻辑服其他场景的情况
-    --             --正常, 上线期间, 发生多次场景跳转,
-    --             --都是当前标识场景的回调处理及返回场景处理都检查到需要跳转场景
-    --             --就算发生多次跳转, 基本目标场景都是同一个场景, 第二次进入场景不会真正执行
-    --             if not bRet then --服务异常
-    --                 if oRole:IsOnline() then
-    --                     goPlayerMgr:RoleOfflineReq(oRole:GetID())
-    --                 end
-    --                 return
-    --             end
-    --             fnEnterCallback()
-    --         end
-    --         local nServer = oRole:GetServer()
-    --         local nService = goServerMgr:GetGlobalService(nServer, 20)
-    --         Network.oRemoteCall:CallWait("AsyncEnterScene", fnCheck, nServer, nService, 0, oRole:GetID())
-    --     else
-    --         fnEnterCallback()
-    --     end
-    -- else
-    --     fnEnterCallback()
-    -- end
-    -- return 0
-end
-
---切换逻辑服(请求)
-function CDupMgr:SwitchLogic(tSwitch)
-    print("CDupMgr:SwitchLogic***", tSwitch)
-    --同副本不用切换服务器
-    local oRole = goPlayerMgr:GetRoleByID(tSwitch.nRoleID)
-    if tSwitch.nSrcDupMixID == tSwitch.nTarDupMixID then
-        return self:EnterDup(tSwitch.nTarDupMixID, oRole:GetNativeObj(), tSwitch.nPosX, tSwitch.nPosY, tSwitch.nLine, tSwitch.nFace)
-    end
-    --同服务器不做远程调用
-    local nTarDupID = CUtil:GetDupID(tSwitch.nTarDupMixID)
-    local tTarDupConf = assert(ctDupConf[nTarDupID])
-    if tTarDupConf.nLogic == CUtil:GetServiceID() then
-        return self:EnterDup(tSwitch.nTarDupMixID, oRole:GetNativeObj(), tSwitch.nPosX, tSwitch.nPosY, tSwitch.nLine, tSwitch.nFace)
-    end
-    if oRole:IsInBattle() then
-        return oRole:Tips("战斗中不能切换场景")
-    end
-
-    local nTargetServerID = tTarDupConf.nLogic>=100 and gnWorldServerID or tSwitch.nServer 
-    if oRole:IsRobot() then --机器人
-        -- goPlayerMgr:RoleOfflineReq(tSwitch.nRoleID, false)
-        local tCreateData = oRole:GetCreateData()
-        local tSaveData = oRole:GetRoleSaveData()
-        goPlayerMgr:RoleOfflineReq(tSwitch.nRoleID, true) --把当前逻辑服的角色下了
-        Network.oRemoteCall:Call("RobotSwitchLogicReq", nTargetServerID, tTarDupConf.nLogic, 
-            tSwitch.nSession, tSwitch, tCreateData, tSaveData)
-    else
-        --远程调用
-        goPlayerMgr:RoleOfflineReq(tSwitch.nRoleID, true) --把当前逻辑服的角色下了
-        Network.oRemoteCall:Call("SwitchLogicReq", nTargetServerID, tTarDupConf.nLogic, tSwitch.nSession, tSwitch)
-    end
-end
-
---离开副本
-function CDupMgr:LeaveDup(nDupMixID, nAOIID)
-    if nDupMixID == 0 then
-        return LuaTrace("场景ID错误:", nDupMixID, nAOIID, debug.traceback())
-    end
-    local oDup = self:GetDup(nDupMixID)
-    if not oDup then --玩家处于活动场景，离线后，如果期间场景销毁，上线会触发异常
-        return LuaTrace("场景不存在错误:", nDupMixID, nAOIID, debug.traceback())
-    end
-    oDup:Leave(nAOIID)
-end
-
---只针对客户端发起的，做进入和离开检查
-function CDupMgr:EnterDupReq(oRole, nDupMixID, nPosX, nPosY, nLine, nFace)
-    assert(oRole)
-    if not nDupMixID or nDupMixID <= 0 then 
-        return 
-    end
-    local nRoleID = oRole:GetID()
-    if oRole:IsInBattle() then
-        return oRole:Tips("战斗中不能切换场景")
-    end
-    local nDupID = CUtil:GetDupID(nDupMixID)
-    local tDupConf = ctDupConf[nDupID]
-    if not tDupConf then 
-        return 
-    end
-    -- nPosX = math.max(math.min(nPosX, tDupConf.nWidth), 0)
-    -- nPosY = math.max(math.min(nPosY, tDupConf.nHeight), 0)
-    nPosX = tDupConf.tBorn[1][1]
-    nPosY = tDupConf.tBorn[1][2]
-
-
-    local oCurDup = oRole:GetCurrDupObj()
-    if not oCurDup then 
-        return 
-    end
-    if oCurDup:GetMixID() == nDupMixID then 
-        return 
-    end
-
-    --某些场景，可能对离开场景条件有控制，玩家处于某些状态时，不能离开
-    local bCanLeave, sReason = oCurDup:LeaveCheck(nRoleID)
-    if not bCanLeave then 
-        if sReason then 
-            oRole:Tips(sReason)
-        end
-        return 
-    end
-    --直接使用本地逻辑服的，不通过世界服rpc中转，数据太多太频繁
-    local tRoleParam = {}
-    tRoleParam.nLevel = oRole:GetLevel()
-    tRoleParam.nRoleConfID = oRole:GetConfID()
-    tRoleParam.nTeamID = oRole:GetTeamID()
-    tRoleParam.bLeader = oRole:IsLeader()
-
-    if CUtil:GetServiceID() == tDupConf.nLogic then
-        local oDup = self:GetDup(nDupMixID)
+--进入场景前检测
+--@tGameObjParams 进入场景需要的检测数据
+--@tDupInfo 副本信息{nDupID=0,nDupConfID=0,nSceneID=0,nSceneConfID=0,nPosX=0,nPosY=0,nLine=0,nFace=0}
+function CDupMgr:BeforeEnterSceneCheck(tGameObjParams, tDupInfo, fnCallback)
+    local tDupConf = assert(ctDupConf[tDupInfo.nDupConfID], "副本配置不存在:"..tDupInfo.nDupConfID)
+    --本地逻辑服
+    if CUtil:GetServiceID() == tDupConf.nLogicServiceID then
+        local bCanEnter, sError
+        local oDup = self:GetDup(tDupInfo.nDupID)
         if not oDup then
-            return oRole:Tips("场景不存在")
+            bCanEnter, sError = false, string.format("副本不存在 dupid:%d dupconfid:%d", tDupInfo.nDupID, tDupInfo.nDupConfID)
+        else
+            bCanEnter, sError = oDup:BeforeEnterSceneCheck(tDupInfo.nSceneID, tGameObjParams)
         end
-        local bCanEnter, sReason = 
-            oDup:EnterCheck(nRoleID, tRoleParam)
-        if not bCanEnter then 
-            if sReason then 
-                oRole:Tips(sReason)
-            end
-            return 
+        if fnCallback then
+            fnCallback(bCanEnter, sError)
+        else
+            return bCanEnter, sError
         end
-        oRole:EnterScene(nDupMixID, nPosX, nPosY, -1, nFace)
+    --跨逻辑服
     else
-        local nPreDupID = oRole:GetCurrDup()[1]
-        local fnEnterCallback = function(bCanEnter, sReason)
-            oRole = goPlayerMgr:GetRoleByID(nRoleID) --rpc期间，玩家离线
-            if not oRole then return end
-            local nCurDupID = oRole:GetCurrDup()[1]
-            if nCurDupID ~= nPreDupID then return end --rpc期间，玩家场景发生变化了
-            if bCanEnter then 
-                oRole:EnterScene(nDupMixID, nPosX, nPosY, -1, nFace)
-            elseif sReason then 
-                oRole:Tips(sReason)
+        if not fnCallback then
+            assert(false, "远程调应该是准确的目标服务进程,不应该再触发远程调用")
+        end
+        local function _fnEnterCheckCallback(bCanEnter, sError) 
+            if fnCallback then
+                fnCallback(bCanEnter, sError)
             end
         end
-        Network.oRemoteCall:CallWait("EnterCheckReq", fnEnterCallback, oRole:GetServer(), 
-		tDupConf.nLogic, 0, oRole:GetID(), nDupMixID, tRoleParam)
+
+        Network.oRemoteCall:CallWait("BeforeEnterSceneCheckReq",
+            _fnEnterCheckCallback,
+            CUtil:GetServerByLogic(tDupConf.nLogicServiceID),
+            tDupType.nLogicServiceID,
+            0, --通常不需要会话ID
+            tGameObjParams,
+            tDupInfo)
     end
 end
 
+--远程调用进入场景前检测
+--@tGameObjParams 同上
+--@tDupInfo 同上
+function CDupMgr:BeforeEnterSceneCheckReq(tGameObjParams, tDupInfo)
+    return self:BeforeEnterSceneCheck(tGameObjParams, tDupInfo)
+end
 
---副本被回收
-function CDupMgr:OnDupCollected(nDupMixID)
-    LuaTrace("副本地图被收集(CPP)***", nDupMixID, CUtil:GetDupID(nDupMixID))
-    local oDup = self:GetDup(nDupMixID)
+--进入副本中的场景
+--@oGameLuaObj: 游戏LUA对象
+--@tDupInfo: 同上
+function CDupMgr:EnterDup(oGameLuaObj, tDupInfo)
+    local function _fnEnterCheckCallback(bCanEnter, sError)
+        if oGameLuaObj:IsReleased() then
+            return LuaTrace("CDupMgr:EnterDup 远程调用过程中游戏对象已释放")
+        end
+        if not bCanEnter then
+            return oGameLuaObj:Tips(sError)
+        end
+
+        --本地逻辑服
+        local tDupConf = ctDupConf[tDupInfo.nDupConfID]
+        if CUtil:GetServiceID() == tDupConf.nLogicServiceID then
+            local oDup = self:GetDup(tDupInfo.nDupID)
+            assert(oDup, string.format("副本不存在 dupid:%d dupconfid:%d", tDupInfo.nDupID, tDupInfo.nDupConfID))
+            tDupInfo.nSource = 1 --做个调用来源标记
+            oDup:EnterScene(oGameLuaObj, tDupInfo)
+
+        --跨逻辑服
+        else
+            if not oGameLuaObj:IsSwitchLogicObjType() then
+                assert(false, "对象类型不能切换逻辑服:"..oGameLuaObj:GetObjType())
+            end
+            local tSwitchData = oGameLuaObj:MakeSwitchLogicData(tDupInfo)
+            self:SwitchLogic(tSwitchData)
+        end
+    end
+
+   local tGameObjParams = oGameLuaObj:GetSceneEnterLeaveCheckParams()
+    self:BeforeEnterSceneCheck(tGameObjParams, tDupInfo, _fnEnterCheckCallback)
+end
+
+--发起切换逻辑服
+function CDupMgr:SwitchLogic(oGameLuaObj, tSwitchData)
+    assert(tSwitchData.nSrcDupID ~= tSwitchData.nTarDupID, "切换逻辑服数据错误")
+    GetGModule("RoleMgr"):RoleOfflineReq(tSwitchData.nObjID, true) --先把当前逻辑服的角色下了
+    Network.oRemoteCall:Call("SwitchLogicReq", tSwitchData.nTarServer, tSwitchData.nTarService, tSwitchData.nSession, tSwitchData)
+end
+
+--离开场景前检测
+--@tGameObjParams 离开场景需要的检测数据
+--@tDupInfo {nDupID=0, nDupConfID=0, nSceneID=0}
+function CDupMgr:BeforeLeaveSceneCheck(tGameObjParams, nDupID, nDupConfID, nSceneID)
+    local bCanLeave, sError
+    local oDup = self:GetDup(nDupID)
     if not oDup then
-        return
+        bCanLeave, sError = false, string.format("副本不存在 dupid:%d dupconfid:%d", nDupID, nDupConfID)
+    else
+        bCanLeave, sError = oDup:BeforeLeaveSceneCheck(nSceneID, tGameObjParams)
     end
-    -- oDup:Release()
-    -- self.m_tDupMap[nDupMixID] = nil
-    self:RemoveDup(nDupMixID) 
+    return bCanLeave, sError
 end
 
---WGLBOAL请求角色当前场景观察者的角色ID列表
-function CDupMgr:DupRoleViewListReq(oRole)
-    local nDupMixID = oRole:GetDupMixID()
-    local oDup = self:GetDup(nDupMixID)
-    if not oDup then return end
-
-    local tRoleList = {}
-    local tRoleNativeList = oDup:GetAreaObservers(oRole:GetAOIID(), gtGDef.tObjType.eRole)
-    for _, oNativeObj in ipairs(tRoleNativeList) do
-        table.insert(tRoleList, oNativeObj:GetObjID())
+--离开当前所在副本中的场景
+function CDupMgr:LeaveDup(oGameLuaObj)
+    local nDupID = oGameLuaObj:GetDupID()
+    local nDupConfID = oGameLuaObj:GetDupConf().nID
+    local nSceneID = oGameLuaObj:GetSceneID()
+    local bCanLeave, sError = self:BeforeLeaveSceneCheck(oGameLuaObj:GetSceneEnterLeaveCheckParams(), nDupID, nDupConfID, nSceneID)
+    if not bCanLeave then
+        return oGameLuaObj:Tips(sError)
     end
-    table.insert(tRoleList, oRole:GetID()) --自己
-    return tRoleList
+    local oDup = oGameLuaObj:GetDup()
+    oDup:LeaveScene(oGameLuaObj)
 end
 
-function CDupMgr:PrintDupCount()
+--远程请求角色当前场景观察者的角色ID列表,不包括自己
+function CDupMgr:RoleObserverListReq(oRole)
+    local tRoleIDList = {}
+    local oScene = oRole:GetScene()
+    local tNativeObjList = oScene:GetAreaObservers(oRole:GetObjID(), gtGDef.tObjType.eRole)
+    for _, oNativeObj in ipairs(tNativeObjList) do
+        table.insert(tRoleIDList, oNativeObj:GetObjID())
+    end
+    return tRoleIDList
+end
+
+function CDupMgr:PrintDupData()
     LuaTrace(string.format("当前场景总数量%d", self:GetDupCount()))
-    for nDupConfID, nCount in pairs(self.m_tDupCountData) do 
+    local tDupDataMap = {}
+    for nDupID, oDup in pairs(self.m_tDupMap) do
+        local tDupConf = oDup:GetDupConf()
+        tDupDataMap[tDupConf.nID] = tDupDataMap[tDupConf.nID] or 0
+        tDupDataMap[tDupConf.nID] = tDupDataMap[tDupConf.nID] + 1
+    end
+    for nDupConfID, nCount in pairs(tDupDataMap) do
         local tDupConf = ctDupConf[nDupConfID]
-        assert(tDupConf, "场景不存在:"..nDupConfID)
-        LuaTrace(string.format("场景配置ID(%d) 场景类型(%d) 名称(%s) 数量(%d)", nDupConfID, tDupConf.nType, tDupConf.sName, nCount))
+        LuaTrace(string.format("场景配置ID(%d) 场景类型(%d) 名称(%s) 数量(%d)", nDupConfID, tDupConf.nDupType, tDupConf.sName, nCount))
     end
 end
 
-function CDupMgr:Tick()
-    self:PrintDupCount()
-end
-
-function CDupMgr:Release()
-    GetGModule("TimerMgr"):Clear(self.m_nTimer)
+function CDupMgr:OnMinTimer()
+    self:PrintDupData()
 end

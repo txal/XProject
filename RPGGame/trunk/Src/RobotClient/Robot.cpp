@@ -121,12 +121,12 @@ bool Robot::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
 void Robot::OnConnect(int nSessionID)
 {
 	m_nSessionID = nSessionID;
-    LuaWrapper::Instance()->FastCallLuaRef<void>("OnRobotConnected", 0, "i", m_nSessionID);
+    LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnRobotConnected", 0, "i", m_nSessionID);
 }
 
 void Robot::OnDisconnect()
 {
-	LuaWrapper::Instance()->FastCallLuaRef<void>("OnRobotDisconnected", 0, "i", m_nSessionID);
+	LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnRobotDisconnected", 0, "i", m_nSessionID);
 }
 
 void Robot::StartRun(int nSpeedX, int nSpeedY, int nDir)

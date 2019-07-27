@@ -27,7 +27,7 @@ function CObjectBase:Ctor(nObjID, nObjType, nConfID)
 	self.m_nLastFace = 0
 
 	self.m_bDirty = false
-	self.m_bIsRelease = false
+	self.m_bIsReleased = false
 	self.m_oNativeObj = nil
 end
 
@@ -37,7 +37,7 @@ function CObjectBase:MarkDirty(bDirty) self.m_bDirty = bDirty end
 function CObjectBase:IsDirty() return self.m_bDirty end
 
 function CObjectBase:Release()
-	self.m_bIsRelease = true
+	self.m_bIsReleased = true
 	if self:IsSceneObj() then
 		self:LeaveScene()
 		oNativeRoleMgr:RemoveRole(self:GetObjID())
@@ -45,23 +45,31 @@ function CObjectBase:Release()
 	end
 end
 
-function CObjectBase:SendMsg(sCmd, tMsg, nServer, nSession)
-    nServer = nServer or self:GetServer()
-    nSession = nSession or self:GetSession()
-    assert(nServer < GetGModule("ServerMgr"):GetWorldServerID(), "服务器ID错了")
-    if nServer > 0 and nSession > 0 then
-        Network.PBSrv2Clt(sCmd, nServer, nSession, tMsg)
+--发送消息
+function CObjectBase:SendMsg(sCmd, tMsg, nServerID, nSessionID)
+    nServerID = nServerID or self:GetServerID()
+    nSessionID = nSessionID or self:GetSessionID()
+    if nServerID <= 0 or nSessionID <= 0 then
+    	return
     end
+    assert(nServerID < GetGModule("ServerMgr"):GetWorldServerID(), "服务器ID错了")
+    Network.PBSrv2Clt(sCmd, nServerID, nSessionID, tMsg)
+end
+
+--飘字通知
+function CObjectBase:Tips(sCont, nServerID, nSessionID)
+    self:SendMsg("TipsMsgRet", {sCont=sCont}, nServerID, nSessionID)
 end
 
 function CObjectBase:IsOnline() return self.m_nSessionID>0 end
-function CObjectBase:IsRelease() return self.m_bIsRelease end
-function CObjectBase:GetServer() return self.m_nServerID end
-function CObjectBase:GetSession() return self.m_nSessionID end
+function CObjectBase:IsReleased() return self.m_bIsReleased end
+function CObjectBase:GetServerID() return self.m_nServerID end
+function CObjectBase:GetSessionID() return self.m_nSessionID end
 
 function CObjectBase:GetObjID() return self.m_nObjID end
 function CObjectBase:GetObjType() return self.m_nObjType end
 
+function CObjectBase:GetObjName() assert(false, "须子类实现") end
 function CObjectBase:GetObjConf() assert(false, "须子类实现") end
 function CObjectBase:GetObjBaseData() assert(false, "须子类实现") end
 function CObjectBase:GetObjShapeData() assert(false, "须子类实现") end
@@ -78,7 +86,7 @@ function CObjectBase:GetDup()
 end
 function CObjectBase:GetDupConf()
 	self:CheckSceneObj()
-	return self:GetDup():GetConf()
+	return self:GetDup():GetDupConf()
 end
 function CObjectBase:GetSceneID()
 	self:CheckSceneObj()
@@ -90,7 +98,7 @@ function CObjectBase:GetScene()
 end
 function CObjectBase:GetSceneConf()
 	self:CheckSceneObj()
-	return self:GetScene():GetConf()
+	return self:GetScene():GetSceneConf()
 end
 function CObjectBase:GetAOIID()
 	self:CheckSceneObj()
@@ -136,17 +144,14 @@ function CObjectBase:SetNextSceneID(nSceneID)
 	self:CheckSceneObj()
 	self.m_nNextSceneID = nSceneID
 end
-function CObjectBase:EnterScene(nDupID, nSceneID, nPosX, nPosY, nLine, nFace)
+--@tDupInfo 目标场景信息 {nDupID=0,nDupConfID=0,nSceneID=0,nSceneConfID=0,nPosX=0,nPosY=0,nLine=0,nFace=0}
+function CObjectBase:EnterScene(tDupInfo)
 	self:CheckSceneObj()
-	local oDup = GetGModule("DupMgr"):GetDup(nDupID)
-	assert(oDup, "副本不存在:"..nDupID)
-	oDup:EnterScene(nSceneID, self, nPosX, nPosY, nLine, nFace)
+	GetGModule("DupMgr"):EnterDup(self, tDupInfo)
 end
 function CObjectBase:LeaveScene()
 	self:CheckSceneObj()
-	local oDup = GetGModule("DupMgr"):GetDup(self.m_nDupID)
-	assert(oDup, "副本不存在:"..self.m_nDupID)
-	oDup:LeaveScene(self)
+	GetGModule("DupMgr"):LeaveDup(self)
 end
 function CObjectBase:OnEnterScene(oDup, oScene)
 	self.m_nDupID = oDup:GetDupID()
@@ -155,7 +160,7 @@ function CObjectBase:OnEnterScene(oDup, oScene)
 	self.m_nLine = self:GetLine()
 	self.m_nFace = self:GetFace()
 end
-function CObjectBase:OnLeaveScene(oDup, oScene, bKick)
+function CObjectBase:OnLeaveScene(oDup, oScene, bSceneReleasedKick)
 	local nDupType = oDup:GetDupType()
 	if nDupType == gtGDef.tDupType.eCity then
 		self.m_nLastDupID = oDup:GetDupID()
@@ -164,10 +169,70 @@ function CObjectBase:OnLeaveScene(oDup, oScene, bKick)
 		self.m_nLastLine = self:GetLine()
 		self.m_nLastFace = self:GetFace()
 	end
+
+	--如果是场景释放移出场景,则进入最后的城镇场景
+	if bSceneReleasedKick then
+	end
+end
+function CObjectBase:OnLeaveDup(oDup)
+    print("对象离开整个副本", self:GetObjName())
 end
 function CObjectBase:OnObjEnterView(tObserved)
 end
 function CObjectBase:OnObjLeaveView(tObserved)
 end
 function CObjectBase:OnObjReachTargetPos(nPosX, nPosY)
+end
+
+--是否可以切换逻辑服的对象类型
+function CObjectBase:IsSwitchLogicObjType()
+	if not self:IsSceneObj() then
+		return false
+	end
+    local nObjType = oGameLuaObj:GetObjType()
+    return (nObjType == gtGDef.tObjType.eRole or nObjType == gtGDef.tObjType.eRobot or nObjType == gtGDef.tObjType.ePet)
+end
+
+--取进入/离开场景前检测需要的参数
+function CObjectBase:GetSceneEnterLeaveCheckParams()
+	local tCheckParams =
+	{
+		nObjID = self:GetObjID(),
+		nObjType = self:GetObjType(),
+	}
+end
+
+--生成切换逻辑服数据
+--@tDupInfo {nDupID=0, nDupConfID=0, nSceneID=0 ,nSceneConfID=0 ,nPosX=0 ,nPosY=0 ,nLine=0 ,nFace=0}
+function CObjectBase:MakeSwitchLogicData(tDupInfo)
+	self:CheckSceneObj()
+    local tDupConf = assert(ctDupConf[tDupInfo.nDupConfID], "副本配置不存在:"..tDupInfo.nDupConfID)
+    local nTarServiceID = tDupConf.nLogicServiceID
+    local nTarServerID = CUtil:GetServerByLogic(nTarServiceID)
+
+	local tSwitchData =
+	{
+		nObjID = self:GetObjID(),
+		nObjType = self:GetObjType(),
+		nSessionID = self:GetSessionID(),
+		nServerID = self:GetServerID(),
+
+		nSrcServiceID = CUtil:GetServiceID(),
+		nSrcDupConfID = self:GetDupConf().nID,
+		nSrcSceneConfID = self:GetSceneConf().nID,
+		nSrcLine = self:GetLine(),
+		nSrcFace = self:GetFace(),
+
+		nTarServerID = nTarServerID,
+		nTarServiceID = nTarServiceID,
+		nTarDupID = tDupInfo.nDupID,
+		nTarDupConfID = tDupInfo.nDupConfID,
+		nTarSceneID = tDupInfo.nSceneID,
+		nTarSceneConfID = tDupInfo.nSceneConfID,
+		nTarPosX = tDupInfo.nPosX,
+		nTarPosY = tDupInfo.nPosY,
+		nTarLine = tDupInfo.nLine,
+		nTarFace = tDupInfo.nFace,
+	}
+	return tSwitchData
 end

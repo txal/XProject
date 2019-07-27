@@ -25,10 +25,13 @@ int SSDBDriver::Connect(lua_State* pState)
 	m_poSSDBClient = ssdb::Client::connect(m_sIP, m_uPort);
 #else
 	m_poSSDBClient = XNEW(SSDBClient);
-	m_poSSDBClient->connect(m_sIP, m_uPort);
-	if (!m_poSSDBClient->isConnect())
+	if (m_poSSDBClient != NULL)
 	{
-		SAFE_DELETE(m_poSSDBClient);
+		m_poSSDBClient->connect(m_sIP, m_uPort);
+		if (!m_poSSDBClient->isConnect())
+		{
+			SAFE_DELETE(m_poSSDBClient);
+		}
 	}
 #endif
 	if (m_poSSDBClient == NULL)
@@ -390,10 +393,13 @@ bool SSDBDriver::CheckReconnect(Status& oStatus)
 	ssdb::Client* poSSDBClient = ssdb::Client::connect(m_sIP, m_uPort);
 #else
 	SSDBClient* poSSDBClient = XNEW(SSDBClient);
-	poSSDBClient->connect(m_sIP, m_uPort);
-	if (!poSSDBClient->isConnect())
+	if (poSSDBClient != NULL)
 	{
-		SAFE_DELETE(poSSDBClient);
+		poSSDBClient->connect(m_sIP, m_uPort);
+		if (!poSSDBClient->isConnect())
+		{
+			SAFE_DELETE(poSSDBClient);
+		}
 	}
 #endif
 	if (poSSDBClient == NULL)

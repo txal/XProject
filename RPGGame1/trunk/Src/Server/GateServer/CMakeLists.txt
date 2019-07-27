@@ -20,4 +20,4 @@ add_executable(GateServer
 )
 
 target_link_libraries(GateServer logger network luawrapper dbdriver)
-target_link_libraries(GateServer lua530 mysqlclient readline pthread rt) #jemalloc 
+target_link_libraries(GateServer lua530 mysqlclient jemalloc readline pthread rt)

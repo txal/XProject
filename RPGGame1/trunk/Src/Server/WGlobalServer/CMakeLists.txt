@@ -27,6 +27,6 @@ add_executable(WGlobalServer
 )
 
 target_link_libraries(WGlobalServer logger network dbdriver luawrapper)
-target_link_libraries(WGlobalServer lua530 ssdb-client mysqlclient readline lpeg pbc pthread rt cjson) #jemalloc 
+target_link_libraries(WGlobalServer lua530 ssdb-client mysqlclient jemalloc readline lpeg pbc pthread rt cjson)
 #yum install zlib-devel
 #yum install openssl-devel

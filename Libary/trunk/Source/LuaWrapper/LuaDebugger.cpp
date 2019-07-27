@@ -125,6 +125,7 @@ static bool ShowLine( const char* psFilePathName, int line, bool bIsCurLine, boo
 	if (pCont == NULL)
 	{
         XLog(LEVEL_DEBUG, "Memory out!\n");
+		fclose(poFile);
 		return false;
 	}
 	pCont[nFileSize] = 0;
@@ -621,7 +622,8 @@ bool LuaDebugger::Debug()
                 if( !bFound )
                 {
                     lua_getglobal( m_pState, sFirstName.c_str() );
-                    if( ( bFound = lua_type( m_pState, -1 ) != LUA_TNIL ) )
+					bFound = lua_type(m_pState, -1) != LUA_TNIL;
+                    if(  bFound )
                         Print_lua( m_pState, listField );
                     else
                         lua_pop( m_pState, 1 ); 

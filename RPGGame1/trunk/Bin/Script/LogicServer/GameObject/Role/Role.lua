@@ -2,15 +2,19 @@
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
 function CRole:Ctor()
+	CObjectBase.Ctor(self, 0, gtGDef.tObjType.eRole, 0)
+
 	self.m_nAccountID = 0
 	self.m_nOnlineTime = 0
 	self.m_nDisconnectTime = 0
+	self.m_sRoleName = ""
+	self.m_tCurrencyMap = {}
+	self.m_tCurrencyCache = {}
 
 	self.m_tModuleMap = {}
 	self.m_tModuleList = {}
 	self:InitModule()
 	self:LoadData()
-	CObjectBase.Ctor(self, self.m_nObjID, gtGDef.tObjType.eRole, self.m_nConfID)
 end
 
 function CRole:InitModule()
@@ -27,6 +31,8 @@ function CRole:SaveData()
 end
 
 function CRole:LoadSelfData()
+	local tData = {}
+	CObjectBase.LoadData(self, tData)
 end
 
 function CRole:SaveSelfData()
@@ -34,6 +40,7 @@ function CRole:SaveSelfData()
 		return
 	end
 	self:MarkDirty(false)
+	local tData = CObjectBase.SaveData(self)
 end
 
 function CRole:LoadModuleData()
@@ -42,6 +49,7 @@ end
 function CRole:SaveModuleData()
 end
 
+function CRole:GetObjName() return self.m_sRoleName end
 function CRole:GetObjConf() return ctRoleConf[self.m_nConfID] end
 function CRole:GetAccountID() return self.m_nAccountID end
 function CRole:GetOnlineTime() return self.m_nOnlineTime end
@@ -55,30 +63,6 @@ end
 function CRole:BindSession(nSessionID)
 	self.m_nSessionID = nSessionID
 	self.m_oNativeObj:BindSession(nSessionID)
-end
-
---生成切换逻辑服数据
-function CRole:MakeSwitchLogicData(nTarDupID, nTarDupConfID, nTarSceneID, nTarSceneConfID, nTarPosX, nTarPosY, nTarLine, nTarFace)
-	local tSwitchData =
-	{
-		nRoleID = self:GetObjID(),
-		nServer = self:GetServer(),
-		nSession = self:GetSession(),
-		nSrcLine = self:GetLine(),
-		nSrcFace = self:GetFace(),
-		nSrcDupConfID = self:GetDupConf().nID,
-		nSrcSceneConfID = self:GetSceneConf().nID,
-
-		nTarDupID = nTarDupID,
-		nTarDupConfID = nTarDupConfID,
-		nTarSceneID = nTarSceneID,
-		nTarSceneConfID = nTarSceneConfID,
-		nTarPosX = nTarPosX,
-		nTarPosY = nTarPosY,
-		nTarLine = nTarLine,
-		nTarFace = nTarFace,
-	}
-	return tSwitchData
 end
 
 function CRole:GetObjBaseData()
@@ -104,4 +88,44 @@ function CRole:OnEnterScene(oDup, oScene)
 	tMsg.tBaseData = self:GetObjBaseData()
 	tMsg.tShapeData = self:GetObjShapeData()
     self:SendMsg("ObjEnterSceneRet", tMsg)
+end
+
+--取货币值
+function CRole:GetCurrency()
+	return (self.m_tCurrencyMap[nCurrType] or 0)
+end
+
+--添加货币
+function CRole:AddCurrency(nCurrType, nAddValue, bNotSync)
+	if nAddValue == 0 then
+		return
+	end
+	local nOldValue = self:GetCurrency()
+	
+	self.m_tCurrencyMap[nCurrType] = math.max(0, math.min(gtGDef.tConst.nMaxInteger, nOldValue+nAddValue))
+	self:MarkDirty(true)
+
+	local nRealAddValue = self:GetCurrency(nCurrType) - nOldValue
+	if nRealAddValue == 0 then
+		return
+	end
+
+	if bNotSync then
+		self.m_tCurrencyCache[nCurrType] = 1
+	else
+		self:SyncCurrency({{nType=nCurrType, nValue=self:GetCurrency(nCurrType)}})
+	end
+end
+
+--同步货币
+function CRole:SyncCurrency(tCurrList)
+	if not tCurrList then
+		tCurrList = {}
+		for nCurrType, _ in pairs(self.m_tCurrencyCache) do
+			table.insert({nType=nCurrType, nValue=self:GetCurrency(nCurrType)})
+		end
+	end
+	if #tCurrList > 0 then
+		Network.PBSrv2Clt("CurrencySyncRet", {tList=tCurrList})
+	end
 end

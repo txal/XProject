@@ -11,7 +11,7 @@ function CGModuleMgr:Ctor()
 end
 
 --公用模块创建
-function CGModuleMgr:_CreateCommonModule()
+function CGModuleMgr:_CommonModule()
 	local oTimerMgr = CTimerMgr:new()
 	local oServerMgr = CServerMgr:new()
 	local oDBMgr = CDBMgr:new()
@@ -24,9 +24,13 @@ function CGModuleMgr:_CreateCommonModule()
 end
 
 --初始化
-function CGModuleMgr:Init()
+function CGModuleMgr:Init(tModuleList)
+	--注册自定义模块
+	for _, oModule in ipairs(tModuleList) do
+		self:RegModule(oModule)
+	end
 	--创建公用模块
-	self:_CreateCommonModule()
+	self:_CommonModule()
 	--初始化
 	self:_InitModule()
 	--加载数据

@@ -82,7 +82,7 @@ void MonsterMgr::Update(int64_t nNowMS)
 		if (poMonster->IsTime2Collect(nNowMS))
 		{
 			iter = m_oMonsterIDMap.erase(iter);
-			LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poMonster->GetID(), poMonster->GetType());
+			LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnObjCollected", 0, "ii", poMonster->GetID(), poMonster->GetType());
 			SAFE_DELETE(poMonster);
 			continue;
 		}

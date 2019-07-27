@@ -260,7 +260,7 @@ function CPlayerMgr:DeleteRoleCheckReq(nRoleID)
 		return false, "战斗中，无法删除"
 	end
 	self:RoleOfflineReq(nRoleID)
-	if not oRole:IsReleased() then 
+	if not oRole:IsReleasedd() then 
 		return false, "角色离线错误，暂时无法删除" 
 	end
 	return true 

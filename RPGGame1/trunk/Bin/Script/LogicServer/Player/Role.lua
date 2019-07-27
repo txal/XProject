@@ -671,7 +671,7 @@ function CRole:GetDupID() return CUtil:GetDupID(self:GetDupMixID()) end --副本
 function CRole:GetDupConf() return ctDupConf[self:GetDupID()] end --副本配置
 function CRole:GetNativeObj() return self.m_oNativeObj end --C++对象
 function CRole:IsOnline(nSession) return self.m_nSession>0 end
-function CRole:IsReleased() return self.m_oNativeObj == nil end 
+function CRole:IsReleasedd() return self.m_oNativeObj == nil end 
 
 function CRole:IsInBattle() return self.m_nBattleID>0 end
 function CRole:GetBattleID() return self.m_nBattleID end
@@ -2259,7 +2259,7 @@ function CRole:AfterEnterScene(nDupMixID)
     --离线数据处理放这里
     self.m_oOfflineData:AfterEnterScene()
 
-    if not self:IsReleased() then --防止前面事件调用中, 切换场景逻辑服
+    if not self:IsReleasedd() then --防止前面事件调用中, 切换场景逻辑服
         local tDupConf = self:GetDupConf()
         if tDupConf.nType == CDupBase.tType.eCity then 
             local nTargetActFlag, tActParam = self:GetTarActFlag()

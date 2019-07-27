@@ -61,7 +61,7 @@ void DropItemMgr::Update(int64_t nNowMS)
 		if (poDropItem->IsTime2Collect(nNowMS))
 		{
 			iter = m_oDropItemMap.erase(iter);
-			 LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poDropItem->GetID(), poDropItem->GetType());
+			 LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnObjCollected", 0, "ii", poDropItem->GetID(), poDropItem->GetType());
 			SAFE_DELETE(poDropItem);
 			continue;
 		}

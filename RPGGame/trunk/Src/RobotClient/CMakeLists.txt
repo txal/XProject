@@ -28,4 +28,4 @@ add_executable(RobotClt
 )
 
 target_link_libraries(RobotClt logger network dbdriver luawrapper)
-target_link_libraries(RobotClt ssdb-client mysqlclient lua530 readline lpeg pbc cjson pthread rt) #jemalloc 
+target_link_libraries(RobotClt ssdb-client mysqlclient lua530 jemalloc readline lpeg pbc cjson pthread rt)

@@ -5,7 +5,7 @@ function CRoleMgr:Ctor()
 	CGModuleBase.Ctor(self)
 
 	self.m_tRoleIDMap = {}		--角色ID影射: {[roleid]=role, ...}
-	self.m_tRoleSSMap = {} 		--SS(server<<32|session)映射: {[ssid]=role, ...}
+	self.m_tRoleSSMap = {} 		--SS(ServerID<<32|SessionID)映射: {[ssid]=role, ...}
 	self.m_nCount = 0
 end
 
@@ -36,8 +36,8 @@ function CRoleMgr:GetRoleSSMap()
 	return self.m_tRoleSSMap
 end
 
-function CRoleMgr:MakeSSKey(nServer, nSession)
-	local nSSKey = nServer << 32 | nSession
+function CRoleMgr:MakeSSKey(nServerID, nSessionID)
+	local nSSKey = nServerID << 32 | nSessionID
 	return nSSKey
 end
 
@@ -47,18 +47,18 @@ function CRoleMgr:GetRoleByID(nRoleID)
 end
 
 --通过SSKey取在线角色对象
-function CRoleMgr:GetRoleBySS(nServer, nSession)
-	local nSSKey = self:MakeSSKey(nServer, nSession)
+function CRoleMgr:GetRoleBySS(nServerID, nSessionID)
+	local nSSKey = self:MakeSSKey(nServerID, nSessionID)
 	return self.m_tRoleSSMap[nSSKey]
 end
 
 --角色登陆成功请求
---@nServer: 角色所属的服务器
---@nSession: 角色的会话ID
-function CRoleMgr:RoleOnlineReq(nServer, nSession, nRoleID, bSwitchLogic)
-	assert(nServer < GetGModule("ServerMgr"):GetWorldServerID(), "角色所属服务器不能是世界服")
+--@nServerID: 角色所属的服务器
+--@nSessionID: 角色的会话ID
+function CRoleMgr:RoleOnlineReq(nServerID, nSessionID, nRoleID, bSwitchLogic)
+	assert(nServerID < GetGModule("ServerIDMgr"):GetWorldServerIDID(), "角色所属服务器不能是世界服")
 	local oRole = self:GetRoleByID(nRoleID)
-	if oRole and oRole:GetSession() > 0 then
+	if oRole and oRole:GetSessionID() > 0 then
 		return LuaTrace("角色已经在线", oRole:GetID(), oRole:GetName())
 	end
 
@@ -69,16 +69,16 @@ function CRoleMgr:RoleOnlineReq(nServer, nSession, nRoleID, bSwitchLogic)
 	else
 		bReconnect = true
 		assert(oRole:GetObjID() == nRoleID, "角色ID错误")
-		assert(oRole:GetServer() == nServer, "服务器错误")
-		assert(oRole:GetSession() == 0, "会话ID错误")
+		assert(oRole:GetServerID() == nServerID, "服务器错误")
+		assert(oRole:GetSessionID() == 0, "会话ID错误")
 	end
-	oRole:BindServer(nServer)
-	oRole:BindSession(nSession)
+	oRole:BindServerID(nServerID)
+	oRole:BindSessionID(nSessionID)
 	self.m_tRoleIDMap[nRoleID] = oRole
 
-	--队长带队可能队员不在线,所以nSession>0时才放到表里面
-	if nSession > 0 then
-		self.m_tRoleSSMap[self:MakeSSKey(nServer,nSession)] = oRole
+	--队长带队可能队员不在线,所以nSessionID>0时才放到表里面
+	if nSessionID > 0 then
+		self.m_tRoleSSMap[self:MakeSSKey(nServerID,nSessionID)] = oRole
 	end
 	--切换逻辑服不调用Online
 	if not bSwitchLogic then
@@ -99,9 +99,9 @@ function CRoleMgr:RoleOfflineReq(nRoleID, bSwitchLogic)
 
 	local function _fnReleaseRole()
 		oRole:Release()
-		local nServer = oRole:GetServer()
-		local nSession = oRole:GetSession()
-		local nSSKey = self:MakeSSKey(nServer, nSession)
+		local nServerID = oRole:GetServerID()
+		local nSessionID = oRole:GetSessionID()
+		local nSSKey = self:MakeSSKey(nServerID, nSessionID)
 		self.m_tRoleSSMap[nSSKey] = nil
 		self.m_tRoleIDMap[nRoleID] = nil
 		self.m_nCount = self.m_nCount - 1
@@ -132,9 +132,9 @@ function CRoleMgr:RoleDisconnectReq(nRoleID)
 	end
 
 	--断线
-	local nServer = oRole:GetServer()
-	local nSession = oRole:GetSession()
-	local nSSKey = self:MakeSSKey(nServer, nSession)
+	local nServerID = oRole:GetServerID()
+	local nSessionID = oRole:GetSessionID()
+	local nSSKey = self:MakeSSKey(nServerID, nSessionID)
 	self.m_tRoleSSMap[nSSKey] = nil
 	oRole:OnDisconnect()
 
@@ -146,8 +146,8 @@ end
 --切换逻辑服请求
 function CRoleMgr:OnSwitchLogicReq(tSwitchData)
     print("切换逻辑服:", tSwitchData)
-    self:RoleOnlineReq(tSwitchData.nServer, tSwitchData.nSession, tSwitchData.nRoleID, true)
-    local oRole = self:GetRoleByID(tSwitchData.nRoleID)
+    self:RoleOnlineReq(tSwitchData.nServerID, tSwitchData.nSessionID, tSwitchData.nObjID, true)
+    local oRole = self:GetRoleByID(tSwitchData.nObjID)
     oRole:EnterScene(tSwitchData.nTarDupID, tSwitchData.nTarSceneID, tSwitchData.nTarPosX, tSwitchData.nTarPosY, tSwitchData.nTarLine, tSwitchData.nTarFace)
 end
 
@@ -157,15 +157,15 @@ function CRoleMgr:KickRole(nRoleID)
 	if not oRole or not oRole:IsOnline() then
 		return
 	end
-	local nSession = oRole:GetSession()
-	Network.CmdSrv2Srv("KickClientReq", oRole:GetServer(), nSession>>gtGDef.tConst.nServiceShift, nSession)
+	local nSessionID = oRole:GetSessionID()
+	Network.CmdSrv2Srv("KickClientReq", oRole:GetServerID(), nSessionID>>gtGDef.tConst.nServiceShift, nSessionID)
 end
 
 --服务器关闭
-function CRoleMgr:OnServerClose(nServer)
+function CRoleMgr:OnServerIDClose(nServerID)
 	--强制对应服玩家下线
 	for nRoleID, oRole in pairs(self.m_tRoleIDMap) do
-		if nServer == oRole:GetServer() then
+		if nServerID == oRole:GetServerID() then
 			self:RoleOfflineReq(nRoleID)
 		end
 	end

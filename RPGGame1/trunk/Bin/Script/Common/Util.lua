@@ -109,9 +109,9 @@ function CUtil:GetUnixMSTime()
 end
 
 --通过逻辑服ID取服务器ID
-function CUtil:GetServerByLogic(nLogicService)
+function CUtil:GetServerByLogic(nLogicServiceID)
     local oServerMgr = GetGModule("ServerMgr")
-    local nServerID = nLogicService>=100 and oServerMgr:GetWorldServerID() or oServerMgr:GetServerID()
+    local nServerID = nLogicServiceID>=100 and oServerMgr:GetWorldServerID() or oServerMgr:GetServerID()
     return nServerID
 end
 

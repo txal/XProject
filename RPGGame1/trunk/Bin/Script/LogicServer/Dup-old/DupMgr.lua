@@ -140,7 +140,7 @@ function CDupMgr:EnterDup(nDupMixID, oNativeObj, nPosX, nPosY, nLine, nFace)
     --     local oRole = oLuaObj
     --     if oRole:IsDealOnline() then 
     --         local fnCheck = function(bRet)
-    --             if oRole:IsReleased() then --异步事件期间, 角色已经释放, 可能切换逻辑服
+    --             if oRole:IsReleasedd() then --异步事件期间, 角色已经释放, 可能切换逻辑服
     --                 return 
     --             end
     --             --暂时不考虑异步事件期间, 还执行了其他跳转到同逻辑服其他场景的情况

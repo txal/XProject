@@ -425,7 +425,7 @@ function CTeamMgr:TeamBattleInfoReq(nRoleID)
 	local tRoleList = oTeam:GetRoleList()
 	for nIndex, tRole in ipairs(tRoleList) do
 		local oRole = goGPlayerMgr:GetRoleByID(tRole.nRoleID)
-		tTeam[nIndex] = {nIndex=nIndex, bLeave=tRole.bLeave, bRelease=oRole:IsReleased(), nRoleID=tRole.nRoleID}
+		tTeam[nIndex] = {nIndex=nIndex, bLeave=tRole.bLeave, bRelease=oRole:IsReleasedd(), nRoleID=tRole.nRoleID}
 	end
 	return oTeam:GetID(), tTeam
 end

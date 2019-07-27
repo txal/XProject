@@ -455,7 +455,7 @@ function CRoleState:UpdateMarriageBlessState(tTeamRoleList)
 		for _, tTeamRole in pairs(tTeamRoleList) do
 			if not tTeamRole.bLeave then  --角色未暂离，并且在当前逻辑服
 				local oTarRole = goPlayerMgr:GetRoleByID(tTeamRole.nRoleID)
-				if oTarRole and not oTarRole:IsReleased() then 
+				if oTarRole and not oTarRole:IsReleasedd() then 
 					tRoleMap[tTeamRole.nRoleID] = oTarRole
 				end 
 			else
@@ -480,7 +480,7 @@ function CRoleState:UpdateMarriageBlessState(tTeamRoleList)
 		for _, tTeamRole in pairs(tTeamRoleList) do
 			if not tTeamRole.bLeave then  --角色未暂离，并且在当前逻辑服
 				local oTarRole = goPlayerMgr:GetRoleByID(tTeamRole.nRoleID)
-				if oTarRole and not oTarRole:IsReleased() then 
+				if oTarRole and not oTarRole:IsReleasedd() then 
 					--当前在队伍中并且未暂离并且在当前逻辑服，并且当前没有新婚祝福buff的
 					if not oTarRole.m_oRoleState:GetState(gtRoleStateDef.eMarriageBless)
 						and not oTarRole.m_oRoleState:GetState(gtRoleStateDef.eTeamMarriageBless) then 

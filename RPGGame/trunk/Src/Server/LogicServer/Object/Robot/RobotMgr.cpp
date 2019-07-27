@@ -59,7 +59,7 @@ void RobotMgr::Update(int64_t nNowMS)
 			if (poRobot->IsTime2Collect(nNowMS))
 			{
 				iter = m_oRobotIDMap.erase(iter);
-				LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjCollected", 0, "ii", poRobot->GetID(), poRobot->GetType());
+				LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnObjCollected", 0, "ii", poRobot->GetID(), poRobot->GetType());
 				SAFE_DELETE(poRobot);
 				continue;
 			}

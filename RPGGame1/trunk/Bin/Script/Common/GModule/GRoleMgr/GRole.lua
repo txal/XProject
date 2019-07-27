@@ -213,7 +213,7 @@ function CGRole:IsInBattle() return self.m_nBattleID>0 end
 function CGRole:GetBattleID() return self.m_nBattleID end
 function CGRole:GetDupMixID() return self.m_nDupMixID end
 function CGRole:GetDupConf() return ctDupConf[CUtil:GetDupID(self:GetDupMixID())] end
-function CGRole:IsReleased() return self.m_bRelease end
+function CGRole:IsReleasedd() return self.m_bRelease end
 function CGRole:GetLastWorldTalkTime() return self.m_nLastWorldTalkTime end
 function CGRole:SetLastWorldTalkTime(nTime)
     self.m_nLastWorldTalkTime = nTime

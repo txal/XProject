@@ -20,8 +20,8 @@ end
 
 function CSceneBase:GetParentDup() return self.m_oParentDup end
 function CSceneBase:GetSceneID() return self.m_nSceneID end
-function CSceneBase:GetConfID() return ctSceneConf[self.m_nSceneConfID] end
-function CSceneBase:GetConf() return ctSceneConf[self.m_nSceneConfID] end
+function CSceneBase:GetSceneConfID() return ctSceneConf[self.m_nSceneConfID] end
+function CSceneBase:GetSceneConf() return ctSceneConf[self.m_nSceneConfID] end
 function CSceneBase:DumpSceneInfo() self.m_oNativeScene:DumpSceneInfo() end
 function CSceneBase:GetGameNativeObj(nObjID) return self.m_oNativeScene:GetGameObj(nObjID) end
 --将场景内所有类型为nObjType的对象踢出场景
@@ -37,7 +37,7 @@ function CSceneBase:RemoveObserver(nObjID, bLeaveScene) return self.m_oNativeSce
 --移除角色的被观察者身份
 function CSceneBase:RemoveObserved(nObjID) return self.m_oNativeScene:RemoveObserved(nObjID) end
 --取场景内某分线所有的角色对象列表
---@nLine -1所有分线; >=0指定分线
+--@nLine -1所有分线;>=0指定分线
 --@nObjType: 游戏对象类型,0表示所有
 --返回Native对象
 function CSceneBase:GetGameObjList(nLine, nObjType) return self.m_oNativeScene:GetObjList(nLine, nObjType) end
@@ -153,13 +153,13 @@ function CSceneBase:OnObjEnterScene(oGameNativeObj)
 end
 
 --对象离开场景事件
-function CSceneBase:OnObjLeaveScene(oGameNativeObj, bKick)
+function CSceneBase:OnObjLeaveScene(oGameNativeObj, bSceneReleasedKick)
     local oGameLuaObj = oGameNativeObj:GetLuaObj()
     assert(oGameLuaObj, "游戏对象未绑定LUA对象")
-    local bIsRelease = oGameLuaObj:IsRelease()
+    local bObjReleased = oGameLuaObj:IsReleased()
     local nNextSceneID = oGameLuaObj:GetNextSceneID()
     oGameLuaObj:SetNextSceneID(nil)
-    self.m_oParentDup:OnObjLeaveScene(self, oGameLuaObj, bKick, bIsRelease, nNextSceneID)
+    self.m_oParentDup:OnObjLeaveScene(self, oGameLuaObj, bSceneReleasedKick, bObjReleased, nNextSceneID)
 end
 
 function CSceneBase:OnObjEnterObj(tObserver, tObserved)
@@ -302,7 +302,7 @@ end
 function CSceneBase:EnterCheck(nRoleID, tRoleParam)
     if not self.m_fnEnterCheckCallback then 
         --对于主城，默认可进入，对于场景，默认不可进入
-        local tConf = self:GetConf()
+        local tConf = self:GetSceneConf()
         if CSceneBase.tType.eCity == tConf.nType then 
             return true
         end

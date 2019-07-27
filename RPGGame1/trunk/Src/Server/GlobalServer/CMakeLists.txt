@@ -26,7 +26,7 @@ add_executable(GlobalServer
 )
 
 target_link_libraries(GlobalServer logger network dbdriver luawrapper)
-target_link_libraries(GlobalServer lua530 ssdb-client mysqlclient readline lpeg pbc pthread rt cjson) #jemalloc 
+target_link_libraries(GlobalServer lua530 ssdb-client mysqlclient jemalloc readline lpeg pbc pthread rt cjson)
 #如果需要ssl
 #yum install zlib-devel
 #yum install openssl-devel

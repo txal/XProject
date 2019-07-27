@@ -175,6 +175,10 @@ void Packet::Move(int nSize)
 Packet* Packet::DeepCopy(const char* file/*=""*/, int line/*=0*/)
 {
     Packet* poPacket = Create(m_nCapacity, m_nOffsetSize, file, line);
+	if (poPacket == NULL)
+	{
+		return poPacket;
+	}
     memcpy(poPacket->m_pData, m_pData, m_nDataSize);
     poPacket->m_nDataSize = m_nDataSize;
     poPacket->m_nSentSize = m_nSentSize;

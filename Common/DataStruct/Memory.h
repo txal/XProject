@@ -3,10 +3,10 @@
 
 #include <stdlib.h>
 
-// #ifdef __linux
+ #ifdef __linux
 //Jemalloc 只要把静态库编译进来,就算不包含头文件,也会生效(realloc,malloc,newd等会被hook掉)
-//  #include "Include/Jemalloc/Jemalloc.hpp"
-// #endif
+  #include "Include/Jemalloc/Jemalloc.hpp"
+ #endif
 
 #define XNEW(class) new class
 #define XALLOC realloc

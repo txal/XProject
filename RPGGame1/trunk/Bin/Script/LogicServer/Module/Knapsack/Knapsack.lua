@@ -1093,7 +1093,7 @@ function CKnapsack:PropListSellReq(tItemList, fnCallback)
 			return 
 		end
 
-		if self.m_oRole:IsReleased() then --角色已释放，不回调相关事件
+		if self.m_oRole:IsReleasedd() then --角色已释放，不回调相关事件
 			return
 		end
 

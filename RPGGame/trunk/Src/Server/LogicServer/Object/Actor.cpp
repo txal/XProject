@@ -103,7 +103,7 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 				if (m_bRunCallback)
 				{
 					m_bRunCallback = false;
-					LuaWrapper::Instance()->FastCallLuaRef<void>("OnObjReachPos", 0, "ii", m_nObjID, m_nObjType);
+					LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnObjReachPos", 0, "ii", m_nObjID, m_nObjType);
 				}
 			}
 		}

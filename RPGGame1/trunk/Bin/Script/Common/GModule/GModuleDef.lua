@@ -11,3 +11,4 @@ gtGModuleDef.tLogger = {nID=1003, sName="Logger"}
 gtGModuleDef.tLoginMgr = {nID=1004, sName="LoginMgr"}
 gtGModuleDef.tLogMgr = {nID=1005, sName="LogMgr"}
 gtGModuleDef.tRoleMgr = {nID=1006, sName="RoleMgr"}
+gtGModuleDef.tDupMgr = {nID=1007, sName="DupMgr"}

@@ -82,7 +82,7 @@ void SceneMgr::Update(int64_t nNowMS)
 		{
 			iter = m_oSceneMap.erase(iter);
 			int64_t nSceneIndex = poScene->GetSceneMixID();
-			LuaWrapper::Instance()->FastCallLuaRef<void>("OnDupCollected", 0, "q", nSceneIndex);
+			LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnDupCollected", 0, "q", nSceneIndex);
 			SAFE_DELETE(poScene);
 			continue;
 		}
