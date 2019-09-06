@@ -1,5 +1,5 @@
 ctRoleGrowthConf={}
-ctRoleGrowthConf[1]={nID=1,sName="时装-御器",tExpProp={{1,10200,1,},},nRatio=1,nParam=0,}
+ctRoleGrowthConf[1]={nID=1,sName="时装-御器",tExpProp={{1,10200,1,},},nRatio=0.25,nParam=0,}
 ctRoleGrowthConf[2]={nID=2,sName="时装-仙羽",tExpProp={{1,10201,500,},},nRatio=1.5,nParam=0,}
 ctRoleGrowthConf[3]={nID=3,sName="时装-强化",tExpProp={{1,10202,500,},},nRatio=1,nParam=0.2,}
 ctRoleGrowthConf[4]={nID=4,sName="宠物-御兽",tExpProp={{1,10203,500,},},nRatio=1.5,nParam=0,}

@@ -1,6 +1,7 @@
 ﻿#include "Server/Base/NetworkExport.h"
 
 #include "Common/DataStruct/Array.h"
+#include "Common/DataStruct/XUUID.h"
 #include "Common/DataStruct/XTime.h"
 #include "Server/Base/NetAdapter.h"
 #include "Server/Base/ServerContext.h"
@@ -163,6 +164,15 @@ static int DumpPacket(lua_State* pState)
 	return 0;
 }
 
+static int GenUUID(lua_State* pState)
+{
+	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
+	int nCustomID = oSrvConf.uGroupID + oSrvConf.uServerID + gpoContext->GetService()->GetServiceID();
+	int64_t nUUID = XUUID::GenID(nCustomID);
+	lua_pushinteger(pState, nUUID);
+	return 1;
+}
+
 static luaL_Reg _network_lua_func[] =
 {
 	{ "SendInner", SendInner },
@@ -174,6 +184,7 @@ static luaL_Reg _network_lua_func[] =
 	{ "UnixMSTime", UnixMSTime },
 	{ "Terminate", Terminate},
 	{ "DumpPacket", DumpPacket},
+	{ "GenUUID", GenUUID },
 	{ NULL, NULL },
 };
 

@@ -40,15 +40,11 @@
    <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s64">
+  <Style ss:ID="s63">
    <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s65">
-   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
-   <Font ss:FontName="等线" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
-  </Style>
-  <Style ss:ID="s67">
+  <Style ss:ID="s64">
    <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
@@ -56,7 +52,7 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s68">
+  <Style ss:ID="s65">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
@@ -64,151 +60,161 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s69">
+  <Style ss:ID="s66">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s70">
+  <Style ss:ID="s67">
    <Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Font ss:FontName="等线" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
    <Font ss:FontName="等线" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
   </Style>
  </Styles>
  <Worksheet ss:Name="ctHouseConf">
-  <Table ss:ExpandedColumnCount="4" ss:ExpandedRowCount="39" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="39" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
    <Column ss:Index="2" ss:StyleID="s62" ss:Width="90"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="108"/>
    <Column ss:StyleID="s62" ss:Width="68.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="78.75"/>
    <Row ss:AutoFitHeight="0" ss:Height="64.5">
-    <Cell ss:Index="2" ss:StyleID="s64"><Data ss:Type="String">家园最大宝箱数目</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s63"><Data ss:Type="String">家园最大宝箱数目</Data></Cell>
     <Cell ss:Index="4"><Data ss:Type="String">每个宝箱价格</Data></Cell>
+    <Cell><Data ss:Type="String">百分比</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">nID</Data></Cell>
     <Cell><Data ss:Type="String">nNum</Data></Cell>
     <Cell><Data ss:Type="String">nMoneyType</Data></Cell>
     <Cell><Data ss:Type="String">nNeedNum</Data></Cell>
+    <Cell><Data ss:Type="String">nBoxRate</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s68"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s69"><Data ss:Type="String">编号</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">编号</Data></Cell>
     <Cell><Data ss:Type="String">宝箱最大数量</Data></Cell>
     <Cell><Data ss:Type="String">货币类型</Data></Cell>
     <Cell><Data ss:Type="String">所需货币数量</Data></Cell>
+    <Cell><Data ss:Type="String">获得宝箱的概率</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">20</Data></Cell>
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="Number">4</Data></Cell>
     <Cell><Data ss:Type="Number">100</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s65"/>
+    <Cell ss:Index="2" ss:StyleID="s68"/>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -228,7 +234,7 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>12</ActiveRow>
+     <ActiveRow>1</ActiveRow>
      <ActiveCol>4</ActiveCol>
     </Pane>
    </Panes>

@@ -9,7 +9,7 @@
   <Author>AutoBVT</Author>
   <LastAuthor>AutoBVT</LastAuthor>
   <Created>2018-05-25T08:27:44Z</Created>
-  <LastSaved>2018-05-28T01:51:00Z</LastSaved>
+  <LastSaved>2019-06-28T09:22:20Z</LastSaved>
   <Company>Microsoft</Company>
   <Version>12.00</Version>
  </DocumentProperties>
@@ -43,6 +43,9 @@
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
    <Interior/>
   </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="ctArenaDailyReward">
   <Table ss:ExpandedColumnCount="13" ss:ExpandedRowCount="9" x:FullColumns="1"
@@ -61,7 +64,7 @@
    <Column ss:AutoFitWidth="0" ss:Width="77.25"/>
    <Column ss:AutoFitWidth="0" ss:Width="85.5"/>
    <Row ss:AutoFitHeight="0" ss:Height="111.75">
-    <Cell ss:Index="3"><Data ss:Type="String">道具ID,数量；</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s65"><Data ss:Type="String">道具ID,数量；&#10;竞技场为奖池ID,掉落道具数量</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">nID</Data></Cell>
@@ -81,15 +84,17 @@
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="String">每日首胜奖励</Data></Cell>
-    <Cell><Data ss:Type="String">28000,20;</Data></Cell>
+    <Cell><Data ss:Type="String">28000,30;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">2</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="String">每日5战奖励</Data></Cell>
-    <Cell><Data ss:Type="String">28001,4;</Data></Cell>
+    <Cell><Data ss:Type="String">28001,6;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s64"/>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">竞技场奖池ID</Data></Cell>
+    <Cell><Data ss:Type="String">3000,1;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:Index="2" ss:StyleID="s64"/>
@@ -109,8 +114,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>6</ActiveRow>
-     <ActiveCol>2</ActiveCol>
+     <ActiveRow>18</ActiveRow>
+     <ActiveCol>3</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

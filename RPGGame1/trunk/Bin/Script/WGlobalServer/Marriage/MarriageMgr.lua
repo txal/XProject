@@ -77,7 +77,7 @@ function CRoleMarriage:OnMarry(nTarID)
 	--结婚活动
 	local nServerID = oRole:GetServer()
 	local nServiceID = goServerMgr:GetGlobalService(nServerID, 20)
-	Network.oRemoteCall:Call("MarriageActTriggerReq", nServerID, nServiceID, 0, oRole:GetID())
+	Network:RMCall("MarriageActTriggerReq", nil, nServerID, nServiceID, 0, oRole:GetID())
 end
 
 function CRoleMarriage:OnDivorce(nTarID, nTimeStamp)
@@ -182,8 +182,8 @@ function CMarriageMgr:SaveSysData()
 	end
 	local tData = {}
 	tData.nMarriageKey = self.m_nMarriageKey	
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-	oDB:HSet(gtDBDef.sMarriageSysDB, "marriagesysdata", cjson.encode(tData))
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+	oDB:HSet(gtDBDef.sMarriageSysDB, "marriagesysdata", cseri.encode(tData))
 	self:MarkDirty(false)
 end
 
@@ -192,12 +192,12 @@ function CMarriageMgr:SaveCoupleData()
 	if nDirtyNum < 1 then
 		return
 	end
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for i = 1, nDirtyNum do
 		local oCouple = self.m_tCoupleSaveQueue:Head()
 		if oCouple then
 			local tData = oCouple:SaveData()
-			oDB:HSet(gtDBDef.sMarriageCoupleDB, oCouple:GetID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sMarriageCoupleDB, oCouple:GetID(), cseri.encode(tData))
 			oCouple:MarkDirty(false)
 		end
 		self.m_tCoupleSaveQueue:Pop()
@@ -209,12 +209,12 @@ function CMarriageMgr:SavaMarriageData()
 	if nDirtyNum < 1 then
 		return
 	end
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for i = 1, nDirtyNum do
 		local oRoleMarriage = self.m_tRoleMarriageSaveQueue:Head()
 		if oRoleMarriage then
 			local tData = oRoleMarriage:SaveData()
-			oDB:HSet(gtDBDef.sRoleMarriageDB, oRoleMarriage:GetID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleMarriageDB, oRoleMarriage:GetID(), cseri.encode(tData))
 			oRoleMarriage:MarkDirty(false)
 		end
 		self.m_tRoleMarriageSaveQueue:Pop()
@@ -227,20 +227,20 @@ function CMarriageMgr:SaveData()
 end
 
 function CMarriageMgr:LoadSysData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oDB:HGet(gtDBDef.sMarriageSysDB, "marriagesysdata")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_nMarriageKey = tData.nMarriageKey
 	end
 end
 
 function CMarriageMgr:LoadCoupleData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tKeys = oDB:HKeys(gtDBDef.sMarriageCoupleDB)
 	for _, sID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sMarriageCoupleDB, sID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nID = tData.nID
 		local oCouple = CCouple:new(nID)
 		oCouple:LoadData(tData)
@@ -261,11 +261,11 @@ function CMarriageMgr:LoadCoupleData()
 end
 
 function CMarriageMgr:LoadMarriageData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tKeys = oDB:HKeys(gtDBDef.sRoleMarriageDB)
 	for _, sRoleID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sRoleMarriageDB, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nRoleID = tData.nRoleID
 		local oRoleMarriage = CRoleMarriage:new(nRoleID)
 		oRoleMarriage:LoadData(tData)
@@ -850,7 +850,7 @@ function CMarriageMgr:DealDivorce(nCoupleID)
 	local oHusbandMarr = self:GetRoleMarriage(nHusbandID)
 	local oWifeMarr = self:GetRoleMarriage(nWifeID)
 	local nTimeStamp = os.time()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	oDB:HDel(gtDBDef.sMarriageCoupleDB, nCoupleID)
 	self.m_tRoleCoupleMap[nHusbandID] = nil
 	self.m_tRoleCoupleMap[nWifeID] = nil
@@ -1088,7 +1088,7 @@ function CMarriageMgr:InviteTalkReq(oRole)
 		local sMsgContent = sPreStr..sContent
         CUtil:SendWorldTalk(oRole:GetID(), sMsgContent, true)
 		oRole:Tips("消息发布成功")
-		Network.oRemoteCall:Call("OnInviteMarry", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+		Network:RMCall("OnInviteMarry", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
     end
     oRole:QueryRelationshipInvitePreStr(fnQueryCallback)
 end
@@ -1138,7 +1138,7 @@ function CMarriageMgr:SyncLogicCache(nRoleID, nSrcServer, nSrcService, nTarSessi
 		end
 	end
 	tData.nTimeStamp = oCouple and oCouple:GetMarriageStamp() or 0
-    Network.oRemoteCall:Call("RoleSpouseUpdateReq", nSrcServer, nSrcService, nTarSession, nRoleID, tData)
+    Network:RMCall("RoleSpouseUpdateReq", nil, nSrcServer, nSrcService, nTarSession, nRoleID, tData)
 end
 
 function CMarriageMgr:GetSpouse(nRoleID)

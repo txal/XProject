@@ -379,7 +379,7 @@ function CRole:OnBattleEnd(tBTRes, tExtData)
 
     --同步到GLOBAL/WGLOBAL
     self:GlobalRoleUpdate({m_nBattleID=0, m_tBTRes=tBTRes})
-    -- Network.oRemoteCall:Call("OnBattleEndReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID(), tBTRes)
+    -- Network:RMCall("OnBattleEndReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID(), tBTRes)
 
     --场景调用
     local oDup = self:GetCurrDupObj()
@@ -402,14 +402,14 @@ function CRole:OnBattleEnd(tBTRes, tExtData)
 	if tExtData and tExtData.bArenaBattle then
 		local tArenaResult = {nEnemyID = tExtData.tArenaData.nEnemyID, nArenaSeason = tExtData.tArenaData.nArenaSeason, bWin = tBTRes.bWin}
 		local nServerID = self:GetServer() --竞技场在本地全局服
-		Network.oRemoteCall:Call("ArenaBattleEndReq", nServerID, goServerMgr:GetGlobalService(nServerID, 20), 
+		Network:RMCall("ArenaBattleEndReq", nil, nServerID, goServerMgr:GetGlobalService(nServerID, 20), 
 			self:GetSession(), self:GetID(), tArenaResult)
 	end
 	if tExtData and tExtData.bMentorshipTaskBattle then
 		local nTaskID = tExtData.tAsyncData.nTaskID
 		local nTimeStamp = tExtData.tAsyncData.nTimeStamp
 		local nSrcService = tExtData.tAsyncData.nSrcService
-		Network.oRemoteCall:Call("MentorshipTaskBattleEndReq", gnWorldServerID, nSrcService, 
+		Network:RMCall("MentorshipTaskBattleEndReq", nil, gnWorldServerID, nSrcService, 
 			self:GetSession(), self:GetID(), {nTaskID = nTaskID, bWin = tBTRes.bWin, nTimeStamp = nTimeStamp})
 	end
 
@@ -447,7 +447,7 @@ end
 
 --取队伍角色列表封装
 function CRole:GetTeam(fnCallback)
-	Network.oRemoteCall:CallWait("TeamBattleInfoReq", function(nTeamID, tTeam)
+	Network:RMCall("TeamBattleInfoReq", function(nTeamID, tTeam)
 		if not nTeamID then
 			return LuaTrace("队伍信息请求超时了")
 		end
@@ -457,7 +457,7 @@ end
 
 --创建队伍
 function CRole:CreateTeam(fnCallback)
-	Network.oRemoteCall:CallWait("WCreateTeamReq", function(nTeamID, tTeam)
+	Network:RMCall("WCreateTeamReq", function(nTeamID, tTeam)
 		fnCallback(nTeamID, tTeam)
 	end, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID())
 end
@@ -465,9 +465,9 @@ end
 --离开队伍
 function CRole:QuitTeam(fnCallback)
 	if fnCallback then 
-		Network.oRemoteCall:CallWait("WQuitTeamReq", fnCallback, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID())
+		Network:RMCall("WQuitTeamReq", fnCallback, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID())
 	else
-		Network.oRemoteCall:Call("WQuitTeamReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID())
+		Network:RMCall("WQuitTeamReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID())
 	end
 end
 
@@ -475,12 +475,12 @@ end
 --@nGameType 玩法类型
 --@bSys 是否是系统服务调用，系统服务调用，不受组队匹配冷却时间限制
 function CRole:MatchTeam(nGameType, sGameName, bSys)
-	Network.oRemoteCall:Call("WMatchTeamReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID(), nGameType, sGameName, bSys)
+	Network:RMCall("WMatchTeamReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID(), nGameType, sGameName, bSys)
 end
 
 --取消组队匹配
 function CRole:CancelMatchTeam(nGameType, sGameName)
-	Network.oRemoteCall:Call("WCancelMatchTeamReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID(), nGameType, sGameName)
+	Network:RMCall("WCancelMatchTeamReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), self:GetSession(), self:GetID(), nGameType, sGameName)
 end
 
 --战斗副本ID

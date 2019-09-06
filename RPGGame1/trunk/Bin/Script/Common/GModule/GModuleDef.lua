@@ -1,14 +1,15 @@
---全局模块定义
+--全局模块定义(多个进程共用或者后面可能会拆到不同进程的模块)
 gtGModuleDef = {}
 
 --公共模块
-gtGModuleDef.tTimerMgr = {nID=1000, sName="TimerMgr"}
-gtGModuleDef.tServerMgr = {nID=1001, sName="ServerMgr"}
-gtGModuleDef.tDBMgr = {nID=1002, sName="DBMgr"}
-gtGModuleDef.tLogger = {nID=1003, sName="Logger"}
+gtGModuleDef.tDBMgr = {sName="DBMgr", cClass=CDBMgr, tServiceID={20,110,50,100}}
+gtGModuleDef.tLogger = {sName="Logger", cClass=CLogger, tServiceID={20,110,50,100}}
+gtGModuleDef.tTimerMgr = {sName="TimerMgr", cClass=CTimerMgr, tServiceID={20,110,50,100}}
+gtGModuleDef.tServerMgr = {sName="ServerMgr", cClass=CServerMgr, tServiceID={20,110,50,100}}
 
---各自模块
-gtGModuleDef.tLoginMgr = {nID=1004, sName="LoginMgr"}
-gtGModuleDef.tLogMgr = {nID=1005, sName="LogMgr"}
-gtGModuleDef.tRoleMgr = {nID=1006, sName="RoleMgr"}
-gtGModuleDef.tDupMgr = {nID=1007, sName="DupMgr"}
+--各自服务模块
+gtGModuleDef.tLogMgr = {sName="LogMgr", cClass=CLogMgr, tServiceID={20}}
+gtGModuleDef.tDupMgr = {sName="DupMgr", cClass=CDupMgr, tServiceID={50,100}}
+gtGModuleDef.tRoleMgr = {sName="RoleMgr", cClass=CRoleMgr, tServiceID={50,100}}
+gtGModuleDef.tLoginMgr = {sName="LoginMgr", cClass=CLoginMgr, tServiceID={20}}
+gtGModuleDef.tGRoleMgr = {sName="GRoleMgr", cClass=CGRoleMgr, tServiceID={20,110}}

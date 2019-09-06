@@ -8,7 +8,7 @@ function CTimeAward:Ctor(nID)
 end
 
 function CTimeAward:LoadData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tKeys = oSSDB:HKeys(gtDBDef.sTimeAwardDB)
 	print("加载活动数据", self:GetName(), #tKeys)
 	
@@ -25,19 +25,19 @@ function CTimeAward:LoadData()
 				table.insert(self.m_tTypeActMap[tConf.nType], nID)
 
 				local sData = oSSDB:HGet(gtDBDef.sTimeAwardDB, sID)
-				self.m_tSubActMap[nID]:LoadData(cjson.decode(sData))
+				self.m_tSubActMap[nID]:LoadData(cseri.decode(sData))
 			end
 		end
 	end
 end
 
 function CTimeAward:SaveData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for nID, oAct in pairs(self.m_tSubActMap) do
 		if oAct:IsDirty() then
 			local tData = oAct:SaveData()
 			if tData and next(tData) then
-				oSSDB:HSet(gtDBDef.sTimeAwardDB, nID, cjson.encode(tData))
+				oSSDB:HSet(gtDBDef.sTimeAwardDB, nID, cseri.encode(tData))
 				oAct:MarkDirty(false)
 			end
 		end

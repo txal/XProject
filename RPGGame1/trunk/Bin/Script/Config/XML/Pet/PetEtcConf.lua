@@ -1,2 +1,2 @@
 ctPetEtcConf={}
-ctPetEtcConf[1]={nInde=1,nAttrAdj=1.75,}
+ctPetEtcConf[1]={nInde=1,nAttrAdj=1.5,}

@@ -58,14 +58,14 @@ function CPropArenaTicket:Use(nParam1)
 			end
 			--do something
 			--限时奖励
-	        Network.oRemoteCall:Call("OnTATZSReq", nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID(), nUseNum)
+	        Network:RMCall("OnTATZSReq", nil, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID(), nUseNum)
 		end	
 
-		Network.oRemoteCall:CallWait("ArenaAddChallReq", fnAddArenaChallCallback, nServerID, 
+		Network:RMCall("ArenaAddChallReq", fnAddArenaChallCallback, nServerID, 
 			goServerMgr:GetGlobalService(nServerID, 20), oRole:GetSession(), oRole:GetID(), nUseNum)
 	end
 
-	Network.oRemoteCall:CallWait("ArenaAddChallPreCheckReq", fnAddPreCheckCallback, nServerID, 
+	Network:RMCall("ArenaAddChallPreCheckReq", fnAddPreCheckCallback, nServerID, 
 		goServerMgr:GetGlobalService(nServerID, 20), oRole:GetSession(), oRole:GetID())
 end
 

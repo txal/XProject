@@ -1,5 +1,18 @@
 package role;
 
+//角色数据同步
+message RoleInitDataRet
+{
+    required int32 nSource = 1;         //平台号
+    required string sChannel = 2;       //渠道标识
+    required int32 nServerID = 3;       //服务器ID
+    required int64 nAccountID = 4;      //帐号ID
+    required string sAccountName = 5;   //帐号名
+    required int64 nRoleID = 6;         //角色ID
+    required string sRoleName = 7;      //角色名
+    required int32 nLevel = 8;          //角色等级
+}
+
 //角色属性请求
 message RoleAttrReq
 {

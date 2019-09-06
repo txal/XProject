@@ -303,7 +303,7 @@ function CPalanquin:OnParadeStart()
 	-- local tCouple = {}
 	-- tCouple.nHusband = self.m_nHusband
 	-- tCouple.nWife = self.m_nWife
-	Network.oRemoteCall:Call("MarriagePalanquinStartNoticeReq", gnWorldServerID, 
+	Network:RMCall("MarriagePalanquinStartNoticeReq", nil, gnWorldServerID, 
 		goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, self.m_nHusband)
 
 	local oDup = goMarriageSceneMgr:GetScene()

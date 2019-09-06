@@ -1,5 +1,11 @@
 ctTiredSignConf={}
-ctTiredSignConf[1]={nID=1,nDays=5,tAward={{2,5000,},{11002,5,},{10008,5,},},sIcon="0",}
-ctTiredSignConf[2]={nID=2,nDays=10,tAward={{2,10000,},{11002,10,},{10008,10,},},sIcon="0",}
-ctTiredSignConf[3]={nID=3,nDays=15,tAward={{2,15000,},{11003,10,},{10009,10,},},sIcon="0",}
-ctTiredSignConf[4]={nID=4,nDays=28,tAward={{2,20000,},{11003,20,},{10009,20,},},sIcon="0",}
+ctTiredSignConf[1]={nID=1,nDays=1,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[2]={nID=2,nDays=2,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[3]={nID=3,nDays=3,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[4]={nID=4,nDays=5,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[5]={nID=5,nDays=7,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[6]={nID=6,nDays=10,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[7]={nID=7,nDays=13,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[8]={nID=8,nDays=18,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[9]={nID=9,nDays=23,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}
+ctTiredSignConf[10]={nID=10,nDays=30,tAward={{1,3,1,},{1,3,1,},{1,3,20,},{1,3,1,},{1,3,1,},},}

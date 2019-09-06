@@ -43,12 +43,16 @@ void Actor::OnEnterScene(Scene* poScene, int nAOIID, const Point& oPos, int16_t 
 	StopRun();
 }
 
-void Actor::StartRun(int nSpeedX, int nSpeedY, int8_t nFace)
+void Actor::StartRun(int nSpeedX, int nSpeedY, int8_t nFace, bool bSelf/*=false*/)
 {
 	if (!m_oTargetPos.IsValid())
 	{
 		XLog(LEVEL_ERROR, "Actor::StartRun target pos error!\n");
 		return;
+	}
+	if (m_nClientRunStartMSTime == 0)
+	{
+		m_nClientRunStartMSTime = XTime::UnixMSTime();
 	}
 	m_nRunStartMSTime = XTime::MSTime();
 	m_nRunSpeedX = nSpeedX;
@@ -56,7 +60,7 @@ void Actor::StartRun(int nSpeedX, int nSpeedY, int8_t nFace)
 	m_nRunStartX = m_oPos.x;
 	m_nRunStartY = m_oPos.y;
 	Object::SetFace(nFace);
-	BroadcastStartRun();
+	BroadcastStartRun(bSelf);
 	//XLog(LEVEL_INFO,"%s Start run pos:(%d, %d) speed:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, nSpeedX, nSpeedY);
 }
 
@@ -67,6 +71,7 @@ void Actor::StopRun(bool bBroadcast, bool bClientStop)
 	if (m_nRunStartMSTime > 0)
 	{
 		m_nRunStartMSTime = 0;
+		m_nClientRunStartMSTime = 0;
 		m_nRunSpeedX = 0;
 		m_nRunSpeedY = 0;
 		m_nRunStartX = 0;
@@ -75,7 +80,7 @@ void Actor::StopRun(bool bBroadcast, bool bClientStop)
 		{
 			BroadcastStopRun(!bClientStop);
 		}
-		//XLog(LEVEL_INFO, "%s Stop run pos:(%d, %d) from_client:%d time:%d\n", m_sName, m_oPos.x, m_oPos.y, bClientStop, m_nClientRunStartMSTime);
+		XLog(LEVEL_DEBUG, "%s Do stop run pos:(%d, %d) from_client:%d time:%d\n", m_sName, m_oPos.x, m_oPos.y, bClientStop, XTime::MSTime());
 	}
 }
 
@@ -95,22 +100,27 @@ bool Actor::UpdateRunState(int64_t nNowMS)
 		if (m_oTargetPos.IsValid())
 		{
 			Point oStartPos(m_nRunStartX, m_nRunStartY);
-			if (m_oPos.Distance(oStartPos) >= m_oTargetPos.Distance(oStartPos))
+			if (m_oPos.Distance(oStartPos) >= m_oTargetPos.Distance(oStartPos)-10)
 			{
-				XLog(LEVEL_DEBUG, "%d %s reach target pos(%d,%d) tarpos(%d,%d)\n", time(NULL), m_sName, m_oPos.x, m_oPos.y, m_oTargetPos.x, m_oTargetPos.y);
-				SetPos(m_oTargetPos);
-				StopRun();
-				if (m_bRunCallback)
-				{
-					m_bRunCallback = false;
-					LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnObjReachPos", 0, "ii", m_nObjID, m_nObjType);
-				}
+				Point oTargetPos = m_oTargetPos;
+				StopRun(); //这里会重置m_oTargetPos
+				OnReacheTargetPos(oTargetPos);
 			}
 		}
 		UpdateFollow(nNowMS);
 		//XLog(LEVEL_DEBUG, "Pos(%d,%d) canmove:%d\n", nNewPosX, nNewPosY, bCanMove);
 	}
 	return bCanMove;
+}
+
+void Actor::OnReacheTargetPos(Point& oTargetPos)
+{
+	XLog(LEVEL_DEBUG, "%d %s reach target pos(%d,%d) tarpos(%d,%d)\n", time(NULL), m_sName, m_oPos.x, m_oPos.y, oTargetPos.x, oTargetPos.y);
+	if (m_bRunCallback)
+	{
+		m_bRunCallback = false;
+		LuaWrapper::Instance()->FastCallLuaRef<void, CNOTUSE>("OnObjReachPos", 0, "iiii", m_nObjID, m_nObjType, oTargetPos.x, oTargetPos.y);
+	}
 }
 
 void Actor::UpdateFollow(int64_t nNowMS)
@@ -197,12 +207,15 @@ void Actor::RunTo(const Point& oTarPos, int nMoveSpeed)
 	{
 		return;
 	}
-	if (m_oPos == oTarPos)
+	if (nMoveSpeed <= 0)
 	{
 		return;
 	}
-	if (nMoveSpeed <= 0)
+	if (m_oPos == oTarPos)
 	{
+		m_bRunCallback = true;
+		m_oTargetPos = oTarPos;
+		OnReacheTargetPos(m_oTargetPos);
 		return;
 	}
 
@@ -218,12 +231,13 @@ void Actor::RunTo(const Point& oTarPos, int nMoveSpeed)
 	int nOldSpeedY = GetSpeedY();
 	if (!IsRunning() || nSpeedX != nOldSpeedX || nSpeedY != nOldSpeedY)
 	{
-		m_oTargetPos = oTarPos;
 		m_bRunCallback = true;
-		StartRun(nSpeedX, nSpeedY, m_nFace);
+		m_oTargetPos = oTarPos;
+		StartRun(nSpeedX, nSpeedY, m_nFace, true);
 	}
 #ifdef _DEBUG
-	XLog(LEVEL_DEBUG, "%d %s run to speed(%d,%d), pos(%d,%d), tarpos(%d,%d)\n", time(NULL), m_sName, nSpeedX, nSpeedY, m_oPos.x, m_oPos.y, oTarPos.x, oTarPos.y);
+	XLog(LEVEL_DEBUG, "%d %s run to speed(%d,%d), pos(%d,%d), tarpos(%d,%d) time:%d\n"
+		, time(NULL), m_sName, nSpeedX, nSpeedY, m_oPos.x, m_oPos.y, oTarPos.x, oTarPos.y, XTime::MSTime());
 #endif // _DEBUG
 
 }
@@ -265,9 +279,17 @@ void Actor::BroadcastPos(bool bSelf)
 	NetAdapter::BroadcastExter(NSCltSrvCmd::sSyncActorPosRet, poPacket, goNaviCache);
 }
 
-void Actor::BroadcastStartRun()
+void Actor::BroadcastStartRun(bool bSelf /*=false*/)
 {
-	CacheActorNavi();
+	int nSelfServer = 0;
+	int nSelfSession = 0;
+	if (bSelf)
+	{
+		nSelfServer = m_uServer;
+		nSelfSession = m_nSession;
+	}
+	CacheActorNavi(nSelfServer, nSelfSession);
+
 	if (goNaviCache.Size() <= 0)
 	{
 		return;

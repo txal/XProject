@@ -1552,7 +1552,7 @@ function CPet:SynthesisReq(nZID, nFID, nZPos, nFPos, nBDType, bFlag, bYuanBaoBuy
 		end
 		 local nServerID = self.m_oRole:GetServer() 
 	    local nTarService = goServerMgr:GetGlobalService(nServerID, 20)
-		Network.oRemoteCall:CallWait("GetChamberCoreSkillReq",fnGetPetSkillCallback, nServerID, nTarService, 0)
+		Network:RMCall("GetChamberCoreSkillReq",fnGetPetSkillCallback, nServerID, nTarService, 0)
 	else
 		local nSkillNum, tSkill, nMinJiID = self:GetSkillNum(tZItem.tSKillList, tFItem.tSKillList)
 		_fnNoYuanBaoBuy(nSkillNum, tSkill, nMinJiID)
@@ -2375,7 +2375,7 @@ function CPet:FastLearnSkillReq(nPropID, nPos, nPrice)
 	self.m_FastPetPos = nPos
 	local nServerID = self.m_oRole:GetServer()
 	local nGlobalLogic = goServerMgr:GetGlobalService(nServerID, 20)
-	Network.oRemoteCall:Call("BuyShopPriceReq", nServerID, nGlobalLogic, 0, self.m_oRole:GetID(),101,nPropID, 1, "PetSomeMethodSkillReq")
+	Network:RMCall("BuyShopPriceReq", nil, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(),101,nPropID, 1, "PetSomeMethodSkillReq")
 end
 
 function CPet:SomeMethod(nPropID)
@@ -2482,7 +2482,7 @@ function CPet:LianGuReq(nId, nPos, nProId, nType,nNum)
 	CEventHandler:OnPetLianGu(self.m_oRole, {})
 	--消耗资质丹	
 	local nServer = self.m_oRole:GetServer()
-    Network.oRemoteCall:Call("OnTAZZDReq", nServer, goServerMgr:GetGlobalService(nServer,20), 0, self.m_oRole:GetID(), nNum)
+    Network:RMCall("OnTAZZDReq", nil, nServer, goServerMgr:GetGlobalService(nServer,20), 0, self.m_oRole:GetID(), nNum)
 end
 
 --添加宠物经验
@@ -3382,7 +3382,7 @@ function CPet:PetScoreChange()
 	if tMaxPet then
 		local nServerID = self.m_oRole:GetServer()
 		local nServiceID = goServerMgr:GetGlobalService(nServerID, 20)
-		Network.oRemoteCall:Call("PetScoreChangeReq", nServerID, nServiceID, 0, self.m_oRole:GetID(), tMaxPet.nPos, tMaxPet.sName, tMaxPet.jnpf)
+		Network:RMCall("PetScoreChangeReq", nil, nServerID, nServiceID, 0, self.m_oRole:GetID(), tMaxPet.nPos, tMaxPet.sName, tMaxPet.jnpf)
 	end
 
 	if nOldTmpPetPowerSum ~= self.m_nTmpPetPowerSum then

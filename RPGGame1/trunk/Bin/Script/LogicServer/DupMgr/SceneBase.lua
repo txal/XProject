@@ -3,11 +3,12 @@ local table, string, math, os, pairs, ipairs, assert = table, string, math, os, 
 --CPP场景管理器
 local oNativeSceneMgr = GlobalExport.GetSceneMgr()
 
-function CSceneBase:Ctor(oParentDup, nSceneConfID, nLineRoles)
+function CSceneBase:Ctor(oParentDup, nSceneConfID)
     self.m_oParentDup = oParentDup
     self.m_nSceneConfID = nSceneConfID
-    self.m_nLineRoles = nLineRoles
-    self.m_nSceneID = CUtil:GenUUID()
+    local tDupConf = oParentDup:GetDupConf()
+    self.m_nLineRoles = tDupConf.nLineRoles
+    self.m_nSceneID = CUtil:GenSceneID(nSceneConfID)
 
     self.m_oNativeScene = oNativeSceneMgr:CreateScene(self.m_oParentDup:GetDupType(), self.m_nSceneID, self.m_nSceneConfID, self.m_nLineRoles)
     self.m_oNativeScene:BindLuaObj(self)
@@ -25,7 +26,7 @@ function CSceneBase:GetSceneConf() return ctSceneConf[self.m_nSceneConfID] end
 function CSceneBase:DumpSceneInfo() self.m_oNativeScene:DumpSceneInfo() end
 function CSceneBase:GetGameNativeObj(nObjID) return self.m_oNativeScene:GetGameObj(nObjID) end
 --将场景内所有类型为nObjType的对象踢出场景
---@nObjType 要提出场景的对象类型,0为所有
+--@nObjType 要踢出场景的对象类型,0为所有
 function CSceneBase:KickAllObjs(nObjType) self.m_oNativeScene:KickAllGameObjs(nObjType) end
 --添加角色的观察者身份
 function CSceneBase:AddObserver(nObjID) return self.m_oNativeScene:AddObserver(nObjID) end
@@ -39,13 +40,15 @@ function CSceneBase:RemoveObserved(nObjID) return self.m_oNativeScene:RemoveObse
 --取场景内某分线所有的角色对象列表
 --@nLine -1所有分线;>=0指定分线
 --@nObjType: 游戏对象类型,0表示所有
---返回Native对象
+--返回Native对象列表
 function CSceneBase:GetGameObjList(nLine, nObjType) return self.m_oNativeScene:GetObjList(nLine, nObjType) end
 --取观察该角色的观察者角色对象列表
 --@nObjType: 游戏对象类型,0表示所有
+--返回Native对象列表
 function CSceneBase:GetAreaObservers(nObjID, nObjType) return self.m_oNativeScene:GetAreaObservers(nObjID, nObjType) end
 --取该角色观察区域内的角色对象列表
 --@nObjType: 游戏对象类型,0表示所有
+--返回Native对象列表
 function CSceneBase:GetAreaObserveds(nObjID, nObjType) return self.m_oNativeScene:GetAreaObserveds(nObjID, nObjType) end
 
 --广播信息给场景某分线所有角色
@@ -153,13 +156,13 @@ function CSceneBase:OnObjEnterScene(oGameNativeObj)
 end
 
 --对象离开场景事件
+--@bSceneReleasedKick 场景释放提出
 function CSceneBase:OnObjLeaveScene(oGameNativeObj, bSceneReleasedKick)
     local oGameLuaObj = oGameNativeObj:GetLuaObj()
     assert(oGameLuaObj, "游戏对象未绑定LUA对象")
-    local bObjReleased = oGameLuaObj:IsReleased()
     local nNextSceneID = oGameLuaObj:GetNextSceneID()
     oGameLuaObj:SetNextSceneID(nil)
-    self.m_oParentDup:OnObjLeaveScene(self, oGameLuaObj, bSceneReleasedKick, bObjReleased, nNextSceneID)
+    self.m_oParentDup:OnObjLeaveScene(self, oGameLuaObj, bSceneReleasedKick, nNextSceneID)
 end
 
 function CSceneBase:OnObjEnterObj(tObserver, tObserved)
@@ -174,148 +177,5 @@ function CSceneBase:OnObjReachTargetPos(oGameNativeObj, nPosX, nPosY)
     local oGameLuaObj = oGameNativeObj:GetLuaObj()
     assert(oGameLuaObj, "游戏对象未绑定LUA对象")
     self.m_oParentDup:OnObjReachTargetPos(self, oGameLuaObj, nPosX, nPosY)
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---事件和回调
-function CSceneBase:RegObjEnterCallback(fnCallback)
-    self.m_fnOnObjEnterCallback = fnCallback
-end
-function CSceneBase:RegObjLeaveCallback(fnCallback)
-    self.m_fnOnObjLeaveCallback = fnCallback
-end
-function CSceneBase:RegObjBattleBeginCallback(fnCallback)
-    self.m_fnOnObjBattleBeginCallback = fnCallback
-end
-function CSceneBase:RegBattleEndCallback(fnCallback)
-    self.m_fnOnBattleEndCallback = fnCallback
-end
-function CSceneBase:RegLeaveTeamCallback(fnCallback)
-    self.m_fnOnLeaveTeamCallback = fnCallback
-end
-function CSceneBase:RegLeaderActivityCallback(fnCallback)
-    self.m_fnOnLeaderActivityCallback = fnCallback
-end
-function CSceneBase:RegObjDisconnectCallback(fnCallback)
-    self.m_fnOnObjDisconnectCallback = fnCallback
-end
-function CSceneBase:RegJoinTeamCallback(fnCallback)
-    self.m_fnOnTeamChangeCallback = fnCallback
-end
-function CSceneBase:RegObjReachTargetPosCallback(fnCallback)
-    self.m_fnOnReachTargetPos = fnCallback
-end
-
--- 进入场景前检查回调
--- 需要注意，nRoleID角色，当前不一定在此逻辑服
--- fnCallback(nRoleID, tRoleParam)
--- tRoleParam = {nLevel = , nRoleConfID = , nTeamID = , bLeader = , ...}
--- 返回值 bCanEnter, sReason(tip when failed)
-function CSceneBase:RegEnterCheckCallback(fnCallback)
-    self.m_fnEnterCheckCallback = fnCallback
-end
-
---离开场景前检查回调
---fnCallback(nRoleID)
-function CSceneBase:RegLeaveCheckCallback(fnCallback)
-    self.m_fnLeaveCheckCallback = fnCallback
-end
-
-function CSceneBase:OnObjBattleBegin(oLuaObj)
-    if self.m_fnOnObjBattleBeginCallback then 
-        self.m_fnOnObjBattleBeginCallback(oLuaObj)
-    end
-end
-
---战斗结束
-function CSceneBase:OnBattleEnd(...)
-    if self.m_fnOnBattleEndCallback then
-        self.m_fnOnBattleEndCallback(...)
-    end
-end
-
---离开队伍
-function CSceneBase:OnLeaveTeam(oLuaObj)
-    if self.m_fnOnLeaveTeamCallback then
-        self.m_fnOnLeaveTeamCallback(oLuaObj)
-    end
-end
-
---队伍活跃事件
-function CSceneBase:OnLeaderActivity(oLuaObj, nLastPacketTime)
-    if self.m_fnOnLeaderActivityCallback then
-        self.m_fnOnLeaderActivityCallback(oLuaObj, nLastPacketTime)
-    end
-end
-
---对象进入
-function CSceneBase:OnObjEnterScene(oLuaObj, bReconnet) --这里，还没用计算观察者关系，进行观察者数据同步
-    if self.m_fnOnObjEnterCallback then
-        self.m_fnOnObjEnterCallback(oLuaObj, bReconnet)
-    end
-end
-
---对象退出成功
-function CSceneBase:OnObjLeaveScene(oLuaObj, nBattleID)
-    if self.m_fnOnObjLeaveCallback then
-        self.m_fnOnObjLeaveCallback(oLuaObj, nBattleID)
-    end
-end
-
---断开连接
-function CSceneBase:OnObjDisconnect(oLuaObj)
-    if self.m_fnOnObjDisconnectCallback then
-        self.m_fnOnObjDisconnectCallback(oLuaObj)
-    end
-end
-
-function CSceneBase:OnReachTargetPos(oLuaObj)
-    if self.m_fnOnReachTargetPos then 
-        self.m_fnOnReachTargetPos(oLuaObj)
-    end
-end
-
-function CSceneBase:DumpSceneObjInfo()
-    self.m_oNativeScene:DumpSceneObjInfo()
-end
-
---进入场景检查，即是否允许进入当前场景
-function CSceneBase:EnterCheck(nRoleID, tRoleParam)
-    if not self.m_fnEnterCheckCallback then 
-        --对于主城，默认可进入，对于场景，默认不可进入
-        local tConf = self:GetSceneConf()
-        if CSceneBase.tType.eCity == tConf.nType then 
-            return true
-        end
-        return false 
-    end
-    return self.m_fnEnterCheckCallback(nRoleID, tRoleParam)
-end
-
---离开场景检查，即是否允许离开当前场景
-function CSceneBase:LeaveCheck(nRoleID)
-    if not self.m_fnLeaveCheckCallback then 
-        return true 
-    end
-    return self.m_fnLeaveCheckCallback(nRoleID)
 end
 

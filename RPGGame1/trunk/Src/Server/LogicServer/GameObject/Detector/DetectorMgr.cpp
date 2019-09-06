@@ -56,7 +56,8 @@ void DetectorMgr::RemoveDetector(int64_t nObjID)
 	}
 	if (poDetector->GetScene() != NULL)
 	{
-		poDetector->GetScene()->LeaveScene(poDetector->GetAOIID(), false);
+		XLog(LEVEL_ERROR, "需要先离开场景才能删除对象");
+		return;
 	}
 	poDetector->MarkDeleted();
 }

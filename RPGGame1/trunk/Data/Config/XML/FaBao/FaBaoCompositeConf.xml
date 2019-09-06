@@ -8,9 +8,9 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>Administrator</LastAuthor>
+  <LastAuthor>Windows 用户</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2019-01-26T03:13:44Z</LastSaved>
+  <LastSaved>2018-10-20T07:39:08Z</LastSaved>
   <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
@@ -72,17 +72,15 @@
    <NumberFormat ss:Format="@"/>
   </Style>
   <Style ss:ID="s69">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
+   <NumberFormat ss:Format="@"/>
   </Style>
   <Style ss:ID="s70">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
-   <NumberFormat/>
-   <Protection/>
   </Style>
   <Style ss:ID="s71">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:Indent="1"/>
@@ -158,40 +156,38 @@
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="13.950000000000001">
     <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">100</Data></Cell>
-    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">500</Data></Cell>
     <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s70"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="13.950000000000001">
     <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">550</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">2837</Data></Cell>
+    <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="13.950000000000001">
     <Cell ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">3500</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">14862</Data></Cell>
+    <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="13.950000000000001">
     <Cell ss:StyleID="s67"><Data ss:Type="Number">4</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">19200</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">78137</Data></Cell>
+    <Cell ss:StyleID="s69"/>
     <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
+    <Cell ss:StyleID="s70"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="13.950000000000001">
     <Cell ss:StyleID="s71"><Data ss:Type="Number">5</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="String">102000</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">412962</Data></Cell>
+    <Cell ss:StyleID="s69"/>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:Height="13.950000000000001">
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">6</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">540400</Data></Cell>
-   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.950000000000001"/>
    <Row ss:AutoFitHeight="0" ss:Height="13.950000000000001">
     <Cell ss:Index="4" ss:StyleID="s73"/>
    </Row>
@@ -546,8 +542,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>11</ActiveRow>
-     <ActiveCol>2</ActiveCol>
+     <ActiveRow>14</ActiveRow>
+     <ActiveCol>3</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

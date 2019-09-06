@@ -47,16 +47,16 @@ function CGiftMgr:Release()
 end
 
 function CGiftMgr:SaveData()	
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tSysData = {}
 	tSysData.m_nDailyResetStamp = self.m_nDailyResetStamp
-	oDB:HSet(gtDBDef.sGiftDB, "sysdata", cjson.encode(tSysData))
+	oDB:HSet(gtDBDef.sGiftDB, "sysdata", cseri.encode(tSysData))
 
 	for nRoleID, v in pairs(self.m_tDirtyMap) do 
 		local oGift = self.m_oGiftMap[nRoleID]
 		local tData = oGift:SaveData()
 		if tData then 
-			oDB:HSet(gtDBDef.sRoleGiftDB, nRoleID, cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleGiftDB, nRoleID, cseri.encode(tData))
 			oGift:MarkDirty(false)
 		end
 	end
@@ -64,18 +64,18 @@ function CGiftMgr:SaveData()
 end
 
 function CGiftMgr:LoadData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 
 	local sSysData = oDB:HGet(gtDBDef.sGiftDB, "sysdata")
 	if sSysData ~= "" then
-		local tSysData = cjson.decode(sSysData)
+		local tSysData = cseri.decode(sSysData)
 		self.m_nDailyResetStamp = tSysData.m_nDailyResetStamp or self.m_nDailyResetStamp
 	end
 
 	local tKeys = oDB:HKeys(gtDBDef.sRoleGiftDB)
 	for _, sRoleID in ipairs(tKeys) do
 		local sRoleData = oDB:HGet(gtDBDef.sRoleGiftDB, sRoleID)
-		local tRoleData = cjson.decode(sRoleData)
+		local tRoleData = cseri.decode(sRoleData)
 		local nRoleID = tRoleData.m_nRoleID
 		local oGift = CGift:new(self, nRoleID)
 		oGift:LoadData(tRoleData)
@@ -158,7 +158,7 @@ function CGiftMgr:CheckSendType(oRole, nTarRoleID, tItemList, nType)
 			end
 			self:SendPropHandles(oRole, nTarRoleID, tItemList, nType)
 		end
-		Network.oRemoteCall:CallWait("GetTotalMoneyReq", fnGetTotalMoneyReqCallBack,oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
+		Network:RMCall("GetTotalMoneyReq", fnGetTotalMoneyReqCallBack,oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
 	elseif nType == gtSendPropType.eProp then
 		-- local oGift = self.m_oGiftMap[nRoleID]
 		-- local nGiftNum = oGift:GetGiftNum(nTarRoleID) + self:GetSendNum(tItemList)
@@ -390,7 +390,7 @@ function CGiftMgr:SendPropHandles(oRole, nTarRoleID, tList, nType)
 		oRole:GetPropDataWithSub(tItemList, "赠送物品扣除", true, fnPropDataCallback)
 	end
 
-	Network.oRemoteCall:CallWait("AccountValueReq", fnGetAccountStateCallBack, oRole:GetServer(), goServerMgr:GetLoginService(oRole:GetServer()), oRole:GetSession(), oRole:GetAccountID(), "m_nAccountState")
+	Network:RMCall("AccountValueReq", fnGetAccountStateCallBack, oRole:GetServer(), goServerMgr:GetLoginService(oRole:GetServer()), oRole:GetSession(), oRole:GetAccountID(), "m_nAccountState")
 end
 
 --获取玩家赠送记录信息

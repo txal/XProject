@@ -551,7 +551,7 @@ function CChamberCore:SellReq(nID, nGrid, nNum,oRole)
 						end
 						oRole:AddItem(tItemList, "商会卖出获得")
 						if nYuanBaoNum > 0 then 
-							Network.oRemoteCall:Call("KnapsackAddSaleYuanbaoRecordReq", oRole:GetStayServer(), 
+							Network:RMCall("KnapsackAddSaleYuanbaoRecordReq", nil, oRole:GetStayServer(), 
 								oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), nYuanBaoNum)
 						end
 						if nTransSilerNum > 0 then 
@@ -577,13 +577,13 @@ function CChamberCore:SellReq(nID, nGrid, nNum,oRole)
 					local sTips = "出售成功,今日剩余出售次数为%d次"
 					local sPropName = ctPropConf[nID].sName
 					oRole:Tips(string.format(sTips, nOverSellNum))
-				Network.oRemoteCall:Call("OnChamberCoreItemOnSale", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+				Network:RMCall("OnChamberCoreItemOnSale", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
 				end
 				print("商会出售消息返回", tMsg)
 			end
 			oRole:SubPropByGrid(tItemList1, "商会出售消耗",fnFlushCostCallBack, tConf.nBagType) 
 		end
-		Network.oRemoteCall:CallWait("KnapsackGetSaleYuanbaoRemainNumReq", fnGetSaleYuanbaoCallback, oRole:GetStayServer(), 
+		Network:RMCall("KnapsackGetSaleYuanbaoRemainNumReq", fnGetSaleYuanbaoCallback, oRole:GetStayServer(), 
 			oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
 	 end
 	 oRole:GetPropData(nGrid,fnGetKnapsackCallBack, tConf.nBagType)
@@ -662,7 +662,7 @@ function CChamberCore:FastBuyListReq(oRole, nShopType, nTradeMenuId)
 --宠物技能书快速购买(学习)  
  function CChamberCore:FastBuyReq(oRole,nPropID, nPos)
 	local nPrice =  math.floor(self:GetChamberCoreProp(nPropID).nPrice)
-	Network.oRemoteCall:Call("PetFastLearnSkillReq", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), nPropID, nPos, nPrice)
+	Network:RMCall("PetFastLearnSkillReq", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), nPropID, nPos, nPrice)
  end
 
  function CChamberCore:GetShopPrice(oRole, nPropID)

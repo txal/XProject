@@ -39,14 +39,14 @@ function CMysqlPool:GetMgrMysql()
 	return self.m_oMgrMysql
 end
 
---插入游戏数据库
+--异步插入游戏数据库
 function CMysqlPool:GameAsyncQuery(sQuery)
 	local nIndex = math.random(1, #self.m_tGameMysql)
 	local oMysql = self.m_tGameMysql[nIndex]
 	WorkerMgr.AddJob(oMysql, sQuery)
 end
 
---插入后台数据库
+--异步插入后台数据库
 function CMysqlPool:MgrAsyncQuery(sQuery)
 	WorkerMgr.AddJob(self.m_tMgrMysql[1], sQuery)
 end

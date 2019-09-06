@@ -68,7 +68,7 @@ function Network.CltPBProc.ObjLeaveViewRet(nCmd, nSrcServer, nSrcService, nTarSe
     -- local tList = tData.tList
 end
 
-function Network.CltPBProc.TipsMsgRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
+function Network.CltPBProc.FloatTipsRet(nCmd, nSrcServer, nSrcService, nTarSession, tData)
     print("Tips:", tData.sCont)
 end
 

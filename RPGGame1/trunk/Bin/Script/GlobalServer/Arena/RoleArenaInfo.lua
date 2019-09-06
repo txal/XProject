@@ -319,9 +319,9 @@ function CRoleArenaInfo:OnScoreChange(nOld, nNew)
     	goHDMgr:GetActivity(gtHDDef.eArenaCB):UpdateValue(self.m_nRoleID, nDiffVal)
     	goHDMgr:GetActivity(gtHDDef.eTimeAward):UpdateVal(self.m_nRoleID, gtTAType.eJJC, nDiffVal)
 		goRankingMgr:GetRanking(gtRankingDef.eArenaScoreRanking):Update(self.m_nRoleID, nNew)
-	    -- Network.oRemoteCall:Call("OnTAJJCReq", oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, self.m_nRoleID, nDiffVal)
-	    -- Network.oRemoteCall:Call("OnCBJJCReq", oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, self.m_nRoleID, nDiffVal)
-	    -- Network.oRemoteCall:Call("ArenaScoreChangeReq", oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, self.m_nRoleID, nNew)
+	    -- Network:RMCall("OnTAJJCReq", nil, oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, self.m_nRoleID, nDiffVal)
+	    -- Network:RMCall("OnCBJJCReq", nil, oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, self.m_nRoleID, nDiffVal)
+	    -- Network:RMCall("ArenaScoreChangeReq", nil, oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, self.m_nRoleID, nNew)
 	end
 end
 

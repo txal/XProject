@@ -115,7 +115,7 @@ function CPropGift:UseResume(nNum)
 	local nServerID = oRole:GetServer()
 	local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
 	local nContri = (ctUnionEtcConf[1].nOpenBoxContri or 0) * nNum
-	Network.oRemoteCall:CallWait("SubUnionContri",fnCallback,nServerID,nServiceID,0,oRole:GetID(),nContri,"开启帮派礼盒")
+	Network:RMCall("SubUnionContri",fnCallback,nServerID,nServiceID,0,oRole:GetID(),nContri,"开启帮派礼盒")
 end
 
 --请注意，存在掉落就开启投放奖励的礼包，背包模块有使用到此接口(奖励找回也调用到数据接口请勿随意改动)

@@ -1392,7 +1392,7 @@ function CKnapsack:QueryItemListSalePrice(tItemList, fnCallback)
 		if #tQueryMarketList > 0 then 
 			local nServer = oRole:GetServer()
 			local nService = goServerMgr:GetGlobalService(nServer, 20)
-			Network.oRemoteCall:CallWait("GetMarketBasePriceTblReq", fnMarketCallback, 
+			Network:RMCall("GetMarketBasePriceTblReq", fnMarketCallback, 
 				nServer, nService, 0, tQueryMarketList)
 		else
 			fnMarketCallback({})
@@ -1401,7 +1401,7 @@ function CKnapsack:QueryItemListSalePrice(tItemList, fnCallback)
 	if next(tQueryShopMap) then 
 		local nServer = oRole:GetServer()
 		local nService = goServerMgr:GetGlobalService(nServer, 20)
-		Network.oRemoteCall:CallWait("QueryCommerceSalePriceTblReq", fnShopCallback, 
+		Network:RMCall("QueryCommerceSalePriceTblReq", fnShopCallback, 
 			nServer, nService, 0, tQueryShopMap)
 	else
 		fnShopCallback({})

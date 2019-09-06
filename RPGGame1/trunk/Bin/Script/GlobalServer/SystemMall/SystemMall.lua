@@ -16,11 +16,11 @@ function CMallMgr:Ctor()
 end
 
 function CMallMgr:LoadData()
-	local oDB = goDBMgr:GetSSDB(nServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(nServerID, "global", CUtil:GetServiceID())
 	--全局数据
 	local tData = oDB:HGet(gtDBDef.sShopDB,"data")
 	if tData ~= "" then
-		local tSData = cjson.decode(tData)
+		local tSData = cseri.decode(tData)
 		for nShopType, tShopData in pairs(tSData) do
 			if nShopType ~= "m_nUpdateTime" then
 				self.m_tShopMap[nShopType]:LoadData(tShopData)
@@ -58,13 +58,13 @@ function CMallMgr:SaveData()
 	if not self:IsDirty() then
 		return 
 	end
-	local oDB = goDBMgr:GetSSDB(nServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(nServerID, "global", CUtil:GetServiceID())
 	local tData = {}
 	for nShopType, oShop in pairs(self.m_tShopMap) do
 		tData[nShopType] = oShop:SaveData()
 	end
 	tData.m_nUpdateTime = self.m_nUpdateTime
-	oDB:HSet(gtDBDef.sShopDB, "data", cjson.encode(tData))
+	oDB:HSet(gtDBDef.sShopDB, "data", cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

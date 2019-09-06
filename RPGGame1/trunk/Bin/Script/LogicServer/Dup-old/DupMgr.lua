@@ -157,7 +157,7 @@ function CDupMgr:EnterDup(nDupMixID, oNativeObj, nPosX, nPosY, nLine, nFace)
     --         end
     --         local nServer = oRole:GetServer()
     --         local nService = goServerMgr:GetGlobalService(nServer, 20)
-    --         Network.oRemoteCall:CallWait("AsyncEnterScene", fnCheck, nServer, nService, 0, oRole:GetID())
+    --         Network:RMCall("AsyncEnterScene", fnCheck, nServer, nService, 0, oRole:GetID())
     --     else
     --         fnEnterCallback()
     --     end
@@ -191,12 +191,12 @@ function CDupMgr:SwitchLogic(tSwitch)
         local tCreateData = oRole:GetCreateData()
         local tSaveData = oRole:GetRoleSaveData()
         goPlayerMgr:RoleOfflineReq(tSwitch.nRoleID, true) --把当前逻辑服的角色下了
-        Network.oRemoteCall:Call("RobotSwitchLogicReq", nTargetServerID, tTarDupConf.nLogic, 
+        Network:RMCall("RobotSwitchLogicReq", nil, nTargetServerID, tTarDupConf.nLogic, 
             tSwitch.nSession, tSwitch, tCreateData, tSaveData)
     else
         --远程调用
         goPlayerMgr:RoleOfflineReq(tSwitch.nRoleID, true) --把当前逻辑服的角色下了
-        Network.oRemoteCall:Call("SwitchLogicReq", nTargetServerID, tTarDupConf.nLogic, tSwitch.nSession, tSwitch)
+        Network:RMCall("SwitchLogicReq", nil, nTargetServerID, tTarDupConf.nLogic, tSwitch.nSession, tSwitch)
     end
 end
 
@@ -283,7 +283,7 @@ function CDupMgr:EnterDupReq(oRole, nDupMixID, nPosX, nPosY, nLine, nFace)
                 oRole:Tips(sReason)
             end
         end
-        Network.oRemoteCall:CallWait("EnterCheckReq", fnEnterCallback, oRole:GetServer(), 
+        Network:RMCall("EnterCheckReq", fnEnterCallback, oRole:GetServer(), 
 		tDupConf.nLogic, 0, oRole:GetID(), nDupMixID, tRoleParam)
     end
 end

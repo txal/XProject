@@ -76,7 +76,7 @@ function CBattleDupMgr:CreateBattleDup(nType, fnCallback, bRemote, nServerID)
 	--副本不在当前逻辑服
 	else
 		local nServerID = tDupConf.nLogic>=100 and gnWorldServerID or nServerID
-		Network.oRemoteCall:CallWait("WCreateBatteDupReq", function(nDupMixID)
+		Network:RMCall("WCreateBatteDupReq", function(nDupMixID)
 			if not nDupMixID then
 				return LuaTrace("创建玩法副本失败 TYPE:", nType)
 			end
@@ -138,7 +138,7 @@ function CBattleDupMgr:EnterBattleDupReq(oRole, nType)
 						end
 						oRole:EnterScene(nMixID, tBornPos[1],  tBornPos[2], -1, nFace)
 					end
-					Network.oRemoteCall:CallWait("GetFBTransitSceneMixID", CallBack, oRole:GetStayServer(), 101, oRole:GetSession())
+					Network:RMCall("GetFBTransitSceneMixID", CallBack, oRole:GetStayServer(), 101, oRole:GetSession())
 				end
             end
 		end, oRole, tMsg)

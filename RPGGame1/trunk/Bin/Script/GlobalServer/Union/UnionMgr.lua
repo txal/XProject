@@ -63,9 +63,9 @@ end
 --加载帮派数据
 function CUnionMgr:LoadData()
 	--自动增长ID
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oDB:HGet(gtDBDef.sUnionEtcDB, "data")
-	local tData = sData == "" and {} or cjson.decode(sData)
+	local tData = sData == "" and {} or cseri.decode(sData)
 
 	self.m_nAutoID = tData.m_nAutoID or 0
 	self.m_nAutoShowID = tData.m_nAutoShowID or 0
@@ -75,7 +75,7 @@ function CUnionMgr:LoadData()
 	local tKeys = oDB:HKeys(gtDBDef.sUnionRoleDB)
 	for _, sKey in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sUnionRoleDB, sKey)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local oUnionRole = CUnionRole:new()
 		oUnionRole:LoadData(tData)
 		self.m_tUnionRoleMap[oUnionRole:GetRoleID()] = oUnionRole
@@ -85,7 +85,7 @@ function CUnionMgr:LoadData()
 	local tKeys = oDB:HKeys(gtDBDef.sUnionDB)
 	for _, sKey in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sUnionDB, sKey)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local oUnion = CUnion:new()
 		if oUnion:LoadData(tData) then
 			self.m_tUnionMap[oUnion:GetID()] = oUnion
@@ -128,12 +128,12 @@ end
 function CUnionMgr:SaveData()
 	print("CUnionMgr:SaveData***")
 	--保存帮派
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for nUnionID, _ in pairs(self.m_tDirtyUnionMap) do
 		local oUnion = self.m_tUnionMap[nUnionID]
 		if oUnion then
 			local tData = oUnion:SaveData()
-			oDB:HSet(gtDBDef.sUnionDB, nUnionID, cjson.encode(tData))
+			oDB:HSet(gtDBDef.sUnionDB, nUnionID, cseri.encode(tData))
 		end
 	end
 	self.m_tDirtyUnionMap = {}
@@ -142,13 +142,13 @@ function CUnionMgr:SaveData()
 	for nRoleID, _ in pairs(self.m_tDirtyUnionRoleMap) do
 		local oUnionRole = self.m_tUnionRoleMap[nRoleID]
 		local tData = oUnionRole:SaveData()
-		oDB:HSet(gtDBDef.sUnionRoleDB, nRoleID, cjson.encode(tData))
+		oDB:HSet(gtDBDef.sUnionRoleDB, nRoleID, cseri.encode(tData))
 	end
 	self.m_tDirtyUnionRoleMap = {}
 
 	--自动增长ID
 	local tEtcData = {m_nAutoID=self.m_nAutoID,m_nAutoShowID=self.m_nAutoShowID,m_tCombindMap=self.m_tCombindMap}
-	oDB:HSet(gtDBDef.sUnionEtcDB, "data", cjson.encode(tEtcData))
+	oDB:HSet(gtDBDef.sUnionEtcDB, "data", cseri.encode(tEtcData))
 end
 
 --帮派脏
@@ -338,7 +338,7 @@ function CUnionMgr:OnUnionDismiss(oUnion)
 	self.m_tUnionMap[nUnionID] = nil
 	self.m_tUnionNameMap[sUnionName] = nil
 	self:MarkUnionDirty(nUnionID, false)
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HDel(gtDBDef.sUnionDB, nUnionID)
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HDel(gtDBDef.sUnionDB, nUnionID)
 
 	for nIndex, nTmpID in ipairs(self.m_tUnionIDList) do
 		if nTmpID == nUnionID then
@@ -351,7 +351,7 @@ function CUnionMgr:OnUnionDismiss(oUnion)
 	oUnion:RemoveDup()
 
 	local nServiceID = goServerMgr:GetGlobalService(gnWorldServerID, 110)
-	Network.oRemoteCall:Call("OnUnionDismissReq", gnWorldServerID, nServiceID, 0, nUnionID)
+	Network:RMCall("OnUnionDismissReq", nil, gnWorldServerID, nServiceID, 0, nUnionID)
 
 	--日志
 	goLogger:DelUnionLog(gnServerID, nUnionID)
@@ -809,5 +809,5 @@ function CUnionMgr:UpdateUnionAppellation(nRoleID)
 	local nService = oRole:GetLogic()
 	local nSession = oRole:GetSession()
 	local nRoleID = oRole:GetID()
-	Network.oRemoteCall:Call("UpdateUnionAppellation", nServer, nService, nSession, nRoleID, nAppeID, tAppeParam, nSubKey)
+	Network:RMCall("UpdateUnionAppellation", nil, nServer, nService, nSession, nRoleID, nAppeID, tAppeParam, nSubKey)
 end

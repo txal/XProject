@@ -206,6 +206,6 @@ function CMarriageSceneMgr:PalanquinRentReq(oRole)
 			oPalanquin:Start()
 		end
 	end	
-	Network.oRemoteCall:CallWait("MarriageCheckPalanquinRentReq", fnCheckCallback, gnWorldServerID, 
+	Network:RMCall("MarriageCheckPalanquinRentReq", fnCheckCallback, gnWorldServerID, 
 		goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID)
 end

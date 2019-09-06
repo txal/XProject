@@ -25,17 +25,17 @@ end
 
 function CTeamMgr:LoadData()
 	print("加载队伍数据")
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 
 	local sData = oDB:HGet(gtDBDef.sTeamEtcDB, "data")
-	local tData = sData == "" and {} or cjson.decode(sData)
+	local tData = sData == "" and {} or cseri.decode(sData)
 	self.m_nAutoID = tData.m_nAutoID or self.m_nAutoID
 
 	local tKeys = oDB:HKeys(gtDBDef.sTeamDB)
 	for _, sKey in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sTeamDB, sKey)
 		local oTeam = CTeam:new(self, tonumber(sKey))
-		oTeam:LoadData(cjson.decode(sData))
+		oTeam:LoadData(cseri.decode(sData))
 		if oTeam:GetMembers() > 0 then 
 			self.m_tTeamMap[oTeam:GetID()] = oTeam
 
@@ -58,17 +58,17 @@ end
 
 function CTeamMgr:SaveData()
 	print("保存队伍数据")
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for nTeamID, _ in pairs(self.m_tDirtyMap) do
 		local oTeam = self:GetTeamByID(nTeamID)
 		if oTeam then
 			local tData = oTeam:SaveData()
-			oDB:HSet(gtDBDef.sTeamDB, nTeamID, cjson.encode(tData))
+			oDB:HSet(gtDBDef.sTeamDB, nTeamID, cseri.encode(tData))
 			self.m_tDirtyMap[nTeamID] = nil
 		end
 		if nTeamID == 0 then
 			local tEctData = {m_nAutoID=self.m_nAutoID}
-			oDB:HSet(gtDBDef.sTeamEtcDB, "data", cjson.encode(tEctData))
+			oDB:HSet(gtDBDef.sTeamEtcDB, "data", cseri.encode(tEctData))
 			self.m_tDirtyMap[0] = nil
 		end
 	end
@@ -115,7 +115,7 @@ function CTeamMgr:SyncTeamCache(nRoleID, bAll)
 			m_nTeamNum = 0,
 			m_tTeamList = {}, 
 		}
-		Network.oRemoteCall:Call("RoleUpdateReq", oRole:GetStayServer(), oRole:GetLogic(), 
+		Network:RMCall("RoleUpdateReq", nil, oRole:GetStayServer(), oRole:GetLogic(), 
 			oRole:GetSession(), oRole:GetServer(), nRoleID, tData)
 	end
 end
@@ -130,7 +130,7 @@ function CTeamMgr:UpdateTeamFollow(oTeam, bTeamDismiss)
 	if bTeamDismiss then
 		for nIndex, tRole in ipairs(tRoleList) do
 			local oTmpRole = goGPlayerMgr:GetRoleByID(tRole.nRoleID)
-			Network.oRemoteCall:Call("SetFollowReq", oTmpRole:GetStayServer(), oTmpRole:GetLogic(), oTmpRole:GetSession(), oTmpRole:GetMixObjID(), {})
+			Network:RMCall("SetFollowReq", nil, oTmpRole:GetStayServer(), oTmpRole:GetLogic(), oTmpRole:GetSession(), oTmpRole:GetMixObjID(), {})
 		end
 		return
 	end
@@ -143,14 +143,14 @@ function CTeamMgr:UpdateTeamFollow(oTeam, bTeamDismiss)
 		if tRole.nRoleID ~= tLeader.nRoleID then
 			local oTmpRole = goGPlayerMgr:GetRoleByID(tRole.nRoleID)
 			if oTmpRole then
-				Network.oRemoteCall:Call("SetFollowReq", oTmpRole:GetStayServer(), oTmpRole:GetLogic(), oTmpRole:GetSession(), oTmpRole:GetMixObjID(), {})
+				Network:RMCall("SetFollowReq", nil, oTmpRole:GetStayServer(), oTmpRole:GetLogic(), oTmpRole:GetSession(), oTmpRole:GetMixObjID(), {})
 				if not tRole.bLeave then
 					table.insert(tFollowList, oTmpRole:GetMixObjID())
 				end
 			end
 		end
 	end
-	Network.oRemoteCall:Call("SetFollowReq", oLeaderRole:GetStayServer(), oLeaderRole:GetLogic(), oLeaderRole:GetSession(), oLeaderRole:GetMixObjID(), tFollowList)
+	Network:RMCall("SetFollowReq", nil, oLeaderRole:GetStayServer(), oLeaderRole:GetLogic(), oLeaderRole:GetSession(), oLeaderRole:GetMixObjID(), tFollowList)
 end
 
 --解散队伍事件
@@ -185,7 +185,7 @@ function CTeamMgr:OnRoleQuit(nRoleID)
 
 	--解除自己跟随
 	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
-	Network.oRemoteCall:Call("SetFollowReq", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetMixObjID(), {})
+	Network:RMCall("SetFollowReq", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetMixObjID(), {})
 	--更新队伍跟随
 	self:UpdateTeamFollow(oTeam)
 
@@ -215,7 +215,7 @@ function CTeamMgr:OnRoleJoin(nRoleID, oTeam)
 		goTalk:SendTeamMsg(oRole, sTeamContent, true, {nRoleID})
 		local tSessionList = oTeam:GetSessionList({nRoleID})
 		if tSessionList and #tSessionList > 0 then 
-			Network.PBBroadcastExter("TipsMsgRet", tSessionList, {sCont = sTeamContent})
+			Network.PBBroadcastExter("FloatTipsRet", tSessionList, {sCont = sTeamContent})
 		end
 		local oLeader = goGPlayerMgr:GetRoleByID(oTeam:GetLeader().nRoleID)
 		if oLeader then 
@@ -383,7 +383,7 @@ function CTeamMgr:LeaderActivityCheck(nRoleID, nLastPacketTime)
 	print(string.format("LeaderActivityCheck, 队长发呆事件(%d)", nRoleID))
 	oTeam:LeaderActivityCheck(nRoleID, nInactivityTime)
 	--通知逻辑服
-	Network.oRemoteCall:Call("TeamLeaderActivityRet", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), nRoleID, nInactivityTime)
+	Network:RMCall("TeamLeaderActivityRet", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), nRoleID, nInactivityTime)
 end
 
 --角色战斗开始

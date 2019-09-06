@@ -9,49 +9,40 @@ function CLoginMgr:Ctor()
 	self.m_tAccountSSMap = {} 		--SS(server<<32|session)映射: {[mixid]=account, ...}
 	self.m_nOnlineNum = 0           --当前在线的玩家数量(含离线保护中的玩家)
 
-	self.m_tGMAccountMap = {}
-	self.m_tLoginQueue = CLoginQueue:new()
+	self.m_oLoginQueue = CLoginQueue:new()
 end
 
 function CLoginMgr:OnMinTimer()
-	self.m_tGMAccountMap = {}
-	local sSql = "select accountname,source from gmaccount limit 32;"
-	local oMgrSql = GetGModule("DBMgr"):GetMgrMysql()
-	oMgrSql:Query(sSql)
-	while oMgrSql:FetchRow() do
-		local sAccount = oMgrSql:ToString("accountname")
-		local nSource = oMgrSql:ToInt32("source")
-		self.m_tGMAccountMap[sAccount] = nSource
-	end
 end
 
 function CLoginMgr:Release()
-	self.m_tLoginQueue:Release()
+	self.m_oLoginQueue:Release()
 	for nAccountID, oAccount in pairs(self.m_tAccountIDMap) do
 		oAccount:Release()
 	end
 end
 
 function CLoginMgr:GetAccountDB()
-	return goDBMgr:GetSSDB(gnServerID, "user", 1)
+	local nServerID = GetGModule("ServerMgr"):GetServerID()
+	return GetGModule("DBMgr"):GetGameDB(nServerID, "user", 1)
 end
 
-function CLoginMgr:MakeAccountKey(nSource, sAccount)
+function CLoginMgr:MakeAccountKey(sAccount, nServerID, nSource, sChannel)
 	nSource = nSource or 0
-	if nSource == 0 then
-		return sAccount
+	sChannel = sChannel or ""
+
+	local sAccountKey
+	if self:IsDivisionSourceAccount(nServerID) then
+		sAccountKey = string.format("%d_%s_%s", nSource, sChannel, sAccount)
+	else
+		sAccountKey = string.format("%d_%s_%s", 0, sChannel, sAccount)
 	end
-	return (nSource.."_"..sAccount)
+	return sAccountKey
 end
 
-function CLoginMgr:MakeSSKey(nServer, nSession)
-	local nSSKey = nServer << 32 | nSession
+function CLoginMgr:MakeSSKey(nServerID, nSessionID)
+	local nSSKey = nServerID << 32 | nSessionID
 	return nSSKey
-end
-
-function CLoginMgr:GetServiceBySession(nSession)
-	local nService = nSession >> gtGDef.tConst.nServiceShift
-	return nService
 end
 
 function CLoginMgr:GetAccountByID(nAccountID)
@@ -62,17 +53,16 @@ function CLoginMgr:GetAccountByName(sAccountKey)
 	return self.m_tAccountNameMap[sAccountKey]
 end
 
-function CLoginMgr:GetAccountBySS(nServer, nSession)
-	local nSSKey = self:MakeSSKey(nServer, nSession)
+function CLoginMgr:GetAccountBySS(nSSKey)
 	return self.m_tAccountSSMap[nSSKey]
 end
 
 function CLoginMgr:GetLoginQueue()
-	return self.m_tLoginQueue
+	return self.m_oLoginQueue
 end
 
 function CLoginMgr:AddOnlineNum(nCount)
-	self.m_nOnlineNum = self.m_nOnlineNum + nCount
+	self.m_nOnlineNum = math.max(0, self.m_nOnlineNum + nCount)
 	if nCount < 0 then --统计离线玩家数量
 		self:GetLoginQueue():OfflineCount(-nCount, os.time())
 	end
@@ -83,175 +73,134 @@ function CLoginMgr:GetOnlineNum()
 end
 
 --账号下线(清理数据)
-function CLoginMgr:AccountOffline(nAccountID)
+function CLoginMgr:AccountOffline(nAccountID, nAccountSessionID)
 	local oAccount = self:GetAccountByID(nAccountID)
 	if not oAccount then
 		return
 	end
 
-	local nServer = oAccount:GetServer()
-	local nSession = oAccount:GetSession()
-	local nSSKey = self:MakeSSKey(nServer, nSession)
-
-	local nSource = oAccount:GetSource()
-	local sAccount = oAccount:GetName()
-	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
-
+	local nSSkey = self:MakeSSKey(oAccount:GetServerID(), oAccount:GetSessionID())
+	local sAccountKey = self:MakeAccountKey(oAccount:GetName(), oAccount:GetServerID(), oAccount:GetSource(), oAccount:GetChannel())
 	local nOnlineRoleID = oAccount:GetOnlineRoleID()
+
 	if nOnlineRoleID <= 0 then
-		oAccount:Release()
+		LuaTrace("AccountOffline: 无角色登录账号释放成功***", oAccount:GetName())
+		self.m_tAccountSSMap[nSSkey] = nil
 		self.m_tAccountIDMap[nAccountID] = nil
 		self.m_tAccountNameMap[sAccountKey] = nil
-		self.m_tAccountSSMap[nSSKey] = nil
+		oAccount:OnRelease()
 		return
 	end
 
-	Network.oRemoteCall:CallWait("RoleOfflineReq", function()
-		oAccount:RoleOffline()
-		oAccount:Release()
+	Network:RMCall("RoleOfflineReq", function()
+		if oAccount:GetSessionID() > 0 and oAccount:GetSessionID() ~= nAccountSessionID then
+		--异步过程中重连了
+			return LuaTrace("AccountOffline: 账号异步释放失败,重连了***", oAccount:GetName())
+		end
+		LuaTrace("AccountOffline: 有角色登录账号异步释放成功***", oAccount:GetName())
+		self.m_tAccountSSMap[nSSkey] = nil
 		self.m_tAccountIDMap[nAccountID] = nil
 		self.m_tAccountNameMap[sAccountKey] = nil
-		self.m_tAccountSSMap[nSSKey] = nil
+		oAccount:RoleOffline()
+		oAccount:OnRelease()
 
-	end, nServer, oAccount:GetLogic(), nSession, nOnlineRoleID)
+	end, oAccount:GetServerID(), oAccount:GetLogicServiceID(), nAccountSessionID, nOnlineRoleID)
 end
 
 --角色断开连接
-function CLoginMgr:OnClientClose(nServer, nSession)
-	local oAccount = self:GetAccountBySS(nServer, nSession)
-	print("CLoginMgr:OnClientClose***", nServer, nSession, oAccount and oAccount:GetName() or nil)
+function CLoginMgr:OnClientClose(nServerID, nSessionID)
+	local oAccount = self:GetAccountBySS(nServerID, nSessionID)
 	if not oAccount then
 		return
 	end
-	if nSession ~= oAccount:GetSession() then 
-		LuaTrace("会话ID错误", nSession, oAccount:GetSession())
-		return
+	if nSessionID ~= oAccount:GetSessionID() then 
+		return LuaTrace("会话ID错误:", oAccount:GetName(), nSessionID, oAccount:GetSessionID())
 	end
-	local nSSKey = self:MakeSSKey(nServer, nSession)
+	local nSSKey = self:MakeSSKey(nServerID, nSessionID)
 	self.m_tAccountSSMap[nSSKey] = nil
 
 	local nOnlineRoleID = oAccount:GetOnlineRoleID()
 	if nOnlineRoleID > 0 then
-		Network.oRemoteCall:Call("RoleDisconnectReq", oAccount:GetServer(), oAccount:GetLogic(), oAccount:GetSession(), nOnlineRoleID)
-		if not gbServerClosing then
-			Network.oRemoteCall:CallWait("TeamBattleInfoReq", function(nTeamID, tTeam)
-				if not nTeamID then
-					return
-				end
-				if oAccount:GetCurrDupType()==1 and (nTeamID==0 or (nTeamID>0 and #tTeam==1)) then
-					self:AccountOffline(oAccount:GetID())
-				end
-			end, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nOnlineRoleID)
-		end
+		Network:RMCall("RoleDisconnectReq", nil, oAccount:GetServerID(), oAccount:GetLogicServiceID(), oAccount:GetSessionID(), nOnlineRoleID)
 	end
 	oAccount:OnDisconnect()
 end
 
 --发送异地登陆消息
-function CLoginMgr:OtherPlaceLogin(nServer, nSession, sAccount, nNewSession)
-	if nSession <= 0 then
+function CLoginMgr:OtherPlaceLogin(nServerID, nSessionID)
+	if nSessionID <= 0 then
 		return
 	end
-	Network.PBSrv2Clt("OtherPlaceLoginRet", nServer, nSession, {})
+	CLAccount:SendMsg("OtherPlaceLoginRet", {}, nServerID, nSessionID)
+
 	GetGModule("TimerMgr"):Interval(2, function(nTimerID) 
 		GetGModule("TimerMgr"):Clear(nTimerID)
-		Network.CmdSrv2Srv("KickClientReq", nServer, nSession>>gtGDef.tConst.nServiceShift, nSession)
+		Network.CmdSrv2Srv("KickClientReq", nServerID, nSessionID>>gtGDef.tConst.nServiceShift, nSessionID)
 	end)
 end
 
---判断数据区分
-function CLoginMgr:CheckDivisionPlatform(nServer, nSource, sAccount)
-	nSource = nSource or 0
-	if goServerMgr:IsDivisionPlatform(nServer) then
-		return nSource
-	end
-	return 0
+--账号数据是否区分
+function CLoginMgr:IsDivisionSourceAccount(nServerID)
+	return GetGModule("ServerMgr"):IsDivisionSourceAccount(nServerID)
 end
 
 --处理合服账号名问题
-function CLoginMgr:DealMergeServerAccount(nSource, sAccount, nServerID)
-	if nServerID > 0 and goServerMgr:IsMerged(nServerID) then
-		local sSuffix = ""
-		if nServerID > 0 then
-			sSuffix = string.format("_[%d]", nServerID)
-		end
-		local sTmpAccount = string.format("%s%s", sAccount, sSuffix)
-		return sTmpAccount
-	else
-		return sAccount
+--@nClientServerID 客户端发过来的要进入的目标服务器ID
+function CLoginMgr:DealMergedServerAccount(sAccount, nClientServerID)
+	if nClientServerID > 0 and GetGModule("ServerMgr"):IsMerged(nClientServerID) then
+		local sSuffix = string.format("_[%d]", nClientServerID)
+		sAccount = string.format("%s%s", sAccount, sSuffix)
 	end
+	return sAccount
 end
 
 --角色列表请求
-function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount, nServerID)
-	print("CLoginMgr:RoleListReq***", nServer, nSession, nSource, sAccount, nServerID)
-	if sAccount == "" then
-		return CLAccount:Tips("账号不能为空", nServer, nSession)
-	end
-	-- if not string.find(sAccount, "abc") and not string.find(sAccount, "test") then
-	--  	return CLAccount:Tips("系统改造中，goodgoodstudy,daydayup!!", nServer, nSession)
-	-- end
-	nSource = self:CheckDivisionPlatform(nServer, nSource, sAccount)
-
-	--3733渠道特殊处理
-	if string.find(sAccount, "3733_") then
-		local oDB = self:GetAccountDB()
-		local sRawAccount = string.sub(sAccount, 6)
-		local sRawAccountKey = self:MakeAccountKey(nSource, sRawAccount)
-		local sData = oDB:HGet(gtDBDef.sAccountNameDB, sRawAccountKey)
-		if sData ~= "" then
-			sAccount = sRawAccount
-		end
-	end
-
-	--GM账号处理
-	local nGMSource = self.m_tGMAccountMap[sAccount]
-	if nGMSource then
-		nSource = nGMSource
+function CLoginMgr:RoleListReq(sAccount, nServerID, nSessionID, nSource, sChannel, nClientServerID)
+	if string.Trim(sAccount) == "" then
+		return CLAccount:Tips("账号不能为空", nServerID, nSessionID)
 	end
 
 	--合服账号名字处理
-	sAccount = self:DealMergeServerAccount(nSource, sAccount, nServerID)
-	print("DealMergeServerAccount***", sAccount)
+	sAccount = self:DealMergedServerAccount(sAccount, nClientServerID)
 
-	local nNewSSKey = self:MakeSSKey(nServer, nSession)
-	local sAccountKey = self:MakeAccountKey(nSource, sAccount)
+	local sAccountKey = self:MakeAccountKey(sAccount, nServerID, nSource, sChannel)
+	local nNewSSKey = self:MakeSSKey(nServerID, nSessionID)
 	local oAccount = self:GetAccountByName(sAccountKey)
 
 	if oAccount then
-		local nOldServer = oAccount:GetServer()
-		assert(nOldServer == nServer, "服务器ID错误")
-		local nOldSession = oAccount:GetSession()
-		local nOldSSKey = self:MakeSSKey(nOldServer, nOldSession)
+		local nOldServerID = oAccount:GetServerID()
+		local nOldSessionID = oAccount:GetSessionID()
+		assert(nOldServerID == nServerID, "服务器ID错误")
+		local nOldSSKey = self:MakeSSKey(nOldServerID, nOldSessionID)
 
 		local nOnlineRoleID = oAccount:GetOnlineRoleID()
-		if nOnlineRoleID > 0 and nOldSession > 0 then
-			print("已有角色登陆:", nOnlineRoleID, nSession, nOldSession)
+		if nOnlineRoleID > 0 and nOldSessionID > 0 then
 		--已有角色登陆
-			Network.oRemoteCall:CallWait("RoleDisconnectReq", function(nAccountID)
+			print("已有角色登陆:", nOnlineRoleID, nSessionID, nOldSessionID)
+			Network:RMCall("RoleDisconnectReq", function(nAccountID)
 				oAccount:OnDisconnect()
-				oAccount:BindSession(nSession)
+				oAccount:BindSession(nSessionID)
 
 				self.m_tAccountSSMap[nOldSSKey] = nil
 				self.m_tAccountSSMap[nNewSSKey] = oAccount
 				oAccount:RoleListReq()
 
-				if nSession ~= nOldSession then
-					self:OtherPlaceLogin(nOldServer, nOldSession, sAccount, nSession)
+				if nSessionID ~= nOldSessionID then
+					self:OtherPlaceLogin(nOldServerID, nOldSessionID)
 				end
 
-			end, nOldServer, oAccount:GetLogic(), nOldSession, nOnlineRoleID)
+			end, nOldServerID, oAccount:GetLogicServiceID(), nOldSessionID, nOnlineRoleID)
 
 		else
-			print("没有角色登陆:", nSession)
 		--没有角色登陆
-			oAccount:BindSession(nSession)
+			print("没有角色登陆:", nSessionID)
+			oAccount:BindSession(nSessionID)
 			self.m_tAccountSSMap[nOldSSKey] = nil
 			self.m_tAccountSSMap[nNewSSKey] = oAccount
 			oAccount:RoleListReq()
 
-			if nSession ~= nOldSession then
-				self:OtherPlaceLogin(nOldServer, nOldSession, sAccount, nSession)
+			if nSessionID ~= nOldSessionID then
+				self:OtherPlaceLogin(nOldServerID, nOldSessionID)
 			end
 
 		end
@@ -263,13 +212,15 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount, nServerID)
 		local sData = oDB:HGet(gtDBDef.sAccountNameDB, sAccountKey)
 		if sData == "" then
 		--账号不存在,创建之
-			nAccountID = CLAccount:GenPlayerID()
-			oDB:HSet(gtDBDef.sAccountNameDB, sAccountKey, cjson.encode({nAccountID=nAccountID, nTime=os.time()}))
-			oDB:HSet(gtDBDef.sAccountNameDB, nAccountID, cjson.encode({nSource=nSource, sAccount=sAccount, nTime=os.time()}))
-			goLogger:CreateAccountLog(nSource, nAccountID, sAccount, 0)
+			nAccountID = CUtil:GenUUID()
+			local tAccountData = {nSource=nSource, sChannel=sChannel, sAccount=sAccount, nAccountID=nAccountID, sAccountKey=sAccountKey, nTime=os.time()}
+			local sAccountData = cseri.encode(tAccountData)
+			oDB:HSet(gtDBDef.sAccountNameDB, sAccountKey, sAccountData)
+			oDB:HSet(gtDBDef.sAccountNameDB, nAccountID, sAccountData)
+			goLogger:CreateAccountLog(nSource, sChannel, nAccountID, sAccount, 0)
 
 		else
-			local tData = cjson.decode(sData)
+			local tData = cseri.decode(sData)
 			nAccountID = tData.nAccountID
 			if not nAccountID then
 				oDB:HDel(gtDBDef.sAccountNameDB, sAccountKey)
@@ -277,11 +228,10 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount, nServerID)
 			end
 		end
 		--加载账号数据
-		oAccount = CLAccount:new(nServer, nSession, nAccountID, nSource, sAccount)
+		oAccount = CLAccount:new(nServerID, nSessionID, nAccountID, sAccount, nSource, sChannel)
+		self.m_tAccountSSMap[nNewSSKey] = oAccount
 		self.m_tAccountIDMap[nAccountID] = oAccount
 		self.m_tAccountNameMap[sAccountKey] = oAccount
-		self.m_tAccountSSMap[nNewSSKey] = oAccount
-
 		oAccount:RoleListReq()
 
 	end
@@ -289,81 +239,77 @@ function CLoginMgr:RoleListReq(nServer, nSession, nSource, sAccount, nServerID)
 end
 
 --创建角色请求
-function CLoginMgr:RoleCreateReq(nServer, nSession, tData)
-	print("CLoginMgr:RoleCreateReq***", tData)
+function CLoginMgr:RoleCreateReq(nServerID, nSessionID, tData)
 	local nAccountID = tData.nAccountID 
 	local nConfID = tData.nConfID
-	local sRole = tData.sName
+	local sRoleName = tData.sRoleName
 	
-	local nLen = string.len(sRole)
-	if nLen <= 0 or nLen > 8*3 then
-		return CLAccount:Tips("名字长度非法", nServer, nSession)
+	local nNameLen = string.len(sRoleName)
+	if nNameLen <= 0 or nNameLen > 8*3 then
+		return CLAccount:Tips("角色名字太长啦", nServerID, nSessionID)
 	end
-
-	local nInviteRoleID = tData.nInviteRoleID
 	local oAccount = self:GetAccountByID(nAccountID)
-	assert(oAccount, "账号未加载")
+	if not oAccount then
+		return CLAccount:Tips("账号已离线，请刷新页面", nServerID, nSessionID)
+	end
 
 	local function _fnBadWordCallback(bBadWord)
 		if bBadWord then
 			return oAccount:Tips("角色名存在非法字符")
 		end
 
-		local nOldServer = oAccount:GetServer()
-		local nOldSession = oAccount:GetSession()
-		assert(nOldServer == nServer, "服务器错误")
-		assert(nOldSession == nSession, "会话ID错误") --1定相等
+		local nOldServerID = oAccount:GetServerID()
+		local nOldSessionID = oAccount:GetSessionID()
+		assert(nOldServerID == nServerID, "服务器错误")
+		assert(nOldSessionID == nSessionID, "会话ID错误") --1定相等
 
 		if oAccount:GetRoleCount() >= 1 then
-			return oAccount:Tips(string.format("每个帐号只能创建%d个角色", 1))
+			return oAccount:Tips("每个帐号只能创建1个角色")
 		end
 
 		local nOnlineRoleID = oAccount:GetOnlineRoleID()
 		if nOnlineRoleID > 0 then
-			Network.oRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+			Network:RMCall("RoleOfflineReq", function(nAccountID)
 				if (nAccountID or 0) <= 0 then
 					return LuaTrace("账号离线失败", nAccountID)
 				end
 
-				oAccount:RoleOffline() --离线操作
-				oAccount:BindSession(nSession)
+				oAccount:RoleOffline()
+				oAccount:BindSession(nSessionID)
 
-				if oAccount:CreateRole(nConfID, sRole, nInviteRoleID) then
+				if oAccount:CreateRole(nConfID, sRoleName) then
 					self.m_tAccountSSMap[nNewSSKey] = oAccount
-					LuaTrace("角色登陆成功", oAccount:GetName(), nAccountID, nOnlineRoleID)
+					LuaTrace("角色登陆成功", nAccountID, oAccount:GetName(), nOnlineRoleID)
 				end
 
-			end , nOldServer, oAccount:GetLogic(), nOldSession, nOnlineRoleID)
+			end , nOldServerID, oAccount:GetLogicServiceID(), nOldSessionID, nOnlineRoleID)
 
 		else
 			--创建角色并登录
-			oAccount:BindSession(nSession)
-			if oAccount:CreateRole(nConfID, sRole, nInviteRoleID) then
+			oAccount:BindSession(nSessionID)
+			if oAccount:CreateRole(nConfID, sRoleName) then
 				LuaTrace("创建角色并登陆成功")
 			end
 
 		end
 	end
-	CUtil:HasBadWord(sRole, _fnBadWordCallback)
+	CUtil:HasBadWord(sRoleName, _fnBadWordCallback)
 end
 
 --角色登陆请求
-function CLoginMgr:RoleLoginReq(nServer, nSession, nAccountID, nRoleID)
-	print("CLoginMgr:RoleLoginReq***", nServer, nSession)
-	local nNewSSKey = self:MakeSSKey(nServer, nSession)
-	local function _RoleLogin(oAccount, nSession, nOldServer, nOldSession)
-		oAccount:BindSession(nSession)
+function CLoginMgr:RoleLoginReq(nServerID, nSessionID, nAccountID, nRoleID)
+	local nNewSSKey = self:MakeSSKey(nServerID, nSessionID)
+	local function _fnRoleLogin(oAccount, nServerID, nSessionID, nOldSessionID)
+		oAccount:BindSession(nSessionID)
 		if oAccount:RoleLogin(nRoleID) then
 			self.m_tAccountSSMap[nNewSSKey] = oAccount
 			LuaTrace("角色登陆成功", oAccount:GetName(), nAccountID, nRoleID)
 		end
 
-		if nOldServer and nOldSession then
-			if nOldSession ~= nSession then
-				local nOldSSKey = self:MakeSSKey(nOldServer, nOldSession)
-				self.m_tAccountSSMap[nOldSSKey] = nil
-				self:OtherPlaceLogin(nOldServer, nOldSession, oAccount:GetName(), nSession)
-			end
+		if nOldServerID and nOldSessionID and nOldSessionID ~= nSessionID then
+			local nOldSSKey = self:MakeSSKey(nOldServerID, nOldSessionID)
+			self.m_tAccountSSMap[nOldSSKey] = nil
+			self:OtherPlaceLogin(nOldServerID, nOldSessionID)
 		end
 	end
 
@@ -373,42 +319,42 @@ function CLoginMgr:RoleLoginReq(nServer, nSession, nAccountID, nRoleID)
 		if oAccount:GetAccountState() == gtAccountState.eLockAccount then
 			return oAccount:Tips("账号已被封停，请联系客服")
 		end
-		local nOldServer = oAccount:GetServer()
-		assert(nOldServer == nServer, "服务器ID错误")
-		local nOldSession = oAccount:GetSession()
+		local nOldServerID = oAccount:GetServerID()
+		local nOldSessionID = oAccount:GetSessionID()
+		assert(nOldServerID == nServerID, "服务器ID错误")
 
 		--当前有角色
 		local nOnlineRoleID = oAccount:GetOnlineRoleID()
 		if nOnlineRoleID > 0 then
 			if nOnlineRoleID == nRoleID then
 			--同一角色并在线则断线处理,否则直接登录
-				if nOldSession > 0 and nOldSession ~= nSession then
-					Network.oRemoteCall:CallWait("RoleDisconnectReq", function(nAccountID)
-						_RoleLogin(oAccount, nSession, nOldServer, nOldSession)
+				if nOldSessionID > 0 and nOldSessionID ~= nSessionID then
+					Network:RMCall("RoleDisconnectReq", function(nAccountID)
+						_fnRoleLogin(oAccount, nServerID, nSessionID, nOldSessionID)
 
-					end , nOldServer, oAccount:GetLogic(), nOldSession, nOnlineRoleID)
+					end , nServerID, oAccount:GetLogicServiceID(), nOldSessionID, nOnlineRoleID)
 
 				else
-					_RoleLogin(oAccount, nSession, nOldServer, nOldSession)
+					_fnRoleLogin(oAccount, nServerID, nSessionID, nOldSessionID)
 
 				end
 
 			else
 			--不同角色就先清理当前角色数据再登陆新角色
-				Network.oRemoteCall:CallWait("RoleOfflineReq", function(nAccountID)
+				Network:RMCall("RoleOfflineReq", function(nAccountID)
 					if nAccountID <= 0 then
-						return LuaTrace("账号离线失败", nAccountID)
+						return LuaTrace("账号离线失败", oAccount:GetName(), nAccountID, nOnlineRoleID)
 					end
 					oAccount:RoleOffline() --离线操作
-					_RoleLogin(oAccount, nSession, nOldServer, nOldSession)
+					_fnRoleLogin(oAccount, nServerID, nSessionID, nOldSessionID)
 
-				end , nOldServer, oAccount:GetLogic(), nOldSession, nOnlineRoleID)
+				end , nServerID, oAccount:GetLogicServiceID(), nOldSessionID, nOnlineRoleID)
 
 			end
 
 		--当前没有角色直接登录
 		else
-			_RoleLogin(oAccount, nSession, nOldServer, nOldSession)
+			_fnRoleLogin(oAccount, nServerID, nSessionID, nOldSessionID)
 
 		end
 
@@ -417,25 +363,26 @@ function CLoginMgr:RoleLoginReq(nServer, nSession, nAccountID, nRoleID)
 		local oDB = self:GetAccountDB()
 		local sData = oDB:HGet(gtDBDef.sAccountNameDB, nAccountID)
 		if sData == "" then
-			return CLAccount:Tips("账号不存在", nServer, nSession)
+			return CLAccount:Tips("账号不存在", nServerID, nSessionID)
 		end
 
 		--加载账号数据
-		local oAccount = CLAccount:new(nServer, nSession, nAccountID, 0, "")
+		local oAccount = CLAccount:new(nServerID, nSessionID, nAccountID, "", 0, "")
 		if oAccount:GetAccountState() == gtAccountState.eLockAccount then
 			oAccount:Release()
 			return oAccount:Tips("账号已被封停，请联系客服")
 		end
 		
-		self.m_tAccountIDMap[nAccountID] = oAccount
-		local sAccountKey = self:MakeAccountKey(oAccount:GetSource(), oAccount:GetName())
-		self.m_tAccountNameMap[sAccountKey] = oAccount
 		self.m_tAccountSSMap[nNewSSKey] = oAccount
+		self.m_tAccountIDMap[nAccountID] = oAccount
+		local sAccountKey = self:MakeAccountKey(oAccount:GetName(), oAccount:GetServerID(), oAccount:GetSource(), oAccount:GetChannel())
+		self.m_tAccountNameMap[sAccountKey] = oAccount
+
 		if not oAccount:RoleLogin(nRoleID) then
 			oAccount:Release()
+			self.m_tAccountSSMap[nNewSSKey] = nil
 			self.m_tAccountIDMap[nAccountID] = nil
 			self.m_tAccountNameMap[sAccountKey] = nil
-			self.m_tAccountSSMap[nNewSSKey] = nil
 			return
 		end
 		LuaTrace("角色登陆成功", oAccount:GetName(), nAccountID, nRoleID)
@@ -460,54 +407,48 @@ function CLoginMgr:IsServerMax()
 end
 
 --有服务断开,如果是网关则相关帐号做离线处理
-function CLoginMgr:OnServiceClose(nServer, nService)
-	--如果是网关断开则对应的玩家断线处理
-	local bGateService = false
-	for _, tConf in ipairs(goServerMgr:GetGateServiceList()) do
-		if tConf.nServer == nServer and nService == tConf.nID then
-			bGateService = true
+function CLoginMgr:OnServiceClose(nServerID, nServiceID)
+	local tGateServiceList = GetGModule("ServerMgr"):GetGateServiceList()
+	for _, tService in ipairs(tGateServiceList) do
+		if tService .nServerID == nServerID and tService.nServiceID == nServiceID then
+			for nAccountID, oAccount in pairs(self.m_tAccountIDMap) do
+				local nSessionID = oAccount:GetSessionID()
+				if nSessionID > 0 then
+					local nGateServiceID = CUtil:GetGateBySession(nSessionID)
+					if oAccount:GetServerID() == nServerID and nGateServiceID == nServiceID then
+						self:OnClientClose(nServerID, nSessionID)
+					end
+				end
+			end
 			break
-		end
-	end
-	if not bGateService then
-		return
-	end
-
-	--离线处理
-	LuaTrace("网关关闭------", nServer, nService)
-	for nID, oAccount in pairs(self.m_tAccountIDMap) do
-		local nSession = oAccount:GetSession()
-		local nTmpService = self:GetServiceBySession(nSession)
-		if oAccount:GetServer() == nServer and nTmpService == nService then
-			self:OnClientClose(nServer, nSession)
 		end
 	end
 end
 
---服务器关闭
-function CLoginMgr:OnServerClose(nServer)
-	--角色离线,保存数据
+--服务器关闭,对应服的角色断线处理
+function CLoginMgr:OnServerClose(nServerID)
 	for nID, oAccount in pairs(self.m_tAccountIDMap) do
-		local nSession = oAccount:GetSession()
-		local nService = self:GetServiceBySession(nSession)
-		self:OnClientClose(nServer, nSession)
-		oAccount:SaveData()
+		if oAccount:GetServerID() == nServerID then
+			local nSessionID = oAccount:GetSessionID()
+			if nSessionID > 0 then
+				self:OnClientClose(nServerID, nSessionID)
+			end
+		end
 	end
 end
 
 --更新角色摘要
-function CLoginMgr:RoleUpdateSummaryReq(nAccountID, nRoleID, tSummary)
-	print("CLoginMgr:RoleUpdateSummaryReq***", nAccountID, nRoleID, tSummary)
+function CLoginMgr:UpdateSimpleRoleReq(nAccountID, nRoleID, tData)
 	local oAccount = self:GetAccountByID(nAccountID)
 	if not oAccount then
 		return LuaTrace("账号未登陆", nAccountID)
 	end
-	oAccount:UpdateRoleSummary(nRoleID, tSummary)
+	oAccount:UpdateSimpleRoleData(nRoleID, tData)
 end
 
 --更新账号数据
-function CLoginMgr:UpdateAccountValueReq(nAccountID, tData)
-	local bTempAccount = false
+function CLoginMgr:UpdateAccountDataReq(nAccountID, tData)
+	local bTmpAccount = false
 	local oAccount = self:GetAccountByID(nAccountID)
 	if not oAccount then
 		local oDB = self:GetAccountDB()
@@ -515,12 +456,12 @@ function CLoginMgr:UpdateAccountValueReq(nAccountID, tData)
 		if sData == "" then
 			return false
 		end
-		bTempAccount = true
-		oAccount = CLAccount:new(gnServerID, 0, nAccountID, 0, "")
+		oAccount = CLAccount:new(GetGModule("ServerMgr"):GetServerID(), 0, nAccountID, "", 0, "")
+		bTmpAccount = true
 	end
-	oAccount:UpdateValueReq(tData)
+	oAccount:UpdateAccountData(tData)
 	oAccount:SaveData()
-	if bTempAccount then
+	if bTmpAccount then
 		oAccount:Release()
 	end
 	return true
@@ -532,7 +473,7 @@ function CLoginMgr:DeleteRoleReq(nAccountID, nRoleID)
 	if not oAccount then --当前，必须登录账号，才可以删除 
 		return LuaTrace("账号未登陆", nAccountID)
 	end
-	print(string.format("开始删除 账号(%d), 角色(%d)", nAccountID, nRoleID))
+	LuaTrace(string.format("开始删除 账号(%d), 角色(%d)", nAccountID, nRoleID))
 	oAccount:DeleteRoleReq(nRoleID)
 end
 

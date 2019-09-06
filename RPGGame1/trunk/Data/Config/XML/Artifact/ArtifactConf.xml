@@ -10,18 +10,18 @@
   <Author>Administrator</Author>
   <LastAuthor>Windows 用户</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2019-03-20T12:43:32Z</LastSaved>
+  <LastSaved>2019-06-25T08:00:16Z</LastSaved>
   <Version>15.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
-  <KSOProductBuildVer dt:dt="string">2052-11.1.0.8415</KSOProductBuildVer>
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
  </CustomDocumentProperties>
  <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11595</WindowHeight>
-  <WindowWidth>29010</WindowWidth>
+  <WindowHeight>12180</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
   <WindowTopX>0</WindowTopX>
   <WindowTopY>0</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
@@ -36,11 +36,11 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s88">
+  <Style ss:ID="s62">
    <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s89">
+  <Style ss:ID="s63">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
@@ -48,16 +48,16 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s90">
+  <Style ss:ID="s64">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
    <NumberFormat ss:Format="@"/>
   </Style>
-  <Style ss:ID="s91">
+  <Style ss:ID="s65">
    <Alignment ss:Vertical="Center" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s92">
+  <Style ss:ID="s66">
    <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
@@ -65,88 +65,83 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s93">
+  <Style ss:ID="s67">
    <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <NumberFormat ss:Format="#,##0"/>
   </Style>
-  <Style ss:ID="s94">
+  <Style ss:ID="s68">
    <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
   </Style>
-  <Style ss:ID="s95">
+  <Style ss:ID="s69">
    <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Interior/>
   </Style>
-  <Style ss:ID="s96">
+  <Style ss:ID="s70">
    <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s97">
+  <Style ss:ID="s71">
    <Alignment ss:Vertical="Bottom"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s98">
+  <Style ss:ID="s72">
    <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
    <Interior/>
    <NumberFormat/>
   </Style>
-  <Style ss:ID="s99">
+  <Style ss:ID="s73">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s100">
+  <Style ss:ID="s74">
    <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s101">
-   <Alignment ss:Vertical="Bottom"/>
-   <Borders/>
+  <Style ss:ID="s75">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
    <Interior/>
-   <NumberFormat/>
-   <Protection/>
   </Style>
-  <Style ss:ID="s102">
-   <Alignment ss:Vertical="Bottom"/>
-  </Style>
-  <Style ss:ID="s103">
+  <Style ss:ID="s76">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s104">
+  <Style ss:ID="s77">
    <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"
     ss:Bold="1"/>
   </Style>
-  <Style ss:ID="s105">
+  <Style ss:ID="s78">
    <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
   </Style>
-  <Style ss:ID="s106">
+  <Style ss:ID="s79">
    <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s107">
+  <Style ss:ID="s80">
    <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
    <NumberFormat ss:Format="0%"/>
   </Style>
-  <Style ss:ID="s108">
+  <Style ss:ID="s81">
    <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
   </Style>
-  <Style ss:ID="s109">
+  <Style ss:ID="s82">
    <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
   </Style>
-  <Style ss:ID="s110">
+  <Style ss:ID="s83">
    <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
@@ -157,31 +152,31 @@
    <NamedRange ss:Name="_FilterDatabase" ss:RefersTo="=ctArtifactConf!#REF!"
     ss:Hidden="1"/>
   </Names>
-  <Table ss:ExpandedColumnCount="15" ss:ExpandedRowCount="89" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s88" ss:DefaultColumnWidth="54"
+  <Table ss:ExpandedColumnCount="15" ss:ExpandedRowCount="87" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
-   <Column ss:StyleID="s89" ss:AutoFitWidth="0"/>
-   <Column ss:StyleID="s89" ss:Width="57.75"/>
-   <Column ss:StyleID="s88" ss:Width="67.5"/>
-   <Column ss:StyleID="s88" ss:Width="48"/>
-   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="183.75"/>
-   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="195"/>
-   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="194.25"/>
-   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="183.75" ss:Span="3"/>
-   <Column ss:Index="12" ss:StyleID="s88" ss:Width="114"/>
-   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="123.75" ss:Span="1"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0"/>
+   <Column ss:StyleID="s63" ss:Width="57.75"/>
+   <Column ss:StyleID="s62" ss:Width="67.5"/>
+   <Column ss:StyleID="s62" ss:Width="48"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="183.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="195"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="194.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="183.75" ss:Span="3"/>
+   <Column ss:Index="12" ss:StyleID="s62" ss:Width="114"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="123.75" ss:Span="1"/>
    <Row ss:AutoFitHeight="0" ss:Height="78.75">
-    <Cell ss:StyleID="s90"><Data ss:Type="String">神器ID</Data></Cell>
-    <Cell ss:Index="6" ss:StyleID="s91"><Data ss:Type="String">101:气血&#10;102:魔法&#10;103:怒气&#10;104:攻击&#10;105:防御&#10;106:灵力&#10;107:速度&#10;108:伤害(百分比100倍,战斗中用)&#10;201:法术攻击(值)&#10;202:法术防御(值)&#10;203:治疗强度(值)&#10;204:封印命中(百分比100倍)&#10;205:封印抗性(百分比100倍)&#10;206:法术命中&#10;207:法术闪避&#10;208:法术伤害(百分比100倍,战斗中用)&#10;301:命中率&#10;302:闪避率&#10;303:暴击率&#10;304:抗暴率</Data></Cell>
-    <Cell ss:StyleID="s91"><Data ss:Type="String">101:气血&#10;102:魔法&#10;103:怒气&#10;104:攻击&#10;105:防御&#10;106:灵力&#10;107:速度&#10;108:伤害(百分比100倍,战斗中用)&#10;201:法术攻击(值)&#10;202:法术防御(值)&#10;203:治疗强度(值)&#10;204:封印命中(百分比100倍)&#10;205:封印抗性(百分比100倍)&#10;206:法术命中&#10;207:法术闪避&#10;208:法术伤害(百分比100倍,战斗中用)&#10;301:命中率&#10;302:闪避率&#10;303:暴击率&#10;304:抗暴率</Data></Cell>
-    <Cell ss:StyleID="s91"><Data ss:Type="String">101:气血&#10;102:魔法&#10;103:怒气&#10;104:攻击&#10;105:防御&#10;106:灵力&#10;107:速度&#10;108:伤害(百分比100倍,战斗中用)&#10;201:法术攻击(值)&#10;202:法术防御(值)&#10;203:治疗强度(值)&#10;204:封印命中(百分比100倍)&#10;205:封印抗性(百分比100倍)&#10;206:法术命中&#10;207:法术闪避&#10;208:法术伤害(百分比100倍,战斗中用)&#10;301:命中率&#10;302:闪避率&#10;303:暴击率&#10;304:抗暴率</Data></Cell>
-    <Cell ss:StyleID="s91"/>
-    <Cell ss:StyleID="s91"><Data ss:Type="String">道具id,增加经验;</Data></Cell>
-    <Cell ss:StyleID="s91"/>
-    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">神器ID</Data></Cell>
+    <Cell ss:Index="6" ss:StyleID="s65"><Data ss:Type="String">101:气血&#10;102:魔法&#10;103:怒气&#10;104:攻击&#10;105:防御&#10;106:灵力&#10;107:速度&#10;108:伤害(百分比100倍,战斗中用)&#10;201:法术攻击(值)&#10;202:法术防御(值)&#10;203:治疗强度(值)&#10;204:封印命中(百分比100倍)&#10;205:封印抗性(百分比100倍)&#10;206:法术命中&#10;207:法术闪避&#10;208:法术伤害(百分比100倍,战斗中用)&#10;301:命中率&#10;302:闪避率&#10;303:暴击率&#10;304:抗暴率</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">101:气血&#10;102:魔法&#10;103:怒气&#10;104:攻击&#10;105:防御&#10;106:灵力&#10;107:速度&#10;108:伤害(百分比100倍,战斗中用)&#10;201:法术攻击(值)&#10;202:法术防御(值)&#10;203:治疗强度(值)&#10;204:封印命中(百分比100倍)&#10;205:封印抗性(百分比100倍)&#10;206:法术命中&#10;207:法术闪避&#10;208:法术伤害(百分比100倍,战斗中用)&#10;301:命中率&#10;302:闪避率&#10;303:暴击率&#10;304:抗暴率</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">101:气血&#10;102:魔法&#10;103:怒气&#10;104:攻击&#10;105:防御&#10;106:灵力&#10;107:速度&#10;108:伤害(百分比100倍,战斗中用)&#10;201:法术攻击(值)&#10;202:法术防御(值)&#10;203:治疗强度(值)&#10;204:封印命中(百分比100倍)&#10;205:封印抗性(百分比100倍)&#10;206:法术命中&#10;207:法术闪避&#10;208:法术伤害(百分比100倍,战斗中用)&#10;301:命中率&#10;302:闪避率&#10;303:暴击率&#10;304:抗暴率</Data></Cell>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">道具id,增加经验;</Data></Cell>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s92"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">nID</Data></Cell>
     <Cell><Data ss:Type="String">sName</Data></Cell>
     <Cell><Data ss:Type="String">nArtifactStar</Data></Cell>
     <Cell><Data ss:Type="String">nLevel</Data></Cell>
@@ -209,535 +204,636 @@
     <Cell><Data ss:Type="String">名称</Data></Cell>
     <Cell><Data ss:Type="String">神器星级</Data></Cell>
     <Cell><Data ss:Type="String">神器等级</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">属性列表</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">属性列表</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">属性列表</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">属性列表</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">属性列表</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">属性列表</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">属性列表</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">属性列表</Data></Cell>
     <Cell><Data ss:Type="String">获得来源</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">升级道具积分</Data></Cell>
-    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">升级道具积分</Data></Cell>
+    <Cell ss:StyleID="s68"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33001</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">夜月剑</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">纳天袋</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">104;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">104,math.floor((ilv*3.8+15)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">单笔充值</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33001,100;34001,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104,math.floor((ilv*3.8+15)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">充值&#45;-充值返利</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33001,100;34001,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33011</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">飞鱼</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33011</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">七宝钵</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">102;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">102,math.floor(ilv*5*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">天官赐福</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33011,100;34002,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102,math.floor(ilv*5*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">福利&#45;-充值排行</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33011,100;34002,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33021</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">金刚杵</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33021</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">降魔杵</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">105;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">105,math.floor((ilv*1.5+10)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">天官赐福</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33021,100;34003,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">105;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">105,math.floor((ilv*1.5+10)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">福利&#45;-消耗排行</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33021,100;34003,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33031</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">蓝精灵</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33031</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">巨阙重剑</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">106;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">106,math.floor((ilv*1.1+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">充值排行</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33031,100;34004,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">106;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">106,math.floor((ilv*1.1+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">每日充值</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33031,100;34004,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33041</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">降魔杖</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33041</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">冥王盾</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">101;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">101,math.floor((ilv*3+10)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">充值排行</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33041,100;34005,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">101;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">101,math.floor((ilv*3+10)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">神魔录&#45;-普通第八章</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33041,100;34005,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33051</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">聚财钵</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33051</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">玄都杖</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">107;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">107,math.floor((ilv*0.4+4)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">乾坤灵宝</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33051,100;34006,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">107;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">107,math.floor((ilv*0.4+4)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">神魔录&#45;-精英第七章</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33051,100;34006,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33061</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">女精灵</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33061</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">混元法珠</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">104;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">104,math.floor((ilv*3.8+15)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104,math.floor((ilv*3.8+15)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
     <Cell><Data ss:Type="String">排行榜活动获得</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33061,100;34007,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33061,100;34007,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33071</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">玄黄鉴</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33071</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">归元弓</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">102;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">102,math.floor(ilv*5*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">竞技兑换，每日限购</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33071,100;34008,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102,math.floor(ilv*5*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">竞技兑换，每日限购，神魔录</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33071,100;34008,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33081</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">玄冥面具</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33081</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">修罗面具</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">105;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">105,math.floor((ilv*1.5+10)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">105;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">105,math.floor((ilv*1.5+10)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
     <Cell><Data ss:Type="String">每日限购</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33081,100;34009,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33081,100;34009,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33091</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">荷花扇</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33091</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">先天葫芦</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">106;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">106,math.floor((ilv*1.1+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">106;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">106,math.floor((ilv*1.1+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
     <Cell><Data ss:Type="String">排行榜活动获得</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33091,100;34010,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33091,100;34010,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33101</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">山河伞</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33101</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">梧桐枝</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">101;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">101,math.floor((ilv*3+10)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">101;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">101,math.floor((ilv*3+10)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
     <Cell><Data ss:Type="String">每日活跃</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33101,100;34011,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33101,100;34011,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33111</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">人参果</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33111</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">阎罗令</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">107;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">107,math.floor((ilv*0.4+4)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">107;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">107,math.floor((ilv*0.4+4)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
     <Cell><Data ss:Type="String">排行榜活动获得</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33111,100;34012,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33111,100;34012,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33121</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">雪花</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33121</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">弑神戟</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">104;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">104,math.floor((ilv*3.8+15)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104,math.floor((ilv*3.8+15)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
     <Cell><Data ss:Type="String">妖晶兑换</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33121,100;34013,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33121,100;34013,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33131</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">仙兔</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33131</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">无极伞</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">102;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">102,math.floor(ilv*5*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">充值礼包/妖精兑换</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33131,100;34014,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102,math.floor(ilv*5*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">福利&#45;-单笔充值</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33131,100;34014,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33141</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">小虎鲨</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33141</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">风火扇</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">105;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">105,math.floor((ilv*1.5+10)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">妖晶兑换</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33141,100;34015,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">105;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">105,math.floor((ilv*1.5+10)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">禁地</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33141,100;34015,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33151</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">三宝如意</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33151</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">破魔刃</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">106;</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">106,math.floor((ilv*1.1+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">妖晶兑换</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33151,100;34016,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">106;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">106,math.floor((ilv*1.1+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">禁地</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33151,100;34016,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33161</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">小雪人</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">33161</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">阴阳珠</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">101;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">101,math.floor((ilv*3+10)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">充值礼包/妖精兑换</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33161,100;34017,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">101;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">101,math.floor((ilv*3+10)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">竞技场&#45;-大师/王者宝箱</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33161,100;34017,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:StyleID="s95"><Data ss:Type="Number">33171</Data></Cell>
-    <Cell ss:StyleID="s96"><Data ss:Type="String">偃月刀</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">33171</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">灭度杖</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">107;105</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">107,math.floor((ilv*0.4+4)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s100"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
-    <Cell ss:StyleID="s99"><Data ss:Type="String">0,0</Data></Cell>
-    <Cell><Data ss:Type="String">充值礼包/妖精兑换</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">33171,100;34018,10;</Data></Cell>
-    <Cell ss:Index="12" ss:StyleID="s95"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">107;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">107,math.floor((ilv*0.4+4)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">禁地</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33171,100;34018,10;</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s69"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:Index="9" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">33181</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">净世花篮</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104,math.floor((ilv*3.8+15)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">福利&#45;-消耗元宝</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33181,100;34019,10;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="14.0625">
-    <Cell ss:Index="9" ss:StyleID="s101"/>
-    <Cell ss:StyleID="s102"/>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">33191</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">菩提宝杖</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102,math.floor(ilv*5*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">福利&#45;-充值礼包</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33191,100;34020,10;</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:Height="14.0625"/>
-   <Row ss:Index="27" ss:AutoFitHeight="0">
-    <Cell ss:Index="8"><Data ss:Type="String"> </Data></Cell>
+   <Row ss:AutoFitHeight="0" ss:Height="14.0625">
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">33201</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">托天神叉</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">105;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">105,math.floor((ilv*1.5+10)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">福利&#45;-充值礼包</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33201,100;34021,10;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">33211</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">乾坤灵宝</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">106;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">106,math.floor((ilv*1.1+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">福利&#45;-充值礼包</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33211,100;34022,10;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">33221</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">寒冰斩</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">101;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">101,math.floor((ilv*3+10)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">福利&#45;-充值礼包</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33221,100;34023,10;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">33231</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">醉逍遥</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">107;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">107,math.floor((ilv*0.4+4)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">暂无</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33231,100;34024,10;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">33241</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">鬼怪</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104;</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">104,math.floor((ilv*3.8+15)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">暂无</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33241,100;34025,10;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">33251</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">轮回风车</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102;105</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">102,math.floor(ilv*5*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">105,math.floor((ilv*0.5+5)*1.5*1.5);</Data></Cell>
+    <Cell ss:StyleID="s73"><Data ss:Type="String">0,0</Data></Cell>
+    <Cell><Data ss:Type="String">暂无</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">33251,100;34026,10;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s70"/>
+    <Cell ss:Index="5" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="5" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="5" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s74"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="5" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s74"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="5" ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s72"/>
    </Row>
    <Row ss:Index="38" ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="5"><Data ss:Type="String"> </Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
-    <Cell ss:StyleID="s104"/>
+    <Cell ss:Index="3" ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
+    <Cell ss:StyleID="s77"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:Index="15" ss:StyleID="s106"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="3" ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="15" ss:StyleID="s79"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:Index="15" ss:StyleID="s106"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="3" ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="15" ss:StyleID="s79"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:Index="15" ss:StyleID="s106"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="3" ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="15" ss:StyleID="s79"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:Index="15" ss:StyleID="s106"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="3" ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="15" ss:StyleID="s79"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:Index="15" ss:StyleID="s106"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="3" ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="15" ss:StyleID="s79"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s105"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s107"/>
-    <Cell ss:StyleID="s94"/>
-    <Cell ss:Index="15" ss:StyleID="s106"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="3" ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s78"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s80"/>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:Index="15" ss:StyleID="s79"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="3" ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="3" ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s108"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="3" ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s81"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="9" ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
+    <Cell ss:Index="9" ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="9" ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:Index="14" ss:StyleID="s110"/>
-    <Cell ss:StyleID="s110"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="9" ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:Index="14" ss:StyleID="s83"/>
+    <Cell ss:StyleID="s83"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="9" ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="9" ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-    <Cell ss:Index="9" ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
-    <Cell ss:StyleID="s109"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="9" ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
+    <Cell ss:StyleID="s82"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
+   </Row>
+   <Row ss:Index="70" ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s76"/>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -757,16 +853,15 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>7</ActiveRow>
+     <ActiveRow>21</ActiveRow>
      <ActiveCol>8</ActiveCol>
-     <RangeSelection>R8C9:R15C9</RangeSelection>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
   <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
-   <Range>R5C12:R22C12,R5C1:R22C1,R5C10:R22C10</Range>
+   <Range>R5C12:R22C12,R5C1:R21C1,R5C10:R30C10</Range>
    <Condition>
     <Value1>AND(COUNTIF(C2,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
     <Format Style='background:#FF9900;mso-pattern:none'/>

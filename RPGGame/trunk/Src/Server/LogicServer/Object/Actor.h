@@ -30,20 +30,20 @@ public:
 	virtual AStarPathFind* GetAStar() { return NULL; }
 
 public:
-	void StartRun(int nSpeedX, int nSpeedY, int8_t nFace);					//开始跑动
+	void StartRun(int nSpeedX, int nSpeedY, int8_t nFace, bool bSelf=false);//开始跑动
 	void StopRun(bool bBroadcast=true, bool bClientStop=false);				//停止跑动
 	bool CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY);	//计算角色位置
 	void RunTo(const Point& oTarPos, int nMoveSpeed);						//跑到目标位置
-	void SetTargetPos(const Point& oTargetPos) { m_oTargetPos = oTargetPos; }
 
 protected:
 	virtual bool UpdateRunState(int64_t nNowMS);	//处理跑步
 	virtual void UpdateFollow(int64_t nNowMS);		//处理跟随
 	virtual void UpdateViewList(int64_t nNowMS);	//处理视野
+	virtual void OnReacheTargetPos(Point& oTargetPos);
 
 //网络函数
 public:
-	void BroadcastStartRun();
+	void BroadcastStartRun(bool bSelf = false);
 	void BroadcastStopRun(bool bSelf);
 	void SyncPosition(const char* pWhere = NULL);
 	void BroadcastPos(bool bSelf);

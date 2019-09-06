@@ -7,10 +7,10 @@
  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
-  <LastAuthor>AutoBVT</LastAuthor>
+  <LastAuthor>Administrator</LastAuthor>
   <Created>1996-12-17T01:32:42Z</Created>
-  <LastSaved>2019-01-23T09:56:43Z</LastSaved>
-  <Version>15.00</Version>
+  <LastSaved>2019-01-03T06:17:03Z</LastSaved>
+  <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <KSOProductBuildVer dt:dt="string">2052-10.1.0.7311</KSOProductBuildVer>
@@ -19,10 +19,10 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>3435</WindowHeight>
-  <WindowWidth>6930</WindowWidth>
-  <WindowTopX>0</WindowTopX>
-  <WindowTopY>0</WindowTopY>
+  <WindowHeight>9180</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -96,12 +96,13 @@
  <Worksheet ss:Name="ctPetPropUseConf">
   <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="212" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="93.75" ss:Span="1"/>
-   <Column ss:Index="3" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="153"/>
-   <Column ss:StyleID="s62" ss:Width="108"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="142.5" ss:Span="1"/>
-   <Column ss:Index="7" ss:AutoFitWidth="0" ss:Width="142.5"/>
-   <Column ss:AutoFitWidth="0" ss:Width="123.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="93.600000000000009"
+    ss:Span="1"/>
+   <Column ss:Index="3" ss:StyleID="s62" ss:Width="108" ss:Span="1"/>
+   <Column ss:Index="5" ss:StyleID="s62" ss:AutoFitWidth="0"
+    ss:Width="142.80000000000001" ss:Span="1"/>
+   <Column ss:Index="7" ss:AutoFitWidth="0" ss:Width="142.80000000000001"/>
+   <Column ss:AutoFitWidth="0" ss:Width="123.6"/>
    <Row ss:AutoFitHeight="0" ss:Height="47.25">
     <Cell ss:StyleID="s63"/>
     <Cell ss:Index="3" ss:StyleID="s64"/>
@@ -154,12 +155,12 @@
     <Cell ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="12" ss:StyleID="s67">
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">3002</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">3003</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="String">0</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="String">5101</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">5105</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number">980</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">1010;940;920;740;1090</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">1020;950;930;750;1100</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1010;940;920;740;990</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1020;950;930;750;1000</Data></Cell>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
    </Row>
@@ -194,17 +195,17 @@
     <Cell ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="12" ss:StyleID="s67">
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">3201</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">3091</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="String">0</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="String">5222;5216;5102;5101;</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">1180</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">1480;1460;1340;1100;1440</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">1480;1460;1340;1100;1440</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">1240</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1312;1365;1207;1050;1207</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1312;1365;1207;1050;1207</Data></Cell>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="12" ss:StyleID="s67">
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">3202</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">3093</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="String">0</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="String">5226;5203;5202;5133;5132;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number">1280</Data></Cell>
@@ -214,18 +215,18 @@
     <Cell ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="12" ss:StyleID="s67">
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">3203</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="String">0</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="String">5216;5235;5203;5126;5123;</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">3101</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">5207;5209;5202;5201;5235;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number">1300</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">1650;1650;1600;1600;1600</Data></Cell>
-    <Cell ss:StyleID="s70"><Data ss:Type="String">1650;1650;1600;1600;1600</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1650;1600;1650;1600;1600</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1650;1600;1650;1600;1600</Data></Cell>
     <Cell ss:StyleID="s66"/>
     <Cell ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="12" ss:StyleID="s67">
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">3301</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">3201</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="String">5204;5202;5223;5216;5115;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number">1300</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="String">1650;1650;1600;1600;1600</Data></Cell>
@@ -234,8 +235,8 @@
     <Cell ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="12" ss:StyleID="s67">
-    <Cell ss:StyleID="s70"><Data ss:Type="Number">3302</Data></Cell>
-    <Cell ss:StyleID="s72"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">3202</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0</Data></Cell>
     <Cell ss:StyleID="s72"><Data ss:Type="String">5220;5219;5208;5306;5137;</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="Number">1300</Data></Cell>
     <Cell ss:StyleID="s70"><Data ss:Type="String">1600;1650;1600;1650;1600</Data></Cell>
@@ -920,8 +921,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>18</ActiveRow>
-     <ActiveCol>4</ActiveCol>
+     <ActiveRow>20</ActiveRow>
+     <ActiveCol>3</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

@@ -49,7 +49,7 @@ end
 function CFriend:Release()
 	if not self.m_bStranger then
 		local oRole = goGPlayerMgr:GetRoleByID(self:GetID())
-		Network.oRemoteCall:Call("OnTAHYDReq", oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, oRole:GetID(), -self:GetDegrees())
+		Network:RMCall("OnTAHYDReq", nil, oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, oRole:GetID(), -self:GetDegrees())
 
 		--总好友度
 		self.m_oFriendMgr:OnDegreesChange(self.m_nSrcRoleID)
@@ -111,7 +111,7 @@ function CFriend:AddDegrees(nVal, sReason)
 
     --好友度涨幅
     local nDiffVal = self.m_nDegrees-nOldDegrees
-	Network.oRemoteCall:Call("OnTAHYDReq", oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, oRole:GetID(), nDiffVal)
+	Network:RMCall("OnTAHYDReq", nil, oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(),20), 0, oRole:GetID(), nDiffVal)
 
 	--总好友度
 	self.m_oFriendMgr:OnDegreesChange(self.m_nSrcRoleID)

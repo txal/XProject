@@ -8,7 +8,7 @@ function Network.CltPBProc.ActYYStateReq(nCmd, nServer, nService, nSession, tDat
 	-- else
 	-- 	--全服团购首充
 	-- 	if tData.nID == gtHDDef.eTC then
-	-- 		Network.oRemoteCall:Call("ActYYStateReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+	-- 		Network:RMCall("ActYYStateReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 	-- 	end
 	end
 end
@@ -21,7 +21,7 @@ function Network.CltPBProc.ActYYInfoReq(nCmd, nServer, nService, nSession, tData
 		oAct:InfoReq(oRole, tData.nTarget)
 	-- else
 	-- 	if tData.nID == gtHDDef.eTC then
-	-- 		Network.oRemoteCall:Call("ActYYInfoReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+	-- 		Network:RMCall("ActYYInfoReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 	-- 	end
 	end
 end
@@ -34,7 +34,7 @@ function Network.CltPBProc.ActYYAwardReq(nCmd, nServer, nService, nSession, tDat
 		oAct:AwardReq(oRole, tData.nRewardID)
 	-- else
 		-- if tData.nID == gtHDDef.eTC then
-		-- 	Network.oRemoteCall:Call("ActYYAwardReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+		-- 	Network:RMCall("ActYYAwardReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 		-- end
 	end
 end

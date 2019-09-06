@@ -1,3 +1,746 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0"?>
 <?mso-application progid="Excel.Sheet"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Administrator</Author><LastAuthor>Administrator</LastAuthor><Created>2016-02-27T02:41:06Z</Created><LastSaved>2019-02-15T06:26:30Z</LastSaved></DocumentProperties><CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><KSOProductBuildVer dt:dt="string">2052-10.1.0.7311</KSOProductBuildVer></CustomDocumentProperties><ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel"><WindowWidth>28695</WindowWidth><WindowHeight>13050</WindowHeight><ProtectStructure>False</ProtectStructure><ProtectWindows>False</ProtectWindows></ExcelWorkbook><Styles><Style ss:ID="s36" ss:Name="40% - 强调文字颜色 1"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#BDD7EE" ss:Pattern="Solid"/></Style><Style ss:ID="s26" ss:Name="检查单元格"><Borders><Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3" ss:Color="#3F3F3F"/><Border ss:Position="Left" ss:LineStyle="Double" ss:Weight="3" ss:Color="#3F3F3F"/><Border ss:Position="Right" ss:LineStyle="Double" ss:Weight="3" ss:Color="#3F3F3F"/><Border ss:Position="Top" ss:LineStyle="Double" ss:Weight="3" ss:Color="#3F3F3F"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF" ss:Bold="1"/><Interior ss:Color="#A5A5A5" ss:Pattern="Solid"/></Style><Style ss:ID="s20" ss:Name="标题 2"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#5B9BD5"/></Borders><Font ss:FontName="宋体" x:CharSet="134" ss:Size="13" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s16" ss:Name="警告文本"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FF0000"/></Style><Style ss:ID="s1" ss:Name="货币[0]"><NumberFormat ss:Format="_ &quot;￥&quot;* #,##0_ ;_ &quot;￥&quot;* \-#,##0_ ;_ &quot;￥&quot;* &quot;-&quot;_ ;_ @_ "/></Style><Style ss:ID="s6" ss:Name="40% - 强调文字颜色 3"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#DBDBDB" ss:Pattern="Solid"/></Style><Style ss:ID="s8" ss:Name="千位分隔"><NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/></Style><Style ss:ID="s42" ss:Name="40% - 强调文字颜色 4"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#FFE699" ss:Pattern="Solid"/></Style><Style ss:ID="s38" ss:Name="40% - 强调文字颜色 2"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#F8CBAD" ss:Pattern="Solid"/></Style><Style ss:ID="s18" ss:Name="解释性文本"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#7F7F7F" ss:Italic="1"/></Style><Style ss:ID="s15" ss:Name="标题 4"><Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s12" ss:Name="已访问的超链接"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#800080" ss:Underline="Single"/></Style><Style ss:ID="s11" ss:Name="百分比"><NumberFormat ss:Format="0%"/></Style><Style ss:ID="s7" ss:Name="差"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#9C0006"/><Interior ss:Color="#FFC7CE" ss:Pattern="Solid"/></Style><Style ss:ID="s39" ss:Name="强调文字颜色 3"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#A5A5A5" ss:Pattern="Solid"/></Style><Style ss:ID="s34" ss:Name="强调文字颜色 1"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#5B9BD5" ss:Pattern="Solid"/></Style><Style ss:ID="s24" ss:Name="输出"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#3F3F3F"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#3F3F3F"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#3F3F3F"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#3F3F3F"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#3F3F3F" ss:Bold="1"/><Interior ss:Color="#F2F2F2" ss:Pattern="Solid"/></Style><Style ss:ID="s19" ss:Name="标题 1"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#5B9BD5"/></Borders><Font ss:FontName="宋体" x:CharSet="134" ss:Size="15" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s13" ss:Name="注释"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#B2B2B2"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#B2B2B2"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#B2B2B2"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#B2B2B2"/></Borders><Interior ss:Color="#FFFFCC" ss:Pattern="Solid"/></Style><Style ss:ID="Default" ss:Name="Normal"><Alignment/><Borders/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/><Interior/><NumberFormat/><Protection/></Style><Style ss:ID="s5" ss:Name="千位分隔[0]"><NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;_ ;_ @_ "/></Style><Style ss:ID="s40" ss:Name="强调文字颜色 4"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#FFC000" ss:Pattern="Solid"/></Style><Style ss:ID="s30" ss:Name="汇总"><Borders><Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3" ss:Color="#5B9BD5"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#5B9BD5"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000" ss:Bold="1"/></Style><Style ss:ID="s28" ss:Name="强调文字颜色 2"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#ED7D31" ss:Pattern="Solid"/></Style><Style ss:ID="s22" ss:Name="标题 3"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#ACCCEA"/></Borders><Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s17" ss:Name="标题"><Font ss:FontName="宋体" x:CharSet="134" ss:Size="18" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s10" ss:Name="超链接"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#0000FF" ss:Underline="Single"/></Style><Style ss:ID="s4" ss:Name="货币"><NumberFormat ss:Format="_ &quot;￥&quot;* #,##0.00_ ;_ &quot;￥&quot;* \-#,##0.00_ ;_ &quot;￥&quot;* &quot;-&quot;??_ ;_ @_ "/></Style><Style ss:ID="s32" ss:Name="适中"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#9C6500"/><Interior ss:Color="#FFEB9C" ss:Pattern="Solid"/></Style><Style ss:ID="s14" ss:Name="60% - 强调文字颜色 2"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#F4B084" ss:Pattern="Solid"/></Style><Style ss:ID="s3" ss:Name="输入"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#3F3F76"/><Interior ss:Color="#FFCC99" ss:Pattern="Solid"/></Style><Style ss:ID="s35" ss:Name="20% - 强调文字颜色 1"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#DDEBF7" ss:Pattern="Solid"/></Style><Style ss:ID="s25" ss:Name="计算"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FA7D00" ss:Bold="1"/><Interior ss:Color="#F2F2F2" ss:Pattern="Solid"/></Style><Style ss:ID="s2" ss:Name="20% - 强调文字颜色 3"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#EDEDED" ss:Pattern="Solid"/></Style><Style ss:ID="s29" ss:Name="链接单元格"><Borders><Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3" ss:Color="#FF8001"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FA7D00"/></Style><Style ss:ID="s21" ss:Name="60% - 强调文字颜色 1"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#9BC2E6" ss:Pattern="Solid"/></Style><Style ss:ID="s9" ss:Name="60% - 强调文字颜色 3"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#C9C9C9" ss:Pattern="Solid"/></Style><Style ss:ID="s48" ss:Name="60% - 强调文字颜色 6"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#A9D08E" ss:Pattern="Solid"/></Style><Style ss:ID="s23" ss:Name="60% - 强调文字颜色 4"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#FFD966" ss:Pattern="Solid"/></Style><Style ss:ID="s27" ss:Name="20% - 强调文字颜色 6"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#E2EFDA" ss:Pattern="Solid"/></Style><Style ss:ID="s41" ss:Name="20% - 强调文字颜色 4"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#FFF2CC" ss:Pattern="Solid"/></Style><Style ss:ID="s37" ss:Name="20% - 强调文字颜色 2"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#FCE4D6" ss:Pattern="Solid"/></Style><Style ss:ID="s31" ss:Name="好"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#006100"/><Interior ss:Color="#C6EFCE" ss:Pattern="Solid"/></Style><Style ss:ID="s33" ss:Name="20% - 强调文字颜色 5"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/></Style><Style ss:ID="s43" ss:Name="强调文字颜色 5"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#4472C4" ss:Pattern="Solid"/></Style><Style ss:ID="s44" ss:Name="40% - 强调文字颜色 5"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#B4C6E7" ss:Pattern="Solid"/></Style><Style ss:ID="s45" ss:Name="60% - 强调文字颜色 5"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#8EA9DB" ss:Pattern="Solid"/></Style><Style ss:ID="s46" ss:Name="强调文字颜色 6"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#70AD47" ss:Pattern="Solid"/></Style><Style ss:ID="s47" ss:Name="40% - 强调文字颜色 6"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#C6E0B4" ss:Pattern="Solid"/></Style><Style ss:ID="s49"><Alignment/><Borders/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/><Interior/><NumberFormat/><Protection/></Style><Style ss:ID="s50"><Alignment/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Bold="1"/></Style><Style ss:ID="s51"><Alignment ss:Horizontal="Center"/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Bold="1"/></Style><Style ss:ID="s52"><Alignment/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/></Style><Style ss:ID="s53"><Alignment ss:Horizontal="Left"/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/></Style><Style ss:ID="s54"><Alignment ss:Vertical="Bottom"/><Borders/><Interior/></Style><Style ss:ID="s55"><Alignment ss:Vertical="Bottom"/></Style><Style ss:ID="s56"><Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/><Borders/><Interior/></Style><Style ss:ID="s57"><Alignment/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#FF0000"/></Style><Style ss:ID="s58"><Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/><Borders/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/><Interior/></Style><Style ss:ID="s59"><Alignment ss:Horizontal="Left"/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="10"/></Style><Style ss:ID="s60"><Alignment ss:Horizontal="Left"/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="10"/><Interior/></Style></Styles><Worksheet ss:Name="ctGuideGainWay"><Names><NamedRange ss:Name="_FilterDatabase" ss:RefersTo="=ctGuideGainWay!#REF!" ss:Hidden="1"/></Names><Table ss:ExpandedColumnCount="6" ss:ExpandedRowCount="55" x:FullColumns="1" x:FullRows="1" ss:StyleID="s59" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"><Column ss:Index="1" ss:StyleID="s59" ss:Width="28.5"/><Column ss:Index="2" ss:StyleID="s59" ss:Width="68.25"/><Column ss:StyleID="s59" ss:AutoFitWidth="0" ss:Width="172.5"/><Column ss:StyleID="s59" ss:Width="84.75"/><Column ss:StyleID="s59" ss:Width="371.25"/><Row ss:Height="60"/><Row><Cell ss:StyleID="s59"><Data ss:Type="String">nId</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">sName</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">sPath</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">sIcon</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">nSysOpenId</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">sEff</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">s</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">s</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">s</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">s</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">编号</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">名称</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">图集路径（非图集不用填）</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">图标</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">功能开启编号</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">点击效果</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">1</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">摆摊</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_jiaoyi</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">19</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开摆摊界面定位到对应商品</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">2</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">商会</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_shangcheng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开商会界面定位到对应商品</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">3</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">商城</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_shangcheng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开商城界面定位到对应商品</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">4</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">生活技能</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_jineng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">41</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的生活技能界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">5</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">首充</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_chongzhi</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">65</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的首充界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">6</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">道具</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_sjrw</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">11</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的道具Tips</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">7</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">兑换</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_richang</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">24</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的兑换界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">8</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">升级礼包</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_jiangli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">20</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的升级礼包界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">9</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">在线礼包</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_jiangli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">20</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的在线礼包界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">10</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">每日签到</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_jiangli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">20</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的每日签到界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">11</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">仙灵课堂</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_mzkt</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">33</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的仙灵课堂界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">12</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">仙灵轶事</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_mzkt</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">67</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的仙灵轶事界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">13</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">竞技场</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_jjc</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">39</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的竞技场界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">14</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">乾坤灵宝</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_btrw</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">70</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的乾坤灵宝界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">15</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">宝图</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_btrw</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">70</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的挖宝界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">16</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">抓鬼</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_zyrw</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">26</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加抓鬼</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">17</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">门派任务</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_smrw</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加门派任务</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">天官赐福</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_baoku</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">20</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的天官赐福界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">19</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">超级神兽</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_ssly</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">38</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加超级神兽</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">20</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">魔神讨伐</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_smz</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">71</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加魔神讨伐</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">21</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">连环任务</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_slrw</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">56</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加连环任务</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">22</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">赏金任务</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_sjrw</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">48</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加赏金任务</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">23</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">伏心魔</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_xmqs</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">28</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加伏心魔</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">24</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">降妖除魔</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_lsym</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">27</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加降妖除魔</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="String">25</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">妖兽来袭</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_ystx</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">47</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往参加妖兽来袭</Data></Cell></Row><Row ss:StyleID="s59"><Cell ss:StyleID="s59"><Data ss:Type="Number">26</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">累计登陆</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_jiangli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">20</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开对应的累计登陆界面</Data></Cell></Row><Row ss:StyleID="s59"><Cell ss:StyleID="s59"><Data ss:Type="Number">27</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">每日限购</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_shangcheng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开商城每日限购界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">28</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">暂无</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_shangcheng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">暂无</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">29</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">暂无</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_shangcheng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">暂无</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">30</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">充值返利</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_chongzhi</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开商城重置返利界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">31</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">消费冲榜</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利消费冲榜界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">32</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">消费冲榜</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利消费冲榜界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">33</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">充值礼包</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利充值礼包界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">34</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">充值排行</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利充值排行界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">35</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">充值排行</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利充值排行界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">36</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">元宝消耗</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利元宝消耗界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">37</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">结婚活动</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_yuanfen</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">57</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">前往寻找NPC月老</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">38</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">竞技商城</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_shangcheng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">39</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开商城竞技商城界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">39</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">每日限购</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_shangcheng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开商城每日限购界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">40</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">妖晶兑换</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_shangcheng</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开商城妖晶兑换界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">41</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">战力冲榜</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利战力冲榜界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">42</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">竞技冲榜</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利竞技冲榜界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">43</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">亲密冲榜</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利亲密冲榜界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">44</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">帮派冲榜</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利帮派冲榜界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">45</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">单笔充值</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利单笔充值界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">46</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">累天充值</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利累天充值界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">47</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">充值目标</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_fuli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">73</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开福利充值目标界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">48</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">家园</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_jiayuan</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">69</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开家园界面</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">49</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">十面埋伏</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">daily/rc_bhhz</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">46</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">自动寻路前往寻找十面埋伏NPC</Data></Cell></Row><Row><Cell ss:StyleID="s59"><Data ss:Type="Number">50</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">每日礼包</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">btn_jiangli</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">20</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开每日礼包界面</Data></Cell></Row><Row ss:StyleID="s59"><Cell ss:StyleID="s59"><Data ss:Type="Number">51</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">0元购</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell><Cell ss:StyleID="s60"><Data ss:Type="String">btn_yiyuanshibei</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="Number">83</Data></Cell><Cell ss:StyleID="s59"><Data ss:Type="String">打开0元购界面</Data></Cell></Row></Table><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"><PageSetup><Header x:Margin="0.511111111111111"/><Footer x:Margin="0.511111111111111"/></PageSetup><Print><ValidPrinterInfo/><PaperSizeIndex>9</PaperSizeIndex><HorizontalResolution>600</HorizontalResolution><VerticalResolution>600</VerticalResolution></Print><Selected/><TopRowVisible>21</TopRowVisible><LeftColumnVisible>0</LeftColumnVisible><PageBreakZoom>100</PageBreakZoom><Panes><Pane><Number>3</Number><ActiveRow>51</ActiveRow><ActiveCol>4</ActiveCol><RangeSelection>R52C5</RangeSelection></Pane></Panes><ProtectObjects>False</ProtectObjects><ProtectScenarios>False</ProtectScenarios></WorksheetOptions></Worksheet><Worksheet ss:Name="Sheet2"><Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"/><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"><PageSetup><Header x:Margin="0.511111111111111"/><Footer x:Margin="0.511111111111111"/></PageSetup><TopRowVisible>0</TopRowVisible><LeftColumnVisible>0</LeftColumnVisible><PageBreakZoom>100</PageBreakZoom><ProtectObjects>False</ProtectObjects><ProtectScenarios>False</ProtectScenarios></WorksheetOptions></Worksheet><Worksheet ss:Name="Sheet3"><Table ss:ExpandedColumnCount="4" ss:ExpandedRowCount="24" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"><Row><Cell ss:StyleID="s50"><Data ss:Type="String">分类</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">小类</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">编号范围</Data></Cell><Cell ss:StyleID="s51"><Data ss:Type="String">备注：</Data></Cell></Row><Row><Cell ss:StyleID="s50"><Data ss:Type="String">道具</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">总范围</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">10001~99999</Data></Cell><Cell ss:StyleID="s53"><Data ss:Type="String">与装备、宠物共用ID段</Data></Cell></Row><Row><Cell ss:StyleID="s50"/><Cell ss:StyleID="s52"><Data ss:Type="String">基本</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">10001~10999</Data></Cell><Cell ss:StyleID="s53"><Data ss:Type="String">（基本道具包括藏宝图、资质丹等、卷宗等）</Data></Cell></Row><Row><Cell ss:StyleID="s52"/><Cell ss:StyleID="s52"><Data ss:Type="String">礼包</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">11001~11999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s50"/><Cell ss:StyleID="s54"/><Cell ss:StyleID="s55"/><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s56"/><Cell ss:StyleID="s57"/><Cell ss:StyleID="s57"/><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s56"/><Cell ss:StyleID="s57"/><Cell ss:StyleID="s57"/><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s56"/><Cell ss:StyleID="s52"><Data ss:Type="String">珍宝</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">12000~12999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s58"/><Cell ss:StyleID="s52"><Data ss:Type="String">低级宠物技能书</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">16000~16999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s58"/><Cell ss:StyleID="s52"><Data ss:Type="String">高级宠物技能书</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">17000~17999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s58"/><Cell ss:StyleID="s52"><Data ss:Type="String">宝图类</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">18000~18999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s58"/><Cell ss:StyleID="s52"><Data ss:Type="String">宠物相关</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">19000~19999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s58"/><Cell ss:StyleID="s52"><Data ss:Type="String">仙侣相关</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">20000~20999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s58"/><Cell ss:StyleID="s52"><Data ss:Type="String">烹饪</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">21000~21999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s50"/><Cell ss:StyleID="s52"><Data ss:Type="String">药品</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">22000~22999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s50"/><Cell ss:StyleID="s52"><Data ss:Type="String">附魔</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">23000~23999</Data></Cell><Cell ss:StyleID="s53"><Data ss:Type="String">（附魔：不同附魔的ID段另外分开）</Data></Cell></Row><Row><Cell ss:StyleID="s50"/><Cell ss:StyleID="s52"><Data ss:Type="String">武器符</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">24000~24999</Data></Cell><Cell ss:StyleID="s53"><Data ss:Type="String">（神兵和灵宝的ID段分开）</Data></Cell></Row><Row><Cell ss:StyleID="s52"/><Cell ss:StyleID="s52"><Data ss:Type="String">防具符</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">25000~25999</Data></Cell><Cell ss:StyleID="s53"><Data ss:Type="String">（打造和裁缝的ID段分开）</Data></Cell></Row><Row><Cell ss:StyleID="s52"/><Cell ss:StyleID="s52"><Data ss:Type="String">饰品符</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">26000~26999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s52"/><Cell ss:StyleID="s52"><Data ss:Type="String">寒铁</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">27000~27999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s52"/><Cell ss:StyleID="s52"><Data ss:Type="String">装备强化</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">28000~28999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s52"/><Cell ss:StyleID="s52"><Data ss:Type="String">宝石</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">30000~30999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s52"/><Cell ss:StyleID="s52"><Data ss:Type="String">阵法</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">31001~31999</Data></Cell><Cell ss:StyleID="s53"/></Row><Row><Cell ss:StyleID="s50"/><Cell ss:StyleID="s52"><Data ss:Type="String">虚拟物品</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">1~100</Data></Cell><Cell ss:StyleID="s53"><Data ss:Type="String">（虚拟物品是指1元宝、2银币、3铜钱等代币）</Data></Cell></Row></Table><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"><PageSetup><Header x:Margin="0.511111111111111"/><Footer x:Margin="0.511111111111111"/></PageSetup><TopRowVisible>0</TopRowVisible><LeftColumnVisible>0</LeftColumnVisible><PageBreakZoom>100</PageBreakZoom><Panes><Pane><Number>3</Number><ActiveRow>24</ActiveRow><ActiveCol>13</ActiveCol><RangeSelection>R25C14</RangeSelection></Pane></Panes><ProtectObjects>False</ProtectObjects><ProtectScenarios>False</ProtectScenarios></WorksheetOptions></Worksheet></Workbook>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>DM-PC092</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2019-06-03T12:58:06Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>9345</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s88">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s89">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s90">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s91">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+  </Style>
+  <Style ss:ID="s92">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+  </Style>
+  <Style ss:ID="s93">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s94">
+   <Alignment ss:Vertical="Bottom"/>
+  </Style>
+  <Style ss:ID="s95">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s96">
+   <Alignment ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#FF0000"/>
+  </Style>
+  <Style ss:ID="s97">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctGuideGainWay">
+  <Names>
+   <NamedRange ss:Name="_FilterDatabase" ss:RefersTo="=ctGuideGainWay!#REF!"
+    ss:Hidden="1"/>
+  </Names>
+  <Table ss:ExpandedColumnCount="6" ss:ExpandedRowCount="56" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s88" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s88" ss:Width="28.5"/>
+   <Column ss:StyleID="s88" ss:Width="68.25"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="174"/>
+   <Column ss:StyleID="s88" ss:Width="84.75"/>
+   <Column ss:StyleID="s88" ss:Width="371.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="60"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nId</Data></Cell>
+    <Cell><Data ss:Type="String">sName</Data></Cell>
+    <Cell><Data ss:Type="String">sPath</Data></Cell>
+    <Cell><Data ss:Type="String">sIcon</Data></Cell>
+    <Cell><Data ss:Type="String">nSysOpenId</Data></Cell>
+    <Cell><Data ss:Type="String">sEff</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">编号</Data></Cell>
+    <Cell><Data ss:Type="String">名称</Data></Cell>
+    <Cell><Data ss:Type="String">图集路径（非图集不用填）</Data></Cell>
+    <Cell><Data ss:Type="String">图标</Data></Cell>
+    <Cell><Data ss:Type="String">功能开启编号</Data></Cell>
+    <Cell><Data ss:Type="String">点击效果</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">1</Data></Cell>
+    <Cell><Data ss:Type="String">摆摊</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">jiaoyi</Data></Cell>
+    <Cell><Data ss:Type="Number">19</Data></Cell>
+    <Cell><Data ss:Type="String">打开摆摊界面定位到对应商品</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell><Data ss:Type="String">商会</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">shangcheng</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">打开商会界面定位到对应商品</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3</Data></Cell>
+    <Cell><Data ss:Type="String">商城</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">shangcheng</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">打开商城界面定位到对应商品</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell><Data ss:Type="String">生活技能</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">jineng</Data></Cell>
+    <Cell><Data ss:Type="Number">41</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的生活技能界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">5</Data></Cell>
+    <Cell><Data ss:Type="String">首充</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">chongzhi</Data></Cell>
+    <Cell><Data ss:Type="Number">65</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的首充界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">6</Data></Cell>
+    <Cell><Data ss:Type="String">道具</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_sjrw</Data></Cell>
+    <Cell><Data ss:Type="Number">11</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的道具Tips</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">7</Data></Cell>
+    <Cell><Data ss:Type="String">兑换</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">richang</Data></Cell>
+    <Cell><Data ss:Type="Number">24</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的兑换界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">8</Data></Cell>
+    <Cell><Data ss:Type="String">升级礼包</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">jiangli</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的升级礼包界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">9</Data></Cell>
+    <Cell><Data ss:Type="String">在线礼包</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">jiangli</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的转运财神界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">10</Data></Cell>
+    <Cell><Data ss:Type="String">每日签到</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">jiangli</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的每日签到界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">11</Data></Cell>
+    <Cell><Data ss:Type="String">萌仙课堂</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_mzkt</Data></Cell>
+    <Cell><Data ss:Type="Number">33</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的萌仙课堂界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">12</Data></Cell>
+    <Cell><Data ss:Type="String">萌仙轶事</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_mzkt</Data></Cell>
+    <Cell><Data ss:Type="Number">67</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的萌仙轶事界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">13</Data></Cell>
+    <Cell><Data ss:Type="String">竞技场</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_jjc</Data></Cell>
+    <Cell><Data ss:Type="Number">39</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的竞技场界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">14</Data></Cell>
+    <Cell><Data ss:Type="String">乾坤灵宝</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_btrw</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的乾坤灵宝界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">15</Data></Cell>
+    <Cell><Data ss:Type="String">宝图挖宝</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_btrw</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的挖宝界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">16</Data></Cell>
+    <Cell><Data ss:Type="String">捉妖</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_zyrw</Data></Cell>
+    <Cell><Data ss:Type="Number">26</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加捉妖</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">17</Data></Cell>
+    <Cell><Data ss:Type="String">师门任务</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_smrw</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加师门任务</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">18</Data></Cell>
+    <Cell><Data ss:Type="String">召唤</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">baoku</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的召唤界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">19</Data></Cell>
+    <Cell><Data ss:Type="String">神兽大放送</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_ssly</Data></Cell>
+    <Cell><Data ss:Type="Number">38</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加神兽大放送</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">20</Data></Cell>
+    <Cell><Data ss:Type="String">神魔录</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_smz</Data></Cell>
+    <Cell><Data ss:Type="Number">71</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加神魔录</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">21</Data></Cell>
+    <Cell><Data ss:Type="String">连环任务</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_slrw</Data></Cell>
+    <Cell><Data ss:Type="Number">56</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加连环任务</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">22</Data></Cell>
+    <Cell><Data ss:Type="String">赏金任务</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_sjrw</Data></Cell>
+    <Cell><Data ss:Type="Number">48</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加赏金任务</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">23</Data></Cell>
+    <Cell><Data ss:Type="String">诛心魔</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_xmqs</Data></Cell>
+    <Cell><Data ss:Type="Number">28</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加诛心魔</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">24</Data></Cell>
+    <Cell><Data ss:Type="String">降妖伏魔</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_lsym</Data></Cell>
+    <Cell><Data ss:Type="Number">27</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加降妖伏魔</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">25</Data></Cell>
+    <Cell><Data ss:Type="String">妖兽突袭</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_ystx</Data></Cell>
+    <Cell><Data ss:Type="Number">47</Data></Cell>
+    <Cell><Data ss:Type="String">前往参加妖兽突袭</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">26</Data></Cell>
+    <Cell><Data ss:Type="String">累计登陆</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">jiangli</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="String">打开对应的累计登陆界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">27</Data></Cell>
+    <Cell><Data ss:Type="String">每日限购</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">shangcheng</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">打开商城每日限购界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">28</Data></Cell>
+    <Cell><Data ss:Type="String">暂无</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">shangcheng</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">暂无</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">29</Data></Cell>
+    <Cell><Data ss:Type="String">暂无</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">shangcheng</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">暂无</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="String">充值返利</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">chongzhi</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">打开商城重置返利界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">31</Data></Cell>
+    <Cell><Data ss:Type="String">消费冲榜</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利消费冲榜界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">32</Data></Cell>
+    <Cell><Data ss:Type="String">消费冲榜</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利消费冲榜界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">33</Data></Cell>
+    <Cell><Data ss:Type="String">充值礼包</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利充值礼包界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">34</Data></Cell>
+    <Cell><Data ss:Type="String">充值排行</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利充值排行界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">35</Data></Cell>
+    <Cell><Data ss:Type="String">充值排行</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利充值排行界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">36</Data></Cell>
+    <Cell><Data ss:Type="String">元宝消耗</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利元宝消耗界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">37</Data></Cell>
+    <Cell><Data ss:Type="String">结婚活动</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">yuanfen</Data></Cell>
+    <Cell><Data ss:Type="Number">57</Data></Cell>
+    <Cell><Data ss:Type="String">前往寻找NPC月老</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">38</Data></Cell>
+    <Cell><Data ss:Type="String">竞技商城</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">shangcheng</Data></Cell>
+    <Cell><Data ss:Type="Number">39</Data></Cell>
+    <Cell><Data ss:Type="String">打开商城竞技商城界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">39</Data></Cell>
+    <Cell><Data ss:Type="String">每日限购</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">shangcheng</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">打开商城每日限购界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">40</Data></Cell>
+    <Cell><Data ss:Type="String">妖晶兑换</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">shangcheng</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">打开商城妖晶兑换界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">41</Data></Cell>
+    <Cell><Data ss:Type="String">战力冲榜</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利战力冲榜界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">42</Data></Cell>
+    <Cell><Data ss:Type="String">竞技冲榜</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利竞技冲榜界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">43</Data></Cell>
+    <Cell><Data ss:Type="String">亲密冲榜</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利亲密冲榜界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">44</Data></Cell>
+    <Cell><Data ss:Type="String">帮派冲榜</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利帮派冲榜界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">45</Data></Cell>
+    <Cell><Data ss:Type="String">单笔充值</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利单笔充值界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">46</Data></Cell>
+    <Cell><Data ss:Type="String">累天充值</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利累天充值界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">47</Data></Cell>
+    <Cell><Data ss:Type="String">充值目标</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">fuli</Data></Cell>
+    <Cell><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="String">打开福利充值目标界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">48</Data></Cell>
+    <Cell><Data ss:Type="String">家园</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">jiayuan</Data></Cell>
+    <Cell><Data ss:Type="Number">69</Data></Cell>
+    <Cell><Data ss:Type="String">打开家园界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">49</Data></Cell>
+    <Cell><Data ss:Type="String">天地阵法</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_bhhz</Data></Cell>
+    <Cell><Data ss:Type="Number">46</Data></Cell>
+    <Cell><Data ss:Type="String">自动寻路前往寻找天地阵法NPC</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">50</Data></Cell>
+    <Cell><Data ss:Type="String">每日礼包</Data></Cell>
+    <Cell><Data ss:Type="String">willOpen/tuji_tubiao</Data></Cell>
+    <Cell><Data ss:Type="String">jiangli</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+    <Cell><Data ss:Type="String">打开每日礼包界面</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">52</Data></Cell>
+    <Cell><Data ss:Type="String">海量商店</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">daily/rc_hlsd</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="String">打开海量商店</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">53</Data></Cell>
+    <Cell><Data ss:Type="String">一元十倍</Data></Cell>
+    <Cell><Data ss:Type="String">mainPanel/tuji_zhujiemian</Data></Cell>
+    <Cell><Data ss:Type="String">btn_yiyuan</Data></Cell>
+    <Cell><Data ss:Type="Number">83</Data></Cell>
+    <Cell><Data ss:Type="String">一元十倍活动</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <TopRowVisible>39</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>60</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="4" ss:ExpandedRowCount="24" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s89"><Data ss:Type="String">分类</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">小类</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">编号范围</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">备注：</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s89"><Data ss:Type="String">道具</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">总范围</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">10001~99999</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">与装备、宠物共用ID段</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">基本</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">10001~10999</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">（基本道具包括藏宝图、资质丹等、卷宗等）</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">礼包</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">11001~11999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s93"/>
+    <Cell ss:StyleID="s94"/>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s96"/>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s95"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">珍宝</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">12000~12999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">低级宠物技能书</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">16000~16999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">高级宠物技能书</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">17000~17999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">宝图类</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">18000~18999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">宠物相关</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">19000~19999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">仙侣相关</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">20000~20999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">烹饪</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">21000~21999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">药品</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">22000~22999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">附魔</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">23000~23999</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">（附魔：不同附魔的ID段另外分开）</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">武器符</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">24000~24999</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">（神兵和灵宝的ID段分开）</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">防具符</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">25000~25999</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">（打造和裁缝的ID段分开）</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">饰品符</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">26000~26999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">寒铁</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">27000~27999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">装备强化</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">28000~28999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">宝石</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">30000~30999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">阵法</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">31001~31999</Data></Cell>
+    <Cell ss:StyleID="s92"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">虚拟物品</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">1~100</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">（虚拟物品是指1元宝、2银币、3铜钱等代币）</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>24</ActiveRow>
+     <ActiveCol>13</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

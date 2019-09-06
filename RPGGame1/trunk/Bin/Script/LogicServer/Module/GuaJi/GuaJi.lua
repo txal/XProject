@@ -213,7 +213,7 @@ function CGuaJi:Online()
     -- 需求：玩家每次上线，无论在哪个场景，都触发挂机状态（不用切场景，触发即可）。
     -- 此需求需要三项目同步
     local nServerID = self.m_oRole:GetServer()
-	Network.oRemoteCall:Call("StartGuaJiAutoReward", nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, self.m_oRole:GetID(), {nGuanQia=nGuanQia})
+	Network:RMCall("StartGuaJiAutoReward", nil, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, self.m_oRole:GetID(), {nGuanQia=nGuanQia})
 end
 
 function CGuaJi:SendGuaJiRet()
@@ -221,7 +221,7 @@ function CGuaJi:SendGuaJiRet()
         self.m_oRole:SendMsg("GuaJiRet", {bIsDuringGuaJi=bIsGuaJi})
     end
     local nServerID = self.m_oRole:GetServer()
-    Network.oRemoteCall:CallWait("IsGuaJi", SendGuaJiStatus, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, self.m_oRole:GetID())
+    Network:RMCall("IsGuaJi", SendGuaJiStatus, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, self.m_oRole:GetID())
 end
 
 function CGuaJi:SendGuanQiaInfo()

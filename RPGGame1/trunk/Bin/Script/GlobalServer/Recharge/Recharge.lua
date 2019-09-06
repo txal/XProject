@@ -52,7 +52,7 @@ function CRecharge:RechargeTimer()
 			if tConf.nMoney == nMoney then	
 				local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
 				if oRole and oRole:IsOnline() then
-					Network.oRemoteCall:CallWait("ProccessRechargeOrderReq", function(sOrderID, nRechargeID)
+					Network:RMCall("ProccessRechargeOrderReq", function(sOrderID, nRechargeID)
 						self.m_oMgrMysql:Query(string.format(self.m_sUpdateSql, oRole:GetLevel(), oRole:GetVIP(), sOrderID))
 					end, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), sOrderID, nRechargeID, nTime)
 				elseif not oRole then

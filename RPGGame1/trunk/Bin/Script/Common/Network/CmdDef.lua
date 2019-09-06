@@ -47,7 +47,7 @@ RegPBReq(8001, "TestPack", "global.TestPack", 50)		--测试包请求
 RegPBRet(8002, "TestPack", "global.TestPack", 0)		--测试包返回
 
 RegPBReq(8003, "GMCmdReq", "global.GMCmdReq", 20)		--GM指令
-RegPBRet(8004, "TipsMsgRet", "global.TipsMsgRet", 0)	--通用飘字提示
+RegPBRet(8004, "FloatTipsRet", "global.FloatTipsRet", 0)	--通用飘字提示
 
 RegPBRet(8006, "ConfirmRet", "global.ConfirmRet", 0)				--通知客户端弹确认框
 RegPBReq(8007, "ConfirmReactReq", "global.ConfirmReactReq", 0)		--客户端确认框反馈请求

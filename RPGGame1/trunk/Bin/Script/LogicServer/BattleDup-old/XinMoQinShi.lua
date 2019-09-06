@@ -192,14 +192,14 @@ function CXinMoQinShi:OnObjEnter(oLuaObj, bReconnect)
 																oLuaObj:MatchTeam(gtBattleDupType.eXinMoQinShi, tBattleDupConf.sName, true)
 															end
 														end
-														Network.oRemoteCall:CallWait("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eXinMoQinShi)
+														Network:RMCall("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eXinMoQinShi)
 													end
 												end, oLuaObj, tMsg)
 											else
 												oLuaObj:MatchTeam(gtBattleDupType.eXinMoQinShi, tBattleDupConf.sName, true)
 											end
 										end
-										Network.oRemoteCall:CallWait("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eXinMoQinShi)										
+										Network:RMCall("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eXinMoQinShi)										
 									end
 								else
 									oLuaObj:CreateTeam(function(nTeamID, tTeam)
@@ -237,14 +237,14 @@ function CXinMoQinShi:OnObjEnter(oLuaObj, bReconnect)
 															oLuaObj:MatchTeam(gtBattleDupType.eXinMoQinShi, tBattleDupConf.sName, true)
 														end
 													end
-													Network.oRemoteCall:CallWait("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eXinMoQinShi)
+													Network:RMCall("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eXinMoQinShi)
 												end
 											end, oLuaObj, tMsg)
 										else
 											oLuaObj:MatchTeam(gtBattleDupType.eXinMoQinShi, tBattleDupConf.sName, true)
 										end
 									end
-									Network.oRemoteCall:CallWait("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eXinMoQinShi)							
+									Network:RMCall("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eXinMoQinShi)							
 									--oLuaObj:MatchTeam(gtBattleDupType.eXinMoQinShi, tBattleDupConf.sName, false)
 								end
 							else
@@ -253,7 +253,7 @@ function CXinMoQinShi:OnObjEnter(oLuaObj, bReconnect)
 								oLuaObj:GetTeam(function(nTeamID, tTeam)
 									if nTeamID > 0 then
 										if tTeam[1].nRoleID ~= oLuaObj:GetID() then
-											Network.oRemoteCall:Call("GotoLeader",gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetID(), {nBattleDupType=gtBattleDupType.eXinMoQinShi})
+											Network:RMCall("GotoLeader", nil,gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetID(), {nBattleDupType=gtBattleDupType.eXinMoQinShi})
 										end
 									end
 								end)
@@ -264,7 +264,7 @@ function CXinMoQinShi:OnObjEnter(oLuaObj, bReconnect)
 							oLuaObj:GetTeam(function(nTeamID, tTeam)
 								if nTeamID > 0 then
 									if tTeam[1].nRoleID ~= oLuaObj:GetID() then
-										Network.oRemoteCall:Call("GotoLeader",gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetID(), {nBattleDupType=gtBattleDupType.eXinMoQinShi})
+										Network:RMCall("GotoLeader", nil,gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetID(), {nBattleDupType=gtBattleDupType.eXinMoQinShi})
 									end
 								else
 									oLuaObj:CreateTeam(function(nTeamID, tTeam)

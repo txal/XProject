@@ -28,9 +28,9 @@ function CHallFame:Release()
 end
 
 function CHallFame:LoadData()
-	local sData = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sHallFameDB, "data")
+	local sData = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sHallFameDB, "data")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_tTitleMap = tData.m_tTitleMap
 		self.m_tCongratMap = tData.m_tCongratMap
 		self.m_nLastCongratTime = tData.m_nLastCongratTime
@@ -49,7 +49,7 @@ function CHallFame:SaveData()
 	tData.m_tCongratMap = self.m_tCongratMap
 	tData.m_nLastCongratTime = self.m_nLastCongratTime
 
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sHallFameDB, "data", cjson.encode(tData))
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sHallFameDB, "data", cseri.encode(tData))
 	self:MarkDirty(false)
 end
 
@@ -136,7 +136,7 @@ function CHallFame:CongratReq(oRole, nTitleID)
 	end
 	oRole:Tips(sTips)
 	self:SyncInfo(oRole)
-	Network.oRemoteCall:Call("OnCongratulate", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+	Network:RMCall("OnCongratulate", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
 end
 
 --设置祝贺词

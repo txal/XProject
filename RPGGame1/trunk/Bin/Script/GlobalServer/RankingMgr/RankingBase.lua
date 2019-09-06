@@ -31,7 +31,7 @@ function CRankingBase:GetDBName()
 end
 
 function CRankingBase:LoadData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sDBName = self:GetDBName()
 
 	local tKeys = oSSDB:HKeys(sDBName)
@@ -40,18 +40,18 @@ function CRankingBase:LoadData()
 	for _, sKey in ipairs(tKeys) do
 		local sData = oSSDB:HGet(sDBName, sKey)
 		local nKey = tonumber(sKey)
-		self.m_oRanking:Insert(nKey, cjson.decode(sData))
+		self.m_oRanking:Insert(nKey, cseri.decode(sData))
 	end
 end
 
 function CRankingBase:SaveData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sDBName = self:GetDBName()
 
 	for nKey, v in pairs(self.m_tDirtyMap) do
 		local tData = self.m_oRanking:GetDataByKey(nKey)
 		if tData then
-			oSSDB:HSet(sDBName, nKey, cjson.encode(tData))
+			oSSDB:HSet(sDBName, nKey, cseri.encode(tData))
 		end
 	end
 	self.m_tDirtyMap = {}
@@ -63,7 +63,7 @@ end
 
 --重置清理数据库
 function CRankingBase:ResetRanking()
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HClear(self:GetDBName())
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HClear(self:GetDBName())
 	self.m_oRanking = CSkipList:new(_fnDescSort)
 	self.m_tDirtyMap = {}
 end

@@ -34,10 +34,10 @@ end
 
 function CCBBase:LoadData()
 	print("加载活动数据", self:GetName())
-	local sData = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sHuoDongDB, self:GetID()) 
+	local sData = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sHuoDongDB, self:GetID()) 
 	if sData == "" then return end
 
-	local tData = cjson.decode(sData)
+	local tData = cseri.decode(sData)
 	-- CHDBase.LoadData(self, tData)
 	-- self.m_tTmpRanking = tData.m_tTmpRanking or self.m_tTmpRanking
 	-- self.m_tDiffValue = tData.m_tDiffValue or self.m_tDiffValue
@@ -74,7 +74,7 @@ function CCBBase:SaveData()
 	-- tData.m_tAwardState = self.m_tAwardState
 	local tData = self:GetSaveData()
 
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sHuoDongDB, self:GetID(), cjson.encode(tData))
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sHuoDongDB, self:GetID(), cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

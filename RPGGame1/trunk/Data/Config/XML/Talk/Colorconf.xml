@@ -8,15 +8,15 @@
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Created>2015-06-05T18:19:34Z</Created>
   <LastSaved>2018-10-19T06:14:57Z</LastSaved>
-  <Version>16.00</Version>
+  <Version>15.00</Version>
  </DocumentProperties>
  <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
   <AllowPNG/>
   <RemovePersonalInformation/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11190</WindowHeight>
-  <WindowWidth>28800</WindowWidth>
+  <WindowHeight>11835</WindowHeight>
+  <WindowWidth>8715</WindowWidth>
   <WindowTopX>0</WindowTopX>
   <WindowTopY>0</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
@@ -91,7 +91,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveCol>4</ActiveCol>
+     <ActiveRow>5</ActiveRow>
+     <ActiveCol>1</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

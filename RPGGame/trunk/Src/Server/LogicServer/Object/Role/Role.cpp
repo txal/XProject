@@ -62,7 +62,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	goPKReader.SetPacket(poPacket);
 	goPKReader >> nAOIID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uFace >> uTarPosX >> uTarPosY;
 	nClientMSTime = (int64_t)dClientMSTime;
-	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) tar(%d,%d) time:%lld\n"
+	XLog(LEVEL_DEBUG,  "%s Client start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) tar(%d,%d) time:%lld\n"
 		, m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, uTarPosX, uTarPosY, nClientMSTime-m_nClientRunStartMSTime);
 
 	//客户端提供的时间值必须大于起始时间值
@@ -81,11 +81,11 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 		return;
 	}
 
-	//正在移动则先更新移动后的新位置
-	if (m_nRunStartMSTime > 0)
-	{
-		Actor::UpdateRunState(m_nRunStartMSTime + (nClientMSTime - m_nClientRunStartMSTime));
-	}
+	////正在移动则先更新移动后的新位置
+	//if (m_nRunStartMSTime > 0 && m_nClientRunStartMSTime > 0) //当角色在AI寻路状态时 m_nClientRunStartMSTimer==0
+	//{
+	//	Actor::UpdateRunState(m_nRunStartMSTime + (nClientMSTime - m_nClientRunStartMSTime));
+	//}
 
 	////客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	//if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
@@ -99,8 +99,9 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	//}
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	
+	m_bRunCallback = false;
 	m_nClientRunStartMSTime = nClientMSTime;
-	Actor::SetTargetPos(Point(uTarPosX, uTarPosY));
+	m_oTargetPos = Point(uTarPosX, uTarPosY);
 	Actor::StartRun(nSpeedX, nSpeedY, (int8_t)uFace);
 }
 
@@ -128,7 +129,7 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	goPKReader >> nAOIID >> uPosX >> uPosY >> dClientMSTime;
 	nClientMSTime = (int64_t)dClientMSTime;
 
-	XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
+	XLog(LEVEL_DEBUG, "%s Client stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 
 	MapConf* poMapConf = m_poScene->GetMapConf();
 	if (m_nRunStartMSTime == 0)
@@ -165,11 +166,12 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 		XLog(LEVEL_INFO, "%s sync pos for stop run pos:(%d,%d) or time:(%d) error -02\n", m_sName, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 		return;
 	}
-	//正在移动则先更新移动后的新位置
-	if (m_nRunStartMSTime > 0)
-	{
-		Actor::UpdateRunState(m_nRunStartMSTime + (nClientMSTime - m_nClientRunStartMSTime));
-	}
+	////正在移动则先更新移动后的新位置
+	//if (m_nRunStartMSTime > 0 && m_nClientRunStartMSTime > 0) //当角色在AI寻路状态时 m_nClientRunStartMSTimer==0
+	//{
+	//	Actor::UpdateRunState(m_nRunStartMSTime + (nClientMSTime - m_nClientRunStartMSTime));
+	//}
+
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	//if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 	//{
@@ -181,7 +183,6 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	//	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
 	//}
 	Actor::SetPos(Point(uPosX, uPosY), __FILE__, __LINE__);
-	m_nClientRunStartMSTime = 0;
 	Actor::StopRun(true, true);
 }
 

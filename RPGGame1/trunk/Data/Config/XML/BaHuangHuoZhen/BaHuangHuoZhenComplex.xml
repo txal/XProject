@@ -8,19 +8,22 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>AutoBVT</LastAuthor>
+  <LastAuthor>Windows 用户</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2018-12-10T08:42:36Z</LastSaved>
-  <Version>12.00</Version>
+  <LastSaved>2019-05-07T07:39:54Z</LastSaved>
+  <Version>15.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
-  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7311</KSOProductBuildVer>
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
  </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>13050</WindowHeight>
-  <WindowWidth>28695</WindowWidth>
-  <WindowTopX>120</WindowTopX>
-  <WindowTopY>135</WindowTopY>
+  <WindowHeight>10905</WindowHeight>
+  <WindowWidth>16080</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -33,52 +36,35 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s62">
+  <Style ss:ID="s88">
    <Interior/>
   </Style>
-  <Style ss:ID="s63">
+  <Style ss:ID="s89">
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s64">
+  <Style ss:ID="s90">
    <Alignment ss:Vertical="Center" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s65">
+  <Style ss:ID="s91">
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
    <NumberFormat ss:Format="@"/>
   </Style>
-  <Style ss:ID="s66">
+  <Style ss:ID="s92">
    <Alignment ss:Vertical="Bottom"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s67">
+  <Style ss:ID="s93">
    <Alignment ss:Vertical="Bottom"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
    <Interior/>
    <NumberFormat ss:Format="@"/>
   </Style>
-  <Style ss:ID="s68">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior/>
-   <NumberFormat ss:Format="@"/>
-   <Protection/>
-  </Style>
-  <Style ss:ID="s69">
-   <Alignment ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior/>
-  </Style>
-  <Style ss:ID="s70">
-   <Alignment ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#800080"/>
-   <Interior/>
-  </Style>
-  <Style ss:ID="s71">
+  <Style ss:ID="s97">
    <Alignment ss:Vertical="Bottom"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
@@ -86,24 +72,24 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s72">
+  <Style ss:ID="s98">
    <Alignment ss:Vertical="Bottom"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s73">
+  <Style ss:ID="s99">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#FF9900"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s74">
+  <Style ss:ID="s100">
    <Alignment ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s75">
+  <Style ss:ID="s101">
    <Alignment ss:Vertical="Bottom"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12" ss:Color="#FF00FF"/>
@@ -111,338 +97,135 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="ctBaHuangHuoZhenComplex">
-  <Table ss:ExpandedColumnCount="16384" ss:ExpandedRowCount="33" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="16383" ss:ExpandedRowCount="11" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="183.75" ss:Span="1"/>
-   <Column ss:Index="4" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="183.75"
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="183.75" ss:Span="1"/>
+   <Column ss:Index="4" ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="183.75"
     ss:Span="4"/>
-   <Column ss:Index="9" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="123.75"
+   <Column ss:Index="9" ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="123.75"
     ss:Span="1"/>
-   <Column ss:Index="11" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Span="16330"/>
-   <Column ss:Index="16342" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Span="42"/>
+   <Column ss:Index="11" ss:StyleID="s89" ss:AutoFitWidth="0" ss:Span="16329"/>
+   <Column ss:Index="16341" ss:StyleID="s88" ss:AutoFitWidth="0" ss:Span="42"/>
    <Row ss:AutoFitHeight="0" ss:Height="54">
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:Index="4" ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"><Data ss:Type="String">当修炼等级小于当前修炼上限等级-5时，所有途经获得的修炼经验增加30%</Data></Cell>
+    <Cell ss:StyleID="s90"/>
+    <Cell ss:Index="4" ss:StyleID="s90"/>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">当修炼等级小于当前修炼上限等级-5时，所有途经获得的修炼经验增加30%</Data></Cell>
     <Cell><Data ss:Type="String">当修炼等级小于当前修炼上限等级-5时，所有途经获得的修炼经验增加30%</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="String">若完成八荒火阵的玩家，等级≤服务器等级-10</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">若完成八荒火阵的玩家，等级≤服务器等级-10</Data></Cell>
     <Cell><Data ss:Type="String">8个箱子完成领取奖励</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="String">每天可以帮助封箱的次数</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">每天可以帮助封箱的次数</Data></Cell>
     <Cell><Data ss:Type="String">每日可求助次数</Data></Cell>
     <Cell><Data ss:Type="String">帮助帮派内其他成员封装八荒火阵箱子，还能额外获得3点帮贡奖励</Data></Cell>
    </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="36">
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"><Data ss:Type="String">nID</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">eFnSpecialMedicine</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">eFnCooking</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">eFnSpecialMedicine</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">eFnCooking</Data></Cell>
     <Cell><Data ss:Type="String">eFnStall</Data></Cell>
     <Cell><Data ss:Type="String">nPracticeLevelDifferent</Data></Cell>
     <Cell><Data ss:Type="String">nSuperfluityExp</Data></Cell>
     <Cell><Data ss:Type="String">eFnRoleRewardExp</Data></Cell>
     <Cell><Data ss:Type="String">tCompleteTaskReward</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">nHelpTiems</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">nHelpTiems</Data></Cell>
     <Cell><Data ss:Type="String">nCanHelpTimes</Data></Cell>
     <Cell><Data ss:Type="String">nUnionTimes</Data></Cell>
-    <Cell ss:Index="13"><Data ss:Type="String">sNpcTalk</Data></Cell>
+    <Cell><Data ss:Type="String">sNpcTalk</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"><Data ss:Type="String">i</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">e</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">e</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">e</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">e</Data></Cell>
     <Cell><Data ss:Type="String">e</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">e</Data></Cell>
     <Cell><Data ss:Type="String">t{ii}</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
-    <Cell ss:Index="13"><Data ss:Type="String">s</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"><Data ss:Type="String">编号</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">特效药物品价格计算</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">烹饪物品计算当前价格</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">编号</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">特效药物品价格计算</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">烹饪物品计算当前价格</Data></Cell>
     <Cell><Data ss:Type="String">摆摊物品计算修炼经验</Data></Cell>
     <Cell><Data ss:Type="String">当前修炼等级小于当前修炼等级上限的差值</Data></Cell>
     <Cell><Data ss:Type="String">额外经验百分比</Data></Cell>
     <Cell><Data ss:Type="String">人物奖励经验</Data></Cell>
     <Cell><Data ss:Type="String">完成任务奖励</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">帮助次数</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">帮助次数</Data></Cell>
     <Cell><Data ss:Type="String">求助次数</Data></Cell>
     <Cell><Data ss:Type="String">帮贡奖励</Data></Cell>
-    <Cell ss:Index="13"><Data ss:Type="String">完成对白</Data></Cell>
+    <Cell><Data ss:Type="String">完成对白</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">math.ceil(nServer/10)</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">math.ceil(nServerLv/10)</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="String">math.ceil(math.max(nPrice/2000)*1.5,10)</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="Number">5</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="String">30</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="String">nLevel*40+100</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="String">10009,1;</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">3</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">math.ceil(nServer/10)</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">math.ceil(nServerLv/10)</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">math.ceil(math.max(nPrice/2000)*1.5,10)</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s93"><Data ss:Type="String">30</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">nLevel*40+100</Data></Cell>
+    <Cell ss:StyleID="s93"><Data ss:Type="String">10009,1;</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s91"><Data ss:Type="String">2</Data></Cell>
     <Cell><Data ss:Type="Number">3</Data></Cell>
-    <Cell ss:Index="13"><Data ss:Type="String">老夫明天需要以下几个东西，少侠可提前准备好</Data></Cell>
+    <Cell><Data ss:Type="String">明天需要以下几个东西，少侠可提前准备好</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
+    <Cell ss:Index="7" ss:StyleID="s97"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s99"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
+    <Cell ss:Index="7" ss:StyleID="s97"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s99"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
+    <Cell ss:Index="4" ss:StyleID="s100"/>
+    <Cell ss:StyleID="s100"/>
+    <Cell ss:StyleID="s101"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s99"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
+    <Cell ss:Index="4" ss:StyleID="s100"/>
+    <Cell ss:StyleID="s100"/>
+    <Cell ss:StyleID="s101"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s99"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s66"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s67"/>
-    <Cell ss:StyleID="s68"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="6" ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s70"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-    <Cell ss:StyleID="s69"/>
-    <Cell ss:StyleID="s69"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="7" ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="4" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="4" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="4" ss:StyleID="s74"/>
-    <Cell ss:StyleID="s74"/>
-    <Cell ss:StyleID="s75"/>
-    <Cell ss:StyleID="s71"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s72"/>
-    <Cell ss:StyleID="s73"/>
+    <Cell ss:Index="4" ss:StyleID="s100"/>
+    <Cell ss:StyleID="s100"/>
+    <Cell ss:StyleID="s101"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s98"/>
+    <Cell ss:StyleID="s99"/>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -459,11 +242,12 @@
    </Print>
    <PageBreakZoom>100</PageBreakZoom>
    <Selected/>
+   <LeftColumnVisible>2</LeftColumnVisible>
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>1</ActiveRow>
-     <ActiveCol>1</ActiveCol>
+     <ActiveRow>15</ActiveRow>
+     <ActiveCol>3</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

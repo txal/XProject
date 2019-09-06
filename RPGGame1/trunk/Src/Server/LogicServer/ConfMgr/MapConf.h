@@ -29,6 +29,17 @@ struct MAPCONF
 		}
 		return (pMapGrid[nIndex] >= 0);
 	}
+	inline bool IsValidPos(uint16_t uPosX, uint16_t uPosY)
+	{
+		if (uPosX >= nPixelWidth || uPosY >= nPixelHeight)
+		{
+			return false;
+		}
+		int nUnitX = uPosX / gnUnitWidth;
+		int nUnitY = uPosY / gnUnitHeight;
+		return IsBlockUnit(nUnitX, nUnitY);
+	}
+
 	MAPCONF() : pMapGrid(NULL)
 	{
 	}

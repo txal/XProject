@@ -1,0 +1,11 @@
+ctBoxItemConf={}
+ctBoxItemConf[1]={nID=1,sName="1",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[2]={nID=2,sName="2",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[3]={nID=3,sName="3",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[4]={nID=4,sName="4",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[5]={nID=5,sName="5",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[6]={nID=6,sName="6",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[7]={nID=7,sName="7",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[8]={nID=8,sName="8",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[9]={nID=9,sName="9",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}
+ctBoxItemConf[10]={nID=10,sName="10",nPrice=1000,nWeight=100,tQualityWeight={{1,100,},{2,100,},{4,100,},{5,100,},},tAward={{0,0,0,false,},},}

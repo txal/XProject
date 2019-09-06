@@ -11,6 +11,7 @@ public:
 	PacketReader(Packet* poPacket = NULL);
 	void SetPacket(Packet* poPacket);
 	PacketReader& operator>>(uint8_t& uIntVal8);
+	PacketReader& operator>>(int8_t& nIntVal8);
 	PacketReader& operator>>(uint16_t& uIntVal16);
 	PacketReader& operator>>(int16_t& nIntVal16);
 	PacketReader& operator>>(uint32_t& uIntVal32);

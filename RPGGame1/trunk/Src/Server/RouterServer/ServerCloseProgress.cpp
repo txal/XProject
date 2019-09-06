@@ -20,7 +20,7 @@ void ServerCloseProgress::CloseServer(int nServerID)
 {
 	if (m_oServerList.size() > 0)
 	{
-		XLog(LEVEL_ERROR, "Close server routine is working server:%d!\n", m_oServerList.back());
+		XLog(LEVEL_ERROR, "Close server routine is working server:%d!\n", m_oServerList.front());
 		return;
 	}
 	XLog(LEVEL_INFO, "Closing server:%d\n", nServerID);
@@ -28,8 +28,8 @@ void ServerCloseProgress::CloseServer(int nServerID)
 	Router* poRouter = (Router*)gpoContext->GetService();
 	if (nServerID == gpoContext->GetServerConfig().GetWorldServerID())
 	{
-		int tServerList[MAX_SERVICE_NUM];
-		int nNum = poRouter->GetServerList(tServerList, MAX_SERVICE_NUM);
+		int tServerList[MAX_SERVER_NUM];
+		int nNum = poRouter->GetServerList(tServerList, MAX_SERVER_NUM);
 		for (int i = 0; i < nNum; i++)
 		{
 			if (tServerList[i] != gpoContext->GetServerConfig().GetWorldServerID())
@@ -61,15 +61,16 @@ void ServerCloseProgress::BroadcastPrepServerClose(ServiceNode** tServiceList, i
 		ServiceNode* poService = tServiceList[i];
 		if (nTarServer > 0 || nTarService > 0)
 		{
-			oPW << nTarServer << nTarService;
+			oPW << (int)nTarServer << (int)nTarService;
 		}
 		else
 		{
-			oPW << poService->GetServerID() << poService->GetServiceID();
+			oPW << (int)poService->GetServerID() << (int)poService->GetServiceID();
 		}
 
 		INNER_HEADER oHeader(NSSysCmd::ssPrepCloseServer, gpoContext->GetServerConfig().GetWorldServerID(), poRouter->GetServiceID(), poService->GetServerID(), poService->GetServiceID(), 0);
 		poPacket->AppendInnerHeader(oHeader, NULL, 0);
+
 		INet* pNet = poRouter->GetNetPool()->GetNet(poService->GetNetIndex());
 		if (!pNet->SendPacket(poService->GetSessionID(), poPacket))
 		{
@@ -95,22 +96,6 @@ void ServerCloseProgress::CloseGate()
 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_GATE);
 	if (nNum <= 0)
 	{
-		CloseLogin();
-	}
-	else
-	{
-		BroadcastPrepServerClose(tServiceList, nNum);
-	}
-}
-
-void ServerCloseProgress::CloseLogin()
-{
-	Router* poRouter = (Router*)gpoContext->GetService();
-	ServiceNode* tServiceList[MAX_SERVICE_NUM];
-	int nServerID = m_oServerList.front();
-	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_LOGIN);
-	if (nNum <= 0)
-	{
 		CloseLogic();
 	}
 	else
@@ -118,6 +103,22 @@ void ServerCloseProgress::CloseLogin()
 		BroadcastPrepServerClose(tServiceList, nNum);
 	}
 }
+
+// void ServerCloseProgress::CloseLogin()
+// {
+// 	Router* poRouter = (Router*)gpoContext->GetService();
+// 	ServiceNode* tServiceList[MAX_SERVICE_NUM];
+// 	int nServerID = m_oServerList.front();
+// 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_LOGIN);
+// 	if (nNum <= 0)
+// 	{
+// 		CloseLogic();
+// 	}
+// 	else
+// 	{
+// 		BroadcastPrepServerClose(tServiceList, nNum);
+// 	}
+// }
 
 void ServerCloseProgress::CloseLogic()
 {
@@ -153,22 +154,6 @@ void ServerCloseProgress::CloseGlobal()
 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_GLOBAL);
 	if (nNum <= 0)
 	{
-		CloseLog();
-	}
-	else
-	{
-		BroadcastPrepServerClose(tServiceList, nNum);
-	}
-}
-
-void ServerCloseProgress::CloseLog()
-{
-	Router* poRouter = (Router*)gpoContext->GetService();
-	ServiceNode* tServiceList[MAX_SERVICE_NUM];
-	int nServerID = m_oServerList.front();
-	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_LOG);
-	if (nNum <= 0)
-	{
 		OnCloseServerFinish(nServerID);
 	}
 	else
@@ -176,6 +161,22 @@ void ServerCloseProgress::CloseLog()
 		BroadcastPrepServerClose(tServiceList, nNum);
 	}
 }
+
+// void ServerCloseProgress::CloseLog()
+// {
+// 	Router* poRouter = (Router*)gpoContext->GetService();
+// 	ServiceNode* tServiceList[MAX_SERVICE_NUM];
+// 	int nServerID = m_oServerList.front();
+// 	int nNum = poRouter->GetServiceListByServer(nServerID, tServiceList, MAX_SERVICE_NUM, Service::SERVICE_LOG);
+// 	if (nNum <= 0)
+// 	{
+// 		OnCloseServerFinish(nServerID);
+// 	}
+// 	else
+// 	{
+// 		BroadcastPrepServerClose(tServiceList, nNum);
+// 	}
+// }
 
 void ServerCloseProgress::OnCloseServerFinish(int nServerID)
 {
@@ -205,8 +206,7 @@ void ServerCloseProgress::OnServiceClose(int nServerID, int nServiceID, int nSer
 			break;
 		}
 	}
-	LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
-	//poLuaWrapper->FastCallLuaRef<void>("OnServiceClose", 0, "iiib", nServerID, nServiceID, nServiceType, bNormalClose);
-
+	// LuaWrapper* poLuaWrapper = LuaWrapper::Instance();
+	// poLuaWrapper->FastCallLuaRef<void>("OnServiceClose", 0, "iiib", nServerID, nServiceID, nServiceType, bNormalClose);
 	StartRoutine();
 }

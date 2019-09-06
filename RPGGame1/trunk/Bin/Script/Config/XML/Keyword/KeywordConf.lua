@@ -6615,9 +6615,3 @@ ctKeywordConf[6613]={nIndex=6613,sKey="纘",}
 ctKeywordConf[6614]={nIndex=6614,sKey="作愛",}
 ctKeywordConf[6615]={nIndex=6615,sKey="做愛",}
 ctKeywordConf[6616]={nIndex=6616,sKey="av",}
-ctKeywordConf[6617]={nIndex=6617,sKey="QQ",}
-ctKeywordConf[6618]={nIndex=6618,sKey="qq",}
-ctKeywordConf[6619]={nIndex=6619,sKey="群",}
-ctKeywordConf[6620]={nIndex=6620,sKey="微信",}
-ctKeywordConf[6621]={nIndex=6621,sKey="公众号",}
-ctKeywordConf[6622]={nIndex=6622,sKey="折扣",}

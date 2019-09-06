@@ -8,19 +8,22 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>AutoBVT</LastAuthor>
+  <LastAuthor>Windows 用户</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2018-12-07T06:43:14Z</LastSaved>
-  <Version>12.00</Version>
+  <LastSaved>2019-07-09T12:04:18Z</LastSaved>
+  <Version>15.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <KSOProductBuildVer dt:dt="string">2052-10.1.0.7346</KSOProductBuildVer>
  </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11820</WindowHeight>
-  <WindowWidth>28695</WindowWidth>
-  <WindowTopX>120</WindowTopX>
-  <WindowTopY>135</WindowTopY>
+  <WindowHeight>10020</WindowHeight>
+  <WindowWidth>25140</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -71,35 +74,38 @@
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">充值金额</Data></Cell>
     <Cell><Data ss:Type="String">礼包物品(不包含称谓)</Data></Cell>
-    <Cell><Data ss:Type="String">对应的礼包ID</Data></Cell>
+    <Cell><Data ss:Type="String">对应充值ID</Data></Cell>
     <Cell><Data ss:Type="String">必得奖励ID</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,28000,30,0;1,11003,1,0;1,10109,1,0;1,19016,30,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,28000,50,0;1,11003,2,0;1,10109,2,0;1,10113,20,0;</Data></Cell>
     <Cell><Data ss:Type="Number">13</Data></Cell>
-    <Cell><Data ss:Type="String">1,1,500,1;1,2,5000,1;</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,34008,3,0;1,34009,3,0;1,10111,2,0;1,13536,1,0;</Data></Cell>
-    <Cell><Data ss:Type="Number">14</Data></Cell>
-    <Cell><Data ss:Type="String">1,1,3000,1;</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">18</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,34008,4,0;1,34009,4,0;1,10111,3,0;1,13537,1,0;</Data></Cell>
-    <Cell><Data ss:Type="Number">15</Data></Cell>
-    <Cell><Data ss:Type="String">1,1,9000,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,1,4000,1;1,2,36000,1;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">30</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,13534,1,0;1,28002,5,0;1,13538,1,0;</Data></Cell>
-    <Cell><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,13527,10,0;1,10111,4,0;1,10204,120,0;1,10203,120,0;1,34008,6,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">14</Data></Cell>
     <Cell><Data ss:Type="String">1,1,15000,1;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s63"/>
+    <Cell><Data ss:Type="Number">188</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,13528,10,0;1,13104,1,0;1,13105,1,0;1,13204,1,0;1,13205,1,0;1,13201,1,0;1,13004,1,0;1,13005,1,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+    <Cell><Data ss:Type="String">1,1,94000,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">328</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,13529,10,0;1,50008,80,0;1,50003,80,0;1,50009,80,0;1,50010,80,0;1,50014,80,0;1,13534,20,0;1,2000413,1,0;</Data></Cell>
+    <Cell><Data ss:Type="Number">16</Data></Cell>
+    <Cell><Data ss:Type="String">1,1,164000,1;</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">648</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19012,99,1;</Data></Cell>
+    <Cell><Data ss:Type="Number">19</Data></Cell>
+    <Cell><Data ss:Type="String">1,1,324000,1;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:Index="2" ss:StyleID="s63"/>
@@ -206,7 +212,7 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>20</ActiveRow>
+     <ActiveRow>14</ActiveRow>
      <ActiveCol>1</ActiveCol>
     </Pane>
    </Panes>
@@ -361,6 +367,12 @@
     <Footer x:Margin="0.51111111111111096"/>
    </PageSetup>
    <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
    <PageBreakZoom>100</PageBreakZoom>
    <Panes>
     <Pane>
@@ -388,16 +400,16 @@
     <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">必得奖励ID</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">1,1,500,1;1,2,5000,1;1,13530,1,0;</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">1,1,10,1;1,2,100,1;1,13530,1,0;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">1,1,3000,1;1,13531,1,0;</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">1,1,60,1;1,13531,1,0;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">1,1,9000,1;1,13532,1,0;</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">1,1,180,1;1,13532,1,0;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">1,1,15000,1;1,13533,1,0;</Data></Cell>
+    <Cell ss:Index="2" ss:StyleID="s62"><Data ss:Type="String">1,1,300,1;1,13533,1,0;</Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -410,9 +422,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>1</ActiveRow>
-     <ActiveCol>1</ActiveCol>
-     <RangeSelection>R2C2:R8C2</RangeSelection>
+     <ActiveRow>11</ActiveRow>
+     <ActiveCol>5</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

@@ -10,7 +10,7 @@
   <Author>Administrator</Author>
   <LastAuthor>DM-PC092</LastAuthor>
   <Created>2016-02-27T18:41:06Z</Created>
-  <LastSaved>2019-01-11T09:57:24Z</LastSaved>
+  <LastSaved>2019-02-18T11:35:47Z</LastSaved>
   <Version>15.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
@@ -20,7 +20,7 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>12450</WindowHeight>
+  <WindowHeight>11955</WindowHeight>
   <WindowWidth>28800</WindowWidth>
   <WindowTopX>0</WindowTopX>
   <WindowTopY>0</WindowTopY>
@@ -36,56 +36,36 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s62">
+  <Style ss:ID="s88">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s63">
+  <Style ss:ID="s89">
    <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s64">
+  <Style ss:ID="s90">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
-  </Style>
-  <Style ss:ID="s65">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior/>
-  </Style>
-  <Style ss:ID="s66">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#BFBFBF" ss:Pattern="Solid"/>
-  </Style>
-  <Style ss:ID="s67">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-  </Style>
-  <Style ss:ID="s68">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
   </Style>
  </Styles>
  <Worksheet ss:Name="ctGuideConf">
-  <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="23" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+  <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="6" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s88" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="58.5" ss:Span="2"/>
-   <Column ss:Index="4" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="84.75"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="137.25"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="276"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="111"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="58.5" ss:Span="2"/>
+   <Column ss:Index="4" ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="84.75"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="137.25"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="276"/>
+   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="111"/>
    <Row ss:AutoFitHeight="0" ss:Height="36">
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">引导序号,一个引导的第几步</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">在第几级的时候弹出引导</Data></Cell>
-    <Cell ss:StyleID="s63"/>
-    <Cell ss:StyleID="s64"/>
-    <Cell ss:StyleID="s64"><Data ss:Type="String">是否显示NPC对话，是的话填对白表的id，没有就填0</Data></Cell>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">引导序号,一个引导的第几步</Data></Cell>
+    <Cell ss:StyleID="s89"><Data ss:Type="String">在第几级的时候弹出引导</Data></Cell>
+    <Cell ss:StyleID="s89"/>
+    <Cell ss:StyleID="s90"/>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">是否显示NPC对话，是的话填对白表的id，没有就填0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">nSeq</Data></Cell>
@@ -118,177 +98,7 @@
     <Cell><Data ss:Type="String">npc头像ID</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="Number">300001</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">点击目标任务</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">请点击“前往”按钮</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">4</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">4</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">点击“法术”按钮，展开法术操作菜单。</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">5</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">5</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">请点击使用技能！</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">6</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">6</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">请点击选择目标！</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">7</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">7</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">点击目标任务</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">8</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">8</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">点开“领取奖励”看看吧！</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">9</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">9</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">再次点击目标任务</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">请再次点击“前往”按钮</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">11</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">11</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">累了的话，可以自动战斗哦！</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">12</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">12</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">点击打开功能展开栏</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">13</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">13</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">点击“葫芦”按键</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">14</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">14</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">进行葫芦升级</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">15</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">15</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">关闭葫芦界面</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">16</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">16</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">点击“日常”按键</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">17</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">17</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">参加抓鬼玩法吧！</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">50</Data></Cell>
+    <Cell><Data ss:Type="Number">50</Data></Cell>
     <Cell><Data ss:Type="Number">50</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -298,7 +108,7 @@
     <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">51</Data></Cell>
+    <Cell><Data ss:Type="Number">51</Data></Cell>
     <Cell><Data ss:Type="Number">51</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -325,7 +135,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>23</ActiveRow>
+     <ActiveRow>13</ActiveRow>
+     <ActiveCol>5</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

@@ -271,14 +271,15 @@ namespace BattleUtil
 		}
 		if (nDistY == 0)
 		{
-			nSpeedX = (int)(nMoveSpeed*0.7f);
+			int nAdjSpeedX = (int)(nMoveSpeed*0.7f);
+			nSpeedX = nDistX < 0 ? -nAdjSpeedX : nAdjSpeedX;
 			nSpeedY = 0;
 			return;
 		}
 		if (nDistX == 0)
 		{
 			nSpeedX = 0;
-			nSpeedY = nMoveSpeed;
+			nSpeedY = nDistY < 0 ? -nMoveSpeed : nMoveSpeed;
 			return;
 		}
 		float fAngle = BattleUtil::CalcRadian(oSrcPos.x, oSrcPos.y, oTarPos.x, oTarPos.y);

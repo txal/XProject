@@ -39,11 +39,11 @@ end
 
 function CHSXS:LoadData()
 	print("加载活动数据", self:GetName())
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oSSDB:HGet(gtDBDef.sHuoDongDB, self:GetID()) 
 	if sData == "" then return end
 
-	local tData = cjson.decode(sData)
+	local tData = cseri.decode(sData)
 	CHDBase.LoadData(self, tData)
 	
 	self.m_nSubState = tData.m_nSubState
@@ -80,8 +80,8 @@ function CHSXS:SaveData()
 	tData.m_tAwardRecordList = self.m_tAwardRecordList
 	tData.m_tDayAwardMap = self.m_tDayAwardMap
 
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cjson.encode(tData))
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

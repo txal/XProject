@@ -168,7 +168,9 @@ static int GenUUID(lua_State* pState)
 {
 	ServerConfig& oSrvConf = gpoContext->GetServerConfig();
 	int nCustomID = oSrvConf.uGroupID + oSrvConf.uServerID + gpoContext->GetService()->GetServiceID();
-	return XUUID::GenID(nCustomID);
+	int64_t nUUID = XUUID::GenID(nCustomID);
+	lua_pushinteger(pState, nUUID);
+	return 1;
 }
 
 static luaL_Reg _network_lua_func[] =

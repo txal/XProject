@@ -2,10 +2,10 @@
 
 
 
-echo 生成客户端表======
-pushd Client
-call Xls2Js.bat
-popd
+rem echo 生成客户端表======
+rem pushd Client
+rem call Xls2Js.bat
+rem popd
 
 
 

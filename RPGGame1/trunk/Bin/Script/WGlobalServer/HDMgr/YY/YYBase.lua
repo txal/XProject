@@ -12,11 +12,11 @@ end
 
 
 function CYYBase:LoadData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oSSDB:HGet(gtDBDef.sHuoDongDB, self:GetID())
 	if sData == "" then return end
 
-	local tData = cjson.decode(sData)
+	local tData = cseri.decode(sData)
 	CHDBase.LoadData(self, tData)
 	self:Load(tData)
 end
@@ -27,8 +27,8 @@ function CYYBase:SaveData()
 	end
 	local tData = CHDBase.SaveData(self)
 	local tData = self:Save(tData)
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cjson.encode(tData))
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

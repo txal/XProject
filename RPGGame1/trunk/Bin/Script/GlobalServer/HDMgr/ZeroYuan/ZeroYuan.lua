@@ -23,11 +23,11 @@ function CZeroYuan:Init()
 end
 
 function CZeroYuan:LoadData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oSSDB:HGet(gtDBDef.sHuoDongDB, self:GetID())
 	if sData == "" then return end
 
-	local tData = cjson.decode(sData)
+	local tData = cseri.decode(sData)
 	CHDBase.LoadData(self, tData)
 	self.m_tRoleActData = tData.m_tRoleActData or {}
 
@@ -39,8 +39,8 @@ function CZeroYuan:SaveData()
 	end
 	local tData = CHDBase.SaveData(self)
 	tData.m_tRoleActData = self.m_tRoleActData
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cjson.encode(tData))
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

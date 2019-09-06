@@ -45,6 +45,17 @@ PacketReader& PacketReader::operator>>(uint8_t& uIntVal8)
 	return *this;
 }
 
+PacketReader& PacketReader::operator>>(int8_t& nIntVal8)
+{
+	uint8_t* pbfReadingPos = GetReadingPos(sizeof(nIntVal8));
+	if (pbfReadingPos != NULL)
+	{
+		nIntVal8 = *(uint8_t*)pbfReadingPos;
+		m_nReadedSize += sizeof(nIntVal8);
+	}
+	return *this;
+}
+
 PacketReader& PacketReader::operator>>(uint16_t& uIntVal16)
 {
 	uint8_t* pbfReadingPos = GetReadingPos(sizeof(uIntVal16));

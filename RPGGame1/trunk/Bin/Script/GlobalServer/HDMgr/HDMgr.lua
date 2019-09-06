@@ -145,7 +145,7 @@ function CHDMgr:GMOpenAct(nActID, nSubActID, nStartTime, nEndTime, nAwardTime, n
 	end
 
 	if tConf.bCrossServer then
-		Network.oRemoteCall:Call("GMOpenAct", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0
+		Network:RMCall("GMOpenAct", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0
 			, nActID, nSubActID, nStartTime, nEndTime, nAwardTime, nExtID, nExtID1)
 		return
 	end

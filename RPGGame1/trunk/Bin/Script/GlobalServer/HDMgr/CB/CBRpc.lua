@@ -3,7 +3,7 @@ function Network.CltPBProc.CBInfoReq(nCmd, nServer, nSrevice, nSession, tData)
 	local oRole = goGPlayerMgr:GetRoleBySS(nServer, nSession)
 	if not oRole then return end
 	goCBMgr:SyncState(oRole)
-	Network.oRemoteCall:Call("SyncCBState", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+	Network:RMCall("SyncCBState", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 end
 
 --冲榜活动请求
@@ -20,7 +20,7 @@ function Network.CltPBProc.CBInActivityReq(nCmd, nServer, nSrevice, nSession, tD
 		--全服活动
 		local tConf = ctHuoDongConf[tData.nID]
 		if tConf.bCrossServer then
-			Network.oRemoteCall:Call("CBInActivityReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+			Network:RMCall("CBInActivityReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 		else
 			oRole:Tips("活动:"..tData.nID.."不存在")
 		end
@@ -40,7 +40,7 @@ function Network.CltPBProc.CBRankingReq(nCmd, nServer, nSrevice, nSession, tData
 	else
 		local tConf = ctHuoDongConf[tData.nID]
 		if tConf.bCrossServer then
-			Network.oRemoteCall:Call("CBRankingReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+			Network:RMCall("CBRankingReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 		else
 			oRole:Tips("活动:"..tData.nID.."不存在")
 		end
@@ -61,7 +61,7 @@ function Network.CltPBProc.CBGetAwardReq(nCmd, nServer, nSrevice, nSession, tDat
 		--全服活动
 		local tConf = ctHuoDongConf[tData.nID]
 		if tConf.bCrossServer then
-			Network.oRemoteCall:Call("CBGetAwardReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+			Network:RMCall("CBGetAwardReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 		else
 			oRole:Tips("活动:"..tData.nID.."不存在")
 		end 

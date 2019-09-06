@@ -44,7 +44,7 @@ function CKeJu:Online()
 			end
 			local nServerID = self.m_oRole:GetServer()
 			local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
-			Network.oRemoteCall:CallWait("KejuRankingCheckJoinDianshiReq", fnCallback, nServerID, nServiceID, 0,nRoleID)
+			Network:RMCall("KejuRankingCheckJoinDianshiReq", fnCallback, nServerID, nServiceID, 0,nRoleID)
 		end
 	end
 end
@@ -500,11 +500,11 @@ function CKeJu:AnswerRight(nKejuType)
 	
 	--乡试
 	if nKejuType == 3 then
-		Network.oRemoteCall:Call("PushKejuRank",nServerID,nServiceID,0,oRole:GetID(),nKejuType,{nCnt,oRole:GetLevel(),oRole:GetName()})
+		Network:RMCall("PushKejuRank", nil,nServerID,nServiceID,0,oRole:GetID(),nKejuType,{nCnt,oRole:GetLevel(),oRole:GetName()})
 	end
 	if nKejuType == 4 then
 		local nCostTime = self:GetDianshiCostTime()
-		Network.oRemoteCall:Call("PushKejuRank",nServerID,nServiceID,0,oRole:GetID(),nKejuType,{nCnt,nCostTime,oRole:GetLevel(),oRole:GetName()})
+		Network:RMCall("PushKejuRank", nil,nServerID,nServiceID,0,oRole:GetID(),nKejuType,{nCnt,nCostTime,oRole:GetLevel(),oRole:GetName()})
 	end
 end
 
@@ -530,7 +530,7 @@ function CKeJu:AnswerWrong(nKejuType)
 		oRole.m_oTimeData.m_oToday:Add("DianshiWrong",1)
 		local nCnt = self:GetAnswerQuestionRightCnt(nKejuType)
 		local nCostTime = self:GetDianshiCostTime()
-		Network.oRemoteCall:Call("PushKejuRank",nServerID,nServiceID,0,oRole:GetID(),nKejuType,{nCnt,nCostTime,oRole:GetLevel(),oRole:GetName()})
+		Network:RMCall("PushKejuRank", nil,nServerID,nServiceID,0,oRole:GetID(),nKejuType,{nCnt,nCostTime,oRole:GetLevel(),oRole:GetName()})
 	end
 end
 
@@ -598,7 +598,7 @@ function CKeJu:KejuAskHelp(nQuestionID)
 	local tAnswer = oQuestion:GetAnswerList()
 	local sLink = self:GetClientLinkData(nRoleID,nQuestionID,sTitle,tAnswer)
 	local nServerID = self.m_oRole:GetServer()
-	Network.oRemoteCall:Call("BroadcastUnionTalk",nServerID,goServerMgr:GetGlobalService(nServerID,20),0,nRoleID,sLink)
+	Network:RMCall("BroadcastUnionTalk", nil,nServerID,goServerMgr:GetGlobalService(nServerID,20),0,nRoleID,sLink)
 end
 
 function CKeJu:GetAskHelpCount()
@@ -631,7 +631,7 @@ function CKeJu:KejuAnswerHelpQuestion(nHelpRoleID,sRoleName,nQuestionID,nAnswerN
 	local sLink = self:GetClientHelpLinkData(sRoleName,sTitle,tAnswer,sAnswer)
 	local nRoleID = self.m_oRole:GetID()
 	local nServerID = self.m_oRole:GetServer()
-	Network.oRemoteCall:Call("BroadcastUnionTalk",nServerID,goServerMgr:GetGlobalService(nServerID,20),0,nRoleID,sLink)
+	Network:RMCall("BroadcastUnionTalk", nil,nServerID,goServerMgr:GetGlobalService(nServerID,20),0,nRoleID,sLink)
 
 end
 

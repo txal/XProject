@@ -1,8 +1,10 @@
 CLAccount = CLAccount or class()
+CSimpleRole = CSimpleRole or class()
 CLoginQueue = CLoginQueue or class()
 CLoginMgr = CLoginMgr or class(CGModuleBase)
 
 require("LoginMgr/LAccount")
+require("LoginMgr/SimpleRole")
 require("LoginMgr/LoginQueue")
 require("LoginMgr/LoginMgr")
 require("LoginMgr/LoginMgrRpc")

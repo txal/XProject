@@ -86,8 +86,8 @@ end
 --取离线数据
 function CLianYin:GetOfflineData(nCharID)
 	local _, sDBName = self:GetType()
-	local sData = goDBMgr:GetSSDB("Player"):HGet(sDBName, nCharID)
-	local tData = sData == "" and {} or cjson.decode(sData)
+	local sData = goDBMgr:GetGameDB("Player"):HGet(sDBName, nCharID)
+	local tData = sData == "" and {} or cseri.decode(sData)
 	tData.m_tLYSendMap = tData.m_tLYSendMap or {}
 	tData.m_tLYAgreeMap = tData.m_tLYAgreeMap or {}
 	return tData
@@ -96,7 +96,7 @@ end
 --保存离线数据
 function CLianYin:SaveOfflineData(nCharID, tData)
 	local _, sDBName = self:GetType()
-	goDBMgr:GetSSDB("Player"):HSet(sDBName, nCharID, cjson.encode(tData))
+	goDBMgr:GetGameDB("Player"):HSet(sDBName, nCharID, cseri.encode(tData))
 end
 
 --生成萌宠数据

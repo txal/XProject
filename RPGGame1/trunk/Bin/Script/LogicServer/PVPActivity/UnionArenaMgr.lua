@@ -47,7 +47,7 @@ function CUnionArenaMgr:OnActivityStart()
 	--获取所有联盟信息
 	local tGlobalServiceList = goServerMgr:GetGlobalServiceList()
     for nServerID, tConf in pairs(tServerList) do
-    	Network.oRemoteCall:CallWait("PackUnionArenaData",fCallback,tConf.nServer,tConf.nID,0)
+    	Network:RMCall("PackUnionArenaData",fCallback,tConf.nServer,tConf.nID,0)
 	end
 	CPVPActivityMgrBase.OnActivityStart(self) --帮战这个比较特殊，这里还没创建帮战活动实例
 end
@@ -60,7 +60,7 @@ function CUnionArenaMgr:OnActivityStart2(tAllUnionData, tServerUnion)
 			tServerMatchUnionData[nUnionID] = tMatchUnion[nUnionID] or 0
 		end
 		--TODO 后续如果这里数据过大，也需要优化
-		Network.oRemoteCall:Call("MatchUnionArena",nServerID,goServerMgr:GetGlobalService(nServerID, 20),0,tServerMatchUnionData)
+		Network:RMCall("MatchUnionArena", nil,nServerID,goServerMgr:GetGlobalService(nServerID, 20),0,tServerMatchUnionData)
 	end
 	--匹配对应关系,A->B,B->A
 	self.m_tMatchUnion = tMatchUnion
@@ -258,7 +258,7 @@ function CUnionArenaMgr:InstEnterCheck(nRoleID, nActivityID, fnCallback)
 	local nCurService = CUtil:GetServiceID()
 	local nTarService = CPVPActivityMgr:GetActivityServiceID(nActivityID)
 	if nCurService ~= nTarService then
-		Network.oRemoteCall:CallWait("PVPActivityEnterCheckReq", fnInnerCallback, oRole:GetServer(), 
+		Network:RMCall("PVPActivityEnterCheckReq", fnInnerCallback, oRole:GetServer(), 
 					nTarService, 0, nActivityID, nRoleID, oRole:GetUnionID())
 	else
 		--调用本服的

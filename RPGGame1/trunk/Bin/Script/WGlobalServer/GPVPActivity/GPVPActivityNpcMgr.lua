@@ -32,7 +32,7 @@ function CGPVPActivityNpcMgr:Online(oRole)
 
     for nPVPActID, tConf in pairs(ctPVPActivityConf) do 
         local nService = self:GetPVPActivityService(nPVPActID)
-        Network.oRemoteCall:CallWait("PVPActivityCheckStatusReq", fnCheckCallback, 
+        Network:RMCall("PVPActivityCheckStatusReq", fnCheckCallback, 
             oRole:GetServer(), nService, 0, nPVPActID)
     end
 end

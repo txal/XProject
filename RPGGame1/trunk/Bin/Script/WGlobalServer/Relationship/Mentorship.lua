@@ -642,8 +642,8 @@ function CMentorshipMgr:SaveSysData()
     end
     local tData = {}
     tData.nLastDailyResetStamp = self.m_nLastDailyResetStamp
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-    oDB:HSet(gtDBDef.sMentorshipDB, "sysdata", cjson.encode(tData))
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+    oDB:HSet(gtDBDef.sMentorshipDB, "sysdata", cseri.encode(tData))
 
     self:MarkDirty(false)
 end
@@ -651,20 +651,20 @@ end
 --停服保存所有
 function CMentorshipMgr:SaveData()
     self:SaveSysData()
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
     while self.m_tDirtyQueue:Count() > 0 do
 		local oRoleMentorData, nRoleID = self.m_tDirtyQueue:Head()
 		local tData = oRoleMentorData:SaveData()
-        oDB:HSet(gtDBDef.sRoleMentorDB, oRoleMentorData:GetID(), cjson.encode(tData))
+        oDB:HSet(gtDBDef.sRoleMentorDB, oRoleMentorData:GetID(), cseri.encode(tData))
         self.m_tDirtyQueue:Pop() --成功后才pop，防止DB断开连接，导致数据丢失
 	end
 end
 
 function CMentorshipMgr:LoadSysData()
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
     local sData = oDB:HGet(gtDBDef.sMentorshipDB, "sysdata")
     if sData ~= "" then 
-        local tData = cjson.decode(sData)
+        local tData = cseri.decode(sData)
         if tData then 
             self.m_nLastDailyResetStamp = tData.nLastDailyResetStamp or self.m_nLastDailyResetStamp
         end
@@ -674,11 +674,11 @@ end
 function CMentorshipMgr:LoadData()
     self:LoadSysData()
 
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
     local tKeys = oDB:HKeys(gtDBDef.sRoleMentorDB)
 	for _, sRoleID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sRoleMentorDB, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nRoleID = tData.nRoleID
 		local oRoleMentorData = CRoleMentorship:new(nRoleID)
 		oRoleMentorData:LoadData(tData)
@@ -690,7 +690,7 @@ end
 
 function CMentorshipMgr:TickSave()
     self:SaveSysData()
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
     local nDirtyNum = self.m_tDirtyQueue:Count()
     if nDirtyNum <= 0 then 
         return 
@@ -700,7 +700,7 @@ function CMentorshipMgr:TickSave()
         local oRoleMentorData = self.m_tDirtyQueue:Head()
 		if oRoleMentorData then
 			local tData = oRoleMentorData:SaveData()
-			oDB:HSet(gtDBDef.sRoleMentorDB, oRoleMentorData:GetID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleMentorDB, oRoleMentorData:GetID(), cseri.encode(tData))
             oRoleMentorData:MarkDirty(false)
         end
         self.m_tDirtyQueue:Pop()
@@ -1488,7 +1488,7 @@ function CMentorshipMgr:TaskBattleReq(oRole)
         end
         return
     end
-    Network.oRemoteCall:Call("MentorshipTaskBattleReq", oRole:GetStayServer(), oRole:GetLogic(), 
+    Network:RMCall("MentorshipTaskBattleReq", nil, oRole:GetStayServer(), oRole:GetLogic(), 
         oRole:GetSession(), nRoleID, {nTaskID = nTaskID, nTimeStamp = os.time(), nSrcService = CUtil:GetServiceID()})
 end
 
@@ -1903,7 +1903,7 @@ function CMentorshipMgr:SyncLogicCache(nRoleID, nSrcServer, nSrcService, nTarSes
         end
         tData.tMentorshipList[nTempRoleID] = tMentorData
     end
-    Network.oRemoteCall:Call("RoleMentorshipUpdateReq", nSrcServer, nSrcService, nTarSession, nRoleID, tData)
+    Network:RMCall("RoleMentorshipUpdateReq", nil, nSrcServer, nSrcService, nTarSession, nRoleID, tData)
 end
 
 function CMentorshipMgr:OnNameChange(oRole)

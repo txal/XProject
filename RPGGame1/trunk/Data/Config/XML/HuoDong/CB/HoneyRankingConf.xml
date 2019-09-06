@@ -8,10 +8,10 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>Administrator</LastAuthor>
+  <LastAuthor>欧阳文杰</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2018-07-23T08:54:48Z</LastSaved>
-  <Version>12.00</Version>
+  <LastSaved>2019-05-15T02:32:38Z</LastSaved>
+  <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
@@ -20,10 +20,10 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11820</WindowHeight>
-  <WindowWidth>28800</WindowWidth>
-  <WindowTopX>0</WindowTopX>
-  <WindowTopY>0</WindowTopY>
+  <WindowHeight>9180</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -52,15 +52,16 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="ctHoneyRankingConf">
-  <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="11" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="8" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
-   <Column ss:Index="2" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="78.75"/>
+   <Column ss:Index="2" ss:StyleID="s62" ss:AutoFitWidth="0"
+    ss:Width="78.599999999999994"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="90"/>
-   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="306.75"/>
-   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="398.25"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="306.60000000000002"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="398.4"/>
    <Column ss:Index="7" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="90"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="60.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="60.6"/>
    <Row ss:AutoFitHeight="0"/>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">nIndex</Data></Cell>
@@ -94,8 +95,8 @@
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">1,1;</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="String">bg_paiming1</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,300;1,13343,10;1,10100,40;1,11224,10;1,28000,100;</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,300;1,13343,10;1,10100,40;1,11224,10;1,28000,100;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000204,1;1,10014,10;1,19016,100;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000204,1;1,10014,10;1,19016,100;</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s63"/>
    </Row>
@@ -103,48 +104,24 @@
     <Cell><Data ss:Type="Number">2</Data></Cell>
     <Cell><Data ss:Type="String">2,2;</Data></Cell>
     <Cell><Data ss:Type="String">bg_paiming2</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,150;1,13343,5;1,10100,20;1,11224,5;1,28000,50;</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,150;1,13343,5;1,10100,20;1,11224,5;1,28000,50;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000203,1;1,10014,8;1,19016,80;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000203,1;1,10014,8;1,19016,80;</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">3</Data></Cell>
     <Cell><Data ss:Type="String">3,3;</Data></Cell>
     <Cell><Data ss:Type="String">bg_paiming3</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,100;1,13343,3;1,10100,10;1,11224,3;1,28000,30;</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,100;1,13343,3;1,10100,10;1,11224,3;1,28000,30;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000202,1;1,10014,6;1,19016,60;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000202,1;1,10014,6;1,19016,60;</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">4</Data></Cell>
-    <Cell><Data ss:Type="String">4,5;</Data></Cell>
+    <Cell><Data ss:Type="String">4,20;</Data></Cell>
     <Cell><Data ss:Type="String">bg_paiming4</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,50;1,13343,1;1,10100,5;1,11224,2;1,28000,20;</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,50;1,13343,1;1,10100,5;1,11224,2;1,28000,20;</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">5</Data></Cell>
-    <Cell><Data ss:Type="String">6,10;</Data></Cell>
-    <Cell><Data ss:Type="String">bg_paiming4</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,50;1,13343,1;1,10100,5;1,11224,2;1,28000,20;</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,50;1,13343,1;1,10100,5;1,11224,2;1,28000,20;</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell><Data ss:Type="String">11,20;</Data></Cell>
-    <Cell><Data ss:Type="String">bg_paiming4</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,30;1,13343,1;1,10100,3;1,11224,1;1,28000,15;</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,30;1,13343,1;1,10100,3;1,11224,1;1,28000,15;</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">7</Data></Cell>
-    <Cell><Data ss:Type="String">21,30;</Data></Cell>
-    <Cell><Data ss:Type="String">bg_paiming4</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,30;1,13343,1;1,10100,3;1,11224,1;1,28000,15;</Data></Cell>
-    <Cell><Data ss:Type="String">1,20005,30;1,13343,1;1,10100,3;1,11224,1;1,28000,15;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000201,1;1,10014,4;1,19016,40;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000201,1;1,10014,4;1,19016,40;</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
   </Table>
@@ -165,8 +142,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>17</ActiveRow>
-     <ActiveCol>4</ActiveCol>
+     <ActiveRow>15</ActiveRow>
+     <ActiveCol>3</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

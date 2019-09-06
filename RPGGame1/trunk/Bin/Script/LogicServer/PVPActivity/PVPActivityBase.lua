@@ -915,7 +915,7 @@ function CPVPActivityBase:KickRole(nRoleID)
 			oRole:EnterLastCity()
 		end
 	end
-	Network.oRemoteCall:CallWait("KickFromTeamReq", fnCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID)
+	Network:RMCall("KickFromTeamReq", fnCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID)
 end
 
 function CPVPActivityBase:GetRankRewardList(nRank) --注意，奖励可能不存在，即返回nil或者 <= 0的情况
@@ -975,7 +975,7 @@ function CPVPActivityBase:AddRankReward()
 					if oRole then 
 						oRole:AppellationUpdate(tAppeData)
 					else
-						Network.oRemoteCall:Call("AppellationUpdateReq", gnWorldServerID, 
+						Network:RMCall("AppellationUpdateReq", nil, gnWorldServerID, 
 							goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID, tAppeData)
 					end
 				end
@@ -1126,7 +1126,7 @@ function CPVPActivityBase:AfterRoleEnter(oRole)
 		self.m_nRobotNum = self.m_nRobotNum + 1 
 
 		goLRobotMgr:RegMove(oRole:GetID())
-		Network.oRemoteCall:Call("RobotJoinTeamMatchReq", gnWorldServerID, 
+		Network:RMCall("RobotJoinTeamMatchReq", nil, gnWorldServerID, 
 			goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID, self:GetMixDupType())
 	end
 
@@ -1204,7 +1204,7 @@ function CPVPActivityBase:OnRoleLeave(oRole)
 					LuaTrace(debug.traceback())
 				end
 			end
-			Network.oRemoteCall:Call("RobotCancelTeamMatchReq", gnWorldServerID, 
+			Network:RMCall("RobotCancelTeamMatchReq", nil, gnWorldServerID, 
 				goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID, self:GetMixDupType())
 		end
 	else		
@@ -1743,7 +1743,7 @@ end
 
 function CPVPActivityBase:TeamListBattleInfoReq(tRoleList, fnCallBack)
 	assert(tRoleList and fnCallBack and #tRoleList > 0, "参数错误")
-	Network.oRemoteCall:CallWait("TeamListBattleInfoReq", fnCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, tRoleList)
+	Network:RMCall("TeamListBattleInfoReq", fnCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, tRoleList)
 end
 
 --同步活动数据
@@ -1933,7 +1933,7 @@ function CPVPActivityBase:AddRobot(nNum)
 		table.insert(tRobotCreateList, tParam)
 	end
 
-	Network.oRemoteCall:Call("PVPActCreateRobotReq", gnWorldServerID, 
+	Network:RMCall("PVPActCreateRobotReq", nil, gnWorldServerID, 
 		goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, tRobotCreateList)
 	print("添加机器人AddRobot", nNum)
 end

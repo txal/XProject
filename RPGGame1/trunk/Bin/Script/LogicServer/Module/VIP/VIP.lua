@@ -141,7 +141,7 @@ function CVIP:OnRechargeSuccess(nID, nMoney, nYuanBao, nBYuanBao, nTime)
 
 		local tGlobalServiceList = goServerMgr:GetGlobalServiceList(self.m_oRole:GetServer())
 		for _, tService in ipairs(tGlobalServiceList) do 
-			Network.oRemoteCall:Call("OnRoleRechargeSuccess", tService.nServer, tService.nID, 0, self.m_oRole:GetID(), nID, nMoney, nYuanBao, nBYuanBao, nTime)
+			Network:RMCall("OnRoleRechargeSuccess", nil, tService.nServer, tService.nID, 0, self.m_oRole:GetID(), nID, nMoney, nYuanBao, nBYuanBao, nTime)
 		end
 
 	elseif tConf.nType == gtRechargeType.eEverydayGift then		--每日礼包充值

@@ -1,19 +1,19 @@
 gtGameSql = {}
-gtGameSql.sInsertAccountSql = "insert into account set source=%d,accountid=%d,accountname='%s',vip=%d,time=%d;"
+gtGameSql.sInsertAccountSql = "insert into account set source=%d,channel='%s',accountid=%d,accountname='%s',vip=%d,time=%d;"
 gtGameSql.sUpdateAccountSql = "update account set %s where accountid=%d;"
-gtGameSql.sInsertRoleSql = "insert into role set accountid=%d,charid=%d,rolename='%s',level=%d,imgheader='%s',gender=%d,school=%d,time=%d;"
-gtGameSql.sUpdateRoleSql = "update role set %s where charid=%d;"
-gtGameSql.sOnlineLogSql = "insert into online set accountid=%d,charid=%d,level=%d,vip=%d,type=%d,keeptime=%d,time=%d;"
-gtGameSql.sInsertShareSql = "insert into share set srcserver=%d,srccharid=%d,tarserver=%d,tarcharid=%d,time=%d;"
-gtGameSql.sInsertYuanBaoSql = "insert into yuanbao set accountid=%d,charid=%d,level=%d,vip=%d,yuanbao=%d,curryuanbao=%d,bind=%d,reason='%s',time=%d;"
+gtGameSql.sInsertRoleSql = "insert into role set accountid=%d,roleid=%d,rolename='%s',level=%d,header='%s',gender=%d,school=%d,time=%d;"
+gtGameSql.sUpdateRoleSql = "update role set %s where roleid=%d;"
+gtGameSql.sOnlineLogSql = "insert into online set accountid=%d,roleid=%d,level=%d,vip=%d,type=%d,keeptime=%d,time=%d;"
+gtGameSql.sInsertShareSql = "insert into share set srcserver=%d,srcroleid=%d,tarserver=%d,tarroleid=%d,time=%d;"
+gtGameSql.sInsertYuanBaoSql = "insert into yuanbao set accountid=%d,roleid=%d,level=%d,vip=%d,reason='%s',yuanbao=%d,curryuanbao=%d,bind=%d,time=%d;"
 gtGameSql.sInsertActLogSql = "insert into activitylog set userid=%d,userlv=%d,uservip=%d,actid=%d,acttype=%d,actname='%s',subactid=%d,subactname='%s',actcost='%s',actget='%s',actcharge='%s',exdata1='%s',exdata2='%s',createdtime='%s';"
-gtGameSql.sInsertTaskSql = "insert into task set accountid=%d,charid=%d,level=%d,vip=%d,type=%d,taskid=%d,school=%d,time=%d;"
+gtGameSql.sInsertTaskSql = "insert into task set accountid=%d,roleid=%d,school=%d,level=%d,vip=%d,taskype=%d,taskid=%d,taskstate=%d,time=%d;"
 gtGameSql.sCreateUnionSql = "insert into `union` set unionid=%d,displayid=%d,unionname='%s',unionlevel=%d,leaderid=%d,leadername='%s',createtime=%d;"
 gtGameSql.sDelUnionSql = "delete from `union` where unionid=%d;"
 gtGameSql.sUpdateUnionSql = "update `union` set %s where unionid=%d;"
 gtGameSql.sCreateUnionMemberSql = "insert into unionmember set roleid=%d,rolename='%s',unionid=%d,position=%d,jointime=%d,leavetime=%d,currcontri=%d,totalcontri=%d,daycontri=%d;"
 gtGameSql.sUpdateUnionMemberSql = "update unionmember set %s where roleid=%d;"
-gtGameSql.sInsertEventLogSql = "insert into event_log set event=%d,reason='%s',accountid=%d,charid=%d,rolename='%s',level=%d,vip=%d,field1='%s',field2='%s',field3='%s',field4='%s',field5='%s',field6='%s',time=%d;"
+gtGameSql.sInsertEventLogSql = "insert into event_log set event=%d,reason='%s',accountid=%d,roleid=%d,rolename='%s',level=%d,vip=%d,field1='%s',field2='%s',field3='%s',field4='%s',field5='%s',field6='%s',time=%d;"
 gtGameSql.sInsertRoleBehaviourSql = "insert into role_behaviour_log set userid=%d,userlv=%d,behaviourid=%d,timestamp=%d;"
 
 --创建游戏数据库
@@ -25,24 +25,26 @@ USE %s;
 
 #账号表
 CREATE TABLE IF NOT EXISTS account(
-	source int not null default 0 COMMENT '渠道ID',
+	id int primary key auto_increment,
+	source int not null default 0 COMMENT '平台ID',
+	channel char(127) not null default '' COMMENT '渠道标识',
 	accountid int not null default 0 COMMENT '账号ID,游戏生成',
 	accountname varchar(128) not null default 0 COMMENT '账号名,SDK',
 	accountstate tinyint not null default 0 COMMENT '0正常;1禁言;2封号',
 	vip tinyint unsigned not null default 0 COMMENT 'vip等级',
 	time int not null default 0 COMMENT '创建时间',
-	primary key(source, accountname),
+	unique(source, channel, accountname),
 	unique(accountid)
 ) ENGINE=InnoDB charset=utf8 COMMENT '账号表';
 
 #角色表
 CREATE TABLE IF NOT EXISTS role(
 	accountid int not null default 0 COMMENT '账号ID',
-	charid int not null default 0 COMMENT '角色ID',
+	roleid int not null default 0 COMMENT '角色ID',
 	rolename varchar(128) not null default 0 COMMENT '角色名(昵称)',
 	level tinyint unsigned not null default 0 COMMENT '等级',
 	gender tinyint not null default 0 COMMENT '性别:1男;2女',
-	imgheader varchar(32) not null default '' COMMENT '头像',
+	header varchar(32) not null default '' COMMENT '头像',
 	school tinyint not null default 0 COMMENT '职业',
 	logintime int not null default 0 COMMENT '最后登录时间',
 	online tinyint not null default 0 COMMENT '1在线;0离线',
@@ -50,7 +52,7 @@ CREATE TABLE IF NOT EXISTS role(
 	bindyuanbao int not null default 0 COMMENT '绑元宝数',
 	power bigint not null default 0 COMMENT '战力',
 	time int not null default 0 COMMENT '创建时间',
-	primary key(charid),
+	primary key(roleid),
 	unique(rolename),
 	index(accountid)
 ) ENGINE=InnoDB charset=utf8 COMMENT '角色表';
@@ -59,7 +61,7 @@ CREATE TABLE IF NOT EXISTS role(
 CREATE TABLE IF NOT EXISTS online(
 	id int primary key auto_increment,
 	accountid int not null default 0 COMMENT '账号ID',
-	charid int not null default 0 COMMENT '角色ID',
+	roleid int not null default 0 COMMENT '角色ID',
 	level int not null default 0 COMMENT '角色等级',
 	vip tinyint not null default 0 COMMENT 'vip等级',
 	type tinyint not null default 0 COMMENT '1:登录;0:下线',
@@ -71,7 +73,7 @@ CREATE TABLE IF NOT EXISTS online(
 CREATE TABLE IF NOT EXISTS yuanbao(
 	id int primary key auto_increment,
 	accountid int not null default 0 COMMENT '账号ID',
-	charid int not null default 0 COMMENT '角色ID',
+	roleid int not null default 0 COMMENT '角色ID',
 	level int not null default 0 COMMENT '等级',
 	vip tinyint not null default 0 COMMENT 'vip',
 	yuanbao int not null default 0 COMMENT '>0获得;<0消耗',
@@ -85,12 +87,13 @@ CREATE TABLE IF NOT EXISTS yuanbao(
 CREATE TABLE IF NOT EXISTS task(
 	id int primary key auto_increment,
 	accountid int not null default 0 COMMENT '账号ID',
-	charid int not null default 0 COMMENT '角色ID',
+	roleid int not null default 0 COMMENT '角色ID',
 	school tinyint not null default 0 COMMENT '职业',
 	level int not null default 0 COMMENT '等级',
 	vip tinyint not null default 0 COMMENT 'vip',
-	type tinyint not null default 0 COMMENT '类型:10接主线;11完成主线;51完成目标任务',
+	tasktype tinyint not null default 0 COMMENT '类型',
 	taskid int not null default 0 COMMENT '任务ID',
+	taskstate tinyint not null default 0 COMMENT '任务状态',
 	time int not null default 0 COMMENT '操作时间'
 ) ENGINE=InnoDB charset=utf8 COMMENT '任务日志';
 
@@ -124,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `event_log` (
 	event int not null default 0,
 	reason varchar(64) default '',
 	accountid int not null default 0,
-	charid int not null default 0,
+	roleid int not null default 0,
 	rolename varchar(128) not null default '',
 	level tinyint unsigned not null default 0,
 	vip tinyint unsigned not null default 0,
@@ -136,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `event_log` (
 	field6 varchar(1024) default '',
 	time int not null default 0,
 	index(event),
-	index(charid),
+	index(roleid),
 	index(time)
 ) ENGINE=InnoDB charset=utf8 COMMENT '事件日志表';
 

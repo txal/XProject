@@ -1,9 +1,2 @@
 ctNpcSmallMap={}
-ctNpcSmallMap[1]={nID=1,nDupID=5,sName="剑一",bShow=false,tPos={{259,669,},},}
-ctNpcSmallMap[2]={nID=2,nDupID=1,sName="赏金榜",bShow=false,tPos={{487,635,},},}
-ctNpcSmallMap[3]={nID=3,nDupID=1,sName="小姣",bShow=true,tPos={{509,584,},},}
-ctNpcSmallMap[4]={nID=4,nDupID=20,sName="月老",bShow=false,tPos={{247,645,},},}
-ctNpcSmallMap[5]={nID=5,nDupID=20,sName="护国公",bShow=false,tPos={{467,645,},},}
-ctNpcSmallMap[6]={nID=6,nDupID=20,sName="宋小仁",bShow=false,tPos={{233,559,},},}
-ctNpcSmallMap[7]={nID=7,nDupID=20,sName="金素儿",bShow=false,tPos={{461,567,},},}
-ctNpcSmallMap[8]={nID=8,nDupID=6,sName="鬼郎",bShow=false,tPos={{327,667,},},}
+ctNpcSmallMap[1]={nID=1,nDupID=1,sName="陆剑一",bShow=false,tPos={{259,669,},},}

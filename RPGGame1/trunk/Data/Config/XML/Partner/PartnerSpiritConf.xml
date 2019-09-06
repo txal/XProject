@@ -10,7 +10,7 @@
   <Author>AutoBVT</Author>
   <LastAuthor>Windows 用户</LastAuthor>
   <Created>2018-05-05T09:11:49Z</Created>
-  <LastSaved>2019-04-02T09:28:00Z</LastSaved>
+  <LastSaved>2018-09-22T10:05:10Z</LastSaved>
   <Company>Microsoft</Company>
   <Version>15.00</Version>
  </DocumentProperties>
@@ -21,7 +21,7 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>10830</WindowHeight>
+  <WindowHeight>12450</WindowHeight>
   <WindowWidth>28800</WindowWidth>
   <WindowTopX>0</WindowTopX>
   <WindowTopY>0</WindowTopY>
@@ -85,7 +85,7 @@
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">3</Data></Cell>
     <Cell><Data ss:Type="String">仙丹</Data></Cell>
-    <Cell><Data ss:Type="String">1,9990;</Data></Cell>
+    <Cell><Data ss:Type="String">1,999;</Data></Cell>
     <Cell><Data ss:Type="String">0,0;</Data></Cell>
     <Cell><Data ss:Type="Number">125</Data></Cell>
    </Row>
@@ -101,8 +101,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>7</ActiveRow>
-     <ActiveCol>2</ActiveCol>
+     <ActiveRow>14</ActiveRow>
+     <ActiveCol>5</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

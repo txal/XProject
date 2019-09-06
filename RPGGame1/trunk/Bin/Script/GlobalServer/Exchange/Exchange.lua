@@ -61,12 +61,12 @@ function CExchange:ExchangeReq(oRole, sCDKey)
 		return oRole:Tips("兑换码已过期")
 	end
 
-	local tAward = cjson.decode(sAward)
+	local tAward = cseri.decode(sAward)
 	if #tAward <= 0 then
 		return oRole:Tips("礼包奖励不存在")
 	end
 
-	local tRoleList = cjson.decode(sRoleList)
+	local tRoleList = cseri.decode(sRoleList)
 	if nType == self.tType.eDuoRenYiKey then
 		if table.InArray(nRoleID, tRoleList) then
 			return oPlayer:Tips("您已经使用过该兑换码")
@@ -78,7 +78,7 @@ function CExchange:ExchangeReq(oRole, sCDKey)
 	end
 
 	table.insert(tRoleList, nRoleID)
-	sSql = string.format("update cdkeycode set rolelist='%s',time=%d where `key`='%s';", cjson.encode(tRoleList), os.time(), sCDKey)
+	sSql = string.format("update cdkeycode set rolelist='%s',time=%d where `key`='%s';", cseri.encode(tRoleList), os.time(), sCDKey)
 	self.m_oMgrMysql:Query(sSql)
 
 	local tList = {}

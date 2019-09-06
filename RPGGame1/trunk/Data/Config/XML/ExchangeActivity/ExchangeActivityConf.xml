@@ -112,7 +112,7 @@
     <Cell><Data ss:Type="Number">2</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="String">13300,17;</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="String">13152,1;</Data></Cell>
@@ -249,8 +249,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>5</ActiveRow>
-     <ActiveCol>3</ActiveCol>
+     <ActiveRow>17</ActiveRow>
+     <ActiveCol>5</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

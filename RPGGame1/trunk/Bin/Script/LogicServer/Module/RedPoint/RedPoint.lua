@@ -52,15 +52,15 @@ end
 --离线标记小红点
 function CRedPoint:MarkRedPointOffline(nCharID, nID, nFlag)
 	local _, sDBName = self:GetType()
-    local sData = goDBMgr:GetSSDB("Player"):HGet(sDBName, nCharID)  
-    local tData = sData == "" and {} or cjson.decode(sData)
+    local sData = goDBMgr:GetGameDB("Player"):HGet(sDBName, nCharID)  
+    local tData = sData == "" and {} or cseri.decode(sData)
     tData.m_tRedPointMap = tData.m_tRedPointMap or {}
     local sID = tostring(nID)
     if tData.m_tRedPointMap[sID] == nFlag then
     	return
     end
     tData.m_tRedPointMap[sID] = nFlag
-    goDBMgr:GetSSDB("Player"):HSet(sDBName, nCharID, cjson.encode(tData))  
+    goDBMgr:GetGameDB("Player"):HSet(sDBName, nCharID, cseri.encode(tData))  
 end
 
 --离线标记小红点

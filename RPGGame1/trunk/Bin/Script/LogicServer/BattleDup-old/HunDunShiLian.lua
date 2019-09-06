@@ -192,7 +192,7 @@ function CHunDunShiLian:RegActTimer()
 			assert(nEndTime or nEndTime > 1, "结束时间错误")	
 			_RegActEndTime(bGMOpen, nEndTime)
 		end
-		 Network.oRemoteCall:CallWait("PVEActivityISGMOpenActReq",fnGetISGMOpenActCallBack, CUtil:GetServiceID(), nTarService, 0)
+		 Network:RMCall("PVEActivityISGMOpenActReq",fnGetISGMOpenActCallBack, CUtil:GetServiceID(), nTarService, 0)
 	else
 		local bGMOpen, nEndTime = goPVEActivityMgr:GetISGMOpenAct()
 		_RegActEndTime(bGMOpen, nEndTime)
@@ -802,7 +802,7 @@ function CHunDunShiLian:CheckRoleNum(oRole)
 	tRoleActData.bLeave = false
     local bRet, nTarService= self:RecordActData()
     if bRet then
-         Network.oRemoteCall:Call("PVESetSettlementActDataReq", oRole:GetServer(), 
+         Network:RMCall("PVESetSettlementActDataReq", nil, oRole:GetServer(), 
             nTarService, 0, oRole:GetID(), self.m_nTeamID,  tRoleActData)
     else
         goPVEActivityMgr:SettlementActData(self.m_nTeamID,  tRoleActData)
@@ -816,7 +816,7 @@ function CHunDunShiLian:LeaveDupCheck(oRole)
     tRoleData.nRoleID = oRole:GetID()
     tRoleData.bLeave = true
     if bRet then
-          Network.oRemoteCall:Call("PVEDataChangeReq", oRole:GetServer(), 
+          Network:RMCall("PVEDataChangeReq", nil, oRole:GetServer(), 
                 nTarService, 0,  oRole:GetID(), self.m_nTeamID, tRoleData)
     else
         goPVEActivityMgr:PVEDataChange(self.m_nTeamID, tRoleData)
@@ -840,7 +840,7 @@ function CHunDunShiLian:CompleteCheck()
     tRoleData.nCompleteTime = nCompleteTime
     local bRet, nTarService = self:RecordActData()
     if bRet then
-        Network.oRemoteCall:Call("PVEDataCheckReq",tRoleData.tActData[1].nServerID, 
+        Network:RMCall("PVEDataCheckReq", nil,tRoleData.tActData[1].nServerID, 
                     nTarService, 0,  tRoleData.tActData[1].nRoleID, self.m_nTeamID, nCompleteTime)
     else
         goPVEActivityMgr:PVEDataCheckReq(self.m_nTeamID, nCompleteTime)

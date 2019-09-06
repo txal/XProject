@@ -25,12 +25,12 @@ end
 
 function CNpcMgr:LoadData()
 	local nServicID = gnServerID < gnWorldServerID and 20 or 110
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", nServicID)
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", nServicID)
 
 	for nID, oNpc in pairs(self.m_tNpcMap) do
 		local sData = oDB:HGet(gtDBDef.sNpcMgrDB, tostring(nID))
 		if sData ~= "" then
-			local tData = cjson.decode(sData)
+			local tData = cseri.decode(sData)
 			if oNpc and oNpc.LoadData then
 				oNpc:LoadData(tData)
 			end
@@ -42,12 +42,12 @@ end
 
 function CNpcMgr:SaveData()
 	local nServicID = gnServerID < gnWorldServerID and 20 or 110
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", nServicID)
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", nServicID)
 	for nNpcID, _ in pairs(self.m_tDirtyNpcMap) do
 		local oNpc = self.m_tNpcMap[nNpcID]
 		if oNpc and oNpc.SaveData then
 			local tNpcData = oNpc:SaveData()
-			oDB:HSet(gtDBDef.sNpcMgrDB, nNpcID, cjson.encode(tNpcData))
+			oDB:HSet(gtDBDef.sNpcMgrDB, nNpcID, cseri.encode(tNpcData))
 		end
 	end
 	self.m_tDirtyNpcMap = {}

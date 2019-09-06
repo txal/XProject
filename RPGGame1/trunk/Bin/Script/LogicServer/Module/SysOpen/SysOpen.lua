@@ -136,7 +136,7 @@ function CSysOpen:OnSysOpen(nSysID, bNotSyncGlobal)
 		local tGlobalServiceList = goServerMgr:GetGlobalServiceList()
 		for _, tConf in pairs(tGlobalServiceList) do
 			if tConf.nServer == self.m_oRole:GetServer() or tConf.nServer == gnWorldServerID then
-				Network.oRemoteCall:Call("OnSysOpenReq", tConf.nServer, tConf.nID, self.m_oRole:GetSession(), 
+				Network:RMCall("OnSysOpenReq", nil, tConf.nServer, tConf.nID, self.m_oRole:GetSession(), 
 					self.m_oRole:GetID(), nSysID, tSysData)
 			end
 		end
@@ -148,7 +148,7 @@ function CSysOpen:OnSysClose(nSysID)
 	local tGlobalServiceList = goServerMgr:GetGlobalServiceList()
     for _, tConf in pairs(tGlobalServiceList) do
         if tConf.nServer == self.m_oRole:GetServer() or tConf.nServer == gnWorldServerID then
-			Network.oRemoteCall:Call("OnSysCloseReq", tConf.nServer, tConf.nID, self.m_oRole:GetSession(), 
+			Network:RMCall("OnSysCloseReq", nil, tConf.nServer, tConf.nID, self.m_oRole:GetSession(), 
 				self.m_oRole:GetID(), nSysID, tSysData)
         end
     end
@@ -214,7 +214,7 @@ function CSysOpen:OpenAll()
 	local tGlobalServiceList = goServerMgr:GetGlobalServiceList()
 	for _, tConf in pairs(tGlobalServiceList) do
 		if tConf.nServer == self.m_oRole:GetServer() or tConf.nServer == gnWorldServerID then
-			Network.oRemoteCall:Call("OnSysOpenListReq", tConf.nServer, tConf.nID, 
+			Network:RMCall("OnSysOpenListReq", nil, tConf.nServer, tConf.nID, 
 				self.m_oRole:GetSession(), self.m_oRole:GetID(), tSysOpenList)
 		end
 	end

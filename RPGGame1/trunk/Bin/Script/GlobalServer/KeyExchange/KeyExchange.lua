@@ -16,9 +16,9 @@ function CKeyExchange:Ctor()
 end
 
 function CKeyExchange:LoadData()
-	local sData = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sKeyExchangeDB, "data")
+	local sData = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sKeyExchangeDB, "data")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_tOnePersonOneKey = tData.m_tOnePersonOneKey or self.m_tOnePersonOneKey
 	end
 	self:AutoSave()
@@ -35,7 +35,7 @@ function CKeyExchange:SaveData()
 		return
 	end
 	local tData = {m_tOnePersonOneKey=self.m_tOnePersonOneKey}
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sKeyExchangeDB, "data", cjson.encode(tData))
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sKeyExchangeDB, "data", cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

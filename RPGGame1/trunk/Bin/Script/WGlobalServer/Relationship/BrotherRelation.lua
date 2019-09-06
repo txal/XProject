@@ -242,10 +242,10 @@ function CBrotherRelationMgr:MarkDirty(bDirty) self.m_bDirty = bDirty end
 function CBrotherRelationMgr:IsDirty() return self.m_bDirty end
 
 function CBrotherRelationMgr:LoadSysData()
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oDB:HGet(gtDBDef.sBrotherSysDB, "brothersysdata")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_nSerialNum = tData.nSerialNum
 	end
 end
@@ -256,19 +256,19 @@ function CBrotherRelationMgr:SaveSysData()
     end
     local tData = {}
     tData.nSerialNum = self.m_nSerialNum
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-    oDB:HSet(gtDBDef.sBrotherSysDB, "brothersysdata", cjson.encode(tData))
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+    oDB:HSet(gtDBDef.sBrotherSysDB, "brothersysdata", cseri.encode(tData))
     
     self:MarkDirty(false)
 end
 
 function CBrotherRelationMgr:LoadData()
     self:LoadSysData()
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tKeys = oDB:HKeys(gtDBDef.sRoleBrotherDB)
 	for _, sRoleID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sRoleBrotherDB, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nRoleID = tData.nRoleID
 		local oBrotherData = CRoleBrother:new(nRoleID)
 		oBrotherData:LoadData(tData)
@@ -282,12 +282,12 @@ function CBrotherRelationMgr:SaveData()
 	if nDirtyNum < 1 then
 		return
 	end
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for i = 1, nDirtyNum do
 		local oBrotherData = self.m_tDirtyQueue:Head()
 		if oBrotherData then
 			local tData = oBrotherData:SaveData()
-			oDB:HSet(gtDBDef.sRoleBrotherDB, oBrotherData:GetID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleBrotherDB, oBrotherData:GetID(), cseri.encode(tData))
 			oBrotherData:MarkDirty(false)
         end
         self.m_tDirtyQueue:Pop()
@@ -698,7 +698,7 @@ function CBrotherRelationMgr:SyncLogicCache(nRoleID, nSrcServer, nSrcService, nT
         end
         tData.tBrotherList[nTempRoleID] = tBrotherData
     end
-    Network.oRemoteCall:Call("RoleBrotherUpdateReq", nSrcServer, nSrcService, nTarSession, nRoleID, tData)
+    Network:RMCall("RoleBrotherUpdateReq", nil, nSrcServer, nSrcService, nTarSession, nRoleID, tData)
 end
 
 function CBrotherRelationMgr:OnNameChange(oRole)

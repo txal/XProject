@@ -23,28 +23,26 @@ message ObjShapeData
 //角色进入副本请求
 message RoleEnterSceneReq
 {
-	required double nDupID = 1;		//副本唯一ID
-	optional double nSceneID = 2;	//场景唯一ID
+	required int64_t nDupID = 1;		//副本唯一ID
+	optional int64_t nSceneID = 2;		//场景唯一ID
 }
 
-//对象进入副本通知(通知角色)
+//对象进入副本通知(自己)
 message ObjEnterSceneRet
 {
-	required double nDupID = 1;			//副本唯一ID
-	required double nSceneID = 2;		//场景唯一ID
-	required int32 nDupConfID = 3;		//副本配置ID
-	required int32 nSceneConfID = 4;	//场景配置ID
+	required int64_t nDupID = 1;		//副本唯一ID
+	required int64_t nSceneID = 2;		//场景唯一ID
 
-	required double nObjID = 5;			//对象唯一ID
-	required int32 nObjType = 6;		//对象类型
-	required ObjBaseData tBaseData = 7;
-	optional ObjShapeData tShapeData = 8;
+	required int64_t nObjID = 3;		//对象唯一ID
+	required int32 nObjType = 4;		//对象类型
+	required ObjBaseData tBaseData = 5;
+	optional ObjShapeData tShapeData = 6;
 }
 
 //对象进入视野返回
 message ObjEnterViewRet
 {
-	required double nObjID = 1;
+	required int64_t nObjID = 1;
 	required int32 nObjType = 2;
 	required ObjBaseData tBaseData = 3;
 	optional ObjShapeData tShapeData = 4;
@@ -53,12 +51,12 @@ message ObjEnterViewRet
 //更新视野对象信息
 message FlushObjViewRet
 {
-	required double nObjID = 1;
+	required int64_t nObjID = 1;
 	required ObjShapeData tData = 1;
 }
 
 //对象离开视野返回
 message ObjLeaveViewRet
 {
-	repeated double tList = 1;		//对象ID列表
+	repeated int64_t tList = 1;		//对象ID列表
 }

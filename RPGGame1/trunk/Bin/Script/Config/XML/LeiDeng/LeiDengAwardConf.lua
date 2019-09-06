@@ -1,9 +1,9 @@
 ctLeiDengAwardConf={}
-ctLeiDengAwardConf[1]={nID=1,nLoginDays=1,tAward={{1,13301,1,0,},{1,19016,10,0,},{1,11018,1,0,},},sDesc="送特殊称谓",}
-ctLeiDengAwardConf[2]={nID=2,nLoginDays=2,tAward={{1,13515,1,1,},{1,31000,5,0,},{1,11212,1,0,},},sDesc="送2星法宝",}
-ctLeiDengAwardConf[3]={nID=3,nLoginDays=3,tAward={{1,20106,1,1,},{1,19019,2,0,},{1,11214,1,0,},},sDesc="送仙侣白面狐狸",}
-ctLeiDengAwardConf[4]={nID=4,nLoginDays=4,tAward={{1,2000406,1,0,},{1,28000,5,0,},{1,11219,1,0,},},sDesc="送45级宠物饰品",}
-ctLeiDengAwardConf[5]={nID=5,nLoginDays=5,tAward={{1,17015,1,0,},{1,28001,10,0,},{1,11224,1,0,},},sDesc="送高级重生技能",}
-ctLeiDengAwardConf[6]={nID=6,nLoginDays=6,tAward={{1,17003,1,0,},{1,19018,10,0,},{1,13526,1,0,},},sDesc="送高级蛮力技能",}
-ctLeiDengAwardConf[7]={nID=7,nLoginDays=7,tAward={{1,17021,1,0,},{1,19020,2,0,},{1,11203,1,0,},},sDesc="送高级法伤技能",}
-ctLeiDengAwardConf[8]={nID=8,nLoginDays=8,tAward={{1,13202,1,1,},{1,2000302,1,0,},{1,11210,1,0,},},sDesc="送冰火流星",}
+ctLeiDengAwardConf[1]={nID=1,nLoginDays=1,tAward={{1,13301,1,0,},{1,19016,10,0,},{1,4,100000,0,},},sDesc="送特殊称谓",}
+ctLeiDengAwardConf[2]={nID=2,nLoginDays=2,tAward={{1,13515,1,1,},{1,31000,5,0,},{1,3,50000,0,},},sDesc="送3个2星法宝",}
+ctLeiDengAwardConf[3]={nID=3,nLoginDays=3,tAward={{1,50009,80,1,},{1,19019,2,0,},{1,3,60000,0,},},sDesc="送SSSR仙侣武曲星君",}
+ctLeiDengAwardConf[4]={nID=4,nLoginDays=4,tAward={{1,2000406,1,0,},{1,28000,5,0,},{1,3,70000,0,},},sDesc="送45级宠物饰品",}
+ctLeiDengAwardConf[5]={nID=5,nLoginDays=5,tAward={{1,13202,1,1,},{1,28001,10,0,},{1,3,80000,0,},},sDesc="送刀光剑影时装",}
+ctLeiDengAwardConf[6]={nID=6,nLoginDays=6,tAward={{1,17003,1,0,},{1,19018,10,0,},{1,3,90000,0,},},sDesc="送高级蛮力技能",}
+ctLeiDengAwardConf[7]={nID=7,nLoginDays=7,tAward={{1,17021,1,0,},{1,19020,2,0,},{1,3,100000,0,},},sDesc="送高级法伤技能",}
+ctLeiDengAwardConf[8]={nID=8,nLoginDays=8,tAward={{1,17015,1,0,},{1,2000302,1,0,},{1,3,120000,0,},},sDesc="送高级重生技能",}

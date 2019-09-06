@@ -148,7 +148,7 @@ function CRoleMgr:OnSwitchLogicReq(tSwitchData)
     print("切换逻辑服:", tSwitchData)
     self:RoleOnlineReq(tSwitchData.nServerID, tSwitchData.nSessionID, tSwitchData.nObjID, true)
     local oRole = self:GetRoleByID(tSwitchData.nObjID)
-    oRole:EnterScene(tSwitchData.nTarDupID, tSwitchData.nTarSceneID, tSwitchData.nTarPosX, tSwitchData.nTarPosY, tSwitchData.nTarLine, tSwitchData.nTarFace)
+    oRole:EnterScene(tSwitchData.nDupID, tSwitchData.nSceneID, tSwitchData.nPosX, tSwitchData.nPosY, tSwitchData.nLine, tSwitchData.nFace)
 end
 
 --将玩家踢离线
@@ -162,12 +162,28 @@ function CRoleMgr:KickRole(nRoleID)
 end
 
 --服务器关闭
-function CRoleMgr:OnServerIDClose(nServerID)
-	--强制对应服玩家下线
+function CRoleMgr:OnServerClose(nServerID)
+	--强制对应服玩家释放
 	for nRoleID, oRole in pairs(self.m_tRoleIDMap) do
 		if nServerID == oRole:GetServerID() then
+			oRole:ForceFinishBattle()
 			self:RoleOfflineReq(nRoleID)
 		end
 	end
 end
 
+--服务关闭
+function CRoleMgr:OnServiceClose(nServerID, nServiceID)
+	--如果是登录服,对应服玩家下线
+	local tGlobalServiceList = GetGModule("ServerMgr"):GetGlobalServiceList()
+	for _, tService in ipairs(tGlobalServiceList) do
+		if tService.nServerID == nServerID and tService.nServiceID == nServiceID then
+			for nRoleID, oRole in pairs(self.m_tRoleIDMap) do
+				if nServerID == oRole:GetServerID() then
+					self:RoleDisconnectReq(nRoleID)
+				end
+			end
+			break
+		end
+	end
+end

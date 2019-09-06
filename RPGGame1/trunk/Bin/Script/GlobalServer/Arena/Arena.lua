@@ -149,34 +149,34 @@ function CArena:SaveArenaSysData()
 	if not self:IsDirty() then
 		return
 	end
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tData = {}
 	tData.nSeason = self.m_nSeason
 	tData.nSeasonState = self.m_nSeasonState
 	--tData.bOpen = self.m_bOpen
 	tData.nDailyResetStamp = self.m_nDailyResetStamp
 
-	oDB:HSet(gtDBDef.sSvrArenaDB, "sysdata", cjson.encode(tData))
+	oDB:HSet(gtDBDef.sSvrArenaDB, "sysdata", cseri.encode(tData))
 	self:MarkDirty(false)
 end
 
 function CArena:SaveArenaRoleData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	--停服时，迭代查找所有的，防止中间有DB断开，导致有数据没保存到，但被Pop出了脏数据队列
 	for k, oRoleArena in pairs(self.m_tRoleInfo) do
 		if oRoleArena:IsDirty() then
 			local tData = oRoleArena:SaveData() 
-			oDB:HSet(gtDBDef.sRoleArenaDB, oRoleArena:GetRoleID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleArenaDB, oRoleArena:GetRoleID(), cseri.encode(tData))
 			oRoleArena:MarkDirty(false)
 		end
 	end
 end
 
 function CArena:LoadArenaSysData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oDB:HGet(gtDBDef.sSvrArenaDB, "sysdata")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_nSeason = tData.nSeason
 		self.m_nSeasonState = tData.nSeasonState
 		--self.m_bOpen = tData.bOpen
@@ -196,11 +196,11 @@ end
 
 --这里依赖全局玩家模块数据加载完成
 function CArena:LoadArenaRoleData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tKeys = oDB:HKeys(gtDBDef.sRoleArenaDB)
 	for _, sRoleID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sRoleArenaDB, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nRoleID = tData.nRoleID
 		-- local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
 		local oRoleArena = CRoleArenaInfo:new(nRoleID)
@@ -295,12 +295,12 @@ function CArena:TickSave(nTimeStamp)
 	
 	nSaveNum = math.min(nSaveNum, nDirtyNum) --可能当前脏数据的总数量比默认值低
 
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for i = 1, nSaveNum do
 		local oRoleArena = self.m_tDirtyQueue:Head()
 		if oRoleArena then
 			local tData = oRoleArena:SaveData()
-			oDB:HSet(gtDBDef.sRoleArenaDB, oRoleArena:GetRoleID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleArenaDB, oRoleArena:GetRoleID(), cseri.encode(tData))
 			oRoleArena:MarkDirty(false)
 			--print("保存竞技场数据成功，nRoleID:"..oRoleArena:GetRoleID())
 		end
@@ -592,9 +592,9 @@ function CArena:AddArenaCoin(oRole, nNum, sReason, fnCallBack)
 	local nSession = oRole:GetSession()
 	local nRoleID = oRole:GetID()
 	if fnCallBack then
-		Network.oRemoteCall:CallWait("AddArenaCoinReq", fnCallBack, nServer, nService, nSession, nRoleID, nNum, sReason)
+		Network:RMCall("AddArenaCoinReq", fnCallBack, nServer, nService, nSession, nRoleID, nNum, sReason)
 	else
-		Network.oRemoteCall:Call("AddArenaCoinReq", nServer, nService, nSession, nRoleID, nNum, sReason)
+		Network:RMCall("AddArenaCoinReq", nil, nServer, nService, nSession, nRoleID, nNum, sReason)
 	end
 end
 
@@ -774,7 +774,7 @@ function CArena:OnChallengeEnd(oRoleArena, bWin, nEnemyScore)
 	tReward.nPetExp = nPetExp
 	tReward.nSilverCoin = nSilverCoin
 	tReward.nArenaCoin = nArenaCoin
-	Network.oRemoteCall:Call("ArenaAddBattleRewardReq", oRole:GetStayServer(), oRole:GetLogic(), 
+	Network:RMCall("ArenaAddBattleRewardReq", nil, oRole:GetStayServer(), oRole:GetLogic(), 
 		oRole:GetSession(), oRole:GetID(), tReward)
 	self:TriggerBroadcastByDailyWin(oRoleArena)
 end
@@ -864,7 +864,7 @@ function CArena:OnRoleBattleEnd(oRole, nEnemyID, nArenaSeason, bWin)
 		local tData = {}
 		tData.bIsHearsay = true
 		tData.nKeepTimes = oRoleArena:GetDailyWinKeep()
-		Network.oRemoteCall:Call("OnArenaWin", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), tData)
+		Network:RMCall("OnArenaWin", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), tData)
 	end
 	--[[
 	//竞技场战斗结果返回
@@ -981,11 +981,11 @@ function CArena:BattleReq(oRole, nTargetID) --必须先调用获取玩家竞技�
 		if tRobotConf then 
 			tEnemyData.nEnemyLevel = tRobotConf.nRobotLv --goServerMgr:GetServerLevel(gnServerID)
 		end
-		Network.oRemoteCall:Call("ArenaBattleReq", oRole:GetStayServer(), oRole:GetLogic(), 
+		Network:RMCall("ArenaBattleReq", nil, oRole:GetStayServer(), oRole:GetLogic(), 
 			oRole:GetSession(), oRole:GetID(), tEnemyData, self:GetArenaSeason())
 	end
 	--取玩家当前所在逻辑服
-	Network.oRemoteCall:CallWait("ArenaBattleCheckReq", fnArenaCheckCallback, oRole:GetStayServer(), 
+	Network:RMCall("ArenaBattleCheckReq", fnArenaCheckCallback, oRole:GetStayServer(), 
 		oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), nTargetID) --需要异步处理,携带nEnemyID
 end
 
@@ -1024,7 +1024,7 @@ function CArena:GetRoleArenaDataReq(oRole)
 		self:SyncRoleInfo(oRole)
 		self:SyncRankData(oRole, 1) --第一次打开，才会进入这里，派发下排行榜数据
 	end
-	Network.oRemoteCall:CallWait("ArenaSysOpenCheckReq", fnCheckSysOpenCallback, oRole:GetStayServer(), 
+	Network:RMCall("ArenaSysOpenCheckReq", fnCheckSysOpenCallback, oRole:GetStayServer(), 
 		oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
 end
 
@@ -1476,7 +1476,7 @@ function CArena:UpdateAppellation(oRole)
 	local nService = oRole:GetLogic()
 	local nSession = oRole:GetSession()
 	local nRoleID = oRole:GetID()
-	Network.oRemoteCall:Call("UpdateArenaAppellation", nServer, nService, nSession, nRoleID, nAppeConfID, tAppeParam, nSubKey)
+	Network:RMCall("UpdateArenaAppellation", nil, nServer, nService, nSession, nRoleID, nAppeConfID, tAppeParam, nSubKey)
 end
 
 function CArena:GMMatchRobot(oRole) 

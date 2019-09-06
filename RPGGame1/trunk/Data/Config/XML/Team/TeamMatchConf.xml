@@ -9,7 +9,7 @@
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <LastAuthor>Administrator</LastAuthor>
   <Created>2006-09-13T11:21:51Z</Created>
-  <LastSaved>2019-02-26T12:45:08Z</LastSaved>
+  <LastSaved>2019-02-26T12:49:08Z</LastSaved>
   <Version>15.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
@@ -19,8 +19,8 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11595</WindowHeight>
-  <WindowWidth>29010</WindowWidth>
+  <WindowHeight>6555</WindowHeight>
+  <WindowWidth>9210</WindowWidth>
   <WindowTopX>0</WindowTopX>
   <WindowTopY>0</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
@@ -52,8 +52,8 @@
    <Column ss:AutoFitWidth="0" ss:Width="77.25" ss:Span="1"/>
    <Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="199.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="76.5"/>
-   <Column ss:AutoFitWidth="0" ss:Width="66.75"/>
-   <Column ss:AutoFitWidth="0" ss:Width="125.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="72.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="80.25"/>
    <Row ss:AutoFitHeight="0" ss:Height="70.5">
     <Cell ss:Index="3" ss:StyleID="s62"/>
    </Row>
@@ -79,7 +79,7 @@
     <Cell><Data ss:Type="String">匹配等级区间组ID</Data></Cell>
     <Cell ss:StyleID="s63"><Data ss:Type="String">是否匹配机器人</Data></Cell>
     <Cell><Data ss:Type="String">系统开放ID</Data></Cell>
-    <Cell><Data ss:Type="String">是否可由前端发起匹配</Data></Cell>
+    <Cell><Data ss:Type="String">是否可由前端发起</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1</Data></Cell>
@@ -91,7 +91,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">101</Data></Cell>
-    <Cell><Data ss:Type="String">抓鬼</Data></Cell>
+    <Cell><Data ss:Type="String">捉妖</Data></Cell>
     <Cell><Data ss:Type="Number">2</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">26</Data></Cell>
@@ -99,7 +99,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">102</Data></Cell>
-    <Cell><Data ss:Type="String">降妖</Data></Cell>
+    <Cell><Data ss:Type="String">降妖伏魔</Data></Cell>
     <Cell><Data ss:Type="Number">3</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">27</Data></Cell>
@@ -107,7 +107,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">103</Data></Cell>
-    <Cell><Data ss:Type="String">伏心魔</Data></Cell>
+    <Cell><Data ss:Type="String">诛心魔</Data></Cell>
     <Cell><Data ss:Type="Number">4</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">28</Data></Cell>
@@ -115,7 +115,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">109</Data></Cell>
-    <Cell><Data ss:Type="String">魔神讨伐</Data></Cell>
+    <Cell><Data ss:Type="String">神魔录</Data></Cell>
     <Cell><Data ss:Type="Number">5</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">71</Data></Cell>
@@ -123,7 +123,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">201</Data></Cell>
-    <Cell><Data ss:Type="String">决战九霄</Data></Cell>
+    <Cell><Data ss:Type="String">决战九天</Data></Cell>
     <Cell><Data ss:Type="Number">6</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">29</Data></Cell>
@@ -131,23 +131,23 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">202</Data></Cell>
-    <Cell><Data ss:Type="String">群雄逐鹿</Data></Cell>
+    <Cell><Data ss:Type="String">混沌试炼</Data></Cell>
     <Cell><Data ss:Type="Number">7</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">31</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">203</Data></Cell>
-    <Cell><Data ss:Type="String">大唐无双</Data></Cell>
+    <Cell><Data ss:Type="String">萌仙天下</Data></Cell>
     <Cell><Data ss:Type="Number">8</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">30</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">301</Data></Cell>
-    <Cell><Data ss:Type="String">首席竞赛</Data></Cell>
+    <Cell><Data ss:Type="String">首席争霸</Data></Cell>
     <Cell><Data ss:Type="Number">9</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">33</Data></Cell>
@@ -155,7 +155,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">302</Data></Cell>
-    <Cell><Data ss:Type="String">八方会武</Data></Cell>
+    <Cell><Data ss:Type="String">五方会武</Data></Cell>
     <Cell><Data ss:Type="Number">10</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">35</Data></Cell>
@@ -163,7 +163,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">303</Data></Cell>
-    <Cell><Data ss:Type="String">雷霆之战</Data></Cell>
+    <Cell><Data ss:Type="String">萌仙会战</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">36</Data></Cell>
@@ -183,7 +183,7 @@
     <Cell><Data ss:Type="Number">13</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -203,8 +203,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>23</ActiveRow>
-     <ActiveCol>2</ActiveCol>
+     <ActiveRow>8</ActiveRow>
+     <RangeSelection>R9C1:R9C5</RangeSelection>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

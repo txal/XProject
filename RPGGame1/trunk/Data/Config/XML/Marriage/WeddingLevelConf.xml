@@ -54,11 +54,11 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="ctWeddingLevelConf">
-  <Table ss:ExpandedColumnCount="24" ss:ExpandedRowCount="10" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="25" ss:ExpandedRowCount="10" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Column ss:Width="96.75"/>
-   <Column ss:AutoFitWidth="0" ss:Width="191.25"/>
-   <Column ss:AutoFitWidth="0" ss:Width="156"/>
+   <Column ss:AutoFitWidth="0" ss:Width="191.25" ss:Span="1"/>
+   <Column ss:Index="4" ss:AutoFitWidth="0" ss:Width="156"/>
    <Column ss:AutoFitWidth="0" ss:Width="282.75"/>
    <Column ss:AutoFitWidth="0" ss:Width="174"/>
    <Column ss:AutoFitWidth="0" ss:Width="106.5"/>
@@ -74,18 +74,19 @@
    <Column ss:AutoFitWidth="0" ss:Width="64.5"/>
    <Column ss:AutoFitWidth="0" ss:Width="78"/>
    <Column ss:AutoFitWidth="0" ss:Width="88.5" ss:Span="1"/>
-   <Column ss:Index="20" ss:AutoFitWidth="0" ss:Width="77.25"/>
+   <Column ss:Index="21" ss:AutoFitWidth="0" ss:Width="77.25"/>
    <Column ss:AutoFitWidth="0" ss:Width="92.25"/>
    <Column ss:AutoFitWidth="0" ss:Width="93" ss:Span="1"/>
-   <Column ss:Index="24" ss:AutoFitWidth="0" ss:Width="85.5"/>
+   <Column ss:Index="25" ss:AutoFitWidth="0" ss:Width="85.5"/>
    <Row ss:AutoFitHeight="0" ss:Height="111.75">
-    <Cell ss:Index="4" ss:StyleID="s63"/>
+    <Cell ss:Index="5" ss:StyleID="s63"/>
     <Cell ss:StyleID="s63"/>
-    <Cell ss:Index="11" ss:StyleID="s63"/>
+    <Cell ss:Index="12" ss:StyleID="s63"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">nLevel</Data></Cell>
     <Cell><Data ss:Type="String">tCost</Data></Cell>
+    <Cell><Data ss:Type="String">nWeddingActDiscount</Data></Cell>
     <Cell><Data ss:Type="String">nCandyNum</Data></Cell>
     <Cell><Data ss:Type="String">nCandyTimes</Data></Cell>
    </Row>
@@ -94,49 +95,54 @@
     <Cell><Data ss:Type="String">t{iii}</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">婚礼等级</Data></Cell>
     <Cell><Data ss:Type="String">消耗(物品类型，物品ID,数量；多组物品，中间用分号隔开)</Data></Cell>
+    <Cell><Data ss:Type="String">活动折扣(0免费, 100原价)</Data></Cell>
     <Cell><Data ss:Type="String">每次刷新喜糖数量</Data></Cell>
     <Cell><Data ss:Type="String">喜糖刷新次数</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">2,230,1000;</Data></Cell>
+    <Cell><Data ss:Type="String">2,5,1000000;</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">10</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">1</Data></Cell>
     <Cell ss:StyleID="s65"/>
-    <Cell ss:Index="7" ss:StyleID="s66"/>
+    <Cell ss:Index="8" ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">2</Data></Cell>
-    <Cell><Data ss:Type="String">2,230,2888;</Data></Cell>
+    <Cell><Data ss:Type="String">2,230,228;</Data></Cell>
+    <Cell><Data ss:Type="Number">60</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">10</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">2</Data></Cell>
     <Cell ss:StyleID="s65"/>
-    <Cell ss:Index="7" ss:StyleID="s66"/>
+    <Cell ss:Index="8" ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">3</Data></Cell>
-    <Cell><Data ss:Type="String">2,230,8888;</Data></Cell>
+    <Cell><Data ss:Type="String">2,230,888;</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">10</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">3</Data></Cell>
     <Cell ss:StyleID="s65"/>
-    <Cell ss:Index="7" ss:StyleID="s66"/>
+    <Cell ss:Index="8" ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="3" ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
-    <Cell ss:StyleID="s65"/>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="3" ss:StyleID="s65"/>
+    <Cell ss:Index="4" ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:Index="3" ss:StyleID="s65"/>
+    <Cell ss:Index="4" ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
     <Cell ss:StyleID="s65"/>
    </Row>
@@ -152,7 +158,7 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>9</ActiveRow>
+     <ActiveRow>8</ActiveRow>
      <ActiveCol>2</ActiveCol>
     </Pane>
    </Panes>

@@ -56,7 +56,7 @@ function CQimaiArenaMgr:EnterCheck(oRole, nActivityID, fnCallback)
 	local nCurService = CUtil:GetServiceID()
 	local nTarService = CPVPActivityMgr:GetActivityServiceID(nActivityID)
 	if nCurService ~= nTarService then
-		Network.oRemoteCall:CallWait("PVPActivityEnterCheckReq", fnInnerCallback, oRole:GetServer(), 
+		Network:RMCall("PVPActivityEnterCheckReq", fnInnerCallback, oRole:GetServer(), 
 					nTarService, 0, nActivityID, oRole:GetID())
 	else
 		--调用本服的

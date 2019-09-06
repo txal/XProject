@@ -267,7 +267,7 @@ function CWedding:WeddingReq(oRole, nTarRoleID)
 		oWife:SetActState(gtRoleActState.eWeddingApply)
 	   	end	
 
-	Network.oRemoteCall:CallWait("MarriageWeddingReq", fnCheckCallback, gnWorldServerID, 
+	Network:RMCall("MarriageWeddingReq", fnCheckCallback, gnWorldServerID, 
 		goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID, nTarRoleID)
 end
 
@@ -357,7 +357,7 @@ function CWedding:WeddingLevelChoose(nRoleID, nLevel)
 		oTarRole.m_oRoleState:SyncState()
 		self:StartWedding()
 	end
-	Network.oRemoteCall:CallWait("MarriageMarryReq", fnMarryCallback, gnWorldServerID, 
+	Network:RMCall("MarriageMarryReq", fnMarryCallback, gnWorldServerID, 
 		goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, self.m_nHusband, self.m_nWife)
 end
 

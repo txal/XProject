@@ -16,12 +16,12 @@ function CMailMgr:Ctor()
 end
 
 function CMailMgr:LoadData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 
 	--全局数据
 	local sData = oDB:HGet(gtDBDef.sServerMailDB, "data")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_nAutoInc = tData.m_nAutoInc
 		self.m_nWelcomeMailVersion = tData.m_nWelcomeMailVersion or 0
 		self.m_tServerMailMap = tData.m_tServerMailMap or self.m_tServerMailMap
@@ -31,24 +31,24 @@ function CMailMgr:LoadData()
 	local tKeys = oDB:HKeys(gtDBDef.sRoleMailDB)
 	for _, sRoleID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sRoleMailDB, sRoleID)
-		self.m_tRoleMailMap[tonumber(sRoleID)] = cjson.decode(sData)
+		self.m_tRoleMailMap[tonumber(sRoleID)] = cseri.decode(sData)
 	end
 
 	self:OnLoaded()	
 end
 
 function CMailMgr:SaveData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for nRoleID, v in pairs(self.m_tDirtyRoleMap) do
 		if nRoleID == 0 then --全局数据
 			local tData = {}
 			tData.m_nAutoInc = self.m_nAutoInc
 			tData.m_nWelcomeMailVersion = self.m_nWelcomeMailVersion
 			tData.m_tServerMailMap = self.m_tServerMailMap
-			oDB:HSet(gtDBDef.sServerMailDB, "data", cjson.encode(tData))
+			oDB:HSet(gtDBDef.sServerMailDB, "data", cseri.encode(tData))
 		else
 			local tData = self.m_tRoleMailMap[nRoleID]
-			oDB:HSet(gtDBDef.sRoleMailDB, nRoleID, cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleMailDB, nRoleID, cseri.encode(tData))
 		end
 	end
 	self.m_tDirtyRoleMap = {}
@@ -152,7 +152,7 @@ function CMailMgr:SendMail(sTitle, sContent, tItems, nReceiver)
 	end
 	
 	self:MailListReq(oRole)
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sRoleMailBodyDB, nReceiver.."_"..nMailID, sContent)
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sRoleMailBodyDB, nReceiver.."_"..nMailID, sContent)
     goLogger:EventLog(gtEvent.eSendMail, oRole, nReceiver, sSender, sTitle, sContent, cjson_raw.encode(tItems))
 	return true
 end
@@ -210,12 +210,12 @@ end
 
 --删除邮件体
 function CMailMgr:DelMailBody(nRoleID, nMailID)
-    goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HDel(gtDBDef.sRoleMailBodyDB, nRoleID.."_"..nMailID)
+    goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HDel(gtDBDef.sRoleMailBodyDB, nRoleID.."_"..nMailID)
 end
 
 --取邮件体
 function CMailMgr:GetMailBody(nRoleID, nMailID)
-    return goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sRoleMailBodyDB, nRoleID.."_"..nMailID)
+    return goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sRoleMailBodyDB, nRoleID.."_"..nMailID)
 end
 
 --定时取发邮件任务

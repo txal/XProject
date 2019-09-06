@@ -14,10 +14,10 @@ function CColligatePowerRanking:LoadData()
 	CRankingBase.LoadData(self)
 
 	--杂项
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sEtcData = oSSDB:HGet(gtDBDef.sRankingEtcDB, self:GetID())
 	if sEtcData ~= "" then
-		local tEtcData = cjson.decode(sEtcData)
+		local tEtcData = cseri.decode(sEtcData)
 		self.m_tCongratMap = tEtcData.m_tCongratMap
 		self.m_nCongratTime = tEtcData.m_nCongratTime
 	end
@@ -30,7 +30,7 @@ function CColligatePowerRanking:LoadData()
 			break 
 		end
 		if nRoleID > 0 then 
-			Network.oRemoteCall:Call("RemoveRoleFromRobotPoolReq", gnWorldServerID, 
+			Network:RMCall("RemoveRoleFromRobotPoolReq", nil, gnWorldServerID, 
 				goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID)
 		end
 	end
@@ -40,13 +40,13 @@ function CColligatePowerRanking:SaveData()
 	CRankingBase.SaveData(self)
 
 	--杂项
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	if self:IsEtcDirty() then
 		local tData = {}
 		tData.m_tCongratMap = self.m_tCongratMap
 		tData.m_nCongratTime = self.m_nCongratTime
 
-		oSSDB:HSet(gtDBDef.sRankingEtcDB, self:GetID(), cjson.encode(tData))
+		oSSDB:HSet(gtDBDef.sRankingEtcDB, self:GetID(), cseri.encode(tData))
 		self:MarkEtcDirty(false)
 	end
 end
@@ -96,22 +96,22 @@ function CColligatePowerRanking:OnRankChange(nRoleID, nNewRank, nOldRank)
 
 	local nFilterRank = 10
 	if nNewRank <= nFilterRank and (nOldRank > nFilterRank or nOldRank <= 0) then 
-		Network.oRemoteCall:Call("RemoveRoleFromRobotPoolReq", gnWorldServerID, 
+		Network:RMCall("RemoveRoleFromRobotPoolReq", nil, gnWorldServerID, 
 			goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID)
 
 		local nTarRoleID = self:GetElementByRank(nFilterRank + 1)
 		if nTarRoleID and nTarRoleID > 0 then 
-			Network.oRemoteCall:Call("AddRole2RobotPoolReq", gnWorldServerID, 
+			Network:RMCall("AddRole2RobotPoolReq", nil, gnWorldServerID, 
 				goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nTarRoleID)
 		end
 	end
 	if nNewRank > nFilterRank and (nOldRank <= nFilterRank and nOldRank > 0) then 
-		Network.oRemoteCall:Call("AddRole2RobotPoolReq", gnWorldServerID, 
+		Network:RMCall("AddRole2RobotPoolReq", nil, gnWorldServerID, 
 			goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nRoleID)
 		
 		local nTarRoleID = self:GetElementByRank(nFilterRank + 1)
 		if nTarRoleID and nTarRoleID > 0 then 
-			Network.oRemoteCall:Call("RemoveRoleFromRobotPoolReq", gnWorldServerID, 
+			Network:RMCall("RemoveRoleFromRobotPoolReq", nil, gnWorldServerID, 
 				goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, nTarRoleID)
 		end
 	end
@@ -154,7 +154,7 @@ function CColligatePowerRanking:CongratReq(oRole)
 	oRole:AddItem(tItemList, "排行榜祝贺")
 	oRole:SendMsg("RankingRedpointRet", {nRankID=self:GetID(), bCanCongrat=false})
 	
-	Network.oRemoteCall:Call("OnCongratulate", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+	Network:RMCall("OnCongratulate", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
 	oRole:Tips("祝贺成功")
 end
 

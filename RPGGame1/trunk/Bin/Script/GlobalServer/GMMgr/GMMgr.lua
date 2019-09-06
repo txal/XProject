@@ -108,10 +108,10 @@ CGMMgr["lgm"] = function(self, nServer, nService, nSession, tArgs)
 			if tConf.nServer == gnServerID then
 				table.remove(tArgs, 2)
 				sCmd = table.concat(tArgs, " ")
-				Network.oRemoteCall:Call("GMCommandReq", tConf.nServer, tConf.nID, nSession, sCmd)
+				Network:RMCall("GMCommandReq", nil, tConf.nServer, tConf.nID, nSession, sCmd)
 			end
 		else
-			Network.oRemoteCall:Call("GMCommandReq", tConf.nServer, tConf.nID, nSession, sCmd)
+			Network:RMCall("GMCommandReq", nil, tConf.nServer, tConf.nID, nSession, sCmd)
 		end
 	end
 end
@@ -121,7 +121,7 @@ CGMMgr["rgm"] = function(self, nServer, nService, nSession, tArgs)
 	local sCmd = table.concat(tArgs, " ")
 	local tList = goServerMgr:GetLogServiceList()
 	for _, tConf in pairs(tList) do
-		Network.oRemoteCall:CallWait("GMCommandReq", function(bRes) 
+		Network:RMCall("GMCommandReq", function(bRes) 
 			if tArgs[1] == "reload" then
 				if not bRes then
 					CGRole:Tips("日志服 重载脚本失败", gnServerID, nSession)	
@@ -137,21 +137,21 @@ end
 CGMMgr["wgm"] = function(self, nServer, nService, nSession, tArgs)
 	local sCmd = table.concat(tArgs, " ")
 	local nServiceID1 = goServerMgr:GetGlobalService(gnWorldServerID, 110)
-	Network.oRemoteCall:Call("GMCommandReq", gnWorldServerID, nServiceID1, nSession, sCmd)
+	Network:RMCall("GMCommandReq", nil, gnWorldServerID, nServiceID1, nSession, sCmd)
 end
 
 --发送到WGLOBAL2的GM
 CGMMgr["wgm2"] = function (self,nServer,nService,nSession,tArgs)
 	local sCmd = table.concat(tArgs, " ")
 	local nServiceID2 = goServerMgr:GetGlobalService(gnWorldServerID, 111)
-	Network.oRemoteCall:Call("GMCommandReq", gnWorldServerID, nServiceID2, nSession, sCmd)
+	Network:RMCall("GMCommandReq", nil, gnWorldServerID, nServiceID2, nSession, sCmd)
 end
 
 --发送到LOGIN的GM
 CGMMgr["agm"] = function(self, nServer, nService, nSession, tArgs)
 	local sCmd = table.concat(tArgs, " ")
 	local nServiceID = goServerMgr:GetLoginService(gnServerID)
-	Network.oRemoteCall:Call("GMCommandReq", gnServerID, nServiceID, nSession, sCmd)
+	Network:RMCall("GMCommandReq", nil, gnServerID, nServiceID, nSession, sCmd)
 end
 
 -- 测试逻辑
@@ -163,13 +163,13 @@ CGMMgr["test"] = function(self, nServer, nService, nSession, tArgs)
 		if oRole and oRole:IsOnline() then
 			CGMMgr["lgm"](self, oRole:GetStayServer(), oRole:GetLogic(), 0, {"test", nRoleID})
 		else
-	        local sData = goDBMgr:GetSSDB(gnServerID, "user", nRoleID):HGet(gtDBDef.sRoleDB, nRoleID)
+	        local sData = goDBMgr:GetGameDB(gnServerID, "user", nRoleID):HGet(gtDBDef.sRoleDB, nRoleID)
 	        if sData ~= "" then
-		        local tData = cjson.decode(sData) 
+		        local tData = cseri.decode(sData) 
 		        tData.m_nYuanBao = 0
 		        tData.m_nBYuanBao = 0
-		        local sData = cjson.encode(tData)
-		        goDBMgr:GetSSDB(gnServerID, "user", nRoleID):HSet(gtDBDef.sRoleDB, nRoleID, sData)
+		        local sData = cseri.encode(tData)
+		        goDBMgr:GetGameDB(gnServerID, "user", nRoleID):HSet(gtDBDef.sRoleDB, nRoleID, sData)
 				LuaTrace("处理玩家刷元宝", oRole:GetID(), oRole:GetName()) 
 			else
 				LuaTrace("玩家不存在", nRoleID)
@@ -389,11 +389,11 @@ CGMMgr["arenarobot"] = function(self, nServer, nService, nSession, tArgs)
 		local  tEnemyData = {}
 		tEnemyData.nEnemyID = nTargetID
 		tEnemyData.nServerLevel = goServerMgr:GetServerLevel(gnServerID)
-		Network.oRemoteCall:Call("ArenaBattleReq", oRole:GetStayServer(), oRole:GetLogic(), 
+		Network:RMCall("ArenaBattleReq", nil, oRole:GetStayServer(), oRole:GetLogic(), 
 			oRole:GetSession(), oRole:GetID(), tEnemyData, goArenaMgr:GetArenaSeason())
 	end
 	--取玩家当前所在逻辑服
-	Network.oRemoteCall:CallWait("ArenaBattleCheckReq", fnArenaCheckCallback, oRole:GetStayServer(), 
+	Network:RMCall("ArenaBattleCheckReq", fnArenaCheckCallback, oRole:GetStayServer(), 
 		oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), nTargetID)
 end
 
@@ -786,7 +786,7 @@ CGMMgr['yyhd'] = function (self,nServer,nService,nSession,tArgs)
 		else
 			--全服团购首充
 			if tData.nID == gtHDDef.eTC then
-				Network.oRemoteCall:Call("ActYYStateReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+				Network:RMCall("ActYYStateReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 			end
 		end
 	elseif nOperaType == 2 then
@@ -800,7 +800,7 @@ CGMMgr['yyhd'] = function (self,nServer,nService,nSession,tArgs)
 			oAct:InfoReq(oRole)
 		else
 			if tData.nID == gtHDDef.eTC then
-				Network.oRemoteCall:Call("ActYYInfoReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+				Network:RMCall("ActYYInfoReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 			end
 		end
 	elseif nOperaType == 3 then
@@ -818,7 +818,7 @@ CGMMgr['yyhd'] = function (self,nServer,nService,nSession,tArgs)
 			oAct:AwardReq(oRole, tData.nRewardID)
 		else
 			if tData.nID == gtHDDef.eTC then
-				Network.oRemoteCall:Call("ActYYAwardReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+				Network:RMCall("ActYYAwardReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 			end
 		end
 	elseif nOperaType == 4 then
@@ -890,7 +890,7 @@ CGMMgr["cb"] = function (self,nServer,nService,nSession,tArgs)
 		local oRole = goGPlayerMgr:GetRoleBySS(nServer, nSession)
 		if not oRole then return end
 		goCBMgr:SyncState(oRole)
-		Network.oRemoteCall:Call("SyncCBState", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+		Network:RMCall("SyncCBState", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 	elseif nOperaType == 2 then
 		local tData = {
 			nID = tonumber(tArgs[2])
@@ -906,7 +906,7 @@ CGMMgr["cb"] = function (self,nServer,nService,nSession,tArgs)
 		else
 			--全服活动
 			if table.InArray(tData.nID,{gtHDDef.eServerRechargeCB,gtHDDef.eServerResumYBCB}) then
-				Network.oRemoteCall:Call("CBInActivityReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+				Network:RMCall("CBInActivityReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 			else
 				oRole:Tips("活动:"..tData.nID.."不存在")
 			end
@@ -927,7 +927,7 @@ CGMMgr["cb"] = function (self,nServer,nService,nSession,tArgs)
 		else
 			--全服活动
 			if table.InArray(tData.nID,{gtHDDef.eServerRechargeCB,gtHDDef.eServerResumYBCB}) then
-				Network.oRemoteCall:Call("CBRankingReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+				Network:RMCall("CBRankingReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 			else
 				oRole:Tips("活动:"..tData.nID.."不存在")
 			end
@@ -947,7 +947,7 @@ CGMMgr["cb"] = function (self,nServer,nService,nSession,tArgs)
 		else
 			--全服活动
 			if table.InArray(tData.nID,{gtHDDef.eServerRechargeCB,gtHDDef.eServerResumYBCB}) then
-				Network.oRemoteCall:Call("CBGetAwardReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
+				Network:RMCall("CBGetAwardReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0,oRole:GetID(),tData)
 			else
 				oRole:Tips("活动:"..tData.nID.."不存在")
 			end 

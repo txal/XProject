@@ -1,5 +1,5 @@
 ctWingPosConf={}
-ctWingPosConf[1001]={nIndex=1001,tPos0={{0,-20,},},tPos1={{0,-20,},},tPos2={{-15,-20,},},tPos3={{0,-20,},},tPos4={{0,-20,},},tPos5={{0,-20,},},tPos6={{15,-20,},},tPos7={{0,-20,},},}
+ctWingPosConf[1001]={nIndex=1001,tPos0={{0,0,},},tPos1={{0,0,},},tPos2={{10,0,},},tPos3={{0,0,},},tPos4={{0,0,},},tPos5={{0,0,},},tPos6={{-10,0,},},tPos7={{0,0,},},}
 ctWingPosConf[1002]={nIndex=1002,tPos0={{0,0,},},tPos1={{0,0,},},tPos2={{0,0,},},tPos3={{0,0,},},tPos4={{0,0,},},tPos5={{0,0,},},tPos6={{0,0,},},tPos7={{0,0,},},}
 ctWingPosConf[1003]={nIndex=1003,tPos0={{0,0,},},tPos1={{0,0,},},tPos2={{0,0,},},tPos3={{0,-10,},},tPos4={{0,0,},},tPos5={{0,0,},},tPos6={{-5,-10,},},tPos7={{0,-10,},},}
 ctWingPosConf[1004]={nIndex=1004,tPos0={{0,0,},},tPos1={{0,0,},},tPos2={{0,0,},},tPos3={{3,0,},},tPos4={{0,0,},},tPos5={{0,0,},},tPos6={{0,-10,},},tPos7={{5,0,},},}

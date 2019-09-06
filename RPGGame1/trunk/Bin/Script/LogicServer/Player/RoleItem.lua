@@ -181,11 +181,11 @@ function CRole:AddItem(nItemType, nItemID, nItemNum, sReason, bRawExp, bBind, tP
 
         elseif nItemID == gtCurrType.eUnionContri then
             --日志交由真正加货币的地方写
-            Network.oRemoteCall:Call("AddUnionContriReq", self:GetServer(), 20, self:GetSession(), self:GetID(), nItemNum, sReason)
+            Network:RMCall("AddUnionContriReq", nil, self:GetServer(), 20, self:GetSession(), self:GetID(), nItemNum, sReason)
 
         elseif nItemID == gtCurrType.eUnionExp then
             --日志交由真正加货币的地方写
-            Network.oRemoteCall:Call("AddUnionExpReq", self:GetServer(), 20, self:GetSession(), self:GetID(), nItemNum, sReason)
+            Network:RMCall("AddUnionExpReq", nil, self:GetServer(), 20, self:GetSession(), self:GetID(), nItemNum, sReason)
 
         elseif nItemID == gtCurrType.eAllYuanBao and nItemNum < 0 then
             return self:UseGoldAll(nItemNum, sReason)
@@ -557,9 +557,9 @@ function CRole:SendSysMail(sTitle, sContent, tItemList, fnCallback)
     local nServerID = self:GetServer()
     local nService = goServerMgr:GetGlobalService(nServerID, 20)
     if fnCallback then
-        Network.oRemoteCall:CallWait("SendMailReq", fnCallback, nServerID, nService, 0, sTitle, sContent, tItemList, self:GetID())
+        Network:RMCall("SendMailReq", fnCallback, nServerID, nService, 0, sTitle, sContent, tItemList, self:GetID())
     else
-        Network.oRemoteCall:Call("SendMailReq", nServerID, nService, 0, sTitle, sContent, tItemList, self:GetID())
+        Network:RMCall("SendMailReq", nil, nServerID, nService, 0, sTitle, sContent, tItemList, self:GetID())
     end
 end
 
@@ -606,7 +606,7 @@ function CRole:QueryCommercePrice(tItemList, fnCallback)
     end
     local nServerID = self:GetServer()
     local nService = goServerMgr:GetGlobalService(nServerID, 20)
-    Network.oRemoteCall:CallWait("QueryCommercePriceReq", fnCallback, 
+    Network:RMCall("QueryCommercePriceReq", fnCallback, 
         nServerID, nService, 0, tItemList)
 end
 

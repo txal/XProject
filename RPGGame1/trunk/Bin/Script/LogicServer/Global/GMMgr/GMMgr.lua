@@ -952,7 +952,7 @@ CGMMgr["pvpactivityrestart"] = function (self, nServer, nService, nSession, tArg
 		local bRet, sReason = goPVPActivityMgr:GMRestart(nActivityID, nPrepareLastTime, nLastTime)
 		fnRestartCallback(bRet, sReason)
 	else
-		Network.oRemoteCall:CallWait("PVPActivityGMRestart", fnRestartCallback, nServer, nTarServiceID, 0, nActivityID, nPrepareLastTime, nLastTime)
+		Network:RMCall("PVPActivityGMRestart", fnRestartCallback, nServer, nTarServiceID, 0, nActivityID, nPrepareLastTime, nLastTime)
 	end
 end
 
@@ -1112,7 +1112,7 @@ CGMMgr['achieve'] = function(self, nServer, nService, nSession, tArgs)
 		oRole.m_oAchieve:GetAchieveRewardReq(3)
 	elseif nOperaType == 5 then
 		local nID = oRole:GetID()
-		local sData = goDBMgr:GetSSDB(nServer, "user", nID):HGet("Achieve", nID)
+		local sData = goDBMgr:GetGameDB(nServer, "user", nID):HGet("Achieve", nID)
 		oRole.m_oAchieve:MarkDirty(true)
 		print("database achieve data",sData)
 		print("now achieve data",oRole.m_oAchieve:SaveData())
@@ -1164,13 +1164,13 @@ CGMMgr['smz'] = function(self, nServer, nService, nSession, tArgs)
 		oRole.m_oShenMoZhiData:ShenMoZhiStarRewardReq(tData)
 	elseif nOperaType == 4 then
 		local nID = oRole:GetID()
-		local sData = goDBMgr:GetSSDB(nServer, "user", nID):HGet("ShenMoZhi", nID)
+		local sData = goDBMgr:GetGameDB(nServer, "user", nID):HGet("ShenMoZhi", nID)
 		oRole.m_oShenMoZhiData:MarkDirty(true)
 		print("shenmozhi data",sData)
 		print("now shenmozhi data",oRole.m_oShenMoZhiData:SaveData())
 	elseif nOperaType == 5 then
 		local nID = oRole:GetID()
-		local sData = goDBMgr:GetSSDB(nServer, "user", nID):HGet("TimeData", nID)
+		local sData = goDBMgr:GetGameDB(nServer, "user", nID):HGet("TimeData", nID)
 		oRole.m_oTimeData:MarkDirty(true)
 		print("time data",sData)
 		print("now time data",oRole.m_oShenMoZhiData:SaveData())
@@ -1207,7 +1207,7 @@ CGMMgr['keju'] = function(self, nServer, nService, nSession, tArgs)
 	elseif nOperaType == 4 then
 	elseif nOperaType == 5 then
 		local nID = oRole:GetID()
-		local sData = goDBMgr:GetSSDB(nServer, "user", nID):HGet("TimeData", nID)
+		local sData = goDBMgr:GetGameDB(nServer, "user", nID):HGet("TimeData", nID)
 		oRole.m_oTimeData:MarkDirty(true)
 		print("time data",sData)
 		print("now time data",oRole.m_oShenMoZhiData:SaveData())
@@ -1219,7 +1219,7 @@ CGMMgr['keju'] = function(self, nServer, nService, nSession, tArgs)
 		end
 		local nServerID = oRole:GetServer()
 		local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
-		Network.oRemoteCall:CallWait("KejuRankingReq", fnCallback, nServerID, nServiceID, 0,oRole:GetID(),100)
+		Network:RMCall("KejuRankingReq", fnCallback, nServerID, nServiceID, 0,oRole:GetID(),100)
 	elseif nOperaType == 11 then
 		local nQuestionID = tonumber(tArgs[2] or 0)
 		oRole.m_oKeju:KejuAskHelp(nQuestionID)
@@ -1237,19 +1237,19 @@ CGMMgr['keju'] = function(self, nServer, nService, nSession, tArgs)
 	elseif nOperaType == 20 then
 		local nServerID = oRole:GetServer()
 		local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
-		Network.oRemoteCall:Call("KejuRankingTest", nServerID, nServiceID, 0,1,oRole:GetID())
+		Network:RMCall("KejuRankingTest", nil, nServerID, nServiceID, 0,1,oRole:GetID())
 	elseif nOperaType == 21 then
 		local nServerID = oRole:GetServer()
 		local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
-		Network.oRemoteCall:Call("KejuRankingTest", nServerID, nServiceID, 0,1,oRole:GetID())
+		Network:RMCall("KejuRankingTest", nil, nServerID, nServiceID, 0,1,oRole:GetID())
 	elseif nOperaType == 22 then
 		local nServerID = oRole:GetServer()
 		local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
-		Network.oRemoteCall:Call("KejuRankingTest", nServerID, nServiceID, 0,2,oRole:GetID())
+		Network:RMCall("KejuRankingTest", nil, nServerID, nServiceID, 0,2,oRole:GetID())
 	elseif nOperaType == 23 then
 		local nServerID = oRole:GetServer()
 		local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
-		Network.oRemoteCall:Call("KejuRankingTest", nServerID, nServiceID, 0,3,oRole:GetID())
+		Network:RMCall("KejuRankingTest", nil, nServerID, nServiceID, 0,3,oRole:GetID())
 	elseif nOperaType == 24 then
 		local tData = {
 			nRoleID = oRole:GetID(),
@@ -1548,7 +1548,7 @@ CGMMgr["adduniongift"] = function (self,nServer,nService,nSession,tArgs)
 	local nUnionID = oRole:GetUnionID()
 	local nServerID = oRole:GetServer()
 	local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
-	Network.oRemoteCall:Call("AddUnionGiftBoxCnt",nServerID,nServiceID,0,nUnionID,nType,nCnt)
+	Network:RMCall("AddUnionGiftBoxCnt", nil,nServerID,nServiceID,0,nUnionID,nType,nCnt)
 end
 
 --角色当前所在逻辑服
@@ -1664,7 +1664,7 @@ CGMMgr["deleterole"] = function (self,nServer,nService,nSession,tArgs)
 				return 
 			end
 			-- oRole:Tips("开始删除角色")
-			Network.oRemoteCall:Call("DeleteRoleReq", oRole:GetServer(), goServerMgr:GetLoginService(oRole:GetServer()), 
+			Network:RMCall("DeleteRoleReq", nil, oRole:GetServer(), goServerMgr:GetLoginService(oRole:GetServer()), 
 				oRole:GetSession(), oRole:GetAccountID(), oRole:GetID())
 		end
 	end

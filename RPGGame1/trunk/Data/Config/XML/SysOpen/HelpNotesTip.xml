@@ -8,20 +8,20 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>Administrator</LastAuthor>
+  <LastAuthor>DM-PC092</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2019-02-14T03:32:02Z</LastSaved>
-  <Version>16.00</Version>
+  <LastSaved>2019-06-03T12:57:39Z</LastSaved>
+  <Version>15.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
-  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7311</KSOProductBuildVer>
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
  </CustomDocumentProperties>
  <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>10635</WindowHeight>
-  <WindowWidth>10710</WindowWidth>
+  <WindowHeight>11775</WindowHeight>
+  <WindowWidth>18180</WindowWidth>
   <WindowTopX>0</WindowTopX>
   <WindowTopY>0</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
@@ -36,167 +36,167 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s88">
+  <Style ss:ID="s62">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s89">
+  <Style ss:ID="s63">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s90">
+  <Style ss:ID="s64">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s91">
+  <Style ss:ID="s65">
    <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s92">
+  <Style ss:ID="s66">
    <Alignment ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s93">
+  <Style ss:ID="s67">
    <Alignment ss:Vertical="Center" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s94">
+  <Style ss:ID="s68">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s95">
+  <Style ss:ID="s69">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s96">
+  <Style ss:ID="s70">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
   </Style>
-  <Style ss:ID="s97">
+  <Style ss:ID="s71">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
-  <Style ss:ID="s98">
+  <Style ss:ID="s72">
    <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <Interior/>
   </Style>
  </Styles>
  <Worksheet ss:Name="HelpNotesTip">
-  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="42" x:FullColumns="1"
-   x:FullRows="1" ss:StyleID="s88" ss:DefaultColumnWidth="54"
+  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="44" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="12">
-   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="36"/>
-   <Column ss:StyleID="s89" ss:AutoFitWidth="0" ss:Width="603.75"/>
-   <Column ss:StyleID="s88" ss:AutoFitWidth="0" ss:Width="240.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="36"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="603.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="240.75"/>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s90"/>
-    <Cell ss:StyleID="s91"/>
-    <Cell ss:StyleID="s92"/>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s65"/>
+    <Cell ss:StyleID="s66"/>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s90"><Data ss:Type="String">nId</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">sContent</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">sRemark</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">nId</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">sContent</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">sRemark</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s90"><Data ss:Type="String">i</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">s</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">s</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">s</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s90"><Data ss:Type="String">编号</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">提示内容</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">备注</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">编号</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">提示内容</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">备注</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="36">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.宠物&lt;color=#00ff00&gt;评分&lt;/c&gt;受到技能,资质,的影响\n2.宠物评级受到资质,成长的影响\n3.初始资质成长越高,评级越高,后期也可培养</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">宠物界面评分</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.每场战斗中可召唤3只&lt;color=#00ff00&gt;宠物&lt;/c&gt;\n2.宠物觉醒提高宠物战斗中的所有属性，每级提高2% ，最高觉醒20级 \n3.资质，成长越高，相同等级宠物属性越高。</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">宠物界面评分</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="36">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">2</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.洗髓会重新生成宠物资质,成长,技能\n2.宝宝洗髓需要洗髓丹\n3.变异宝宝洗髓需要高级洗髓丹</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">宠物界面洗髓</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.洗髓会重新生成宠物资质,成长,技能\n2.宝宝洗髓需要洗髓丹\n3.变异宝宝洗髓需要高级洗髓丹</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">宠物界面洗髓</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">3</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">宠物通过&lt;color=#00ff00&gt;炼骨&lt;/c&gt;可以把各项资质值增加到当前的上限制,资质值越高,宠物的各项属性越好。\n&lt;color=#efa453&gt;攻击资质：&lt;/c&gt;影响宠物攻击值。\n&lt;color=#efa453&gt;防御资质：&lt;/c&gt;影响宠物防御值。\n&lt;color=#efa453&gt;体力资质：&lt;/c&gt;影响宠物气血值。\n&lt;color=#efa453&gt;法力资质：&lt;/c&gt;影响宠物灵力值。\n&lt;color=#efa453&gt;速度资质：&lt;/c&gt;影响宠物速度值。</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">宠物炼骨按钮边上的问号</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">宠物通过&lt;color=#00ff00&gt;炼骨&lt;/c&gt;可以把各项资质值增加到当前的上限制,资质值越高,宠物的各项属性越好。\n&lt;color=#efa453&gt;攻击资质：&lt;/c&gt;影响宠物攻击值。\n&lt;color=#efa453&gt;防御资质：&lt;/c&gt;影响宠物防御值。\n&lt;color=#efa453&gt;体力资质：&lt;/c&gt;影响宠物气血值。\n&lt;color=#efa453&gt;法力资质：&lt;/c&gt;影响宠物灵力值。\n&lt;color=#efa453&gt;速度资质：&lt;/c&gt;影响宠物速度值。</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">宠物炼骨按钮边上的问号</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="24">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">4</Data></Cell>
-    <Cell ss:StyleID="s93"><Data ss:Type="String">1.通过使用宠物&lt;color=#00ff00&gt;技能书&lt;/c&gt;让宠物学习\n2.当宠物技能数量小于4个时，学习技能将有一定概率直接增加新的技能格\n3.当宠物技能数量达到4个时，学习技能只会顶替原有技能\n4.学习技能时，每个技能格子被顶替的概率均等</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">宠物学习界面,免除便捷打书提示后面加个问号</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">1.通过使用宠物&lt;color=#00ff00&gt;技能书&lt;/c&gt;让宠物学习\n2.当宠物技能数量小于4个时，学习技能将有一定概率直接增加新的技能格\n3.当宠物技能数量达到4个时，学习技能只会顶替原有技能\n4.学习技能时，每个技能格子被顶替的概率均等</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">宠物学习界面,免除便捷打书提示后面加个问号</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="36">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">5</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">1.冒险模式:强化失败会降低强化等级,勾上&lt;color=#00ff00&gt;注灵石&lt;/c&gt;,强化失败不会降级,但会消耗指定数量的道具,勾上&lt;color=#00ff00&gt;幸运符&lt;/c&gt;可增加成功率\n2.积分模式：将三种强化材料使用并折算成积分,达到升级所需积分则强化等级必定加1\n3.带有强化积分的装备若切换成冒险模式并进行一次强化,积分将清空</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">强化界面说明</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">1.冒险模式:强化失败会降低强化等级,勾上&lt;color=#00ff00&gt;注灵石&lt;/c&gt;,强化失败不会降级,但会消耗指定数量的道具,勾上&lt;color=#00ff00&gt;幸运符&lt;/c&gt;可增加成功率\n2.积分模式：将三种强化材料使用并折算成积分,达到升级所需积分则强化等级必定加1\n3.带有强化积分的装备若切换成冒险模式并进行一次强化,积分将清空</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">强化界面说明</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="24">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">6</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.技能等级上限为人物等级+5；\n2.一键升级，将会扣除对应的银币把全部技能升级到最多服务器等级+5的等级；\n3.若所升级的技能等级超过了服务器等级+5，继续学习则消耗正常学习1.5倍的银币。</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">技能升级界面边上叹号</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.技能等级上限为人物等级+5；\n2.一键升级，将会扣除对应的银币把全部技能升级到最多服务器等级+5的等级；\n3.若所升级的技能等级超过了服务器等级+5，继续学习则消耗正常学习1.5倍的银币。</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">技能升级界面边上叹号</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="24">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">7</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.&lt;color=#00ff00&gt;必定最大&lt;/c&gt;勾选后,本次采集需要消耗元宝,本次采集将获得最高的灵石\n2.采集十次勾选后,本次点击时会自动采集十次</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">仙侣界面</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.&lt;color=#00ff00&gt;必定最大&lt;/c&gt;勾选后,本次采集需要消耗元宝,本次采集将获得最高的灵石\n2.采集十次勾选后,本次点击时会自动采集十次</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">仙侣界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="57.9375">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">8</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.系统不会自动刷新赏金任务,必须要玩家手动刷新.\n2.当前赏金任务全部完成时,则自动免费刷新;否则刷新需要消耗2个赏金令\n3.玩家可以消耗元宝直接完成某个赏金任务</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">赏金界面刷新按钮边上问号</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.系统不会自动刷新赏金任务,必须要玩家手动刷新.\n2.当前赏金任务未完成个数小于等于2时,免费刷新;等于3时,消耗1个赏金令刷新;等于4时,消耗2个赏金令;等于5时,消耗3个赏金令</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">赏金界面刷新按钮边上问号</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">9</Data></Cell>
-    <Cell ss:StyleID="s95"><Data ss:Type="String">上架商品系统需要收取3%手续费</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">交易界面</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">上架商品系统需要收取3%手续费</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">交易界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="36">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">10</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.每天签到可领取奖励\n2.忘记签到可以补签\n3.补签次数通过累计充值以及提升VIP获得\n4.每月1号重置签到奖励\n5.达到一定VIP等级后，上线后可自动进行签到</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">每日签到</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.每天签到可领取奖励\n2.忘记签到可以补签\n3.补签次数通过累计充值获得，每月最高可补签5次\n4.每月1号重置签到奖励</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">每日签到</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="24">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">11</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.玩家可找回2天内错过的活动奖励\n2.免费可找回50%,元宝可找回100%</Data></Cell>
-    <Cell ss:StyleID="s92"><Data ss:Type="String">奖励找回</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.玩家可找回2天内错过的活动奖励\n2.免费可找回40%,金币可找回80%,元宝可找回100%</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">奖励找回</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s96"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="String">1.使用&lt;color=#00ff00&gt;阵法书&lt;/c&gt;和&lt;color=#00ff00&gt;鬼谷残卷&lt;/c&gt;可以提升已学习的阵法等级\n2.阵法等级越高，对应位置的属性加成越强</Data></Cell>
     <Cell><Data ss:Type="String">阵法界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="24">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">13</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">1.帮派每天每一个成员登录,则帮派获得1000点活跃度\n2.当帮派的活跃度低于10000时,帮派将加入待合并名单\n3.当帮派在待合并名单内3天,那么将会进入自动合并名单\n4.当帮派活跃度恢复到30000以上时,将在待合并名单内取消</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">帮派界面</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">1.帮派每天每一个成员登录,则帮派获得1000点活跃度\n2.当帮派的活跃度低于10000时,帮派将加入待合并名单\n3.当帮派在待合并名单内3天,那么将会进入自动合并名单\n4.当帮派活跃度恢复到30000以上时,将在待合并名单内取消</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">帮派界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="24">
-    <Cell ss:StyleID="s90"><Data ss:Type="Number">14</Data></Cell>
-    <Cell ss:StyleID="s97"><Data ss:Type="String">1.修炼技能等级上限与玩家等级挂钩\n2.修炼经验可以通过道具,银币获得\n3.勾选默认后,修炼道具或修炼经验奖励会默认增加给勾选的技能上\n4.当修炼等级小于等于当前修炼上限等级-5时，获得的修炼经验增加30%</Data></Cell>
-    <Cell ss:StyleID="s98"><Data ss:Type="String">技能修炼界面</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">1.修炼技能等级上限与玩家等级挂钩\n2.修炼经验可以通过道具,银币获得\n3.勾选默认后,修炼道具或修炼经验奖励会默认增加给勾选的技能上\n4.当修炼等级小于等于当前修炼上限等级-5时，获得的修炼经验增加30%</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">技能修炼界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="66">
-    <Cell ss:StyleID="s96"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">15</Data></Cell>
     <Cell><Data ss:Type="String">人物等级≥服务器等级时,获得经验将减少1/5\n人物等级≥服务器等级+5时,获得经验将减少1/3\n人物等级≥服务器等级+8时,获得经验将转化为银币</Data></Cell>
     <Cell><Data ss:Type="String">角色经验帮助说明</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="45.9375">
-    <Cell ss:StyleID="s96"><Data ss:Type="Number">16</Data></Cell>
-    <Cell><Data ss:Type="String">1.灵气注入到葫芦之中,每当击杀妖兽时,葫芦会吸收妖兽灵气,有概率掉落内丹(用于升级葫芦),妖晶(用于在商城兑换奖励)\n2.只有打败抓鬼中的妖兽才能收集其灵气\n3.注入100以上灵气击杀妖兽有概率掉落妖晶\n4.注入1000以上灵气击杀妖兽有概率掉落四种颜色的魂石</Data></Cell>
-    <Cell><Data ss:Type="String">葫芦界面</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="Number">16</Data></Cell>
+    <Cell><Data ss:Type="String">1.灵气注入到摄魂之中,每当击杀妖兽时,摄魂会吸收妖兽灵气,有概率掉落内丹(用于升级摄魂),妖晶(用于在商城兑换奖励)\n2.只有打败捉妖中的妖兽才能收集其灵气\n3.注入100以上灵气击杀妖兽有概率掉落妖晶\n4.注入1000以上灵气击杀妖兽有概率掉落四种颜色的魂石</Data></Cell>
+    <Cell><Data ss:Type="String">摄魂界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="24">
     <Cell><Data ss:Type="Number">17</Data></Cell>
@@ -205,13 +205,13 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">18</Data></Cell>
-    <Cell><Data ss:Type="String">1.段位从低到高,青铜，白银,黄金,钻石,大师,王者\n2.赛季结束时，奖励按照当时的段位进行奖励结算\n3.VIP等级达到一定等级后，每天可免费刷新5次，否则需要消耗元宝进行刷新</Data></Cell>
+    <Cell><Data ss:Type="String">1.段位积分说明：\n青铜（0~1149）\n白银（1150~1299）\n黄金（1300~1649）\n钻石（1650~2099）\n大师（2100~2799）\n王者（2800或以上）\n2.赛季结束时，奖励按照当时的段位进行奖励结算</Data></Cell>
     <Cell><Data ss:Type="String">竞技场</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="24">
     <Cell><Data ss:Type="Number">19</Data></Cell>
     <Cell><Data ss:Type="String">1.挑战战斗胜利,即可获得1星\n2.6回合内挑战战斗胜利,即可获得2星\n3.3回合内挑战战斗胜利,即可获得3星</Data></Cell>
-    <Cell><Data ss:Type="String">魔神讨伐</Data></Cell>
+    <Cell><Data ss:Type="String">神魔录</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">20</Data></Cell>
@@ -230,22 +230,22 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">23</Data></Cell>
-    <Cell><Data ss:Type="String">参加竞技场,首席竞赛,跨服帮战,八方会武,雷霆之战,就可以获得竞技积分</Data></Cell>
+    <Cell><Data ss:Type="String">参加竞技场,首席争霸,跨服帮战,五方会武,萌仙会战,就可以获得竞技积分</Data></Cell>
     <Cell><Data ss:Type="String">竞技积分</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">24</Data></Cell>
-    <Cell><Data ss:Type="String">参加抓鬼任务，即可获得内丹</Data></Cell>
+    <Cell><Data ss:Type="String">参加捉妖摄魂，即可获得内丹</Data></Cell>
     <Cell><Data ss:Type="String">内丹兑换</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">25</Data></Cell>
-    <Cell><Data ss:Type="String">参加抓鬼任务，即可获得妖晶</Data></Cell>
+    <Cell><Data ss:Type="String">参加捉妖摄魂，即可获得妖晶</Data></Cell>
     <Cell><Data ss:Type="String">妖晶兑换</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">26</Data></Cell>
-    <Cell><Data ss:Type="String">1.同1账号在1个服务器下只能购买1次\n2.每天0点后刷新元宝福利领取\n3.每天元宝不会累计到第二天</Data></Cell>
+    <Cell><Data ss:Type="String">1.购买福利卡可立即获得180元宝,并且每天可领取128元宝,持续14天\n2.同1账号在1个服务器下只能购买1次\n3.每天0点后刷新元宝福利领取\n4.每天元宝不会累计到第二天</Data></Cell>
     <Cell><Data ss:Type="String">奖励月卡</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
@@ -255,13 +255,13 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">28</Data></Cell>
-    <Cell><Data ss:Type="String">每次打开天官赐福可获得3点福缘，点击右上角兑换按钮进入兑换界面，福缘可用来兑换珍稀道具哟</Data></Cell>
-    <Cell><Data ss:Type="String">天官赐福界面</Data></Cell>
+    <Cell><Data ss:Type="String">每次开启召唤可获得3点福缘，点击右上角兑换按钮进入兑换界面，福缘可用来兑换珍稀道具哟</Data></Cell>
+    <Cell><Data ss:Type="String">召唤界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">29</Data></Cell>
-    <Cell><Data ss:Type="String">每次打开天官赐福可获得3点福缘，快使用对应的福缘点数来兑换稀有道具吧！</Data></Cell>
-    <Cell><Data ss:Type="String">天官赐福兑换界面</Data></Cell>
+    <Cell><Data ss:Type="String">每次开启召唤可获得3点福缘，快使用对应的福缘点数来兑换稀有道具吧！</Data></Cell>
+    <Cell><Data ss:Type="String">召唤兑换界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">30</Data></Cell>
@@ -280,12 +280,12 @@
    </Row>
    <Row ss:AutoFitHeight="0" ss:Height="32.25">
     <Cell><Data ss:Type="Number">33</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.人物装备每10级为一档，最低可打造30级装备，最高可预览比当前等级高一档的装备；\n2.根据服务器等级，最高只开放打造服务器等级+5级档次的装备。</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.人物装备每10级为一档，最低可打造30级装备，最高可预览比当前等级高一档的装备；\n2.根据服务器等级，最高只开放打造服务器等级+5级档次的装备。</Data></Cell>
     <Cell><Data ss:Type="String">装备打造界面</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">34</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.综合战力=人物战力+最高战力的3个宠物评分之和+最高战力的4个仙侣战斗力之和\n2.本榜按照人物综合战力从高到低排序</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.综合战力=人物战力+最高战力的3个宠物评分之和+最高战力的4个仙侣战斗力之和\n2.本榜按照人物综合战力从高到低排序</Data></Cell>
     <Cell><Data ss:Type="String">排行榜</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
@@ -295,18 +295,28 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">36</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.完成日常任务获得活跃以及使用活力道具可获得活力；\n2.活力上限会随着玩家等级的提升而提高</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.完成日常任务获得活跃以及使用活力道具可获得活力；\n2.活力上限会随着玩家等级的提升而提高</Data></Cell>
     <Cell><Data ss:Type="String">活力</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">37</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">和比自己低10级以上的玩家组队进行抓鬼，降妖除魔等可获得侠义值</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">和比自己低10级以上的玩家组队进行捉妖，降妖伏魔等可获得侠义值</Data></Cell>
     <Cell><Data ss:Type="String">侠义值</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">38</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.购买终身福利后每天可领取148绑定元宝\n2.购买终身福利之后，挂机获得的银币和经验会额外增加30%</Data></Cell>
+    <Cell><Data ss:Type="String">终身福利</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">40</Data></Cell>
-    <Cell ss:StyleID="s94"><Data ss:Type="String">1.宠物合成只改变宠物的&lt;color=#00ff00&gt;技能个数（可能增加可能减少）&lt;/c&gt;，不会影响宠物的资质和成长；\n2.合成之后副宠会消失，合成的主宠技能会概率继承主宠和副宠的技能。\n3.合成的主宠最多拥有10个技能（不含护符技能等）\n4.当勾选了低级保底，合成后的主宠技能不少于&lt;color=#00ff00&gt;主副宠不重复技能之和/2（向下取整）&lt;/c&gt;\n5.当勾选了高级保底，合成后的主宠技能不少于&lt;color=#00ff00&gt;（主副宠不重复技能之和/2）+1（向下取整）&lt;/c&gt;\n6.可以花费元宝直接获得和&lt;color=#00ff00&gt;主宠技能个数一样&lt;/c&gt;的副宠进行合成</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">1.宠物合成只改变宠物的&lt;color=#00ff00&gt;技能个数（可能增加可能减少）&lt;/c&gt;，不会影响宠物的资质和成长；\n2.合成之后副宠会消失，合成的主宠技能会概率继承主宠和副宠的技能。\n3.合成的主宠最多拥有10个技能（不含护符技能等）\n4.当勾选了低级保底，合成后的主宠技能不少于&lt;color=#00ff00&gt;主副宠不重复技能之和/2（向下取整）&lt;/c&gt;\n5.当勾选了高级保底，合成后的主宠技能不少于&lt;color=#00ff00&gt;（主副宠不重复技能之和/2）+1（向下取整）&lt;/c&gt;\n6.可以花费元宝直接获得和&lt;color=#00ff00&gt;主宠技能个数一样&lt;/c&gt;的副宠进行合成</Data></Cell>
     <Cell><Data ss:Type="String">宠物合成</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">41</Data></Cell>
+    <Cell><Data ss:Type="String">1，每次战斗最多上阵4名仙侣\n2，仙侣等级自动等于主角等级\n3，仙侣可以通过升星领悟新的技能\n4，觉醒影响仙侣出战时战力修正。最高20级，每级增加全属性1%战斗修正</Data></Cell>
+    <Cell><Data ss:Type="String">仙侣觉醒</Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -324,12 +334,11 @@
    <Zoom>130</Zoom>
    <PageBreakZoom>100</PageBreakZoom>
    <Selected/>
-   <TopRowVisible>27</TopRowVisible>
-   <LeftColumnVisible>1</LeftColumnVisible>
+   <TopRowVisible>12</TopRowVisible>
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>40</ActiveRow>
+     <ActiveRow>19</ActiveRow>
      <ActiveCol>1</ActiveCol>
     </Pane>
    </Panes>

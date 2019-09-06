@@ -31,9 +31,9 @@ function CHDCircle:Init()
 end
 
 function CHDCircle:LoadData()
-	local sData = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sHDCircleDB, "data")
+	local sData = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sHDCircleDB, "data")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_tOpenMap = tData.m_tOpenMap
 	end
 	self:RegMinTimer()
@@ -49,7 +49,7 @@ function CHDCircle:SaveData()
 		return
 	end
 	local tData = {m_tOpenMap=self.m_tOpenMap}
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sHDCircleDB, "data", cjson.encode(tData))
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sHDCircleDB, "data", cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

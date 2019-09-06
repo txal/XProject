@@ -31,7 +31,7 @@ function CPropHouseFurniture:Use(nParam1)
 	local oRole = self.m_oModule.m_oRole
 	local nRoleID = oRole:GetID()
 	local nFurnitureID = self:GetPropConf().eParam()
-	Network.oRemoteCall:CallWait("HouseFurnitureIsLock", fnCheckCallback, gnWorldServerID, nServiceID, 0, nRoleID,nFurnitureID)
+	Network:RMCall("HouseFurnitureIsLock", fnCheckCallback, gnWorldServerID, nServiceID, 0, nRoleID,nFurnitureID)
 end
 
 function CPropHouseFurniture:TrueUse()
@@ -53,5 +53,5 @@ function CPropHouseFurniture:TrueUse()
 	local nServiceID = goServerMgr:GetGlobalService(gnWorldServerID, 111)
 	local nRoleID = oRole:GetID()
 	local nFurnitureID = self:GetPropConf().eParam()
-	Network.oRemoteCall:CallWait("HouseUnLockFurniture", fnCallback, gnWorldServerID, nServiceID, 0, nRoleID,nFurnitureID)
+	Network:RMCall("HouseUnLockFurniture", fnCallback, gnWorldServerID, nServiceID, 0, nRoleID,nFurnitureID)
 end

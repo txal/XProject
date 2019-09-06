@@ -11,7 +11,7 @@
   <LastAuthor>Administrator</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
   <LastSaved>2018-07-23T08:55:05Z</LastSaved>
-  <Version>12.00</Version>
+  <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
@@ -20,10 +20,10 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11820</WindowHeight>
-  <WindowWidth>28800</WindowWidth>
-  <WindowTopX>0</WindowTopX>
-  <WindowTopY>0</WindowTopY>
+  <WindowHeight>9180</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -52,14 +52,14 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="ctArenaRankingConf">
-  <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="11" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="8" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
-   <Column ss:Index="2" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="50.25"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="90"/>
+   <Column ss:Index="2" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="50.4"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="154.79999999999998"/>
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="294" ss:Span="1"/>
    <Column ss:Index="7" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="90"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="60.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="60.6"/>
    <Row ss:AutoFitHeight="0"/>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">nIndex</Data></Cell>
@@ -95,8 +95,8 @@
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">1,1;</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="String">text_diyiming,bg_diyiminghengtiao</Data></Cell>
-    <Cell><Data ss:Type="String">1,13514,1;1,34007,25;1,11002,30;1,19020,10;1,19022,50;</Data></Cell>
-    <Cell><Data ss:Type="String">1,13514,1;1,34007,25;1,11002,30;1,19020,10;1,19022,50;</Data></Cell>
+    <Cell><Data ss:Type="String">1,13514,1;1,2000304,1;1,10014,10;1,19016,100;</Data></Cell>
+    <Cell><Data ss:Type="String">1,13514,1;1,2000304,1;1,10014,10;1,19016,100;</Data></Cell>
     <Cell><Data ss:Type="Number">3</Data></Cell>
     <Cell ss:StyleID="s63"/>
    </Row>
@@ -104,48 +104,24 @@
     <Cell><Data ss:Type="Number">2</Data></Cell>
     <Cell><Data ss:Type="String">2,2;</Data></Cell>
     <Cell><Data ss:Type="String">text_dierming,bg_dierminghengtiao</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,20;1,34007,20;1,11002,20;1,19020,5;1,19022,30;</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,20;1,34007,20;1,11002,20;1,19020,5;1,19022,30;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000303,1;1,10014,8;1,19016,80;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000303,1;1,10014,8;1,19016,80;</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">3</Data></Cell>
     <Cell><Data ss:Type="String">3,3;</Data></Cell>
     <Cell><Data ss:Type="String">text_disanming,bg_disanminghengtiao</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,15;1,34007,15;1,11002,15;1,19020,3;1,19022,20;</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,15;1,34007,15;1,11002,15;1,19020,3;1,19022,20;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000302,1;1,10014,6;1,19016,60;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000302,1;1,10014,6;1,19016,60;</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">4</Data></Cell>
-    <Cell><Data ss:Type="String">4,5;</Data></Cell>
+    <Cell><Data ss:Type="String">4,20;</Data></Cell>
     <Cell><Data ss:Type="String">bg_lvsehengtiao,0</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,10;1,34007,10;1,11002,10;1,19019,10;1,19022,15;</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,10;1,34007,10;1,11002,10;1,19019,10;1,19022,15;</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">5</Data></Cell>
-    <Cell><Data ss:Type="String">6,10;</Data></Cell>
-    <Cell><Data ss:Type="String">bg_lvsehengtiao,0</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,5;1,34007,5;1,11002,10;1,19019,10;1,19022,10;</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,5;1,34007,5;1,11002,10;1,19019,10;1,19022,10;</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell><Data ss:Type="String">11,20;</Data></Cell>
-    <Cell><Data ss:Type="String">bg_lvsehengtiao,0</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,3;1,34007,3;1,11002,5;1,19019,5;1,19022,5;</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,3;1,34007,3;1,11002,5;1,19019,5;1,19022,5;</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">7</Data></Cell>
-    <Cell><Data ss:Type="String">21,30;</Data></Cell>
-    <Cell><Data ss:Type="String">bg_lvsehengtiao,0</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,3;1,34007,3;1,11002,5;1,19019,5;1,19022,5;</Data></Cell>
-    <Cell><Data ss:Type="String">1,13300,3;1,34007,3;1,11002,5;1,19019,5;1,19022,5;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000301,1;1,10014,4;1,19016,40;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2000301,1;1,10014,4;1,19016,40;</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
   </Table>
@@ -166,8 +142,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>17</ActiveRow>
-     <ActiveCol>4</ActiveCol>
+     <ActiveRow>12</ActiveRow>
+     <ActiveCol>3</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

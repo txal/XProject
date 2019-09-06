@@ -46,14 +46,14 @@ function CKejuRanking:Ctor(nID)
 end
 
 function CKejuRanking:LoadData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 
 	local tKeys = oSSDB:HKeys(gtDBDef.sKejuRankingDB)
 	print("加载科举排行榜:", #tKeys)
 	for _, sCharID in ipairs(tKeys) do
 		local nRoleID = tonumber(sCharID)
 		local sData = oSSDB:HGet(gtDBDef.sKejuRankingDB, nRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		if tData[1] then
 			self.m_oRanking:Insert(nRoleID, tData)
 		end
@@ -65,7 +65,7 @@ function CKejuRanking:SaveData()
 		local tData = self.m_oRanking:GetDataByKey(nRoleID)
 		if tData then
 			local tRealData = {tData[1]} --主意要转成数组
-			goDBMgr:GetSSDB(gnServerID, "global",CUtil:GetServiceID()):HSet(gtDBDef.sKejuRankingDB, nRoleID, cjson.encode(tRealData))
+			goDBMgr:GetGameDB(gnServerID, "global",CUtil:GetServiceID()):HSet(gtDBDef.sKejuRankingDB, nRoleID, cseri.encode(tRealData))
 		end
 	end
 	self.m_tDirtyMap = {}
@@ -126,7 +126,7 @@ function CKejuRanking:RankReward()
 		end
 	end
 	for nLogic,tJoinPlayer in pairs(tLogic) do
-		Network.oRemoteCall:Call("JoinKejuDianshi",gnServerID,nLogic,0,tJoinPlayer)
+		Network:RMCall("JoinKejuDianshi", nil,gnServerID,nLogic,0,tJoinPlayer)
 	end
 end
 
@@ -178,7 +178,7 @@ end
 
 --重置清理数据库
 function CKejuRanking:ResetRanking()
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HClear(gtDBDef.sKejuRankingDB)
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HClear(gtDBDef.sKejuRankingDB)
 	self.m_oRanking = CSkipList:new(_fnDescSort)
 	self.m_tDirtyMap = {}
 end

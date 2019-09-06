@@ -28,7 +28,7 @@ function CGPVEActivityNpcMgr:Online(oRole)
     end
 
     local nService = self:GetPVEActivityService()
-    Network.oRemoteCall:CallWait("PVEActivityCheckStatusReq", fnCheckCallback, oRole:GetServer(), nService, 0)
+    Network:RMCall("PVEActivityCheckStatusReq", fnCheckCallback, oRole:GetServer(), nService, 0)
 end
 
 function CGPVEActivityNpcMgr:BroadcastNpcMsg(tMsg, nServer) 

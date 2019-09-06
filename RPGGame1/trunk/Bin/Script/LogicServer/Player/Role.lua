@@ -399,10 +399,10 @@ end
 function CRole:LoadSelfData(tSaveData)
     if not tSaveData then 
         local nServer, nID = self:GetServer(), self:GetID()
-        local sData = goDBMgr:GetSSDB(nServer, "user", nID):HGet(gtDBDef.sRoleDB, nID)
+        local sData = goDBMgr:GetGameDB(nServer, "user", nID):HGet(gtDBDef.sRoleDB, nID)
         assert(sData ~= "", "角色不存在!!! : "..nID)
 
-        local tData = cjson.decode(sData) 
+        local tData = cseri.decode(sData) 
         self:InitSelfData(tData)
     else
         self:InitSelfData(tSaveData)
@@ -486,7 +486,7 @@ function CRole:SaveSelfData()
     local tData = self:GetSelfSaveData()
     self:CheckDirtySave("role", self:IsDirty(), tData)
     if self:IsDirty() then
-        goDBMgr:GetSSDB(self:GetServer(), "user", self:GetID()):HSet(gtDBDef.sRoleDB, self:GetID(), cjson.encode(tData))
+        goDBMgr:GetGameDB(self:GetServer(), "user", self:GetID()):HSet(gtDBDef.sRoleDB, self:GetID(), cseri.encode(tData))
         self:MarkDirty(false)
     end
 end
@@ -497,9 +497,9 @@ function CRole:LoadModuleData(tSaveData)
         for nModuleID, oModule in pairs(self.m_tModuleMap) do
             local _, sModuleName = oModule:GetType()
             local nServer, nID = self:GetServer(), self:GetID()
-            local sData = goDBMgr:GetSSDB(nServer, "user", nID):HGet(sModuleName, nID)
+            local sData = goDBMgr:GetGameDB(nServer, "user", nID):HGet(sModuleName, nID)
             if sData ~= "" then
-                oModule:LoadData(cjson.decode(sData))
+                oModule:LoadData(cseri.decode(sData))
             else
                 oModule:LoadData()
             end
@@ -522,8 +522,8 @@ function CRole:SaveModuleData()
         local tData = oModule:SaveData()
         local _, sModuleName = oModule:GetType()
         if tData and next(tData) then
-            local sData = cjson.encode(tData)
-            local bRes = pcall(function() goDBMgr:GetSSDB(nServer, "user", nID):HSet(sModuleName, nID, sData) end) 
+            local sData = cseri.encode(tData)
+            local bRes = pcall(function() goDBMgr:GetGameDB(nServer, "user", nID):HSet(sModuleName, nID, sData) end) 
             if not bRes then
                 oModule:MarkDirty(true)
             end
@@ -748,7 +748,7 @@ function CRole:SetActState(nState, bBroadcast)
         local tGlobalServiceList = goServerMgr:GetGlobalServiceList()
         for _, tConf in pairs(tGlobalServiceList) do
             if tConf.nServer == self:GetServer() or tConf.nServer == gnWorldServerID then
-                Network.oRemoteCall:Call("GRoleActStateUpdateReq", tConf.nServer, tConf.nID, self:GetSession(), self:GetID(), self.m_nActState)
+                Network:RMCall("GRoleActStateUpdateReq", nil, tConf.nServer, tConf.nID, self:GetSession(), self:GetID(), self.m_nActState)
             end
         end
         if bBroadcast then
@@ -867,7 +867,7 @@ function CRole:BindSession(nSession)
     self.m_nSession = nSession
     self.m_oNativeObj:BindSession(nSession)
     if self.m_nSession > 0 then
-        self.m_nGateway = CUtil:GetGateServiceBySession(self.m_nSession)
+        self.m_nGateway = CUtil:GetGateBySession(self.m_nSession)
     end
 end
 
@@ -1298,7 +1298,7 @@ function CRole:GlobalRoleUpdate(tParam)
     local tGlobalServiceList = goServerMgr:GetGlobalServiceList()
     for _, tConf in pairs(tGlobalServiceList) do
         if tConf.nServer == self:GetServer() or tConf.nServer == gnWorldServerID then
-            Network.oRemoteCall:Call("GRoleUpdateReq", tConf.nServer, tConf.nID, self:GetSession(), self:GetID(), tParam)
+            Network:RMCall("GRoleUpdateReq", nil, tConf.nServer, tConf.nID, self:GetSession(), self:GetID(), tParam)
         end
     end
 end
@@ -1308,7 +1308,7 @@ function CRole:GlobalBattleUpdate(tData)
      local tGlobalServiceList = goServerMgr:GetGlobalServiceList()
     for _, tConf in pairs(tGlobalServiceList) do
         if tConf.nServer == self:GetServer() or tConf.nServer == gnWorldServerID then
-            Network.oRemoteCall:Call("OnBattleEndReq", tConf.nServer, tConf.nID, self:GetSession(), self:GetID(), tData)
+            Network:RMCall("OnBattleEndReq", nil, tConf.nServer, tConf.nID, self:GetSession(), self:GetID(), tData)
         end
     end
 end
@@ -1527,7 +1527,7 @@ function CRole:AddVitality(nVal)
 
     --消耗活力限时奖励
     if nVal < 0 then
-        Network.oRemoteCall:Call("OnTAHLReq", self:GetServer(), goServerMgr:GetGlobalService(self:GetServer(),20), 0, self:GetID(), self.m_nVitality-nOldVitality)
+        Network:RMCall("OnTAHLReq", nil, self:GetServer(), goServerMgr:GetGlobalService(self:GetServer(),20), 0, self:GetID(), self.m_nVitality-nOldVitality)
     end
 
 end
@@ -1739,7 +1739,7 @@ function CRole:AddYuanBao(nVal, bNotSync)
 
     local tGlobalServiceList = goServerMgr:GetGlobalServiceList(self:GetServer())
     for _, tService in pairs(tGlobalServiceList) do
-        Network.oRemoteCall:Call("OnRoleYuanBaoChange", tService.nServer, tService.nID, 0, self:GetID(), nVal, false)
+        Network:RMCall("OnRoleYuanBaoChange", nil, tService.nServer, tService.nID, 0, self:GetID(), nVal, false)
     end
 
     --日志
@@ -1763,7 +1763,7 @@ function CRole:AddBYuanBao(nVal, bNotSync)
 
     local tGlobalServiceList = goServerMgr:GetGlobalServiceList(self:GetServer())
     for _, tService in pairs(tGlobalServiceList) do
-        Network.oRemoteCall:Call("OnRoleYuanBaoChange", tService.nServer, tService.nID, 0, self:GetID(), nVal, true)
+        Network:RMCall("OnRoleYuanBaoChange", nil, tService.nServer, tService.nID, 0, self:GetID(), nVal, true)
     end
 
     --日志
@@ -1786,7 +1786,7 @@ function CRole:AddJinBi(nVal, bNotSync)
 
     --累计消耗金币
     if nVal < 0 then
-        Network.oRemoteCall:Call("OnTAJBReq", self:GetServer(), goServerMgr:GetGlobalService(self:GetServer(),20), 0, self:GetID(), self.m_nJinBi-nOldJinBi)
+        Network:RMCall("OnTAJBReq", nil, self:GetServer(), goServerMgr:GetGlobalService(self:GetServer(),20), 0, self:GetID(), self.m_nJinBi-nOldJinBi)
     end
     return self.m_nJinBi
 end
@@ -1811,7 +1811,7 @@ function CRole:AddYinBi(nVal, bNotSync)
         self.m_oAssistedSkill:OnYinBiChange()
     elseif nVal < 0 then
     --累计消耗银币
-        Network.oRemoteCall:Call("OnTAYBReq", self:GetServer(), goServerMgr:GetGlobalService(self:GetServer(),20), 0, self:GetID(), self.m_nYinBi-nOldYinBi)
+        Network:RMCall("OnTAYBReq", nil, self:GetServer(), goServerMgr:GetGlobalService(self:GetServer(),20), 0, self:GetID(), self.m_nYinBi-nOldYinBi)
     end
     return self.m_nYinBi
 end
@@ -1859,7 +1859,7 @@ function CRole:AddActValue(nVal)
     self.m_oDailyActivity.m_nTotalActValue = math.max(0, math.min(gtGDef.tConst.nMaxInteger, nActVal+nVal))
     self:MarkDirty(true)
     self.m_oDailyActivity:CheckActRewardState()
-    Network.oRemoteCall:Call("GRoleActiveNumChangeReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 
+    Network:RMCall("GRoleActiveNumChangeReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 
         self:GetSession(), self:GetID(), nVal)
     return self.m_oDailyActivity.m_nTotalActValue
 end
@@ -1930,7 +1930,7 @@ function CRole:Tips(sCont, nServer, nSession)
         return
     end
     if nServer > 0 and nSession > 0 then
-        self:SendMsg("TipsMsgRet", {sCont=sCont}, nServer, nSession)
+        self:SendMsg("FloatTipsRet", {sCont=sCont}, nServer, nSession)
     end
 end
 
@@ -2270,7 +2270,7 @@ function CRole:AfterEnterScene(nDupMixID)
                     --再次重新发起竞技场挑战,走完整检查流程，防止中间出现异常数据
                     local nServer = self:GetServer()
                     local nService = goServerMgr:GetGlobalService(nServer, 20)
-                    Network.oRemoteCall:Call("JoinArenaBattleReq", nServer, nService, self:GetSession(), self:GetID(), nEnemyID)
+                    Network:RMCall("JoinArenaBattleReq", nil, nServer, nService, self:GetSession(), self:GetID(), nEnemyID)
                 end
             end
         end
@@ -2366,7 +2366,7 @@ function CRole:FlushRoleView()
     end
     --同步外观信息到家园
     local nServiceID = goServerMgr:GetGlobalService(gnWorldServerID,111)
-    Network.oRemoteCall:Call("GRoleUpdateReq", gnWorldServerID,nServiceID,self:GetSession(),self:GetID(),{m_tShapeData=self:GetShapeData()})
+    Network:RMCall("GRoleUpdateReq", nil, gnWorldServerID,nServiceID,self:GetSession(),self:GetID(),{m_tShapeData=self:GetShapeData()})
 end
 
 --更新角色摘要信息
@@ -2382,7 +2382,7 @@ function CRole:UpdateRoleSummary()
     tSummary.nLastDup = self:GetLastDup()[1]
     tSummary.tEquipment = self:GetEquipment()
     tSummary.nConfID = self:GetConfID()
-    Network.oRemoteCall:Call("RoleUpdateSummaryReq", self:GetServer(), goServerMgr:GetLoginService(self:GetServer()), self:GetSession()
+    Network:RMCall("RoleUpdateSummaryReq", nil, self:GetServer(), goServerMgr:GetLoginService(self:GetServer()), self:GetSession()
         , self:GetAccountID(), self:GetID(), tSummary)
 end
 
@@ -2470,7 +2470,7 @@ function CRole:RoleModNameReq(sName, bProp)
     if string.len(sName) > gtGDef.tConst.nMaxRoleNameLen then
         return self:Tips("名字长度过长")
     end
-    local sData = goDBMgr:GetSSDB(0, "center"):HGet(gtDBDef.sRoleNameDB, sName)
+    local sData = goDBMgr:GetGameDB(0, "center"):HGet(gtDBDef.sRoleNameDB, sName)
     if sData ~= "" then
         return self:Tips("角色名已被占用")
     end
@@ -2489,8 +2489,8 @@ function CRole:RoleModNameReq(sName, bProp)
             self.m_sName = sName
             self:MarkDirty(true)
     
-            goDBMgr:GetSSDB(0, "center"):HSet(gtDBDef.sRoleNameDB, sName, self:GetID())
-            goDBMgr:GetSSDB(0, "center"):HDel(gtDBDef.sRoleNameDB, sOldName)
+            goDBMgr:GetGameDB(0, "center"):HSet(gtDBDef.sRoleNameDB, sName, self:GetID())
+            goDBMgr:GetGameDB(0, "center"):HDel(gtDBDef.sRoleNameDB, sOldName)
             self:OnNameChange(sOldName)
             self:SendMsg("RoleModNameRet", {sName=sName})
             goLogger:UpdateRoleLog(self, {rolename=sName})
@@ -2590,7 +2590,7 @@ end
 --请求刷新队伍数据
 --bAll 如果在队伍，是否更新整个队伍成员的队伍数据
 function CRole:UpdateTeamDataReq(bAll)
-    Network.oRemoteCall:Call("WUpdateTeamDataReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 
+    Network:RMCall("WUpdateTeamDataReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 
         self:GetSession(), self:GetID(), bAll and true or false)
 end
 
@@ -2979,7 +2979,7 @@ function CRole:UpdateGrowthTargetActVal(eActType, nVal)
         return 
     end
     local nServer = self:GetServer()
-    Network.oRemoteCall:Call("UpdateGrowthTargetActValReq", nServer, goServerMgr:GetGlobalService(nServer, 20), 
+    Network:RMCall("UpdateGrowthTargetActValReq", nil, nServer, goServerMgr:GetGlobalService(nServer, 20), 
         0, self:GetID(), eActType, nVal)
 end
 
@@ -2989,7 +2989,7 @@ function CRole:AddGrowthTargetActVal(eActType, nVal)
         return 
     end
     local nServer = self:GetServer()
-    Network.oRemoteCall:Call("AddGrowthTargetActValReq", nServer, goServerMgr:GetGlobalService(nServer, 20), 
+    Network:RMCall("AddGrowthTargetActValReq", nil, nServer, goServerMgr:GetGlobalService(nServer, 20), 
         0, self:GetID(), eActType, nVal)
 end
 

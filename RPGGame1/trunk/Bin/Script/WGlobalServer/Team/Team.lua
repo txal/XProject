@@ -290,7 +290,7 @@ function CTeam:SyncLogicCache(nRoleID)
 					m_nTeamNum = self:GetMembers(),
 					m_tTeamList = tTeamList,
 				}
-				Network.oRemoteCall:Call("RoleUpdateReq", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), 
+				Network:RMCall("RoleUpdateReq", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), 
 					oRole:GetServer(), oRole:GetID(), tData)
 			end
 		end
@@ -305,7 +305,7 @@ function CTeam:SyncLogicCache(nRoleID)
 				m_nTeamNum = self:GetMembers(),
 				m_tTeamList = tTeamList,
 			}
-			Network.oRemoteCall:Call("RoleUpdateReq", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), 
+			Network:RMCall("RoleUpdateReq", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), 
 				oRole:GetServer(), oRole:GetID(), tData)
 		end
 	end
@@ -331,7 +331,7 @@ function CTeam:OnLeaderChange(nOldLeaderRoleID)
 		goTalk:SendTeamMsg(oRoleLeader, sTeamContent, true, {tTeamLeader.nRoleID})
 		local tSessionList = self:GetSessionList({tTeamLeader.nRoleID})
 		if tSessionList and #tSessionList > 0 then 
-			Network.PBBroadcastExter("TipsMsgRet", tSessionList, {sCont = sTeamContent})
+			Network.PBBroadcastExter("FloatTipsRet", tSessionList, {sCont = sTeamContent})
 		end
 
 		local sContent = "您被提升为队长了！"
@@ -356,7 +356,7 @@ function CTeam:OnReturnTeam(tRole, tLeaderTarget)
 	local oLeader = goGPlayerMgr:GetRoleByID(tLeader.nRoleID)
 	if tLeaderTarget then
 		self:SetFollowSwitchRecord(tRole.nRoleID, tLeaderTarget)
-		Network.oRemoteCall:Call("WSwitchLogicReq", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), tLeaderTarget)
+		Network:RMCall("WSwitchLogicReq", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), tLeaderTarget)
 		self.m_oTeamMgr:UpdateTeamFollow(self)
 	else
 		--非队长场景切换引发的，才需要发送tips
@@ -364,10 +364,10 @@ function CTeam:OnReturnTeam(tRole, tLeaderTarget)
 		goTalk:SendTeamMsg(oRole, sContent, true)
 		local tSessionList = self:GetSessionList()
 		if tSessionList and #tSessionList > 0 then 
-			Network.PBBroadcastExter("TipsMsgRet", tSessionList, {sCont = sContent})
+			Network.PBBroadcastExter("FloatTipsRet", tSessionList, {sCont = sContent})
 		end
 
-		Network.oRemoteCall:CallWait("QueryRoleDupInfoReq", function(nDupMixID, nLine, nPosX, nPosY)
+		Network:RMCall("QueryRoleDupInfoReq", function(nDupMixID, nLine, nPosX, nPosY)
 			if not nDupMixID then
 				return LuaTrace("CTeam:ReturnTeamReq 队长已释放?", oLeader:GetName(), oLeader:IsReleasedd(), oLeader:IsOnline())
 			end
@@ -375,7 +375,7 @@ function CTeam:OnReturnTeam(tRole, tLeaderTarget)
 			local nDupID = CUtil:GetDupID(nDupMixID)
 			local tDupConf = ctDupConf[nDupID]
 			local tTarget = {nRoleID=oRole:GetID(), nTarDupMixID=nDupMixID, nPosX=nPosX, nPosY=nPosY, nLine=nLine, nFace=tDupConf.nFace}
-			Network.oRemoteCall:Call("WSwitchLogicReq", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), tTarget)
+			Network:RMCall("WSwitchLogicReq", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), tTarget)
 			self.m_oTeamMgr:UpdateTeamFollow(self)
 
 		end, oLeader:GetStayServer(), oLeader:GetLogic(), oLeader:GetSession(), oLeader:GetID())
@@ -398,7 +398,7 @@ function CTeam:OnLeaveTeam(tRole)
 	goTalk:SendTeamMsg(oRole, sContent, true)
 	local tSessionList = self:GetSessionList({oRole:GetID()})
 	if tSessionList and #tSessionList > 0 then 
-		Network.PBBroadcastExter("TipsMsgRet", tSessionList, {sCont = sContent})
+		Network.PBBroadcastExter("FloatTipsRet", tSessionList, {sCont = sContent})
 	end
 
 	--组队机器人如果出现暂离就删除
@@ -438,7 +438,7 @@ function CTeam:RemoveTeam()
 		end
 	end
 	if tSessionList and #tSessionList > 0 then 
-		Network.PBBroadcastExter("TipsMsgRet", tSessionList, {sCont = sCont})
+		Network.PBBroadcastExter("FloatTipsRet", tSessionList, {sCont = sCont})
 	end
 end
 
@@ -455,7 +455,7 @@ function CTeam:OnRoleQuit(oRole, bKick, bSilence)
 		goTalk:SendTeamMsg(oRole, sCont, true)
 		local tSessionList = self:GetSessionList()
 		if tSessionList and #tSessionList > 0 then 
-			Network.PBBroadcastExter("TipsMsgRet", tSessionList, {sCont = sCont})
+			Network.PBBroadcastExter("FloatTipsRet", tSessionList, {sCont = sCont})
 		end
 	end
 	self:SyncTeamEmpty(nRoleID) --同步无队伍信息(自己和伙伴)
@@ -796,7 +796,7 @@ function CTeam:OnEnterScene(oRole)
 			end
 		end
 	end
-	Network.oRemoteCall:CallWait("QueryRoleDupInfoReq", _fnCallback, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
+	Network:RMCall("QueryRoleDupInfoReq", _fnCallback, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
 end
 
 --归队
@@ -866,7 +866,7 @@ function CTeam:ReturnTeamReq(oRole, tLeaderTarget)
 	--PVE活动
 	if (tLeaderDupConf.nBattleType == 200) or (tLeaderDupConf.nBattleType == 201) 
 		or (tLeaderDupConf.nBattleType == 202) or (tLeaderDupConf.nBattleType == 203) then 
-		Network.oRemoteCall:CallWait("ReturnTeamJoinPVEActCheckReq",fnReturnTeamCallback, 
+		Network:RMCall("ReturnTeamJoinPVEActCheckReq",fnReturnTeamCallback, 
 			oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
 		return 
 	end
@@ -885,7 +885,7 @@ function CTeam:ReturnTeamReq(oRole, tLeaderTarget)
 		end
 	end
 	if bLeaderNormalAct and nLeaderDailyActID > 0 then 
-		Network.oRemoteCall:CallWait("CheckJoinDailyActReq",fnReturnTeamCallback, oRole:GetStayServer(), 
+		Network:RMCall("CheckJoinDailyActReq",fnReturnTeamCallback, oRole:GetStayServer(), 
 			oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), nLeaderDailyActID)
 		return 
 	else
@@ -983,7 +983,7 @@ end
 --邀请在线帮派成员列表请求
 function CTeam:UnionMemberListReq(oRole)
 	local nGlobalService = goServerMgr:GetGlobalService(oRole:GetServer(), 20)
-	Network.oRemoteCall:CallWait("UnionMemberListReq", function(tMemberList)
+	Network:RMCall("UnionMemberListReq", function(tMemberList)
 		if #tMemberList <= 0 then		
 			return oRole:Tips("当前没有帮派成员可以助战")
 		end
@@ -1666,7 +1666,7 @@ function CTeam:ApplyLeaderReq(oRole)
 								self.m_tApplyLeader.bInvalid = true
 								GetGModule("TimerMgr"):Clear(self.m_nApplyLeaderTimer)
 								self.m_nApplyLeaderTimer =nil
-								self:BroadcastTeam("TipsMsgRet", {sCont=string.format("队长拒绝%s的申请带队", oRole:GetName())})
+								self:BroadcastTeam("FloatTipsRet", {sCont=string.format("队长拒绝%s的申请带队", oRole:GetName())})
 								return
 
 							end
@@ -1686,7 +1686,7 @@ function CTeam:ApplyLeaderReq(oRole)
 								self.m_tApplyLeader.bInvalid = true
 								GetGModule("TimerMgr"):Clear(self.m_nApplyLeaderTimer)
 								self.m_nApplyLeaderTimer =nil
-								-- self:BroadcastTeam("TipsMsgRet", {sCont=string.format("%s成为新队长", oRole:GetName())})
+								-- self:BroadcastTeam("FloatTipsRet", {sCont=string.format("%s成为新队长", oRole:GetName())})
 
 								local tTarRole, nIndex  = self:GetRole(oRole:GetID())
 								if not tTarRole then
@@ -1742,7 +1742,7 @@ function CTeam:OnApplyLeaderTimer(nRoleID)
 		self:OnLeaderChange(tTmpRole.nRoleID)
 		self:SyncTeam()
 
-		-- self:BroadcastTeam("TipsMsgRet", {sCont=string.format("%s成为新队长", oRole:GetName())})
+		-- self:BroadcastTeam("FloatTipsRet", {sCont=string.format("%s成为新队长", oRole:GetName())})
 		-- goTalk:SendTeamMsg(oRole, sCont, true)
 		return 
 	end
@@ -1914,7 +1914,7 @@ function CTeam:SyncTeam(oRole)
 	end
 	local oLeader = goGPlayerMgr:GetRoleByID(tLeader.nRoleID)
 	if not oLeader:IsReleasedd() then
-		Network.oRemoteCall:CallWait("WGlobalTeamPartnerReq", function(tPartnerInfo)
+		Network:RMCall("WGlobalTeamPartnerReq", function(tPartnerInfo)
 			if tPartnerInfo then
 				self.m_tLeaderPartnerInfo = tPartnerInfo
 				self:MarkDirty(true)
@@ -1956,7 +1956,7 @@ function CTeam:SyncTeamEmpty(nRoleID)
 	end
 
 	local tMsg = {nTeamID=0, nFmtID=0,nFmtLv=0,tTeam={}}
-	Network.oRemoteCall:CallWait("WGlobalTeamPartnerReq", function(tPartnerInfo)
+	Network:RMCall("WGlobalTeamPartnerReq", function(tPartnerInfo)
 		if not tPartnerInfo then
 			return LuaTrace("CTeam:SyncTeamEmpty 获取队长伙伴信息失败", oRole:GetName(), oRole:IsOnline(), oRole:IsReleasedd())
 		end

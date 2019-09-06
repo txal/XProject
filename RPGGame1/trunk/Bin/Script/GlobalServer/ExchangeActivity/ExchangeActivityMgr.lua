@@ -19,7 +19,7 @@ function CExchangeActivityMgr:Init()
 end
 
 function CExchangeActivityMgr:LoadData()
-    local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
     local tKeys = oSSDB:HKeys(gtDBDef.sExchangeActDB)
     print("加载兑换活动数据", #tKeys)
     for _, sID in ipairs(tKeys) do
@@ -27,7 +27,7 @@ function CExchangeActivityMgr:LoadData()
         local oAct = self.m_tActivityMap[nID]
         if oAct then
             local sData = oSSDB:HGet(gtDBDef.sExchangeActDB, sID)
-            oAct:LoadData(cjson.decode(sData))
+            oAct:LoadData(cseri.decode(sData))
         end
     end
 
@@ -35,12 +35,12 @@ function CExchangeActivityMgr:LoadData()
 end
 
 function CExchangeActivityMgr:SaveData()
-    local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for nID, oAct in pairs(self.m_tActivityMap) do
 		if oAct:IsDirty() then
 			local tData = oAct:SaveData()
 			if tData and next(tData) then
-				oSSDB:HSet(gtDBDef.sExchangeActDB, nID, cjson.encode(tData))
+				oSSDB:HSet(gtDBDef.sExchangeActDB, nID, cseri.encode(tData))
 				oAct:MarkDirty(false)
 			end
 		end

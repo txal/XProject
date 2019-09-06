@@ -8,10 +8,10 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>AutoBVT</LastAuthor>
+  <LastAuthor>Windows 用户</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2019-02-20T12:29:39Z</LastSaved>
-  <Version>15.00</Version>
+  <LastSaved>2019-05-16T12:37:49Z</LastSaved>
+  <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
@@ -20,10 +20,10 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>12450</WindowHeight>
-  <WindowWidth>28800</WindowWidth>
-  <WindowTopX>0</WindowTopX>
-  <WindowTopY>0</WindowTopY>
+  <WindowHeight>8520</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -47,13 +47,21 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="ctGrowthTargetAwardConf">
-  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="60" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="6" ss:ExpandedRowCount="77" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
-   <Column ss:Index="3" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="104.25"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="180.75"/>
+   <Column ss:Index="3" ss:StyleID="s63" ss:AutoFitWidth="0"
+    ss:Width="104.39999999999999"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="180.6"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="162"/>
    <Row ss:AutoFitHeight="0"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">nIndex</Data></Cell>
     <Cell><Data ss:Type="String">nID</Data></Cell>
@@ -78,394 +86,518 @@
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">101</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">15</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,28000,12;</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
     <Cell><Data ss:Type="String">装备强化总等级达到15级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">2</Data></Cell>
     <Cell><Data ss:Type="Number">101</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">25</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,28000,15;1,28001,2;</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
     <Cell><Data ss:Type="String">装备强化总等级达到25级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">3</Data></Cell>
     <Cell><Data ss:Type="Number">101</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">35</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,28000,15;1,28001,2;</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
     <Cell><Data ss:Type="String">装备强化总等级达到35级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">4</Data></Cell>
     <Cell><Data ss:Type="Number">101</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">45</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,28000,15;1,28001,2;1,28002,1;</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
     <Cell><Data ss:Type="String">装备强化总等级达到45级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">5</Data></Cell>
-    <Cell><Data ss:Type="Number">102</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">600000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19016,12;</Data></Cell>
-    <Cell><Data ss:Type="String">宠物最高战力达到600000</Data></Cell>
+    <Cell><Data ss:Type="Number">101</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">36</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">装备强化总等级达到55级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell><Data ss:Type="Number">102</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">650000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19016,20;</Data></Cell>
-    <Cell><Data ss:Type="String">宠物最高战力达到650000</Data></Cell>
+    <Cell><Data ss:Type="Number">101</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">42</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">装备强化总等级达到65级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">7</Data></Cell>
-    <Cell><Data ss:Type="Number">102</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">700000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19000,4;</Data></Cell>
-    <Cell><Data ss:Type="String">宠物最高战力达到700000</Data></Cell>
+    <Cell><Data ss:Type="Number">121</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">仙侣仙阵等级达10级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">8</Data></Cell>
-    <Cell><Data ss:Type="Number">102</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">750000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11007,12;</Data></Cell>
-    <Cell><Data ss:Type="String">宠物最高战力达到750000</Data></Cell>
+    <Cell><Data ss:Type="Number">121</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">仙侣仙阵等级达15级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">9</Data></Cell>
-    <Cell><Data ss:Type="Number">103</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">700000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,20005,25;</Data></Cell>
-    <Cell><Data ss:Type="String">仙侣总战力达到700000</Data></Cell>
+    <Cell><Data ss:Type="Number">121</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">仙侣仙阵等级达20级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">10</Data></Cell>
-    <Cell><Data ss:Type="Number">103</Data></Cell>
-    <Cell><Data ss:Type="String">900000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,20005,50;</Data></Cell>
-    <Cell><Data ss:Type="String">仙侣总战力达到900000</Data></Cell>
+    <Cell><Data ss:Type="Number">121</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">25</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">仙侣仙阵等级达25级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">11</Data></Cell>
-    <Cell><Data ss:Type="Number">103</Data></Cell>
-    <Cell><Data ss:Type="String">1100000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,13344,4;</Data></Cell>
-    <Cell><Data ss:Type="String">仙侣总战力达到1100000</Data></Cell>
+    <Cell><Data ss:Type="Number">121</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">仙侣仙阵等级达30级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">12</Data></Cell>
-    <Cell><Data ss:Type="Number">103</Data></Cell>
-    <Cell><Data ss:Type="String">1300000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,13344,2;1,13343,1;</Data></Cell>
-    <Cell><Data ss:Type="String">仙侣总战力达到1300000</Data></Cell>
+    <Cell><Data ss:Type="Number">121</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">35</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">仙侣仙阵等级达35级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">13</Data></Cell>
-    <Cell><Data ss:Type="Number">104</Data></Cell>
-    <Cell><Data ss:Type="String">10</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,31000,3;</Data></Cell>
-    <Cell><Data ss:Type="String">阵法总等级达到10级</Data></Cell>
+    <Cell><Data ss:Type="Number">116</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">80</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">缘分情义等级达80级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">14</Data></Cell>
-    <Cell><Data ss:Type="Number">104</Data></Cell>
-    <Cell><Data ss:Type="String">20</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,31000,6;</Data></Cell>
-    <Cell><Data ss:Type="String">阵法总等级达到20级</Data></Cell>
+    <Cell><Data ss:Type="Number">116</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">120</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">缘分情义等级达120级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">15</Data></Cell>
-    <Cell><Data ss:Type="Number">104</Data></Cell>
-    <Cell><Data ss:Type="String">30</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10100,1;</Data></Cell>
-    <Cell><Data ss:Type="String">阵法总等级达到30级</Data></Cell>
+    <Cell><Data ss:Type="Number">116</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">160</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">缘分情义等级达160级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">16</Data></Cell>
-    <Cell><Data ss:Type="Number">104</Data></Cell>
-    <Cell><Data ss:Type="String">40</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10100,2;</Data></Cell>
-    <Cell><Data ss:Type="String">阵法总等级达到40级</Data></Cell>
+    <Cell><Data ss:Type="Number">116</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">200</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">缘分情义等级达200级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">17</Data></Cell>
-    <Cell><Data ss:Type="Number">105</Data></Cell>
-    <Cell><Data ss:Type="String">10</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11002,2;</Data></Cell>
-    <Cell><Data ss:Type="String">装备宝石总等级达到10级</Data></Cell>
+    <Cell><Data ss:Type="Number">116</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">240</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">缘分情义等级达240级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">18</Data></Cell>
-    <Cell><Data ss:Type="Number">105</Data></Cell>
-    <Cell><Data ss:Type="String">20</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11002,5;</Data></Cell>
-    <Cell><Data ss:Type="String">装备宝石总等级达到20级</Data></Cell>
+    <Cell><Data ss:Type="Number">116</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">280</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">缘分情义等级达280级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">19</Data></Cell>
-    <Cell><Data ss:Type="Number">105</Data></Cell>
-    <Cell><Data ss:Type="String">30</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11003,1;</Data></Cell>
-    <Cell><Data ss:Type="String">装备宝石总等级达到30级</Data></Cell>
+    <Cell><Data ss:Type="Number">104</Data></Cell>
+    <Cell><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">阵法总等级达4级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">20</Data></Cell>
-    <Cell><Data ss:Type="Number">105</Data></Cell>
-    <Cell><Data ss:Type="String">40</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11003,2;</Data></Cell>
-    <Cell><Data ss:Type="String">装备宝石总等级达到40级</Data></Cell>
+    <Cell><Data ss:Type="Number">104</Data></Cell>
+    <Cell><Data ss:Type="String">6</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">阵法总等级达6级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">21</Data></Cell>
-    <Cell><Data ss:Type="Number">106</Data></Cell>
-    <Cell><Data ss:Type="String">90000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10113,4;</Data></Cell>
-    <Cell><Data ss:Type="String">法宝总战力达到90000</Data></Cell>
+    <Cell><Data ss:Type="Number">104</Data></Cell>
+    <Cell><Data ss:Type="String">8</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">阵法总等级达8级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">22</Data></Cell>
-    <Cell><Data ss:Type="Number">106</Data></Cell>
-    <Cell><Data ss:Type="String">120000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10113,8;</Data></Cell>
-    <Cell><Data ss:Type="String">法宝总战力达到120000</Data></Cell>
+    <Cell><Data ss:Type="Number">104</Data></Cell>
+    <Cell><Data ss:Type="String">10</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">阵法总等级达10级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">23</Data></Cell>
-    <Cell><Data ss:Type="Number">106</Data></Cell>
-    <Cell><Data ss:Type="String">150000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,13331,10;</Data></Cell>
-    <Cell><Data ss:Type="String">法宝总战力达到150000</Data></Cell>
+    <Cell><Data ss:Type="Number">104</Data></Cell>
+    <Cell><Data ss:Type="String">12</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">阵法总等级达12级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">24</Data></Cell>
-    <Cell><Data ss:Type="Number">106</Data></Cell>
-    <Cell><Data ss:Type="String">180000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10113,8;1,13331,10;</Data></Cell>
-    <Cell><Data ss:Type="String">法宝总战力达到180000</Data></Cell>
+    <Cell><Data ss:Type="Number">104</Data></Cell>
+    <Cell><Data ss:Type="String">14</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">阵法总等级达14级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">25</Data></Cell>
-    <Cell><Data ss:Type="Number">107</Data></Cell>
-    <Cell><Data ss:Type="String">20</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,14,25000;</Data></Cell>
-    <Cell><Data ss:Type="String">摄魂等级达到20级</Data></Cell>
+    <Cell><Data ss:Type="Number">117</Data></Cell>
+    <Cell><Data ss:Type="String">12</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宠物御兽等级达12级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">26</Data></Cell>
-    <Cell><Data ss:Type="Number">107</Data></Cell>
-    <Cell><Data ss:Type="String">30</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,14,50000;</Data></Cell>
-    <Cell><Data ss:Type="String">摄魂等级达到30级</Data></Cell>
+    <Cell><Data ss:Type="Number">117</Data></Cell>
+    <Cell><Data ss:Type="String">18</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宠物御兽等级达18级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">27</Data></Cell>
-    <Cell><Data ss:Type="Number">107</Data></Cell>
-    <Cell><Data ss:Type="String">40</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,15,5000;</Data></Cell>
-    <Cell><Data ss:Type="String">摄魂等级达到40级</Data></Cell>
+    <Cell><Data ss:Type="Number">117</Data></Cell>
+    <Cell><Data ss:Type="String">24</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宠物御兽等级达24级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">28</Data></Cell>
-    <Cell><Data ss:Type="Number">107</Data></Cell>
-    <Cell><Data ss:Type="String">50</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,14,50000;1,15,5000;</Data></Cell>
-    <Cell><Data ss:Type="String">摄魂等级达到50级</Data></Cell>
+    <Cell><Data ss:Type="Number">117</Data></Cell>
+    <Cell><Data ss:Type="String">30</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宠物御兽等级达30级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">29</Data></Cell>
-    <Cell><Data ss:Type="Number">108</Data></Cell>
-    <Cell><Data ss:Type="String">2500</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19018,2;</Data></Cell>
-    <Cell><Data ss:Type="String">宠物技能积分达到2500</Data></Cell>
+    <Cell><Data ss:Type="Number">117</Data></Cell>
+    <Cell><Data ss:Type="String">36</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宠物御兽等级达36级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">30</Data></Cell>
-    <Cell><Data ss:Type="Number">108</Data></Cell>
-    <Cell><Data ss:Type="String">4000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19018,4;</Data></Cell>
-    <Cell><Data ss:Type="String">宠物技能积分达到4000</Data></Cell>
+    <Cell><Data ss:Type="Number">117</Data></Cell>
+    <Cell><Data ss:Type="String">42</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宠物御兽等级达42级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">31</Data></Cell>
-    <Cell><Data ss:Type="Number">108</Data></Cell>
-    <Cell><Data ss:Type="String">5500</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19019,5;</Data></Cell>
-    <Cell><Data ss:Type="String">宠物技能积分达到5500</Data></Cell>
+    <Cell><Data ss:Type="Number">109</Data></Cell>
+    <Cell><Data ss:Type="String">12</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">修炼总等级达12级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">32</Data></Cell>
-    <Cell><Data ss:Type="Number">108</Data></Cell>
-    <Cell><Data ss:Type="String">7000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19019,5;1,19020,1;</Data></Cell>
-    <Cell><Data ss:Type="String">宠物技能积分达到7000</Data></Cell>
+    <Cell><Data ss:Type="Number">109</Data></Cell>
+    <Cell><Data ss:Type="String">19</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">修炼总等级达19级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">33</Data></Cell>
     <Cell><Data ss:Type="Number">109</Data></Cell>
-    <Cell><Data ss:Type="String">30</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10008,10;</Data></Cell>
-    <Cell><Data ss:Type="String">修炼总等级达到30级</Data></Cell>
+    <Cell><Data ss:Type="String">25</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">修炼总等级达25级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">34</Data></Cell>
     <Cell><Data ss:Type="Number">109</Data></Cell>
-    <Cell><Data ss:Type="String">40</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10008,20;</Data></Cell>
-    <Cell><Data ss:Type="String">修炼总等级达到40级</Data></Cell>
+    <Cell><Data ss:Type="String">32</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">修炼总等级达32级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">35</Data></Cell>
     <Cell><Data ss:Type="Number">109</Data></Cell>
-    <Cell><Data ss:Type="String">50</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10008,20;</Data></Cell>
-    <Cell><Data ss:Type="String">修炼总等级达到50级</Data></Cell>
+    <Cell><Data ss:Type="String">38</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">修炼总等级达38级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">36</Data></Cell>
     <Cell><Data ss:Type="Number">109</Data></Cell>
-    <Cell><Data ss:Type="String">60</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,10008,40;</Data></Cell>
-    <Cell><Data ss:Type="String">修炼总等级达到60级</Data></Cell>
+    <Cell><Data ss:Type="String">44</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">修炼总等级达44级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">37</Data></Cell>
-    <Cell><Data ss:Type="Number">110</Data></Cell>
-    <Cell><Data ss:Type="String">15000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19022,5;</Data></Cell>
-    <Cell><Data ss:Type="String">神器总战力达到15000</Data></Cell>
+    <Cell><Data ss:Type="Number">105</Data></Cell>
+    <Cell><Data ss:Type="String">19</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宝石总等级达19级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">38</Data></Cell>
-    <Cell><Data ss:Type="Number">110</Data></Cell>
-    <Cell><Data ss:Type="String">30000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19022,10;</Data></Cell>
-    <Cell><Data ss:Type="String">神器总战力达到30000</Data></Cell>
+    <Cell><Data ss:Type="Number">105</Data></Cell>
+    <Cell><Data ss:Type="String">28</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宝石总等级达28级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">39</Data></Cell>
-    <Cell><Data ss:Type="Number">110</Data></Cell>
-    <Cell><Data ss:Type="String">45000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19022,10;</Data></Cell>
-    <Cell><Data ss:Type="String">神器总战力达到45000</Data></Cell>
+    <Cell><Data ss:Type="Number">105</Data></Cell>
+    <Cell><Data ss:Type="String">38</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宝石总等级达38级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">40</Data></Cell>
-    <Cell><Data ss:Type="Number">110</Data></Cell>
-    <Cell><Data ss:Type="String">60000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">1,19022,20;</Data></Cell>
-    <Cell><Data ss:Type="String">神器总战力达到60000</Data></Cell>
+    <Cell><Data ss:Type="Number">105</Data></Cell>
+    <Cell><Data ss:Type="String">48</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宝石总等级达48级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">41</Data></Cell>
-    <Cell><Data ss:Type="Number">111</Data></Cell>
-    <Cell><Data ss:Type="String">30</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">挖宝积分达到30</Data></Cell>
+    <Cell><Data ss:Type="Number">105</Data></Cell>
+    <Cell><Data ss:Type="String">57</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宝石总等级达57级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">42</Data></Cell>
-    <Cell><Data ss:Type="Number">111</Data></Cell>
-    <Cell><Data ss:Type="String">500</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">挖宝积分达到500</Data></Cell>
+    <Cell><Data ss:Type="Number">105</Data></Cell>
+    <Cell><Data ss:Type="String">67</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">宝石总等级达67级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">43</Data></Cell>
-    <Cell><Data ss:Type="Number">111</Data></Cell>
-    <Cell><Data ss:Type="String">1000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">挖宝积分达到1000</Data></Cell>
+    <Cell><Data ss:Type="Number">118</Data></Cell>
+    <Cell><Data ss:Type="String">14</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">法宝总等级达14级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">44</Data></Cell>
-    <Cell><Data ss:Type="Number">111</Data></Cell>
-    <Cell><Data ss:Type="String">2000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">挖宝积分达到2000</Data></Cell>
+    <Cell><Data ss:Type="Number">118</Data></Cell>
+    <Cell><Data ss:Type="String">21</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">法宝总等级达21级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">45</Data></Cell>
-    <Cell><Data ss:Type="Number">112</Data></Cell>
-    <Cell><Data ss:Type="String">1200</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">竞技积分达到1200</Data></Cell>
+    <Cell><Data ss:Type="Number">118</Data></Cell>
+    <Cell><Data ss:Type="String">28</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">法宝总等级达28级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">46</Data></Cell>
-    <Cell><Data ss:Type="Number">112</Data></Cell>
-    <Cell><Data ss:Type="String">1300</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">竞技积分达到1300</Data></Cell>
+    <Cell><Data ss:Type="Number">118</Data></Cell>
+    <Cell><Data ss:Type="String">36</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">法宝总等级达36级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">47</Data></Cell>
-    <Cell><Data ss:Type="Number">112</Data></Cell>
-    <Cell><Data ss:Type="String">1400</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">竞技积分达到1400</Data></Cell>
+    <Cell><Data ss:Type="Number">118</Data></Cell>
+    <Cell><Data ss:Type="String">43</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">法宝总等级达43级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">48</Data></Cell>
-    <Cell><Data ss:Type="Number">112</Data></Cell>
-    <Cell><Data ss:Type="String">1500</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">竞技积分达到1500</Data></Cell>
+    <Cell><Data ss:Type="Number">118</Data></Cell>
+    <Cell><Data ss:Type="String">50</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">法宝总等级达50级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">49</Data></Cell>
-    <Cell><Data ss:Type="Number">113</Data></Cell>
-    <Cell><Data ss:Type="String">500</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">个人帮贡达到500</Data></Cell>
+    <Cell><Data ss:Type="Number">107</Data></Cell>
+    <Cell><Data ss:Type="String">16</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">摄魂总等级达16级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">50</Data></Cell>
-    <Cell><Data ss:Type="Number">113</Data></Cell>
-    <Cell><Data ss:Type="String">1000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">个人帮贡达到1000</Data></Cell>
+    <Cell><Data ss:Type="Number">107</Data></Cell>
+    <Cell><Data ss:Type="String">24</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">摄魂总等级达24级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">51</Data></Cell>
-    <Cell><Data ss:Type="Number">113</Data></Cell>
-    <Cell><Data ss:Type="String">1500</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">个人帮贡达到1500</Data></Cell>
+    <Cell><Data ss:Type="Number">107</Data></Cell>
+    <Cell><Data ss:Type="String">33</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">摄魂总等级达33级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">52</Data></Cell>
-    <Cell><Data ss:Type="Number">113</Data></Cell>
-    <Cell><Data ss:Type="String">2000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">个人帮贡达到2000</Data></Cell>
+    <Cell><Data ss:Type="Number">107</Data></Cell>
+    <Cell><Data ss:Type="String">41</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">摄魂总等级达41级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">53</Data></Cell>
-    <Cell><Data ss:Type="Number">114</Data></Cell>
-    <Cell><Data ss:Type="String">10000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">镇妖获得灵气达到10000</Data></Cell>
+    <Cell><Data ss:Type="Number">107</Data></Cell>
+    <Cell><Data ss:Type="String">49</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">摄魂总等级达49级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">54</Data></Cell>
-    <Cell><Data ss:Type="Number">114</Data></Cell>
-    <Cell><Data ss:Type="String">100000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">镇妖获得灵气达到100000</Data></Cell>
+    <Cell><Data ss:Type="Number">107</Data></Cell>
+    <Cell><Data ss:Type="String">58</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">摄魂总等级达58级</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">55</Data></Cell>
-    <Cell><Data ss:Type="Number">114</Data></Cell>
-    <Cell><Data ss:Type="String">500000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">镇妖获得灵气达到500000</Data></Cell>
+    <Cell><Data ss:Type="Number">119</Data></Cell>
+    <Cell><Data ss:Type="String">13</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">时装仙羽等级达13级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">56</Data></Cell>
-    <Cell><Data ss:Type="Number">114</Data></Cell>
-    <Cell><Data ss:Type="String">1000000</Data></Cell>
-    <Cell ss:StyleID="s63"><Data ss:Type="String">0,0,0;</Data></Cell>
-    <Cell><Data ss:Type="String">镇妖获得灵气达到1000000</Data></Cell>
+    <Cell><Data ss:Type="Number">119</Data></Cell>
+    <Cell><Data ss:Type="String">19</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">时装仙羽等级达19级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">57</Data></Cell>
+    <Cell><Data ss:Type="Number">119</Data></Cell>
+    <Cell><Data ss:Type="String">26</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">时装仙羽等级达26级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">58</Data></Cell>
+    <Cell><Data ss:Type="Number">119</Data></Cell>
+    <Cell><Data ss:Type="String">32</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">时装仙羽等级达32级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">59</Data></Cell>
+    <Cell><Data ss:Type="Number">119</Data></Cell>
+    <Cell><Data ss:Type="String">39</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">时装仙羽等级达39级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">119</Data></Cell>
+    <Cell><Data ss:Type="String">45</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">时装仙羽等级达45级</Data></Cell>
+    <Cell ss:StyleID="s63"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">61</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">器灵品阶达2阶</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">62</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">器灵品阶达3阶</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">63</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">器灵品阶达5阶</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">64</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="String">6</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">器灵品阶达6阶</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">65</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="String">7</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">器灵品阶达7阶</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">66</Data></Cell>
+    <Cell><Data ss:Type="Number">120</Data></Cell>
+    <Cell><Data ss:Type="String">9</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">器灵品阶达9阶</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">67</Data></Cell>
+    <Cell><Data ss:Type="Number">112</Data></Cell>
+    <Cell><Data ss:Type="String">1200</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,1;</Data></Cell>
+    <Cell><Data ss:Type="String">竞技积分达1200</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">68</Data></Cell>
+    <Cell><Data ss:Type="Number">112</Data></Cell>
+    <Cell><Data ss:Type="String">1300</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,2;1,11006,1;</Data></Cell>
+    <Cell><Data ss:Type="String">竞技积分达1300</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">69</Data></Cell>
+    <Cell><Data ss:Type="Number">112</Data></Cell>
+    <Cell><Data ss:Type="String">1400</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,3;1,11006,2;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">竞技积分达1400</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">112</Data></Cell>
+    <Cell><Data ss:Type="String">1500</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,4;1,11006,3;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">竞技积分达1500</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">71</Data></Cell>
+    <Cell><Data ss:Type="Number">112</Data></Cell>
+    <Cell><Data ss:Type="String">1600</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,5;1,11006,4;1,13602,1;</Data></Cell>
+    <Cell><Data ss:Type="String">竞技积分达1600</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">72</Data></Cell>
+    <Cell><Data ss:Type="Number">112</Data></Cell>
+    <Cell><Data ss:Type="String">1700</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1,11005,6;1,11006,5;1,19012,1;</Data></Cell>
+    <Cell><Data ss:Type="String">竞技积分达1700</Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -482,47 +614,14 @@
    </Print>
    <PageBreakZoom>100</PageBreakZoom>
    <Selected/>
-   <TopRowVisible>36</TopRowVisible>
+   <TopRowVisible>60</TopRowVisible>
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>44</ActiveRow>
-     <ActiveCol>3</ActiveCol>
-     <RangeSelection>R45C4:R60C4</RangeSelection>
+     <ActiveRow>85</ActiveRow>
+     <ActiveCol>8</ActiveCol>
     </Pane>
    </Panes>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>
- <Worksheet ss:Name="Sheet2">
-  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
-   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
-   <Row ss:AutoFitHeight="0"/>
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <PageSetup>
-    <Header x:Margin="0.51111111111111096"/>
-    <Footer x:Margin="0.51111111111111096"/>
-   </PageSetup>
-   <Unsynced/>
-   <PageBreakZoom>100</PageBreakZoom>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>
- <Worksheet ss:Name="Sheet3">
-  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
-   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
-   <Row ss:AutoFitHeight="0"/>
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <PageSetup>
-    <Header x:Margin="0.51111111111111096"/>
-    <Footer x:Margin="0.51111111111111096"/>
-   </PageSetup>
-   <Unsynced/>
-   <PageBreakZoom>100</PageBreakZoom>
    <ProtectObjects>False</ProtectObjects>
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>

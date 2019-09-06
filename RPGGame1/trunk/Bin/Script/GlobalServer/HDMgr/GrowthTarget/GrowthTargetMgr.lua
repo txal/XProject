@@ -146,7 +146,7 @@ function CGrowthTargetMgr:TriggerRoleActInfo(oRole, fnCallback)
     end
     oRole:TriggerGrowthTargetActData(tActTriggerList)
     local nServer = oRole:GetServer()
-    Network.oRemoteCall:CallWait("TriggerGrowthTargetActDataReq", fnCallback, oRole:GetServer(), 
+    Network:RMCall("TriggerGrowthTargetActDataReq", fnCallback, oRole:GetServer(), 
         oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), tActTriggerList)
 end
 

@@ -680,7 +680,7 @@ function CUnion:JoinUnion(oManager, nTarRoleID)
 	local oRole = goGPlayerMgr:GetRoleByID(nTarRoleID)
 	if oRole then
 		self:SyncRedPointData(oRole)
-		Network.oRemoteCall:Call("OnJoinUnion", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+		Network:RMCall("OnJoinUnion", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
 	end
 	goUnionMgr:UpdateUnionAppellation(nTarRoleID)
 	return true
@@ -1327,7 +1327,7 @@ function CUnion:SignReq(oRole)
 	local tItemList = {{nType=gtItemType.eCurr, nID=gtCurrType.eYinBi, nNum=tConf.nSignSilver}}
 	oRole:AddItem(tItemList, "帮派签到")
 	self:SyncDetailInfo(oRole)
-	Network.oRemoteCall:Call("OnUnionSignIn", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+	Network:RMCall("OnUnionSignIn", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
 	self:SyncRedPointData(oRole)
 end
 
@@ -1804,7 +1804,7 @@ function CUnion:CreateUnionScene()
  	local tParam = {
  		nNoAutoCollected = 1
  	}
- 	Network.oRemoteCall:CallWait("CreateDup", fnCallback, gnServerID, tDupConf.nLogic, 0, nDupID,tParam)
+ 	Network:RMCall("CreateDup", fnCallback, gnServerID, tDupConf.nLogic, 0, nDupID,tParam)
 end
 
 function CUnion:UnionEnterSceneReq(oRole)
@@ -1813,7 +1813,7 @@ function CUnion:UnionEnterSceneReq(oRole)
  	end
 	local nRoleID = oRole:GetID()
  	local nDupMixID = self:GetDupMixID()
- 	Network.oRemoteCall:Call("RoleEnterDup",oRole:GetServer(),oRole:GetLogic(),0,nRoleID,nDupMixID,{nPosX=0,nPosY=0})
+ 	Network:RMCall("RoleEnterDup", nil,oRole:GetServer(),oRole:GetLogic(),0,nRoleID,nDupMixID,{nPosX=0,nPosY=0})
 end
 
 function CUnion:RemoveDup()
@@ -1824,5 +1824,5 @@ function CUnion:RemoveDup()
  	local nDupID = 12
  	local tDupConf = ctDupConf[nDupID]
  	local nServiceID = tDupConf.nLogic
- 	Network.oRemoteCall:Call("RemoveUnionDup", gnServerID,nServiceID,0, nDupMixID)
+ 	Network:RMCall("RemoveUnionDup", nil, gnServerID,nServiceID,0, nDupMixID)
 end

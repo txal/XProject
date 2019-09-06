@@ -11,11 +11,11 @@ function CFB:Init()
 end
 
 function CFB:LoadData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oSSDB:HGet(gtDBDef.sHuoDongDB, self:GetID())
 	if sData == "" then return end
 
-	local tData = cjson.decode(sData)
+	local tData = cseri.decode(sData)
 	CHDBase.LoadData(self, tData)
 end
 
@@ -25,8 +25,8 @@ function CFB:SaveData()
 	end
 
 	local tData = CHDBase.SaveData(self)
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cjson.encode(tData))
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cseri.encode(tData))
 	self:MarkDirty(false)
 end
 
@@ -70,26 +70,26 @@ function CFB:CheckSysOpen(oRole)
 	if self:IsOpen() then
 		if oRole then
 			if not oRole:IsSysOpen(nSysID) then
-				Network.oRemoteCall:Call("OpenSystemReq", oRole:GetStayServer(), oRole:GetLogic(), 0, oRole:GetID(), nSysID)
+				Network:RMCall("OpenSystemReq", nil, oRole:GetStayServer(), oRole:GetLogic(), 0, oRole:GetID(), nSysID)
 			end
 		else
 			local tSessionMap = goGPlayerMgr:GetRoleSSMap()
 			for nSession, oTmpRole in pairs(tSessionMap) do
 				if not oTmpRole:IsSysOpen(nSysID) then
-					Network.oRemoteCall:Call("OpenSystemReq", oTmpRole:GetStayServer(), oTmpRole:GetLogic(), 0, oTmpRole:GetID(), nSysID)
+					Network:RMCall("OpenSystemReq", nil, oTmpRole:GetStayServer(), oTmpRole:GetLogic(), 0, oTmpRole:GetID(), nSysID)
 				end
 			end
 		end
 	else
 		if oRole then
 			if oRole:IsSysOpen(nSysID) then
-				Network.oRemoteCall:Call("CloseSystemReq", oRole:GetStayServer(), oRole:GetLogic(), 0, oRole:GetID(), nSysID)
+				Network:RMCall("CloseSystemReq", nil, oRole:GetStayServer(), oRole:GetLogic(), 0, oRole:GetID(), nSysID)
 			end
 		else
 			local tSessionMap = goGPlayerMgr:GetRoleSSMap()
 			for nSession, oTmpRole in pairs(tSessionMap) do
 				if oTmpRole:IsSysOpen(nSysID) then
-					Network.oRemoteCall:Call("CloseSystemReq", oTmpRole:GetStayServer(), oTmpRole:GetLogic(), 0, oTmpRole:GetID(), nSysID)
+					Network:RMCall("CloseSystemReq", nil, oTmpRole:GetStayServer(), oTmpRole:GetLogic(), 0, oTmpRole:GetID(), nSysID)
 				end
 			end
 		end

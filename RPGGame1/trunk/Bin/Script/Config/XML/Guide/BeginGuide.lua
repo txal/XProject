@@ -1,7 +1,7 @@
 ctBeginGuide={}
 ctBeginGuide[1]={nID=1,nGuideType=2,nIcon=0,sName="0",sConversation="天地之大，无奇不有。",sBackground="P1",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
 ctBeginGuide[2]={nID=2,nGuideType=2,nIcon=0,sName="0",sConversation="渐渐地巫族实力慢慢壮大，不可阻挡，一场争斗马上开启。",sBackground="P1",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
-ctBeginGuide[3]={nID=3,nGuideType=2,nIcon=0,sName="0",sConversation="因毒仙子等人逐一清除巫妖，巫族势力消弱，但是力量还很大！",sBackground="P3",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
+ctBeginGuide[3]={nID=3,nGuideType=2,nIcon=0,sName="0",sConversation="因和尚等人逐一清除巫妖，巫族势力消弱，但是力量还很大！",sBackground="P3",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
 ctBeginGuide[4]={nID=4,nGuideType=2,nIcon=0,sName="0",sConversation="途中斩杀妖魔，巫族秘密逐渐被发现！",sBackground="P4",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
 ctBeginGuide[5]={nID=5,nGuideType=2,nIcon=0,sName="0",sConversation="九黎巫王为重返人界，无恶不作！",sBackground="P5",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}
 ctBeginGuide[6]={nID=6,nGuideType=2,nIcon=0,sName="0",sConversation="从此，巫妖发展迅速，一发不可收拾。而人妖双方，在此一战均损失惨重。",sBackground="P6",sColor="ffffff",nFontSize=24,nJiachu=0,sDubbing="0",}

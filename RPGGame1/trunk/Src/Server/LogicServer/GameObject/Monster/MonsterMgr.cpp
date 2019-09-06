@@ -50,7 +50,8 @@ void MonsterMgr::RemoveMonster(int64_t nObjID)
 	}
 	if (poMonster->GetScene() != NULL)
 	{
-		poMonster->GetScene()->LeaveScene(poMonster->GetAOIID(), false);
+		XLog(LEVEL_ERROR, "需要先离开场景才能删除对象");
+		return;
 	}
 	poMonster->MarkDeleted();
 }

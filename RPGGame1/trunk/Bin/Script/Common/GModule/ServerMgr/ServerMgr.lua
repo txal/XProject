@@ -8,8 +8,8 @@ function CServerMgr:Ctor()
 	self.m_nServerID = nil 			--服务器ID
 	self.m_nWorldServerID = nil 	--世界服服务器ID
 
-	self.m_tServerMap = {} --{[serverid]={serverid=0,displayid=0,servername=0,opentime=0, ...}
-	self.m_tServiceMap = {} --{[serverid]={[servicename]={}, ...}, ...}
+	self.m_tServerMap = {} 			--{[serverid]={serverid=0,displayid=0,servername=0,opentime=0, ...},...}
+	self.m_tServiceMap = {} 		--{[serverid]={[servicename]={serviceid,...}, ...}, ...}
 
 	self.m_oMgrMysql = nil
 end
@@ -21,13 +21,14 @@ function CServerMgr:Init()
 	if not self.m_oMgrMysql then
 		local oMgrMysql = MysqlDriver:new() 
 		local tConf = gtMgrSQL
-		local bRes = oMgrMysql:Connect(tConf.ip, tConf.port, tConf.db, tConf.usr, tConf.pwd, "utf8")
+		local bRes = oMgrMysql:Connect(tConf.ip, tConf.port, tConf.db, tConf.usr, tConf.pwd, "utf8mb4")
 		assert(bRes, "连接数据库失败"..tostring(tConf))
 		self.m_oMgrMysql = oMgrMysql
 	end
 
 	if (gnGroupID or 0) <= 0 then --本地服
-		assert(self.m_nServerID ~= self.m_nWorldServerID, "本地服服务器ID==世界服服务器ID了:"..self.m_nServerID)
+		local sError = 	string.format("本地服服务器ID(%d)==世界服服务器ID(%d)了", self.m_nServerID, self.m_nWorldServerID)
+		assert(self.m_nServerID ~= self.m_nWorldServerID, sError)
 		self.m_oMgrMysql:Query("select groupid from serverlist where serverid="..self.m_nServerID)
 		assert(self.m_oMgrMysql:FetchRow(), "服务器:"..self.m_nServerID.."不存在")
 		self.m_nGroupID = self.m_oMgrMysql:ToInt32("groupid")
@@ -36,11 +37,11 @@ function CServerMgr:Init()
 	end
 	
 	--跨服组服务器列表
-	self.m_oMgrMysql:Query("select servergroup,serverid,servername,displayid,opentime,state,dataDistinction,merge from serverlist where groupid="..self.m_nGroupID)
+	self.m_oMgrMysql:Query("select servergroup,serverid,servername,displayid,opentime,state,datadistinction,merge from serverlist where groupid="..self.m_nGroupID)
 	while self.m_oMgrMysql:FetchRow() do
 		local sServerGroup, sServerName = self.m_oMgrMysql:ToString("servergroup", "servername")
 		local nServerID, nDisplayID, nOpenTime, nState, nDivision, nMerge 
-		= self.m_oMgrMysql:ToInt32("serverid", "displayid", "opentime", "state", "dataDistinction", "merge")
+		= self.m_oMgrMysql:ToInt32("serverid", "displayid", "opentime", "state", "datadistinction", "merge")
 		self.m_tServerMap[nServerID] = {nDisplayID=nDisplayID, nOpenTime=nOpenTime, sServerName=sServerName, nState=nState
 		, sServerGroup=sServerGroup, nDivision=nDivision, nMerge=nMerge}
 	end
@@ -57,6 +58,10 @@ function CServerMgr:Init()
 	end
 end
 
+function CServerMgr:OnMinTimer()
+	self:Init()
+end
+
 function CServerMgr:GetGroupID()
 	return self.m_nGroupID
 end
@@ -69,71 +74,70 @@ function CServerMgr:GetWorldServerID()
 	return self.m_nWorldServerID
 end
 
-function CServerMgr:GetOpenTime(nServer)
-	local tServer = assert(self.m_tServerMap[nServer], "服务器不存在:"..nServer)
+function CServerMgr:GetOpenTime(nServerID)
+	local tServer = assert(self.m_tServerMap[nServerID], "服务器不存在:"..nServerID)
 	if tServer.nState == 0 then --[0不可用; 1白名单可进; 2对外开放]
 		return os.time()
 	end
 	return tServer.nOpenTime
 end
 
-function CServerMgr:GetDisplayID(nServer)
-	local tServer = assert(self.m_tServerMap[nServer], "服务器不存在:"..nServer)
+function CServerMgr:GetDisplayID(nServerID)
+	local tServer = assert(self.m_tServerMap[nServerID], "服务器不存在:"..nServerID)
 	return tServer.nDisplayID
 end
 
-function CServerMgr:GetServerGroup(nServer)
-	local tServer = assert(self.m_tServerMap[nServer], "服务器不存在:"..nServer)
+function CServerMgr:GetServerGroup(nServerID)
+	local tServer = assert(self.m_tServerMap[nServerID], "服务器不存在:"..nServerID)
 	return tServer.sServerGroup
 end
 
-function CServerMgr:GetServerName(nServer)
-	local tServer = assert(self.m_tServerMap[nServer], "服务器不存在:"..nServer)
+function CServerMgr:GetServerName(nServerID)
+	local tServer = assert(self.m_tServerMap[nServerID], "服务器不存在:"..nServerID)
 	return tServer.sServerName
 end
 
-function CServerMgr:GetOpenZeroTime(nServer) 
-	local nOpenTime = self:GetOpenTime(nServer)
+function CServerMgr:GetOpenZeroTime(nServerID) 
+	local nOpenTime = self:GetOpenTime(nServerID)
 	local tDate = os.date("*t", nOpenTime)
 	tDate.hour, tDate.min, tDate.sec = 0, 0, 0
 	return os.time(tDate)
 end
 
---是否区分数据(ios,pc,android): 0不区分; 1区分
-function CServerMgr:IsDivisionPlatform(nServer)
-	local tServer = assert(self.m_tServerMap[nServer], "服务器不存在:"..nServer)
+--是否区分账号数据(ios,pc,android): 0不区分; 1区分
+function CServerMgr:IsDivisionSourceAccount(nServerID)
+	local tServer = assert(self.m_tServerMap[nServerID], "服务器不存在:"..nServerID)
 	return (tServer.nDivision or 0) == 1
 end
 
---是否合服
-function CServerMgr:IsMerged(nServer)
-	local tServer = self.m_tServerMap[nServer]
+--是否合服服务器
+function CServerMgr:IsMergedServer(nServerID)
+	local tServer = self.m_tServerMap[nServerID]
 	if not tServer then
-		LuaTrace("服务器不存在:", nServer)
+		LuaTrace("服务器不存在:", nServerID)
 		return false
 	end
 	return (tServer.nMerge or 0) == 1
 end
 
 --开放天数(1开始)
-function CServerMgr:GetOpenDays(nServer)
-	local nOpenZeroTime = self:GetOpenZeroTime(nServer)	
+function CServerMgr:GetOpenDays(nServerID)
+	local nOpenZeroTime = self:GetOpenZeroTime(nServerID)	
 	local nPassTime = os.time() - nOpenZeroTime
 	return math.max(1, math.ceil(nPassTime/(24*3600)))
 end
 
---取状态(0备用,>0使用中)
-function CServerMgr:GetServerState(nServer)
-	local tServer = self.m_tServerMap[nServer] or {}
+--取状态[0不可用; 1白名单可进; 2对外开放]
+function CServerMgr:GetServerState(nServerID)
+	local tServer = self.m_tServerMap[nServerID] or {}
 	return tServer.nState or 0
 end
 
 --服务器等级,返回服务器等级和下一等级时间
-function CServerMgr:GetServerLevel(nServer)
-	assert(nServer, "参数错误")
+function CServerMgr:GetServerLevel(nServerID)
+	assert(nServerID, "参数错误")
 	local tCurrConf, tNextConf = nil, nil
-
-	local nDays = self:GetOpenDays(nServer)
+	local nDays = self:GetOpenDays(nServerID)
 	for k=#ctServerLevelConf, 1, -1 do
 		local tConf = ctServerLevelConf[k]
 		if nDays >= tConf.nDays then
@@ -150,7 +154,7 @@ function CServerMgr:GetServerLevel(nServer)
 
 	--下一等级时间
 	local nNextDays = tNextConf.nDays
-	local nNextTime= self:GetOpenZeroTime(nServer)+(nNextDays-1)*24*3600
+	local nNextTime= self:GetOpenZeroTime(nServerID)+(nNextDays-1)*24*3600
 	return tCurrConf.nLevel, nNextTime
 end
 
@@ -176,17 +180,6 @@ function CServerMgr:GetServerMap()
 	return self.m_tServerMap
 end
 
---逻辑服启动成功
-function CServerMgr:OnLogicStart()
-	if self.m_nServerID == self.m_nWorldServerID then
-		return
-	end
-	local oServerMgr = GetGModule("ServerMgr")
-	local nServiceID = oServerMgr:GetGlobalService(self.m_nServerID, 20)
-	Network.oRemoteCall:Call("OnLogicStart",self.m_nServerID,nServiceID,0)
-end
-
-
 ---------------------------------------服务配置
 --取路由服务器
 function CServerMgr:GetRouterService()
@@ -201,7 +194,7 @@ function CServerMgr:GetGateServiceList()
 	--当前是本地服,则只取本地服的
 		local tGateList = self.m_tServiceMap[self.m_nServerID]["GATE"]
 		for _, nServiceID in pairs(tGateList) do
-			table.insert(tList, {nServer=self.m_nServerID, nID=nServiceID})
+			table.insert(tList, {nServerID=self.m_nServerID, nServiceID=nServiceID})
 		end
 	else
 	--当前是世界服,则取全区的
@@ -210,7 +203,7 @@ function CServerMgr:GetGateServiceList()
 				if self:GetServerState(nServerID) > 0 then
 					local tGateList = tServiceMap["GATE"]
 					for _, nServiceID in pairs(tGateList) do
-						table.insert(tList, {nServer=nServerID, nID=nServiceID})
+						table.insert(tList, {nServerID=nServerID, nServiceID=nServiceID})
 					end
 				end
 			end
@@ -227,17 +220,17 @@ function CServerMgr:GetLogicServiceList()
 		local tLogicList = self.m_tServiceMap[self.m_nServerID]["LOGIC"]
 		local tWLogicList = self.m_tServiceMap[self.m_nWorldServerID]["WLOGIC"]
 		for _, nServiceID in ipairs(tLogicList) do
-			table.insert(tList, {nServer=self.m_nServerID, nID=nServiceID})
+			table.insert(tList, {nServerID=self.m_nServerID, nServiceID=nServiceID})
 		end
 		for _, nServiceID in ipairs(tWLogicList) do
-			table.insert(tList, {nServer=self.m_nWorldServerID, nID=nServiceID})
+			table.insert(tList, {nServerID=self.m_nWorldServerID, nServiceID=nServiceID})
 		end
 
 	else
 	--当前是世界服,则只取世界服的逻辑服
 		local tWLogicList = self.m_tServiceMap[self.m_nServerID]["WLOGIC"]
 		for _, nServiceID in ipairs(tWLogicList) do
-			table.insert(tList, {nServer=self.m_nServerID, nID=nServiceID})
+			table.insert(tList, {nServerID=self.m_nServerID, nServiceID=nServiceID})
 		end
 	end
 	return tList
@@ -252,10 +245,10 @@ function CServerMgr:GetGlobalServiceList(nTarServer)
 		local tGlobalList = self.m_tServiceMap[self.m_nServerID]["GLOBAL"]
 		local tWGlobalList = self.m_tServiceMap[self.m_nWorldServerID]["WGLOBAL"]
 		for _, nServiceID in ipairs(tGlobalList) do
-			table.insert(tList, {nServer=self.m_nServerID, nID=nServiceID})
+			table.insert(tList, {nServerID=self.m_nServerID, nServiceID=nServiceID})
 		end
 		for _, nServiceID in ipairs(tWGlobalList) do
-			table.insert(tList, {nServer=self.m_nWorldServerID, nID=nServiceID})
+			table.insert(tList, {nServerID=self.m_nWorldServerID, nServiceID=nServiceID})
 		end
 
 	else
@@ -264,7 +257,7 @@ function CServerMgr:GetGlobalServiceList(nTarServer)
 			if nServerID == self.m_nWorldServerID or not nTarServer or nTarServer == nServerID then 
 				local tGlobalList = tServiceMap["GLOBAL"] or tServiceMap["WGLOBAL"] 
 				for _, nServiceID in ipairs(tGlobalList) do
-					table.insert(tList, {nServer=nServerID, nID=nServiceID})
+					table.insert(tList, {nServerID=nServerID, nServiceID=nServiceID})
 				end
 			end
 		end
@@ -275,14 +268,12 @@ end
 
 --取指定服务器的GLOBAL服务
 function CServerMgr:GetGlobalService(nServerID)
-	local tList = {}
 	if self.m_nServerID < self.m_nWorldServerID then
-		if nServerID < self.m_nWorldServerID then
-			assert(nServerID == self.m_nServerID, "本地服不能取非本服的全局服")
-			local nServiceID = self.m_tServiceMap[nServerID]["GLOBAL"][1]
-			return nServiceID
-		end	
-		assert(false, "全局服务不存在:"..nServerID)
+		assert(nServerID == self.m_nServerID, "本地服不能取非本服的全局服")
+		local tServiceMap = self.m_tServiceMap[nServerID]
+		local tGlobalList = tServiceMap["GLOBAL"]
+		assert(tGlobalList, "全局服务不存在:"..nServerID)
+		return tGlobalList[1]
 
 	else
 		local tServiceMap = self.m_tServiceMap[nServerID]

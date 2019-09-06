@@ -435,7 +435,7 @@ end
 -- ]]
 -- function CRoleState:UpdateMarriageBlessStateReq()
 -- 	local oRole = self.m_oRole
--- 	Network.oRemoteCall:Call("UpdateMarriageBlessStateReq", gnWorldServerID, 
+-- 	Network:RMCall("UpdateMarriageBlessStateReq", nil, gnWorldServerID, 
 -- 		goServerMgr:GetGlobalService(gnWorldServerID, 110), oRole:GetSession(), oRole:GetID())
 -- end
 

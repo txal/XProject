@@ -36,15 +36,15 @@ function CTalk:SaveData()
 	local tData = {}
 	tData.m_tShieldMap = self.m_tShieldMap
 	tData.m_tTalkHistory = self.m_tTalkHistory
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-	oSSDB:HSet(gtDBDef.sTalkDB, "data", cjson.encode(tData))
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+	oSSDB:HSet(gtDBDef.sTalkDB, "data", cseri.encode(tData))
 end
 
 function CTalk:LoadData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oSSDB:HGet(gtDBDef.sTalkDB, "data")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_tShieldMap = tData.m_tShieldMap or {}
 		self.m_tTalkHistory = tData.m_tTalkHistory or {}
 	end
@@ -162,7 +162,7 @@ function CTalk:SendWorldMsg(oRole, sCont, bSys)
 		end)
 	end
 
-	Network.oRemoteCall:CallWait("QueryRoleTotalRechargeReq", fnQueryCallback, 
+	Network:RMCall("QueryRoleTotalRechargeReq", fnQueryCallback, 
 		oRole:GetStayServer(), oRole:GetLogic(), 0, oRole:GetID())
 end
 
@@ -185,7 +185,7 @@ function CTalk:SendUnionMsg(oRole, sCont)
 	local nServer = oRole:GetServer()
 	local nService = goServerMgr:GetGlobalService(nServer, 20)
 	local tTalk = self:_MakeTalkMsg(oRole:GetTalkIdent(), CTalk.tChannel.eUnion, sCont)
-	Network.oRemoteCall:Call("UnionTalkReq", nServer, nService, 0, oRole:GetID(), tTalk)
+	Network:RMCall("UnionTalkReq", nil, nServer, nService, 0, oRole:GetID(), tTalk)
 	self:AddTalkHistory(CTalk.tChannel.eUnion, tTalk, oRole:GetUnionID())
 end
 
@@ -244,7 +244,7 @@ end
 
 --当前频道信息
 function CTalk:SendCurrMsg(oRole, sCont)
-	Network.oRemoteCall:CallWait("DupRoleViewListReq", function(tRoleList)
+	Network:RMCall("DupRoleViewListReq", function(tRoleList)
 		if not tRoleList or #tRoleList == 0 then
 			return
 		end

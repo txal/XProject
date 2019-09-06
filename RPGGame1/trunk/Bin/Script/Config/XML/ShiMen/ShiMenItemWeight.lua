@@ -9,13 +9,13 @@ ctShiMenItemWeight[21120]={nItemID=21120,nItemType=4,nMinLimit=50,nMaxLimit=999,
 ctShiMenItemWeight[21140]={nItemID=21140,nItemType=4,nMinLimit=60,nMaxLimit=999,nNeedNum=1,sItemName="醉生梦死",nWeight=4125,}
 ctShiMenItemWeight[22000]={nItemID=22000,nItemType=13,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="金疮药",nWeight=3333,}
 ctShiMenItemWeight[22020]={nItemID=22020,nItemType=13,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="止血散",nWeight=3333,}
-ctShiMenItemWeight[22040]={nItemID=22040,nItemType=13,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="广陵丹",nWeight=3333,}
-ctShiMenItemWeight[22060]={nItemID=22060,nItemType=13,nMinLimit=20,nMaxLimit=999,nNeedNum=1,sItemName="补元丹",nWeight=3333,}
+ctShiMenItemWeight[22040]={nItemID=22040,nItemType=13,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="培元丹",nWeight=3333,}
+ctShiMenItemWeight[22060]={nItemID=22060,nItemType=13,nMinLimit=20,nMaxLimit=999,nNeedNum=1,sItemName="气神丹",nWeight=3333,}
 ctShiMenItemWeight[22080]={nItemID=22080,nItemType=13,nMinLimit=20,nMaxLimit=999,nNeedNum=1,sItemName="檀香散",nWeight=3333,}
-ctShiMenItemWeight[22100]={nItemID=22100,nItemType=13,nMinLimit=30,nMaxLimit=999,nNeedNum=1,sItemName="回魂丹",nWeight=3333,}
-ctShiMenItemWeight[22120]={nItemID=22120,nItemType=13,nMinLimit=40,nMaxLimit=999,nNeedNum=1,sItemName="聚魂散",nWeight=3333,}
-ctShiMenItemWeight[22140]={nItemID=22140,nItemType=13,nMinLimit=50,nMaxLimit=999,nNeedNum=1,sItemName="火还丹",nWeight=3333,}
-ctShiMenItemWeight[22160]={nItemID=22160,nItemType=13,nMinLimit=60,nMaxLimit=999,nNeedNum=1,sItemName="麝香归气散",nWeight=3333,}
+ctShiMenItemWeight[22100]={nItemID=22100,nItemType=13,nMinLimit=30,nMaxLimit=999,nNeedNum=1,sItemName="唤魂丹",nWeight=3333,}
+ctShiMenItemWeight[22120]={nItemID=22120,nItemType=13,nMinLimit=40,nMaxLimit=999,nNeedNum=1,sItemName="回魂散",nWeight=3333,}
+ctShiMenItemWeight[22140]={nItemID=22140,nItemType=13,nMinLimit=50,nMaxLimit=999,nNeedNum=1,sItemName="化瘀丹",nWeight=3333,}
+ctShiMenItemWeight[22160]={nItemID=22160,nItemType=13,nMinLimit=60,nMaxLimit=999,nNeedNum=1,sItemName="七宝补气散",nWeight=3333,}
 ctShiMenItemWeight[22180]={nItemID=22180,nItemType=13,nMinLimit=60,nMaxLimit=999,nNeedNum=1,sItemName="地灵救心丸",nWeight=3333,}
 ctShiMenItemWeight[1101102]={nItemID=1101102,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="龙渊",nWeight=1943,}
 ctShiMenItemWeight[1101202]={nItemID=1101202,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="银炼",nWeight=1943,}
@@ -27,10 +27,10 @@ ctShiMenItemWeight[1104102]={nItemID=1104102,nItemType=3,nMinLimit=10,nMaxLimit=
 ctShiMenItemWeight[1104202]={nItemID=1104202,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="烈水",nWeight=1943,}
 ctShiMenItemWeight[1105102]={nItemID=1105102,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="琉璃",nWeight=1943,}
 ctShiMenItemWeight[1105202]={nItemID=1105202,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="春雷",nWeight=1943,}
-ctShiMenItemWeight[1200102]={nItemID=1200102,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="文官帽",nWeight=1943,}
+ctShiMenItemWeight[1200102]={nItemID=1200102,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="书生帽",nWeight=1943,}
 ctShiMenItemWeight[1200202]={nItemID=1200202,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="玉石钗",nWeight=1943,}
-ctShiMenItemWeight[1300102]={nItemID=1300102,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="镶皮甲",nWeight=1943,}
-ctShiMenItemWeight[1300202]={nItemID=1300202,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="云锦群",nWeight=1943,}
+ctShiMenItemWeight[1300102]={nItemID=1300102,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="镶皮甲 ",nWeight=1943,}
+ctShiMenItemWeight[1300202]={nItemID=1300202,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="青衫",nWeight=1943,}
 ctShiMenItemWeight[1400002]={nItemID=1400002,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="金光护符",nWeight=1943,}
 ctShiMenItemWeight[1500002]={nItemID=1500002,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="镶金腰带",nWeight=1943,}
 ctShiMenItemWeight[1600002]={nItemID=1600002,nItemType=3,nMinLimit=10,nMaxLimit=999,nNeedNum=1,sItemName="侠客靴",nWeight=1943,}

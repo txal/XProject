@@ -10,7 +10,7 @@
   <Author>AutoBVT</Author>
   <LastAuthor>DM-PC092</LastAuthor>
   <Created>2018-05-25T08:27:44Z</Created>
-  <LastSaved>2019-01-11T12:00:50Z</LastSaved>
+  <LastSaved>2019-03-07T09:57:20Z</LastSaved>
   <Company>Microsoft</Company>
   <Version>16.00</Version>
  </DocumentProperties>
@@ -81,10 +81,10 @@
    <Column ss:Index="23" ss:AutoFitWidth="0" ss:Width="111"/>
    <Column ss:AutoFitWidth="0" ss:Width="85.8"/>
    <Column ss:Index="26" ss:AutoFitWidth="0" ss:Width="84"/>
-   <Column ss:AutoFitWidth="0" ss:Width="111"/>
-   <Column ss:AutoFitWidth="0" ss:Width="90.6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="99.6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="67.8"/>
    <Row ss:AutoFitHeight="0" ss:Height="111.75">
-    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="String">1首席争霸&#10;2八方会武&#10;3雷霆之战&#10;4帮战</Data></Cell>
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="String">1首席争霸&#10;2五方会武&#10;3萌仙会战&#10;4帮战</Data></Cell>
     <Cell ss:Index="9" ss:StyleID="s63"><Data ss:Type="String">0不带&#10;1带</Data></Cell>
     <Cell ss:Index="18"><Data ss:Type="String">nEnemy为敌方队伍人数</Data></Cell>
     <Cell ss:Index="23"><Data ss:Type="String">nEnemy为敌方队伍人数</Data></Cell>
@@ -181,7 +181,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1001</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">首席竞赛</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">首席争霸</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">1001</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">10601,1;10602,3;10603,4;10604,2;10605,5;</Data></Cell>
@@ -211,7 +211,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1002</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">八方会武</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">五方会武</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">2</Data></Cell>
     <Cell><Data ss:Type="Number">1002</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">10801,0;</Data></Cell>
@@ -241,7 +241,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1003</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">雷霆之战</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">萌仙会战</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">3</Data></Cell>
     <Cell><Data ss:Type="Number">1003</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">10901,0;</Data></Cell>

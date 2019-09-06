@@ -47,7 +47,7 @@ message RoleCreateReq
 {
     required int32 nAccountID = 1;      //帐号ID
     required int32 nConfID = 2;         //角色配置ID
-    required string sName = 3;          //角色名
+    required string sRoleName = 3;      //角色名
     optional int32 nInviteRoleID = 4;   //邀请者角色ID
 }
 

@@ -23,26 +23,33 @@ require = function(sScript)
 	gfRawRequire("LogicServer/"..sScript)
 end
 require("MainRpc")
-require("Global/GlobalInc")
-require("Player/PlayerInc")
-require("LRobot/LRobotInc")
-require("Monster/MonsterInc")
-require("Module/ModuleInc")
-require("Dup/DupInc")
-require("NpcFunc/NpcInc")
-require("BattleDup/BattleDupInc")
-require("PVPActivity/PVPActivityInc")
-require("Arena/ArenaLogicInc")
-require("Marriage/MarriageLogicInc")
-require("Market/MarketLogicRpc")
-require("EventHandler/EventHandlerInc")
-require("RoleTimeExpiryMgr/RoleTimeExpiryMgrInc")  --必须在角色相关Module后面加载
+-- require("Global/GlobalInc")
+-- require("Player/PlayerInc")
+-- require("LRobot/LRobotInc")
+-- require("Monster/MonsterInc")
+-- require("Module/ModuleInc")
+-- require("Dup/DupInc")
+-- require("NpcFunc/NpcInc")
+-- require("BattleDup/BattleDupInc")
+-- require("PVPActivity/PVPActivityInc")
+-- require("Arena/ArenaLogicInc")
+-- require("Marriage/MarriageLogicInc")
+-- require("Market/MarketLogicRpc")
+-- require("EventHandler/EventHandlerInc")
+-- require("RoleTimeExpiryMgr/RoleTimeExpiryMgrInc")  --必须在角色相关Module后面加载
 
 
 --全局初始化
 local function _InitGlobal()
-    goGModuleMgr:Init()
     Network:Init()
+    local tGModuleList = {}
+    local nServiceID = CUtil:GetServiceID()
+    for _, tModule in pairs(gtGModuleDef) do
+        if table.InArray(nServiceID, tModule.tServiceID) then
+            table.insert(tGModuleList, tModule.cClass:new())
+        end
+    end
+    goGModuleMgr:Init(tGModuleList)
 end
 
 --全局反初始化
@@ -53,8 +60,8 @@ local function _UninitGlobal()
         LuaTrace(sErr, debug.traceback())
     end
 
-    xpcall(function() goGModuleMgr:Release() end, fnError)
     xpcall(function() Network:Release() end, fnError)
+    xpcall(function() goGModuleMgr:Release() end, fnError)
     return bSuccess
 end
 
@@ -62,7 +69,7 @@ end
 local nGCIndex = 0
 local nGCTime = 10
 gnGCTimer = gnGCTimer
-local function _LuaGC()
+local function _fnLuaGC()
     local nClock = os.clock() 
     if nGCIndex % 180 == 0 then
         collectgarbage()
@@ -72,7 +79,8 @@ local function _LuaGC()
     if nGCIndex % 30 == 0 then --5分钟打印1次
         local sCostTime = string.format("%.4f", os.clock() - nClock)
         local nLuaMemery = (collectgarbage("count")/1024)
-       LuaTrace("Lua memory: ", nLuaMemery, "M time:", sCostTime, " index:", nGCIndex, " timers:", GetGModule("TimerMgr"):TimerCount())
+        local sGCLog = string.format("LUA MEM:%dM time:%s index:%d timers:%d", nLuaMemery, sCostTime, nGCIndex, GetGModule("TimerMgr"):TimerCount())
+       LuaTrace(sGCLog)
     end
     nGCIndex = nGCIndex + 1
 end
@@ -81,39 +89,31 @@ end
 function Main()
     _InitGlobal()
     collectgarbage()
-    collectgarbage("setpause", 100) --开启新的循环前不等待
+    collectgarbage("setpause", 100)   --开启新的循环前不等待
     collectgarbage("setstepmul", 300) --内存分配速度的3倍
-    gnGCTimer = GetGModule("TimerMgr"):Interval(nGCTime, function() _LuaGC() end)
-    
+    gnGCTimer = GetGModule("TimerMgr"):Interval(nGCTime, function() _fnLuaGC() end)
     local nLuaMemory = math.floor((collectgarbage("count")/1024))
-    LuaTrace("启动 LogicServer 完成******", "lua memory:", nLuaMemory)
-
-    if gnServerID ~= gnWorldServerID then
-        goServerMgr:OnLogicStart()
-    end
+    LuaTrace("启动 LogicServer 完成******", "LUA MEM:", nLuaMemory)
 end
 
 --准备退出进程
-function OnExitServer(nServer, nService)
-    LuaTrace("服务器关闭------beg", nServer, nService)
-
+function OnServerClose(nServerID)
+    LuaTrace("服务器关闭------beg", nServerID)
     gbServerClosing = true
     --强制相关服所有玩家下线
-    goPlayerMgr:OnServerClose(nServer)
-
-    if nServer == gnServerID and nService == CUtil:GetServiceID() then
+    goGModuleMgr:OnServerClose(nServerID)
+    --可能是跨服服务,所有要判断下
+    if GetGModule("ServerMgr"):GetServerID() == nServerID then
         --全局模块释放
         local bSuccess = _UninitGlobal()
-        assert(bSuccess, "注意！！！关服报错了！！！")
-
+        assert(bSuccess, "关服报错了！")
         --计时器检测
-        GetGModule("TimerMgr"):Clear(gnGCTimer)
-        if GetGModule("TimerMgr"):TimerCount() > 0 then
-            GetGModule("TimerMgr"):DebugLog()
-            assert(false, "！！！计时器泄漏！！！剩余:"..GetGModule("TimerMgr"):TimerCount())
+        local oTimerMgr = GetGModule("TimerMgr")
+        oTimerMgr:Clear(gnGCTimer)
+        if oTimerMgr:TimerCount() > 0 then
+            oTimerMgr:DebugLog()
+            assert(false, "计时器泄漏！剩余:"..oTimerMgr:TimerCount())
         end
     end
-    
-    LuaTrace("服务器关闭------end")
-
+    LuaTrace("服务器关闭------end", nServerID)
 end

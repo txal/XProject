@@ -53,7 +53,7 @@ function CPropUnion:Use(nParam1)
 	local nDayLimit = nPropID==nNorProp and 30 or 15
 	assert(nPropID == nNorProp or nPropID == nAdvProp, "道具ID错误")
 
-	Network.oRemoteCall:CallWait("UsedShenZhaoNumReq", function(nUsedNum)
+	Network:RMCall("UsedShenZhaoNumReq", function(nUsedNum)
 		if not nUsedNum then
 			return oRole:Tips("请先加入帮派")
 		end
@@ -61,7 +61,7 @@ function CPropUnion:Use(nParam1)
 			return oRole:Tips(string.format("每天最多可使用%d个%s", nDayLimit, self:GetName()))
 		end
 		local nPropNum = math.min(nDayLimit-nUsedNum, nParam1)
-		Network.oRemoteCall:CallWait("OnUseShenZhaoReq", function(bRes)
+		Network:RMCall("OnUseShenZhaoReq", function(bRes)
 			if not bRes then
 				oRole:Tips(string.format("使用%s失败", self:GetName()))
 				return

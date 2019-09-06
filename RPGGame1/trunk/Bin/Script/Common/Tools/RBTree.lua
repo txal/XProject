@@ -574,7 +574,7 @@ end
 
 --查找满足不小于tData的节点数据索引最小值(即按照索引顺序第一个不小于tData的节点的索引)
 --如果所有节点都小于tData，则返回0
-function CRBTree:GetNotLessIndex(tData, key) 
+function CRBTree:GetNotLessIndex(tData) 
     if self:Count() <= 0 then 
         return 0
     end

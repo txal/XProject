@@ -119,6 +119,7 @@ bool ServerContext::LoadServerConfig()
 		}
 		nGroupID = m_pMgrMysql->ToInt32("groupid");
 	}
+	m_oServerConf.uGroupID = nGroupID;
 
 	sprintf(sSQLBuff, "select * from appinfo where groupid=%d;", nGroupID);
 	if (!m_pMgrMysql->Query(sSQLBuff))

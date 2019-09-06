@@ -1,6 +1,7 @@
 --数据库定义
 gtDBDef = {}
-gtDBDef.sPlayerIDDB = "PlayerIDDB"			--角色/账号ID数据库[CENTER]
+gtDBDef.sAutoIDDB = "AutoIDDB"				--自增ID数据库[CENTER]
+
 gtDBDef.sRoleNameDB = "RoleNameDB"      	--唯一角色名数据库[CENER]
 gtDBDef.sRoleDB = "RoleDB"					--角色数据数据表[USER]
 gtDBDef.sAccountDB = "AccountDB"			--账号数据表[USER]

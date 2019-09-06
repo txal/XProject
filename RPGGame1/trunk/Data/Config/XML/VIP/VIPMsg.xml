@@ -1,3 +1,448 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0"?>
 <?mso-application progid="Excel.Sheet"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Administrator</Author><LastAuthor>DM-PC092</LastAuthor><Created>2016-02-27T02:41:06Z</Created><LastSaved>2019-01-11T12:52:28Z</LastSaved></DocumentProperties><CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer></CustomDocumentProperties><ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel"><WindowWidth>23700</WindowWidth><WindowHeight>14070</WindowHeight><ProtectStructure>False</ProtectStructure><ProtectWindows>False</ProtectWindows></ExcelWorkbook><Styles><Style ss:ID="s38" ss:Name="40% - 强调文字颜色 2"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#F8CBAD" ss:Pattern="Solid"/></Style><Style ss:ID="s33" ss:Name="20% - 强调文字颜色 5"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/></Style><Style ss:ID="s22" ss:Name="标题 3"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#ACCCEA"/></Borders><Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s18" ss:Name="解释性文本"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#7F7F7F" ss:Italic="1"/></Style><Style ss:ID="Default" ss:Name="Normal"><Alignment/><Borders/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/><Interior/><NumberFormat/><Protection/></Style><Style ss:ID="s8" ss:Name="千位分隔"><NumberFormat ss:Format="_ * #,##0.00_ ;_ * \-#,##0.00_ ;_ * &quot;-&quot;??_ ;_ @_ "/></Style><Style ss:ID="s48" ss:Name="60% - 强调文字颜色 6"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#A9D08E" ss:Pattern="Solid"/></Style><Style ss:ID="s16" ss:Name="警告文本"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FF0000"/></Style><Style ss:ID="s11" ss:Name="百分比"><NumberFormat ss:Format="0%"/></Style><Style ss:ID="s10" ss:Name="超链接"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#0000FF" ss:Underline="Single"/></Style><Style ss:ID="s5" ss:Name="千位分隔[0]"><NumberFormat ss:Format="_ * #,##0_ ;_ * \-#,##0_ ;_ * &quot;-&quot;_ ;_ @_ "/></Style><Style ss:ID="s2" ss:Name="20% - 强调文字颜色 3"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#EDEDED" ss:Pattern="Solid"/></Style><Style ss:ID="s4" ss:Name="货币"><NumberFormat ss:Format="_ &quot;￥&quot;* #,##0.00_ ;_ &quot;￥&quot;* \-#,##0.00_ ;_ &quot;￥&quot;* &quot;-&quot;??_ ;_ @_ "/></Style><Style ss:ID="s46" ss:Name="强调文字颜色 6"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#70AD47" ss:Pattern="Solid"/></Style><Style ss:ID="s1" ss:Name="货币[0]"><NumberFormat ss:Format="_ &quot;￥&quot;* #,##0_ ;_ &quot;￥&quot;* \-#,##0_ ;_ &quot;￥&quot;* &quot;-&quot;_ ;_ @_ "/></Style><Style ss:ID="s45" ss:Name="60% - 强调文字颜色 5"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#8EA9DB" ss:Pattern="Solid"/></Style><Style ss:ID="s39" ss:Name="强调文字颜色 3"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#A5A5A5" ss:Pattern="Solid"/></Style><Style ss:ID="s28" ss:Name="强调文字颜色 2"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#ED7D31" ss:Pattern="Solid"/></Style><Style ss:ID="s14" ss:Name="60% - 强调文字颜色 2"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#F4B084" ss:Pattern="Solid"/></Style><Style ss:ID="s7" ss:Name="差"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#9C0006"/><Interior ss:Color="#FFC7CE" ss:Pattern="Solid"/></Style><Style ss:ID="s35" ss:Name="20% - 强调文字颜色 1"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#DDEBF7" ss:Pattern="Solid"/></Style><Style ss:ID="s34" ss:Name="强调文字颜色 1"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#5B9BD5" ss:Pattern="Solid"/></Style><Style ss:ID="s6" ss:Name="40% - 强调文字颜色 3"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#DBDBDB" ss:Pattern="Solid"/></Style><Style ss:ID="s37" ss:Name="20% - 强调文字颜色 2"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#FCE4D6" ss:Pattern="Solid"/></Style><Style ss:ID="s3" ss:Name="输入"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#3F3F76"/><Interior ss:Color="#FFCC99" ss:Pattern="Solid"/></Style><Style ss:ID="s23" ss:Name="60% - 强调文字颜色 4"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#FFD966" ss:Pattern="Solid"/></Style><Style ss:ID="s17" ss:Name="标题"><Font ss:FontName="宋体" x:CharSet="134" ss:Size="18" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s9" ss:Name="60% - 强调文字颜色 3"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#C9C9C9" ss:Pattern="Solid"/></Style><Style ss:ID="s43" ss:Name="强调文字颜色 5"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#4472C4" ss:Pattern="Solid"/></Style><Style ss:ID="s20" ss:Name="标题 2"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#5B9BD5"/></Borders><Font ss:FontName="宋体" x:CharSet="134" ss:Size="13" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s12" ss:Name="已访问的超链接"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#800080" ss:Underline="Single"/></Style><Style ss:ID="s27" ss:Name="20% - 强调文字颜色 6"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#E2EFDA" ss:Pattern="Solid"/></Style><Style ss:ID="s13" ss:Name="注释"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#B2B2B2"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#B2B2B2"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#B2B2B2"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#B2B2B2"/></Borders><Interior ss:Color="#FFFFCC" ss:Pattern="Solid"/></Style><Style ss:ID="s47" ss:Name="40% - 强调文字颜色 6"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#C6E0B4" ss:Pattern="Solid"/></Style><Style ss:ID="s36" ss:Name="40% - 强调文字颜色 1"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#BDD7EE" ss:Pattern="Solid"/></Style><Style ss:ID="s15" ss:Name="标题 4"><Font ss:FontName="宋体" x:CharSet="134" ss:Size="11" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s19" ss:Name="标题 1"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#5B9BD5"/></Borders><Font ss:FontName="宋体" x:CharSet="134" ss:Size="15" ss:Color="#44546A" ss:Bold="1"/></Style><Style ss:ID="s44" ss:Name="40% - 强调文字颜色 5"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#B4C6E7" ss:Pattern="Solid"/></Style><Style ss:ID="s30" ss:Name="汇总"><Borders><Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3" ss:Color="#5B9BD5"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#5B9BD5"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000" ss:Bold="1"/></Style><Style ss:ID="s21" ss:Name="60% - 强调文字颜色 1"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#9BC2E6" ss:Pattern="Solid"/></Style><Style ss:ID="s40" ss:Name="强调文字颜色 4"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF"/><Interior ss:Color="#FFC000" ss:Pattern="Solid"/></Style><Style ss:ID="s31" ss:Name="好"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#006100"/><Interior ss:Color="#C6EFCE" ss:Pattern="Solid"/></Style><Style ss:ID="s24" ss:Name="输出"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#3F3F3F"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#3F3F3F"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#3F3F3F"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#3F3F3F"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#3F3F3F" ss:Bold="1"/><Interior ss:Color="#F2F2F2" ss:Pattern="Solid"/></Style><Style ss:ID="s41" ss:Name="20% - 强调文字颜色 4"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#FFF2CC" ss:Pattern="Solid"/></Style><Style ss:ID="s26" ss:Name="检查单元格"><Borders><Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3" ss:Color="#3F3F3F"/><Border ss:Position="Left" ss:LineStyle="Double" ss:Weight="3" ss:Color="#3F3F3F"/><Border ss:Position="Right" ss:LineStyle="Double" ss:Weight="3" ss:Color="#3F3F3F"/><Border ss:Position="Top" ss:LineStyle="Double" ss:Weight="3" ss:Color="#3F3F3F"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FFFFFF" ss:Bold="1"/><Interior ss:Color="#A5A5A5" ss:Pattern="Solid"/></Style><Style ss:ID="s25" ss:Name="计算"><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#7F7F7F"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FA7D00" ss:Bold="1"/><Interior ss:Color="#F2F2F2" ss:Pattern="Solid"/></Style><Style ss:ID="s42" ss:Name="40% - 强调文字颜色 4"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#000000"/><Interior ss:Color="#FFE699" ss:Pattern="Solid"/></Style><Style ss:ID="s32" ss:Name="适中"><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#9C6500"/><Interior ss:Color="#FFEB9C" ss:Pattern="Solid"/></Style><Style ss:ID="s29" ss:Name="链接单元格"><Borders><Border ss:Position="Bottom" ss:LineStyle="Double" ss:Weight="3" ss:Color="#FF8001"/></Borders><Font ss:FontName="宋体" x:CharSet="0" ss:Size="11" ss:Color="#FA7D00"/></Style><Style ss:ID="s49"><Alignment/><Borders/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/><Interior/><NumberFormat/><Protection/></Style><Style ss:ID="s50"><Alignment ss:Horizontal="Left"/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="10"/></Style><Style ss:ID="s51"><Alignment ss:Horizontal="Left"/><Borders/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="10"/><Interior/><NumberFormat/><Protection/></Style><Style ss:ID="s52"><Alignment ss:Horizontal="Left"/><Font ss:FontName="宋体" x:CharSet="134" ss:Size="10"/><Interior/><NumberFormat/><Protection/></Style></Styles><Worksheet ss:Name="ctVIPMsgConf"><Table ss:ExpandedColumnCount="19" ss:ExpandedRowCount="29" x:FullColumns="1" x:FullRows="1" ss:StyleID="s50" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"><Column ss:Index="1" ss:StyleID="s51" ss:AutoFitWidth="0" ss:Width="57.75"/><Column ss:Index="2" ss:StyleID="s52" ss:AutoFitWidth="0" ss:Width="75"/><Column ss:StyleID="s50" ss:AutoFitWidth="0" ss:Width="288.75"/><Row ss:Index="2"><Cell ss:StyleID="s51"><Data ss:Type="String">nID</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">nType</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">sMsg</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip5</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip6</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip7</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip8</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip9</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip10</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip11</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip12</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip13</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip14</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">vip15</Data></Cell></Row><Row><Cell ss:StyleID="s51"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">s</Data><Comment ss:Author="Administrator"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><Font html:Color="#000000"></Font><B><Font html:Face="宋体" x:CharSet="134" html:Size="9">Administrator:</Font></B><Font html:Face="宋体" x:CharSet="134" html:Size="9">&#13;类型、id、数量、绑定（0非绑定）</Font></ss:Data></Comment></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">i</Data></Cell></Row><Row><Cell ss:StyleID="s52"><Data ss:Type="String">特权编号</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="String">类型</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">描述</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP0级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP1级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP2级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP3级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP4级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP5级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP6级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP7级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP8级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP9级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP10级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP11级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP12级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP13级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP14级</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">VIP15级</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取0级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取1级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取2级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取3级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">5</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取4级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">6</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取5级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">7</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取6级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">8</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取7级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">9</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取8级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">10</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取9级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">11</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取10级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">12</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取11级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">13</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取12级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">14</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取13级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">15</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取14级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">16</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">可领取15级VIP等级礼包</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">17</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">元宝直接完成赏金任务</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell></Row><Row><Cell ss:StyleID="s50"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">登录自动签到功能</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell></Row><Row><Cell ss:StyleID="s50"><Data ss:Type="Number">19</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">背包批量回收功能</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">20</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">自动连续挖宝</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell></Row><Row><Cell ss:StyleID="s50"><Data ss:Type="Number">21</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">赏金榜免费刷新次数：</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">5</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">5</Data></Cell></Row><Row><Cell ss:StyleID="s50"><Data ss:Type="Number">22</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">竞技场免费刷新次数：</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">0</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">5</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">23</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">每月赠送免费补签次数：</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">5</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">5</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">5</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">24</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">饱食度上限：</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1000</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1050</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1100</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1150</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1200</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1250</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1300</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1350</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1400</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1450</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1500</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1600</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1700</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1800</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">1900</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2000</Data></Cell></Row><Row ss:StyleID="s50"><Cell ss:StyleID="s50"><Data ss:Type="Number">25</Data></Cell><Cell ss:StyleID="s52"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="String">超级神兽参与次数：</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">6</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">6</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">8</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">8</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">10</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">10</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">12</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">12</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">14</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">16</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">18</Data></Cell><Cell ss:StyleID="s50"><Data ss:Type="Number">20</Data></Cell></Row></Table><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"><PageSetup><Header x:Margin="0.511111111111111"/><Footer x:Margin="0.511111111111111"/></PageSetup><Print><ValidPrinterInfo/><PaperSizeIndex>9</PaperSizeIndex><HorizontalResolution>600</HorizontalResolution><VerticalResolution>600</VerticalResolution></Print><Selected/><TopRowVisible>0</TopRowVisible><LeftColumnVisible>0</LeftColumnVisible><PageBreakZoom>100</PageBreakZoom><Panes><Pane><Number>3</Number><ActiveRow>35</ActiveRow><ActiveCol>2</ActiveCol><RangeSelection>R36C3</RangeSelection></Pane></Panes><ProtectObjects>False</ProtectObjects><ProtectScenarios>False</ProtectScenarios></WorksheetOptions></Worksheet><Worksheet ss:Name="Sheet2"><Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"/><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"><PageSetup><Header x:Margin="0.511111111111111"/><Footer x:Margin="0.511111111111111"/></PageSetup><TopRowVisible>0</TopRowVisible><LeftColumnVisible>0</LeftColumnVisible><PageBreakZoom>100</PageBreakZoom><Panes><Pane><Number>3</Number><ActiveRow>41</ActiveRow><ActiveCol>1</ActiveCol><RangeSelection>R42C2</RangeSelection></Pane></Panes><ProtectObjects>False</ProtectObjects><ProtectScenarios>False</ProtectScenarios></WorksheetOptions></Worksheet><Worksheet ss:Name="Sheet3"><Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1" x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25"/><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"><PageSetup><Header x:Margin="0.511111111111111"/><Footer x:Margin="0.511111111111111"/></PageSetup><TopRowVisible>0</TopRowVisible><LeftColumnVisible>0</LeftColumnVisible><PageBreakZoom>100</PageBreakZoom><ProtectObjects>False</ProtectObjects><ProtectScenarios>False</ProtectScenarios></WorksheetOptions></Worksheet></Workbook>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>AutoBVT</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2019-01-15T02:21:43Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7311</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11775</WindowHeight>
+  <WindowWidth>18180</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctVIPMsgConf">
+  <Table ss:ExpandedColumnCount="19" ss:ExpandedRowCount="23" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="57.75"/>
+   <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="288.75"/>
+   <Column ss:Index="13" ss:StyleID="s65" ss:AutoFitWidth="0" ss:Span="6"/>
+   <Row ss:AutoFitHeight="0"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">nID</Data></Cell>
+    <Cell><Data ss:Type="String">nType</Data></Cell>
+    <Cell><Data ss:Type="String">sMsg</Data></Cell>
+    <Cell><Data ss:Type="String">vip0</Data></Cell>
+    <Cell><Data ss:Type="String">vip1</Data></Cell>
+    <Cell><Data ss:Type="String">vip2</Data></Cell>
+    <Cell><Data ss:Type="String">vip3</Data></Cell>
+    <Cell><Data ss:Type="String">vip4</Data></Cell>
+    <Cell><Data ss:Type="String">vip5</Data></Cell>
+    <Cell><Data ss:Type="String">vip6</Data></Cell>
+    <Cell><Data ss:Type="String">vip7</Data></Cell>
+    <Cell><Data ss:Type="String">vip8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">s</Data><Comment ss:Author="Administrator"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9">Administrator:</Font></B><Font
+        html:Size="9">&#13;类型、id、数量、绑定（0非绑定）</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">特权编号</Data></Cell>
+    <Cell><Data ss:Type="String">类型</Data></Cell>
+    <Cell><Data ss:Type="String">描述</Data></Cell>
+    <Cell><Data ss:Type="String">VIP0级</Data></Cell>
+    <Cell><Data ss:Type="String">VIP1级</Data></Cell>
+    <Cell><Data ss:Type="String">VIP2级</Data></Cell>
+    <Cell><Data ss:Type="String">VIP3级</Data></Cell>
+    <Cell><Data ss:Type="String">VIP4级</Data></Cell>
+    <Cell><Data ss:Type="String">VIP5级</Data></Cell>
+    <Cell><Data ss:Type="String">VIP6级</Data></Cell>
+    <Cell><Data ss:Type="String">VIP7级</Data></Cell>
+    <Cell><Data ss:Type="String">VIP8级</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取0级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取1级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取2级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取3级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取4级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取5级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取6级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取7级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">可领取8级VIP等级礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">自动连续挖宝</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">11</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">免费改名一次</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">日常活跃度附送灵气值</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">13</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">挂机自动挑战BOSS功能</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">14</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">找回2天内错过的活动奖励</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">15</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">竞技场额外购买挑战次数：</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">16</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">饱食度上限：</Data></Cell>
+    <Cell><Data ss:Type="Number">1000</Data></Cell>
+    <Cell><Data ss:Type="Number">1100</Data></Cell>
+    <Cell><Data ss:Type="Number">1200</Data></Cell>
+    <Cell><Data ss:Type="Number">1300</Data></Cell>
+    <Cell><Data ss:Type="Number">1400</Data></Cell>
+    <Cell><Data ss:Type="Number">1500</Data></Cell>
+    <Cell><Data ss:Type="Number">1600</Data></Cell>
+    <Cell><Data ss:Type="Number">1800</Data></Cell>
+    <Cell><Data ss:Type="Number">2000</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">17</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">获得离线挂机收益的小时数上限：</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">师门提供一键完成功能</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">19</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">赏金提供一键完成功能</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>23</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>41</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

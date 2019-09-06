@@ -108,13 +108,13 @@ function XML2Lua($sXMLFile, $sScriptDir)
 	$tType = array();
 	$tField = array(); 
 	$tFieldSpec = array();
-	$bNotHasFieldSpec = false;
+	$bNotHasFieldSpec = false;  //客户端,服务器筛选行
 
-	$nSheet = 0;
-	$nRow = 0;
-	$nData = 0;
-	$nCell = 0;
-	$nLastCell = 0;
+	$nSheet = 0;        //从1开始
+	$nRow = 0;          //从1开始
+	$nData = 0;         //是否有数据
+	$nCell = 0;         //从1开始
+	$nLastCell = 0;     
 	
 	$keywords = array("min", "max", "math", "floor", "ceil", "abs", "pow", "and", "or", "random");
 	while ($XML->read())
@@ -190,7 +190,7 @@ function XML2Lua($sXMLFile, $sScriptDir)
 					for ($i=1; $i < $nCell-1; $i++)
 					{
 						if ($tField[$i] == $XML->value)
-							exit("ERROR: Duplication columns '$XML->value'!\n");
+							exit("ERROR: file:$sXMLFile row:$nRow duplication columns '$XML->value'!\n");
 					}
 				}
 	
@@ -207,7 +207,7 @@ function XML2Lua($sXMLFile, $sScriptDir)
 					for ($i=1; $i < $nCell-1; $i++)
 					{
 						if ($tField[$i] == $XML->value)
-							exit("ERROR: Duplication columns '$XML->value'!\n");
+							exit("ERROR: file:$sXMLFile row:$nRow duplication columns '$XML->value'!\n");
 					}
 				}
 			}
@@ -388,7 +388,7 @@ function XML2Lua($sXMLFile, $sScriptDir)
 					}
 					default:
 					{
-						exit("ERROR: Row:$nRow Col:$nCell type '$tType[$nCell]' not support!\n");
+						exit("ERROR: file:$sXMLFile Row:$nRow Col:$nCell type '$tType[$nCell]' not support!\n");
 						break;
 					}
 				}

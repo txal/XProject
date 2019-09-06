@@ -95,7 +95,7 @@ function CTC:UpdateRechargeAmount()
 	-- oWorldRechargeCB:OnRobotRecharge(nAddNum)
 	--为防止ID重复等冲突, 先通知世界全局服, 从世界服统一生成机器人数据, 回传对应本地全局服
 	local nService = goServerMgr:GetGlobalService(gnWorldServerID, 110)
-	Network.oRemoteCall:Call("OnTCRobotRecharge", gnWorldServerID, nService, 0, nAddNum, gnServerID)
+	Network:RMCall("OnTCRobotRecharge", nil, gnWorldServerID, nService, 0, nAddNum, gnServerID)
 end
 
 --检查数据，每天清除

@@ -28,32 +28,32 @@ end
 function CBrowser:GetModuleData(sModuleName, nRoleID)
 	print("CBrowser:GetModuleData***", sModuleName, nRoleID)
 	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
-	local oDB = goDBMgr:GetSSDB(oRole:GetServer(), "user", nRoleID)
+	local oDB = goDBMgr:GetGameDB(oRole:GetServer(), "user", nRoleID)
     local sData = oDB:HGet(sModuleName, nRoleID)
     if sData == "" then return {} end
-    return cjson.decode(sData)
+    return cseri.decode(sData)
 end
 
 function CBrowser:GetRoleData(nServer, nRoleID)
-	local oDB = goDBMgr:GetSSDB(nServer, "user", nRoleID)
+	local oDB = goDBMgr:GetGameDB(nServer, "user", nRoleID)
 	local sData = oDB:HGet(gtDBDef.sRoleDB, nRoleID)
 	if sData == "" then return {} end
-	return cjson.decode(sData)
+	return cseri.decode(sData)
 end
 
 function CBrowser:GetAccountData(nServer, nAccountID)
-	local oDB = goDBMgr:GetSSDB(nServer, "user", nAccountID)
+	local oDB = goDBMgr:GetGameDB(nServer, "user", nAccountID)
 	local sData = oDB:HGet(gtDBDef.sAccountDB, nAccountID)
 	if sData == "" then return {} end
-	return cjson.decode(sData)
+	return cseri.decode(sData)
 end
 
 --修改属性
 CBrowser["moduser"] = function (self, nSession, tData)
 	-- local nRoleID = tData.roleid
 	-- local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
-	-- Network.oRemoteCall:CallWait("ModUserReq", function(nRoleID)
-	-- 	Srv2Bsr("BrowserRet", gnServerID, nSession, cjson.encode({data=true}))
+	-- Network:RMCall("ModUserReq", function(nRoleID)
+	-- 	Srv2Bsr("BrowserRet", gnServerID, nSession, cseri.encode({data=true}))
 	-- end, oRole:GetServer(), oRole:GetLogic(), oRole:GetSession(), nRoleID, tData)
 end
 
@@ -90,7 +90,7 @@ CBrowser["banuser"] = function (self, nSession, tData)
 		return
 	end
 	
-	Network.oRemoteCall:CallWait("UpdateAccountValueReq", function(bRes)
+	Network:RMCall("UpdateAccountValueReq", function(bRes)
 		self:SendMsg(nSession, {data=bRes})
 	end, oRole:GetServer(), goServerMgr:GetLoginService(oRole:GetServer()), oRole:GetSession(), oRole:GetAccountID(), {m_nAccountState=nState})
 end
@@ -183,7 +183,7 @@ CBrowser["openact"] = function (self, nSession, tData)
 	end
 
 	if tActConf.bCrossServer then
-		Network.oRemoteCall:CallWait("GMOpenAct", function(bRes)
+		Network:RMCall("GMOpenAct", function(bRes)
 			if bRes then
 				return self:SendMsg(nSession, {data=true})
 			end
@@ -259,7 +259,7 @@ CBrowser["getpetinfo"] = function (self, nSession, tData)
 	if not oRole then
 		fnSendMsg()
 	else
-	Network.oRemoteCall:CallWait("GMGetPetInfoReq", function (tData)
+	Network:RMCall("GMGetPetInfoReq", function (tData)
 		fnSendMsg(tData)
 	end, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
 	end
@@ -271,7 +271,7 @@ CBrowser["deletepet"] = function (self, nSession, tData)
 	local nPos = tData.pos
 	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
 	if not oRole then return end
-	Network.oRemoteCall:CallWait("GMDeletePetReq",function (bFlag)
+	Network:RMCall("GMDeletePetReq",function (bFlag)
 		self:SendMsg(nSession, {data=bFlag})
 	end,  oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), nPos)
 end

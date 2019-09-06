@@ -107,8 +107,8 @@ end
 function CWatcher:TestLogin()
 	local tServiceList = self.m_tServiceList
 
-	local oCenterDB = goDBMgr:GetSSDB(0, "center")
-	local oUserDB = goDBMgr:GetSSDB(gnServerID, "user", 1)
+	local oCenterDB = goDBMgr:GetGameDB(0, "center")
+	local oUserDB = goDBMgr:GetGameDB(gnServerID, "user", 1)
 	local bRes, sErr = pcall(function() oCenterDB:HGet("watcher", "data") end)
 	if not bRes then
 		LuaTrace("CENTER SSDB失败", sErr)
@@ -125,7 +125,7 @@ function CWatcher:TestLogin()
 		if not tService then
 			return self:Report(1, "正常")
 		end
-		Network.oRemoteCall:CallWait("RemoteCallTestReq", function(nValue)
+		Network:RMCall("RemoteCallTestReq", function(nValue)
 			if not nValue then
 				return self:Report(2, tService[3])
 			end

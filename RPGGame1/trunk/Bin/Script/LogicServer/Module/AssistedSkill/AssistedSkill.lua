@@ -107,7 +107,7 @@ function CAssistedSkill:SkillStateCheck()
 		return 
 	end
 	local nGlobalLogic = goServerMgr:GetGlobalService(self.m_oRole:GetServer(), 20)
-	Network.oRemoteCall:CallWait("UnionContriReq", function(nUnionContri)
+	Network:RMCall("UnionContriReq", function(nUnionContri)
 		local tMsg = {tSkillList = {}}
 		nUnionContri = nUnionContri or 0
 		for nSkillID, tData in pairs(self.m_tSkillMap) do
@@ -157,7 +157,7 @@ function CAssistedSkill:ListReq()
 	tMsg.nCurrYB = self.m_oRole:GetYinBi()
 	tMsg.nCurrVitality = self.m_oRole:GetVitality()
 	local nGlobalLogic = goServerMgr:GetGlobalService(self.m_oRole:GetServer(), 20)
-	Network.oRemoteCall:CallWait("UnionContriReq", function(nUnionContri) tMsg.nCurrUC  = nUnionContri
+	Network:RMCall("UnionContriReq", function(nUnionContri) tMsg.nCurrUC  = nUnionContri
 		self.m_oRole:SendMsg("lifeskillListRet", tMsg)
 	 end, 
 	self.m_oRole:GetServer(), nGlobalLogic, 0, self.m_oRole:GetID())
@@ -234,7 +234,7 @@ function CAssistedSkill:UpgradeReq(nID, nUpdateCount)
 	local nGlobalLogic = goServerMgr:GetGlobalService(self.m_oRole:GetServer(), 20)
 
 	--根据策划需求，现在取消使用金币补足帮贡
-	Network.oRemoteCall:CallWait("UnionContriReq", function(nUnionContri)
+	Network:RMCall("UnionContriReq", function(nUnionContri)
 		for i = 1, nUpdateLevel, 1 do
 			local nCostYB, nCostUC = self:UpgradeCost(nID)
 			if self.m_oRole:GetYinBi () < nCostYB then

@@ -104,11 +104,11 @@ function CMarketMgr:ConfInit()
 end
 
 function CMarketMgr:LoadData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tKeys = oDB:HKeys(gtDBDef.sRoleMarketDB)
 	for _, sRoleID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sRoleMarketDB, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nRoleID = tData.nRoleID
 		local oRoleStall = CMarketStall:new(self, nRoleID)
 		oRoleStall:LoadData(tData)
@@ -128,12 +128,12 @@ function CMarketMgr:LoadData()
 end
 
 function CMarketMgr:SaveData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	--停服时，仍然按照之前的，迭代整个Map
 	for nRoleID, oMarketStall in pairs(self.m_tRoleStallMap) do
 		if oMarketStall:IsDirty() then
 			local tData = oMarketStall:SaveData()
-			oDB:HSet(gtDBDef.sRoleMarketDB, oMarketStall:GetRoleID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleMarketDB, oMarketStall:GetRoleID(), cseri.encode(tData))
 			oMarketStall:MarkDirty(false)
 		end
 	end
@@ -412,7 +412,7 @@ function CMarketMgr:SellItem(oRole, nItemID, nGridNum, nNum, nCurrType, nSyncPri
 	end
 	local nServer = oRole:GetStayServer()
 	local nService = oRole:GetLogic()
-	Network.oRemoteCall:CallWait("MarketSellItemReq", fnCheckItemCallback, nServer, nService, nSession, nRoleID, tSaleItemData, tCostList)
+	Network:RMCall("MarketSellItemReq", fnCheckItemCallback, nServer, nService, nSession, nRoleID, tSaleItemData, tCostList)
 end
 
 function CMarketMgr:CheckItemSale(tItem)
@@ -555,12 +555,12 @@ function CMarketMgr:SellItemList(oRole, tItemList)
 		oRole:SendMsg("MarketItemOnSaleRet", tRetMsg)
 		self:GetStallData(oRole) -- 重新刷新整个列表数据
 		if bIsSuccOnSale then
-			Network.oRemoteCall:Call("OnMarketItemOnSale", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+			Network:RMCall("OnMarketItemOnSale", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
 		end
 	end
 	local nServer = oRole:GetStayServer()
 	local nService = oRole:GetLogic()
-	Network.oRemoteCall:CallWait("MarketSellItemListReq", fnCheckItemCallback, nServer, nService, nSession, nRoleID, tSaleItemList, tCostList)
+	Network:RMCall("MarketSellItemListReq", fnCheckItemCallback, nServer, nService, nSession, nRoleID, tSaleItemList, tCostList)
 end
 
 --移除后, 会将nGKey对应的道具的GKey置0
@@ -974,7 +974,7 @@ function CMarketMgr:ReSale(oRole, nPKey, nSyncPrice, nPriceRatio)
 		local tRetData = {}
 		tRetData.tItemDetail = oNewItem:GetCSData()
 		oRole:SendMsg("MarketItemReSaleRet", tRetData)
-		Network.oRemoteCall:Call("OnMarketItemOnSale", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+		Network:RMCall("OnMarketItemOnSale", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
 	end
 	--扣除重新上架费用
 	oRole:SubItem(tCostList, "交易上架", fnTaxCostCallBack)
@@ -1095,7 +1095,7 @@ function CMarketMgr:GetViewPageDataReq(oRole, nPageID)
 
 	local nServerID = oRole:GetServer()
 	local nServiceID = oRole:GetLogic()
-	Network.oRemoteCall:CallWait("QueryMarketFlushItemReq", fnQueryCallback, nServerID, 
+	Network:RMCall("QueryMarketFlushItemReq", fnQueryCallback, nServerID, 
 		nServiceID, 0, oRole:GetID())
 end
 
@@ -1129,7 +1129,7 @@ function CMarketMgr:FlushViewPageReq(oRole, bMoney)
 	
 	local nServerID = oRole:GetServer()
 	local nServiceID = oRole:GetLogic()
-	Network.oRemoteCall:CallWait("QueryMarketFlushItemReq", fnQueryCallback, nServerID, 
+	Network:RMCall("QueryMarketFlushItemReq", fnQueryCallback, nServerID, 
 		nServiceID, 0, oRole:GetID())
 end
 
@@ -1518,11 +1518,11 @@ function CMarketMgr:OnRoleOnline(oRole)
 	if oRoleStall then
 		oRoleStall.m_bRoleOnline = true
 	else
-		local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+		local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 		local sData = oDB:HGet(gtDBDef.sRoleMarketDB, nRoleID)
 		local tData = nil
 		if sData ~= "" then
-			tData = cjson.decode(sData)
+			tData = cseri.decode(sData)
 		end
 		print("玩家上线，开始创建玩家摊位，RoleID:"..nRoleID)
 		oRoleStall = CMarketStall:new(self, nRoleID)
@@ -1597,12 +1597,12 @@ function CMarketMgr:TickSave(nTimeStamp)
 
 	nSaveNum = math.min(nSaveNum, nDirtyNum) --可能当前脏数据的总数量比默认值低
 
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for i = 1, nSaveNum do
 		local oRoleStall = self.m_tDirtyQueue:Head()
 		if oRoleStall then
 			local tData = oRoleStall:SaveData()
-			oDB:HSet(gtDBDef.sRoleMarketDB, oRoleStall:GetRoleID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleMarketDB, oRoleStall:GetRoleID(), cseri.encode(tData))
 			oRoleStall:MarkDirty(false)
 			--print("保存交易数据成功，nRoleID:"..oRoleStall:GetRoleID())
 		end
@@ -1612,7 +1612,7 @@ end
 
 --定期清理Stall，保存DB
 function CMarketMgr:TickRoleStall()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local nTimeStamp = os.time()
 	local tStallDeleteList = {}
 	for k, oStall in pairs(self.m_tRoleStallMap) do
@@ -1680,7 +1680,7 @@ function CMarketMgr:CreateSysEquCache(nPageID)
 		return 
 	end
 	local nServiceID = 50  --暂时硬编码 TODO
-	Network.oRemoteCall:CallWait("CreateSysEquCacheReq", fnCallback, gnServerID, 
+	Network:RMCall("CreateSysEquCacheReq", fnCallback, gnServerID, 
 		nServiceID, 0, tPageParam, nMirrorID)
 end
 

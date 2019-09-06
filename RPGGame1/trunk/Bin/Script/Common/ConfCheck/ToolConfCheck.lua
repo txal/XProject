@@ -1,6 +1,6 @@
 require("Config/Main")
-require("Common/ItemDef")
 require("Common/LuaClass")
+require("Common/GDefine/GDefineInc")
 require("Common/Extension/ExtensionInc")
 
 local function fnError(sErr)

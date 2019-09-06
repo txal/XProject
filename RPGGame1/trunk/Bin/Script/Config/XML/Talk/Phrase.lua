@@ -38,11 +38,11 @@ ctPhrase[37]={nID=37,sTitle="长的美",sContent="[XX]哀怨地看着你，嘤�
 ctPhrase[38]={nID=38,sTitle="祈祷",sContent="[XX]真诚地对着上苍祈祷道：神啊，请保佑我的元宝永远花不完",}
 ctPhrase[39]={nID=39,sTitle="表白",sContent="[XX]深情地看着你：执子之手与子偕老",}
 ctPhrase[40]={nID=40,sTitle="审问",sContent="[XX]冷哼：你招还是不招！",}
-ctPhrase[41]={nID=41,sTitle="长的帅",sContent="[XX]臭美道：像我这么帅的，长安城找不出第二个",}
+ctPhrase[41]={nID=41,sTitle="长的帅",sContent="[XX]臭美道：像我这么帅的，京城找不出第二个",}
 ctPhrase[42]={nID=42,sTitle="悲伤",sContent="[XX]难以抑制心中的悲伤，痛哭流涕",}
 ctPhrase[43]={nID=43,sTitle="无辜",sContent="[XX]瞪大着眼睛，一脸单纯又无辜地看着你",}
 ctPhrase[44]={nID=44,sTitle="吓人",sContent="[XX]突然从黑暗中跳了出来，吓得你哇哇大叫",}
-ctPhrase[45]={nID=45,sTitle="广告",sContent="[XX]微微一笑，道：爱生活，爱美丽，我为仙灵代言",}
+ctPhrase[45]={nID=45,sTitle="广告",sContent="[XX]微微一笑，道：爱生活，爱美丽，爱游戏！",}
 ctPhrase[46]={nID=46,sTitle="自拍",sContent="[XX]比出可爱的剪刀手，嘟起小嘴，美美哒地自拍了一张",}
 ctPhrase[47]={nID=47,sTitle="不哭",sContent="[XX]擦了擦眼泪，坚强道：我不会哭的！",}
 ctPhrase[48]={nID=48,sTitle="冷静点",sContent="[XX]对着你大声道：冷静点，冲动是魔鬼！",}

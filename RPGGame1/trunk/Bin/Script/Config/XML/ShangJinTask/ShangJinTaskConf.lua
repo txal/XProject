@@ -9,7 +9,7 @@ ctShangJinTaskConf[7]={nTaskID=7,nStart=3,nMonsterID=109031,nPosType=5,sName="�
 ctShangJinTaskConf[8]={nTaskID=8,nStart=3,nMonsterID=109032,nPosType=5,sName="黑风-长老",sDes="击杀",sContent="：黑风堂作恶多端，在修真界臭名昭著，必须出手惩戒。",tReward={{7,},{4,},{31000,},},}
 ctShangJinTaskConf[9]={nTaskID=9,nStart=3,nMonsterID=109033,nPosType=5,sName="三妖-月",sDes="击杀",sContent="：三妖十分棘手，必须用特殊的方式才能克制。",tReward={{7,},{4,},{31000,},},}
 ctShangJinTaskConf[10]={nTaskID=10,nStart=4,nMonsterID=109041,nPosType=5,sName="三妖-阳",sDes="击杀",sContent="：三妖十分棘手，必须用特殊的方式才能克制。",tReward={{7,},{4,},{16000,},},}
-ctShangJinTaskConf[11]={nTaskID=11,nStart=4,nMonsterID=109042,nPosType=5,sName="江湖-嘟嘟",sDes="击杀",sContent="：教训教训嘟嘟。",tReward={{7,},{4,},{16000,},},}
-ctShangJinTaskConf[12]={nTaskID=12,nStart=5,nMonsterID=109051,nPosType=5,sName="长生-掌门",sDes="击杀",sContent="：长生堂作恶多端，在修真界臭名昭著，必须出手惩戒。",tReward={{7,},{4,},{17000,},},}
-ctShangJinTaskConf[13]={nTaskID=13,nStart=5,nMonsterID=109052,nPosType=5,sName="黑风-掌门",sDes="击杀",sContent="：黑风堂作恶多端，在修真界臭名昭著，必须出手惩戒。",tReward={{7,},{4,},{17000,},},}
-ctShangJinTaskConf[14]={nTaskID=14,nStart=5,nMonsterID=109053,nPosType=5,sName="江湖-嘟嘟",sDes="击杀",sContent="：教训教训嘟嘟。",tReward={{7,},{4,},{17000,},},}
+ctShangJinTaskConf[11]={nTaskID=11,nStart=4,nMonsterID=109042,nPosType=5,sName="江湖-嘟嘟兽",sDes="击杀",sContent="：教训教训嘟嘟兽。",tReward={{7,},{4,},{16000,},},}
+ctShangJinTaskConf[12]={nTaskID=12,nStart=5,nMonsterID=109051,nPosType=5,sName="长生-掌门",sDes="击杀",sContent="：长生堂作恶多端，在修真界臭名昭著，必须出手惩戒。",tReward={{7,},{4,},{16000,},{17000,},},}
+ctShangJinTaskConf[13]={nTaskID=13,nStart=5,nMonsterID=109052,nPosType=5,sName="黑风-掌门",sDes="击杀",sContent="：黑风堂作恶多端，在修真界臭名昭著，必须出手惩戒。",tReward={{7,},{4,},{16000,},{17000,},},}
+ctShangJinTaskConf[14]={nTaskID=14,nStart=5,nMonsterID=109053,nPosType=5,sName="江湖-嘟嘟兽",sDes="击杀",sContent="：教训教训嘟嘟兽。",tReward={{7,},{4,},{16000,},{17000,},},}

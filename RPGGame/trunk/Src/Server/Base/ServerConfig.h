@@ -61,6 +61,7 @@ typedef std::vector<LoginNode> LoginVector;
 
 struct ServerConfig
 {
+	uint16_t uGroupID;
 	uint16_t uServerID;
 	uint16_t uWorldServerID;
 

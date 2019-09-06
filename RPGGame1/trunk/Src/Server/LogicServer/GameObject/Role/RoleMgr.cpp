@@ -48,7 +48,8 @@ void RoleMgr::RemoveRole(int64_t nObjID)
 	}
 	if (poRole->GetScene() != NULL)
 	{
-		poRole->GetScene()->LeaveScene(poRole->GetAOIID(), false);
+		XLog(LEVEL_ERROR, "需要先离开场景才能删除对象");
+		return;
 	}
 
 	BindSession(nObjID, 0);

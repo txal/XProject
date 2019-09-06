@@ -32,7 +32,7 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s64">
+  <Style ss:ID="s62">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="等线" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
@@ -40,7 +40,7 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s65">
+  <Style ss:ID="s63">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
    <Borders/>
    <Font ss:FontName="等线" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
@@ -48,11 +48,11 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s66">
+  <Style ss:ID="s64">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Font ss:FontName="等线" x:CharSet="134" ss:Size="11" ss:Color="#000000"/>
   </Style>
-  <Style ss:ID="s67">
+  <Style ss:ID="s65">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
    <Borders/>
    <Font ss:FontName="宋体" x:CharSet="134"/>
@@ -64,22 +64,22 @@
  <Worksheet ss:Name="Sheet1">
   <Table ss:ExpandedColumnCount="2" ss:ExpandedRowCount="44" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
-   <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="67.5"/>
-   <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="63"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="67.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="63"/>
    <Row ss:AutoFitHeight="0" ss:Height="55.5">
-    <Cell ss:StyleID="s65"><Data ss:Type="String">1~20为低级藏宝图奖励预览&#10;101~120为高级藏宝图奖励预览</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1~20为低级藏宝图奖励预览&#10;101~120为高级藏宝图奖励预览</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s66"><Data ss:Type="String">nID</Data></Cell>
-    <Cell ss:StyleID="s67"><Data ss:Type="String">nItemID</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">nItemID</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s66"><Data ss:Type="String">i</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">i</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s66"><Data ss:Type="String">编号</Data></Cell>
-    <Cell ss:StyleID="s66"><Data ss:Type="String">物品ID</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">编号</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">物品ID</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">1</Data></Cell>
@@ -171,7 +171,7 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">103</Data></Cell>
-    <Cell><Data ss:Type="Number">2000100</Data></Cell>
+    <Cell><Data ss:Type="Number">2000303</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">104</Data></Cell>
@@ -260,7 +260,7 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>39</ActiveRow>
+     <ActiveRow>40</ActiveRow>
      <ActiveCol>1</ActiveCol>
     </Pane>
    </Panes>

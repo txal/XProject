@@ -170,7 +170,7 @@ function CGRobotMgr:RandRobotName()
         local sTempName = fnGenName()
         if sTempName then 
             if not self.m_tRobotNameMap[sTempName] then 
-                local sData = goDBMgr:GetSSDB(0, "center"):HGet(gtDBDef.sRoleNameDB, sTempName)
+                local sData = goDBMgr:GetGameDB(0, "center"):HGet(gtDBDef.sRoleNameDB, sTempName)
                 if sData == "" then
                     sName = sTempName
                     break
@@ -289,7 +289,7 @@ function CGRobotMgr:_CreateRobot(nServer, nSrcID, nRobotType, nDupMixID, fnCallb
         print("创建机器人参数", tParam)
     end
 
-    Network.oRemoteCall:CallWait("CreateRobotReq", fnInnerCallback, nServer, nServiceID, 0,
+    Network:RMCall("CreateRobotReq", fnInnerCallback, nServer, nServiceID, 0,
         nServer, nRobotID, nSrcID, nRobotType, nDupMixID, tParam)
 end
 
@@ -406,7 +406,7 @@ function CGRobotMgr:RemoveRobot(nRobotID)
         return 
     end
     -- LuaTrace(string.format("RemoveRobot:移除机器人(%d)(%s)", oRobot:GetID(), oRobot:GetName()))
-    Network.oRemoteCall:Call("RoleOfflineReq", oRobot:GetStayServer(), oRobot:GetLogic(), 0, nRobotID)
+    Network:RMCall("RoleOfflineReq", nil, oRobot:GetStayServer(), oRobot:GetLogic(), 0, nRobotID)
 end
 
 --nServer填0，不限服务器

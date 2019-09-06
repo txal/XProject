@@ -3,13 +3,18 @@ local table, string, math, os, pairs, ipairs, assert = table, string, math, os, 
 
 function CRole:Ctor()
 	CObjectBase.Ctor(self, 0, gtGDef.tObjType.eRole, 0)
-
+	self.m_nSource = 0
+	self.m_sChannel = ""
 	self.m_nAccountID = 0
-	self.m_nOnlineTime = 0
-	self.m_nDisconnectTime = 0
+	self.m_sAccountName = ""
 	self.m_sRoleName = ""
 	self.m_tCurrencyMap = {}
 	self.m_tCurrencyCache = {}
+
+	
+	self.m_nOnlineTime = 0
+	self.m_nDisconnectTime = 0
+	self.m_nOfflineTime = 0
 
 	self.m_tModuleMap = {}
 	self.m_tModuleList = {}
@@ -49,9 +54,12 @@ end
 function CRole:SaveModuleData()
 end
 
+function CRole:GetSource() return self.m_nSource end
+function CRole:GetChannel() return self.m_sChannel end
 function CRole:GetObjName() return self.m_sRoleName end
 function CRole:GetObjConf() return ctRoleConf[self.m_nConfID] end
 function CRole:GetAccountID() return self.m_nAccountID end
+function CRole:GetAccountName() return self.m_sAccountName end
 function CRole:GetOnlineTime() return self.m_nOnlineTime end
 function CRole:GetDisconnectTime() return self.m_nDisconnectTime end
 
@@ -81,8 +89,6 @@ function CRole:OnEnterScene(oDup, oScene)
 	local tMsg = {}
 	tMsg.nDupID = self:GetDupID()
 	tMsg.nSceneID = self:GetSceneID()
-	tMsg.nDupConfID = self:GetDupConf().nID
-	tMsg.nSceneConfID = self:GetSceneConf().nID
 	tMsg.nObjID = self:GetObjID()
 	tMsg.nObjType = self:GetObjType()
 	tMsg.tBaseData = self:GetObjBaseData()
@@ -90,42 +96,59 @@ function CRole:OnEnterScene(oDup, oScene)
     self:SendMsg("ObjEnterSceneRet", tMsg)
 end
 
---取货币值
-function CRole:GetCurrency()
-	return (self.m_tCurrencyMap[nCurrType] or 0)
+--同步角色初始数据
+function CRole:SyncInitData()
+	local tData = {
+		nSource = self:GetSource(),
+		sChannel = self:GetChannel(),
+		nServerID = self:GetServerID(),
+		nAccountID = self:GetAccountID(),
+		sAccountName = self:GetAccountName(),
+		nRoleID = self:GetObjID(),
+		sRoleName = self:GetObjName(),
+		nLevel = self:GetLevel(),
+	}
+	self:SendMsg("RoleInitDataRet", tData)
 end
 
---添加货币
-function CRole:AddCurrency(nCurrType, nAddValue, bNotSync)
-	if nAddValue == 0 then
-		return
-	end
-	local nOldValue = self:GetCurrency()
-	
-	self.m_tCurrencyMap[nCurrType] = math.max(0, math.min(gtGDef.tConst.nMaxInteger, nOldValue+nAddValue))
+function CRole:Online(bReconnect)
+	self.m_nOnlineTime = os.time()
 	self:MarkDirty(true)
-
-	local nRealAddValue = self:GetCurrency(nCurrType) - nOldValue
-	if nRealAddValue == 0 then
-		return
+	for _, oModule in ipairs(self.m_tModuleList) do
+		oModule:Online(bReconnect)
 	end
+	self:SyncInitData()
+end
 
-	if bNotSync then
-		self.m_tCurrencyCache[nCurrType] = 1
-	else
-		self:SyncCurrency({{nType=nCurrType, nValue=self:GetCurrency(nCurrType)}})
+function CRole:OnDisconnect()
+	self.m_nDisconnectTime = os.time()
+	self:MarkDirty(true)
+	for _, oModule in ipairs(self.m_tModuleList) do
+		oModule:OnDisconnect()
 	end
 end
 
---同步货币
-function CRole:SyncCurrency(tCurrList)
-	if not tCurrList then
-		tCurrList = {}
-		for nCurrType, _ in pairs(self.m_tCurrencyCache) do
-			table.insert({nType=nCurrType, nValue=self:GetCurrency(nCurrType)})
-		end
+function CRole:Offline()
+	self.m_nOfflineTime = os.time()
+	self:MarkDirty(true)
+	for _, oModule in ipairs(self.m_tModuleList) do
+		oModule:Offline()
 	end
-	if #tCurrList > 0 then
-		Network.PBSrv2Clt("CurrencySyncRet", {tList=tCurrList})
-	end
+end
+
+--同步数据到登录服
+function CRole:SyncSimpleRole()
+	local tData = {
+		m_nID = self:GetObjID(),
+		m_nConfID = self:GetObjConf().nID,
+		m_sName = self:GetObjName(),
+		m_nLevel = self:GetLevel(),
+		m_tCurrSceneInfo = self:GetCurrSceneInfo(),
+		m_tLastSceneInfo = self:GetLastSceneInfo(),
+	}
+	local nServiceID = GetGModule("ServerMgr"):GetGlobalService(self:GetServerID())
+	Network:RMCall("UpdateSimpleRoleReq", nil, self:GetServerID(), nServiceID, self:GetSessionID(), tData)
+end
+
+function CRole:ForceFinishBattle()
 end

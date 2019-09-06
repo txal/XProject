@@ -1,62 +1,58 @@
 --账号模块
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
---每个帐号创建角色上限
+--帐号角色上限
 local nMaxAccountRole = 1
 --断线玩家保留时间
 local nKeepObjTime = gbInnerServer and 60 or (25*60)
 
-function CLAccount:Ctor(nServer, nSession, nID, nSource, sName)
+function CLAccount:Ctor(nServerID, nSessionID, nID, sName, nSource, sChannel)
 	self.m_nID = nID
 	self.m_sName = sName
 	self.m_nSource = nSource
-	self.m_nServer = nServer
+	self.m_sChannel = sChannel
+	self.m_nServerID = nServerID
 
-	self.m_tRoleSummaryMap = {} 	--角色摘要信息: --{[roleid]={nCreateTime=0,nID=0,sName="",nLevel=0,tEquipment={},nLastDup=nID,nCurrDup=nID,},...}
 	self.m_nLastRoleID = 0 			--最后登录的角色ID
 	self.m_nAccountState = 0 		--账号状态
+	self.m_tSimpleRoleMap = {} 		--简单角色信息
 
 	--不保存
 	self.m_nOnlineRoleID = 0 		--当前在线角色ID(同时只允许一个角色在线)
-	self.m_nSession = nSession
+	self.m_nSessionID = nSessionID
+	self.m_bReleased = false
 	self.m_bDirty = false
-
-	self.m_nKeepTimer = nil
 	self.m_nSaveTimer = nil
-
+	self.m_nKeepTimer = nil
 	self:LoadData()
 end
 
 function CLAccount:LoadData()
-	local sData = goDBMgr:GetSSDB(self:GetServer(), "user", self:GetID()):HGet(gtDBDef.sAccountDB, self:GetID())
-	if sData ~= "" then
-		local tData = cjson.decode(sData)
+	local oDB = GetGModule("DBMgr"):GetGameDB(self:GetServerID(), "user", self:GetID())
+	local sData = oDB:HGet(gtDBDef.sAccountDB, self:GetID())
+	if sData == "" then
+		self:MarkDirty(true)
+	else
+		local tData = cseri.decode(sData)
 		self.m_nID = tData.m_nID
 		self.m_sName = tData.m_sName
 		self.m_nSource = tData.m_nSource
-		self.m_nServer = tData.m_nServer
-		self.m_tRoleSummaryMap = tData.m_tRoleSummaryMap
+		self.m_sChannel = tData.m_sChannel
+		self.m_nServerID = tData.m_nServerID
 		self.m_nLastRoleID = tData.m_nLastRoleID
-		self.m_nAccountState = tData.m_nAccountState or 0
+		self.m_nAccountState = tData.m_nAccountState
 
-		--修正旧数据
-		for nRoleID, tSummary in pairs(self.m_tRoleSummaryMap) do
-			if tSummary.tCurrDup then
-				tSummary.nCurrDup = tSummary.tCurrDup[1]
-				tSummary.tCurrDup = nil
-			end
-			if tSummary.tLastDup then
-				tSummary.nLastDup = tSummary.tLastDup[1]
-				tSummary.tLastDup = nil
-			end
+		for nRoleID, tRoleData in pairs(tData.m_tSimpleRoleMap) do
+			local oSimpleRole = CSimpleRole:new()
+			oSimpleRole:LoadData(tRoleData)
+			self.m_tSimpleRoleMap[nRoleID] = oSimpleRole
 		end
-	else
-		self:MarkDirty(true)
 	end
 	self:RegAutoSave()
 end
 
 function CLAccount:RegAutoSave()
+	GetGModule("TimerMgr"):Clear(self.m_nSaveTimer)
 	self.m_nSaveTimer = GetGModule("TimerMgr"):Interval(gtGDef.tConst.nAutoSaveTime, function() self:SaveData() end)
 end
 
@@ -69,42 +65,47 @@ function CLAccount:SaveData()
 	tData.m_nID = self.m_nID
 	tData.m_sName = self.m_sName
 	tData.m_nSource = self.m_nSource
-	tData.m_nServer = self.m_nServer
-
-	tData.m_tRoleSummaryMap = self.m_tRoleSummaryMap
+	tData.m_sChannel = self.m_sChannel
+	tData.m_nServerID = self.m_nServerID
 	tData.m_nLastRoleID = self.m_nLastRoleID
-	tData.m_nAccountState = self.m_nAccountState or 0
+	tData.m_nAccountState = self.m_nAccountState
+	tData.m_tSimpleRoleMap = {}
 
-	goDBMgr:GetSSDB(self:GetServer(), "user", self:GetID()):HSet(gtDBDef.sAccountDB, self:GetID(), cjson.encode(tData)) 
+	for nRoleID, oSimpleRole in pairs(self.m_tSimpleRoleMap) do
+		local tRoleData = oSimpleRole:SaveData()
+		tData.m_tSimpleRoleMap[nRoleID] = tRoleData
+	end
+
+	GetGModule("TimerMgr"):GetGameDB(self:GetServerID(), "user", self:GetID()):HSet(gtDBDef.sAccountDB, self:GetID(), cseri.encode(tData)) 
 	self:MarkDirty(false)
 end
 
 function CLAccount:Release()
+	self.m_bReleased = true
 	self:SaveData()
-	GetGModule("TimerMgr"):Clear(self.m_nKeepTimer)
-	self.m_nKeepTimer = nil
 	GetGModule("TimerMgr"):Clear(self.m_nSaveTimer)
 	self.m_nSaveTimer = nil
+	GetGModule("TimerMgr"):Clear(self.m_nKeepTimer)
+	self.m_nKeepTimer = nil
 end
 
 function CLAccount:IsDirty() return self.m_bDirty end
 function CLAccount:MarkDirty(bDirty) self.m_bDirty = bDirty end
-function CLAccount:CheckRoleIDExist(nRoleID) 
-	return self.m_tRoleSummaryMap[nRoleID] and true or false
-end
+function CLAccount:GetSimpleRole(nRoleID) return self.m_tSimpleRoleMap[nRoleID] end
 
 function CLAccount:GetID() return self.m_nID end
 function CLAccount:GetAccountID() return self.m_nID end --接口兼容
 function CLAccount:GetName() return self.m_sName end
 function CLAccount:GetSource() return self.m_nSource end
-function CLAccount:GetServer() return self.m_nServer end
-function CLAccount:GetSession() return self.m_nSession end
+function CLAccount:GetChannel() return self.m_sChannel end
+function CLAccount:GetServerID() return self.m_nServerID end
+function CLAccount:GetSessionID() return self.m_nSessionID end
 function CLAccount:GetOnlineRoleID() return self.m_nOnlineRoleID end
-function CLAccount:BindSession(nSession) self.m_nSession = nSession end
+function CLAccount:BindSession(nSessionID) self.m_nSessionID = nSessionID end
+function CLAccount:IsReleased() return self.m_bReleased then
 
---角色登陆成功
+--角色登陆
 function CLAccount:RoleOnline(nRoleID)
-	print("CLAccount:RoleOnline***", nRoleID)
 	self.m_nLastRoleID = nRoleID
 	self:MarkDirty(true)
 
@@ -122,108 +123,85 @@ function CLAccount:RoleOffline()
 		GetGModule("TimerMgr"):Clear(self.m_nKeepTimer)
 		self.m_nKeepTimer = nil
 	end
-	self.m_nSession = 0
+	self.m_nSessionID = 0
 	self.m_nOnlineRoleID = 0
 end
 
 --角色断线
 function CLAccount:OnDisconnect()
-	goLoginMgr:GetLoginQueue():Remove(self.m_nID) --不论是否在排队都尝试删除下当前排队
-	self.m_nSession = 0
+	self.m_nSessionID = 0
 	GetGModule("TimerMgr"):Clear(self.m_nKeepTimer)
-	self.m_nKeepTimer = GetGModule("TimerMgr"):Interval(nKeepObjTime, function(nTimerID) goLoginMgr:AccountOffline(self:GetID()) end)
-	-- goLoginMgr:AccountOffline(self:GetID())
-end
-
---生成唯一账号/角色ID
-function CLAccount:GenPlayerID()
-	local oDB = goDBMgr:GetSSDB(0, "center")
-	local nIncr = oDB:HIncr(gtDBDef.sPlayerIDDB, "data")
-	local nPlayerID = gtGDef.tConst.nBasePlayerID + nIncr % (gtGDef.tConst.nMaxPlayerID - gtGDef.tConst.nBasePlayerID)
-	return nPlayerID
+	self.m_nKeepTimer = GetGModule("TimerMgr"):Interval(nKeepObjTime, function(nTimerID) GetGModule("LoginMgr"):AccountOffline(self:GetID()) end)
+	GetGModule("LoginMgr"):GetLoginQueue():Remove(self:GetID()) --不论是否在排队都尝试删除下当前排队
 end
 
 --取角色数量
 function CLAccount:GetRoleCount()
 	local nCount = 0
-	for nRoleID, tRole in pairs(self.m_tRoleSummaryMap) do
+	for nRoleID, oRole in pairs(self.m_tSimpleRoleMap) do
 		nCount = nCount +1
 	end
 	return nCount
 end
 
 --取当前登录角色的逻辑服ID
-function CLAccount:GetLogic()
+function CLAccount:GetLogicServiceID()
 	if self.m_nOnlineRoleID == 0 then
 		return 0
 	end
-
-	local tSummary = self.m_tRoleSummaryMap[self.m_nOnlineRoleID]
-	if not tSummary then
+	local oSimpleRole = self:GetSimpleRole(self.m_nOnlineRoleID)
+	if not oSimpleRole then
 		return 0
 	end
-	local nCurrDup = tSummary.nCurrDup
-	if nCurrDup > 0 then
-		local nDupID = CUtil:GetDupID(nCurrDup)
-		local tConf = ctDupConf[nDupID]
-		if tConf then
-			return tConf.nLogic
-		end
-		local nLastDup = tSummary.nLastDup
-		local nDupID = CUtil:GetDupID(nLastDup)
-		return ctDupConf[nDupID].nLogic
-	end
-	return 0
+	return oSimpleRole:GetLogicServiceID()
 end
 
---取当前场景类型(1城镇; 2副本)
-function CLAccount:GetCurrDupType()
+--取当前场景类型
+function CLAccount:GetCurrSceneType()
 	if self.m_nOnlineRoleID == 0 then
-		return 1
+		return 0
 	end
-	local tSummary = self.m_tRoleSummaryMap[self.m_nOnlineRoleID]
-	if not tSummary then
-		return 1
+	local oSimpleRole = self:GetSimpleRole(self.m_nOnlineRoleID)
+	if not oSimpleRole then
+		return 0
 	end
-	
-	local nCurrDup = tSummary.nCurrDup
-	if nCurrDup > 0 then
-		local nDupID = CUtil:GetDupID(nCurrDup)
-		local tConf = ctDupConf[nDupID]
-		return tConf and tConf.nType or 1
-	end
-	return 1
+	return oSimpleRole:GetCurrSceneType()
+end
+
+function CLAccount:SendMsg(sCmd, tMsg, nServerID, nSessionID)
+    nServerID = nServerID or self:GetServerID()
+    nSessionID = nSessionID or self:GetSessionID()
+    if nServerID <= 0 or nSessionID <= 0 then
+    	return
+    end
+    assert(nServerID < GetGModule("ServerMgr"):GetWorldServerID(), "服务器ID错了")
+    Network.PBSrv2Clt(sCmd, nServerID, nSessionID, tMsg)
 end
 
 --飘字提示
-function CLAccount:Tips(sCont, nServer, nSession)
+function CLAccount:Tips(sCont, nServerID, nSessionID)
     assert(sCont, "参数错误")
-    nServer = nServer or self:GetServer()
-    nSession = nSession or self:GetSession()
-    Network.PBSrv2Clt("TipsMsgRet", nServer, nSession, {sCont=sCont})
+    self:SendMsg("FloatTipsRet", {sCont=sCont}, nServerID, nSessionID)
 end
 
 --角色列表请求
-function CLAccount:RoleListReq(nServer, nSession)
-	local nServer = nServer or self:GetServer()
-	local nSession = nSession or self:GetSession()
+function CLAccount:RoleListReq(nServerID, nSessionID)
+	local nServerID = nServerID or self:GetServerID()
+	local nSessionID = nSessionID or self:GetSessionID()
 
 	local tList = {}
-	for nRoleID, tSummary in pairs(self.m_tRoleSummaryMap) do
-		local nConfID = tSummary.nConfID or 1
-		local tRoleConf = ctRoleInitConf[nConfID]
+	for nRoleID, oSimpleRole in pairs(self.m_tSimpleRoleMap) do
+		local tRoleConf = oSimpleRole:GetRoleConf()
 		local tRole = {
 			nID = nRoleID,
-			sName = tSummary.sName,
+			sName = oSimpleRole:GetName(),
+			nLevel = oSimpleRole:GetLevel(),
 			nGender = tRoleConf.nGender,
 			nSchool = tRoleConf.nSchool,
-			nLevel = tSummary.nLevel,
-			tEquipment = tSummary.tEquipment,
-			sModel = tRoleConf.sModel,
 		}
 		table.insert(tList, tRole)
 	end
-	Network.PBSrv2Clt("RoleListRet", nServer, nSession, {tList=tList, nAccountID=self:GetID()})
+	self:SendMsg("RoleListRet", {nAccountID=self:GetID(), tList=tList}, nServerID, nSessionID)
 end
 
 function CLAccount:DealLogin(nRoleID)
@@ -232,28 +210,28 @@ function CLAccount:DealLogin(nRoleID)
 			return false
 		end
 	else
-		goLoginMgr:AddOnlineNum(1)
+		GetGModule("LoginMgr"):AddOnlineNum(1)
 	end
 	self:RoleOnline(nRoleID)
 
-	local tSummary = self.m_tRoleSummaryMap[nRoleID]
-	local tMsg = {nAccountID=self:GetID(), nRoleID=nRoleID, nServerID=gnServerID, nCreateTime=tSummary.nCreateTime or os.time()}
-	Network.PBSrv2Clt("RoleLoginRet", self:GetServer(), self:GetSession(), tMsg)
+	local oSimpleRole = self:GetSimpleRole(nRoleID)
+	local tMsg = {nAccountID=self:GetID(), nRoleID=nRoleID, nServerID=gnServerID, nCreateTime=oSimpleRole:GetCreateTime()}
+	self:SendMsg("RoleLoginRet", tMsg)
 	--通知逻辑服登录成功
-	Network.oRemoteCall:Call("RoleOnlineReq", self:GetServer(), self:GetLogic(), self:GetSession(), nRoleID)
+	Network:RMCall("RoleOnlineReq", nil, self:GetServerID(), self:GetLogicServiceID(), 0, nRoleID)
 	return true
 end
 
 --角色登录
 function CLAccount:RoleLogin(nRoleID)
-	local tSummary = self.m_tRoleSummaryMap[nRoleID]
-	if not tSummary then
+	local oSimpleRole = self:GetSimpleRole(nRoleID)
+	if not oSimpleRole then
 		self:Tips("角色不存在")
 		return false
 	end
 
 	if self.m_nOnlineRoleID > 0 then
-		assert(self.m_nOnlineRoleID == nRoleID, "需要先退出当前登陆角色")
+		assert(self.m_nOnlineRoleID == nRoleID, "要先退出当前登陆角色")
 		--离线保护期间重新登录，不需要排队
 		if self.m_nKeepTimer then 
 			GetGModule("TimerMgr"):Clear(self.m_nKeepTimer)
@@ -266,21 +244,30 @@ function CLAccount:RoleLogin(nRoleID)
 		GetGModule("TimerMgr"):Clear(self.m_nKeepTimer)
 		self.m_nKeepTimer = nil
 	end
-	if not goLoginMgr:GetLoginQueue():Insert(self:GetID(), nRoleID) then --可能排队上限
+	if not GetGModule("LoginMgr"):GetLoginQueue():Insert(self:GetID(), nRoleID) then --可能排队上限
 		return false
 	end
 	return true
 end
 
---创建角色
-function CLAccount:CreateRole(nConfID, sName, nInviteRoleID)
-	print("CLAccount:CreateRole***", nConfID, sName, nInviteRoleID)
-	sName = string.Trim(sName)
-	local bRes, sTips = true, ""
+--是否重名
+function CLAccount:IsRoleNameExist(sRoleName)
+	local sData = GetGModule("DBMgr"):GetGameDB(0, "center"):HGet(gtDBDef.sRoleNameDB, sRoleName)
+	return (sData ~= "")
+end
 
-	if string.len(sName)<=0 or string.len(sName)>gtGDef.tConst.nMaxRoleNameLen then
+--创建角色
+function CLAccount:CreateRole(nConfID, sRoleName)
+	if self.m_bCreatingRole then
+		return self:Tips("正在创建角色中,请稍后")
+	end
+	sRoleName = string.Trim(sRoleName)
+	local nNameLen = string.len(sRoleName)
+
+	local bRes, sTips = true, ""
+	if sNameLen<=0 or sNameLen>gtGDef.tConst.nMaxRoleNameLen then
 		bRes = false
-		sTips = "名字长度过长"
+		sTips = "角色名字长度过长"
 
 	elseif self.m_nOnlineRoleID > 0 then
 		bRes = false
@@ -289,68 +276,103 @@ function CLAccount:CreateRole(nConfID, sName, nInviteRoleID)
 	elseif self:GetRoleCount() >= nMaxAccountRole then
 		bRes = false
 		sTips = string.format("每个帐号只能创建%d个角色", nMaxAccountRole)
-	else
-		local sData = goDBMgr:GetSSDB(0, "center"):HGet(gtDBDef.sRoleNameDB, sName)
-		if sData ~= "" then
-			bRes = false
-			sTips = "角色名已被占用"
-		end
+
+	elseif self:IsRoleNameExist(sRoleName) then
+		bRes = false
+		sTips = "角色名已被占用"
+
 	end
+
 	if not bRes then
-		LuaTrace(sTips, sName)
+		LuaTrace("创建角色失败:", sRoleName, sTips)
 		self:Tips(sTips)
 		return
 	end
 
 	--保存角色数据
-	local tRoleConf = assert(ctRoleInitConf[nConfID])
-	local tBorn = tRoleConf.tBorn[1]
-	local nRndX, nRndY = CUtil:RandPos(tBorn[1], tBorn[2], 10)
-	local tDupConf = ctDupConf[tRoleConf.nInitDup]
+	local tRoleConf = assert(ctRoleConf[nConfID], "角色配置不存在:"..nConfID)
+	local tDupConf = assert(ctDupConf[tRoleConf.nInitDupID], "初始副本配置不存在")
+	local tSceneConf = assert(ctSceneConf[tRoleConf.nInitSceneID], "初始场景配置不存在")
+	local nPosX, nPosY = table.unpack(tSceneConf.tBornPos[1])
+	local nRndBornX, nRndBornY = CUtil:RandPos(nPosX, nPosY, 10)
+	local nInitFace = tSceneConf.nInitFace
+	self.m_bCreatingRole = true 
 
-	local nRoleID = self:GenPlayerID()
-	local tData = {
-		m_nSource = self:GetSource(),
-		m_nAccountID = self:GetID(),
-		m_sAccountName = self:GetName(),
-		m_nCreateTime = os.time(),
-		m_nID = nRoleID,
-		m_nConfID = nConfID,
-		m_sName = sName,
-		m_nLevel = 0, 	--初始0级
-		m_tLastDup = {0, 0, 0, 0},
-		m_tCurrDup = {tRoleConf.nInitDup, nRndX, nRndY, tDupConf.nFace},
-		m_nInviteRoleID = nInviteRoleID,
-		m_bCreate = true, --是否创建新角色,给逻辑服用
-	}
-	goDBMgr:GetSSDB(self:GetServer(), "user", nRoleID):HSet(gtDBDef.sRoleDB, nRoleID, cjson.encode(tData))
+	Network:RMCall("QueryCityByDupConfIDReq", function(tDupSceneInfo)
+		self.m_bCreatingRole = false
+		if self:IsReleased() then
+			return
+		end
+		if not tDupSceneInfo then
+			return self:Tips("查询城镇信息失败")
+		end
 
-	--生成角色摘要
-	self.m_tRoleSummaryMap[nRoleID] = {
-		nCreateTime = os.time(),
-		nID = nRoleID,
-		sName = sName,
-		nLevel = 0,
-		nConfID = nConfID,
-		nLastDup = 0,
-		nCurrDup = tRoleConf.nInitDup,
-		tEquipment = {},
-	}
-	self:MarkDirty(true)
-	self:SaveData() --马上保存下
+		local nRoleID = CUtil:GenUUID()
+		--生成角色初始数据
+		local tData = {
+			m_nSource = self:GetSource(),
+			m_sChannel = self:GetChannel(),
+			m_nCreateTime = os.time(),
+			m_nObjID = nRoleID,
+			m_nConfID = nConfID,
+			m_nObjType = gtGDef.tObjType.eRole,
+			m_nAccountID = self:GetID(),
+			m_sAccountName = self:GetName(),
+			m_sRoleName = sRoleName,
+			m_nLevel = tRoleConf.nInitLevel,
+			m_bCreateRole = true, --是否创建新角色,给逻辑服用
+			m_tCurrSceneInfo = {
+				nDupID = tDupSceneInfo.nDupID,
+				nSceneID = tDupSceneInfo.tSceneList[1],
+				nPosX = nRandBornX,
+				nPosY = nRandBornY,
+				nLine = -1,
+				nFace = nInitFace,
+			},
+			m_tLastSceneInfo = {
+				nDupID = 0,
+				nSceneID = 0,
+				nPosX = 0,
+				nPosY = 0,
+				nLine = -1,
+				nFace = 0,
+			},
+		}
+		GetGModule("DBMgr"):GetGameDB(self:GetServerID(), "user", nRoleID):HSet(gtDBDef.sRoleDB, nRoleID, cseri.encode(tData))
 
-	goDBMgr:GetSSDB(0, "center"):HSet(gtDBDef.sRoleNameDB, sName, nRoleID)
-	goLogger:CreateRoleLog(self:GetID(), nRoleID, sName, 0, tRoleConf.sHeader, tRoleConf.nGender, tRoleConf.nSchool)
-	return self:RoleLogin(nRoleID)
+		--生成简版角色数据
+		local oSimpleRole = CSimpleRole:new(nRoleID, tRoleConf.nInitLevel, sRoleName, tData.m_tCurrSceneInfo, tData.m_tLastSceneInfo)
+		self.m_tSimpleRoleMap[nRoleID] = oSimpleRole
+		self:MarkDirty(true)
+		self:SaveData()
+
+		--记录角色名字到角色ID映射
+		GetGModule("DBMgr"):GetGameDB(0, "center"):HSet(gtDBDef.sRoleNameDB, sRoleName, nRoleID)
+
+		--日志
+		local tRoleInfo = {
+			nAccountID = nAccountID,
+			nRoleID = nRoleID,
+			sRoleName = sRoleName,
+			nLevel = nLevel,
+			sHeader = sHeader,
+			nGender = nGender,
+			nSchool = nSchool,
+			os.time(),
+		}
+		GetGModule("Logger"):CreateRoleLog(tRoleInfo)
+		return self:RoleLogin(nRoleID)
+
+	end, CUtil:GetServerByLogic(tDupConf.nLogicServiceID), tDupConf.nLogicServiceID, 0)
 end
 
---更新角色摘要
-function CLAccount:UpdateRoleSummary(nRoleID, tSummary)
-	if not self.m_tRoleSummaryMap[nRoleID] then 
-		print("角色不存在，已删除??")
-		return 
+--更新简单角色
+function CLAccount:UpdateSimpleRoleData(nRoleID, tData)
+	local oSimpleRole = self:GetSimpleRole(nRoleID)
+	if not oSimpleRole then 
+		return LuaTrace("CLAccount:UpdateSimpleRole: 角色不存在，已删除??")
 	end
-	self.m_tRoleSummaryMap[nRoleID] = tSummary
+	oSimpleRole:UpdateData(tData)
 	self:MarkDirty(true)
 end
 
@@ -360,11 +382,11 @@ function CLAccount:GetAccountState()
 end
 
 --设置账号数据
-function CLAccount:UpdateValueReq(tData)
+function CLAccount:UpdateAccountData(tData)
 	for key, val in pairs(tData) do
 		self[key] = val
 		if key == "m_nAccountState" then
-			goLogger:UpdateAccountLog(self, {accountstate=val})
+			GetGModule("Logger"):UpdateAccountLog(self, {accountstate=val})
 		end
 	end
 	self:MarkDirty(true)
@@ -372,11 +394,11 @@ end
 
 function CLAccount:DeleteRole(nRoleID) 
 	assert(nRoleID > 0)
-	if not self:CheckRoleIDExist(nRoleID) then 
+	if not self:GetSimpleRole(nRoleID) then 
 		return 
 	end
 	print("开始删除角色", nRoleID)
-	self.m_tRoleSummaryMap[nRoleID] = nil
+	self.m_tSimpleRoleMap[nRoleID] = nil
 	if self.m_nLastRoleID == nRoleID then 
 		self.m_nLastRoleID = 0 
 	end
@@ -385,57 +407,47 @@ function CLAccount:DeleteRole(nRoleID)
 	end
 
 	--对所有全局服广播角色删除事件
-	local tGlobalServiceList = goServerMgr:GetGlobalServiceList()
+	local tGlobalServiceList = GetGModule("ServerMgr"):GetGlobalServiceList()
     for _, tConf in pairs(tGlobalServiceList) do
-		if tConf.nServer == self:GetServer() or tConf.nServer == gnWorldServerID then 
-			local nServer = tConf.nServer
-			local nService = tConf.nID
-			local fnNotifyCallback = function(bRet) 
-				if not bRet then 
-					LuaTrace(string.format(
-						"角色删除通知AccountRoleDeleteNotify操作失败, AccountID(%d), RoleID(%d), Server(%d), Service(%d)", 
-						self:GetID(), nRoleID, nServer, nService)) 
-					return 
-				end
+		local nServerID = tConf.nServerID
+		local nServiceID = tConf.nServiceID
+		local fnNotifyCallback = function(bRet) 
+			if not bRet then 
+				LuaTrace(string.format("角色删除通知AccountRoleDeleteNotify操作失败, AccountID(%d), RoleID(%d), Server(%d), Service(%d)",
+					self:GetID(), nRoleID, nServerID, nService)) 
+				return 
 			end
-
-			Network.oRemoteCall:CallWait("AccountRoleDeleteNotify", fnNotifyCallback, 
-				nServer, nService, self:GetSession(), self:GetID(), nRoleID)
-        end
+		end
+		Network:RMCall("AccountRoleDeleteNotify", fnNotifyCallback, nServerID, nServiceID, self:GetSessionID(), self:GetID(), nRoleID)
 	end
 	self:SaveData() --主动保存下，防止rpc期间，账号下线 
 end
 
 function CLAccount:DeleteRoleReq(nRoleID)
 	assert(nRoleID > 0, "参数错误")
-	if not self:CheckRoleIDExist(nRoleID) then 
-		self:Tips("不存在该角色，请检查角色ID")
-		return
+	if not self:GetSimpleRole(nRoleID) then 
+		return self:Tips("不存在该角色，请检查角色ID")
 	end
-	local nOldSession = self:GetSession()
+	local nOldSession = self:GetSessionID()
 	--当前，只是在账号数据中，解除角色关联，不处理角色中，关联账号的数据
 	local fnCheckCallback = function(bSucc, sReason) 
-		if not bSucc then
-			if sReason and type(sReason) == "string" then  
-				self:Tips(sReason) 
-			end
-			return
+		if not bSucc and sReason then
+			return self:Tips(sReason)
 		end
 		self:MarkDirty(true) 
 		self:DeleteRole(nRoleID)
 		self:Tips("请刷新页面或退出游戏，重新登录")
-		goLoginMgr:OtherPlaceLogin(self:GetServer(), nOldSession, self:GetName(), 0)
+		GetGModule("LoginMgr"):OtherPlaceLogin(self:GetServerID(), nOldSession)
 	end
 
 	--检查角色是否在线，如果在线，将角色离线
 	if self:GetOnlineRoleID() == nRoleID then 
 		--检查并将角色离线
-		Network.oRemoteCall:CallWait("DeleteRoleCheckReq", fnCheckCallback, 
-			self:GetServer(), self:GetLogic(), self:GetSession(), nRoleID) 
+		Network:RMCall("DeleteRoleCheckReq", fnCheckCallback, self:GetServerID(), self:GetLogicServiceID(), self:GetSessionID(), nRoleID)
 	else
 		self:MarkDirty(true) 
 		self:DeleteRole(nRoleID)
+		GetGModule("LoginMgr"):OtherPlaceLogin(self:GetServerID(), nOldSession)
 		self:Tips("请刷新页面或退出游戏，重新登录")
-		goLoginMgr:OtherPlaceLogin(self:GetServer(), nOldSession, self:GetName(), 0)
 	end
 end

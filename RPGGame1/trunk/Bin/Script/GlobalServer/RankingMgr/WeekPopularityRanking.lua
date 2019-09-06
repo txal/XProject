@@ -10,10 +10,10 @@ end
 function CWeekPopularityRanking:LoadData()
 	CRankingBase.LoadData(self)
 	--杂项
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sEtcData = oSSDB:HGet(gtDBDef.sRankingEtcDB, self:GetID())
 	if sEtcData ~= "" then
-		local tEtcData = cjson.decode(sEtcData)
+		local tEtcData = cseri.decode(sEtcData)
 		self.m_nLastWeekTime = tEtcData.m_nLastWeekTime
 	end
 end
@@ -22,10 +22,10 @@ function CWeekPopularityRanking:SaveData()
 	CRankingBase.SaveData(self)
 	
 	--杂项
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	if self:IsEtcDirty() then
 		local tData = {m_nLastWeekTime = self.m_nLastWeekTime}
-		oSSDB:HSet(gtDBDef.sRankingEtcDB, self:GetID(), cjson.encode(tData))
+		oSSDB:HSet(gtDBDef.sRankingEtcDB, self:GetID(), cseri.encode(tData))
 		self:MarkEtcDirty(false)
 	end
 end

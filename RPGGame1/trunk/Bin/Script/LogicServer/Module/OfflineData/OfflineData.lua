@@ -27,9 +27,9 @@ end
 --加载旧数据
 function COfflineData:LoadKeyData(nServerID, nRoleID, key)
 	assert(nServerID and nRoleID and key, "参数错误")
-	local oDB = goDBMgr:GetSSDB(nServerID, "user", nRoleID)
+	local oDB = goDBMgr:GetGameDB(nServerID, "user", nRoleID)
 	local sData = oDB:HGet("offlinedata_"..nRoleID, key)
-	local tData = sData == "" and {} or cjson.decode(sData)
+	local tData = sData == "" and {} or cseri.decode(sData)
 	return tData
 end
 
@@ -40,15 +40,15 @@ function COfflineData:SaveKeyData(nServerID, nRoleID, key, data)
 	if CUtil:IsRobot(nRoleID) then 
 		return 
 	end
-	local oDB = goDBMgr:GetSSDB(nServerID, "user", nRoleID)
-	oDB:HSet("offlinedata_"..nRoleID, key, cjson.encode(data))
+	local oDB = goDBMgr:GetGameDB(nServerID, "user", nRoleID)
+	oDB:HSet("offlinedata_"..nRoleID, key, cseri.encode(data))
 	print("保存离线数据:", nServerID, nRoleID, key, data)
 end
 
 --删除数据
 function COfflineData:DelKeyData(nServerID, nRoleID, key)
 	assert(nServerID and nRoleID and key, "参数错误")
-	local oDB = goDBMgr:GetSSDB(nServerID, "user", nRoleID)
+	local oDB = goDBMgr:GetGameDB(nServerID, "user", nRoleID)
 	oDB:HDel("offlinedata_"..nRoleID, key)
 end
 

@@ -78,7 +78,7 @@ function CGuaJiBattleDup:OnObjEnter(oLuaObj, bReconnect)
 		self:SyncDupInfo(oLuaObj)
 		local nGuanQia, nBattleTimes = oLuaObj.m_oGuaJi:GetGuanQiaAndBattleTimes()
 		local nServerID = oLuaObj:GetServer()
-		--Network.oRemoteCall:Call("StartGuaJiAutoReward", nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID(), {nGuanQia=nGuanQia})
+		--Network:RMCall("StartGuaJiAutoReward", nil, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID(), {nGuanQia=nGuanQia})
 		oLuaObj.m_oGuaJi:SendGuanQiaInfo()
 		-- 	梁建荣(梁建荣) 03-02 14:07:42
 		-- 这屏蔽不显示
@@ -109,9 +109,9 @@ function CGuaJiBattleDup:OnObjEnter(oLuaObj, bReconnect)
 					end
 				end
 			end
-			Network.oRemoteCall:Call("StopGuaJiAutoReward", nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID())
+			Network:RMCall("StopGuaJiAutoReward", nil, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID())
 		end
-		Network.oRemoteCall:CallWait("GetIsAutoBattle", CallBack, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID())
+		Network:RMCall("GetIsAutoBattle", CallBack, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID())
 	end
 end
 
@@ -140,7 +140,7 @@ function CGuaJiBattleDup:OnObjLeave(oLuaObj, nBattleID)
 			if oLuaObj:IsOnline() then
 				local nGuanQia, nBattleTimes = oLuaObj.m_oGuaJi:GetGuanQiaAndBattleTimes()
 				local nServerID = oLuaObj:GetServer()
-				Network.oRemoteCall:Call("StartGuaJiAutoReward", nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID(), {nGuanQia=nGuanQia})
+				Network:RMCall("StartGuaJiAutoReward", nil, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID(), {nGuanQia=nGuanQia})
 			end
         end
     end
@@ -158,7 +158,7 @@ function CGuaJiBattleDup:SendLeaveRewardInfo(oRole)
 		end
     end
     local nServerID = oRole:GetServer()
-    Network.oRemoteCall:CallWait("IsGuaJi", LeaveRewardInfo, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID())
+    Network:RMCall("IsGuaJi", LeaveRewardInfo, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID())
 end
 
 function CGuaJiBattleDup:ObjAfterEnter(oLuaObj)
@@ -193,7 +193,7 @@ end
 function CGuaJiBattleDup:SetAutoBattle(oRole, bAutoBattle)
 	CEventHandler:ClickAutoChalGuaJiBoss(oRole, {})
 	local nServerID = oRole:GetServer()	
-	Network.oRemoteCall:Call("SetIsAutoBattle", nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID(), {bAutoBattle=bAutoBattle})
+	Network:RMCall("SetIsAutoBattle", nil, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID(), {bAutoBattle=bAutoBattle})
 end
 
 --挑战boss
@@ -290,7 +290,7 @@ function CGuaJiBattleDup:OnBattleEnd(oLuaObj, tBTRes, tExtData)
 			self:RegAutoBattle(oLuaObj)
 		end
 		local nServerID = oLuaObj:GetServer()
-		Network.oRemoteCall:CallWait("GetIsAutoBattle", CallBack, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID())
+		Network:RMCall("GetIsAutoBattle", CallBack, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oLuaObj:GetID())
 	end
 end
 
@@ -367,7 +367,7 @@ function CGuaJiBattleDup:EnterBattleDupReq(oRole)
 			tData.nDupMixID = nDupMixID
 			table.insert(tRobotList, tData)
 		end
-		--Network.oRemoteCall:Call("GuaJiCreateRobotReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, tRobotList)
+		--Network:RMCall("GuaJiCreateRobotReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, tRobotList)
         local tConf = assert(ctDupConf[CUtil:GetDupID(nDupMixID)])
         local tDupList = ctBattleDupConf[gtBattleDupType.eGuaJi].tDupList
         local tDupConf = assert(ctDupConf[tDupList[1][1]])
@@ -408,7 +408,7 @@ function CGuaJiBattleDup:SendGuaJiStatue(oRole)
 		--PrintTable(tMsg)				
 	end
 	local nServerID = oRole:GetServer()	
-	Network.oRemoteCall:CallWait("GetIsAutoBattle", SendMsg, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID())
+	Network:RMCall("GetIsAutoBattle", SendMsg, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID())
 end
 
 --收到战斗动画结束通知
@@ -434,7 +434,7 @@ function CGuaJiBattleDup:GuaJiBattleEndNoticeReq(oRole)
 			end
 		end
 		local nServerID = oRole:GetServer()
-		Network.oRemoteCall:CallWait("GetIsAutoBattle", CallBack, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID())
+		Network:RMCall("GetIsAutoBattle", CallBack, nServerID, goServerMgr:GetGlobalService(nServerID,20), 0, oRole:GetID())
 	end
 end
 

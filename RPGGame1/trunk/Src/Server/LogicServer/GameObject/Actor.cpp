@@ -97,27 +97,28 @@ void Actor::UpdateRunState(int64_t nNowMS)
 			Point oStartPos(m_nRunStartX, m_nRunStartY);
 			if (m_oPos.Distance(oStartPos) >= m_oTargetPos.Distance(oStartPos))
 			{
-				XLog(LEVEL_DEBUG, "%d %s reach target pos(%d,%d) tarpos(%d,%d)\n", time(NULL), m_sName, m_oPos.x, m_oPos.y, m_oTargetPos.x, m_oTargetPos.y);
-				SetPos(m_oTargetPos);
-				StopRun();
-
-				if (m_bRunCallback)
-				{
-					m_bRunCallback = false;
-					OnReacheTargetPos();
-				}
+				Point oTargetPos = m_oTargetPos;
+				StopRun(); //这里会重置m_oTargetPos
+				OnReacheTargetPos(oTargetPos);
 			}
 		}
 	}
 }
 
-void Actor::OnReacheTargetPos()
+void Actor::OnReacheTargetPos(Point& oTargetPos)
 {
+
+	XLog(LEVEL_DEBUG, "%d %s reach target pos(%d,%d) tarpos(%d,%d)\n", time(NULL), m_sName, m_oPos.x, m_oPos.y, oTargetPos.x, oTargetPos.y);
+	if (!m_bRunCallback)
+	{
+		return;
+	}
+	m_bRunCallback = false;
 	lua_State* pState = LuaWrapper::Instance()->GetLuaState();
 	Lunar<SceneBase>::push(pState, m_poScene);
 	Lunar<Actor>::push(pState, this);
-	lua_pushinteger(pState, m_oTargetPos.x);
-	lua_pushinteger(pState, m_oTargetPos.y);
+	lua_pushinteger(pState, oTargetPos.x);
+	lua_pushinteger(pState, oTargetPos.y);
 	LuaWrapper::Instance()->CallLuaRef("OnObjReachTargetPos", 4, 0);
 }
 
@@ -146,8 +147,19 @@ bool Actor::CalcPositionAtTime(int64_t nNowMS, int& nNewPosX, int& nNewPosY)
 
 void Actor::RunTo(const Point& oTarPos, int nMoveSpeed)
 {
-	if (m_poScene == NULL  || m_oPos == oTarPos || nMoveSpeed <= 0)
+	if (m_poScene == NULL)
 	{
+		return;
+	}
+	if (nMoveSpeed <= 0)
+	{
+		return;
+	}
+	if (m_oPos == oTarPos)
+	{
+		m_bRunCallback = true;
+		m_oTargetPos = oTarPos;
+		OnReacheTargetPos(m_oTargetPos);
 		return;
 	}
 
@@ -163,14 +175,13 @@ void Actor::RunTo(const Point& oTarPos, int nMoveSpeed)
 	int nOldSpeedY = GetSpeedY();
 	if (!IsRunning() || nSpeedX != nOldSpeedX || nSpeedY != nOldSpeedY)
 	{
-		m_oTargetPos = oTarPos;
 		m_bRunCallback = true;
+		m_oTargetPos = oTarPos;
 		StartRun(nSpeedX, nSpeedY, m_nFace);
 	}
 #ifdef _DEBUG
 	XLog(LEVEL_DEBUG, "%d %s run to speed(%d,%d), pos(%d,%d), tarpos(%d,%d)\n", time(NULL), m_sName, nSpeedX, nSpeedY, m_oPos.x, m_oPos.y, oTarPos.x, oTarPos.y);
 #endif // _DEBUG
-
 }
 
 //同步自己坐标

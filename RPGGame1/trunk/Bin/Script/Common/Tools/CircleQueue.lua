@@ -1,6 +1,7 @@
 --模拟循环队列
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 
+
 function CCircleQueue:Ctor(nMaxCount, bDeepCopy)
 	self.m_nHead = 1
 	self.m_nTail = 1   --指向的下一个 空 元素索引

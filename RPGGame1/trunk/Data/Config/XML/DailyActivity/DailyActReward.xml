@@ -8,10 +8,10 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>AutoBVT</LastAuthor>
+  <LastAuthor>Administrator</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2018-12-27T12:02:04Z</LastSaved>
-  <Version>12.00</Version>
+  <LastSaved>2018-07-16T12:17:51Z</LastSaved>
+  <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <KSOProductBuildVer dt:dt="string">2052-10.1.0.7346</KSOProductBuildVer>
@@ -20,10 +20,10 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>12450</WindowHeight>
-  <WindowWidth>28800</WindowWidth>
-  <WindowTopX>0</WindowTopX>
-  <WindowTopY>0</WindowTopY>
+  <WindowHeight>9180</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -64,10 +64,11 @@
   <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="38" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="63.75" ss:Span="1"/>
-   <Column ss:Index="3" ss:StyleID="s62" ss:Width="96.75"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="52.5" ss:Span="3"/>
-   <Column ss:Index="8" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="47.25"
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="63.599999999999994"
+    ss:Span="1"/>
+   <Column ss:Index="3" ss:StyleID="s62" ss:Width="96.6"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="52.8" ss:Span="3"/>
+   <Column ss:Index="8" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="47.4"
     ss:Span="1"/>
    <Row ss:AutoFitHeight="0" ss:Height="49.5">
     <Cell ss:Index="3"><Data ss:Type="String">活跃度奖励</Data></Cell>
@@ -96,22 +97,22 @@
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s63"><Data ss:Type="Number">2</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">40</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">11004,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">11005,1;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s63"><Data ss:Type="Number">3</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">60</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">20005,50;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">10114,3;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">80</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">13527,1;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">19016,30;</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s63"><Data ss:Type="Number">5</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">13300,4;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">13300,3;</Data></Cell>
     <Cell ss:StyleID="s64"/>
     <Cell ss:StyleID="s64"/>
     <Cell ss:StyleID="s64"/>
@@ -120,7 +121,7 @@
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s63"><Data ss:Type="Number">6</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">120</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="String">19012,2;</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">10014,1;</Data></Cell>
     <Cell ss:StyleID="s64"/>
     <Cell ss:StyleID="s64"/>
     <Cell ss:StyleID="s64"/>
@@ -394,8 +395,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>10</ActiveRow>
-     <ActiveCol>2</ActiveCol>
+     <ActiveRow>14</ActiveRow>
+     <ActiveCol>4</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>
@@ -412,7 +413,7 @@
  <Worksheet ss:Name="Sheet2">
   <Table ss:ExpandedColumnCount="2" ss:ExpandedRowCount="34" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
-   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="574.5"/>
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="574.79999999999995"/>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="String">宋玉</Data></Cell>
     <Cell><Data ss:Type="String">多想为你奉上最美的鲜花</Data></Cell>
@@ -556,6 +557,12 @@
     <Footer x:Margin="0.51111111111111096"/>
    </PageSetup>
    <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
    <PageBreakZoom>100</PageBreakZoom>
    <Panes>
     <Pane>

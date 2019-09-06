@@ -1,6 +1,6 @@
 ctExchangeActivityConf={}
 ctExchangeActivityConf[1]={nSeq=1,nActivityID=1,nExchangeID=1,bIsOpen=false,nMaxTimes=1,tStuffList={{13300,99,},},tItemList={{20111,1,},},bIsBroad=true,}
-ctExchangeActivityConf[2]={nSeq=2,nActivityID=1,nExchangeID=2,bIsOpen=false,nMaxTimes=0,tStuffList={{13300,17,},},tItemList={{13152,1,},},bIsBroad=false,}
+ctExchangeActivityConf[2]={nSeq=2,nActivityID=1,nExchangeID=2,bIsOpen=true,nMaxTimes=0,tStuffList={{13300,17,},},tItemList={{13152,1,},},bIsBroad=false,}
 ctExchangeActivityConf[3]={nSeq=3,nActivityID=1,nExchangeID=3,bIsOpen=true,nMaxTimes=0,tStuffList={{13300,2,},},tItemList={{34011,1,},},bIsBroad=false,}
 ctExchangeActivityConf[4]={nSeq=4,nActivityID=2,nExchangeID=1,bIsOpen=true,nMaxTimes=0,tStuffList={{20001,30,},},tItemList={{10006,1,},},bIsBroad=false,}
 ctExchangeActivityConf[5]={nSeq=5,nActivityID=2,nExchangeID=2,bIsOpen=true,nMaxTimes=0,tStuffList={{20001,60,},},tItemList={{19000,1,},},bIsBroad=false,}

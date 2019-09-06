@@ -14,12 +14,12 @@ function CInvite:Release()
 end
 
 function CInvite:LoadData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oDB:HGet(gtDBDef.sInviteDB, "data")
 	if sData == "" then
 		return
 	end
-	local tData = cjson.decode(sData)
+	local tData = cseri.decode(sData)
 	self.m_tDownlineMap = tData.m_tDownlineMap
 	self.m_tUplineMap = tData.m_tUplineMap
 
@@ -33,8 +33,8 @@ function CInvite:SaveData()
 	local tData = {}
 	tData.m_tDownlineMap = self.m_tDownlineMap
 	tData.m_tUplineMap = self.m_tUplineMap
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-	oDB:HSet(gtDBDef.sInviteDB, "data", cjson.encode(tData))
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+	oDB:HSet(gtDBDef.sInviteDB, "data", cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

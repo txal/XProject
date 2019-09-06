@@ -11,7 +11,7 @@
   <LastAuthor>AutoBVT</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
   <LastSaved>2019-02-20T10:37:32Z</LastSaved>
-  <Version>12.00</Version>
+  <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
@@ -20,10 +20,10 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>11190</WindowHeight>
-  <WindowWidth>28800</WindowWidth>
-  <WindowTopX>0</WindowTopX>
-  <WindowTopY>0</WindowTopY>
+  <WindowHeight>8520</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -45,513 +45,670 @@
    <Font ss:FontName="宋体" x:CharSet="134"/>
    <NumberFormat ss:Format="@"/>
   </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <NumberFormat/>
+  </Style>
  </Styles>
  <Worksheet ss:Name="ctGrowthTargetShopConf">
-  <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="46" x:FullColumns="1"
+  <Names>
+   <NamedRange ss:Name="_FilterDatabase"
+    ss:RefersTo="=ctGrowthTargetShopConf!R3C1:R47C9" ss:Hidden="1"/>
+  </Names>
+  <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="47" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
-   <Column ss:Index="3" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="144.75"
+   <Column ss:Index="3" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="144.6"
     ss:Span="1"/>
-   <Column ss:Index="5" ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="77.25"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="60.75"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="96.75"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="89.25"/>
+   <Column ss:Index="5" ss:StyleID="s63" ss:AutoFitWidth="0"
+    ss:Width="77.399999999999991"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="60.6"/>
+   <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="96.6"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="89.4"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="66"/>
    <Row ss:AutoFitHeight="0"/>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="String">nIndex</Data></Cell>
-    <Cell><Data ss:Type="String">nItemID</Data></Cell>
-    <Cell><Data ss:Type="String">tActList</Data></Cell>
-    <Cell><Data ss:Type="String">tActLimit</Data></Cell>
-    <Cell><Data ss:Type="String">nCurrType</Data></Cell>
-    <Cell><Data ss:Type="String">nSrcPrice</Data></Cell>
-    <Cell><Data ss:Type="String">nDiscountRatio</Data></Cell>
-    <Cell><Data ss:Type="String">nDiscountPrice</Data></Cell>
-    <Cell><Data ss:Type="String">nLimitNum</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="String">i</Data></Cell>
-    <Cell><Data ss:Type="String">i</Data></Cell>
-    <Cell><Data ss:Type="String">t{i}</Data></Cell>
-    <Cell><Data ss:Type="String">t{ii}</Data></Cell>
-    <Cell><Data ss:Type="String">i</Data></Cell>
-    <Cell><Data ss:Type="String">i</Data></Cell>
-    <Cell><Data ss:Type="String">i</Data></Cell>
-    <Cell><Data ss:Type="String">i</Data></Cell>
-    <Cell><Data ss:Type="String">i</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="String">索引ID</Data></Cell>
-    <Cell><Data ss:Type="String">道具ID</Data></Cell>
-    <Cell><Data ss:Type="String">道具关联活动ID(任意活动开启，则刷新，所有活动关闭，则消失)</Data></Cell>
-    <Cell><Data ss:Type="String">购买条件(活动ID, 数值)</Data></Cell>
-    <Cell><Data ss:Type="String">货币类型</Data></Cell>
-    <Cell><Data ss:Type="String">原价</Data></Cell>
-    <Cell><Data ss:Type="String">折扣比例(百分比)</Data></Cell>
-    <Cell><Data ss:Type="String">折后价</Data></Cell>
-    <Cell><Data ss:Type="String">购买数量限制</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="Number">13701</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">101;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">101,15;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">2</Data></Cell>
-    <Cell><Data ss:Type="Number">13731</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">101;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">101,25;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="String">nIndex</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">nItemID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">tActList</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">tActLimit</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">nCurrType</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">nSrcPrice</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">nDiscountRatio</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">nDiscountPrice</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">nLimitNum</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">3</Data></Cell>
-    <Cell><Data ss:Type="Number">13761</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">101;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">101,35;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">i</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">t{i}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">t{ii}</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">i</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">i</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">i</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">i</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">i</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">4</Data></Cell>
-    <Cell><Data ss:Type="Number">13702</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">102;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">102,600000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="String">索引ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">道具ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">道具关联活动ID(任意活动开启，则刷新，所有活动关闭，则消失)</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">购买条件(活动ID, 数值)</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">货币类型</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">原价</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">折扣比例(百分比)</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">折后价</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="String">购买数量限制</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">5</Data></Cell>
-    <Cell><Data ss:Type="Number">13732</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">102;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">102,650000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13701</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">101;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">101,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell><Data ss:Type="Number">13762</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">102;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">102,700000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13731</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">101;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">101,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">7</Data></Cell>
-    <Cell><Data ss:Type="Number">13703</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">103;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">103,700000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13761</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">101;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">101,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">8</Data></Cell>
-    <Cell><Data ss:Type="Number">13733</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">103;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">103,900000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13702</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">121;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">121,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">9</Data></Cell>
-    <Cell><Data ss:Type="Number">13763</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">103;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">103,1100000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13732</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">121;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">121,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">10</Data></Cell>
-    <Cell><Data ss:Type="Number">13704</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">104;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">104,10;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13762</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">121;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">121,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">11</Data></Cell>
-    <Cell><Data ss:Type="Number">13734</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">104;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">104,20;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13703</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">116;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">116,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">12</Data></Cell>
-    <Cell><Data ss:Type="Number">13764</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">104;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">104,30;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13733</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">116;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">116,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">13</Data></Cell>
-    <Cell><Data ss:Type="Number">13705</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">105;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">105,10;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13763</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">116;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">116,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">14</Data></Cell>
-    <Cell><Data ss:Type="Number">13735</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">105;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">105,20;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13704</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">104;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">104,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">15</Data></Cell>
-    <Cell><Data ss:Type="Number">13765</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">105;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">105,30;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">11</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13734</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">104;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">104,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">16</Data></Cell>
-    <Cell><Data ss:Type="Number">13706</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">106;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">106,90000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">12</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13764</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">104;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">104,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">17</Data></Cell>
-    <Cell><Data ss:Type="Number">13736</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">106;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">106,120000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">13</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13705</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">117;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">117,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">18</Data></Cell>
-    <Cell><Data ss:Type="Number">13766</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">106;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">106,150000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">14</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13735</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">117;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">117,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">19</Data></Cell>
-    <Cell><Data ss:Type="Number">13707</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">107;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">107,20;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13765</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">117;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">117,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">20</Data></Cell>
-    <Cell><Data ss:Type="Number">13737</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">107;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">107,30;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">16</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13706</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">109;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">109,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">21</Data></Cell>
-    <Cell><Data ss:Type="Number">13767</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">107;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">107,40;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">17</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13736</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">109;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">109,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">22</Data></Cell>
-    <Cell><Data ss:Type="Number">13708</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">108;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">108,2500;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">18</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13766</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">109;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">109,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">23</Data></Cell>
-    <Cell><Data ss:Type="Number">13738</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">108;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">108,4000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">19</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13707</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">105;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">105,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">24</Data></Cell>
-    <Cell><Data ss:Type="Number">13768</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">108;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">108,5500;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13737</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">105;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">105,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">25</Data></Cell>
-    <Cell><Data ss:Type="Number">13709</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">109;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">109,30;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">21</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13767</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">105;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">105,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">26</Data></Cell>
-    <Cell><Data ss:Type="Number">13739</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">109;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">109,40;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">22</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13708</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">118;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">118,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">27</Data></Cell>
-    <Cell><Data ss:Type="Number">13769</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">109;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">109,50;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">23</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13738</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">118;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">118,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">28</Data></Cell>
-    <Cell><Data ss:Type="Number">13710</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">110;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">110,15000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">24</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13768</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">118;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">118,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">29</Data></Cell>
-    <Cell><Data ss:Type="Number">13740</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">110;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">110,30000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">25</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13709</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">107;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">107,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">30</Data></Cell>
-    <Cell><Data ss:Type="Number">13770</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">110;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">110,45000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">26</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13739</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">107;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">107,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">31</Data></Cell>
-    <Cell><Data ss:Type="Number">13711</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">111;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">111,30;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">27</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13769</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">107;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">107,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">32</Data></Cell>
-    <Cell><Data ss:Type="Number">13741</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">111;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">111,500;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">28</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13710</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">119;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">119,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">33</Data></Cell>
-    <Cell><Data ss:Type="Number">13771</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">111;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">111,1000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">29</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13740</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">119;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">119,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">34</Data></Cell>
-    <Cell><Data ss:Type="Number">13712</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">112;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">112,1200;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13770</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">119;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">119,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">35</Data></Cell>
-    <Cell><Data ss:Type="Number">13742</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">112;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">112,1300;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">31</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13711</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">120;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">120,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">36</Data></Cell>
-    <Cell><Data ss:Type="Number">13772</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">112;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">112,1400;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">32</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13741</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">120;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">120,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">37</Data></Cell>
-    <Cell><Data ss:Type="Number">13713</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">113;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">113,500;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">33</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13771</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">120;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">120,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">38</Data></Cell>
-    <Cell><Data ss:Type="Number">13743</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">113;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">113,1000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">34</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13712</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">112;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">112,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">39</Data></Cell>
-    <Cell><Data ss:Type="Number">13773</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">113;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">113,1500;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">35</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13742</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">112;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">112,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">40</Data></Cell>
-    <Cell><Data ss:Type="Number">13714</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">114;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">114,10000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">320</Data></Cell>
-    <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="Number">288</Data></Cell>
-    <Cell><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">36</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13772</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">112;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">112,0;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">41</Data></Cell>
-    <Cell><Data ss:Type="Number">13744</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">114;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">114,100000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">735</Data></Cell>
-    <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="Number">588</Data></Cell>
-    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">37</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13713</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">113;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">113,500;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
-    <Cell><Data ss:Type="Number">42</Data></Cell>
-    <Cell><Data ss:Type="Number">13774</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">114;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">114,500000;</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data></Cell>
-    <Cell><Data ss:Type="Number">1840</Data></Cell>
-    <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="Number">1288</Data></Cell>
-    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">38</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13743</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">113;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">113,1000;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">39</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13773</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">113;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">113,1500;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">40</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13714</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">114;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">114,10000;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">16000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">9</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">14400</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">41</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13744</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">114;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">114,100000;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">36750</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">7</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25725</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">10</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">42</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">13774</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">114;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">114,500000;</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">230</Data><NamedCell
+      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">92000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">46000</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">5</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -571,13 +728,16 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>31</ActiveRow>
-     <ActiveCol>12</ActiveCol>
+     <ActiveRow>5</ActiveRow>
+     <RangeSelection>R6C1:R41C9</RangeSelection>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
+  <AutoFilter x:Range="R3C1:R47C9"
+   xmlns="urn:schemas-microsoft-com:office:excel">
+  </AutoFilter>
  </Worksheet>
  <Worksheet ss:Name="Sheet2">
   <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"

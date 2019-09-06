@@ -31,9 +31,9 @@ end
 
 function CGrowthTargetShop:LoadData()
     print("加载开服目标活动商店数据")
-	local sData = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sGrowthTargetActDB, "GrowthTargetShop") 
+	local sData = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sGrowthTargetActDB, "GrowthTargetShop") 
     if sData ~= "" then 
-        local tData = cjson.decode(sData)
+        local tData = cseri.decode(sData)
         self.m_tItemRecordMap = tData.m_tItemRecordMap
         self.m_tActMap = tData.m_tActMap
 
@@ -98,7 +98,7 @@ function CGrowthTargetShop:SaveData()
     tData.m_tItemRecordMap = self.m_tItemRecordMap
     tData.m_tActMap = self.m_tActMap
 
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sGrowthTargetActDB, "GrowthTargetShop", cjson.encode(tData))
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sGrowthTargetActDB, "GrowthTargetShop", cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

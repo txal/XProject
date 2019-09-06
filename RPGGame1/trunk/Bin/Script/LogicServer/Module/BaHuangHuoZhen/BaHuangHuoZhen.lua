@@ -410,7 +410,7 @@ function CBaHuangHuoZhen:SendTaskInfoHandle(tMsg, nType, fnCallBack)
 	-- 	tMsg.nPushType = nType and nType or 2
 	-- 	self:SendTaskBaseInfo(tMsg, nType)
 	-- end
-	-- Network.oRemoteCall:CallWait("GetMultipleItemBasePriceReq", fnGetItemBasePriceCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), tItemList)
+	-- Network:RMCall("GetMultipleItemBasePriceReq", fnGetItemBasePriceCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), tItemList)
 	local fnCallBack = function ()
 			tMsg.tBoxData = self:GetBoxChangeMsg().tBoxData
 			tMsg.nPushType = nType and nType or 2
@@ -436,7 +436,7 @@ function CBaHuangHuoZhen:PracticeExpHandle(fnCallBack)
 		end
 		fnCallBack()
 	end
-	Network.oRemoteCall:CallWait("GetMultipleItemBasePriceReq", fnGetItemBasePriceCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), tItemList)
+	Network:RMCall("GetMultipleItemBasePriceReq", fnGetItemBasePriceCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), tItemList)
 end
 
 function CBaHuangHuoZhen:SendTaskBaseInfo(tMsg)
@@ -697,9 +697,9 @@ function CBaHuangHuoZhen:UnionHelp(oBox)
 		local sContent = string.format(tTalkConf.sContent, self.m_oRole:GetName(), sPropName .. "*" .. oBox:GetPropNum(), oBox:GetBoxID(), self.m_oRole:GetID())
 
 		local nGlobalService = goServerMgr:GetGlobalService(gnWorldServerID, 110)
-		Network.oRemoteCall:Call("SendUnionTalkReq", gnWorldServerID, nGlobalService, 0, self.m_oRole:GetID(), sContent)		
+		Network:RMCall("SendUnionTalkReq", nil, gnWorldServerID, nGlobalService, 0, self.m_oRole:GetID(), sContent)		
 	end
-	Network.oRemoteCall:CallWait("GetPlayerUnionReq", fnGetUnionCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID())
+	Network:RMCall("GetPlayerUnionReq", fnGetUnionCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID())
 
 end
 
@@ -781,9 +781,9 @@ function CBaHuangHuoZhen:HelpPlayerBoxListReq(nHelpRoleID,  nBoxID)
 
 		local nServerID = self.m_oRole:GetServer()
 		local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
-		Network.oRemoteCall:Call("GetHelpRoleDataReq", nServerID, nServiceID, 0,self.m_oRole:GetID(), nHelpRoleID,nBoxID)
+		Network:RMCall("GetHelpRoleDataReq", nil, nServerID, nServiceID, 0,self.m_oRole:GetID(), nHelpRoleID,nBoxID)
 	end
-	Network.oRemoteCall:CallWait("GetPlayerUnionReq", fnGetUnionCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), nHelpRoleID)
+	Network:RMCall("GetPlayerUnionReq", fnGetUnionCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), nHelpRoleID)
 end
 
 function CBaHuangHuoZhen:HelpRoleInfoHdanle(nHelpRoleID,nBoxID, tList)
@@ -821,9 +821,9 @@ function CBaHuangHuoZhen:HelpPackingBoxReq(nHelpRoleID, nBoxID, tItemList)
 		if self:GetHasHelpTimes() >= ctBaHuangHuoZhenComplex[1].nHelpTiems then
 			return self.m_oRole:Tips(string.format("今天已完成了%d次八荒火阵的求助", self:GetHasHelpTimes()))
 		end
-		Network.oRemoteCall:Call("HelpPackingBoxReq", nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), nHelpRoleID, nBoxID)
+		Network:RMCall("HelpPackingBoxReq", nil, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), nHelpRoleID, nBoxID)
 	end
-	Network.oRemoteCall:CallWait("GetPlayerUnionReq", fnGetUnionCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), nHelpRoleID)
+	Network:RMCall("GetPlayerUnionReq", fnGetUnionCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), nHelpRoleID)
 end
 
 function CBaHuangHuoZhen:HelpPackingBoxHandle(nBoxID)
@@ -968,7 +968,7 @@ function CBaHuangHuoZhen:GetHelpRoleData(nRoleID, nHeleRoleID, nBoxID)
 		local nGlobalLogic = goServerMgr:GetGlobalService(nServerID, 20)
 		tList = self:GetBoxInfoList(self.m_oRole)
 		local tMsg = self:HelpRoleInfoHdanle(nRoleID, nBoxID, tList)
-		Network.oRemoteCall:Call("PushHelpRoleBoxReq", nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), nHeleRoleID,tMsg, sTips)
+		Network:RMCall("PushHelpRoleBoxReq", nil, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(), nHeleRoleID,tMsg, sTips)
 	end
 	 self:PracticeExpHandle(fnCallBack)
 end
@@ -1035,7 +1035,7 @@ function CBaHuangHuoZhen:HelpPackingBoxCheckHandle(nHeleRoleID,nBoxID, tData)
 	local nNum = oBox:GetPropNum()
 	local sContent = string.format(tTalkConf.sContent,tData.sName , self.m_oRole:GetName(),ctPropConf[nPropID].sName .. "*" .. nNum)
 	local nGlobalService = goServerMgr:GetGlobalService(gnWorldServerID, 110)
-	Network.oRemoteCall:Call("SendUnionTalkReq", gnWorldServerID, nGlobalService, 0, tData.nRoleID, sContent)
+	Network:RMCall("SendUnionTalkReq", nil, gnWorldServerID, nGlobalService, 0, tData.nRoleID, sContent)
 
 	local sRoleTips = "你今天已完成求助%d次，每天最多完成求助%d次"
 	sRoleTips = string.format(sRoleTips, tData.nHelpTimes, nMaxHelpPackingBoxTimes)

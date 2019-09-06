@@ -50,10 +50,10 @@ function CGrowthTargetBase:Init()
 end
 
 function CGrowthTargetBase:LoadData() 
-    local sData = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sHuoDongDB, self:GetID()) 
+    local sData = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HGet(gtDBDef.sHuoDongDB, self:GetID()) 
     if sData == "" then return end
 
-    local tData = cjson.decode(sData)
+    local tData = cseri.decode(sData)
     CHDBase.LoadData(self, tData)
     self.m_tRoleMap = tData.m_tRoleMap
     self.m_tRechargeMap = tData.m_tRechargeMap
@@ -87,7 +87,7 @@ function CGrowthTargetBase:SaveData()
     tData.m_tTargetAwardRecord = self.m_tTargetAwardRecord
     tData.m_tRechargeAwardRecord = self.m_tRechargeAwardRecord
 
-	goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sHuoDongDB, self:GetID(), cjson.encode(tData))
+	goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID()):HSet(gtDBDef.sHuoDongDB, self:GetID(), cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

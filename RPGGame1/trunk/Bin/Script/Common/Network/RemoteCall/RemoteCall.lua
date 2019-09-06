@@ -29,6 +29,7 @@ end
 
 --初始化
 function CRemoteCall:Init()
+	self.m_nServiceID = CUtil:GetServiceID()
 	self.m_nTimer = GetGModule("TimerMgr"):Interval(2, function() self:CheckExpire() end)
 end
 
@@ -37,8 +38,9 @@ function CRemoteCall:Release()
 end
 
 function CRemoteCall:GenCallID()
-	self.m_nCallID = self.m_nCallID % gtGDef.tConst.nMaxInteger + 1
-	return self.m_nCallID
+	self.m_nCallID = self.m_nCallID % 0xFFFFFFFF + 1
+	local nCallID = self.m_nServiceID<<16|self.m_nCallID
+	return nCallID
 end
 
 function CRemoteCall:GetCoroutine(nCallID)
@@ -46,47 +48,50 @@ function CRemoteCall:GetCoroutine(nCallID)
 end
 
 --协程体
-local function fnCoroutineFunc(nCallID, sCallFunc, nTarServer, nTarService, nTarSession, ...)
-	Network.RpcSrv2Srv.RemoteCallReq(nTarServer, nTarService, nTarSession, nCallID, sCallFunc, true, ...)
+local function fnCoroutineFunc(nCallID, sCallFunc, nTarServerID, nTarServiceID, nTarSessionID, ...)
+	Network.RpcSrv2Srv.RemoteCallReq(nTarServerID, nTarServiceID, nTarSessionID, nCallID, sCallFunc, true, ...)
 	local nCode, tData = _co_yield(true)
 
 	if nCode == 0 then
 		-- LuaTrace("协程执行成功:", nCallID, sCallFunc, "返回:", tData)
 
 	elseif nCode == -1 then
-		return LuaTrace("协程执行失败:", nCallID, sCallFunc, nTarServer, nTarService, "返回:", tData)
+		return LuaTrace("协程执行失败:", nCallID, sCallFunc, nTarServerID, nTarServiceID, "返回:", tData)
 
 	elseif nCode == -2 then
-		return LuaTrace("协程执行超时:", nCallID, sCallFunc, nTarServer, nTarService)
+		return LuaTrace("协程执行超时:", nCallID, sCallFunc, nTarServerID, nTarServiceID)
 
 	end
 end
 
 --远程调用请求(不需回调)：请求发出，不需要等待返回
 --@sCallFunc: 远程函数名
---@nTarServer: 目标服务器ID
---@nTarService: 目标服务ID
---@nTarSession: 目标会话ID
-function CRemoteCall:Call(sCallFunc, nTarServer, nTarService, nTarSession, ...)
+--@nTarServerID: 目标服务器ID
+--@nTarServiceID: 目标服务ID
+--@nTarSessionID: 目标会话ID
+function CRemoteCall:Call(sCallFunc, nTarServerID, nTarServiceID, nTarSessionID, ...)
 	_assert((self.m_nTimer or 0) > 0, "初始化后才能使用")
-	if gnServerID == nTarServer and nTarService == CUtil:GetServiceID() then
+	_assert(sCallFunc and nTarServerID>0 and nTarServiceID>0, "参数错误")
+	
+	if gnServerID == nTarServerID and nTarServiceID == CUtil:GetServiceID() then
 		-- _assert(false, "同进程的不需要远程调用")
 	end
-	Network.RpcSrv2Srv.RemoteCallReq(nTarServer, nTarService, nTarSession, 0, sCallFunc, false, ...)
+	Network.RpcSrv2Srv.RemoteCallReq(nTarServerID, nTarServiceID, nTarSessionID, 0, sCallFunc, false, ...)
 end
 
 --远程调用请求(需要回调)：请求发出后协程会挂起，等待回调，2秒钟超时
 --@sCallFunc: 远程函数名
---@nTarServer: 目标服务器ID
---@nTarService: 目标服务ID
---@nTarSession: 目标会话ID
-function CRemoteCall:CallWait(sCallFunc, fnCallback, nTarServer, nTarService, nTarSession, ...)
+--@nTarServerID: 目标服务器ID
+--@nTarServiceID: 目标服务ID
+--@nTarSessionID: 目标会话ID
+function CRemoteCall:CallWait(sCallFunc, fnCallback, nTarServerID, nTarServiceID, nTarSessionID, ...)
 	_assert(self.m_nTimer > 0, "初始化后才能使用")
-	_assert(sCallFunc and nTarServer and nTarService, "参数错误")
-	if gnServerID == nTarServer and nTarService == CUtil:GetServiceID() then
+	_assert(sCallFunc and nTarServerID>0 and nTarServiceID>0, "参数错误")
+
+	if gnServerID == nTarServerID and nTarServiceID == CUtil:GetServiceID() then
 		-- _assert(false, "同进程的不需要远程调用")
 	end
-	nTarSession = nTarSession or 0
+	nTarSessionID = nTarSessionID or 0
 
 	local nCallID = self:GenCallID()
 	local oCo = _co_create(fnCoroutineFunc)
@@ -96,7 +101,7 @@ function CRemoteCall:CallWait(sCallFunc, fnCallback, nTarServer, nTarService, nT
 	local tVal = {nCallID=nCallID, nExpireTime=_time()+nExpireTime}
 	self.m_oMinHeap:Push(tVal)
 
-	local bRet, sErr = _co_resume(oCo, nCallID, sCallFunc, nTarServer, nTarService, nTarSession, ...)
+	local bRet, sErr = _co_resume(oCo, nCallID, sCallFunc, nTarServerID, nTarServiceID, nTarSessionID, ...)
 	if not bRet then
 		LuaTrace(sErr)
 	end

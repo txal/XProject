@@ -158,9 +158,9 @@ function CYaoShouTuXi:yaoshouAttacReq(nYaoShouID, nStars)
 	--     self:SetYaoShouID(nYaoShouID)
 	--     self:SetYaoShouStar(nStars)
 	--     self.m_oRole:PVE(oMonster, {bYaoShouTuXiTask = true})
-	--     Network.oRemoteCall:Call("SetYaoShouBattleStatusReq", nServerID, nGlobalLogic, 0, self.m_oRole:GetID(),nYaoShouID, true)
+	--     Network:RMCall("SetYaoShouBattleStatusReq", nil, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(),nYaoShouID, true)
 	-- end
-	-- Network.oRemoteCall:CallWait("GetYaoShouBattleStatus", fnGetYaoShouBattleStatus,nServerID, nGlobalLogic, 0, self.m_oRole:GetID(),nYaoShouID)
+	-- Network:RMCall("GetYaoShouBattleStatus", fnGetYaoShouBattleStatus,nServerID, nGlobalLogic, 0, self.m_oRole:GetID(),nYaoShouID)
 end
 
 function CYaoShouTuXi:yaoshouAttacReq(nYaoShouID)
@@ -210,7 +210,7 @@ function CYaoShouTuXi:UpdateMonster()
 	end
 	local nServerID = self.m_oRole:GetServer()
 	local nGlobalLogic = goServerMgr:GetGlobalService(nServerID, 20)
-	Network.oRemoteCall:CallWait("UpdateMonsterReq", fnBroadcastYaoShouCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(),self.m_nCurYaoShouID)
+	Network:RMCall("UpdateMonsterReq", fnBroadcastYaoShouCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID(),self.m_nCurYaoShouID)
 	self.m_nCurYaoShouID = 0
 	self:MarkDirty(true)
 end
@@ -267,7 +267,7 @@ function CYaoShouTuXi:JoinYaoShouTuXi()
 			self.m_oRole:SendMsg("yaoshoutuxiInitInfoRet", tMsg)
 		end
 	end
-	Network.oRemoteCall:CallWait("GetYaoShouInfoReq", fnGetYaoShouCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID())
+	Network:RMCall("GetYaoShouInfoReq", fnGetYaoShouCallBack, nServerID, nGlobalLogic, 0, self.m_oRole:GetID())
 end
 
 function CYaoShouTuXi:YaoShouTuXiSend()

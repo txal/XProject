@@ -19,7 +19,7 @@ local function fnCompare(t1, t2)
 end
 
 --协程过期时间
-local nDefaultExpireTime = 180
+local DEFAULT_EXPIRETIME = 180
 function CClientCall:Ctor()
 	self.m_nCallID = 0
 	self.m_nTimer = nil
@@ -28,9 +28,8 @@ function CClientCall:Ctor()
 end
 
 --初始化
-function CClientCall:Init(nServiceID)
-	assert(nServiceID > 0, "服务ID错误")
-	self.m_nServiceID = nServiceID
+function CClientCall:Init()
+	self.m_nServiceID = CUtil:GetServiceID()
 	self.m_nTimer = GetGModule("TimerMgr"):Interval(2, function() self:CheckExpire() end)
 end
 
@@ -49,11 +48,11 @@ function CClientCall:GetCoroutine(nCallID)
 end
 
 --协程体
-local function fnCoroutineFunc(nCallID, sCallFunc, nTarServer, nTarSession, tMsg)
+local function fnCoroutineFunc(nCallID, sCallFunc, nTarServerID, nTarSessionID, tMsg)
 	tMsg.nCallID = nCallID
-	tMsg.nService = GlobalExport.GetServiceID()
-	tMsg.nTimeOut = tMsg.nTimeOut or nDefaultExpireTime --默认超时
-	Network.PBSrv2Clt(sCallFunc, nTarServer, nTarSession, tMsg) 
+	tMsg.nService = CUtil:GetServiceID()
+	tMsg.nTimeOut = tMsg.nTimeOut or 0 	--0不超时
+	Network.PBSrv2Clt(sCallFunc, nTarServerID, nTarSessionID, tMsg) 
 	local nCode, tData = _co_yield(true)
 
 	if nCode == 0 then
@@ -70,40 +69,45 @@ end
 
 --请求客户端弹框(不需回调)
 function CClientCall:Call(sCallFunc, oRole, tMsg) 
-	tMsg.nService = GlobalExport.GetServiceID()
-	tMsg.nTimeOut = tMsg.nTimeOut or nDefaultExpireTime --默认超时
-	Network.PBSrv2Clt(sCallFunc, oRole:GetServer(), oRole:GetSession(), tMsg) 
+	tMsg.nService = CUtil:GetServiceID()
+	tMsg.nTimeOut = tMsg.nTimeOut or 0 --0不超时
+	Network.PBSrv2Clt(sCallFunc, oRole:GetServerID(), oRole:GetSessionID(), tMsg) 
 end
 
 --请求客户端弹框(需要回调)：请求发出后协程会挂起，等待回调
 --@sCallFunc: 远程函数名
 --@fnCallback: 回调函数
+--@tMsg {nTimeOut=0,nTimeOutSel=0,...}
 function CClientCall:CallWait(sCallFunc, fnCallback, oRole, tMsg) 
 	_assert(self.m_nTimer > 0, "初始化后才能使用")
 	_assert(sCallFunc and oRole and tMsg, "参数错误")
-	local nTarServer, nTarSession = oRole:GetServer(), oRole:GetSession()
-	if nTarSession <= 0 then return end
 
-	tMsg.nTimeOut = tMsg.nTimeOut or nDefaultExpireTime --默认超时
-	local nExpireTime = _time() + tMsg.nTimeOut
+	local nTarServerID, nTarSessionID = oRole:GetServerID(), oRole:GetSessionID()
+	if nTarSessionID <= 0 then
+		return
+	end
+
+	local nTimeOut = tMsg.nTimeOut or DEFAULT_EXPIRETIME
+	local nExpireTime = _time() + nTimeOut
 
 	local nCallID = self:GenCallID()
 	local oCo = _co_create(fnCoroutineFunc)
-	self.m_tCoroutineMap[nCallID] = {oCo=oCo, nCallID=nCallID, sCallFunc=sCallFunc, fnCallback=fnCallback, nExpireTime=nExpireTime, nTimeOutSelIdx=(tMsg.nTimeOutSelIdx or 0)}
+	self.m_tCoroutineMap[nCallID] = {oCo=oCo, nCallID=nCallID, sCallFunc=sCallFunc, fnCallback=fnCallback
+		, nExpireTime=nExpireTime, nTimeOutSel=(tMsg.nTimeOutSel or 0)}
 
 	local tVal = {nCallID=nCallID, nExpireTime=nExpireTime+2}--(+2)防止客户端到时发消息过来服务器协程已超时被清理
 	self.m_oMinHeap:Push(tVal)
-	local bRes, sErr = _co_resume(oCo, nCallID, sCallFunc, nTarServer, nTarSession, tMsg) 
+	local bRes, sErr = _co_resume(oCo, nCallID, sCallFunc, nTarServerID, nTarSessionID, tMsg) 
 	if not bRes then
 		LuaTrace(sErr)
 	end
 end
 
 --客户端确认返回
-function CClientCall:OnCallRet(nSrcServer, nTarSession, nCallID, tData) 
+function CClientCall:OnCallRet(nSrcServer, nTarSessionID, nCallID, tData) 
 	local tCo = self.m_tCoroutineMap[nCallID]
 	if not tCo then
-	    Network.PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont="操作超时"})
+	    Network.PBSrv2Clt("FloatTipsRet", nSrcServer, nTarSessionID, {sCont="操作超时"})
 	    return LuaTrace("CClientCall:OnCallRet协程已超时:", nCallID)
 	end
 
@@ -141,8 +145,8 @@ function CClientCall:CheckExpire()
 			if not bRet then
 				LuaTrace("CClientCall协程超时错误:", tCo.nCallID, tCo.sCallFunc, sErr)
 
-			elseif tCo.nTimeOutSelIdx > 0 then
-				tCo.fnCallback({nSelIdx=tCo.nTimeOutSelIdx}) --超时默认选择
+			elseif tCo.nTimeOutSel > 0 then
+				tCo.fnCallback({nSelIdx=tCo.nTimeOutSel}) --超时默认选择
 
 			end
 		else

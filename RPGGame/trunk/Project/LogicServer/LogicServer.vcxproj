@@ -222,7 +222,6 @@ popd</Command>
     <ClInclude Include="..\..\..\..\Common\DataStruct\MinHeap.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\MsgQueue.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\MutexLock.h" />
-    <ClInclude Include="..\..\..\..\Common\DataStruct\ObjID.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\Point.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\PureList.h" />
     <ClInclude Include="..\..\..\..\Common\DataStruct\Ranking.h" />

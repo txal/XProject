@@ -304,7 +304,7 @@ function Network.RpcSrv2Srv.GotoLeader(nSrcServer, nSrcService, nTarSession, nRo
                 return oRole:Tips("请求进入的副本跟队长所在副本不一致")
             end
         end
-        Network.oRemoteCall:CallWait("GetRoleCurrDupInfoReq", CallBack, oLeader:GetStayServer(), oLeader:GetLogic(), oLeader:GetSession(), oLeader:GetID())
+        Network:RMCall("GetRoleCurrDupInfoReq", CallBack, oLeader:GetStayServer(), oLeader:GetLogic(), oLeader:GetSession(), oLeader:GetID())
     end
 end
 

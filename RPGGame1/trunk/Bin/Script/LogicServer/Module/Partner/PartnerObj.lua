@@ -421,7 +421,7 @@ function CPartnerObj:OnIntimacyChanged(nOldVal, nChangeVal)
 	--仙侣亲密度涨幅统计
 	if nChangeVal ~= 0 then
 		local oRole = self.m_oModule.m_oRole
-	    Network.oRemoteCall:Call("OnCBQMDReq", oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(), 20), 0, oRole:GetID(), nChangeVal) 
+	    Network:RMCall("OnCBQMDReq", nil, oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(), 20), 0, oRole:GetID(), nChangeVal) 
 	end
 end
 

@@ -87,15 +87,15 @@ function CUnionRole:OnExitUnion(nExitType)
 	end
 
 	local tData = {m_nUnionID = 0}
-	Network.oRemoteCall:Call("RoleUpdateReq", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetServer(), self.m_nRoleID, tData)
+	Network:RMCall("RoleUpdateReq", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetServer(), self.m_nRoleID, tData)
 	oRole:UpdateReq(tData)
 	local nServiceID = goServerMgr:GetGlobalService(gnWorldServerID,110)
-	Network.oRemoteCall:Call("GRoleUpdateReq", gnWorldServerID, nServiceID, oRole:GetSession(),self.m_nRoleID,tData)
+	Network:RMCall("GRoleUpdateReq", nil, gnWorldServerID, nServiceID, oRole:GetSession(),self.m_nRoleID,tData)
 
 	--返回京城
 	if oRole:GetDupMixID() == oUnion:GetDupMixID() then
 		local nDupMixID = 1
-		Network.oRemoteCall:Call("RoleEnterDup", oRole:GetServer(),oRole:GetLogic(),0,oRole:GetID(),nDupMixID,{nPosX=0,nPosY=0})
+		Network:RMCall("RoleEnterDup", nil, oRole:GetServer(),oRole:GetLogic(),0,oRole:GetID(),nDupMixID,{nPosX=0,nPosY=0})
 	end
 	goUnionMgr:UpdateUnionAppellation(self.m_nRoleID)
 
@@ -120,11 +120,11 @@ function CUnionRole:OnEnterUnion(oUnion)
 
 
 	local tData = {m_nUnionID = self.m_nUnionID, m_nUnionJoinTime = self.m_nJoinTime}
-	Network.oRemoteCall:Call("RoleUpdateReq", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetServer(), self.m_nRoleID, tData)
+	Network:RMCall("RoleUpdateReq", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetServer(), self.m_nRoleID, tData)
 	oRole:UpdateReq({m_nUnionID = self.m_nUnionID})
 
 	local nServiceID = goServerMgr:GetGlobalService(gnWorldServerID,110)
-	Network.oRemoteCall:Call("GRoleUpdateReq", gnWorldServerID, nServiceID, oRole:GetSession(),self.m_nRoleID,{m_nUnionID = self.m_nUnionID})
+	Network:RMCall("GRoleUpdateReq", nil, gnWorldServerID, nServiceID, oRole:GetSession(),self.m_nRoleID,{m_nUnionID = self.m_nUnionID})
 
 	--日志
 	goLogger:EventLog(gtEvent.eJoinUnion, oRole, self.m_nUnionID)

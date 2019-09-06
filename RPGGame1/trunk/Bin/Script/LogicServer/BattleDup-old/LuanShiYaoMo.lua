@@ -151,14 +151,14 @@ function CLuanShiYaoMo:OnObjEnter(oLuaObj, bReconnect)
 																oLuaObj:MatchTeam(gtBattleDupType.eLuanShiYaoMo, tBattleDupConf.sName, true)
 															end
 														end
-														Network.oRemoteCall:CallWait("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eLuanShiYaoMo)
+														Network:RMCall("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eLuanShiYaoMo)
 													end
 												end, oLuaObj, tMsg)
 											else
 												oLuaObj:MatchTeam(gtBattleDupType.eLuanShiYaoMo, tBattleDupConf.sName, true)
 											end
 										end
-										Network.oRemoteCall:CallWait("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eLuanShiYaoMo)										
+										Network:RMCall("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eLuanShiYaoMo)										
 									end
 								else
 									oLuaObj:CreateTeam(function(nTeamID, tTeam)
@@ -197,14 +197,14 @@ function CLuanShiYaoMo:OnObjEnter(oLuaObj, bReconnect)
 															oLuaObj:MatchTeam(gtBattleDupType.eLuanShiYaoMo, tBattleDupConf.sName, true)
 														end
 													end
-													Network.oRemoteCall:CallWait("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eLuanShiYaoMo)
+													Network:RMCall("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eLuanShiYaoMo)
 												end
 											end, oLuaObj, tMsg)
 										else
 											oLuaObj:MatchTeam(gtBattleDupType.eLuanShiYaoMo, tBattleDupConf.sName, true)
 										end
 									end
-									Network.oRemoteCall:CallWait("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eLuanShiYaoMo)		
+									Network:RMCall("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetTeamID(), gtBattleDupType.eLuanShiYaoMo)		
 								end
 							else
 								--队员
@@ -212,7 +212,7 @@ function CLuanShiYaoMo:OnObjEnter(oLuaObj, bReconnect)
 								oLuaObj:GetTeam(function(nTeamID, tTeam)
 									if nTeamID > 0 then
 										if tTeam[1].nRoleID ~= oLuaObj:GetID() then
-											Network.oRemoteCall:Call("GotoLeader",gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetID(), {nBattleDupType=gtBattleDupType.eLuanShiYaoMo})
+											Network:RMCall("GotoLeader", nil,gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetID(), {nBattleDupType=gtBattleDupType.eLuanShiYaoMo})
 										end
 									end
 								end)
@@ -223,7 +223,7 @@ function CLuanShiYaoMo:OnObjEnter(oLuaObj, bReconnect)
 							oLuaObj:GetTeam(function(nTeamID, tTeam)
 								if nTeamID > 0 then
 									if tTeam[1].nRoleID ~= oLuaObj:GetID() then
-										Network.oRemoteCall:Call("GotoLeader",gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetID(), {nBattleDupType=gtBattleDupType.eLuanShiYaoMo})
+										Network:RMCall("GotoLeader", nil,gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oLuaObj:GetSession(), oLuaObj:GetID(), {nBattleDupType=gtBattleDupType.eLuanShiYaoMo})
 									end
 								else
 									oLuaObj:CreateTeam(function(nTeamID, tTeam)
@@ -256,7 +256,7 @@ function CLuanShiYaoMo:OnObjLeave(oLuaObj, nBattleID)
 		if not oLeader then
 			--没有队长，退全部踢出
 			for _, oMember in pairs(self.m_tRoleMap) do
-				Network.oRemoteCall:Call("LeaveTeamAndKickReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID,110), oMember:GetSession(), oMember:GetID())
+				Network:RMCall("LeaveTeamAndKickReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID,110), oMember:GetSession(), oMember:GetID())
 			end
 			return
 		else
@@ -364,7 +364,7 @@ function CLuanShiYaoMo:OnBattleEnd(oLuaObj, tBTRes, tExtData)
 					end)
 				end
 				-- if nCompCount+1 >= nRewardTimes then				--nCompCount+1完成一次+1
-				-- 	Network.oRemoteCall:Call("LeaveTeamAndKickReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID,110), oLuaObj:GetSession(), oLuaObj:GetID())
+				-- 	Network:RMCall("LeaveTeamAndKickReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID,110), oLuaObj:GetSession(), oLuaObj:GetID())
 				-- end
 			end
 		else
@@ -376,7 +376,7 @@ function CLuanShiYaoMo:OnBattleEnd(oLuaObj, tBTRes, tExtData)
 			if oLuaObj:IsLeader() then		--有可能作为队员参加，在副本里面被提升为队长
 				local nCompTimes = oLuaObj.m_oDailyActivity.m_tActDataMap[gtDailyID.eLuanShiYaoMo][gtDailyData.eCountComp]
 				if nCompTimes >= nRewardTimes then
-					Network.oRemoteCall:Call("LeaveTeamAndKickReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID,110), oLuaObj:GetSession(), oLuaObj:GetID())
+					Network:RMCall("LeaveTeamAndKickReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID,110), oLuaObj:GetSession(), oLuaObj:GetID())
 				end
 			end
 			return 

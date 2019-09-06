@@ -644,7 +644,7 @@ end
 
 --完成所有师门任务
 function CShiMenTask:OnAllTaskComplete()
-    Network.oRemoteCall:Call("OnInviteMasterTaskCompleteReq", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, self.m_oRole:GetID())
+    Network:RMCall("OnInviteMasterTaskCompleteReq", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, self.m_oRole:GetID())
 end
 
 function CShiMenTask:OnSysOpen(nSysOpenID)

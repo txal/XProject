@@ -133,7 +133,7 @@ function CUnionArena:AddRankReward()
 	if nServerID and nServiceID then
 		local nType = gtUnionGiftBoxReason.eUnionArena
 		local nCnt = 5
-		Network.oRemoteCall:Call("AddUnionGiftBoxCnt",nServerID,nServiceID,0,nWinUnion,nType,nCnt)
+		Network:RMCall("AddUnionGiftBoxCnt", nil,nServerID,nServiceID,0,nWinUnion,nType,nCnt)
 	end
 end
 

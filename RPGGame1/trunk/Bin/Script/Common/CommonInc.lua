@@ -1,7 +1,6 @@
 require = gfRawRequire or require
 
 require("Common/LuaClass")
-require("Common/JsonHook")
 require("Common/Util")
 require("Common/Tools/ToolsInc")
 require("Common/GDefine/GDefineInc")

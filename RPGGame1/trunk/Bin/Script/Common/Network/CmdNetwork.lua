@@ -90,7 +90,7 @@ CmdMessageCenter = function(nCmd, nSrcServer, nSrcService, nTarSession, xPacket)
                             sErr = string.format("角色ID:%d 账号:%s error:%s", oRole:GetID(), oRole:GetAccountName(), sErr)
                         end
                         if nSrcServer > 0 and nSrcServer < GetGModule("ServerMgr"):GetWorldServerID() and nTarSession > 0 then
-                            Network.PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont=sErr})
+                            Network.PBSrv2Clt("FloatTipsRet", nSrcServer, nTarSession, {sCont=sErr})
                         end
                     end
                     LuaTrace(sErr)
@@ -104,7 +104,7 @@ CmdMessageCenter = function(nCmd, nSrcServer, nSrcService, nTarSession, xPacket)
         LuaTrace(sTips)
         if gbInnerServer then
             if nSrcServer > 0 and nSrcServer < gnWorldServerID and nTarSession > 0 then
-                Network.PBSrv2Clt("TipsMsgRet", nSrcServer, nTarSession, {sCont=sTips})
+                Network.PBSrv2Clt("FloatTipsRet", nSrcServer, nTarSession, {sCont=sTips})
             end
         end
     end

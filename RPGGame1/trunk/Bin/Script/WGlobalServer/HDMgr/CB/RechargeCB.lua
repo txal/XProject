@@ -167,11 +167,11 @@ function CRechargeCB:OnRobotRecharge(nRobotNum, nServerID)
 		-- if #tServerList > 0 then 
 		-- 	local nTarServer = tServerList[math.random(#tServerList)]
 		-- 	local nService = goServerMgr:GetGlobalService(nTarServer, 20)
-		-- 	Network.oRemoteCall:Call("OnRobotRechargeCB", nTarServer, 
+		-- 	Network:RMCall("OnRobotRechargeCB", nil, nTarServer, 
 		-- 		nService, 0, nRoleID, sName, nRechargeVal)
 		-- end
 		local nService = goServerMgr:GetGlobalService(nServerID, 20)
-		Network.oRemoteCall:Call("OnRobotRechargeCB", nServerID, 
+		Network:RMCall("OnRobotRechargeCB", nil, nServerID, 
 				nService, 0, nRoleID, sName, nRechargeVal)
 	end
 end

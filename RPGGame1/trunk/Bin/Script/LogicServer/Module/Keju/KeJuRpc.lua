@@ -36,7 +36,7 @@ function Network.CltPBProc.KejuAnswerHelpQuestionReq(nCmd,nServer,nService,nSess
 		nQuestionID = tData.nQuestionID,
 		nAnswerNo = tData.nAnswerNo,
 	}
-	Network.oRemoteCall:Call("KejuAnswerHelpQuestionReq",nServerID,nServiceID,0,nAskerID,tHelpData)
+	Network:RMCall("KejuAnswerHelpQuestionReq", nil,nServerID,nServiceID,0,nAskerID,tHelpData)
 	--[[
 	local nAskerID = tData.nAskerID
 	local oAskRole = goPlayerMgr:GetRoleByID(nAskerID)
@@ -63,7 +63,7 @@ function Network.CltPBProc.KejuHelpQuestionDataReq(nCmd,nServer,nService,nSessio
 	local nServerID = oRole:GetServer()
 	local nServiceID = goServerMgr:GetGlobalService(nServerID,20)
 	local nRoleID = oRole:GetID()
-	Network.oRemoteCall:Call("KejuHelpQuestionDataReq",nServerID,nServiceID,0,nRoleID,tData)
+	Network:RMCall("KejuHelpQuestionDataReq", nil,nServerID,nServiceID,0,nRoleID,tData)
 	--[[
 	local nTarRoleID = tData.nRoleID
 	local nQuestionID = tData.nQuestionID

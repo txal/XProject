@@ -2,90 +2,39 @@
 local table, string, math, os, pairs, ipairs, assert = table, string, math, os, pairs, ipairs, assert
 CUtil = CUtil or class()
 
---名字库随机名字
-function CUtil:GenNameByPool()
-	local nIndex = math.random(1, #ctRoleNamePoolConf)
-	local tPoolConf = ctRoleNamePoolConf[nIndex]
-	local nRndXing = math.random(1, #tPoolConf.tXing)
-	local nRndMing = math.random(1, #tPoolConf.tMing)
-	local sXing = tPoolConf.tXing[nRndXing][1]
-	local sMing = tPoolConf.tMing[nRndMing][1]
-	return (sXing..sMing)
+--生成唯一ID,全世界唯一,64位
+function CUtil:GenUUID()
+    return NetworkExport.GenUUID()
 end
 
---检测非法字不区分大小写(只有WGlobalServer,GlobalServer导出)--屏蔽字库占太多内存
-function CUtil:HasBadWord(sCont, fnCallback)
-    assert(sCont and fnCallback, "参数错误")
-    if sCont == "" then
-        fnCallback(false)
-        return
-    end
-    if GlobalExport.HasWord then
-    	local sLowerCont = string.lower(sCont)
-        local bHasBadWord = GlobalExport.HasWord(sLowerCont)
-        fnCallback(bHasBadWord)
-    else
-        local oServerMgr = GetGModule("ServerMgr")
-        local nWorldServerID = oServerMgr:GetWorldServerID()
-        local nWGlobalServiceID = oServerMgr:GetGlobalService(nWorldServerID)
-        Network.oRemoteCall:CallWait("HasBadWordReq", fnCallback, nWorldServerID, nWGlobalServiceID, 0, sCont)
-    end
+--通过数据库生成唯一自增ID,全世界唯一,从1开始
+function CUtil:GenAutoID(sKey)
+    local oDB = GetGModule("DBMgr"):GetGameDB(0, "center")
+    local nAutoID = oDB:HIncr(gtDBDef.sAutoIDDB, sKey)
+    return nAutoID
 end
 
---过滤非法字不区分大小写(只有WGlobalServer,GlobalServer导出对应接口)--屏蔽字库占太多内存
-function CUtil:FilterBadWord(sCont, fnCallback)
-    assert(sCont and fnCallback, "参数错误")
-    if sCont == "" then
-        fnCallback(sCont)
-        return
-    end
-    if GlobalExport.HasWord then
-    	local sLowerCont = string.lower(sCont)
-        if GlobalExport.HasWord(sLowerCont) then
-        	sCont = GlobalExport.ReplaceWord(sLowerCont, "*")
-        end
-        fnCallback(sCont)
-        return
-    else
-        local oServerMgr = GetGModule("ServerMgr")
-        local nWorldServerID = oServerMgr:GetWorldServerID()
-        local nWGlobalServiceID = oServerMgr:GetGlobalService(nWorldServerID)
-        Network.oRemoteCall:CallWait("FilterBadWordReq", fnCallback, nWorldServerID, nWGlobalServiceID, 0, sCont)
-    end
+--生成副本ID,全世界唯一
+function CUtil:GenDupID(nConfID)
+    assert(nConfID <= 0xFFFFF, "配置ID不能超过:"..(0xFFFFF))
+    local nAutoID = (self:GenAutoID() % 0xFFFFFFFF) + 1
+    return (nConfID<<32|nAutoID)
 end
+--生成场景ID,全世界唯一
+CUtil.GenSceneID = CUtil.GenDupID
 
---过滤特殊字符(可以用来判断字符串中是否包含特殊字符)
-function CUtil:FilterSpecChars(sCont)  
-    local ss = {}  
-    for k = 1, #sCont do 
-        local c = string.byte(sCont,k)  
-        if not c then break end  
-        -- if (c>=48 and c<=57) or (c>= 65 and c<=90) or (c>=97 and c<=122) or c == 183 or c == 95 or c == 45 then
-        if (c>=48 and c<=57) or (c>= 65 and c<=90) or (c>=97 and c<=122) then    
-            table.insert(ss, string.char(c))  
-        elseif c>=228 and c<=233 then  
-            local c1 = string.byte(sCont,k+1)  
-            local c2 = string.byte(sCont,k+2)  
-            if c1 and c2 then  
-                local a1,a2,a3,a4 = 128,191,128,191 
-                if c == 228 then a1 = 184 
-                elseif c == 233 then a2,a4 = 190,c1 ~= 190 and 191 or 165 
-                end  
-                if c1>=a1 and c1<=a2 and c2>=a3 and c2<=a4 then  
-                    k = k + 2 
-                    table.insert(ss, string.char(c,c1,c2))  
-                end  
-            end  
-        end  
-    end  
-    return table.concat(ss)  
+--取副本配置ID
+function CUtil:GetDupConfID(nDupID)
+    return (nDupID>>32&0x7FFFFFFF)
 end
+--取场景配置ID
+CUtil.GetSceneConfID = CUtil.GetDupConfID
 
---通过会话ID取网关服务ID
---@nSession: 会话ID
-function CUtil:GetGateServiceBySession(nSession)
-    assert(nSession, "参数错误")
-    return (nSession >> gtGDef.tConst.nServiceShift)
+--生成角色显示用ID,全世界唯一
+function CUtil:GenRoleShowID(sKey)
+    local nAutoID = self:GenAutoID(sKey)
+    local nShowID = gtGDef.tConst.nBaseRoleID + nAutoID%(gtGDef.tConst.nMaxRoleID-gtGDef.tConst.nBaseRoleID)+1
+    return nShowID
 end
 
 --取当前进程服务ID
@@ -93,9 +42,9 @@ function CUtil:GetServiceID()
     return GlobalExport.GetServiceID()
 end
 
---取唯一ID
-function CUtil:GenUUID()
-    return NetworkExport.GenUUID()
+--取标准时间(毫秒)
+function CUtil:GetUnixMSTime()
+    return NetworkExport.UnixMSTime()
 end
 
 --取系统运行时间(毫秒)
@@ -103,16 +52,24 @@ function CUtil:GetClockMSTime()
     return NetworkExport.ClockMSTime()
 end
 
---取标准时间(毫秒)
-function CUtil:GetUnixMSTime()
-    return NetworkExport.UnixMSTime()
+--添加屏蔽字
+function CUtil:AddBadWord(sWord)
+    GlobalExport.AddWord(sWord)
 end
 
---通过逻辑服ID取服务器ID
-function CUtil:GetServerByLogic(nLogicServiceID)
-    local oServerMgr = GetGModule("ServerMgr")
-    local nServerID = nLogicServiceID>=100 and oServerMgr:GetWorldServerID() or oServerMgr:GetServerID()
-    return nServerID
+--通过会话ID取网关服务ID
+--@nSession: 会话ID
+function CUtil:GetGateBySession(nSessionID)
+    assert(nSessionID, "参数错误")
+    return (nSessionID >> gtGDef.tConst.nServiceShift)
+end
+
+--生成弱表
+--@sFlag k键; v值; kv键值
+function CUtil:WeakTable(sFlag)
+    local tTable = {}
+    setmetatable(tTable, {__mode=sFlag})
+    return tTable
 end
 
 --随机坐标
@@ -137,19 +94,29 @@ function CUtil:IsBlockUnit(nMapID, nPosX, nPosY)
     return GlobalExport.IsBlockUnit(nMapID, nPosX, nPosY)
 end
 
---生成弱表
---@sFlag k键; v值; kv键值
-function CUtil:WeakTable(sFlag)
-    local tTable = {}
-    setmetatable(tTable, {__mode=sFlag})
-    return tTable
+--通过逻辑服ID取服务器ID
+function CUtil:GetServerByLogic(nLogicServiceID)
+    local oServerMgr = GetGModule("ServerMgr")
+    local nServerID = nLogicServiceID>=100 and oServerMgr:GetWorldServerID() or oServerMgr:GetServerID()
+    return nServerID
+end
+
+--名字库随机名字
+function CUtil:GenNameByPool()
+    local nIndex = math.random(1, #ctRoleNamePoolConf)
+    local tPoolConf = ctRoleNamePoolConf[nIndex]
+    local nRndXing = math.random(1, #tPoolConf.tXing)
+    local nRndMing = math.random(1, #tPoolConf.tMing)
+    local sXing = tPoolConf.tXing[nRndXing][1]
+    local sMing = tPoolConf.tMing[nRndMing][1]
+    return (sXing..sMing)
 end
 
 --发送邮件
---@nTarServer 玩家所属服务器(oRole:GetServer())
+--@nTarServer 玩家所属服务器(oRole:GetServerID())
 --@sTitle 标题
 --@sContent 内容
---@tItemList 物品列表{{id,num,propext}, Prop:SaveData(), ...}
+--@tItemList 物品列表{{id,num,itemext}, Prop:SaveData(), ...}
 --@nTarRoleID 目标玩家ID
 function CUtil:SendMail(nTarServer, sTitle, sContent, tItemList, nTarRoleID)
     assert(nTarServer and sTitle and sContent and tItemList and nTarRoleID, "参数错误")
@@ -160,12 +127,12 @@ function CUtil:SendMail(nTarServer, sTitle, sContent, tItemList, nTarRoleID)
     if oServerMgr:GetServerID() == nTarServer and nTarService == CUtil:GetServiceID() then
         GetGModule("MailMgr"):SendMail(sTitle, sContent, tItemList, nTarRoleID)
     else
-       Network.oRemoteCall:Call("SendMailReq", nTarServer, nTarService, 0, sTitle, sContent, tItemList, nTarRoleID)
+       Network:RMCall("SendMailReq", nil, nTarServer, nTarService, 0, sTitle, sContent, tItemList, nTarRoleID)
     end
 end
 
 --发送滚动公告(跑马灯)
---@nTarServer 玩家所属服务器(oRole:GetServer())，如果nTarServer为0，则为全区广播
+--@nTarServer 玩家所属服务器(oRole:GetServerID())，如果nTarServer为0，则为全区广播
 --@sContent 内容
 function CUtil:SendNotice(nTarServer, sContent)
     assert(nTarServer and sContent, "参数错误")
@@ -176,7 +143,7 @@ function CUtil:SendNotice(nTarServer, sContent)
         if oServerMgr:GetServerID() == nTarServer and nTarService == CUtil:GetServiceID() then
             GetGModule("NoticeMgr"):SendNoticeReq(sContent)
         else
-            Network.oRemoteCall:Call("SendNoticeReq", nTarServer, nTarService, 0, sContent)
+            Network:RMCall("SendNoticeReq", nil, nTarServer, nTarService, 0, sContent)
         end
     else
         local nWorldServerID = oServerMgr:GetWorldServerID()
@@ -184,7 +151,7 @@ function CUtil:SendNotice(nTarServer, sContent)
         if nTarService == CUtil:GetServiceID() and oServerMgr:GetServerID() == nWorldServerID then 
             Network.RpcSrv2Srv.SendNoticeAllReq(nTarServer, nTarService, 0, sContent)
         else
-            Network.oRemoteCall:Call("SendNoticeAllReq", nWorldServerID, nTarService, 0, sContent)
+            Network:RMCall("SendNoticeAllReq", nil, nWorldServerID, nTarService, 0, sContent)
         end
     end
 end
@@ -199,7 +166,7 @@ function CUtil:SendSystemTalk(sTitle, sContent)
     if oServerMgr:GetServerID() == nWorldServerID and nTarService == CUtil:GetServiceID() then
         GetGModule("Talk"):SendSystemMsg(sContent, sTitle)
     else
-        Network.oRemoteCall:Call("SendSystemTalkReq", nWorldServerID, nTarService, 0, sTitle, sContent)
+        Network:RMCall("SendSystemTalkReq", nil, nWorldServerID, nTarService, 0, sTitle, sContent)
     end
 end
 
@@ -215,7 +182,7 @@ function CUtil:SendTeamTalk(nRoleID, sContent, bSys)
         local oRole = GetGModule("GRoleMgr"):GetRoleByID(nRoleID)
         GetGModule("Talk"):SendTeamMsg(oRole, sContent, bSys)
     else
-        Network.oRemoteCall:Call("SendTeamTalkReq", nWorldServerID, nTarService, 0, nRoleID, sContent, bSys)
+        Network:RMCall("SendTeamTalkReq", nil, nWorldServerID, nTarService, 0, nRoleID, sContent, bSys)
     end
 end
 
@@ -228,7 +195,7 @@ function CUtil:SendWorldTalk(nRoleID, sContent, bSys)
         local oRole = GetGModule("GRoleMgr"):GetRoleByID(nRoleID)
         GetGModule("Talk"):SendWorldMsg(oRole, sContent, bSys)
     else
-        Network.oRemoteCall:Call("SendWorldTalkReq", nWorldServerID, nTarService, 0, nRoleID, sContent, bSys)
+        Network:RMCall("SendWorldTalkReq", nil, nWorldServerID, nTarService, 0, nRoleID, sContent, bSys)
     end
 end
 
@@ -240,21 +207,8 @@ function CUtil:SendHearsayMsg(sCont)
     if oServerMgr:GetServerID() == nWorldServerID and nTarService == CUtil:GetServiceID() then
         GetModule("Talk"):SendHearsayMsg(sCont)
     else
-        Network.oRemoteCall:Call("SendHearsayTalkReq", nWorldServerID, nTarService, 0, sCont)
+        Network:RMCall("SendHearsayTalkReq", nil, nWorldServerID, nTarService, 0, sCont)
     end
-end
-
---根据品质格式化道具颜色
-function CUtil:FormatPropQualityString(nQuality, sSrc)
-    local sField = gtQualityStringColor[nQuality]
-    if not sField then 
-        return sSrc
-    end
-    local tConf = ctTalkConf[sField]
-    if not tConf then 
-        return sSrc
-    end
-    return string.format(tConf.sContent, sSrc)
 end
 
 function CUtil:IsRobot(nRoleID)
@@ -367,4 +321,72 @@ function CUtil:RandDiffIterator(nMin, nMax)
         return nResultVal
     end
     return fnIterator
+end
+
+--检测非法字不区分大小写(只有WGlobalServer,GlobalServer导出)--屏蔽字库占太多内存
+function CUtil:HasBadWord(sCont, fnCallback)
+    assert(sCont and fnCallback, "参数错误")
+    if sCont == "" then
+        fnCallback(false)
+        return
+    end
+    if GlobalExport.HasWord then
+        local sLowerCont = string.lower(sCont)
+        local bHasBadWord = GlobalExport.HasWord(sLowerCont)
+        fnCallback(bHasBadWord)
+    else
+        local oServerMgr = GetGModule("ServerMgr")
+        local nWorldServerID = oServerMgr:GetWorldServerID()
+        local nWGlobalServiceID = oServerMgr:GetGlobalService(nWorldServerID)
+        Network:RMCall("HasBadWordReq", fnCallback, nWorldServerID, nWGlobalServiceID, 0, sCont)
+    end
+end
+
+--过滤非法字不区分大小写(只有WGlobalServer,GlobalServer导出对应接口)--屏蔽字库占太多内存
+function CUtil:FilterBadWord(sCont, fnCallback)
+    assert(sCont and fnCallback, "参数错误")
+    if sCont == "" then
+        fnCallback(sCont)
+        return
+    end
+    if GlobalExport.HasWord then
+        local sLowerCont = string.lower(sCont)
+        if GlobalExport.HasWord(sLowerCont) then
+            sCont = GlobalExport.ReplaceWord(sLowerCont, "*")
+        end
+        fnCallback(sCont)
+        return
+    else
+        local oServerMgr = GetGModule("ServerMgr")
+        local nWorldServerID = oServerMgr:GetWorldServerID()
+        local nWGlobalServiceID = oServerMgr:GetGlobalService(nWorldServerID)
+        Network:RMCall("FilterBadWordReq", fnCallback, nWorldServerID, nWGlobalServiceID, 0, sCont)
+    end
+end
+
+--过滤特殊字符(可以用来判断字符串中是否包含特殊字符)
+function CUtil:FilterSpecChars(sCont)  
+    local ss = {}  
+    for k = 1, #sCont do 
+        local c = string.byte(sCont,k)  
+        if not c then break end  
+        -- if (c>=48 and c<=57) or (c>= 65 and c<=90) or (c>=97 and c<=122) or c == 183 or c == 95 or c == 45 then
+        if (c>=48 and c<=57) or (c>= 65 and c<=90) or (c>=97 and c<=122) then    
+            table.insert(ss, string.char(c))  
+        elseif c>=228 and c<=233 then  
+            local c1 = string.byte(sCont,k+1)  
+            local c2 = string.byte(sCont,k+2)  
+            if c1 and c2 then  
+                local a1,a2,a3,a4 = 128,191,128,191 
+                if c == 228 then a1 = 184 
+                elseif c == 233 then a2,a4 = 190,c1 ~= 190 and 191 or 165 
+                end  
+                if c1>=a1 and c1<=a2 and c2>=a3 and c2<=a4 then  
+                    k = k + 2 
+                    table.insert(ss, string.char(c,c1,c2))  
+                end  
+            end  
+        end  
+    end  
+    return table.concat(ss)  
 end

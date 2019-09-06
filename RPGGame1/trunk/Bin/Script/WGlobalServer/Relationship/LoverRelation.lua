@@ -232,21 +232,21 @@ function CLoverRelationMgr:MarkDirty(bDirty)
 end
 
 function CLoverRelationMgr:LoadSysData() 
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oDB:HGet(gtDBDef.sLoverSysDB, "loversysdata")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_nSerialNum = tData.nSerialNum or self.m_nSerialNum
 	end
 end
 
 function CLoverRelationMgr:LoadData()
     self:LoadSysData()
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local tKeys = oDB:HKeys(gtDBDef.sRoleLoverDB)
 	for _, sRoleID in ipairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sRoleLoverDB, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nRoleID = tData.nRoleID
         local oLoverData = CRoleLover:new(nRoleID)
 		oLoverData:LoadData(tData)
@@ -260,8 +260,8 @@ function CLoverRelationMgr:SaveSysData()
     end
     local tData = {}
     tData.nSerialNum = self.m_nSerialNum
-    local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-    oDB:HSet(gtDBDef.sLoverSysDB, "loversysdata", cjson.encode(tData))
+    local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+    oDB:HSet(gtDBDef.sLoverSysDB, "loversysdata", cseri.encode(tData))
     
     self:MarkDirty(false)
 end
@@ -272,12 +272,12 @@ function CLoverRelationMgr:SaveData()
 	if nDirtyNum < 1 then
 		return
 	end
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	for i = 1, nDirtyNum do
 		local oLoverData = self.m_tDirtyQueue:Head()
 		if oLoverData then
 			local tData = oLoverData:SaveData()
-			oDB:HSet(gtDBDef.sRoleLoverDB, oLoverData:GetID(), cjson.encode(tData))
+			oDB:HSet(gtDBDef.sRoleLoverDB, oLoverData:GetID(), cseri.encode(tData))
 			oLoverData:MarkDirty(false)
         end
         self.m_tDirtyQueue:Pop()
@@ -661,7 +661,7 @@ function CLoverRelationMgr:SyncLogicCache(nRoleID, nSrcServer, nSrcService, nTar
         end
         tData.tLoverList[nTempRoleID] = tLoverData
     end
-    Network.oRemoteCall:Call("RoleLoverUpdateReq", nSrcServer, nSrcService, nTarSession, nRoleID, tData)
+    Network:RMCall("RoleLoverUpdateReq", nil, nSrcServer, nSrcService, nTarSession, nRoleID, tData)
 end
 
 function CLoverRelationMgr:OnNameChange(oRole)

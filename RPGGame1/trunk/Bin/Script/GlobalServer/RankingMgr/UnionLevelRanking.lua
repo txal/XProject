@@ -6,7 +6,7 @@ function CUnionLevelRanking:Ctor(nID)
 end
 
 function CUnionLevelRanking:LoadData()
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sDBName = self:GetDBName()
 
 	local tKeys = oSSDB:HKeys(sDBName)
@@ -16,7 +16,7 @@ function CUnionLevelRanking:LoadData()
 		local nUnionID = tonumber(sUnionID)
 		if goUnionMgr:GetUnion(nUnionID) then
 			local sData = oSSDB:HGet(sDBName, sUnionID)
-			self.m_oRanking:Insert(nUnionID, cjson.decode(sData))
+			self.m_oRanking:Insert(nUnionID, cseri.decode(sData))
 		end
 	end
 end

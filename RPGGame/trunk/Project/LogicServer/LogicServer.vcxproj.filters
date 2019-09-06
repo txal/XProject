@@ -395,9 +395,6 @@
     <ClInclude Include="..\..\..\..\Common\DataStruct\MutexLock.h">
       <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Common\DataStruct\ObjID.h">
-      <Filter>Src\Common\DataStruct</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\Common\DataStruct\Point.h">
       <Filter>Src\Common\DataStruct</Filter>
     </ClInclude>

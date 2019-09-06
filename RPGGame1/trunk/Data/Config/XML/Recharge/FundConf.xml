@@ -8,10 +8,10 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>AutoBVT</LastAuthor>
+  <LastAuthor>欧阳文杰</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2018-12-27T06:52:29Z</LastSaved>
-  <Version>15.00</Version>
+  <LastSaved>2019-04-15T05:50:44Z</LastSaved>
+  <Version>16.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <KSOProductBuildVer dt:dt="string">2052-10.1.0.7346</KSOProductBuildVer>
@@ -20,10 +20,10 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>12450</WindowHeight>
-  <WindowWidth>28800</WindowWidth>
-  <WindowTopX>0</WindowTopX>
-  <WindowTopY>0</WindowTopY>
+  <WindowHeight>6720</WindowHeight>
+  <WindowWidth>10692</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
@@ -64,46 +64,17 @@
    <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
    <Font ss:FontName="宋体" x:CharSet="134" ss:Size="10.5"/>
   </Style>
-  <Style ss:ID="s67">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Borders/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-   <NumberFormat/>
-   <Protection/>
-  </Style>
-  <Style ss:ID="s68">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-  </Style>
-  <Style ss:ID="s69">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-   <NumberFormat/>
-   <Protection/>
-  </Style>
-  <Style ss:ID="s70">
-   <Alignment ss:Vertical="Bottom"/>
-   <Font ss:FontName="宋体" x:CharSet="134" ss:Color="#000000"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-  </Style>
-  <Style ss:ID="s71">
-   <Alignment ss:Horizontal="Justify" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="10.5"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-  </Style>
  </Styles>
  <Worksheet ss:Name="ctFundConf">
-  <Table ss:ExpandedColumnCount="7" ss:ExpandedRowCount="26" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="8" ss:ExpandedRowCount="26" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
-   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="57.75"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="118.5"/>
-   <Column ss:Index="4" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="71.25"/>
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="57.6"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="118.8"/>
+   <Column ss:Index="4" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="241.8"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="129"/>
-   <Column ss:Index="7" ss:StyleID="s62" ss:Width="61.5"/>
+   <Column ss:Index="8" ss:StyleID="s62" ss:AutoFitWidth="0"
+    ss:Width="164.39999999999998"/>
    <Row ss:AutoFitHeight="0">
     <Cell ss:Index="2"><Data ss:Type="String">1.成长基金 2.纵横基金</Data></Cell>
    </Row>
@@ -125,14 +96,17 @@
     <Cell><Data ss:Type="String">基金ID</Data></Cell>
     <Cell><Data ss:Type="String">基金类型</Data></Cell>
     <Cell><Data ss:Type="String">目标</Data></Cell>
-    <Cell><Data ss:Type="String">奖励</Data></Cell>
+    <Cell><Data ss:Type="String">奖励</Data><Comment ss:Author="欧阳文杰"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9"
+         html:Color="#000000">欧阳文杰:</Font></B><Font html:Size="9"
+        html:Color="#000000">&#10;原来：&#10;1RMB=10元宝=1000金币&#10;现在：&#10;1RMB=500元宝=1000金币&#10;元宝乘以50，金币原价</Font></ss:Data></Comment></Cell>
     <Cell><Data ss:Type="String">描述</Data></Cell>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">1,1,20000</Data></Cell>
+    <Cell><Data ss:Type="String">1,1,20000;</Data></Cell>
     <Cell><Data ss:Type="String">购买后立即获得</Data></Cell>
     <Cell ss:StyleID="s65"/>
    </Row>
@@ -140,7 +114,7 @@
     <Cell ss:StyleID="s62"><Data ss:Type="Number">2</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">30</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,10000;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2,14400;</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到30级即可领取：</Data></Cell>
     <Cell ss:StyleID="s65"/>
    </Row>
@@ -148,7 +122,7 @@
     <Cell ss:StyleID="s64"><Data ss:Type="Number">3</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell><Data ss:Type="Number">40</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,15000;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2,14400;</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到40级即可领取：</Data></Cell>
     <Cell ss:StyleID="s65"/>
    </Row>
@@ -156,7 +130,7 @@
     <Cell ss:StyleID="s62"><Data ss:Type="Number">4</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">45</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,20000;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2,16400;</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到45级即可领取：</Data></Cell>
     <Cell ss:StyleID="s65"/>
    </Row>
@@ -164,7 +138,7 @@
     <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell><Data ss:Type="Number">50</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,25000;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2,16400;</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到50级即可领取：</Data></Cell>
     <Cell ss:StyleID="s65"/>
    </Row>
@@ -172,7 +146,7 @@
     <Cell ss:StyleID="s62"><Data ss:Type="Number">6</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">55</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,30000;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2,34400;</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到55级即可领取：</Data></Cell>
     <Cell ss:StyleID="s65"/>
    </Row>
@@ -180,7 +154,7 @@
     <Cell ss:StyleID="s64"><Data ss:Type="Number">7</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell><Data ss:Type="Number">60</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,35000;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2,40000;</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到60级即可领取：</Data></Cell>
     <Cell ss:StyleID="s65"/>
    </Row>
@@ -188,121 +162,108 @@
     <Cell><Data ss:Type="Number">8</Data></Cell>
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">65</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,45000;</Data></Cell>
+    <Cell><Data ss:Type="String">1,2,44000;</Data></Cell>
     <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到65级即可领取：</Data></Cell>
     <Cell ss:StyleID="s65"/>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">9</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">9</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="String">1,1,49000;</Data></Cell>
     <Cell><Data ss:Type="String">购买后立即获得</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell ss:StyleID="s65"/>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">10</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">70</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,13400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到70级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,24400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到70级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">11</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">11</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">75</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,13400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到75级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,24400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到75级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">12</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">80</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,16400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到80级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,29400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到80级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">13</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">13</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">85</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,18400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到85级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,29400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到85级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">14</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">14</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">88</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,21400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到88级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,29400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到88级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">15</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">15</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">90</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,21400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到90级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,34400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到90级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">16</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">16</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">92</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,26400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到92级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,34400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到92级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">17</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">17</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">94</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,26400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到94级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,34400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到94级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">18</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">18</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">95</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,31400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到95级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,34400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到95级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">19</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">19</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">96</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,31400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到96级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,34400;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到96级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">20</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">20</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">97</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,36400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到97级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,39000;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到97级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s69"><Data ss:Type="Number">21</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">21</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">98</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,41400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到98级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,44000;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到98级即可领取：</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s68">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">22</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">22</Data></Cell>
     <Cell><Data ss:Type="Number">12</Data></Cell>
     <Cell><Data ss:Type="Number">99</Data></Cell>
-    <Cell><Data ss:Type="String">1,2,46400;</Data></Cell>
-    <Cell ss:StyleID="s71"><Data ss:Type="String">等级达到99级即可领取：</Data></Cell>
-    <Cell ss:StyleID="s70"/>
+    <Cell><Data ss:Type="String">1,2,49000;</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">等级达到99级即可领取：</Data></Cell>
    </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -322,8 +283,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>32</ActiveRow>
-     <ActiveCol>7</ActiveCol>
+     <ActiveRow>26</ActiveRow>
+     <ActiveCol>3</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>

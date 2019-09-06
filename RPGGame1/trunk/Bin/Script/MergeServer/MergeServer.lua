@@ -86,9 +86,9 @@ _tMergeProc["RoleDB"] = function(sDBName, oSrcDB, nSrcServer)
 		if not CUtil:IsRobot(tonumber(sRoleID)) then
 			--角色数据
 			local sData = oSrcDB:HGet(sDBName, sRoleID)
-			local tData = cjson.decode(sData)
+			local tData = cseri.decode(sData)
 			tData.m_sAccountName = _AddServerFlag(tData.m_sAccountName, nSrcServer)
-			oTarDB:HSet(sDBName, sRoleID, cjson.encode(tData))
+			oTarDB:HSet(sDBName, sRoleID, cseri.encode(tData))
 
 			--模块数据
 			for _, tModule in pairs(gtModuleDef) do
@@ -106,10 +106,10 @@ _tMergeProc["AccountDB"] = function(sDBName, oSrcDB, nSrcServer)
 	local tKeys = oSrcDB:HKeys(sDBName)	
 	for _, sAccountID in pairs(tKeys) do
 		local sData = oSrcDB:HGet(sDBName, sAccountID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		tData.m_sName = _AddServerFlag(tData.m_sName, nSrcServer)
 		tData.m_nServer = nTarServer
-		oTarDB:HSet(sDBName, sAccountID, cjson.encode(tData))
+		oTarDB:HSet(sDBName, sAccountID, cseri.encode(tData))
 	end
 	return true
 end
@@ -118,14 +118,14 @@ _tMergeProc["AccountNameDB"] = function(sDBName, oSrcDB, nSrcServer)
 	local tKeys = oSrcDB:HKeys(sDBName)	
 	for _, sKey in pairs(tKeys) do
 		local sData = oSrcDB:HGet(sDBName, sKey)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		if tData.sAccount then
 			tData.sAccount = _AddServerFlag(tData.sAccount, nSrcServer)
 		else
 			assert(tData.nAccountID, "数据错误:"..tostring(tData))
 			sKey = _AddServerFlag(sKey, nSrcServer)
 		end
-		local sData = cjson.encode(tData)
+		local sData = cseri.encode(tData)
 		oTarDB:HSet(sDBName, sKey, sData)
 	end
 	return true
@@ -133,14 +133,14 @@ end
 
 _tMergeProc["RoleMailDB"] = function(sDBName, oSrcDB, nSrcServer)
 	local sData = oTarDB:HGet("ServerMailDB", "data")
-	local tData = cjson.decode(sData)
+	local tData = cseri.decode(sData)
 	local nMaxID = tData.m_nAutoInc
 
 	local tKeys = oSrcDB:HKeys(sDBName)
 	for _, sRoleID in ipairs(tKeys) do
 		local tMailList = {}
 		local sData = oSrcDB:HGet(sDBName, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		for _, tMail in pairs(tData) do
 			if #tMail[4] > 0 then
 				local nOldID = tMail[1]
@@ -153,12 +153,12 @@ _tMergeProc["RoleMailDB"] = function(sDBName, oSrcDB, nSrcServer)
 			end
 		end
 		if #tMailList > 0 then
-			oTarDB:HSet(sDBName, sRoleID, cjson.encode(tMailList))
+			oTarDB:HSet(sDBName, sRoleID, cseri.encode(tMailList))
 		end
 	end
 	tData.m_nAutoInc = nMaxID
 	tData.m_tServerMailMap = {} --清空全服邮件,避免合进来的玩家重新获得邮件
-	oTarDB:HSet("ServerMailDB", "data", cjson.encode(tData))
+	oTarDB:HSet("ServerMailDB", "data", cseri.encode(tData))
 	return true
 end
 
@@ -171,25 +171,25 @@ _tMergeProc["GlobalRoleDB"] = function(sDBName, oSrcDB, nSrcServer)
 	for _, sRoleID in pairs(tKeys) do
 		if not CUtil:IsRobot(tonumber(sRoleID)) then
 			local sData = oSrcDB:HGet(sGlobalDBName, sRoleID)
-			local tData = cjson.decode(sData)
+			local tData = cseri.decode(sData)
 			tData.m_sAccountName = _AddServerFlag(tData.m_sAccountName, nSrcServer)
 			tData.m_nServer = nTarServer
-			oTarDB:HSet(sGlobalDBName, sRoleID, cjson.encode(tData))
+			oTarDB:HSet(sGlobalDBName, sRoleID, cseri.encode(tData))
 
 			local sData = oWorldDB:HGet(sWorldDBName110, sRoleID)
 			if sData ~= "" then
-				local tData = cjson.decode(sData)
+				local tData = cseri.decode(sData)
 				tData.m_sAccountName = _AddServerFlag(tData.m_sAccountName, nSrcServer)
 				tData.m_nServer = nTarServer
-				oWorldDB:HSet(sWorldDBName110, sRoleID, cjson.encode(tData))
+				oWorldDB:HSet(sWorldDBName110, sRoleID, cseri.encode(tData))
 			end
 
 			local sData = oWorldDB:HGet(sWorldDBName111, sRoleID)
 			if sData ~= "" then
-				local tData = cjson.decode(sData)
+				local tData = cseri.decode(sData)
 				tData.m_sAccountName = _AddServerFlag(tData.m_sAccountName, nSrcServer)
 				tData.m_nServer = nTarServer
-				oWorldDB:HSet(sWorldDBName111, sRoleID, cjson.encode(tData))
+				oWorldDB:HSet(sWorldDBName111, sRoleID, cseri.encode(tData))
 			end
 		end
 	end
@@ -221,27 +221,27 @@ _tMergeProc["UnionDB"] = function(sDBName, oSrcDB, nSrcServer)
 	local tKeys = oTarDB:HKeys(sDBName)
 	for _, sUnionID in pairs(tKeys) do
 		local sData = oTarDB:HGet(sDBName, sUnionID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		tNameMap[tData.m_sName] = true
 	end
 	local sData = oTarDB:HGet("UnionEtcDB", "data")
-	local tData = cjson.decode(sData)
+	local tData = cseri.decode(sData)
 	local nShowID = tData.m_nAutoShowID
 
 	local tKeys = oSrcDB:HKeys(sDBName)
 	for _, sUnionID in pairs(tKeys) do
 		local sData = oSrcDB:HGet(sDBName, sUnionID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		if tNameMap[tData.m_sName] then
 			tData.m_sName = string.format("%s[%d服]", tData.m_sName, nSrcServer)
 		end
 		nShowID = nShowID + 1
 		tData.m_nShowID = nShowID
-		oTarDB:HSet(sDBName, sUnionID, cjson.encode(tData))
+		oTarDB:HSet(sDBName, sUnionID, cseri.encode(tData))
 	end
 
 	tData.m_nAutoShowID = nShowID
-	local sData = cjson.encode(tData)
+	local sData = cseri.encode(tData)
 	oTarDB:HSet("UnionEtcDB", "data", sData)
 	return true
 end
@@ -261,14 +261,14 @@ local function _MergeNormalAct(tActID, sDBName, oSrcDB, nSrcServer)
 	for _, nActID in pairs(tActID) do
 		local nTarState = -1
 		local sTarData = oTarDB:HGet(sDBName, nActID)
-		local tTarData = cjson.decode(sTarData)		
+		local tTarData = cseri.decode(sTarData)		
 		if tTarData.m_nState == CHDBase.tState.eStart or tTarData.m_nState == CHDBase.tState.eAward then
 			tTarActMap[nActID] = tTarData
 			nTarState = tTarData.m_nState
 		end
 		local nSrcState = -1
 		local sSrcData = oSrcDB:HGet(sDBName, nActID)
-		local tSrcData = cjson.decode(sSrcData)		
+		local tSrcData = cseri.decode(sSrcData)		
 		if tSrcData.m_nState == CHDBase.tState.eStart or tSrcData.m_nState == CHDBase.tState.eAward then
 			tSrcActMap[nActID] = tSrcData
 			nSrcState = tSrcData.m_nState
@@ -418,7 +418,7 @@ local function _MergeNormalAct(tActID, sDBName, oSrcDB, nSrcServer)
 	for nActID, tData in pairs(tSrcActMap) do
 		assert(tActMergeProc[nActID], "合并函数不存在:"..nActID)
 		local tTarData = tActMergeProc[nActID](tTarActMap[nActID], tData)
-		oTarDB:HSet(sDBName, nActID, cjson.encode(tTarData))
+		oTarDB:HSet(sDBName, nActID, cseri.encode(tTarData))
 	end
 	return true
 end
@@ -429,14 +429,14 @@ local function _MergeGrowthAct(tActID, sDBName, oSrcDB, nSrcServer)
 	for _, nActID in pairs(tActID) do
 		local nTarState = -1
 		local sTarData = oTarDB:HGet(sDBName, nActID)
-		local tTarData = cjson.decode(sTarData)		
+		local tTarData = cseri.decode(sTarData)		
 		if tTarData.m_nState == CHDBase.tState.eStart or tTarData.m_nState == CHDBase.tState.eAward then
 			tTarActMap[nActID] = tTarData
 			nTarState = tTarData.m_nState
 		end
 		local nSrcState = -1
 		local sSrcData = oSrcDB:HGet(sDBName, nActID)
-		local tSrcData = cjson.decode(sSrcData)		
+		local tSrcData = cseri.decode(sSrcData)		
 		if tSrcData.m_nState == CHDBase.tState.eStart or tSrcData.m_nState == CHDBase.tState.eAward then
 			tSrcActMap[nActID] = tSrcData
 			nSrcState = tSrcData.m_nState
@@ -495,7 +495,7 @@ local function _MergeGrowthAct(tActID, sDBName, oSrcDB, nSrcServer)
 	for nActID, tData in pairs(tSrcActMap) do
 		assert(tActMergeProc[nActID], "合并函数不存在:"..nActID)
 		local tTarData = tActMergeProc[nActID](tTarActMap[nActID], tData)
-		oTarDB:HSet(sDBName, nActID, cjson.encode(tTarData))
+		oTarDB:HSet(sDBName, nActID, cseri.encode(tTarData))
 	end
 	return true
 end
@@ -520,29 +520,29 @@ end
 
 _tMergeProc["GrowthTargetActDB"] = function(sDBName, oSrcDB, nSrcServer)
 	local sTarData = oTarDB:HGet(sDBName, "GrowthTargetShop")
-	local tTarData = sTarData == "" and {m_tItemRecordMap={}} or cjson.decode(sTarData)
+	local tTarData = sTarData == "" and {m_tItemRecordMap={}} or cseri.decode(sTarData)
 
 	local sSrcData = oSrcDB:HGet(sDBName, "GrowthTargetShop")
 	if sSrcData == "" then
 		return
 	end
-	local tSrcData = cjson.decode(sSrcData)
+	local tSrcData = cseri.decode(sSrcData)
 	for nIndex, tRoleData in pairs(tSrcData.m_tItemRecordMap) do
 		tTarData.m_tItemRecordMap[nIndex] = tTarData.m_tItemRecordMap[nIndex] or {}
 		for nRoleID, nCount in pairs(tRoleData) do
 			tTarData.m_tItemRecordMap[nIndex][nRoleID] = nCount
 		end
 	end
-	oTarDB:HSet(sDBName, "GrowthTargetShop", cjson.encode(tTarData))
+	oTarDB:HSet(sDBName, "GrowthTargetShop", cseri.encode(tTarData))
 	return true
 end
 
 _tMergeProc["ShopDB"] = function(sDBName, oSrcDB, nSrcServer)
 	local sSrcData = oSrcDB:HGet(sDBName,"data")
-	local tSrcData = sSrcData == "" and {} or cjson.decode(sSrcData)
+	local tSrcData = sSrcData == "" and {} or cseri.decode(sSrcData)
 
 	local sTarData = oTarDB:HGet(sDBName, "data")
-	local tTarData = sTarData == "" and {} or cjson.decode(sTarData)
+	local tTarData = sTarData == "" and {} or cseri.decode(sTarData)
 
 	local _fnInsert = function(tTarList, tSrcList)
 		for nKey, tData in pairs(tSrcList or {}) do
@@ -584,7 +584,7 @@ _tMergeProc["ShopDB"] = function(sDBName, oSrcDB, nSrcServer)
 			_fnInsert(tTarData[nShopType].m_tPlayers, tShopData.m_tPlayers)
 		end
 	end
-	oTarDB:HSet(sDBName,  "data", cjson.encode(tTarData))
+	oTarDB:HSet(sDBName,  "data", cseri.encode(tTarData))
 	return true
 end
 
@@ -602,16 +602,16 @@ end
 
 _tMergeProc["RankingEtcDB"] = function(sDBName, oSrcDB, nSrcServer)
 	local sTarData = oTarDB:HGet(sDBName, gtRankingDef.eColligatePowerRanking)
-	local tTarData = cjson.decode(sTarData)
+	local tTarData = cseri.decode(sTarData)
 
 	local sSrcData = oSrcDB:HGet(sDBName, gtRankingDef.eColligatePowerRanking)
 	if sSrcData ~= "" then
-		local tSrcData = cjson.decode(sSrcData)
+		local tSrcData = cseri.decode(sSrcData)
 		for nRoleID, bRes in pairs(tSrcData.m_tCongratMap) do
 			tTarData.m_tCongratMap[nRoleID] = bRes
 		end
 	end
-	oTarDB:HSet(sDBName, gtRankingDef.eColligatePowerRanking, cjson.encode(tTarData))
+	oTarDB:HSet(sDBName, gtRankingDef.eColligatePowerRanking, cseri.encode(tTarData))
 	return true
 end
 
@@ -629,7 +629,7 @@ _tMergeProc["ExchangeActDB"] = function(sDBName, oSrcDB, nSrcServer)
 	for _, sID in pairs(tKeys) do
 		local sData = oTarDB:HGet(sDBName, sID)
 		if sData ~= "" then
-			tTarDataMap[sID] = cjson.decode(sData)
+			tTarDataMap[sID] = cseri.decode(sData)
 		end
 	end
 
@@ -637,7 +637,7 @@ _tMergeProc["ExchangeActDB"] = function(sDBName, oSrcDB, nSrcServer)
 	for _, sID in pairs(tSrcKeys) do
 		local sData = oSrcDB:HGet(sDBName, sID)
 		if sData ~= "" then
-			local tSrcData = cjson.decode(sData)
+			local tSrcData = cseri.decode(sData)
 			if tTarDataMap[sID] then
 				for nRoleID, tInfo in pairs(tSrcData.m_tRoleInfoMap) do
 					tTarDataMap[sID].m_tRoleInfoMap[nRoleID] = tInfo
@@ -648,7 +648,7 @@ _tMergeProc["ExchangeActDB"] = function(sDBName, oSrcDB, nSrcServer)
 		end
 	end
 	for sID, tData in pairs(tTarDataMap) do
-		oTarDB:HSet(sDBName, sID, cjson.encode(tData))
+		oTarDB:HSet(sDBName, sID, cseri.encode(tData))
 	end
 	return true
 end
@@ -657,17 +657,17 @@ _tMergeProc["KeyExchangeDB"] = function(sDBName, oSrcDB, nSrcServer)
 	local sData = oTarDB:HGet(sDBName, "data")	
 	local tData = {m_tOnePersonOneKey={}}
 	if sData ~= "" then
-		tData = cjson.decode(sData)
+		tData = cseri.decode(sData)
 	end
 
 	local sSrcData = oSrcDB:HGet(sData, "data")
 	if sSrcData ~= "" then
-		local tSrcData = cjson.decode(sSrcData)
+		local tSrcData = cseri.decode(sSrcData)
 		for k, v in pairs(tSrcData.m_tOnePersonOneKey or {}) do
 			tData.m_tOnePersonOneKey[k] = v
 		end
 	end
-	oTarDB:HSet(sDBName, "data", cjson.encode(tData))
+	oTarDB:HSet(sDBName, "data", cseri.encode(tData))
 	return true
 end
 

@@ -1,0 +1,639 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Administrator</Author>
+  <LastAuthor>欧阳文杰</LastAuthor>
+  <Created>2016-02-27T02:41:06Z</Created>
+  <LastSaved>2019-04-16T08:51:34Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <KSOProductBuildVer dt:dt="string">2052-10.1.0.7400</KSOProductBuildVer>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>8520</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134" ss:Size="12"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="宋体" x:CharSet="134"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="ctHuoDongFestivalCompreConf">
+  <Table ss:ExpandedColumnCount="15" ss:ExpandedRowCount="31" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
+   ss:DefaultRowHeight="14.25">
+   <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="45"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="319.79999999999995"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="183.6"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="63.599999999999994"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="73.8"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="63.599999999999994"
+    ss:Span="2"/>
+   <Column ss:Index="9" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="123.6"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="183.6" ss:Span="1"/>
+   <Column ss:Index="12" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="123.6"/>
+   <Row ss:AutoFitHeight="0"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">nID</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">tFestivalLogin</Data></Cell>
+    <Cell><Data ss:Type="String">tFestivalDiscount</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">nGuanKaMax</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">nUnder</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">tRewardPoolID</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">nBattleRoundMax</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">nYunaBaoYinBi</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">fnGetMonsterLv</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">fnRoleRewardExp</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">fnRewardYinBi</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">t{iiib}</Data><Comment
+      ss:Author="AutoBVT"><ss:Data xmlns="http://www.w3.org/TR/REC-html40"><B><Font
+         html:Size="9" html:Color="#000000">道具类型&#10;道具</Font><Font
+         html:Face="Tahoma" x:CharSet="134" x:Family="Swiss" html:Size="9"
+         html:Color="#000000">ID&#10;</Font><Font html:Size="9" html:Color="#000000">道具数量&#10;是否绑定</Font></B></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">t{iiiiiiii}</Data><Comment ss:Author="AutoBVT"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><Font html:Size="9"
+        html:Color="#000000">道具类型&#10;道具</Font><Font html:Face="Tahoma"
+        x:CharSet="134" x:Family="Swiss" html:Size="9" html:Color="#000000">ID&#10;</Font><Font
+        html:Size="9" html:Color="#000000">道具数量&#10;限购数量&#10;原价&#10;现价&#10;折扣&#10;消耗货币类型</Font><Font
+        html:Face="Tahoma" x:CharSet="134" x:Family="Swiss" html:Size="9"
+        html:Color="#000000">&#10;</Font></ss:Data></Comment></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">t{i}</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">i</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">e</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">e</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">e</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="String">活动ID</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">节日登陆</Data></Cell>
+    <Cell><Data ss:Type="String">节日打折</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">关卡上限</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">奖励道具的关卡(nUnder整数倍奖励道具)</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">奖池ID(使用藏宝图奖池)</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">战斗回合上限</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">单元元宝银币</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">怪物等级</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">奖励经验</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">奖励银币</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">300</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34001,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">301</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34002,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">302</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34003,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">303</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34004,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">304</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34005,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">305</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34006,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">306</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34007,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">307</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34008,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">308</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34009,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">309</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34010,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">310</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34011,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">311</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34012,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">312</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34013,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">313</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34014,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">314</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34015,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">315</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34016,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">316</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34017,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">317</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34018,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">318</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34001,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">319</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34002,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">320</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34003,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">321</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34004,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">322</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34005,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">323</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34006,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">324</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34007,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">325</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1,10009,5,0;1,3,5000,0;1,10114,5,0;1,19011,1,1;</Data></Cell>
+    <Cell><Data ss:Type="String">1,19016,20,2,400000,360000,9,3;1,19021,50,5,75000,52500,7,230;1,28002,10,5,60000,42000,7,230;1,10111,20,5,150000,105000,7,230;1,11002,50,5,50000,35000,7,230;1,13602,100,5,500000,300000,6,230;1,10113,500,2,300000,150000,5,1;1,10109,50,2,250000,125000,5,1;1,34008,100,2,500000,250000,5,1;</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30+nGuanQia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(2000*(4*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">math.floor(3000*(2*GuanQia/100+1))</Data></Cell>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+    <Cell ss:Index="10" ss:StyleID="Default"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <Selected/>
+   <LeftColumnVisible>2</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>35</ActiveRow>
+     <ActiveCol>8</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
+   <Row ss:AutoFitHeight="0"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.51111111111111096"/>
+    <Footer x:Margin="0.51111111111111096"/>
+   </PageSetup>
+   <Unsynced/>
+   <PageBreakZoom>100</PageBreakZoom>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

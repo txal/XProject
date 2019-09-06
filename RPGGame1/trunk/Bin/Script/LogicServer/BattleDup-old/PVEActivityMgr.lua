@@ -169,13 +169,13 @@ function CPVEActivityMgr:GetActNpcID()
 end
 
 function CPVEActivityMgr:NotifyActivityOpen() 
-	Network.oRemoteCall:Call("GPVEActivityOpenNotify", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, 
+	Network:RMCall("GPVEActivityOpenNotify", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, 
 		self:GetActivityID(), self:GetActNpcID(), gnServerID)
 end
 
 function CPVEActivityMgr:NotifyActivityClose() 
 	print(string.format("活动(%d)结束，通知销毁NPC", self:GetActivityID()))
-	Network.oRemoteCall:Call("GPVEActivityCloseNotify", gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, 
+	Network:RMCall("GPVEActivityCloseNotify", nil, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, 
 		self:GetActivityID(), self:GetActNpcID(), gnServerID)
 end
 
@@ -426,7 +426,7 @@ function CPVEActivityMgr:EnterReadyDupReq(oRole)
 			_fnEnterDupCheck(nDupMixID)
 		end
 	 	local nTarService = nDupnLogic
-		Network.oRemoteCall:CallWait("PVEActivityEnterCheckReq", fnGetDupSecneCallBack, oRole:GetServer(), nTarService, 0, oRole:GetLevel())
+		Network:RMCall("PVEActivityEnterCheckReq", fnGetDupSecneCallBack, oRole:GetServer(), nTarService, 0, oRole:GetLevel())
 	end
 end
 
@@ -525,7 +525,7 @@ function CPVEActivityMgr:PVEActSettle()
 				if oRole then 
 					oRole:AppellationUpdate(tAppeData)
 				else
-					Network.oRemoteCall:Call("AppellationUpdateReq", gnWorldServerID, 
+					Network:RMCall("AppellationUpdateReq", nil, gnWorldServerID, 
 						goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, tRoleData.nRoleID, tAppeData)
 				end
 			end
@@ -717,14 +717,14 @@ function CPVEActivityMgr:ConvenientTeam(oRole)
 								oRole:MatchTeam(self.m_nDupType, tBattleDupConf.sName, true)
 							end
 						end
-						Network.oRemoteCall:CallWait("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oRole:GetSession(), oRole:GetTeamID(), self.m_nDupType)
+						Network:RMCall("JoinMergeTeamReq", JoinMergeTeamCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oRole:GetSession(), oRole:GetTeamID(), self.m_nDupType)
 					end
 				end, oRole, tMsg)
 			else
 				oRole:MatchTeam(self.m_nDupType, tBattleDupConf.sName, true)
 			end
 		end
-		Network.oRemoteCall:CallWait("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oRole:GetSession(), oRole:GetTeamID(), self.m_nDupType)										
+		Network:RMCall("CheckJoinMergeTeamReq", CheckCallBack, gnWorldServerID, goServerMgr:GetGlobalService(gnWorldServerID, 110), oRole:GetSession(), oRole:GetTeamID(), self.m_nDupType)										
 	end
 end
 
@@ -870,7 +870,7 @@ function CPVEActivityMgr:GMOpen(nActID, nReadyTime, nEndTime, oRole)
 		 		oRole:Tips(sReason)
 		 	end
 		 end
-		 Network.oRemoteCall:CallWait("PVEOpenActReq",fnOpenActCallBack, CUtil:GetServiceID(), nTarService, 0, oRole:GetID(), nActID, nReadyTime, nEndTime)
+		 Network:RMCall("PVEOpenActReq",fnOpenActCallBack, CUtil:GetServiceID(), nTarService, 0, oRole:GetID(), nActID, nReadyTime, nEndTime)
 	end
 end
 
@@ -920,7 +920,7 @@ function CPVEActivityMgr:GMOpenActEnd()
 	else
 		--不在当前逻辑服
 		local nServerID = tDupConf.nLogic>=100 and gnWorldServerID or nServerID
-		Network.oRemoteCall:Call("DestroyAssignTypeBattleDupReq", nServerID, tDupConf.nLogic, 0, nDupType)
+		Network:RMCall("DestroyAssignTypeBattleDupReq", nil, nServerID, tDupConf.nLogic, 0, nDupType)
 	end
 end
 
@@ -946,7 +946,7 @@ function CPVEActivityMgr:GMClose(nActID, oRole)
 		 		oRole:Tips(sReason)
 		 	end
 		 end
-		 Network.oRemoteCall:CallWait("PVECloseActReq",fnCloseActCallBack, CUtil:GetServiceID(), nTarService, 0, nActID)
+		 Network:RMCall("PVECloseActReq",fnCloseActCallBack, CUtil:GetServiceID(), nTarService, 0, nActID)
 	end
 end
 

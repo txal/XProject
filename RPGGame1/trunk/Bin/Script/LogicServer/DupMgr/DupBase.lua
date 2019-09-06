@@ -3,8 +3,21 @@ local table, string, math, os, pairs, ipairs, assert = table, string, math, os, 
 
 function CDupBase:Ctor(nDupConfID)
     self.m_nDupConfID = nDupConfID
-    self.m_nDupID = CUtil:GenUUID()
+    self.m_nDupID = CUtil:GenDupID(nDupConfID)
     self.m_tSceneList = {}
+    self.m_nCreateTime = os.time()
+    self:Init()
+end
+
+--初始化
+function CDupBase:Init()
+    local tDupConf = self:GetDupConf()
+    for _, tScene in ipairs(tDupConf.tSceneList) do
+        local nSceneConfID = tScene[1]
+        assert(ctSceneConf[nSceneConfID], "场景不存在:"..nSceneConfID)
+        local oSceneLuaObj = CSceneBase:new(self, nSceneConfID)
+        table.insert(self.m_tSceneList, oSceneLuaObj)
+    end
 end
 
 --释放
@@ -16,17 +29,15 @@ end
 
 --取副本和场景ID信息
 function CDupBase:GetDupSceneInfo()
-    local tDupInfo = 
-    {
+    local tDupSceneInfo = {
         nDupID = self:GetDupID(),
-        nDupConfID = self:GetDupConfID(),
         tSceneList = {},
     }
     for _, oScene in ipairs(self.m_tSceneList) do
-        local tScene = {nSceneID=oScene:GetSceneID(), nSceneConfID=oScene:GetSceneConfID()}
-        table.insert(tDupInfo.tSceneList, tScene)
+        local nSceneID = oScene:GetSceneID()
+        table.insert(tDupSceneInfo.tSceneList, nSceneID)
     end
-    return tDupInfo
+    return tDupSceneInfo
 end
 
 --副本场景列表
@@ -50,48 +61,53 @@ end
 
 function CDupBase:GetDupID() return self.m_nDupID end
 function CDupBase:GetDupConfID() return self.m_nDupConfID end
-function CDupBase:GetDupConf() return assert(ctDupConf[self.m_nDupConfID], "副本配置不存在") end
 function CDupBase:GetDupType() return self:GetDupConf().nDupType end
+function CDupBase:GetDupConf() return assert(ctDupConf[self.m_nDupConfID], "副本配置不存在") end
 
 --进入副本场景前检测是否可以进入
 --@tGameObjParams 检测用到的游戏对象参数
 function CDupBase:BeforeEnterSceneCheck(nSceneID, tGameObjParams)
     local oScene = self:GetScene(nSceneID)
     if not oScene then
-        return false, "副本场景不存在:"..nSceneID
+        return false, string.format("副本场景不存在 dupconfid:%d sceneconfid:%d", self:GetDupConfID(), CUtil:GetSceneConfID(nSceneID))
     end
     return true
 end
 
 --离开副本场景前检测是否可以离开
---@tGameObjParams 检测用到的游戏对象参数
-function CDupBase:BeforeLeaveSceneCheck(nSceneID, tGameObjParams)
+function CDupBase:BeforeLeaveSceneCheck(nSceneID, oGameLuaObj)
     local oScene = self:GetScene(nSceneID)
     if not oScene then
-        return false, string.format("副本场景不存在 dupconfid:%d sceneid:%d", self:GetDupConfID(), nSceneID)
+        return false, string.format("副本场景不存在 dupconfid:%d sceneconfid:%d", self:GetDupConfID(), CUtial:GetSceneConfID(nSceneID))
     end
     return true
 end
 
 --进入副本场景,应该由DupMgr统一调用,不应该在其他模块调用,便于统一管理
---@tDupInfo 副本信息{nDupID=0,nDupConfID=0,nSceneID=0,nSceneConfID=0,nPosX=0,nPosY=0,nLine=0,nFace=0}
-function CDupBase:EnterScene(oGameLuaObj, tDupInfo)
-    assert(tDupInfo.nSource == 1, "进入副本场景应该统一由DupMgr模块调用")
-    local oScene = self:GetScene(tDupInfo.nSceneID)
-    assert(oScene, "场景不存在:"..tDupInfo.nSceneID)
+--@tSceneInfo 副本信息{nDupID=0,nSceneID=0,nPosX=0,nPosY=0,nLine=0,nFace=0}
+function CDupBase:EnterScene(oGameLuaObj, tSceneInfo)
+    assert(tSceneInfo.nSource == 1, "进入副本场景应该统一由DupMgr模块调用")
+    local oScene
+    if tSceneInfo.nSceneID > 0 then
+        oScene = self:GetScene(tSceneInfo.nSceneID)
+    else
+        oScene = self:FirstScene()
+    end
+    assert(oScene, string.format("场景不存在: %s", tSceneInfo))
 
-    local nPosX, nPosY = tDupInfo.nPosX, tDupInfo.nPosY
-    if not (nPosX and nPosY) then
+    local nPosX, nPosY = tSceneInfo.nPosX, tSceneInfo.nPosY
+    if not (nPosX or nPosY) then
         nPosX, nPosY = table.unpack(oScene:GetSceneConf().tBornPos[1])
     end
-    local nLine = tDupInfo.nLine or -1
-    local nFace = tDupInfo.nFace or self:GetSceneConf().nInitFace
+    local nLine = tSceneInfo.nLine or -1
+    local nFace = tSceneInfo.nFace or self:GetSceneConf().nInitFace
 
     oScene:EnterScene(oGameLuaObj, nPosX, nPosY, nLine, nFace)
 end
 
---离开副本场景,应该由DupMgr统一调用,,不应该在其他模块调用,便于统一管理
-function CDupBase:LeaveScene(oGameLuaObj)
+--离开副本场景,应该由DupMgr统一调用,不应该在其他模块调用,便于统一管理
+function CDupBase:LeaveScene(oGameLuaObj, tSceneInfo)
+    assert(tSceneInfo.nSource == 1, "离开副本场景应该统一由DupMgr模块调用")
     local nSceneID = oGameLuaObj:GetSceneID()
     local oScene = self:GetScene(nSceneID)
     assert(oScene, "场景不存在:"..nSceneID)
@@ -106,10 +122,10 @@ end
 
 --对象离开副本场景事件
 --@nNextSceneID 将要进入的副本场景ID
-function CDupBase:OnObjLeaveScene(oSceneLuaObj, oGameLuaObj, bSceneReleasedKick, bObjReleased, nNextSceneID)
+function CDupBase:OnObjLeaveScene(oSceneLuaObj, oGameLuaObj, bSceneReleasedKick, nNextSceneID)
     assert(self:GetScene(oSceneLuaObj:GetSceneID()), "场景不存在:"..oSceneLuaObj:GetSceneID())
     oGameLuaObj:OnLeaveScene(self, oSceneLuaObj, bSceneReleasedKick)
-    if not bObjReleased and not self:GetScene(nNextSceneID) then
+    if not oGameLuaObj:IsReleased() and not self:GetScene(nNextSceneID) then
         self:OnObjLeaveDup(oGameLuaObj) --离开副本
     end
 end

@@ -8,9 +8,9 @@
  xmlns:html="http://www.w3.org/TR/REC-html40">
  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
   <Author>Administrator</Author>
-  <LastAuthor>AutoBVT</LastAuthor>
+  <LastAuthor>Windows 用户</LastAuthor>
   <Created>2016-02-27T02:41:06Z</Created>
-  <LastSaved>2018-12-27T06:52:30Z</LastSaved>
+  <LastSaved>2019-06-14T02:06:54Z</LastSaved>
   <Version>15.00</Version>
  </DocumentProperties>
  <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
@@ -20,8 +20,8 @@
   <AllowPNG/>
  </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-  <WindowHeight>10830</WindowHeight>
-  <WindowWidth>28800</WindowWidth>
+  <WindowHeight>12045</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
   <WindowTopX>0</WindowTopX>
   <WindowTopY>0</WindowTopY>
   <ProtectStructure>False</ProtectStructure>
@@ -66,38 +66,17 @@
    <NumberFormat/>
    <Protection/>
   </Style>
-  <Style ss:ID="s67">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Borders/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-   <NumberFormat/>
-   <Protection/>
-  </Style>
-  <Style ss:ID="s68">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-   <NumberFormat/>
-   <Protection/>
-  </Style>
-  <Style ss:ID="s69">
-   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
-   <Font ss:FontName="宋体" x:CharSet="134"/>
-   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
-  </Style>
  </Styles>
  <Worksheet ss:Name="ctRechargeConf">
-  <Table ss:ExpandedColumnCount="13" ss:ExpandedRowCount="24" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="13" ss:ExpandedRowCount="33" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="14.25">
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="57.75"/>
    <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="57.75"/>
    <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="75"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="66.75"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="97.5"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="72.75"/>
-   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="106.5"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="72.75" ss:Span="1"/>
+   <Column ss:Index="7" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="125.25"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="149.25"/>
    <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="90"/>
    <Column ss:Index="13" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="189"/>
@@ -110,7 +89,7 @@
     <Cell><Data ss:Type="String">nMoney</Data></Cell>
     <Cell><Data ss:Type="String">nBuyYuanBao</Data></Cell>
     <Cell><Data ss:Type="String">nGiveYuanBao</Data></Cell>
-    <Cell><Data ss:Type="String">bFirstDouble</Data></Cell>
+    <Cell><Data ss:Type="String">nMultiple</Data></Cell>
     <Cell><Data ss:Type="String">sDesc</Data></Cell>
     <Cell><Data ss:Type="String">sProduct</Data></Cell>
     <Cell><Data ss:Type="String">sIcon</Data></Cell>
@@ -125,7 +104,7 @@
     <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">i</Data></Cell>
-    <Cell><Data ss:Type="String">b</Data></Cell>
+    <Cell><Data ss:Type="String">i</Data></Cell>
     <Cell><Data ss:Type="String">s</Data></Cell>
     <Cell><Data ss:Type="String">s</Data></Cell>
     <Cell><Data ss:Type="String">s</Data></Cell>
@@ -138,9 +117,12 @@
     <Cell><Data ss:Type="String">充值</Data></Cell>
     <Cell><Data ss:Type="String">名字</Data></Cell>
     <Cell><Data ss:Type="String">充值金额(RMB)</Data></Cell>
-    <Cell><Data ss:Type="String">充值元宝</Data></Cell>
-    <Cell><Data ss:Type="String">续充赠送的元宝数</Data></Cell>
-    <Cell><Data ss:Type="String">是否首充翻倍</Data></Cell>
+    <Cell><Data ss:Type="String">充值元宝</Data><Comment ss:Author="欧阳文杰"><ss:Data
+       xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Size="9"
+         html:Color="#000000">欧阳文杰:</Font></B><Font html:Size="9"
+        html:Color="#000000">&#10;大数值改50倍</Font></ss:Data></Comment></Cell>
+    <Cell><Data ss:Type="String">赠送绑定元宝</Data></Cell>
+    <Cell><Data ss:Type="String">首充翻倍数</Data></Cell>
     <Cell><Data ss:Type="String">描述</Data></Cell>
     <Cell><Data ss:Type="String">IOS商品标识</Data></Cell>
     <Cell><Data ss:Type="String">图标</Data></Cell>
@@ -153,10 +135,10 @@
     <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
     <Cell><Data ss:Type="String">充值6</Data></Cell>
     <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">3000</Data></Cell>
-    <Cell><Data ss:Type="Number">1500</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">续充永久赠送50%</Data></Cell>
+    <Cell ss:StyleID="s64" ss:Formula="=RC[-1]*500"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]*0.5"><Data ss:Type="Number">1500</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:Formula="=RC[-3]&amp;&quot;送&quot;&amp;RC[-2]"><Data ss:Type="String">3000送1500</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay6</Data></Cell>
     <Cell><Data ss:Type="String">bg_yuanbao01</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -168,10 +150,10 @@
     <Cell ss:StyleID="s62"><Data ss:Type="Number">2</Data></Cell>
     <Cell><Data ss:Type="String">充值30</Data></Cell>
     <Cell><Data ss:Type="Number">30</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">15000</Data></Cell>
-    <Cell><Data ss:Type="Number">7500</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">续充永久赠送50%</Data></Cell>
+    <Cell ss:StyleID="s64" ss:Formula="=RC[-1]*500"><Data ss:Type="Number">15000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]*0.5"><Data ss:Type="Number">7500</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:Formula="=RC[-3]&amp;&quot;送&quot;&amp;RC[-2]"><Data ss:Type="String">15000送7500</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay30</Data></Cell>
     <Cell><Data ss:Type="String">bg_yuanbao02</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -183,10 +165,10 @@
     <Cell ss:StyleID="s64"><Data ss:Type="Number">3</Data></Cell>
     <Cell><Data ss:Type="String">充值50</Data></Cell>
     <Cell><Data ss:Type="Number">50</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">25000</Data></Cell>
-    <Cell><Data ss:Type="Number">12500</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">续充永久赠送50%</Data></Cell>
+    <Cell ss:StyleID="s64" ss:Formula="=RC[-1]*500"><Data ss:Type="Number">25000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]*0.5"><Data ss:Type="Number">12500</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:Formula="=RC[-3]&amp;&quot;送&quot;&amp;RC[-2]"><Data ss:Type="String">25000送12500</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay50</Data></Cell>
     <Cell><Data ss:Type="String">bg_yuanbao03</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -198,10 +180,10 @@
     <Cell ss:StyleID="s64"><Data ss:Type="Number">4</Data></Cell>
     <Cell><Data ss:Type="String">充值98</Data></Cell>
     <Cell><Data ss:Type="Number">98</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">49000</Data></Cell>
-    <Cell><Data ss:Type="Number">24500</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">续充永久赠送50%</Data></Cell>
+    <Cell ss:StyleID="s64" ss:Formula="=RC[-1]*500"><Data ss:Type="Number">49000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]*0.5"><Data ss:Type="Number">24500</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:Formula="=RC[-3]&amp;&quot;送&quot;&amp;RC[-2]"><Data ss:Type="String">49000送24500</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay98</Data></Cell>
     <Cell><Data ss:Type="String">bg_yuanbao04</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -213,42 +195,12 @@
     <Cell ss:StyleID="s62"><Data ss:Type="Number">5</Data></Cell>
     <Cell><Data ss:Type="String">充值198</Data></Cell>
     <Cell><Data ss:Type="Number">198</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">99000</Data></Cell>
-    <Cell><Data ss:Type="Number">49500</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">续充永久赠送50%</Data></Cell>
+    <Cell ss:StyleID="s64" ss:Formula="=RC[-1]*500"><Data ss:Type="Number">99000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]*0.5"><Data ss:Type="Number">49500</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:Formula="=RC[-3]&amp;&quot;送&quot;&amp;RC[-2]"><Data ss:Type="String">99000送49500</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay198</Data></Cell>
     <Cell><Data ss:Type="String">bg_yuanbao05</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">6</Data></Cell>
-    <Cell><Data ss:Type="String">充值298</Data></Cell>
-    <Cell><Data ss:Type="Number">298</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">149000</Data></Cell>
-    <Cell><Data ss:Type="Number">74500</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">续充永久赠送50%</Data></Cell>
-    <Cell><Data ss:Type="String">com.yinghun.jphd.pay298</Data></Cell>
-    <Cell><Data ss:Type="String">bg_yuanbao06</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-   </Row>
-   <Row ss:AutoFitHeight="0">
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">7</Data></Cell>
-    <Cell><Data ss:Type="String">充值488</Data></Cell>
-    <Cell><Data ss:Type="Number">488</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">244000</Data></Cell>
-    <Cell><Data ss:Type="Number">122000</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">续充永久赠送50%</Data></Cell>
-    <Cell><Data ss:Type="String">com.yinghun.jphd.pay488</Data></Cell>
-    <Cell><Data ss:Type="String">bg_yuanbao07</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
@@ -259,9 +211,9 @@
     <Cell><Data ss:Type="String">充值648</Data></Cell>
     <Cell><Data ss:Type="Number">648</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="Number">324000</Data></Cell>
-    <Cell><Data ss:Type="Number">162000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]*0.5"><Data ss:Type="Number">162000</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell><Data ss:Type="String">续充永久赠送50%</Data></Cell>
+    <Cell ss:Formula="=RC[-3]&amp;&quot;送&quot;&amp;RC[-2]"><Data ss:Type="String">324000送162000</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay648</Data></Cell>
     <Cell><Data ss:Type="String">bg_yuanbao08</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -273,10 +225,10 @@
     <Cell ss:StyleID="s64"><Data ss:Type="Number">9</Data></Cell>
     <Cell><Data ss:Type="String">超值福利月卡</Data></Cell>
     <Cell><Data ss:Type="Number">30</Data></Cell>
-    <Cell ss:Formula="=RC[-1]*500"><Data ss:Type="Number">15000</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">15000</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-3]"><Data ss:Type="Number">15000</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay28yk</Data></Cell>
     <Cell><Data ss:Type="String">icon_chongzhi_2</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
@@ -288,10 +240,10 @@
     <Cell ss:StyleID="s64"><Data ss:Type="Number">10</Data></Cell>
     <Cell><Data ss:Type="String">双周福利</Data></Cell>
     <Cell><Data ss:Type="Number">18</Data></Cell>
-    <Cell ss:Formula="=RC[-1]*500"><Data ss:Type="Number">9000</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">9000</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:Formula="=RC[-3]"><Data ss:Type="Number">9000</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay88jk</Data></Cell>
     <Cell><Data ss:Type="String">icon_chongzhi_5</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
@@ -303,7 +255,7 @@
     <Cell><Data ss:Type="Number">11</Data></Cell>
     <Cell><Data ss:Type="String">成长基金</Data></Cell>
     <Cell><Data ss:Type="Number">40</Data></Cell>
-    <Cell ss:Formula="=RC[-1]*500"><Data ss:Type="Number">20000</Data></Cell>
+    <Cell><Data ss:Type="Number">20000</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="String">40元获得超额元宝</Data></Cell>
@@ -314,15 +266,15 @@
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
    </Row>
-   <Row ss:AutoFitHeight="0" ss:StyleID="s69">
-    <Cell ss:StyleID="s67"><Data ss:Type="Number">12</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="String">纵横基金</Data></Cell>
-    <Cell ss:StyleID="s68"><Data ss:Type="Number">98</Data></Cell>
-    <Cell ss:Formula="=RC[-1]*500"><Data ss:Type="Number">49000</Data></Cell>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="String">纵横基金</Data></Cell>
+    <Cell><Data ss:Type="Number">98</Data></Cell>
+    <Cell><Data ss:Type="Number">49000</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="String">98元获得超额元宝</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">com.yinghun.jphd.pay98zh</Data></Cell>
+    <Cell><Data ss:Type="String">com.yinghun.jphd.pay98zh</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
@@ -331,12 +283,12 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">13</Data></Cell>
-    <Cell><Data ss:Type="String">1元礼包</Data></Cell>
-    <Cell><Data ss:Type="Number">1</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">8元礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">1元获取超值礼包</Data></Cell>
+    <Cell><Data ss:Type="String">8元获取超值礼包</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay1yy</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -346,12 +298,12 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">14</Data></Cell>
-    <Cell><Data ss:Type="String">6元礼包</Data></Cell>
-    <Cell><Data ss:Type="Number">6</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">30元礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">6元获取超值礼包</Data></Cell>
+    <Cell><Data ss:Type="String">30元获取超值礼包</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay6ly</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -361,12 +313,12 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">15</Data></Cell>
-    <Cell><Data ss:Type="String">18元礼包</Data></Cell>
-    <Cell><Data ss:Type="Number">18</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">188元礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">188</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">18元获取超值礼包</Data></Cell>
+    <Cell><Data ss:Type="String">188元获取超值礼包</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay18sb</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
@@ -376,18 +328,78 @@
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell><Data ss:Type="Number">16</Data></Cell>
-    <Cell><Data ss:Type="String">30元礼包</Data></Cell>
-    <Cell><Data ss:Type="Number">30</Data></Cell>
-    <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">328元礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">328</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
-    <Cell><Data ss:Type="String">30元获取超值礼包</Data></Cell>
+    <Cell><Data ss:Type="String">328获取超值礼包</Data></Cell>
     <Cell><Data ss:Type="String">com.yinghun.jphd.pay30ss</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">0</Data></Cell>
     <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">17</Data></Cell>
+    <Cell><Data ss:Type="String">充值1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s64" ss:Formula="=RC[-1]*500"><Data ss:Type="Number">500</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">6送1</Data></Cell>
+    <Cell><Data ss:Type="String">com.yinghun.jphd.pay1</Data></Cell>
+    <Cell><Data ss:Type="String">bg_yuanbao01</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">终身福利</Data></Cell>
+    <Cell><Data ss:Type="Number">98</Data></Cell>
+    <Cell ss:StyleID="s64" ss:Formula="=RC[-1]*500"><Data ss:Type="Number">49000</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">19</Data></Cell>
+    <Cell><Data ss:Type="String">648元礼包</Data></Cell>
+    <Cell><Data ss:Type="Number">648</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="String">648获取超值礼包</Data></Cell>
+    <Cell><Data ss:Type="String">com.yinghun.jphd.pay648ss</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:Index="26" ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s64"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="4" ss:StyleID="s64"/>
    </Row>
    <Row ss:AutoFitHeight="0">
     <Cell ss:Index="4" ss:StyleID="s64"/>
@@ -419,9 +431,8 @@
    <Panes>
     <Pane>
      <Number>3</Number>
-     <ActiveRow>17</ActiveRow>
-     <ActiveCol>3</ActiveCol>
-     <RangeSelection>R18C4:R20C4</RangeSelection>
+     <ActiveRow>25</ActiveRow>
+     <ActiveCol>10</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>
@@ -429,9 +440,214 @@
   </WorksheetOptions>
  </Worksheet>
  <Worksheet ss:Name="Sheet2">
-  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="12" ss:ExpandedRowCount="30" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
    <Row ss:AutoFitHeight="0"/>
+   <Row ss:Index="5" ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="String">充值</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">名字</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值金额(RMB)</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">100</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值6</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">300</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s62"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值30</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">600</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值50</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">8</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值98</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">98</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">1200</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s62"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值198</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">198</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">1800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值298</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">298</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Error">#N/A</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">2500</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">25</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值488</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">488</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Error">#N/A</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">3000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">30</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s62"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值648</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">648</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">4000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">40</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">超值福利月卡</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">4500</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">45</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">双周福利</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">5000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">50</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">成长基金</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">40</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">6000</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">60</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">纵横基金</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">98</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">6800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">68</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">1元礼包</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">7300</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">73</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">6元礼包</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">7800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">78</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">18元礼包</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">8800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">88</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">30元礼包</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">9800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">98</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><Data ss:Type="Number">17</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">充值1</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">10800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">108</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s63"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">终身福利</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="Number">98</Data></Cell>
+    <Cell ss:Formula="=VLOOKUP(RC[-1],C11:C12,2,FALSE)"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="10"><Data ss:Type="Number">11800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">118</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="10"><Data ss:Type="Number">12800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">128</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="10"><Data ss:Type="Number">14800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">148</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="10"><Data ss:Type="Number">16800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">168</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="10"><Data ss:Type="Number">18800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">188</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="10"><Data ss:Type="Number">19800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">198</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="10"><Data ss:Type="Number">32800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">328</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="10"><Data ss:Type="Number">64800</Data></Cell>
+    <Cell ss:Formula="=RC[-1]/100"><Data ss:Type="Number">648</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -439,7 +655,21 @@
     <Footer x:Margin="0.51111111111111096"/>
    </PageSetup>
    <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
    <PageBreakZoom>100</PageBreakZoom>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>10</ActiveRow>
+     <ActiveCol>5</ActiveCol>
+     <RangeSelection>R11C6:R12C6</RangeSelection>
+    </Pane>
+   </Panes>
    <ProtectObjects>False</ProtectObjects>
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>

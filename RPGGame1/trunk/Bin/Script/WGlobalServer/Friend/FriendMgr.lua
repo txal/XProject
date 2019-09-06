@@ -27,17 +27,17 @@ function CFriendMgr:Ctor()
 end
 
 function CFriendMgr:LoadData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	local sData = oDB:HGet(gtDBDef.sFriendEtcDB, "data")
 	if sData ~= "" then
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		self.m_tApplyMap = tData.m_tApplyMap or {}
 	end
 
 	local tKeys = oDB:HKeys(gtDBDef.sFriendDataDB)
 	for _, sRoleID in pairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sFriendDataDB, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nRoleID = tonumber(sRoleID)
 		self.m_tFriendMap[nRoleID] = {}
 
@@ -53,7 +53,7 @@ function CFriendMgr:LoadData()
 	local tKeys = oDB:HKeys(gtDBDef.sStrangerDataDB)
 	for _, sRoleID in pairs(tKeys) do
 		local sData = oDB:HGet(gtDBDef.sStrangerDataDB, sRoleID)
-		local tData = cjson.decode(sData)
+		local tData = cseri.decode(sData)
 		local nRoleID = tonumber(sRoleID)
 		self.m_tStrangerMap[nRoleID] = {}
 
@@ -69,11 +69,11 @@ function CFriendMgr:LoadData()
 end
 
 function CFriendMgr:SaveData()
-	local oDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+	local oDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
 	if self:IsEtcDirty() then
 		local tData = {}
 		tData.m_tApplyMap = self.m_tApplyMap
-		oDB:HSet(gtDBDef.sFriendEtcDB, "data", cjson.encode(tData))
+		oDB:HSet(gtDBDef.sFriendEtcDB, "data", cseri.encode(tData))
 		self:MarkEtcDirty(false)
 	end
 
@@ -83,7 +83,7 @@ function CFriendMgr:SaveData()
 		for nFriendRoleID, oFriend in pairs(tFriendMap) do
 			tData[nFriendRoleID] = oFriend:SaveData()
 		end
-		oDB:HSet(gtDBDef.sFriendDataDB, nRoleID, cjson.encode(tData))
+		oDB:HSet(gtDBDef.sFriendDataDB, nRoleID, cseri.encode(tData))
 	end
 	self.m_tDirtyFriendMap = {}
 
@@ -93,7 +93,7 @@ function CFriendMgr:SaveData()
 		for nStrangerRoleID, oFriend in pairs(tStrangerMap) do
 			tData[nStrangerRoleID] = oFriend:SaveData()
 		end
-		oDB:HSet(gtDBDef.sStrangerDataDB, nRoleID, cjson.encode(tData))
+		oDB:HSet(gtDBDef.sStrangerDataDB, nRoleID, cseri.encode(tData))
 	end
 	self.m_tDirtyStrangerMap = {}
 end
@@ -287,9 +287,9 @@ function CFriendMgr:FriendApplyReq(oRole, nTarRoleID, sMessage)
 		self:FriendApplyListReq(oTarRole)
 
 		oRole:SendMsg("FriendApplySuccessRet", {nTarRoleID=nTarRoleID})
-		Network.oRemoteCall:Call("OnAddFriend", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
+		Network:RMCall("OnAddFriend", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {})
 	end
-    Network.oRemoteCall:CallWait("GetTotalMoneyReq", fnCallBack, oRole:GetStayServer(), oRole:GetLogic(), 0, oRole:GetID())
+    Network:RMCall("GetTotalMoneyReq", fnCallBack, oRole:GetStayServer(), oRole:GetLogic(), 0, oRole:GetID())
 end
 
 --申请是否过
@@ -420,12 +420,12 @@ function CFriendMgr:AddFriendReq(oRole, nTarRoleID)
 	self:FriendApplyListReq(oRole)
 	self:SyncHouseFriendData(nRoleID,nTarRoleID)
 	local nFriendNum = self:GetFriendCount(nRoleID)
-	Network.oRemoteCall:Call("OnBecomeFriend", oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {nFriendNum=nFriendNum})
+	Network:RMCall("OnBecomeFriend", nil, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID(), {nFriendNum=nFriendNum})
 
 	local oTarRole = goGPlayerMgr:GetRoleByID(nTarRoleID)
     if oTarRole then 
 		local nTarRoleFriendNum = self:GetFriendCount(nTarRoleID)
-		Network.oRemoteCall:Call("OnBecomeFriend", oTarRole:GetStayServer(), oTarRole:GetLogic(), oTarRole:GetSession(), oTarRole:GetID(), {nFriendNum=nTarRoleFriendNum})
+		Network:RMCall("OnBecomeFriend", nil, oTarRole:GetStayServer(), oTarRole:GetLogic(), oTarRole:GetSession(), oTarRole:GetID(), {nFriendNum=nTarRoleFriendNum})
     end
 end
 
@@ -847,7 +847,7 @@ function CFriendMgr:TalkReq(oRole, nTarRoleID, sCont, bXMLMsg, bSys)
 
         self:TalkFriend(oRole, nTarRoleID, sCont, bXMLMsg)
     end
-    Network.oRemoteCall:CallWait("QueryRoleTotalRechargeReq", fnQueryCallback, 
+    Network:RMCall("QueryRoleTotalRechargeReq", fnQueryCallback, 
         oRole:GetStayServer(), oRole:GetLogic(), 0, oRole:GetID())
 end
 
@@ -932,7 +932,7 @@ end
 function CFriendMgr:OnDegreesChange(nRoleID)
 	local oRole = goGPlayerMgr:GetRoleByID(nRoleID)
 	local nTotalDegrees = self:GetTotalDegrees(oRole)
-	Network.oRemoteCall:Call("FriendDegreeChangeReq", oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(), 20), 0, nRoleID, nTotalDegrees)
+	Network:RMCall("FriendDegreeChangeReq", nil, oRole:GetServer(), goServerMgr:GetGlobalService(oRole:GetServer(), 20), 0, nRoleID, nTotalDegrees)
 end
 
 --GM增加亲密度
@@ -949,5 +949,5 @@ end
 
 function CFriendMgr:SyncHouseFriendData(nRoleID,nTarRoleID)
 	local nServiceID = goServerMgr:GetGlobalService(gnWorldServerID,111)
-	Network.oRemoteCall:Call("FriendChange",gnWorldServerID,nServiceID,0,nRoleID,nTarRoleID)
+	Network:RMCall("FriendChange", nil,gnWorldServerID,nServiceID,0,nRoleID,nTarRoleID)
 end

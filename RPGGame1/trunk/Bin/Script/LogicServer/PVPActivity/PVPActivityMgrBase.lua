@@ -141,13 +141,13 @@ function CPVPActivityMgrBase:OnActivityStart()
 end
 
 function CPVPActivityMgrBase:NotifyActivityOpen() 
-	Network.oRemoteCall:Call("GPVPActivityOpenNotify", gnWorldServerID, 
+	Network:RMCall("GPVPActivityOpenNotify", nil, gnWorldServerID, 
 		goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, self:GetActivityID(), gnServerID)
 end
 
 function CPVPActivityMgrBase:NotifyActivityClose() 
 	print(string.format("活动(%d)结束，通知销毁NPC", self:GetActivityID()))
-	Network.oRemoteCall:Call("GPVPActivityCloseNotify", gnWorldServerID, 
+	Network:RMCall("GPVPActivityCloseNotify", nil, gnWorldServerID, 
 		goServerMgr:GetGlobalService(gnWorldServerID, 110), 0, self:GetActivityID(), gnServerID)
 end
 

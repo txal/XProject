@@ -1,0 +1,10 @@
+ctDepositRebate={}
+ctDepositRebate[1]={nID=1,nTotalDepositIngot=19000,tItemStr={{11101,1,},{11201,1,},},}
+ctDepositRebate[2]={nID=2,nTotalDepositIngot=40000,tItemStr={{11102,1,},{11201,1,},},}
+ctDepositRebate[3]={nID=3,nTotalDepositIngot=100000,tItemStr={{11103,1,},{11201,1,},},}
+ctDepositRebate[4]={nID=4,nTotalDepositIngot=250000,tItemStr={{11104,1,},{11201,1,},},}
+ctDepositRebate[5]={nID=5,nTotalDepositIngot=500000,tItemStr={{11105,1,},{11201,1,},},}
+ctDepositRebate[6]={nID=6,nTotalDepositIngot=1000000,tItemStr={{11106,1,},{11201,1,},},}
+ctDepositRebate[7]={nID=7,nTotalDepositIngot=2500000,tItemStr={{2000303,1,},{11106,1,},{11201,1,},},}
+ctDepositRebate[8]={nID=8,nTotalDepositIngot=5000000,tItemStr={{2000304,1,},{11106,1,},{11201,1,},},}
+ctDepositRebate[9]={nID=9,nTotalDepositIngot=10000000,tItemStr={{11106,1,},{11201,1,},},}

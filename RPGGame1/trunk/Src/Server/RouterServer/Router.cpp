@@ -302,7 +302,9 @@ int Router::GetServerList(int tServerList[], int nMaxNum)
 	std::unordered_map<int, int> oServerMap;
 	ServiceIter iter = m_oServiceMap.begin();
 	for (iter; iter != m_oServiceMap.end(); iter++)
+	{
 		oServerMap[iter->second->GetServerID()] = 1;
+	}
 
 	std::unordered_map<int, int>::iterator iter1;
 	for (iter1 = oServerMap.begin(); iter1 != oServerMap.end(); iter1++)

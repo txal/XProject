@@ -36,7 +36,7 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 		return;
 	}
 
-	int nAOIID = 0;
+	int64_t nObjID= 0;
 	uint16_t uPosX = 0;
 	uint16_t uPosY = 0;
 
@@ -47,34 +47,31 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	int16_t nSpeedY = 0;
 
 	int64_t nClientMSTime = 0;
-	double dClientMSTime = 0;
-
-	uint8_t uFace = 0;
+	int8_t nFace = 0;
 
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nAOIID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> dClientMSTime >> uFace >> uTarPosX >> uTarPosY;
-	nClientMSTime = (int64_t)dClientMSTime;
-	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) tar(%d,%d) time:%lld\n"
-		, m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, uTarPosX, uTarPosY, nClientMSTime-m_nClientRunStartMSTime);
+	goPKReader >> nObjID >> uPosX >> uPosY >> nSpeedX >> nSpeedY >> uTarPosX >> uTarPosY >> nFace >> nClientMSTime;
+	XLog(LEVEL_DEBUG,  "%s start run srv:(%d,%d) clt(%d,%d) speed(%d,%d) tar(%d,%d) face:%d time:%lld\n"
+		, m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nSpeedX, nSpeedY, uTarPosX, uTarPosY, nFace, nClientMSTime-m_nClientRunStartMSTime);
 
 	//客户端提供的时间值必须大于起始时间值
 	if (nClientMSTime < m_nClientRunStartMSTime)
 	{
-		XLog(LEVEL_INFO,  "%s sync pos for start run client time invalid\n", m_sName);
 		SyncPosition();
+		XLog(LEVEL_INFO,  "%s sync pos for start run client time invalid\n", m_sName);
 		return;
 	}
 
 	MAPCONF* poMapConf = m_poScene->GetMapConf();
-	if (uPosX >= poMapConf->nPixelWidth || uPosY >= poMapConf->nPixelHeight || poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight))
+	if (!poMapConf->IsValidPos(uPosX, uPosY))
 	{
-		XLog(LEVEL_INFO, "%s sync pos for start run pos invalid pos:(%u,%u),block:%d\n", m_sName, uPosX, uPosY, poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight));
 		SyncPosition();
+		XLog(LEVEL_INFO, "%s sync pos for start run pos invalid pos:(%u,%u),block:%d\n", m_sName, uPosX, uPosY, poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight));
 		return;
 	}
 
 	//正在移动则先更新移动后的新位置
-	if (m_nRunStartMSTime > 0)
+	if (IsRunning())
 	{
 		UpdateRunState(m_nRunStartMSTime + (nClientMSTime - m_nClientRunStartMSTime));
 	}
@@ -82,18 +79,16 @@ void Role::RoleStartRunHandler(Packet* poPacket)
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 	{
-		XLog(LEVEL_INFO, "%s sync pos for start run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, uTarPosX, uTarPosY);
-		uPosX = (uint16_t)m_oPos.x;
-		uPosY = (uint16_t)m_oPos.y;
 		SyncPosition();
-		StopRun(true, true); //坐标不对就停下来 by panda 2018.6.29 mengzhu
+		XLog(LEVEL_INFO, "%s sync pos for start run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d)\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, uTarPosX, uTarPosY);
 		return;
 	}
 	SetPos(Point(uPosX, uPosY));
-	
+
+	m_bRunCallback = false;
+	m_oTargetPos = Point(uTarPosX, uTarPosY);
 	m_nClientRunStartMSTime = nClientMSTime;
-	SetTargetPos(Point(uTarPosX, uTarPosY));
-	StartRun(nSpeedX, nSpeedY, (int8_t)uFace);
+	StartRun(nSpeedX, nSpeedY, nFace);
 }
 
 void Role::RoleStopRunHandler(Packet* poPacket)
@@ -104,24 +99,22 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 		return;
 	}
 
-	int nAOIID = 0;
+	int64_t nObjID = 0;
 	uint16_t uPosX = 0;
 	uint16_t uPosY = 0;
 	int64_t nClientMSTime = 0;
-	double dClientMSTime = 0;
 
 	goPKReader.SetPacket(poPacket);
-	goPKReader >> nAOIID >> uPosX >> uPosY >> dClientMSTime;
-	nClientMSTime = (int64_t)dClientMSTime;
-
+	goPKReader >> nObjID >> uPosX >> uPosY >> nClientMSTime;
 	XLog(LEVEL_DEBUG, "%s stop run srv:(%d,%d), clt:(%d,%d) time:%lld\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
-	if (m_nRunStartMSTime == 0)
+
+	if (!IsRunning())
 	{
 		//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 		if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 		{
-			XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -01\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
 			SyncPosition();
+			XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -01\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
 		}
 		else
 		{
@@ -132,12 +125,11 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 
 	//客户端提交的时间比起跑时提交的时间小，则视为非法数据，强制使用服务器计算的值
 	MAPCONF* poMapConf = m_poScene->GetMapConf();
-	if (nClientMSTime < m_nClientRunStartMSTime || uPosX >= poMapConf->nPixelWidth || uPosY >= poMapConf->nPixelHeight || poMapConf->IsBlockUnit(uPosX/gnUnitWidth, uPosY/gnUnitHeight))
+	if (nClientMSTime < m_nClientRunStartMSTime || !poMapConf->IsValidPos(uPosX, uPosY))
 	{
-		int64_t nNowMS = XTime::MSTime();
-		UpdateRunState(nNowMS);
-		SyncPosition();
+		UpdateRunState(XTime::MSTime());
 		StopRun(true, true);
+		SyncPosition();
 		XLog(LEVEL_INFO, "%s sync pos for stop run pos:(%d,%d) or time:(%d) error -02\n", m_sName, uPosX, uPosY, nClientMSTime-m_nClientRunStartMSTime);
 		return;
 	}
@@ -149,15 +141,15 @@ void Role::RoleStopRunHandler(Packet* poPacket)
 	//客户端与服务器坐标误差在一定范围内，则以客户端坐标为准
 	if (!BattleUtil::IsAcceptablePositionFaultBit(m_oPos.x, m_oPos.y, uPosX, uPosY))
 	{
-		XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -03\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
 		SyncPosition();
+		XLog(LEVEL_INFO, "%s sync pos for stop run faultbit srv:(%d,%d) clt:(%d,%d) target:(%d,%d) -03\n", m_sName, m_oPos.x, m_oPos.y, uPosX, uPosY, m_oLastTargetPos.x, m_oLastTargetPos.y);
 	}
 	else
 	{
 		SetPos(Point(uPosX, uPosY));
 	}
-	m_nClientRunStartMSTime = 0;
 	StopRun(true, true);
+	m_nClientRunStartMSTime = 0;
 }
 
 ///////////////////lua export///////////////////

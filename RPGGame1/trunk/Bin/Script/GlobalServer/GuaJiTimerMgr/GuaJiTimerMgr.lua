@@ -126,7 +126,7 @@ function CGuaJiTimerObj:AutoReward()
             self:ClearAutoReward()
        end
    end
-    Network.oRemoteCall:CallWait("GuaJiReward", CallBack, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
+    Network:RMCall("GuaJiReward", CallBack, oRole:GetStayServer(), oRole:GetLogic(), oRole:GetSession(), oRole:GetID())
 end
 
 function CGuaJiTimerObj:IsGuaJi()

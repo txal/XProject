@@ -542,8 +542,7 @@
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">60</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">60</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">2</Data><NamedCell
@@ -567,8 +566,7 @@
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">55</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">55</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">2</Data><NamedCell
@@ -592,8 +590,7 @@
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">50</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">50</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">2</Data><NamedCell
@@ -611,14 +608,13 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s76"><Data ss:Type="Number">14</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">300</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">300</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">45</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">45</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">2</Data><NamedCell
@@ -636,14 +632,13 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s76"><Data ss:Type="Number">15</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">320</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">320</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">40</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">40</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">1.5</Data><NamedCell
@@ -661,14 +656,13 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s76"><Data ss:Type="Number">16</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">340</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">340</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">35</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">35</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">1</Data><NamedCell
@@ -686,14 +680,13 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s76"><Data ss:Type="Number">17</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">360</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">360</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">30</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">30</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">0.75</Data><NamedCell
@@ -711,14 +704,13 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s81"><Data ss:Type="Number">18</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">380</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">380</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">25</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">25</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">0.5</Data><NamedCell
@@ -736,14 +728,13 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s81"><Data ss:Type="Number">19</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">400</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">400</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">20</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">20</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">0.4</Data><NamedCell
@@ -761,14 +752,13 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s81"><Data ss:Type="Number">20</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">420</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">420</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:Formula="=R[-1]C-5"><Data ss:Type="Number">15</Data><NamedCell
-      ss:Name="_FilterDatabase"/></Cell>
+    <Cell><Data ss:Type="Number">15</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="Number">0</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s77"><Data ss:Type="Number">0.3</Data><NamedCell
@@ -786,9 +776,9 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s81"><Data ss:Type="Number">21</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">440</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">440</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
@@ -810,9 +800,9 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s81"><Data ss:Type="Number">22</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">460</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">460</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
@@ -834,9 +824,9 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s81"><Data ss:Type="Number">23</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">480</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">480</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
@@ -858,9 +848,9 @@
    <Row ss:AutoFitHeight="0" ss:StyleID="Default">
     <Cell ss:StyleID="s81"><Data ss:Type="Number">24</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s76" ss:Formula="=R[-1]C+20"><Data ss:Type="Number">500</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">500</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell ss:StyleID="s80"><Data ss:Type="Number">100</Data><NamedCell
+    <Cell ss:StyleID="s76"><Data ss:Type="Number">100</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell ss:StyleID="s76"><Data ss:Type="String">1000*equlv+10000</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
@@ -1157,7 +1147,7 @@
    <FreezePanes/>
    <FrozenNoSplit/>
    <SplitHorizontal>4</SplitHorizontal>
-   <TopRowBottomPane>4</TopRowBottomPane>
+   <TopRowBottomPane>13</TopRowBottomPane>
    <ActivePane>2</ActivePane>
    <Panes>
     <Pane>
@@ -1165,8 +1155,8 @@
     </Pane>
     <Pane>
      <Number>2</Number>
-     <ActiveRow>19</ActiveRow>
-     <ActiveCol>9</ActiveCol>
+     <ActiveRow>34</ActiveRow>
+     <ActiveCol>6</ActiveCol>
     </Pane>
    </Panes>
    <ProtectObjects>False</ProtectObjects>
@@ -1182,21 +1172,7 @@
    </Condition>
   </ConditionalFormatting>
   <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
-   <Range>R2C1:R3C1,R5C1:R10C1,R30C2:R40C8,R5C4:R29C4,R5C6:R29C8</Range>
-   <Condition>
-    <Value1>AND(COUNTIF(C2,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
-    <Format Style='background:#FF9900;mso-pattern:none'/>
-   </Condition>
-  </ConditionalFormatting>
-  <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
-   <Range>R5C2:R29C3</Range>
-   <Condition>
-    <Value1>AND(COUNTIF(C2,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
-    <Format Style='background:#FF9900;mso-pattern:none'/>
-   </Condition>
-  </ConditionalFormatting>
-  <ConditionalFormatting xmlns="urn:schemas-microsoft-com:office:excel">
-   <Range>R5C5:R29C5</Range>
+   <Range>R2C1:R3C1,R5C1:R10C1,R5C2:R40C8</Range>
    <Condition>
     <Value1>AND(COUNTIF(C2,RC)&gt;1,NOT(ISBLANK(RC)))</Value1>
     <Format Style='background:#FF9900;mso-pattern:none'/>

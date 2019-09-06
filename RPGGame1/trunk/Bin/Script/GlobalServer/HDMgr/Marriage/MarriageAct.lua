@@ -9,11 +9,11 @@ end
 
 function CMarriageAct:LoadData()
     --这里，servermgr已经初始化好
-    local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
+    local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
     local sData = oSSDB:HGet(gtDBDef.sHuoDongDB, self:GetID())
     
     if sData ~= "" then
-        local tData = cjson.decode(sData)
+        local tData = cseri.decode(sData)
         CHDBase.LoadData(self, tData)
         self.m_tRoleRecordMap = tData.m_tRoleRecordMap
     end
@@ -38,8 +38,8 @@ function CMarriageAct:SaveData()
 	local tData = CHDBase.SaveData(self)
 	tData.m_tRoleRecordMap = self.m_tRoleRecordMap
 
-	local oSSDB = goDBMgr:GetSSDB(gnServerID, "global", CUtil:GetServiceID())
-	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cjson.encode(tData))
+	local oSSDB = goDBMgr:GetGameDB(gnServerID, "global", CUtil:GetServiceID())
+	oSSDB:HSet(gtDBDef.sHuoDongDB, self:GetID(), cseri.encode(tData))
 	self:MarkDirty(false)
 end
 

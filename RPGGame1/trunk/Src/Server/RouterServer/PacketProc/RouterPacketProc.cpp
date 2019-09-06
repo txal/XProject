@@ -66,11 +66,15 @@ void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_
 
 	ServiceNode* poTarService = poRouter->GetService(oHeader.uSrcServer, oHeader.nSrcService);
 	if (poTarService == NULL)
+	{
 		return;
+	}
 
 	Packet* poPacketRet = Packet::Create(nPACKET_DEFAULT_SIZE, nPACKET_OFFSET_SIZE, __FILE__, __LINE__);
 	if (poPacketRet == NULL)
+	{
 		return;
+	}
 
 	PacketWriter oPW(poPacketRet);
 	oPW << (int)oHeader.uSrcServer << (int)oHeader.nSrcService;
@@ -80,7 +84,9 @@ void NSPacketProc::OnPrepCloseServer(int nSrcSessionID, Packet* poPacket, INNER_
 
 	INet* pNet = poRouter->GetNetPool()->GetNet(poTarService->GetNetIndex());
 	if (!pNet->SendPacket(poTarService->GetSessionID(), poPacketRet))
+	{
 		poPacketRet->Release();
+	}
 }
 
 void NSPacketProc::OnLuaRpcMsg(int nSrcSessionID, Packet* poPacket, INNER_HEADER& oHeader, int* pSessionArray)

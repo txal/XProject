@@ -57,8 +57,10 @@ void RobotMgr::RemoveRobot(int64_t nObjID)
 	}
 	if (poRobot->GetScene() != NULL)
 	{
-		poRobot->GetScene()->LeaveScene(poRobot->GetAOIID(), false);
+		XLog(LEVEL_ERROR, "需要先离开场景才能删除对象");
+		return;
 	}
+	poRobot->MarkDeleted();
 }
 
 void RobotMgr::Update(int64_t nNowMS)

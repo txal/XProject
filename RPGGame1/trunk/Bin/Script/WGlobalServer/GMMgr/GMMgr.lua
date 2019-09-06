@@ -57,12 +57,12 @@ CGMMgr["reloadall"] = function(self, nServer, nService, nSession, tArgs)
 	local tList = goServerMgr:GetGlobalServiceList()
 	for _, tConf in pairs(tList) do
 		if tConf.nServer ~= gnWorldServerID then
-			Network.oRemoteCall:Call("GMCommandReq", tConf.nServer, tConf.nID, nSession, "lgm reload local")
-			Network.oRemoteCall:Call("GMCommandReq", tConf.nServer, tConf.nID, nSession, "rgm reload")
-			Network.oRemoteCall:Call("GMCommandReq", tConf.nServer, tConf.nID, nSession, "agm reload")
-			Network.oRemoteCall:Call("GMCommandReq", tConf.nServer, tConf.nID, nSession, "reload")
+			Network:RMCall("GMCommandReq", nil, tConf.nServer, tConf.nID, nSession, "lgm reload local")
+			Network:RMCall("GMCommandReq", nil, tConf.nServer, tConf.nID, nSession, "rgm reload")
+			Network:RMCall("GMCommandReq", nil, tConf.nServer, tConf.nID, nSession, "agm reload")
+			Network:RMCall("GMCommandReq", nil, tConf.nServer, tConf.nID, nSession, "reload")
 		elseif tConf.nID ~= CUtil:GetServiceID() then
-			Network.oRemoteCall:Call("GMCommandReq", tConf.nServer, tConf.nID, nSession, "reload", nServer)
+			Network:RMCall("GMCommandReq", nil, tConf.nServer, tConf.nID, nSession, "reload", nServer)
 		end
 	end
 	--自己
@@ -71,7 +71,7 @@ CGMMgr["reloadall"] = function(self, nServer, nService, nSession, tArgs)
 	--世界LOGIC服务
 	local tList = goServerMgr:GetLogicServiceList()
 	for _, tConf in pairs(tList) do
-		Network.oRemoteCall:Call("GMCommandReq", tConf.nServer, tConf.nID, nSession, "reload")
+		Network:RMCall("GMCommandReq", nil, tConf.nServer, tConf.nID, nSession, "reload")
 	end
 end
 

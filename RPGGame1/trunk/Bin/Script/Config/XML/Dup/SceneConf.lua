@@ -1,0 +1,13 @@
+ctSceneConf={}
+ctSceneConf[1]={nID=1,sName="长安城",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[2]={nID=2,sName="天策府",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[3]={nID=3,sName="药王谷",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[4]={nID=4,sName="兽王寨",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[5]={nID=5,sName="水晶宫",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[6]={nID=6,sName="盘丝洞",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[7]={nID=7,sName="乌斯藏",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[8]={nID=8,sName="昆仑山",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[9]={nID=9,sName="凌霄殿",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[10]={nID=10,sName="昆仑山",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[11]={nID=11,sName="新手试炼",nMapID=1001,tBornPos={{100,100,},},}
+ctSceneConf[12]={nID=12,sName="月老池",nMapID=1001,tBornPos={{100,100,},},}

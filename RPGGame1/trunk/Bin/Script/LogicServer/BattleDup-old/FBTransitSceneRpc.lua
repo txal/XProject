@@ -27,7 +27,7 @@ function Network.CltPBProc.EnterFBTransitSceneReq(nCmd, nServer, nService, nSess
                         end
                     end
                     local tDupConf = assert(ctDupConf[nDupConfID], "副本不存在:"..nDupConfID)
-                    Network.oRemoteCall:CallWait("GetFBTransitSceneMixID", CallBack, oRole:GetStayServer(), tDupConf.nLogic, oRole:GetSession())
+                    Network:RMCall("GetFBTransitSceneMixID", CallBack, oRole:GetStayServer(), tDupConf.nLogic, oRole:GetSession())
                 end
             end
         end
@@ -59,7 +59,7 @@ function Network.CltPBProc.EnterFBTransitSceneReq(nCmd, nServer, nService, nSess
             --             --             local nFace = ctDupConf[nDupID].nFace
             --             --             oRole:EnterScene(nMixID, tBornPos[1],  tBornPos[2], -1, nFace)
             --             --         end
-            --             --         Network.oRemoteCall:CallWait("GetFBTransitSceneMixID", CallBack, oRole:GetStayServer(), 101, oRole:GetSession())
+            --             --         Network:RMCall("GetFBTransitSceneMixID", CallBack, oRole:GetStayServer(), 101, oRole:GetSession())
             --             --     end
             --             -- end
             --             -- oRole:QuitTeam(fnQuitTeamCallback)

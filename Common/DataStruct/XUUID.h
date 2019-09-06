@@ -16,18 +16,18 @@ namespace XUUID
 			uint16_t uSeriID;	//序列ID
 			uint16_t uCustomID;	//服务器ID
 			int nTime;			//本地时间
-		};
+		} oID;
 		int64_t llID;
 	} unID;
 
 	//@uCustomID: groupid+serverid+serviceid
 	static inline int64_t GenID(int _nCustomID)
 	{
-		assert(_nCustomID <= 0x7777);
+		assert(_nCustomID <= 0xFFFF);
 		static uint16_t uSeriID = 0;
-		unID.uSeriID = uSeriID++;
-		unID.uCustomID = (uint16_t)_nCustomID;
-		unID.nTime = (int)time(NULL) - nStandTime;
+		unID.oID.uSeriID = uSeriID++;
+		unID.oID.uCustomID = (uint16_t)_nCustomID;
+		unID.oID.nTime = (int)time(NULL) - nStandTime;
 		return unID.llID;
 	}
 };
